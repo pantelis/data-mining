@@ -1,0 +1,84 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Syllabus
+    chapters:
+    - file: docs/_index.md
+  
+  - caption: Introduction to Data Science
+    chapters:
+    - file: aiml-common/lectures/ai-intro/course-introduction/_index.md
+    - file: aiml-common/lectures/ai-intro/data-science-360/_index.md
+    - file: aiml-common/lectures/ai-intro/pipelines
+    - file: aiml-common/lectures/uber-ml-arch-case-study
+
+  - caption: Probabilistic Learning
+    chapters:
+    - file: aiml-common/lectures/ml-math/probability/_index.md
+    - file: aiml-common/lectures/entropy/_index.md
+    - file: aiml-common/lectures/pgm/bayesian-inference/_index.md
+    - file: aiml-common/lectures/classification/covid19-antibody-test/_index.md
+    - file: aiml-common/lectures/pgm/bayesian-coin/_index.md
+
+  - caption: The Learning Problem
+    chapters:
+    - file: aiml-common/lectures/regression/linear-regression/_index.md    
+    - file: aiml-common/lectures/regression/linear-regression/regression-notebooks/_index.md
+    - file: aiml-common/lectures/optimization/sgd/_index.md
+   
+  - caption: Classification
+    chapters: 
+    - file: aiml-common/lectures/classification/classification-intro/_index.md
+    
+    - file: aiml-common/lectures/classification/logistic-regression/_index.md
+    - file: aiml-common/lectures/classification/03_classification.ipynb
+
+  - caption: Trees and Intelligence of the Crowds
+    chapters:    
+    - file: aiml-common/lectures/decision-trees/_index.md
+    - file: aiml-common/lectures/ensemble/_index.md
+    - file: aiml-common/lectures/ensemble/random-forests/_index.md
+    - file: aiml-common/lectures/ensemble/boosting/_index.md
+    - file: aiml-common/lectures/ensemble/boosting-workshop/_index.md
+  
+  - caption: Non-Parametric Methods
+    chapters:    
+    - file: aiml-common/lectures/unsupervised/k-means/_index.md
+    - file: aiml-common/lectures/density-estimation/knn/_index.md
+    - file: aiml-common/lectures/density-estimation/knn-workshop/_index.md
+
+  - caption: Neural Networks
+    chapters:    
+    - file: aiml-common/lectures/classification/perceptron/_index.md
+    - file: aiml-common/lectures/dnn/dnn-intro/_index.md
+    - file: aiml-common/lectures/dnn/backprop-intro/_index.md
+    - file: aiml-common/lectures/dnn/backprop-dnn/_index.md
+    - file: aiml-common/lectures/dnn/backprop-intro-exercises/_index.md
+    - file: aiml-common/lectures/dnn/fashion-mnist-case-study/_index.md
+    - file: aiml-common/lectures/cnn/cnn-intro/_index.md
+    - file: aiml-common/lectures/cnn/cnn-layers/_index.md
+    - file: aiml-common/lectures/cnn/cnn-example-architectures/_index.md
+    - file: aiml-common/lectures/cnn/cnn-example-architectures/cnn-classification-workshop/_index.md
+     
+  - caption:  Dimensionality Reduction
+    chapters:    
+    - file: aiml-common/lectures/recommenders/recommenders-intro/_index.md
+    - file: aiml-common/lectures/recommenders/netflix/_index.md
+    - file: aiml-common/lectures/pca/_index.md
+  
+  - caption: Math Background
+    chapters:    
+    - file: aiml-common/lectures/linear-algebra/vectors/_index.md
+    - file: aiml-common/lectures/linear-algebra/matrices/_index.md
+    - file: aiml-common/lectures/ml-math/calculus/_index.md
+
+  - caption: Resources
+    chapters:
+    - file: aiml-common/lectures/environment/_index.md
+    - file: aiml-common/lectures/python/_index.md  
+
+  # - caption:  Assignments & Projects
+    #chapters:    
