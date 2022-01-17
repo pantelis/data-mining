@@ -1,6 +1,4 @@
-# data-science
-
-Introduction to Data Science Course Content
+# Data Mining Course Content
 
 ## Usage
 
