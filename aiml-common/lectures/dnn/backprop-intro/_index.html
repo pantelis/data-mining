@@ -1,0 +1,634 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to Backpropagation &#8212; Introduction to Data Science</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-science/aiml-common/lectures/dnn/backprop-intro/_index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Backpropagation in Deep Neural Networks" href="../backprop-dnn/_index.html" />
+    <link rel="prev" title="Deep Neural Networks" href="../dnn-intro/_index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Data Science
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
+   Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
+   Data Science 360
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probabilistic Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/probability/_index.html">
+   Probability Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../entropy/_index.html">
+   Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+   Bayesian Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
+   COVID-19 Antibody Test
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+   Bayesian Coin Flipping
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Learning Problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/_index.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/sgd/_index.html">
+   Stochastic Gradient Descent
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/classification-intro/_index.html">
+   Introduction to Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/logistic-regression/_index.html">
+   Logistic Regression
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Trees and Intelligence of the Crowds
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../decision-trees/_index.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/_index.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+   Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting/_index.html">
+   Boosting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+   Boosting workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Non-Parametric Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+   K-means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+   k-Nearest Neighbors (kNN) Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+   kNN Workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/perceptron/_index.html">
+   The Neuron (Perceptron)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dnn-intro/_index.html">
+   Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction to Backpropagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../backprop-dnn/_index.html">
+   Backpropagation in Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
+   Introduction to Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-layers/_index.html">
+   CNN Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">
+   CNN Example Architectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recommenders/recommenders-intro/_index.html">
+   Recommender System Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recommenders/netflix/_index.html">
+   The Netflix Prize and Singular Value Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pca/_index.html">
+   Principal Component Analysis (PCA)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/vectors/_index.html">
+   Vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/matrices/_index.html">
+   Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/calculus/_index.html">
+   Calculus
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../python/_index.html">
+   Learn Python
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://pantelis.github.io/data-science/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/dnn/backprop-intro/_index.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculating-the-gradient-of-a-function">
+   Calculating the Gradient of a Function
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forward-pass">
+     Forward Pass
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#backwards-pass">
+     Backwards Pass
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Introduction to Backpropagation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculating-the-gradient-of-a-function">
+   Calculating the Gradient of a Function
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forward-pass">
+     Forward Pass
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#backwards-pass">
+     Backwards Pass
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-backpropagation">
+<h1>Introduction to Backpropagation<a class="headerlink" href="#introduction-to-backpropagation" title="Permalink to this headline">¶</a></h1>
+<p>The backpropagation algorithm brought back from the winter neural networks as it made feasible to train very deep architectures by dramatically improving the efficiency of calculating the gradient of the loss with respect to all the network parameters.</p>
+<p>In this section we will go over the calculation of gradient using an example function and its associated computational graph. The <a class="reference external" href="http://cs231n.github.io/optimization-2/">example</a> does not have anything to do with DNNs but that is exactly the point. The essence of backpropagation was known far earlier than its application in DNN.</p>
+<p>For students that need a refresher on derivatives please go through  Khan Academy’s lessons on <a class="reference external" href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/partial-derivatives-introduction">partial derivatives</a> and <a class="reference external" href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/gradient-and-directional-derivatives/v/gradient">gradients</a>.</p>
+<div class="section" id="calculating-the-gradient-of-a-function">
+<h2>Calculating the Gradient of a Function<a class="headerlink" href="#calculating-the-gradient-of-a-function" title="Permalink to this headline">¶</a></h2>
+<p>Our goal is to compute the components of the gradient of the function  <span class="math notranslate nohighlight">\(\nabla f = [ \partial f / \partial x , \partial f / \partial y ]^T\)</span> where,</p>
+<div class="math notranslate nohighlight">
+\[f(x, y) = \frac{x + \sigma(y)}{\sigma(x) + (x+y)^2}\]</div>
+<p>The computational graph of this function is shown below.  Its instructive to print this graph and pencil in all calculations for both this example and others in the backpropagation section. You may need to review derivative tables from Calculus e.g. <a class="reference external" href="http://cs231n.stanford.edu/handouts/derivatives.pdf">http://cs231n.stanford.edu/handouts/derivatives.pdf</a></p>
+<p>One derivative that we will be using that is not often listed is the derivative of the sigmoid function. The sigmoid derivative can be obtained as follows:</p>
+<p>Consider
+$<span class="math notranslate nohighlight">\(
+f(x)=\dfrac{1}{\sigma(x)} = 1+e^{-x}
+.
+\)</span><span class="math notranslate nohighlight">\(
+Then, on the one hand, the chain rule gives
+\)</span><span class="math notranslate nohighlight">\(
+f'(x)
+= \frac{d}{dx} \biggl( \frac{1}{\sigma(x)} \biggr)
+= -\frac{\sigma'(x)}{\sigma(x)^2}
+,
+\)</span><span class="math notranslate nohighlight">\(
+and on the other hand,
+\)</span><span class="math notranslate nohighlight">\(
+f'(x)
+= \frac{d}{dx} \bigl( 1+e^{-x} \bigr)
+= -e^{-x}
+= 1-f(x)
+= 1 - \frac{1}{\sigma(x)}
+= \frac{\sigma(x)-1}{\sigma(x)}
+\)</span>$</p>
+<p>Equating the two expressions we finally obtain,</p>
+<div class="math notranslate nohighlight">
+\[\sigma'(x) = \sigma(x)(1-\sigma(x))\]</div>
+<p><img alt="backpropagation-example-loss" src="../../../../_images/backprop-example-loss.drawio.svg" /></p>
+<div class="section" id="forward-pass">
+<h3>Forward Pass<a class="headerlink" href="#forward-pass" title="Permalink to this headline">¶</a></h3>
+<p>In the forward pass, the algorithm works bottom up (or left to right depending how the computational graph is represented) and calculates the values of all “gates” (gates are the elementary functions that synthesize the function) of the graph and stores their values into variables as they will be used by the backwards pass. There are eight values stored in this specific example.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">sigy</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">y</span><span class="p">))</span>  <span class="c1">#(1)</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">sigy</span> <span class="c1"># numerator    #(2)</span>
+
+        <span class="n">sigx</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span> <span class="c1">#(3)</span>
+        <span class="n">xpy</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>     <span class="c1">#(4)</span>
+        <span class="n">xpysqr</span> <span class="o">=</span> <span class="n">xpy</span><span class="o">**</span><span class="mi">2</span>     <span class="c1">#(5)</span>
+        <span class="n">den</span> <span class="o">=</span> <span class="n">sigx</span> <span class="o">+</span> <span class="n">xpysqr</span> <span class="c1"># denominator    #(6)</span>
+        <span class="n">invden</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">den</span>   <span class="c1">#(7)</span>
+        
+        <span class="n">f</span> <span class="o">=</span> <span class="n">num</span> <span class="o">*</span> <span class="n">invden</span> <span class="c1">#(8)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="backwards-pass">
+<h3>Backwards Pass<a class="headerlink" href="#backwards-pass" title="Permalink to this headline">¶</a></h3>
+<p>In the backwards pass, we reverse direction and start at the top or rightmost node (the stored variables) of the graph and compute the input (in the reverse direction) derivative of input of each gate using the template depicted below:</p>
+<p><img alt="backprop-template" src="../../../../_images/backprop-template.png" />
+<em>Backpropagation template</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="c1"># gradient at the top</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+        <span class="c1"># backprop f = num * invden</span>
+        <span class="n">dnum</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">invden</span> <span class="c1"># gradient on numerator   #(8)</span>
+        <span class="n">dinvden</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">num</span>         <span class="c1">#(8)</span>
+        
+        <span class="c1"># backprop invden = 1.0 / den </span>
+        <span class="n">dden</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">den</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="n">dinvden</span>   <span class="c1">#(7)</span>
+        
+        <span class="c1"># backprop den = sigx + xpysqr</span>
+        <span class="n">dsigx</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">dden</span>      <span class="c1">#(6)</span>
+        <span class="n">dxpysqr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">dden</span>     <span class="c1">#(6)</span>
+        
+        <span class="c1"># backprop xpysqr = xpy**2</span>
+        <span class="n">dxpy</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">xpy</span><span class="p">)</span> <span class="o">*</span> <span class="n">dxpysqr</span>     <span class="c1">#(5)</span>
+
+        <span class="c1"># backprop xpy = x + y</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">dxpy</span>         <span class="c1">#(4)</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">dxpy</span>         <span class="c1">#(4)</span>
+        
+        <span class="c1"># backprop sigx = 1.0 / (1 + exp(-x))</span>
+        <span class="n">dx</span> <span class="o">+=</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sigx</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigx</span><span class="p">)</span> <span class="o">*</span> <span class="n">dsigx</span> <span class="c1"># ATTENTION !!</span>
+        
+        <span class="c1"># backprop num = x + sigy</span>
+        <span class="n">dx</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">dnum</span>         <span class="c1">#(2)</span>
+        <span class="n">dsigy</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">dnum</span>         <span class="c1">#(2)</span>
+        
+        <span class="c1"># backprop sigy = 1.0 / (1 + exp(-y))</span>
+        <span class="n">dy</span> <span class="o">+=</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sigy</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigy</span><span class="p">)</span> <span class="o">*</span> <span class="n">dsigy</span>       <span class="c1">#(1)</span>
+</pre></div>
+</div>
+<p><img alt="river-backpropagation" src="../../../../_images/river-backpropagation.jpg" />
+<em>As the previous example indicated, the essence of backpropagation algorithm is that local gradients can be calculated symbolically (using calculus) as they only depend on the simple gate structures and these gradients act as valves in the gradient flow that starts from the top of the network (the value of the flow there is always 1.0) and propagates to the bottom of the graph. Think about it as valves controlling the water flowing down a river delta. Individual flows may also merge like in the example above.</em></p>
+<p>This example allowed us to understand how the gates control the flow. We have met add, multiply, branch (split) and one non-linear function.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Gate</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Add</strong></p></td>
+<td><p>This gate always takes the gradient on its output and distributes it equally to all of its inputs, regardless of what their values were during the forward pass. This follows from the fact that the local gradient for the add operation is simply +1.0, so the gradients on all inputs will exactly equal the gradients on the output because it will be multiplied by x1.0 (and remain unchanged).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Multiply</strong></p></td>
+<td><p>Its local gradients are the input values (except switched), and this is multiplied by the gradient on its output during the chain rule. Notice that if one of the inputs to the multiply gate is very small and the other is very big, then the multiply gate will do something slightly non intuitive: it will assign a relatively huge gradient to the small input and a tiny gradient to the large input. Note that in linear classifiers where the weights are dot produced <span class="math notranslate nohighlight">\(w^Tx_i\)</span> (multiplied) with the inputs, this implies that the scale of the data has an effect on the magnitude of the gradient for the weights. For example, if you multiplied all input data examples <span class="math notranslate nohighlight">\(x_i\)</span> by 1000 during preprocessing, then the gradient on the weights will be 1000 times larger, and you’d have to lower the learning rate by that factor to compensate. This is why preprocessing matters a lot.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Branch</strong>  (or split)</p></td>
+<td><p>This gate takes a single input and produces a number of identical copies at the output. $<span class="math notranslate nohighlight">\(x_k = x_{in}\)</span><span class="math notranslate nohighlight">\( With \)</span>k={1, \dots, K}<span class="math notranslate nohighlight">\(, backpropagating the gate will produce, \)</span><span class="math notranslate nohighlight">\(dx_{in} = \frac{\partial f}{\partial x_{in}} = \sum_k dx_k\)</span>$. This gate was met in the example above and applied in lines (23) and (30).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./aiml-common/lectures/dnn/backprop-intro"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../dnn-intro/_index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Deep Neural Networks</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../backprop-dnn/_index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Backpropagation in Deep Neural Networks</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pantelis Monogioudis, Ph.D<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

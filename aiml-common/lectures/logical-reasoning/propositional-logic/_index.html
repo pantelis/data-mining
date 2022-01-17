@@ -1,0 +1,787 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World Models &#8212; Introduction to Data Science</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-science/aiml-common/lectures/logical-reasoning/propositional-logic/_index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Data Science
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
+   Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
+   Data Science 360
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probabilistic Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/probability/_index.html">
+   Probability Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../entropy/_index.html">
+   Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+   Bayesian Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
+   COVID-19 Antibody Test
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+   Bayesian Coin Flipping
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Learning Problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/_index.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/sgd/_index.html">
+   Stochastic Gradient Descent
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/classification-intro/_index.html">
+   Introduction to Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/logistic-regression/_index.html">
+   Logistic Regression
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Trees and Intelligence of the Crowds
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../decision-trees/_index.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/_index.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+   Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting/_index.html">
+   Boosting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+   Boosting workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Non-Parametric Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+   K-means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+   k-Nearest Neighbors (kNN) Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+   kNN Workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/perceptron/_index.html">
+   The Neuron (Perceptron)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
+   Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
+   Introduction to Backpropagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
+   Backpropagation in Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
+   Introduction to Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-layers/_index.html">
+   CNN Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">
+   CNN Example Architectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recommenders/recommenders-intro/_index.html">
+   Recommender System Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recommenders/netflix/_index.html">
+   The Netflix Prize and Singular Value Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pca/_index.html">
+   Principal Component Analysis (PCA)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/vectors/_index.html">
+   Vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/matrices/_index.html">
+   Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/calculus/_index.html">
+   Calculus
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../python/_index.html">
+   Learn Python
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://pantelis.github.io/data-science/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/logical-reasoning/propositional-logic/_index.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wumpus-world">
+   Wumpus World
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logical-inference">
+   Logical Inference
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-more-general-reasoning-case">
+     A more general reasoning case
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-checking-algorithm">
+     Model-Checking Algorithm
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#propositional-logic-syntax">
+   Propositional Logic Syntax
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#propositional-logic-semantics">
+   Propositional Logic Semantics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inference-example">
+   Inference Example
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>World Models</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wumpus-world">
+   Wumpus World
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logical-inference">
+   Logical Inference
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-more-general-reasoning-case">
+     A more general reasoning case
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-checking-algorithm">
+     Model-Checking Algorithm
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#propositional-logic-syntax">
+   Propositional Logic Syntax
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#propositional-logic-semantics">
+   Propositional Logic Semantics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inference-example">
+   Inference Example
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="world-models">
+<h1>World Models<a class="headerlink" href="#world-models" title="Permalink to this headline">¶</a></h1>
+<p>For each problem we can define a number of <em>world models</em> each representing every possible state (configuration) of the environment that the agent may be in.</p>
+<div class="section" id="wumpus-world">
+<h2>Wumpus World<a class="headerlink" href="#wumpus-world" title="Permalink to this headline">¶</a></h2>
+<p>We will use a very simple world known in the literature as the Wumpus world (a cave) shown below.</p>
+<p><img alt="wumpus-world" src="../../../../_images/wumpus-world.png" />
+<em>Wumpus World. It was inspired by a video game Hunt the Wumpus by Gregory Yob in 1973. The Wumpus world is a cave which has 4/4 rooms connected with passageways. So there are total 16 rooms which are connected with each other. We have a agent who will move in this world. The cave has a room with a beast which is called Wumpus, who eats anyone who enters the room. The Wumpus can be shot by the agent, but the agent has a single arrow. There are pit rooms which are bottomless, and if agent falls in such pits, then he will be stuck there forever. The agent’s goal is to find the gold and climb out of the cave without falling into pits or eaten by Wumpus. The agent will get a reward if he comes out with gold, and he will get a penalty if eaten by Wumpus or falls in the pit.</em></p>
+<p>The Performance Environment Actuators and Sensors (PEAS) description is summarized in the table.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Attribute</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Environment</strong></p></td>
+<td><p>Locations of gold and wumpus are uniformly random while any cell other than the starting cell can be a pit with probability of 0.2. One instantiation of the environment that is going to be fixed throughout the problem solving exercise is shown in the figure above. The agent always start at [1,1] facing to the right.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Performance</strong></p></td>
+<td><p>+1000 points for picking up the gold. This is the goal of the agent.</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>−1000 points for dying. Entering a square containing a pit or a live Wumpus monster.</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>−1 point for each action taken so that the agent should avoid performing unnecessary actions.</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>−10 points for using the arrow trying to kill the Wumpus.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Actions</strong></p></td>
+<td><p><em>Turn 90◦</em> left or right</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><em>Forward</em> (walk one square) in the current direction</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><em>Grab</em> an object in this square</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><em>Shoot</em> the single arrow in the current direction, which flies in a straight line until it hits a wall or the Wumpus</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><em>Climb</em> out of the cave - this is possible only in the starting location [1,1]</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Sensors</strong></p></td>
+<td><p><em>Stench</em> when the Wumpus is in an adjacent square — directly, not diagonally</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><em>Breeze</em> when an adjacent square has a pit</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><em>Glitter</em> when the agent perceives the glitter of the gold in the current square</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><em>Bump</em> when the agent walks into an enclosing wall (and then the action had no effect)</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><em>Scream</em> when the arrow hits the Wumpus, killing it.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The environment is:</p>
+<ul class="simple">
+<li><p><em>Static</em>: It is static as Wumpus and Pits are not moving.</p></li>
+<li><p><em>Discrete</em>: The states are discrete.</p></li>
+<li><p><em>Partially observable</em>: The Wumpus world is partially observable because the agent can only perceive the close environment such as an adjacent room.</p></li>
+<li><p><em>Sequential</em>: The order is important, so it is sequential.</p></li>
+</ul>
+<p>But why this problem requires <em>reasoning</em>? Simply put, the agent needs to infer the state of adjacent cells from its perception subsystem in the current cell <strong>and</strong> <em>the knowledge of the rules</em> of the wumpus world. These inferences will help the agent to <em>only</em> move to an adjacent cell when it has determined that the cell is OK for it move into.</p>
+<p><img alt="wumpus-seq01" src="../../../../_images/wumpus-seq01.png" />
+<em>Agent A moving in the environment infering the contents of adjacent cells. (a) Initial environment after percept [Stench, Breeze, Glitter, Bump, Scream]=[None, None, None, None, None]. (b) After one move with percept [Stench, Breeze, Glitter, Bump, Scream]=[None, Breeze, None, None, None].</em></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Environment State</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>(a)</p></td>
+<td><p>Agent A starts at [1, 1] facing right. The background knowledge β assures agent A that he is at [1, 1] and that it is OK = certainly not deadly.</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Agent A gets the percept [Stench, Breeze, Glitter, Bump, Scream]=[None, None, None, None, None].</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Agent A infers from this percept and β that its both neighboring squares [1, 2] and [2, 1] are also OK: “If there was a Pit (Wumpus), then here would be Breeze (Smell) — but isn’t, so… ”.  The KB enables agent A to discover certainties about parts of its environment — even without visiting those parts.</p></td>
+</tr>
+<tr class="row-odd"><td><p>(b)</p></td>
+<td><p>Agent A is cautious, and will only move to OK squares. Agent A walks into [2, 1], because it is OK, and in the direction where agent A is facing, so it is cheaper than the other choice [1, 2]. Agent A also marks [1, 1] Visited.</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Agent A perceives [Stench, Breeze, Glitter, Bump, Scream]=[None, Breeze, None, None, None]. Agent A infers: “At least one of the adjacent squares [1, 1], [2, 2] and [3, 1] must contain a Pit. There is no Pit in [1, 1] by my background knowledge β. Hence [2, 2] or [3, 1] or both must contain a Pit.” Hence agent A cannot be certain of either [2, 2] or [3, 1], so [2, 1] is a dead-end for a cautious agent like A.</p></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="wumpus-seq35" src="../../../../_images/wumpus-seq35.png" />
+<em>Agent moving in the environment infering the contents of adjacent cells.  (a) After the 3rd move and percept [Stench, Breeze, Glitter, Bump, Scream]=[Stench, None, None, None, None]. (b) After the 5th move with percept [Stench, Breeze, Glitter, Bump, Scream]=[Stench, Breeze, Glitter, None, None].</em></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Environment State</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>(a)</p></td>
+<td><p>Agent A has turned back from the dead end [2, 1] and walked to examine the other OK choice [1, 2] instead.</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Agent A perceives [Stench, Breeze, Glitter, Bump, Scream]=[Stench, None, None, None, None].</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Agent A infers using also earlier percepts: “The Wumpus is in an adjacent square. It is not in [1, 1]. It is not in [2, 2] either, because then I would have sensed a Stench in [2, 1]. Hence it is in [1, 3].”</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Agent A infers using also earlier inferences: “There is no Breeze here, so there is no Pit in any adjacent square. In particular, there is no Pit in [2, 2] after all. Hence there is a Pit in [3, 1].”</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Agent A finally infers: “[2, 2] is OK after all — now it is certain that it has neither a Pit nor the Wumpus.”</p></td>
+</tr>
+<tr class="row-odd"><td><p>(b)</p></td>
+<td><p>Agent A walks to the only unvisited OK choice [2, 2]. There is no Breeze here, and since the square of the Wumpus is now known too, [2, 3] and [3, 2] are OK too.</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Agent A walks into [2, 3] and senses the Glitter there, so it grabs the gold and succeeds.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="logical-inference">
+<h2>Logical Inference<a class="headerlink" href="#logical-inference" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="a-more-general-reasoning-case">
+<h3>A more general reasoning case<a class="headerlink" href="#a-more-general-reasoning-case" title="Permalink to this headline">¶</a></h3>
+<p>The wumpus world despite its triviality, contains some deeper abstractions that are worth summarizing.</p>
+<ol class="simple">
+<li><p>Logical inference can be done via an internal representation that are sentences - their syntax and semantics we will examined next.</p></li>
+<li><p>Sentences may be expressed in <em>natural</em> language. Together with the perception and probabilistic reasoning subsystems that can generate symbols associated with a task, the natural language can be <em>grounded</em> and inferences can be drawn in a ‘soft’ or probabilistic way at the symbolic level.</p></li>
+</ol>
+<p>To return to the backpack problem, for the sentence <span class="math notranslate nohighlight">\(\beta\)</span> that declares that the backpack was abandoned, we need to entail a sentence <span class="math notranslate nohighlight">\(\alpha\)</span> (and we denote it as <span class="math notranslate nohighlight">\(\alpha \models \beta\)</span>) that the backpack was handed over to <span class="math notranslate nohighlight">\(\mathtt{nobody}\)</span> and therefore justify an action to sound the security alarm. Note the direction in notation: <span class="math notranslate nohighlight">\(\alpha\)</span> is a stronger assertion that <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
+<p>The specific world model <span class="math notranslate nohighlight">\(m\)</span> is a mathematical abstraction that fixes as TRUE or FALSE each of the sentences it contains and as you understand, depending on the sentences, it may or may not correspond to reality. We denote the set of models that <em>satisfy</em> sentence <span class="math notranslate nohighlight">\(\alpha\)</span> as <span class="math notranslate nohighlight">\(M(\alpha)\)</span>. We also say that <span class="math notranslate nohighlight">\(m\)</span> is a model of <span class="math notranslate nohighlight">\(\alpha\)</span>. Now that we have defined the world model we can go back to the definition of entailment in the earlier example and write:</p>
+<div class="math notranslate nohighlight">
+\[ \alpha \models \beta  \iff M(\alpha) ⊆ M(\beta)\]</div>
+</div>
+<div class="section" id="model-checking-algorithm">
+<h3>Model-Checking Algorithm<a class="headerlink" href="#model-checking-algorithm" title="Permalink to this headline">¶</a></h3>
+<p>The reasoning algorithm regarding the possible state of the environment in surrounding cells that the agent performed informally above, is called <em>model checking</em> because it enumerates <em>all possible</em> models to check that a sentence <span class="math notranslate nohighlight">\(a\)</span> is supported by the KB i.e. <span class="math notranslate nohighlight">\(M(KB) ⊆ M(\alpha)\)</span>.</p>
+<p><img alt="wumpus-entailment" src="../../../../_images/wumpus-entailment.png" />
+<em>Possible Models in the presence of pits in cells [1,2],[2,2] and [3,1]. There are <span class="math notranslate nohighlight">\(2^3=8\)</span> possible models. The KB when the percepts indicate nothing in cell [1,1] and a breeze in [2,1] is shown as a solid line. With dotted line we show all models of <span class="math notranslate nohighlight">\(a_1=\text{&quot;not have a pit in [1,2]&quot;}\)</span> sentence</em>.</p>
+<p><img alt="wumpus-noentailment" src="../../../../_images/wumpus-nonentailment.png" />
+<em>Same situation as the figure above but we indicate with dot circle a different sentence <span class="math notranslate nohighlight">\(a_2\)</span>. What is this sentence?</em></p>
+</div>
+</div>
+<div class="section" id="propositional-logic-syntax">
+<h2>Propositional Logic Syntax<a class="headerlink" href="#propositional-logic-syntax" title="Permalink to this headline">¶</a></h2>
+<p>The PL syntax defines the allowable sentences that can be complex. Each <em>atomic</em> sentence consists of a single (propositional) symbol and the fixed symbols TRUE &amp; FALSE. In BNF the atomic sentences or formulas are also called terminal elements. Complex sentences can be constructed from sentences using logical <em>operators</em> (connectives that connect two or more sentences). In evaluating complex sentences the operator precedence shown in the figure below must be followed.</p>
+<p><img alt="BNF-grammar-prop-logic" src="../../../../_images/BNF-grammar-prop-logic.png" />
+<em>BNF grammar of propositional logic</em></p>
+<p>Out of all the operators, two are worthy of further explanation.</p>
+<ol class="simple">
+<li><p>imply (⇒) operator: the left hand side is the <em>premise</em> and the  right hand side is the implication or conclusion or consequent. This is an operator of key importance known as <strong>rule</strong>. Its an if-then statement.</p></li>
+<li><p>if and only if (⇔) operator: its expressing an equivalence (≡) or a biconditional.</p></li>
+</ol>
+</div>
+<div class="section" id="propositional-logic-semantics">
+<h2>Propositional Logic Semantics<a class="headerlink" href="#propositional-logic-semantics" title="Permalink to this headline">¶</a></h2>
+<p>The semantics for propositional logic specify how to compute the value of <em>any</em> sentence given a model. To do so we use the following truth table.</p>
+<p><img alt="truth-table" src="../../../../_images/truth-table.png" />
+<em>Truth tables for three primary and five derived logical operators. Note the presence of the XOR connective.</em></p>
+<p>Given a world model in the KB</p>
+<div class="math notranslate nohighlight">
+\[m_1 = \left[ P_{1,2}=FALSE, P_{2,2}=FALSE, P_{3,1}=TRUE \right]\]</div>
+<p>a sentence can be assigned a truth value (FALSE/TRUE) using the semantics above. For example the sentence,</p>
+<div class="math notranslate nohighlight">
+\[\neg P_{1,2} \land (P_{2,2} \lor P_{3,1}) = TRUE \]</div>
+</div>
+<div class="section" id="inference-example">
+<h2>Inference Example<a class="headerlink" href="#inference-example" title="Permalink to this headline">¶</a></h2>
+<p>Using the operators and their semantics we can now construct an KB as an example for the wumpus world. We will use the following symbols to describe atomic and complex sentences in this world.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbols</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(P_{x,y}\)</span></p></td>
+<td><p>Pit in cel [x,y]</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(W_{x,y}\)</span></p></td>
+<td><p>Wumpus (dead or alive) in cel [x,y]</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(B_{x,y}\)</span></p></td>
+<td><p>Perception of a breeze while in cel [x,y]</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(S_{x,y}\)</span></p></td>
+<td><p>Perception of a stench while in cel [x,y]</p></td>
+</tr>
+</tbody>
+</table>
+<p>Using these symbols we can convert the natural language assertions into logical sentences and populate the KB. The sentences <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2/R_3\)</span> are general rules of the wumpus world. <span class="math notranslate nohighlight">\(R_4\)</span> and <span class="math notranslate nohighlight">\(R_5\)</span> are specific to the specific world instance and moves of the agent.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sentence</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>KB</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(R_1\)</span></p></td>
+<td><p>There is no pit in cel [1,1]</p></td>
+<td><p><span class="math notranslate nohighlight">\(\neg P_{1,1}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(R_2\)</span></p></td>
+<td><p>The cell [1,1] is breezy if and only if there is a pit in the neighboring cell.</p></td>
+<td><p><span class="math notranslate nohighlight">\(B_{1,1} ⇔ (P_{1,2} \lor P_{2,1})\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(R_3\)</span></p></td>
+<td><p>The cell [2,1] is breezy if and only if there is a pit in the neighboring cell.</p></td>
+<td><p><span class="math notranslate nohighlight">\(B_{2,1} ⇔ (P_{1,1} \lor P_{2,2} \lor P_{3,1})\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(R_4\)</span></p></td>
+<td><p>Agent while in cell [1,1] perceives [Stench, Breeze, Glitter, Bump, Scream]=[None, None, None, None, None]</p></td>
+<td><p><span class="math notranslate nohighlight">\(\neg B_{1,1}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(R_5\)</span></p></td>
+<td><p>Agent while in cell [2,1] perceives [Stench, Breeze, Glitter, Bump, Scream]=[None, Breeze, None, None, None]</p></td>
+<td><p><span class="math notranslate nohighlight">\(B_{2,1}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>As the agent moves, it uses the KB to decide whether a sentence is entailed by the the KB or not. For example can we infer that there is no pit at cell [1,2] ? The sentence of interest is <span class="math notranslate nohighlight">\( \alpha = \neg P_{1,2}\)</span> and we need to prove that:</p>
+<div class="math notranslate nohighlight">
+\[ KB \models \alpha \]</div>
+<p>To answer such question we will use the model checking algorithm outlined in this chapter: enumerate all models and check that <span class="math notranslate nohighlight">\(\alpha\)</span> is true for in every model where the KB is true. We construct the truth table that involves the symbols and sentences present in the KB:</p>
+<p><img alt="truth-table-kb" src="../../../../_images/truth-table-kb.png" /></p>
+<p>As described in the figure caption, 3 models out of the <span class="math notranslate nohighlight">\(2^7=128\)</span> models make the KB true and in these rows the <span class="math notranslate nohighlight">\(P_{1,2}\)</span> is false.</p>
+<p>Although the model checking approach was instructive, there is an issue with its complexity. Notice that if there are <span class="math notranslate nohighlight">\(n\)</span> symbols in the KB there will be <span class="math notranslate nohighlight">\(2^n\)</span> models, the time complexity is <span class="math notranslate nohighlight">\(O(2^n)\)</span>.</p>
+<p>The symbolic representation together with the explosive increase in the number of sentences in the KB as time goes by, cant scale. Another approach to do entailment, potentially more efficient, is  <em>theorem proving</em> where we are applying <em>inference rules</em> directly to the sentences of the KB to construct a proof of the desired sentence/query. Even better, we can invest in new representations as described in the [PDDL]() chapter to develop planning approaches that combine search and logic and do not suffer necessarily from the combinatorial explosion problem.</p>
+<p>If you need to review the BNF expressed grammar for propositional logic (as shown in the syntax above) review <a class="reference external" href="https://www.youtube.com/watch?v=MMxMeX5emUA">part 1</a> and <a class="reference external" href="https://www.youtube.com/watch?v=DiOxbYTLXX8">part 2</a> video tutorials.
+</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./aiml-common/lectures/logical-reasoning/propositional-logic"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pantelis Monogioudis, Ph.D<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

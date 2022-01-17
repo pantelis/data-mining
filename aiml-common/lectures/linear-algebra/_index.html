@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linear Algebra for Machine Learning &#8212; Introduction to Data Science</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-science/aiml-common/lectures/linear-algebra/_index.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Data Science
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ai-intro/course-introduction/_index.html">
+   Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ai-intro/data-science-360/_index.html">
+   Data Science 360
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probabilistic Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ml-math/probability/_index.html">
+   Probability Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../entropy/_index.html">
+   Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pgm/bayesian-inference/_index.html">
+   Bayesian Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../classification/covid19-antibody-test/_index.html">
+   COVID-19 Antibody Test
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pgm/bayesian-coin/_index.html">
+   Bayesian Coin Flipping
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Learning Problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../regression/linear-regression/_index.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../optimization/sgd/_index.html">
+   Stochastic Gradient Descent
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../classification/classification-intro/_index.html">
+   Introduction to Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../classification/logistic-regression/_index.html">
+   Logistic Regression
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Trees and Intelligence of the Crowds
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../decision-trees/_index.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ensemble/_index.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ensemble/random-forests/_index.html">
+   Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ensemble/boosting/_index.html">
+   Boosting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ensemble/boosting-workshop/_index.html">
+   Boosting workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Non-Parametric Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unsupervised/k-means/_index.html">
+   K-means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../density-estimation/knn/_index.html">
+   k-Nearest Neighbors (kNN) Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../density-estimation/knn-workshop/_index.html">
+   kNN Workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../classification/perceptron/_index.html">
+   The Neuron (Perceptron)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dnn/dnn-intro/_index.html">
+   Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dnn/backprop-intro/_index.html">
+   Introduction to Backpropagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dnn/backprop-dnn/_index.html">
+   Backpropagation in Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cnn/cnn-intro/_index.html">
+   Introduction to Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cnn/cnn-layers/_index.html">
+   CNN Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cnn/cnn-example-architectures/_index.html">
+   CNN Example Architectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../recommenders/recommenders-intro/_index.html">
+   Recommender System Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../recommenders/netflix/_index.html">
+   The Netflix Prize and Singular Value Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pca/_index.html">
+   Principal Component Analysis (PCA)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="vectors/_index.html">
+   Vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="matrices/_index.html">
+   Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ml-math/calculus/_index.html">
+   Calculus
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../python/_index.html">
+   Learn Python
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://pantelis.github.io/data-science/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/linear-algebra/_index.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-points">
+   Key Points
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#projections">
+     Projections
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-four-fundamental-subspaces">
+     The Four Fundamental Subspaces
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors">
+     Eigenvalues and Eigenvectors
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Linear Algebra for Machine Learning</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-points">
+   Key Points
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#projections">
+     Projections
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-four-fundamental-subspaces">
+     The Four Fundamental Subspaces
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors">
+     Eigenvalues and Eigenvectors
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="linear-algebra-for-machine-learning">
+<h1>Linear Algebra for Machine Learning<a class="headerlink" href="#linear-algebra-for-machine-learning" title="Permalink to this headline">¶</a></h1>
+<p>Let me introduce you MIT prof G Strang - probably the best educator in America. He has published this playlist of <a class="reference external" href="https://www.youtube.com/watch?v=Cx5Z-OslNWE&amp;list=PLUl4u3cNGP63oMNUHXqIUcrkS2PivhN3k">youtube videos on Linear Algebra</a>.
+</p>
+<p><em>Linear Algebra recitation for my classes. Recitation was delivered by my TA Shweta Selvaraj Achary.</em></p>
+<p>The corresponding chapter of Ian Goodfellow’s Deep Learning book is what you partially need to know as data scientists at a graduate level but arguably if you are just starting you ought to know 2.1-2.5.</p>
+<iframe src="https://www.deeplearningbook.org/contents/linear_algebra.html" width="800" height="1200"></iframe>
+<div class="section" id="key-points">
+<h2>Key Points<a class="headerlink" href="#key-points" title="Permalink to this headline">¶</a></h2>
+<p>We can now summarize the points to pay attention to, for ML applications.  In the following we assume a data matrix <span class="math notranslate nohighlight">\(A\)</span> with <span class="math notranslate nohighlight">\(m\)</span> rows and <span class="math notranslate nohighlight">\(n\)</span> columns. We also assume that the matrix is such that it has <span class="math notranslate nohighlight">\(r\)</span> independent rows or columns, called <em>the matrix rank</em>.</p>
+<div class="section" id="projections">
+<h3>Projections<a class="headerlink" href="#projections" title="Permalink to this headline">¶</a></h3>
+<p>Its important to understand this basic operator and its geometric interpretation as it is met in problems like Ordinary Least Squares but also all over ML and other fields such as compressed sensing. In the following we assume that the reader is familiar with the concept of vector spaces and subspaces.</p>
+<p>Let <span class="math notranslate nohighlight">\(S\)</span> be a vector subspace of <span class="math notranslate nohighlight">\(\R^n\)</span>. For example in <span class="math notranslate nohighlight">\(\R^3\)</span>, <span class="math notranslate nohighlight">\(S\)</span> are the lines and planes going through the origin. The projection operator onto <span class="math notranslate nohighlight">\(S\)</span> implements a linear transformation: <span class="math notranslate nohighlight">\(\Pi_S: \R^3 →S\)</span>. We will stick to <span class="math notranslate nohighlight">\(\R^3\)</span> to maintain the ability to plot the operations involved. We also define the orthogonal subspace,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S^\perp  ≡  \\{ \bm w \in \R^3 | \bm w ^T \bm s = 0, ∀ \bm s \in S \\} \end{split}\]</div>
+<p>The transformation <span class="math notranslate nohighlight">\(\Pi_S\)</span> projects onto space <span class="math notranslate nohighlight">\(S\)</span> in the sense that when you apply this operator, every vector <span class="math notranslate nohighlight">\(\bm u\)</span> in any other space results in the subspace <span class="math notranslate nohighlight">\(S\)</span>. In our example above,</p>
+<div class="math notranslate nohighlight">
+\[\Pi_S(\bm u) \in S, \forall \bm u \in \R^3\]</div>
+<p>This means that any components of the vector <span class="math notranslate nohighlight">\(\bm u\)</span> that belonged to <span class="math notranslate nohighlight">\(S^\perp\)</span> are gone when applying the projection operator. Effectively, the original space is decomposed into</p>
+<div class="math notranslate nohighlight">
+\[ \R^3 = S \oplus S^\perp \]</div>
+<p>Now we can treat projections onto specific subspaces such as lines and planes passing through the origin.</p>
+<p>For a line defined by a direction vector <span class="math notranslate nohighlight">\(\bm u\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}l = \\{  (x,y,z) \in \R^3 | (x,y,z) = \bm 0 + t \bm u \\} \end{split}\]</div>
+<p>we can define the projection onto the line</p>
+<p><img alt="line-projection" src="../../../_images/line-projection.png" />
+<em>Projection of <span class="math notranslate nohighlight">\(\bm u\)</span> onto the line <span class="math notranslate nohighlight">\(l\)</span></em></p>
+<p>The space <span class="math notranslate nohighlight">\(S^\perp ≡ l^\perp\)</span> is a plane since it consists of all the vectors that are perpendicular to the line. What is shown in the figure as a dashed line is simply the projection of <span class="math notranslate nohighlight">\(\bm u\)</span> on the <span class="math notranslate nohighlight">\(l^\perp\)</span> subspace,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}l^\perp = \\{  (x,y,z) \in \R^3 | \begin{bmatrix} x \\\\ y \\\\ z \end{bmatrix}^T  \bm v = 0\\} \end{split}\]</div>
+<p>The orthogonal space of a line with direction vector <span class="math notranslate nohighlight">\(\bm v\)</span> is a <em>plane</em> with a normal vector <span class="math notranslate nohighlight">\(\bm v\)</span>. So when we project the <span class="math notranslate nohighlight">\(\bm v\)</span> on the line we get two components one is lying on the line and is the <span class="math notranslate nohighlight">\(\Pi_l \bm u\)</span> and the other is the vector <span class="math notranslate nohighlight">\(\bm w\)</span> = <span class="math notranslate nohighlight">\(\Pi_{l^\perp} \bm u = \bm u - \bm v = \bm u - \Pi_{\bm v} \bm u \)</span>. The vector <span class="math notranslate nohighlight">\(\bm w\)</span> is what remains when we remove the projected on <span class="math notranslate nohighlight">\(\bm v\)</span> part from the <span class="math notranslate nohighlight">\(\bm u\)</span>.</p>
+</div>
+<div class="section" id="the-four-fundamental-subspaces">
+<h3>The Four Fundamental Subspaces<a class="headerlink" href="#the-four-fundamental-subspaces" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Four fundamental spaces" src="../../../_images/four-fundamental-spaces-linear-alg.png" /></p>
+<p>The <em>fundamental theorem of Linear Algebra</em> specifies the effect of the multiplication operation of the matrix and a vector (<span class="math notranslate nohighlight">\(A\mathbf{x}\)</span>). The matrix gives raise to 4 subspaces:</p>
+<ol class="simple">
+<li><p><strong>The column space of <span class="math notranslate nohighlight">\(A\)</span></strong>, denoted by <span class="math notranslate nohighlight">\(\mathcal{R}(A)\)</span>, with dimension <span class="math notranslate nohighlight">\(r\)</span>.</p></li>
+<li><p><strong>The nullspace of <span class="math notranslate nohighlight">\(A\)</span></strong>, denoted by <span class="math notranslate nohighlight">\(\mathcal{N}(A)\)</span>, with dimension <span class="math notranslate nohighlight">\(n-r\)</span>.</p></li>
+<li><p><strong>The row space of <span class="math notranslate nohighlight">\(A\)</span></strong> which is the column space of <span class="math notranslate nohighlight">\(A^T\)</span>, with dimension <span class="math notranslate nohighlight">\(r\)</span></p></li>
+<li><p><strong>The left nullspace of <span class="math notranslate nohighlight">\(A\)</span></strong>, which is the nullspace of <span class="math notranslate nohighlight">\(A^T\)</span>, denoted by <span class="math notranslate nohighlight">\(\mathcal{N}(A^T)\)</span>, with dimension <span class="math notranslate nohighlight">\(m-r\)</span>.</p></li>
+</ol>
+<p>The real action that the matrix performs is to <strong>transform</strong> its row space to its column space.</p>
+<p>The type of matrices that are common in ML are those that the number of rows <span class="math notranslate nohighlight">\(m\)</span> representing observations is much larger than the number of columns <span class="math notranslate nohighlight">\(n\)</span> that represent features. We will call these matrices “tall” for obvious reasons. Let us consider one trivial but instructive example of the smallest possible “tall” matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} a_{11} &amp; a_{12} \\\\ a_{21}  &amp; a_{22} \\\\ a_{31} &amp; a_{32} \end{bmatrix} = \begin{bmatrix} 1       &amp; 0 \\\\ 5       &amp; 4 \\\\ 2       &amp; 4 \end{bmatrix}\end{split}\]</div>
+<p>In ML we are usually concerned with the problem of learning the weights <span class="math notranslate nohighlight">\(x_1, x_2\)</span> that will combine the features and result into the given target variables <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. The notation here is different and we have adopted the notation of many linear algebra textbooks.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{bmatrix} 1       &amp; 0 \\\\ 5       &amp; 4 \\\\ 2       &amp; 4 \end{bmatrix}  \begin{bmatrix} x_1 \\\\ x_2  \end{bmatrix} =
+\begin{bmatrix} b_1 \\\\ b_2 \\\\  b_3  \end{bmatrix}\end{split}\]</div>
+<p>To make more explicit the combination of features we can write,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} x_1 \begin{bmatrix} 1 \\\\ 5 \\\\ 2 \end{bmatrix} + x_2 \begin{bmatrix} 0 \\\\ 4 \\\\  4  \end{bmatrix} = \begin{bmatrix} b_1 \\\\ b_2 \\\\  b_3  \end{bmatrix}\end{split}\]</div>
+<p>Since <span class="math notranslate nohighlight">\(m=3 &gt; n=2\)</span>, we have more equations than unknowns we in general we have no solutions - a system with <span class="math notranslate nohighlight">\(m &gt; n\)</span> will be solvable only for certain right hand sides <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. Those are all the vectors <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> that lie in the column space of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p><img alt="column-space" src="../../../_images/column-space.png" /></p>
+<p>In this example, as shown in the picture <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> must lie in the plane spanned by the two columns of <span class="math notranslate nohighlight">\(A\)</span>. The plane is a subspace of <span class="math notranslate nohighlight">\(\mathbb{R}^m=\mathbb{R}^3\)</span> in this case.</p>
+<p>Now instead of looking at what properties <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> must have for the system to have a solution, lets look at the <em>dual</em> problem i.e. what weights <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> can attain those <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. The right-hand side <span class="math notranslate nohighlight">\(\mathbf{b}=0\)</span> always allows the solution <span class="math notranslate nohighlight">\(\mathbf{x}=0\)</span>
+The solutions to <span class="math notranslate nohighlight">\(A \mathbf{x} = \mathbf{0}\)</span> form a vector space - <strong>the nullspace</strong> <span class="math notranslate nohighlight">\(\mathcal{N}(A)\)</span>. The nullspace is also called the <em>kernel</em> of matrix <span class="math notranslate nohighlight">\(A\)</span> and the its dimension <span class="math notranslate nohighlight">\(n-r\)</span> is called the nullity.</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{N}(A)\)</span> is a subspace of <span class="math notranslate nohighlight">\(\mathbb{R}^n=\mathbb{R}^2\)</span> in this case. For our specific example,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} x_1 \begin{bmatrix} 1 \\\\ 5 \\\\ 2 \end{bmatrix} + x_2 \begin{bmatrix} 0 \\\\ 4 \\\\  4  \end{bmatrix} = \begin{bmatrix} 0 \\\\ 0 \\\\  0  \end{bmatrix}\end{split}\]</div>
+<p>the only solution that can satisfy this set of homogenous equations is: <span class="math notranslate nohighlight">\(\mathbf{x}=\mathbf{0}\)</span> and this means that the null space contains only the zero vector and this</p>
+<p>Two vectors are independent when their linear combination cannot be zero, unless both <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> are zero.  The columns of <span class="math notranslate nohighlight">\(A\)</span> are therefore linearly independent and they span the column space. They have therefore all the properties needed for them to constitute a set called the <em>basis</em> for that space and we have two basis vectors (the rank is <span class="math notranslate nohighlight">\(r=2\)</span> in this case). The dimension of the column space is in fact the same as the dimension of the row space (<span class="math notranslate nohighlight">\(r\)</span>) and the mapping from row space to column space is in fact invertible. Every vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> comes from one and only one vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> of the row space (<span class="math notranslate nohighlight">\(\mathbf{x}_r\)</span>). And this vector can be found by the inverse operation - noting that only the inverse <span class="math notranslate nohighlight">\(A^{-1}\)</span> is the operation that moves the vector correctly from the column space to the row space. The inverse exists only if <span class="math notranslate nohighlight">\(r=m=n\)</span> - this is important as in most ML problems we are dealing with “tall” matrices with the number of equations much larger than the number of unknowns which makes the system <em>inconsistent</em> (or <em>degenerate</em>).</p>
+<p><img alt="projection-column-space" src="../../../_images/projection-column-space.png" />
+<em>Projection onto the column space</em></p>
+<p>Geometrically you can think about the basis vectors as the axes of the space. However, if the axes are not orthogonal, calculations will tend to be complicated not to mention that we usually attribute to each vector of the basis to have length one (1.0).</p>
+</div>
+<div class="section" id="eigenvalues-and-eigenvectors">
+<h3>Eigenvalues and Eigenvectors<a class="headerlink" href="#eigenvalues-and-eigenvectors" title="Permalink to this headline">¶</a></h3>
+<p>The following video gives an intuitive explanation of eigenvalues and eigenvectors and its included here due to its visualizations that it offers.  The video must be viewed in conjunction with <a class="reference external" href="http://math.mit.edu/~gs/linearalgebra/linearalgebra5_6-1.pdf">Strang’s introduction</a></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PFDu9oVAE-g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>During the lecture we will go through an example from how your brain processes the sensory input generated by the voice of the lecturer(unless you are already asleep by that time) to combine <em>optimally</em> the sound from both your ears.</p>
+<p>A geometric interpretation of the eigenvectors and eigenvalues is given in the following figure:</p>
+<p><img alt="eigenvectors" src="../../../_images/eigenvectors.png" /></p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./aiml-common/lectures/linear-algebra"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pantelis Monogioudis, Ph.D<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

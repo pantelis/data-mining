@@ -1,0 +1,577 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word2Vec Embeddings &#8212; Introduction to Data Science</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-science/aiml-common/lectures/nlp/word2vec/_index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Data Science
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
+   Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
+   Data Science 360
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probabilistic Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/probability/_index.html">
+   Probability Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../entropy/_index.html">
+   Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+   Bayesian Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
+   COVID-19 Antibody Test
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+   Bayesian Coin Flipping
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Learning Problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/_index.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/sgd/_index.html">
+   Stochastic Gradient Descent
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/classification-intro/_index.html">
+   Introduction to Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/logistic-regression/_index.html">
+   Logistic Regression
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Trees and Intelligence of the Crowds
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../decision-trees/_index.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/_index.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+   Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting/_index.html">
+   Boosting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+   Boosting workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Non-Parametric Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+   K-means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+   k-Nearest Neighbors (kNN) Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+   kNN Workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/perceptron/_index.html">
+   The Neuron (Perceptron)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
+   Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
+   Introduction to Backpropagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
+   Backpropagation in Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
+   Introduction to Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-layers/_index.html">
+   CNN Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">
+   CNN Example Architectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recommenders/recommenders-intro/_index.html">
+   Recommender System Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recommenders/netflix/_index.html">
+   The Netflix Prize and Singular Value Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pca/_index.html">
+   Principal Component Analysis (PCA)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/vectors/_index.html">
+   Vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/matrices/_index.html">
+   Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/calculus/_index.html">
+   Calculus
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../python/_index.html">
+   Learn Python
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://pantelis.github.io/data-science/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/nlp/word2vec/_index.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#features-of-word2vec-embeddings">
+   Features of Word2Vec embeddings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Word2Vec Embeddings</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#features-of-word2vec-embeddings">
+   Features of Word2Vec embeddings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="word2vec-embeddings">
+<h1>Word2Vec Embeddings<a class="headerlink" href="#word2vec-embeddings" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In the so called classical NLP, words were treated as atomic symbols, e.g. <code class="docutils literal notranslate"><span class="pre">hotel</span></code>, <code class="docutils literal notranslate"><span class="pre">conference</span></code>, <code class="docutils literal notranslate"><span class="pre">walk</span></code> and they were represented with on-hot encoded (sparse) vectors e.g.</p>
+<div class="math notranslate nohighlight">
+\[\mathtt{hotel} = [0,0, ..., 0,1, 0,0,..,0]\]</div>
+<div class="math notranslate nohighlight">
+\[\mathtt{motel} = [0,0, ..., 0,0, 0,1,..,0]\]</div>
+<p>The size of the vectors is equal to the vocabulary size <span class="math notranslate nohighlight">\(V\)</span>. These vocabularies are very long - for speech recognition we may be looking at 20K entries but for information retrieval on the web google has released vocabularies with 13 million words (1TB). In addition such representations are orthogonal to each other by construction - there is no way we can relate <code class="docutils literal notranslate"><span class="pre">motel</span></code> and <code class="docutils literal notranslate"><span class="pre">hotel</span></code> as their dot product is</p>
+<div class="math notranslate nohighlight">
+\[ s = \mathtt{hotel}^T \mathtt{motel} = 0.0\]</div>
+<p>One of key ideas that made NLP successful is the <em>distributional semantics</em> that originated from Firth’s work: <em>a word’s meaning is given by the words that frequently appear close-by</em>. When a word <span class="math notranslate nohighlight">\(x\)</span> appears in a text, its context is the set of words that appear nearby (within a fixed-size window). Use the many contexts of <span class="math notranslate nohighlight">\(x\)</span> to build up a representation of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p><img alt="distributional-similarity" src="../../../../_images/distributional-similarity.png" />
+<em>Distributional similarity representations - <code class="docutils literal notranslate"><span class="pre">banking</span></code> is represented by the words left and right across all sentences of our corpus.</em></p>
+<p>This is the main idea behind word2vec word embeddings (representations) that we address next.</p>
+<p>Before we deal with embeddings though its important to address a conceptual question:</p>
+<p><em>Is there some ideal word-embedding space that would perfectly map human language and could be used for any natural-language-processing task?</em> Possibly, but we have yet to compute anything of the sort. More pragmatically, what makes a good word-embedding space depends <em>heavily</em> on your task: the perfect word-embedding space for an English-language movie-review sentiment-analysis model may look different from the perfect embedding space for an English-language legal–document-classification model, because the importance of certain semantic relationships varies from task to task. It’s thus reasonable to <em>learn</em> a new embedding space with every new task.</p>
+</div>
+<div class="section" id="features-of-word2vec-embeddings">
+<h2>Features of Word2Vec embeddings<a class="headerlink" href="#features-of-word2vec-embeddings" title="Permalink to this headline">¶</a></h2>
+<p>In 2012, Thomas Mikolov, an <em>intern</em> at Microsoft, <a class="reference external" href="https://arxiv.org/abs/1310.4546">found a way</a><a class="footnote-reference brackets" href="#id3" id="id1">2</a> to encode the meaning of words in a modest number of vector dimensions <span class="math notranslate nohighlight">\(d\)</span>. Mikolov trained a neural network to predict word occurrences near each target word. In 2013, once at Google, Mikolov and his teammates released the software for creating these word vectors and called it word2vec.</p>
+<p><img alt="banking-vector" src="../../../../_images/banking-vector.png" />
+<em>word2vec generated embedding for the word <code class="docutils literal notranslate"><span class="pre">banking</span></code> in d=8 dimensions</em></p>
+<p>Here is a <a class="reference external" href="http://projector.tensorflow.org/">visualization</a> of these embeddings in the re-projected 3D space (from <span class="math notranslate nohighlight">\(d\)</span> to 3). Try searching for the word “truck” for the visualizer to show the <em>distorted</em> neighbors of this work - distorted because of the 3D re-projection. In another example, word2vec embeddings of US cities projected in the 2D space result in poor topological but excellent <em>semantic</em> mapping which is exactly what we are after.</p>
+<p><img alt="semantic-map-word2vec" src="../../../../_images/semantic-map-word2vec.png" />
+<em>Semantic Map produced by word2vec for US cities</em></p>
+<p>Another classic example that shows the power of word2vec representations to encode analogies, is  classical king + woman − man ≈ queen example shown below.</p>
+<p><img alt="queen-example" src="../../../../_images/queen-example.png" />
+<em>Classic queen example where <code class="docutils literal notranslate"><span class="pre">king</span> <span class="pre">−</span> <span class="pre">man</span> <span class="pre">≈</span> <span class="pre">queen</span> <span class="pre">−</span> <span class="pre">woman</span></code>, and we can visually see that in the red arrows. There are 4 analogies one can construct, based on the parallel red arrows and their direction. This is slightly idealized; the vectors need not be so similar to be the most similar from all word vectors. The similar direction of the red arrows indicates similar relational meaning.</em></p>
+<p>So what is the more formal description of the word2vec algorithm? We will focus on one of the two computational algorithms<a class="footnote-reference brackets" href="#id4" id="id2">1</a> - the skip-gram method and use the following diagrams as examples to explain how it works.</p>
+<p><img alt="word2vec-idea" src="../../../../_images/word2vec-idea.png" />
+<img alt="word2vec-idea2" src="../../../../_images/word2vec-idea2.png" />
+<em>In the skip-gram we predict the <strong>context given the center word</strong>.We need to calculate the probability <span class="math notranslate nohighlight">\(p(w_{t+j} | w_t)\)</span>.</em></p>
+<p>We go through each position <span class="math notranslate nohighlight">\(t\)</span> in each sentence and for the center word at that location <span class="math notranslate nohighlight">\(w_t\)</span> we predict the outside words <span class="math notranslate nohighlight">\(w_{t+j}\)</span> where <span class="math notranslate nohighlight">\(j\)</span> is over a window of size <span class="math notranslate nohighlight">\(C = |\\{ j: -m \le j \le m \\}|-1\)</span> around <span class="math notranslate nohighlight">\(w_t\)</span>.</p>
+<p><strong>For example, the meaning of <code class="docutils literal notranslate"><span class="pre">banking</span></code> is predicting the context (the words around it) in which <code class="docutils literal notranslate"><span class="pre">banking</span></code> occurs across our corpus.</strong></p>
+<p>The term <em>prediction</em> points to [regression]() section and the maximum likelihood principle.  We start from the familiar cross entropy loss and architect a neural estimator that will minimize the distance between <span class="math notranslate nohighlight">\(\hat p_{data}\)</span> and <span class="math notranslate nohighlight">\(p_{model}\)</span>.  The negative log likelihood was shown to be:</p>
+<div class="math notranslate nohighlight">
+\[J(\theta) = -\frac{1}{V} \log L(\theta) = -\frac{1}{V} \sum_{t=1}^V \sum_{-m\le j \le m, j \neq 0} \log p(w_{t+j} | w_t; \theta)\]</div>
+<p>where <span class="math notranslate nohighlight">\(|V|\)</span> is the size of the vocabulary (words).<span class="math notranslate nohighlight">\(|V|\)</span> could be very large, e.g. 1 billion words. The ML principle, powered by a corresponding algorithm, will result in a model that for each word at the input (center) will predict the context words around it.  The model parameters <span class="math notranslate nohighlight">\(\theta\)</span> will be determined at the end of the training process that uses a training dataset easily generated from our corpus assuming we fix the context window <span class="math notranslate nohighlight">\(m\)</span>. Lets see an example:</p>
+<p><img alt="training-data-word2vec" src="../../../../_images/training-data-word2vec.png" />
+<em>Training data generation for the sentence ‘Claude Monet painted the Grand Canal of Venice in 1908’</em></p>
+<!-- The parameters $\theta$ are just the vector representations of each word in the training dataset.  -->
+<p>So the question now becomes how to calculate <span class="math notranslate nohighlight">\(p(w_{t+j} | w_t; \theta)\)</span> and we do so with the network architecture below.</p>
+<p><img alt="word2vec-network" src="../../../../_images/word2vec-network.png" />
+<em>Conceptual architecture of the neural network that learns word2vec embeddings. The text refers to the hidden layer dimensions as <span class="math notranslate nohighlight">\(d\)</span> rather than <span class="math notranslate nohighlight">\(N\)</span> and hidden layer <span class="math notranslate nohighlight">\(\mathbf z\)</span> rather than <span class="math notranslate nohighlight">\(\mathbf h\)</span>.</em></p>
+<p>The network accepts the center word and via an embedding layer <span class="math notranslate nohighlight">\(\mathbf W_{|V| \times d}\)</span> produces a hidden layer <span class="math notranslate nohighlight">\(\mathbf z\)</span>. The same hidden layer output is then mapped to an output layer of size <span class="math notranslate nohighlight">\(C \times |V|\)</span>, via <span class="math notranslate nohighlight">\(\mathbf W^\prime_{d \times |V|}\)</span>. One mapping is done for each of the words that we include in the context. In the output layer we then convert the metrics <span class="math notranslate nohighlight">\(\mathbf z^\prime\)</span> to a probability distribution <span class="math notranslate nohighlight">\(\hat{\mathbf y}\)</span> via the softmax. This is summarized next:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf z = \mathbf x^T \mathbf W\]</div>
+<div class="math notranslate nohighlight">
+\[\mathbf z^\prime_j = \mathbf z \mathbf W^\prime_j,  j \in \[1,...,C]\]</div>
+<div class="math notranslate nohighlight">
+\[\hat{\mathbf y}_j = \mathtt{softmax}(\mathbf z^\prime_j), j \in \[1,...,C]\]</div>
+<div class="math notranslate nohighlight">
+\[L = CE(\mathbf{y}, \hat{\mathbf y} )\]</div>
+<p>The parameters <span class="math notranslate nohighlight">\(\theta = \[ \mathbf W, \mathbf W^\prime \]\)</span> will be optimized via an optimization algorithm (from the usual SGD family).</p>
+<p>Training for large vocabularies can be quite computationally intensive.  At the end of training we are then able to store the matrix <span class="math notranslate nohighlight">\(\mathbf W\)</span> and load it during the parsing stage of the NLP pipeline.  In practice we use a loss functions that avoids computing losses that go over the vocabulary size <span class="math notranslate nohighlight">\(|V|\)</span> and instead we pose the problem as a logistic regression problem where the positive examples are the (center,context) word pairs and the negative examples are the (center, random) word pairs. This is called <em>negative sampling</em> and the interested reader can read more <a class="reference external" href="https://web.stanford.edu/class/cs224n/readings/cs224n-2019-notes01-wordvecs1.pdf">here</a>.</p>
+<!-- For a more hands on treatment on word2vec see the blog posts by Chris McCormick [cite](http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/). -->
+<p>Mind the important difference between learning a representation that from the context across the corpus and the <em>application</em> of that representation. Word2Vec are applied <em>context-free</em>.  After training, a single <span class="math notranslate nohighlight">\(\mathbf W\)</span> matrix will be used. This means that the word ‘bank’ will be encoded using the same dense vector  irrespectively when it is located close to ‘river’ or ‘food’ or ‘deposit’.</p>
+<p><em>Contextual representations</em> are addressed in a separate section.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/abs/1411.2738">Word2Vec Parameter Learning Explained</a></p></li>
+</ol>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dd><p>You don’t come across papers with 10K citations very often.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>The other method is called Continuous Bag of Words (CBOW) and its the reverse of the skip-gram method: it predicts the center word from the words around it. Skip-gram works well with small corpora and rare terms while CBOW shows higher accuracies for frequent words and is faster to train <a class="reference external" href="https://www.manning.com/books/natural-language-processing-in-action">ref</a>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./aiml-common/lectures/nlp/word2vec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pantelis Monogioudis, Ph.D<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

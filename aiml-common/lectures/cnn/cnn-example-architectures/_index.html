@@ -1,0 +1,651 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CNN Example Architectures &#8212; Introduction to Data Science</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-science/aiml-common/lectures/cnn/cnn-example-architectures/_index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Recommender System Introduction" href="../../recommenders/recommenders-intro/_index.html" />
+    <link rel="prev" title="CNN Architectures" href="../cnn-layers/_index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Data Science
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
+   Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
+   Data Science 360
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probabilistic Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/probability/_index.html">
+   Probability Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../entropy/_index.html">
+   Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+   Bayesian Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
+   COVID-19 Antibody Test
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+   Bayesian Coin Flipping
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Learning Problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/_index.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/sgd/_index.html">
+   Stochastic Gradient Descent
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/classification-intro/_index.html">
+   Introduction to Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/logistic-regression/_index.html">
+   Logistic Regression
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Trees and Intelligence of the Crowds
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../decision-trees/_index.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/_index.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+   Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting/_index.html">
+   Boosting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+   Boosting workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Non-Parametric Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+   K-means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+   k-Nearest Neighbors (kNN) Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+   kNN Workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/perceptron/_index.html">
+   The Neuron (Perceptron)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
+   Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
+   Introduction to Backpropagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
+   Backpropagation in Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cnn-intro/_index.html">
+   Introduction to Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cnn-layers/_index.html">
+   CNN Architectures
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   CNN Example Architectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recommenders/recommenders-intro/_index.html">
+   Recommender System Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recommenders/netflix/_index.html">
+   The Netflix Prize and Singular Value Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pca/_index.html">
+   Principal Component Analysis (PCA)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/vectors/_index.html">
+   Vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/matrices/_index.html">
+   Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/calculus/_index.html">
+   Calculus
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../python/_index.html">
+   Learn Python
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://pantelis.github.io/data-science/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/cnn/cnn-example-architectures/_index.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#toy-cnn-network">
+   Toy CNN Network
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vgg-networks">
+   VGG Networks
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>CNN Example Architectures</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#toy-cnn-network">
+   Toy CNN Network
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vgg-networks">
+   VGG Networks
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="cnn-example-architectures">
+<h1>CNN Example Architectures<a class="headerlink" href="#cnn-example-architectures" title="Permalink to this headline">¶</a></h1>
+<p>This is a very high level view of practical structures of CNNs before the advent of more innovative architectures such as ResNets.</p>
+<div class="section" id="toy-cnn-network">
+<h2>Toy CNN Network<a class="headerlink" href="#toy-cnn-network" title="Permalink to this headline">¶</a></h2>
+<p><img alt="convnet" src="../../../../_images/simple-cnn.jpeg" /></p>
+<p>The example CNN architecture above has the following layers:</p>
+<ul class="simple">
+<li><p>INPUT [32x32x3] will hold the raw pixel values of the image, in this case an image of width 32, height 32, and with three color channels R,G,B.</p></li>
+<li><p>CONV layer will compute the output of neurons that are connected to local regions in the input, each computing a dot product between their weights and a small region they are connected to in the input volume. This may result in volume such as [32x32x12] if we decided to use 12 filters.</p></li>
+<li><p>RELU layer will apply an element-wise ReLU activation function. This leaves the size of the volume unchanged ([32x32x12]).</p></li>
+<li><p>POOL layer will perform a downsampling operation along the spatial dimensions (width, height), resulting in volume such as [16x16x12].</p></li>
+<li><p>FC (i.e. fully-connected) layer, also known as a dense layer, will compute the class scores, resulting in volume of size [1x1x10], where each of the 10 numbers correspond to a class score, such as among the 10 categories of the CIFAR-10 dataset that we are showing here.</p></li>
+</ul>
+</div>
+<div class="section" id="vgg-networks">
+<h2><a class="reference external" href="https://arxiv.org/pdf/1409.1556.pdf">VGG</a> Networks<a class="headerlink" href="#vgg-networks" title="Permalink to this headline">¶</a></h2>
+<p>The VGG networks from Oxford were the first to use much smaller 3×3 filters in each convolutional layers. They have shown that multiple 3×3 convolution in sequence can emulate the effect of larger receptive fields, for examples 5×5 and 7×7. The VGG configuration is shown below:</p>
+<p><img alt="vgg-configuration" src="../../../../_images/vgg-configurations.png" />
+<em>VGG Configurations: Different columns represent different depths</em></p>
+<p>We will focus on configuration D - its a complex network, very expensive to train <em>and</em> run but worthy competitor to newer architectures in <a class="reference external" href="https://github.com/keras-team/keras-applications">pure performance terms</a>.</p>
+<p><img alt="vgg-network" src="../../../../_images/vgg-network.png" />
+<em>VGG16 Network</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Contains model definitions for versions of the Oxford VGG network.</span>
+<span class="sd">These model definitions were introduced in the following technical report:</span>
+<span class="sd">  Very Deep Convolutional Networks For Large-Scale Image Recognition</span>
+<span class="sd">  Karen Simonyan and Andrew Zisserman</span>
+<span class="sd">  arXiv technical report, 2015</span>
+<span class="sd">  PDF: http://arxiv.org/pdf/1409.1556.pdf</span>
+<span class="sd">  ILSVRC 2014 Slides: http://www.robots.ox.ac.uk/~karen/pdf/ILSVRC_2014.pdf</span>
+<span class="sd">  CC-BY-4.0</span>
+<span class="sd">More information can be obtained from the VGG website:</span>
+<span class="sd">www.robots.ox.ac.uk/~vgg/research/very_deep/</span>
+<span class="sd">Usage:</span>
+<span class="sd">  with slim.arg_scope(vgg.vgg_arg_scope()):</span>
+<span class="sd">    outputs, end_points = vgg.vgg_a(inputs)</span>
+<span class="sd">  with slim.arg_scope(vgg.vgg_arg_scope()):</span>
+<span class="sd">    outputs, end_points = vgg.vgg_16(inputs)</span>
+<span class="sd">@@vgg_16</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="kn">import</span> <span class="nn">tensorflow.compat.v1</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tf_slim</span> <span class="k">as</span> <span class="nn">slim</span>
+
+<span class="k">def</span> <span class="nf">vgg_arg_scope</span><span class="p">(</span><span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.0005</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Defines the VGG arg scope.</span>
+<span class="sd">  Args:</span>
+<span class="sd">    weight_decay: The l2 regularization coefficient.</span>
+<span class="sd">  Returns:</span>
+<span class="sd">    An arg_scope.</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">with</span> <span class="n">slim</span><span class="o">.</span><span class="n">arg_scope</span><span class="p">([</span><span class="n">slim</span><span class="o">.</span><span class="n">conv2d</span><span class="p">,</span> <span class="n">slim</span><span class="o">.</span><span class="n">fully_connected</span><span class="p">],</span>
+                      <span class="n">activation_fn</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span>
+                      <span class="n">weights_regularizer</span><span class="o">=</span><span class="n">slim</span><span class="o">.</span><span class="n">l2_regularizer</span><span class="p">(</span><span class="n">weight_decay</span><span class="p">),</span>
+                      <span class="n">biases_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros_initializer</span><span class="p">()):</span>
+    <span class="k">with</span> <span class="n">slim</span><span class="o">.</span><span class="n">arg_scope</span><span class="p">([</span><span class="n">slim</span><span class="o">.</span><span class="n">conv2d</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">arg_sc</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">arg_sc</span>
+
+<span class="k">def</span> <span class="nf">vgg_16</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span>
+           <span class="n">num_classes</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+           <span class="n">is_training</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+           <span class="n">dropout_keep_prob</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+           <span class="n">spatial_squeeze</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+           <span class="n">reuse</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+           <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;vgg_16&#39;</span><span class="p">,</span>
+           <span class="n">fc_conv_padding</span><span class="o">=</span><span class="s1">&#39;VALID&#39;</span><span class="p">,</span>
+           <span class="n">global_pool</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Oxford Net VGG 16-Layers version D Example.</span>
+<span class="sd">  Note: All the fully_connected layers have been transformed to conv2d layers.</span>
+<span class="sd">        To use in classification mode, resize input to 224x224.</span>
+<span class="sd">  Args:</span>
+<span class="sd">    inputs: a tensor of size [batch_size, height, width, channels].</span>
+<span class="sd">    num_classes: number of predicted classes. If 0 or None, the logits layer is</span>
+<span class="sd">      omitted and the input features to the logits layer are returned instead.</span>
+<span class="sd">    is_training: whether or not the model is being trained.</span>
+<span class="sd">    dropout_keep_prob: the probability that activations are kept in the dropout</span>
+<span class="sd">      layers during training.</span>
+<span class="sd">    spatial_squeeze: whether or not should squeeze the spatial dimensions of the</span>
+<span class="sd">      outputs. Useful to remove unnecessary dimensions for classification.</span>
+<span class="sd">    reuse: whether or not the network and its variables should be reused. To be</span>
+<span class="sd">      able to reuse &#39;scope&#39; must be given.</span>
+<span class="sd">    scope: Optional scope for the variables.</span>
+<span class="sd">    fc_conv_padding: the type of padding to use for the fully connected layer</span>
+<span class="sd">      that is implemented as a convolutional layer. Use &#39;SAME&#39; padding if you</span>
+<span class="sd">      are applying the network in a fully convolutional manner and want to</span>
+<span class="sd">      get a prediction map downsampled by a factor of 32 as an output.</span>
+<span class="sd">      Otherwise, the output prediction map will be (input / 32) - 6 in case of</span>
+<span class="sd">      &#39;VALID&#39; padding.</span>
+<span class="sd">    global_pool: Optional boolean flag. If True, the input to the classification</span>
+<span class="sd">      layer is avgpooled to size 1x1, for any input size. (This is not part</span>
+<span class="sd">      of the original VGG architecture.)</span>
+<span class="sd">  Returns:</span>
+<span class="sd">    net: the output of the logits layer (if num_classes is a non-zero integer),</span>
+<span class="sd">      or the input to the logits layer (if num_classes is 0 or None).</span>
+<span class="sd">    end_points: a dict of tensors with intermediate activations.</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span>
+      <span class="n">scope</span><span class="p">,</span> <span class="s1">&#39;vgg_16&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">inputs</span><span class="p">],</span> <span class="n">reuse</span><span class="o">=</span><span class="n">reuse</span><span class="p">)</span> <span class="k">as</span> <span class="n">sc</span><span class="p">:</span>
+    <span class="n">end_points_collection</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">original_name_scope</span> <span class="o">+</span> <span class="s1">&#39;_end_points&#39;</span>
+    <span class="c1"># Collect outputs for conv2d, fully_connected and max_pool2d.</span>
+    <span class="k">with</span> <span class="n">slim</span><span class="o">.</span><span class="n">arg_scope</span><span class="p">([</span><span class="n">slim</span><span class="o">.</span><span class="n">conv2d</span><span class="p">,</span> <span class="n">slim</span><span class="o">.</span><span class="n">fully_connected</span><span class="p">,</span> <span class="n">slim</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">],</span>
+                        <span class="n">outputs_collections</span><span class="o">=</span><span class="n">end_points_collection</span><span class="p">):</span>
+      <span class="n">net</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">slim</span><span class="o">.</span><span class="n">conv2d</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;conv1&#39;</span><span class="p">)</span>
+      <span class="n">net</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;pool1&#39;</span><span class="p">)</span>
+      <span class="n">net</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">slim</span><span class="o">.</span><span class="n">conv2d</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;conv2&#39;</span><span class="p">)</span>
+      <span class="n">net</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;pool2&#39;</span><span class="p">)</span>
+      <span class="n">net</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">slim</span><span class="o">.</span><span class="n">conv2d</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;conv3&#39;</span><span class="p">)</span>
+      <span class="n">net</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;pool3&#39;</span><span class="p">)</span>
+      <span class="n">net</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">slim</span><span class="o">.</span><span class="n">conv2d</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;conv4&#39;</span><span class="p">)</span>
+      <span class="n">net</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;pool4&#39;</span><span class="p">)</span>
+      <span class="n">net</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">slim</span><span class="o">.</span><span class="n">conv2d</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;conv5&#39;</span><span class="p">)</span>
+      <span class="n">net</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;pool5&#39;</span><span class="p">)</span>
+
+      <span class="c1"># Use conv2d instead of fully_connected layers.</span>
+      <span class="n">net</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="mi">4096</span><span class="p">,</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="n">fc_conv_padding</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;fc6&#39;</span><span class="p">)</span>
+      <span class="n">net</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">dropout_keep_prob</span><span class="p">,</span> <span class="n">is_training</span><span class="o">=</span><span class="n">is_training</span><span class="p">,</span>
+                         <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;dropout6&#39;</span><span class="p">)</span>
+      <span class="n">net</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="mi">4096</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;fc7&#39;</span><span class="p">)</span>
+      <span class="c1"># Convert end_points_collection into a end_point dict.</span>
+      <span class="n">end_points</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">convert_collection_to_dict</span><span class="p">(</span><span class="n">end_points_collection</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">global_pool</span><span class="p">:</span>
+        <span class="n">net</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span>
+            <span class="n">input_tensor</span><span class="o">=</span><span class="n">net</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;global_pool&#39;</span><span class="p">)</span>
+        <span class="n">end_points</span><span class="p">[</span><span class="s1">&#39;global_pool&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">net</span>
+      <span class="k">if</span> <span class="n">num_classes</span><span class="p">:</span>
+        <span class="n">net</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">dropout_keep_prob</span><span class="p">,</span> <span class="n">is_training</span><span class="o">=</span><span class="n">is_training</span><span class="p">,</span>
+                           <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;dropout7&#39;</span><span class="p">)</span>
+        <span class="n">net</span> <span class="o">=</span> <span class="n">slim</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                          <span class="n">activation_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">normalizer_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;fc8&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">spatial_squeeze</span><span class="p">:</span>
+          <span class="n">net</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fc8/squeezed&#39;</span><span class="p">)</span>
+        <span class="n">end_points</span><span class="p">[</span><span class="n">sc</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;/fc8&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">net</span>
+      <span class="k">return</span> <span class="n">net</span><span class="p">,</span> <span class="n">end_points</span>
+<span class="n">vgg_16</span><span class="o">.</span><span class="n">default_image_size</span> <span class="o">=</span> <span class="mi">224</span>
+
+<span class="c1"># Alias</span>
+<span class="n">vgg_d</span> <span class="o">=</span> <span class="n">vgg_16</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./aiml-common/lectures/cnn/cnn-example-architectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../cnn-layers/_index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">CNN Architectures</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../../recommenders/recommenders-intro/_index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Recommender System Introduction</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pantelis Monogioudis, Ph.D<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

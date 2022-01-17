@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support Vector Machines &#8212; Introduction to Data Science</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-science/aiml-common/lectures/classification/svm/_index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Data Science
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
+   Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
+   Data Science 360
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probabilistic Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/probability/_index.html">
+   Probability Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../entropy/_index.html">
+   Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+   Bayesian Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../covid19-antibody-test/_index.html">
+   COVID-19 Antibody Test
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+   Bayesian Coin Flipping
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Learning Problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/_index.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/sgd/_index.html">
+   Stochastic Gradient Descent
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../classification-intro/_index.html">
+   Introduction to Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../logistic-regression/_index.html">
+   Logistic Regression
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Trees and Intelligence of the Crowds
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../decision-trees/_index.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/_index.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+   Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting/_index.html">
+   Boosting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+   Boosting workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Non-Parametric Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+   K-means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+   k-Nearest Neighbors (kNN) Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+   kNN Workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../perceptron/_index.html">
+   The Neuron (Perceptron)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
+   Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
+   Introduction to Backpropagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
+   Backpropagation in Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
+   Introduction to Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-layers/_index.html">
+   CNN Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">
+   CNN Example Architectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recommenders/recommenders-intro/_index.html">
+   Recommender System Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recommenders/netflix/_index.html">
+   The Netflix Prize and Singular Value Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pca/_index.html">
+   Principal Component Analysis (PCA)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/vectors/_index.html">
+   Vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/matrices/_index.html">
+   Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/calculus/_index.html">
+   Calculus
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../python/_index.html">
+   Learn Python
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://pantelis.github.io/data-science/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/classification/svm/_index.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification-margin">
+   Classification Margin
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization-problem-statement">
+   Optimization problem statement
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Support Vector Machines</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification-margin">
+   Classification Margin
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization-problem-statement">
+   Optimization problem statement
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="support-vector-machines">
+<h1>Support Vector Machines<a class="headerlink" href="#support-vector-machines" title="Permalink to this headline">¶</a></h1>
+<p>In the development of the concept of [kernels](), we mentioned that these can be used to derive non-linear decision boundaries. What we haven’t addressed, is how good these can be - for example in separable datasets there can be many (or infinite) number of boundaries that separate the two classes but we need a metric to gauge the quality of separation. This metric is called the <strong>margin</strong> and will be geometrically explained next.</p>
+<div class="section" id="classification-margin">
+<h2>Classification Margin<a class="headerlink" href="#classification-margin" title="Permalink to this headline">¶</a></h2>
+<p>Intuitively margin is the distance between the classification boundary and the closest data point(s) of the two classes, as shown below:</p>
+<p><img alt="margin" src="../../../../_images/Figure7.1a.png" />
+<em>Classification Margin</em></p>
+<p>Assuming a linear classifier of <span class="math notranslate nohighlight">\(g(\mathbf x) = \mathbf w^T \phi(\mathbf x) + b\)</span> and a separable dataset for the moment, the maximization of the margin leads to a decision boundary, <span class="math notranslate nohighlight">\(y(\mathbf x)=0\)</span> that depends only on a subset of data that are calling <strong>support vectors</strong> as shown below for the specific dataset.</p>
+<p><img alt="margin" src="../../../../_images/Figure7.1b.png" />
+<em>Support Vectors</em></p>
+<p>Just like in the [perceptron]() case, since</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}y( \mathbf x_i ) = \begin{cases}&gt;0 &amp; \text{if} \ y_i = +1, \\\\ &lt;0 &amp; \text{if} \ y_i = -1 \end{cases}\end{split}\]</div>
+<p>for all training data we have,</p>
+<div class="math notranslate nohighlight">
+\[y_i(\mathbf w^T x_i + b) &gt; 0\]</div>
+<p>So we are after a <span class="math notranslate nohighlight">\(\mathbf w \in \mathbb{R}^n\)</span> that satisfies this constraint. Before we proceed, let us define geometrically what the margin looks like. Let us define two parallel lines on either side of the decision boundary as shown in the above figure,</p>
+<p><span class="math notranslate nohighlight">\(\mathbf w^T \phi(\mathbf x) + b = 1\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mathbf w^T \phi(\mathbf x) + b = -1\)</span></p>
+<p>Let us assume now that there is a data point that is very close to the decision boundary and just marginally satisfied the inequality <span class="math notranslate nohighlight">\(y_i(\mathbf w^T x_i + b) &gt; 0\)</span> for example <span class="math notranslate nohighlight">\(y_i(\mathbf w^T x_k + b) = 0.2\)</span>. If we scale both sides we can reach an equivalent condition that is appealing mathematically <span class="math notranslate nohighlight">\(y_i(\mathbf w^T x_i + b) &gt; 1\)</span> - equivalent as it will result in the same <span class="math notranslate nohighlight">\(\mathbf w\)</span>. In addition to this scaling, it is very useful to normalize <span class="math notranslate nohighlight">\(\mathbf w\)</span> as</p>
+<p><span class="math notranslate nohighlight">\(\hat \mathbf w = \mathbf w / ||\mathbf w||\)</span></p>
+<p>For a point <span class="math notranslate nohighlight">\(\mathbf z\)</span> that is in the margin defining line <span class="math notranslate nohighlight">\(\mathbf w^T \phi(\mathbf x) + b = 1\)</span> we can calculate given a margin distance <span class="math notranslate nohighlight">\(\gamma\)</span> the point it projects to the decision boundary line which is defined by the normalized normal vector <span class="math notranslate nohighlight">\(\mathbf w\)</span> as, <span class="math notranslate nohighlight">\(\mathbf z - \gamma \hat \mathbf w\)</span>. Then we can write two equations that satisfy these two points:</p>
+<p><span class="math notranslate nohighlight">\(\mathbf w^T \phi(\mathbf z) + b = 1\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mathbf w^T \phi(\mathbf z - \gamma \hat \mathbf w) + b = 1\)</span></p>
+<p>given that we are dealing with linear decision boundary in this specific problem, we can eliminate <span class="math notranslate nohighlight">\(\phi\)</span> as there is no transformation involved and subtract the two equations. Solving for the margin <span class="math notranslate nohighlight">\(\gamma\)</span> we obtain,</p>
+<p><span class="math notranslate nohighlight">\(\gamma = \frac{1}{||w||}\)</span></p>
+</div>
+<div class="section" id="optimization-problem-statement">
+<h2>Optimization problem statement<a class="headerlink" href="#optimization-problem-statement" title="Permalink to this headline">¶</a></h2>
+<p>We are now ready to write the optimization problem that will maximize <span class="math notranslate nohighlight">\(\gamma\)</span> or minimize <span class="math notranslate nohighlight">\(||\mathbf w||\)</span> or equivalently minimize a monotonic function of <span class="math notranslate nohighlight">\(||\mathbf w||\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\min \frac{1}{2}||w||^2\)</span></p>
+<p><span class="math notranslate nohighlight">\(\ \text{s.t.} \ y_i\mathbf w^T x_i + b &gt; 1\)</span></p>
+<p>This is a convex optimization problem (we have linear constraints and convex objective function) and therefore there are efficient ways to solve it. In practice, ML frameworks have built in solvers that can provide the <span class="math notranslate nohighlight">\(\mathbf w\)</span> given a dataset. Understanding the solution is instructive but it requires background in convex optimization theory and the concept of Langrange multipliers. For this reason, the math in the “Under the hood” section of chapter 5 of Geron’s book will not be in the midterm or final exams but the intuition behind maximizing the margin is in the scope of the <em>final</em> exam.</p>
+<p>To provide an intuition of how the kernels and the SVM classifiers are connected, it suffices to write down the dual form of the optimization problem and surely enough in this form the solution involves dot products in the data space. In general, any SVM problem  can be kernelized if we expand the data space using a suitable kernel which means that SVM is able via the kernel trick to find efficiently max margin decision boundaries of <strong>any shape</strong>.</p>
+<p>For non separable datasets the optimization problem statement can be written using slack variables <span class="math notranslate nohighlight">\(\xi_i\)</span> that relax the constraints and therefore result into <span class="math notranslate nohighlight">\(\mathbf w\)</span> and <span class="math notranslate nohighlight">\(b\)</span> that tolerate some classification errors for good generalization ability.</p>
+<p><span class="math notranslate nohighlight">\(\min \frac{1}{2}||w||^2 + C \sum_i \xi_i\)</span></p>
+<p><span class="math notranslate nohighlight">\(\ \text{s.t.} \ y_i\mathbf w^T x_i + b \ge 1 - \xi_i\)</span></p>
+<p><span class="math notranslate nohighlight">\( \ \ \ \ \ \ \ \xi_i \ge 0\)</span></p>
+<p>The slack variable defining how much on the wrong side the 𝑖th training example is. If <span class="math notranslate nohighlight">\(\xi =0\)</span>, the point was classified correctly and by enough of a margin; if it’s between 0 and 1, the point was classified correctly but by less of a margin than the SVM wanted; if it’s more than 1, the point was classified incorrectly. A geometrical view of the above is useful.</p>
+<p><img alt="slack" src="../../../../_images/slack.png" /></p>
+<p>Once again the ML frameworks that you will work with, provide <a class="reference external" href="https://scikit-learn.org/stable/modules/svm.html">in their documentation</a> explicit mention about variables of the optimization problem statement above (such as <span class="math notranslate nohighlight">\(C\)</span>). However as <span class="math notranslate nohighlight">\(C\)</span> must be explicitly set by the data scientist, or optimized using hyperparameter optimization techniques, it is instructive to comment that <span class="math notranslate nohighlight">\(C\)</span> is equivalent to the <span class="math notranslate nohighlight">\(1/\lambda\)</span> regularization parameter we met in <span class="xref myst">the very beginning of these lectures</span> where we penalized the weights of linear regression to avoid overfitting. <span class="math notranslate nohighlight">\(C\)</span> as you can see from the optimization problem objective function if set too high, even a slightest ammount of slack will greatly penalize (add) to the objective and therefore will drive the decision boundary towards “hard” SVM decisions. This is not good news as the SVM must in many practical cases avoid over-sensitivity to outliers - too large <span class="math notranslate nohighlight">\(C\)</span> can lead to driving the decision boundary towards outliers significantly increasing the test (generalization) error. If <span class="math notranslate nohighlight">\(C\)</span> is set to <span class="math notranslate nohighlight">\(C=0\)</span> then any ammount of slack will be tolerated and then the decision boundary may result into too many misclassifications.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./aiml-common/lectures/classification/svm"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pantelis Monogioudis, Ph.D<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

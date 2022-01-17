@@ -1,0 +1,2378 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lecture 8 &#8212; Introduction to Data Science</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-science/aiml-common/lectures/mdp/mdp-slides/_index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Data Science
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
+   Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
+   Data Science 360
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probabilistic Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/probability/_index.html">
+   Probability Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../entropy/_index.html">
+   Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+   Bayesian Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
+   COVID-19 Antibody Test
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+   Bayesian Coin Flipping
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Learning Problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/_index.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/sgd/_index.html">
+   Stochastic Gradient Descent
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/classification-intro/_index.html">
+   Introduction to Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/logistic-regression/_index.html">
+   Logistic Regression
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Trees and Intelligence of the Crowds
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../decision-trees/_index.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/_index.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+   Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting/_index.html">
+   Boosting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+   Boosting workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Non-Parametric Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+   K-means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+   k-Nearest Neighbors (kNN) Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+   kNN Workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/perceptron/_index.html">
+   The Neuron (Perceptron)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
+   Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
+   Introduction to Backpropagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
+   Backpropagation in Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
+   Introduction to Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-layers/_index.html">
+   CNN Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">
+   CNN Example Architectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recommenders/recommenders-intro/_index.html">
+   Recommender System Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recommenders/netflix/_index.html">
+   The Netflix Prize and Singular Value Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pca/_index.html">
+   Principal Component Analysis (PCA)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/vectors/_index.html">
+   Vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/matrices/_index.html">
+   Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/calculus/_index.html">
+   Calculus
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../python/_index.html">
+   Learn Python
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://pantelis.github.io/data-science/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/mdp/mdp-slides/_index.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Lecture 8
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gurudutt-hosangadi-bell-labs-nj">
+     Gurudutt Hosangadi, Bell Labs, NJ
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#april-6th-2020">
+     April 6th, 2020
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plan">
+     PLAN
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-1-4-review">
+   Part 1/4: REVIEW
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#agents">
+     Agents
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#agent-types">
+     Agent Types
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-mars-lander">
+     Example: Mars lander
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mars-lander-continued">
+     Mars Lander - continued
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#simplex-reflex-agent">
+       Simplex reflex agent
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#model-based-reflex-agent">
+       Model based reflex agent
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Mars lander - continued
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#goal-based-agent">
+       Goal-based agent
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Mars lander - continued
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#utility-based-agent">
+       Utility based agent
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#environments">
+     Environments
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fully-versus-partially-observable">
+       Fully versus Partially observable
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#deterministic-versus-stochastic">
+       Deterministic versus Stochastic
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#environments-continued">
+     Environments - continued
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#episodic-versus-sequential">
+       Episodic versus Sequential:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#car-driving">
+       Car driving
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#handling-uncertainty">
+     Handling uncertainty
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#handling-uncertainty-example">
+     Handling uncertainty - example
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-theory">
+     Decision Theory
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-networks">
+     Decision Networks
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-networks-continued">
+     Decision Networks - continued
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-2-4-sequential-decisions-and-mdp">
+   PART 2/4: Sequential Decisions and MDP
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-sequential-decision-problem-maze">
+     A Sequential Decision Problem: Maze
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maze-continued">
+     Maze - continued
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maze-with-no-uncertainty-utility">
+     MAZE with no uncertainty: Utility
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maze-with-no-uncertainty-policy">
+     MAZE with no uncertainty: Policy
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     MAZE with no uncertainty: Policy
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#markov-decision-process-mdp">
+     Markov Decision Process (MDP)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mdp-transition-model">
+     MDP Transition Model
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utility-for-mdp">
+     Utility for MDP
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utility-for-mdp-continued">
+     Utility for MDP - continued
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-for-mdp">
+     Policy for MDP
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimal-policy-for-mdp">
+     Optimal Policy for MDP
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#value-iteration">
+     Value Iteration
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Value Iteration
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#value-iteration-t-0">
+     Value Iteration (t=0)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#value-iteration-t-1">
+     Value Iteration (t=1)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#value-iteration-t-2">
+     Value Iteration (t=2)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#value-iteration-convergence">
+     Value Iteration - Convergence
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-iteration">
+     Policy Iteration
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-iteration-for-grid-world">
+     Policy Iteration for Grid World
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-iteration-step-1">
+     Policy Iteration (Step 1)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-iteration-step-2">
+     Policy Iteration (step 2)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-3-4-pomdps">
+   PART 3/4: POMDPs
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#partially-observable-mdps">
+     Partially Observable MDPs
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pomdp-parameters">
+     POMDP Parameters
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pomdp-versus-other-models">
+     POMDP versus other models
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pomdp-example">
+     POMDP Example
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pomdp-example-transition-probabilities">
+     POMDP Example - Transition Probabilities
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pomdp-example-observation-probabilities">
+     POMDP Example - Observation Probabilities
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pomdp-example-immediate-rewards">
+     POMDP Example - Immediate Rewards
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#belief-state-space">
+       Belief State Space
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pomdp-as-a-belief-state-mdp">
+     POMDP as a Belief-state MDP
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-pomdp">
+     Solving POMDP
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-the-tiger-problem-1-step-horizon">
+     Solving the tiger problem - 1-step horizon
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Solving the tiger problem - 1-step horizon
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-the-tiger-problem-t-step-horrizon">
+     Solving the tiger problem - t-step horrizon
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Solving the tiger problem - t-step horrizon
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-4-4-reinforcement-learning-rl">
+   PART 4/4: Reinforcement Learning (RL)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction">
+     Introduction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning">
+     Learning
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utility-value-action-value-action-utility-q-functions">
+     Utility, Value, Action-Value, Action-Utility, Q functions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reinforcement-learning">
+     Reinforcement Learning
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reinforcement-learning-as-mdp">
+     Reinforcement Learning as MDP
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deep-rl">
+     Deep RL
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deep-rl-value-based-methods">
+     Deep RL -
+     <strong>
+      Value Based Methods
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deep-rl-model-based-methods">
+     Deep RL -
+     <strong>
+      Model Based Methods
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#taxonomy-of-rl-algorithms">
+     Taxonomy of RL algorithms
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#off-policy-versus-on-policy">
+     Off policy versus on policy
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deep-learning">
+     Deep Learning
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lecture 8</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Lecture 8
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gurudutt-hosangadi-bell-labs-nj">
+     Gurudutt Hosangadi, Bell Labs, NJ
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#april-6th-2020">
+     April 6th, 2020
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plan">
+     PLAN
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-1-4-review">
+   Part 1/4: REVIEW
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#agents">
+     Agents
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#agent-types">
+     Agent Types
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-mars-lander">
+     Example: Mars lander
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mars-lander-continued">
+     Mars Lander - continued
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#simplex-reflex-agent">
+       Simplex reflex agent
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#model-based-reflex-agent">
+       Model based reflex agent
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Mars lander - continued
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#goal-based-agent">
+       Goal-based agent
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Mars lander - continued
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#utility-based-agent">
+       Utility based agent
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#environments">
+     Environments
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fully-versus-partially-observable">
+       Fully versus Partially observable
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#deterministic-versus-stochastic">
+       Deterministic versus Stochastic
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#environments-continued">
+     Environments - continued
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#episodic-versus-sequential">
+       Episodic versus Sequential:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#car-driving">
+       Car driving
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#handling-uncertainty">
+     Handling uncertainty
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#handling-uncertainty-example">
+     Handling uncertainty - example
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-theory">
+     Decision Theory
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-networks">
+     Decision Networks
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-networks-continued">
+     Decision Networks - continued
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-2-4-sequential-decisions-and-mdp">
+   PART 2/4: Sequential Decisions and MDP
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-sequential-decision-problem-maze">
+     A Sequential Decision Problem: Maze
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maze-continued">
+     Maze - continued
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maze-with-no-uncertainty-utility">
+     MAZE with no uncertainty: Utility
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maze-with-no-uncertainty-policy">
+     MAZE with no uncertainty: Policy
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     MAZE with no uncertainty: Policy
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#markov-decision-process-mdp">
+     Markov Decision Process (MDP)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mdp-transition-model">
+     MDP Transition Model
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utility-for-mdp">
+     Utility for MDP
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utility-for-mdp-continued">
+     Utility for MDP - continued
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-for-mdp">
+     Policy for MDP
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimal-policy-for-mdp">
+     Optimal Policy for MDP
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#value-iteration">
+     Value Iteration
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Value Iteration
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#value-iteration-t-0">
+     Value Iteration (t=0)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#value-iteration-t-1">
+     Value Iteration (t=1)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#value-iteration-t-2">
+     Value Iteration (t=2)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#value-iteration-convergence">
+     Value Iteration - Convergence
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-iteration">
+     Policy Iteration
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-iteration-for-grid-world">
+     Policy Iteration for Grid World
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-iteration-step-1">
+     Policy Iteration (Step 1)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-iteration-step-2">
+     Policy Iteration (step 2)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-3-4-pomdps">
+   PART 3/4: POMDPs
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#partially-observable-mdps">
+     Partially Observable MDPs
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pomdp-parameters">
+     POMDP Parameters
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pomdp-versus-other-models">
+     POMDP versus other models
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pomdp-example">
+     POMDP Example
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pomdp-example-transition-probabilities">
+     POMDP Example - Transition Probabilities
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pomdp-example-observation-probabilities">
+     POMDP Example - Observation Probabilities
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pomdp-example-immediate-rewards">
+     POMDP Example - Immediate Rewards
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#belief-state-space">
+       Belief State Space
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pomdp-as-a-belief-state-mdp">
+     POMDP as a Belief-state MDP
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-pomdp">
+     Solving POMDP
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-the-tiger-problem-1-step-horizon">
+     Solving the tiger problem - 1-step horizon
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Solving the tiger problem - 1-step horizon
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-the-tiger-problem-t-step-horrizon">
+     Solving the tiger problem - t-step horrizon
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Solving the tiger problem - t-step horrizon
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-4-4-reinforcement-learning-rl">
+   PART 4/4: Reinforcement Learning (RL)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction">
+     Introduction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning">
+     Learning
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utility-value-action-value-action-utility-q-functions">
+     Utility, Value, Action-Value, Action-Utility, Q functions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reinforcement-learning">
+     Reinforcement Learning
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reinforcement-learning-as-mdp">
+     Reinforcement Learning as MDP
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deep-rl">
+     Deep RL
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deep-rl-value-based-methods">
+     Deep RL -
+     <strong>
+      Value Based Methods
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deep-rl-model-based-methods">
+     Deep RL -
+     <strong>
+      Model Based Methods
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#taxonomy-of-rl-algorithms">
+     Taxonomy of RL algorithms
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#off-policy-versus-on-policy">
+     Off policy versus on policy
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deep-learning">
+     Deep Learning
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-8">
+<h1>Lecture 8<a class="headerlink" href="#lecture-8" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="gurudutt-hosangadi-bell-labs-nj">
+<h2>Gurudutt Hosangadi, Bell Labs, NJ<a class="headerlink" href="#gurudutt-hosangadi-bell-labs-nj" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="april-6th-2020">
+<h2>April 6th, 2020<a class="headerlink" href="#april-6th-2020" title="Permalink to this headline">¶</a></h2>
+</div>
+<hr class="docutils" />
+<div class="section" id="plan">
+<h2>PLAN<a class="headerlink" href="#plan" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Review</p></li>
+<li><p>Sequential Decisions and MDP</p></li>
+<li><p>POMDPs</p></li>
+<li><p>Reinforcement Learning</p></li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="tex2jax_ignore mathjax_ignore section" id="part-1-4-review">
+<h1>Part 1/4: REVIEW<a class="headerlink" href="#part-1-4-review" title="Permalink to this headline">¶</a></h1>
+<p>Note:
+we begin with review</p>
+<hr class="docutils" />
+<div class="section" id="agents">
+<h2>Agents<a class="headerlink" href="#agents" title="Permalink to this headline">¶</a></h2>
+<p>An agent is anything that can perceive an <strong>environment</strong> through sensors and then <strong>act</strong> on the environment. An agent therefore maps <strong>percepts</strong> into <strong>actions</strong>.</p>
+</div>
+<div class="section" id="agent-types">
+<h2>Agent Types<a class="headerlink" href="#agent-types" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(4\)</span> main categories depending on how percepts are mapped to actions:</p>
+<ul class="simple">
+<li><p><strong>Simple reflex agent</strong>: selects an action based on current percept</p></li>
+<li><p><strong>Model based reflex agent</strong>: uses current percept and a model of the world to take action</p></li>
+<li><p><strong>Goal based agent</strong>:  uses current perceptive, a model of the world and set of goals it is trying to achieve to take action</p></li>
+<li><p><strong>Utility based agent</strong>: uses current perceptive, a model of the world, set of goals it is trying to achieve and utility of outcomes to take action</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="example-mars-lander">
+<h2>Example: Mars lander<a class="headerlink" href="#example-mars-lander" title="Permalink to this headline">¶</a></h2>
+<p>Suppose that the mars lander needs to pick up 1 sample of each different looking rock. There could be obstructions along the way.</p>
+<p><img alt="curiocity-selfie" src="../../../../_images/curiosity-selfie.jpg" />
+<em>Curiocity in the surface of Mars</em></p>
+<p><strong>What would be the outcome of the different types of agents?</strong></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="mars-lander-continued">
+<h2>Mars Lander - continued<a class="headerlink" href="#mars-lander-continued" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="simplex-reflex-agent">
+<h3>Simplex reflex agent<a class="headerlink" href="#simplex-reflex-agent" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>if the Lander found a rock in a specific place it needed to collect then it would collect it.</p></li>
+</ul>
+<!-- .element: class="fragment" -->
+<ul class="simple">
+<li><p>if it found the same rock in a different place it would still pick it up as it doesn’t take into account that it already picked it up.</p></li>
+</ul>
+<!-- .element: class="fragment" -->
+</div>
+<div class="section" id="model-based-reflex-agent">
+<h3>Model based reflex agent<a class="headerlink" href="#model-based-reflex-agent" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>this time the Lander after picking up its first sample, stores this information in its model so when it comes across the second same sample it passes it by.</p></li>
+</ul>
+<!-- .element: class="fragment" -->
+<hr class="docutils" />
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Mars lander - continued<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Assume that the Lander comes across an obstruction.</p>
+<p><img alt="Goal-based agent" src="../../../../_images/goal-agent.png" /><!-- .element width="400px" --></p>
+<div class="section" id="goal-based-agent">
+<h3>Goal-based agent<a class="headerlink" href="#goal-based-agent" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>it is not clear which path will be taken by the agent which may take a longer path and still reach the goal of picking up the rock.</p></li>
+</ul>
+<!-- .element: class="fragment" -->
+<hr class="docutils" />
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Mars lander - continued<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Utility-based agent" src="../../../../_images/utility-agent.png" /><!-- .element width="400px" --></p>
+<div class="section" id="utility-based-agent">
+<h3>Utility based agent<a class="headerlink" href="#utility-based-agent" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>will pick the path with the best utility.</p></li>
+</ul>
+<!-- .element: class="fragment" -->
+<hr class="docutils" />
+</div>
+</div>
+<div class="section" id="environments">
+<h2>Environments<a class="headerlink" href="#environments" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fully-versus-partially-observable">
+<h3>Fully versus Partially observable<a class="headerlink" href="#fully-versus-partially-observable" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>If it is possible to determine the complete state of the environment at each time point from the percepts then it is fully observable</p></li>
+<li><p>Otherwise it is only partially observable.</p></li>
+<li><p>We have to take into consideration the point of view of the agent since the agent may have limited perception capabilities.</p></li>
+</ul>
+</div>
+<div class="section" id="deterministic-versus-stochastic">
+<h3>Deterministic versus Stochastic<a class="headerlink" href="#deterministic-versus-stochastic" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>If the next state of the environment is completely determined by the current state, and the actions of the agent, then the environment is deterministic</p></li>
+<li><p>Otherwise it is non-deterministic.</p></li>
+</ul>
+<hr class="docutils" />
+</div>
+</div>
+<div class="section" id="environments-continued">
+<h2>Environments - continued<a class="headerlink" href="#environments-continued" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="episodic-versus-sequential">
+<h3>Episodic versus Sequential:<a class="headerlink" href="#episodic-versus-sequential" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>if the choice of current actions is not dependent on previous actions then the enviroment is episodic.</p></li>
+<li><p>otherwise it is sequential</p></li>
+</ul>
+</div>
+<div class="section" id="car-driving">
+<h3>Car driving<a class="headerlink" href="#car-driving" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>partially observable</p></li>
+</ul>
+<!-- .element: class="fragment" -->
+<ul class="simple">
+<li><p>stochastic</p></li>
+</ul>
+<!-- .element: class="fragment" -->
+<ul class="simple">
+<li><p>sequential</p></li>
+</ul>
+<!-- .element: class="fragment" -->
+<hr class="docutils" />
+</div>
+</div>
+<div class="section" id="handling-uncertainty">
+<h2>Handling uncertainty<a class="headerlink" href="#handling-uncertainty" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Uncertainty arises from stochastic nature of environment or due to partial observability</p></li>
+<li><p>Agents handle this by keeping track of a belief state - a representation of the set of possible states that environment might be in</p></li>
+<li><p>Probability theory allows us to summarize uncertainty as it allows you to characterize the degree of belief in terms of probability of a belief state.</p></li>
+<li><p>Bayes theorem:</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(P(A | B) = \frac{P(B|A)P(A)}{P(B)}\)</span>.</p>
+<div style="text-align: left;">
+<ul class="simple">
+<li><p>You can think of this as </div></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(P_{posterior} = \frac{likelihood \cdot prior}{evidence}\)</span></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="handling-uncertainty-example">
+<h2>Handling uncertainty - example<a class="headerlink" href="#handling-uncertainty-example" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Suppose you have a robot who is <em>uncertain</em> if a door is open or closed</p></li>
+<li><p>Robot obtains evidence (or measurement) <span class="math notranslate nohighlight">\(e\)</span>. Then the posterior probability of the door being open given evidence <span class="math notranslate nohighlight">\(e\)</span> is given by
+<span class="math notranslate nohighlight">\(P(open/e) = \frac{P(e/open)P(open)}{P(e)}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P(e/open)\)</span> easier to estimate as you can look at the past observations and estimate the probability density function.</p></li>
+</ul>
+<p><img alt="" src="../../../../_images/bayes.png" /><!-- .element width="500px" --></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="decision-theory">
+<h2>Decision Theory<a class="headerlink" href="#decision-theory" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Good decisions must be distinguished from good outcomes.</p></li>
+<li><p>To decide, an agent must have <strong>preferences</strong> between the possible <strong>outcomes</strong></p></li>
+<li><p>Preferences are represented by <strong>utility</strong>(or usefulness) i.e. an agent will prefer outcomes with higher utility.</p></li>
+<li><p>Probability theory describes what the agent should believe on the basis of evidence.</p></li>
+<li><p>Utility theory describes what the agent wants</p></li>
+<li><p>Decision theory puts the two together to describe what the agent should do i.e <span class="math notranslate nohighlight">\( = \)</span> Utility Theory + Probability Theory</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="decision-networks">
+<h2>Decision Networks<a class="headerlink" href="#decision-networks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Bayseian networks are used to represent knowledge in an uncertain domain</p></li>
+<li><p>Decision Networks extends Bayesian networks by incorporating actions and utilities.
+<img alt="" src="../../../../_images/decision.png" /><!-- .element width="850px" --></p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="decision-networks-continued">
+<h2>Decision Networks - continued<a class="headerlink" href="#decision-networks-continued" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Utility function (denoted U)</p>
+<ul>
+<li><p>Quantifies how we <strong>value</strong> outcomes</p></li>
+</ul>
+</li>
+<li><p>Agent’s desirability of a state or outcome is captured by an utility function. In Reinforcement Learning (RL) we come across <strong>value function</strong> which is an example of a utility function</p></li>
+<li><p>Rational agent will choose an action <span class="math notranslate nohighlight">\(a^{*}\)</span> that will maximize the expected utility. Note that we are usually working with estimates of the true expected utility.</p>
+<ul>
+<li><p>This is a one-shot or episodic decision.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="tex2jax_ignore mathjax_ignore section" id="part-2-4-sequential-decisions-and-mdp">
+<h1>PART 2/4: Sequential Decisions and MDP<a class="headerlink" href="#part-2-4-sequential-decisions-and-mdp" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<div class="section" id="a-sequential-decision-problem-maze">
+<h2>A Sequential Decision Problem: Maze<a class="headerlink" href="#a-sequential-decision-problem-maze" title="Permalink to this headline">¶</a></h2>
+<p><img alt="(A) 4x3 Maze " src="../../../../_images/grid-world-1.png" /><!-- .element width="400px" --></p>
+<ul class="simple">
+<li><p>Robot is at the “START”</p></li>
+<li><p>Agent commands robot with <strong>actions</strong> : UP(<span class="math notranslate nohighlight">\(\uparrow\)</span>),DOWN(<span class="math notranslate nohighlight">\(\downarrow\)</span>),LEFT(<span class="math notranslate nohighlight">\(\leftarrow\)</span>),RIGHT(<span class="math notranslate nohighlight">\(\rightarrow\)</span>) and robot follows exactly</p></li>
+<li><p>Agent knows where it is i.e. environment is <em><strong>fully observable</strong></em></p></li>
+<li><p><strong>state</strong>: where Robot is for e.g. state <span class="math notranslate nohighlight">\(s_{42}\)</span> is if robot is in the square with red oval.</p></li>
+<li><p><strong>reward</strong> or punishment received when a state is reached</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="maze-continued">
+<h2>Maze - continued<a class="headerlink" href="#maze-continued" title="Permalink to this headline">¶</a></h2>
+<p><img alt="(A) 4x3 Maze " src="../../../../_images/grid-world-1.png" /><!-- .element width="400px" --></p>
+<ul class="simple">
+<li><p>Question: is there any uncertainty?</p>
+<ul>
+<li><p>No - since the actions executed are same as action commands issued and the environment is fully observable</p></li>
+</ul>
+</li>
+</ul>
+<!-- .element: class="fragment" -->
+<ul class="simple">
+<li><p>Utility of a sequence of states is given by</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[U(s_0,s_1,...,s_T)=R(s_0)+R(s_1)+...+R(s_T)\]</div>
+<!-- .element: class="fragment" -->
+<ul class="simple">
+<li><p>Question: Find sequence of actions from current state to goal (green oval) that maximizes utility?</p></li>
+</ul>
+<!-- .element: class="fragment" -->
+</div>
+<hr class="docutils" />
+<div class="section" id="maze-with-no-uncertainty-utility">
+<h2>MAZE with no uncertainty: Utility<a class="headerlink" href="#maze-with-no-uncertainty-utility" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Sequence of action for each starting state that maximizes utility" src="../../../../_images/grid-fixed-plan.png" /> <!-- .element width="800px" --></p>
+<ul class="simple">
+<li><p>What we are looking for is a <strong>policy</strong> which recommends the action to be taken when in a given state</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="maze-with-no-uncertainty-policy">
+<h2>MAZE with no uncertainty: Policy<a class="headerlink" href="#maze-with-no-uncertainty-policy" title="Permalink to this headline">¶</a></h2>
+<p><img alt="(A) 4x3 Maze " src="../../../../_images/grid-world-1.png" /><!-- .element width="400px" --></p>
+<ul class="simple">
+<li><p><strong>Policy</strong>: <span class="math notranslate nohighlight">\(\pi(s) = a\)</span> i.e. <span class="math notranslate nohighlight">\(\pi\)</span> function maps state <span class="math notranslate nohighlight">\(s\)</span> to action <span class="math notranslate nohighlight">\(a\)</span>.</p></li>
+</ul>
+<p><img alt="Different policies" src="../../../../_images/policy.png" /></p>
+<ul class="simple">
+<li><p><strong>Utility</strong> <span class="math notranslate nohighlight">\(U(s)\)</span> of state <span class="math notranslate nohighlight">\(s\)</span> is the sum of discounted rewards of the sequence of states starting at <span class="math notranslate nohighlight">\(s\)</span> generated by using the policy <span class="math notranslate nohighlight">\(\pi\)</span> i.e.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[U^{\pi}(s) =  R(s) + \gamma R(s_1) + \gamma^{2} R(s_2) + ...\]</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="id3">
+<h2>MAZE with no uncertainty: Policy<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Optimal</strong> policy <span class="math notranslate nohighlight">\(\pi\)</span>  policy that yields the highest expected utility for the sequence of states generated by <span class="math notranslate nohighlight">\(\pi^*\)</span>.</p></li>
+</ul>
+<p><img alt="Optimal Policy for Maze" src="../../../../_images/opitmal-policy-maze-1.png" /><!-- .element width="400px" --></p>
+<ul class="simple">
+<li><p>For the maze, the optimal policy tells us which action to take so that we are closer to the goal</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\pi^*(s_{41})=\)</span> ???</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi^*(s_{32})=\)</span> ???</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi^*(s_{11})=\)</span> ???</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="markov-decision-process-mdp">
+<h2>Markov Decision Process (MDP)<a class="headerlink" href="#markov-decision-process-mdp" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Transition model" src="../../../../_images/transition.PNG" /><!-- .element width="200px" -->
+<img alt="Non-deterministic outcomes" src="../../../../_images/maze-stoch.png" /><!-- .element width="700px" --></p>
+<ul class="simple">
+<li><p>Imagine that the maze environment is stochastic yet fully observable.</p></li>
+<li><p>Due to uncertainty, an action causes transition from state to another state with some probability. There is no dependence on previous states.</p></li>
+<li><p>We now have a sequential decision problem for a fully observable, stochastic environment with Markovian transition model and additive rewards  consisting of:</p>
+<ul>
+<li><p>a set of states <span class="math notranslate nohighlight">\(S\)</span>. State at time <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(s_t\)</span></p></li>
+<li><p>actions  <span class="math notranslate nohighlight">\(A\)</span>. Action at time <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(a_t\)</span>.</p></li>
+<li><p>transition model describing outcome of each action in each state <span class="math notranslate nohighlight">\(P( s_{t+1} | s_t,a_t)\)</span></p></li>
+<li><p>reward function <span class="math notranslate nohighlight">\(r_t=R(s_t)\)</span></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="mdp-transition-model">
+<h2>MDP Transition Model<a class="headerlink" href="#mdp-transition-model" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Agent-Environment Interaction with Rewards" src="../../../../_images/mdp.png" /></p>
+<p><img alt="Partial Transition Graph" src="../../../../_images/mdp-transition.png" /><!-- .element width="500px" -->
+<img alt="(A) 4x3 Maze " src="../../../../_images/grid-world-1.png" /><!-- .element width="400px" --></p>
+<ul class="simple">
+<li><p>Transition Model Graph:</p>
+<ul>
+<li><p>Each node is a state.</p></li>
+<li><p>Each edge is the probability of transition</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="utility-for-mdp">
+<h2>Utility for MDP<a class="headerlink" href="#utility-for-mdp" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Robot in  of Maze " src="../../../../_images/maze-utilt.png" /></p>
+<ul class="simple">
+<li><p>Since we have stochastic environment, we need to take into account the transition probability matrix</p></li>
+<li><p>Utility of a state is the immediate reward of the state plus the expected discounted utility of the next state due to the action taken</p></li>
+<li><p><strong>Bellman’s Equations</strong>: if we choose an action <span class="math notranslate nohighlight">\(a\)</span> then</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(U(s) = R(s) + \gamma \sum_{s^{'}} P(s^{'}| s,a)U(s^{'})\)</span></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="utility-for-mdp-continued">
+<h2>Utility for MDP - continued<a class="headerlink" href="#utility-for-mdp-continued" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Robot in  of Maze " src="../../../../_images/maze-utilt.png" /><!-- .element width="300px" --></p>
+<ul class="simple">
+<li><p>Suppose robot is in state <span class="math notranslate nohighlight">\(s_{33}\)</span> and the action taken is “RIGHT”.  Also assume <span class="math notranslate nohighlight">\(\gamma = 1\)</span></p></li>
+<li><p>We want to compute the utility of this state:
+$<span class="math notranslate nohighlight">\( U(s_{33})   =   R(s_{33}) +  \gamma (P(s_{43} | s_{33}, \rightarrow)  U(s_{43}) + P(s_{33} | s_{33}, \rightarrow)  U(s_{33}) + P(s_{32} | s_{33}, \rightarrow)  U(s_{32}))\)</span>$</p></li>
+<li><p>Substituting we get:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[U(s_{33}) = R(s_{33}) + \gamma ( (0.8 \times U(s_{43})) + (0.1 \times U(s_{33})) + (0.1 \times U(s_{23})))\]</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="policy-for-mdp">
+<h2>Policy for MDP<a class="headerlink" href="#policy-for-mdp" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>If we choose action <span class="math notranslate nohighlight">\(a\)</span> that maximizes future rewards, <span class="math notranslate nohighlight">\(U(s)\)</span> is the maximum we can get over all possible choices of actions  and is represented as <span class="math notranslate nohighlight">\(U^{*}(s)\)</span>.</p></li>
+<li><p>We can write this as
+$<span class="math notranslate nohighlight">\(U^*(s) = R(s) + \gamma \underset{a}{ \max} (\sum_{s^{'}} P(s^{'}| s,a)U(s'))\)</span>$</p></li>
+<li><p>The optimal policy (which recommends <span class="math notranslate nohighlight">\(a\)</span> that maximizes U) is given by:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\pi^{*}(s) = \underset{a}{\arg \max}(\sum_{s^{'}} P(s^{'}| s,a)U^{*}(s^{'}))\]</div>
+<ul class="simple">
+<li><p>Can the above <span class="math notranslate nohighlight">\(2\)</span> be solved directly?</p>
+<ul>
+<li><p>The set of <span class="math notranslate nohighlight">\(|S|\)</span> equations for  <span class="math notranslate nohighlight">\(U^*(s)\)</span> cannot be solved directly because they are non-linear due the presence of ‘max’ function.</p></li>
+<li><p>The set of <span class="math notranslate nohighlight">\(|S|\)</span> equations for <span class="math notranslate nohighlight">\(\pi^*(s)\)</span> cannot be solved directly as it is dependent on unknown <span class="math notranslate nohighlight">\(U^*(s)\)</span>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="optimal-policy-for-mdp">
+<h2>Optimal Policy for MDP<a class="headerlink" href="#optimal-policy-for-mdp" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Optimal Policy and Utilities for Maze" src="../../../../_images/policy-utiltiy.png" /><!-- .element width="800px" --></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="value-iteration">
+<h2>Value Iteration<a class="headerlink" href="#value-iteration" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>To solve the non-linear equations for <span class="math notranslate nohighlight">\(U^{*}(s)\)</span> we use an iterative approach.</p></li>
+<li><p>Steps:</p>
+<ul>
+<li><p>Initialize estimates for the utilities of states with arbitrary values: <span class="math notranslate nohighlight">\(U(s) \leftarrow 0 \forall s \epsilon S\)</span></p></li>
+<li><p>Next use the iteration step below which is also called <strong>Bellman Update</strong>:</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[V_{t+1}(s) \leftarrow R(s) + \gamma \underset{a}{ \max} \left[ \sum_{s^{'}} P(s^{'}| s,a) U_t(s^{'}) \right] \forall s \epsilon S\]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>This step is repeated and updated
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Let us apply this to the maze example.  Assume that <span class="math notranslate nohighlight">\(\gamma = 1\)</span></p></li>
+</ul>
+<p><img alt="val-iter-initial" src="../../../../_images/val-iter-initial.png" />
+<em>Initialize value estimates to <span class="math notranslate nohighlight">\(0\)</span></em></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="id4">
+<h2>Value Iteration<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Next we want to apply <strong>Bellman Update</strong>:
+$<span class="math notranslate nohighlight">\(V_{t+1}(s) \leftarrow R(s) + \gamma \max_{a} \left[\sum_{s^\prime} P(s^\prime | s,a)U_t(s^\prime) \right] \forall s \epsilon S\)</span>$</p></li>
+<li><p>Since we are taking <span class="math notranslate nohighlight">\(\max\)</span> we only need to consider states whose next states have a positive utility value.</p></li>
+<li><p>For the remaining states, the utility is equal to the immediate reward in the first iteration.</p></li>
+</ul>
+<p><img alt="States to consider for value iteration" src="../../../../_images/val-iter-step1-states.png" /></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="value-iteration-t-0">
+<h2>Value Iteration (t=0)<a class="headerlink" href="#value-iteration-t-0" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[ V_{t+1}(s_{33})  =  R(s_{33}) + \gamma \max_a \left[\sum_{s^{'}} P(s^{'}| s_{33},a)U(s^{'}) \right] \forall s \in S \]</div>
+<div class="math notranslate nohighlight">
+\[ V_{t+1}(s_{33}) =  -0.04 + \max_a \left[ \sum_{s'}  P(s'| s_{33},\uparrow) U_t(s'), \sum_{s'}  P(s'| s_{33},\downarrow)U_t(s'), \sum_{s'}  P(s'| s_{33},\rightarrow) U_t(s'),  \sum_{s'}  P(s'| s_{33}, \leftarrow)U_t(s')  \right]\]</div>
+<div class="math notranslate nohighlight">
+\[V_{t+1}(s_{33})  =  -0.04 + \sum_{s^{'}}  P(s^{'}| s_{33},\rightarrow) U_t(s^\prime) \]</div>
+<div class="math notranslate nohighlight">
+\[V_{t+1}(s_{33}) = -0.04 + P(s_{43}|s_{33},\rightarrow)U(s_{43})+P(s_{33}|s_{33},\rightarrow)U(s_{33})+P(s_{32}|s_{33},\rightarrow)U_t(s_{32}) \]</div>
+<div class="math notranslate nohighlight">
+\[V_{t+1}(s_{33}) =   -0.04 + 0.8 \times 1 + 0.1 \times 0 + 0.1 \times 0 = 0.76 \]</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="value-iteration-t-1">
+<h2>Value Iteration (t=1)<a class="headerlink" href="#value-iteration-t-1" title="Permalink to this headline">¶</a></h2>
+<p><img alt="val-iter-step2" src="../../../../_images/val-iter-step2-initial.png" />
+<em>(A) Initial utility estimates for iteration 2. (B) States with next state positive utility</em></p>
+<div class="math notranslate nohighlight">
+\[V_{t+1}(s_{33}) =   -0.04 + P(s_{43}|s_{33},\rightarrow)U_t(s_{43})+P(s_{33}|s_{33},\rightarrow)U_t(s_{33}) +P(s_{32}|s_{33},\rightarrow)U_t(s_{32}) \]</div>
+<div class="math notranslate nohighlight">
+\[V_{t+1}(s_{33}) = -0.04 + 0.8 \times 1 + 0.1 \times 0.76 + 0.1 \times 0 = 0.836\]</div>
+<div class="math notranslate nohighlight">
+\[V_{t+1}(s_{23}) =  -0.04 + P(s_{33}|s_{23},\rightarrow)U_t(s_{23})+P(s_{23}|s_{23},\rightarrow)U_t(s_{23}) = -0.04 + 0.8 \times 0.76 = 0.568\]</div>
+<div class="math notranslate nohighlight">
+\[V_{t+1}(s_{32}) =  -0.04 + P(s_{33}|s_{32},\uparrow)U_t(s_{33})+P(s_{42}|s_{32},\uparrow)U_t(s_{42}) +P(s_{32}|s_{32},\uparrow)U_t(s_{32})\]</div>
+<div class="math notranslate nohighlight">
+\[V_{t+1}(s_{32}) = -0.04 + 0.8 \times 0.76 + 0.1 \times -1 + 0.1 \times 0= 0.468\]</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="value-iteration-t-2">
+<h2>Value Iteration (t=2)<a class="headerlink" href="#value-iteration-t-2" title="Permalink to this headline">¶</a></h2>
+<p><img alt="val-iter-step3" src="../../../../_images/val-iter-step3-initial.png" />
+<em>(A)Initial utility estimates for iteration 3. (B) States with next state positive utility</em></p>
+<ul class="simple">
+<li><p>Information propagates outward from terminal states
+and eventually all states have correct value estimates</p></li>
+<li><p>Notice that <span class="math notranslate nohighlight">\(s_{32}\)</span> has a lower utility compared to <span class="math notranslate nohighlight">\(s_{23}\)</span> due to the red oval state with negative reward next to <span class="math notranslate nohighlight">\(s_{32}\)</span></p></li>
+</ul>
+<p><img alt="Optimal Policy and Utilities for Maze" src="../../../../_images/policy-utiltiy.png" /></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="value-iteration-convergence">
+<h2>Value Iteration - Convergence<a class="headerlink" href="#value-iteration-convergence" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Rate of convergence depends on the maximum reward value and more importantly on the discount factor <span class="math notranslate nohighlight">\(\gamma\)</span>.</p></li>
+<li><p>The policy that we get from coarse estimates is close to the optimal policy long before <span class="math notranslate nohighlight">\(U\)</span> has converged.</p></li>
+<li><p>This means that after a reasonable number of iterations, we could use:
+$<span class="math notranslate nohighlight">\(\pi(s) = \argmax_a \left[ \sum_{s^{'}} P(s^{'}| s,a)V_{est}(s^{'}) \right]\)</span>$</p></li>
+<li><p>Note that this is a form of <strong>greedy</strong> policy.</p></li>
+</ul>
+<p><img alt="value-iter-convergence" src="../../../../_images/value-iter-converge.PNG" />
+<em>Convergence of utility for the maze problem (Norvig chap 17)</em></p>
+<ul class="simple">
+<li><p>For the maze problem, convergence is reached within 5 to 10  iterations</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="policy-iteration">
+<h2>Policy Iteration<a class="headerlink" href="#policy-iteration" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Alternates between two steps:</p>
+<ul>
+<li><p>Policy evaluation: given a policy, find the utility of states</p></li>
+<li><p>Policy improvement: given the utility estimates so far, find the best policy</p></li>
+</ul>
+</li>
+<li><p>The steps are as follows:</p>
+<ol class="simple">
+<li><p>Compute utility/value of the policy <span class="math notranslate nohighlight">\(U^{\pi}\)</span></p></li>
+<li><p>Update <span class="math notranslate nohighlight">\(\pi\)</span> to be a greedy policy w.r.t. <span class="math notranslate nohighlight">\(U^{\pi}\)</span>:
+$<span class="math notranslate nohighlight">\(\pi(s) \leftarrow \arg\max_a \sum_{s^\prime} P(s^\prime|s,a)U^{\pi}(s^\prime)\)</span>$</p></li>
+<li><p>If the policy changed then return to step <span class="math notranslate nohighlight">\(1\)</span></p></li>
+</ol>
+</li>
+<li><p>Policy improves each step and converges to the optimal policy <span class="math notranslate nohighlight">\(\pi^{*}\)</span></p></li>
+</ul>
+<p><img alt="Policy iteration(source: sutton, chap 4)" src="../../../../_images/policy-iter.PNG" /><!-- .element width="225px" --></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="policy-iteration-for-grid-world">
+<h2>Policy Iteration for Grid World<a class="headerlink" href="#policy-iteration-for-grid-world" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Let us consider another grid world example.</p></li>
+</ul>
+<p><img alt="Grid world (source: Sutton)" src="../../../../_images/gridworld-sutton.PNG" /></p>
+<ul class="simple">
+<li><p>The terminal states are shaded. The reward is <span class="math notranslate nohighlight">\(-1\)</span> on all transitions until the terminal states are reached. The non-terminal states are <span class="math notranslate nohighlight">\(S_1,S_2,...,s_{14}\)</span>.</p></li>
+<li><p>We begin with random values (or utilities) and random policy <span class="math notranslate nohighlight">\(\pi\)</span></p></li>
+</ul>
+<p><img alt="policy-iter-1" src="../../../../_images/policy-iter-1.PNG" />
+<em>Initial values and policy for policy iteration</em></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="policy-iteration-step-1">
+<h2>Policy Iteration (Step 1)<a class="headerlink" href="#policy-iteration-step-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Find value function based on initial random policy:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[U(s) = R(s) + \sum_{s^\prime} P(s^\prime| s,a)U(s^\prime)\]</div>
+<div class="math notranslate nohighlight">
+\[U(s_{1}) = -1 + \frac{1}{4}U(s_{1}) + \frac{1}{4}U(s_{2}) + \frac{1}{4}U(s_{5}) = -1\]</div>
+<div class="math notranslate nohighlight">
+\[\ldots\]</div>
+<div class="math notranslate nohighlight">
+\[ U(s_{9}) = -1 + \frac{1}{4}U(s_{8}) + \frac{1}{4}U(s_{5}) + \frac{1}{4}U(s_{13}) + \frac{1}{4}U(s_{10}) = -1\]</div>
+<div class="math notranslate nohighlight">
+\[ \ldots \]</div>
+<ul class="simple">
+<li><p>The result is as shown below:</p></li>
+</ul>
+<p><img alt="policy-iter-value" src="../../../../_images/policy-iter-2.PNG" /></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="policy-iteration-step-2">
+<h2>Policy Iteration (step 2)<a class="headerlink" href="#policy-iteration-step-2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Next we compute the policy:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \pi(s_{4}) =   \underset{a}{max}[\frac{1}{4}U(s_{term})| \uparrow, 
+  \frac{1}{4}U(S_5)| \rightarrow, 
+  \frac{1}{4}U(S_4)| \leftarrow, 
+  \frac{1}{4}U(S_8), \downarrow] = \uparrow \]</div>
+<div class="math notranslate nohighlight">
+\[\pi(s_{6}) =  \underset{a}{max}[\frac{1}{4}U(S_2)| \uparrow, 
+\frac{1}{4}U(S_7)| \rightarrow, 
+ \frac{1}{4}U(S_5)| \leftarrow, 
+\frac{1}{4}U(s_{10}), \downarrow ] = \mathtt{random\ policy} \]</div>
+<ul class="simple">
+<li><p>The result is shown below for <span class="math notranslate nohighlight">\(k=2\)</span>.</p></li>
+</ul>
+<p><img alt="policy-iter-value" src="../../../../_images/policy-iter-3.PNG" /></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="tex2jax_ignore mathjax_ignore section" id="part-3-4-pomdps">
+<h1>PART 3/4: POMDPs<a class="headerlink" href="#part-3-4-pomdps" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<div class="section" id="partially-observable-mdps">
+<h2>Partially Observable MDPs<a class="headerlink" href="#partially-observable-mdps" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>We considered “uncertainty” in the action outcome previously. Now, the environment is partially observable.</p></li>
+<li><p>We now deal with a <strong>belief</strong> state which is the agent’s current belief about the state that it is in.</p></li>
+</ul>
+<p><img alt="POMDP" src="../../../../_images/pomdp.png" /></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="pomdp-parameters">
+<h2>POMDP Parameters<a class="headerlink" href="#pomdp-parameters" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The MDP parameters we listed previously continue to hold for POMDP:</p>
+<ul>
+<li><p>a set of states <span class="math notranslate nohighlight">\(S\)</span>. State at time <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(s_t\)</span></p></li>
+<li><p>actions  <span class="math notranslate nohighlight">\(A\)</span>. Action at time <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(a_t\)</span>.</p></li>
+<li><p>transition model describing outcome of each action in each state <span class="math notranslate nohighlight">\(P( s_{t+1} | s_t, a_t)\)</span></p></li>
+<li><p>reward function <span class="math notranslate nohighlight">\(r_t=R(s_t)\)</span></p></li>
+</ul>
+</li>
+<li><p>Additional POMDP parameters:</p>
+<ul>
+<li><p>initial belief of state <span class="math notranslate nohighlight">\(s\)</span>: <span class="math notranslate nohighlight">\(b(s)=P(s)\)</span></p></li>
+<li><p>if <span class="math notranslate nohighlight">\(b(s)\)</span> was the previous belief state, agent does an action <span class="math notranslate nohighlight">\(a\)</span> then perceives evidence <span class="math notranslate nohighlight">\(e\)</span> then the new belief state is given by:
+$<span class="math notranslate nohighlight">\(b^\prime(s^\prime) = P(s^\prime | e,a,b)\)</span>$</p></li>
+<li><p>observation probability: <span class="math notranslate nohighlight">\(P(e|s^{'},a)\)</span></p></li>
+</ul>
+</li>
+<li><p>The belief state <span class="math notranslate nohighlight">\(b\)</span> also satisfies the Markov property</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="pomdp-versus-other-models">
+<h2>POMDP versus other models<a class="headerlink" href="#pomdp-versus-other-models" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="../../../../_images/pomdp-versus-others.PNG" />
+<a class="reference external" href="https://www.cs.cmu.edu/~ggordon/780-fall07/lectures/POMDP_lecture.pdf">source</a></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="pomdp-example">
+<h2>POMDP Example<a class="headerlink" href="#pomdp-example" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Tiger Problem" src="../../../../_images/tiger-1.png" /></p>
+<ul class="simple">
+<li><p>We want to find the optimal policy…i.e. what is the best action the person should take?</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="pomdp-example-transition-probabilities">
+<h2>POMDP Example - Transition Probabilities<a class="headerlink" href="#pomdp-example-transition-probabilities" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The “Listen” action does not change the tiger location</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(P(s^{'}\)</span>| <span class="math notranslate nohighlight">\(s, Listen)\)</span></p></th>
+<th class="head"><p>TL</p></th>
+<th class="head"><p>TR</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TL</p></td>
+<td><p>1.0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>TR</p></td>
+<td><p>0</p></td>
+<td><p>1.0</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>The “open-left” or “open-right” action resets the problem in which case the tiger can be on the left or right with equal probability</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(P(s^{'}\)</span>| <span class="math notranslate nohighlight">\(s, open-right)\)</span></p></th>
+<th class="head"><p>TL</p></th>
+<th class="head"><p>TR</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TL</p></td>
+<td><p>0.5</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>TR</p></td>
+<td><p>0</p></td>
+<td><p>0.5</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(P(s^{'}\)</span> | <span class="math notranslate nohighlight">\(s, open-left)\)</span></p></th>
+<th class="head"><p>TL</p></th>
+<th class="head"><p>TR</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TL</p></td>
+<td><p>0.5</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>TR</p></td>
+<td><p>0</p></td>
+<td><p>0.5</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="pomdp-example-observation-probabilities">
+<h2>POMDP Example - Observation Probabilities<a class="headerlink" href="#pomdp-example-observation-probabilities" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Only the “Listen” action is informative</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(P(e\)</span> | <span class="math notranslate nohighlight">\(s, Listen)\)</span></p></th>
+<th class="head"><p>TL</p></th>
+<th class="head"><p>TR</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TL</p></td>
+<td><p>0.85</p></td>
+<td><p>0.15</p></td>
+</tr>
+<tr class="row-odd"><td><p>TR</p></td>
+<td><p>0.15</p></td>
+<td><p>0.85</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Any observation without the “listen” action is uninformative</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(P(e\)</span> | <span class="math notranslate nohighlight">\(s, open-right)\)</span></p></th>
+<th class="head"><p>TL</p></th>
+<th class="head"><p>TR</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TL</p></td>
+<td><p>0.5</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>TR</p></td>
+<td><p>0</p></td>
+<td><p>0.5</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(P(e\)</span> | <span class="math notranslate nohighlight">\(s, open-left)\)</span></p></th>
+<th class="head"><p>TL</p></th>
+<th class="head"><p>TR</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TL</p></td>
+<td><p>0.5</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>TR</p></td>
+<td><p>0</p></td>
+<td><p>0.5</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="pomdp-example-immediate-rewards">
+<h2>POMDP Example - Immediate Rewards<a class="headerlink" href="#pomdp-example-immediate-rewards" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>“Listen” action results in a small penalty</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(R(s)\)</span> | <span class="math notranslate nohighlight">\(Listen\)</span></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TL</p></td>
+<td><p>-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>TR</p></td>
+<td><p>-1</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Opening the wrong door results in large penalty</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(R(s)\)</span> | <span class="math notranslate nohighlight">\(open-left\)</span></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TL</p></td>
+<td><p>-100</p></td>
+</tr>
+<tr class="row-odd"><td><p>TR</p></td>
+<td><p>+10</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(R(s)\)</span> | <span class="math notranslate nohighlight">\(open-right\)</span></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TL</p></td>
+<td><p>+10</p></td>
+</tr>
+<tr class="row-odd"><td><p>TR</p></td>
+<td><p>-100</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="belief-state-space">
+<h3>Belief State Space<a class="headerlink" href="#belief-state-space" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>b(left) versus b(right)</p></li>
+</ul>
+<hr class="docutils" />
+</div>
+</div>
+<div class="section" id="pomdp-as-a-belief-state-mdp">
+<h2>POMDP as a Belief-state MDP<a class="headerlink" href="#pomdp-as-a-belief-state-mdp" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Solving a POMDP on a physical state space reduces to solving an MDP on the corresponding belief-state space</p></li>
+<li><p>The resulting MDP has a <strong>high dimensional continuous</strong>(typically in real world problems) belief state space  which makes it more difficult to solve</p></li>
+<li><p>Approach to solving this:</p>
+<ul>
+<li><p>Each policy is a plan conditioned on belief <span class="math notranslate nohighlight">\(b\)</span></p></li>
+<li><p>Each conditional plan is a hyperplane</p></li>
+<li><p>Optimal policy then is the conditional plan with the highest expected utility</p></li>
+<li><p>The optimal action depends only on the agents’s current belief state. That is, the optimal policy <span class="math notranslate nohighlight">\(\pi^{*}(b)\)</span> maps from belief states to actions.</p></li>
+<li><p>The decision cycle in this case would comprise of the following <span class="math notranslate nohighlight">\(3\)</span> steps:</p>
+<ul>
+<li><p>Given the current belief state, execute the action <span class="math notranslate nohighlight">\(a=\pi^{*}(b)\)</span></p></li>
+<li><p>Receive percept <span class="math notranslate nohighlight">\(e\)</span></p></li>
+<li><p>Set the current belief state to <span class="math notranslate nohighlight">\(b^{'}(s^{'})\)</span> given by
+$<span class="math notranslate nohighlight">\(b^{'}(s^{'}) = \alpha P(e|s^{'}) \sum_{s} P(s^{'}|s,a)b(s)\)</span>$</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="solving-pomdp">
+<h2>Solving POMDP<a class="headerlink" href="#solving-pomdp" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The value iteration approach for POMDP looks something like this:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[V_{t+1}(b) \leftarrow \max_{a}[ \sum_s b(s)R(s,a) +\gamma \sum_eP(e|b,a)U(\tau(e,b,a)]\]</div>
+<p>where <span class="math notranslate nohighlight">\(\tau(e,b,a)\)</span> is the transition function for the belief state.</p>
+<ul class="simple">
+<li><p>This is in general very hard to solve as it is a continuous space MDP</p></li>
+<li><p>Instead one resorts to exploiting special properties in terms of</p>
+<ul>
+<li><p>Policy Tree</p></li>
+<li><p>Piecewise linear and convex property of the value function</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="solving-the-tiger-problem-1-step-horizon">
+<h2>Solving the tiger problem - 1-step horizon<a class="headerlink" href="#solving-the-tiger-problem-1-step-horizon" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Suppose that you were told the <span class="math notranslate nohighlight">\(b(left) = \rho = 0.5\)</span> i.e. tiger could be either on the left or right with equal probability.</p></li>
+<li><p><strong>You are told that you have only 1 chance to take an action, what would that be and why?</strong></p></li>
+</ul>
+<p><img alt="Tiger Problem" src="../../../../_images/tiger-1.png" />
+<em>The Tiger Problem</em></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="id5">
+<h2>Solving the tiger problem - 1-step horizon<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Determine expected utility for each possible action for different belief distributions</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>action</p></th>
+<th class="head"><p>expected utility for  <span class="math notranslate nohighlight">\(\rho=0.5\)</span></p></th>
+<th class="head"><p>expected utility for <span class="math notranslate nohighlight">\(\rho=0.4\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LEFT</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.5 \times -100 + 0.5 \times 10 = -45\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0.4 \times -100 + 0.6 \times 10 = -36\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>RIGHT</p></td>
+<td><p><span class="math notranslate nohighlight">\(-45\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0.6 \times -100 + 0.4 \times 10 = -56\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>LISTEN</p></td>
+<td><p><span class="math notranslate nohighlight">\(-1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-1\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>For the above cases, we would pick “listen” as it has the highest expected utility</p></li>
+<li><p>How low should <span class="math notranslate nohighlight">\(\rho\)</span> go so that the utility of picking “left” is better than picking “listen”</p>
+<ul>
+<li><p>Find <span class="math notranslate nohighlight">\(x \ni \rho \times -100 + (1-\rho) \times 10 \lt -1\)</span></p></li>
+<li><p>Solving we get <span class="math notranslate nohighlight">\(\rho \lt 0.1\)</span>. This means that if that if <span class="math notranslate nohighlight">\(0 \lt b(left) \lt 0.1\)</span> then choose “left. This range is called the <strong>belief interval</strong> for which we would select “left”.</p></li>
+<li><p>Based on the above analysis, the optimal 1 step policy is as below</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="Optimal policy for 1-step horrizon" src="../../../../_images/tiger-1step.png" /></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="solving-the-tiger-problem-t-step-horrizon">
+<h2>Solving the tiger problem - t-step horrizon<a class="headerlink" href="#solving-the-tiger-problem-t-step-horrizon" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The value function of POMDPs can be represented as max of linear segments</p></li>
+</ul>
+<p><img alt="(A) Utility as function of plan (B) Value function" src="../../../../_images/tiger-1step-value.png" /></p>
+<ul class="simple">
+<li><p>How about if you were given <span class="math notranslate nohighlight">\(2\)</span> chances? i.e. <span class="math notranslate nohighlight">\(t=2\)</span> and <span class="math notranslate nohighlight">\(b(left)=0.5\)</span>.</p>
+<ul>
+<li><p>It turns out that the optimal policy for the first step is to always “listen”.</p></li>
+<li><p>The reason is that if you opened the door on the first step</p>
+<ul>
+<li><p>the tiger would be randomly placed behind one of the doors and the agent’s belief state would be reset to <span class="math notranslate nohighlight">\((0.5, 0.5)\)</span>.</p></li>
+<li><p>The agent would be left with no information about the tiger’s location and with one action remaining.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="id6">
+<h2>Solving the tiger problem - t-step horrizon<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Optimal policy tree for -step horrizon" src="../../../../_images/tiger-2step.png" />
+<img alt="Convergence of policies" src="../../../../_images/tiger-t-step.PNG" /></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="tex2jax_ignore mathjax_ignore section" id="part-4-4-reinforcement-learning-rl">
+<h1>PART 4/4: Reinforcement Learning (RL)<a class="headerlink" href="#part-4-4-reinforcement-learning-rl" title="Permalink to this headline">¶</a></h1>
+<p>NOTE: Reinforcement Learning and Deep RL (DRL) are covered in Lecture 9.</p>
+<hr class="docutils" />
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Reinforcement learning is concerned with solving sequential decision problems.</p></li>
+<li><p>Many real world problems fall into this category e.g. playing video games, driving, robotic control etc.</p></li>
+<li><p><strong><em>Reinforcement learning might be considered to encompass all of AI: an agent is placed in an environment and must learn to behave therein</em></strong></p></li>
+<li><p>The goal of reinforcement learning is to use observed rewards to learn the optimal (or close to optimal) policy for the environment.</p></li>
+<li><p>So far we have been looking at solving sequential decision making problems but we have assumed a complete model of the environment  and the reward function</p></li>
+<li><p>Can we <strong>learn</strong> directly from experiences in the world?</p>
+<ul>
+<li><p>Must receive feedback for good/bad experiences</p></li>
+<li><p>Called rewards or <strong>reinforcement</strong></p></li>
+<li><p>One assumption that we make is that the reward input is known i.e. we know that a particular sensory input corresponds to reward</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="learning">
+<h2>Learning<a class="headerlink" href="#learning" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>An agent is learning if it improves its performance on future tasks after making observations about the world.</p></li>
+<li><p>What is learned:</p>
+<ul>
+<li><p>mapping from state to action</p></li>
+<li><p>utility information indicating desirability of states</p></li>
+<li><p>action-value information about the desirability of actions</p></li>
+<li><p>goals that describe states whose achievement maximize agent’s utility</p></li>
+</ul>
+</li>
+<li><p>Feeback types used that determine three types of learning</p>
+<ul>
+<li><p>observes <em>patterns</em> in input without explicit feedback - unsupervised learning</p></li>
+<li><p><em>reinforcements</em> i.e. rewards or punishments - reinforcement learning</p></li>
+<li><p>observes example input-output pairs and learns the mapping functions - supervised learning</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="utility-value-action-value-action-utility-q-functions">
+<h2>Utility, Value, Action-Value, Action-Utility, Q functions<a class="headerlink" href="#utility-value-action-value-action-utility-q-functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Utility function</strong>: <span class="math notranslate nohighlight">\(U^{\pi}(s)\)</span> provide expected utility or return or reward of a state by executing a given policy <span class="math notranslate nohighlight">\(\pi\)</span></p></li>
+<li><p><strong>Value function</strong>: <span class="math notranslate nohighlight">\(V^{\pi}=U^{\pi}(s)\)</span></p></li>
+<li><p><strong>Action-utility function</strong>: <span class="math notranslate nohighlight">\(U^{\pi}(s,a)\)</span> gives the expected utility by taking an action <span class="math notranslate nohighlight">\(a\)</span> while in state <span class="math notranslate nohighlight">\(s\)</span></p></li>
+<li><p><strong>Action-value function</strong>: <span class="math notranslate nohighlight">\(V^{\pi}(s,a)=U^{\pi}(s,a)\)</span></p></li>
+<li><p><strong>Q-function</strong>: <span class="math notranslate nohighlight">\(Q^{\pi}(s,a)=V^{\pi}(s,a)=U^{\pi}(s,a)\)</span></p></li>
+<li><p>You get the value function by taking the expection of the action-value function over the set of actions i.e. <span class="math notranslate nohighlight">\(V^{\pi}(s) = \underset{a}{E}[Q(s,a)]\)</span></p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="reinforcement-learning">
+<h2>Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Reinforcement learning is learning what to do i.e. how to map situations to actions so as to maximize a numerical reward signal. The learner must discover which actions yield the most reward by trying them.</p></li>
+<li><p>These two characteristics: <strong>trial-and-error</strong> search and <strong>delayed reward</strong> are the two most important distinguishing features of reinforcement learning.</p></li>
+<li><p>There is a feedback control loop where agent and environment exchange signals while the agent tries to maximize the rewards or objective.</p></li>
+<li><p>Signal exchanged at any time <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\((s_t,a_t,r_t)\)</span>  which correspond to the state, action and reward at time <span class="math notranslate nohighlight">\(t\)</span>. This tuple is called an <em>experience</em>.</p></li>
+</ul>
+<p><img alt="" src="../../../../_images/agent-env-interface1.png" /><!-- .element width="450px" --></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="reinforcement-learning-as-mdp">
+<h2>Reinforcement Learning as MDP<a class="headerlink" href="#reinforcement-learning-as-mdp" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Reinforcement learning can be formulated as an MDP with the following parameters:</p>
+<ul>
+<li><p>transition function ( <span class="math notranslate nohighlight">\( P(s_{t+1} | s_t,a_t) \)</span> ) captures how the enviroment transitions from one state to the next and is formulated as MDP</p></li>
+<li><p>reward function  ( <span class="math notranslate nohighlight">\( R(s_t,a_t,a_{t+1}) \)</span> )</p></li>
+<li><p>set of actions <span class="math notranslate nohighlight">\( A \)</span></p></li>
+<li><p>set of states <span class="math notranslate nohighlight">\( S \)</span></p></li>
+</ul>
+</li>
+<li><p>One important assumption in the above formulation is that the agent does not have access to the transition or reward function</p></li>
+<li><p>Functions to be learning in RL</p>
+<ul>
+<li><p>policy <span class="math notranslate nohighlight">\(\pi\)</span></p></li>
+<li><p>value function <span class="math notranslate nohighlight">\(V^{\pi}\)</span>  or action value function <span class="math notranslate nohighlight">\(Q^{\pi}(s,a)\)</span></p></li>
+<li><p>environment model <span class="math notranslate nohighlight">\(P(s^{'} | s,a)\)</span></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="deep-rl">
+<h2>Deep RL<a class="headerlink" href="#deep-rl" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>use neural networks as function approximators to learn the functions</p></li>
+<li><p><strong>Policy-based methods</strong></p>
+<ul>
+<li><p>learn policy <span class="math notranslate nohighlight">\(\pi\)</span> to maximize objective</p></li>
+<li><p>PROS</p>
+<ul>
+<li><p>general class of optimization methods</p></li>
+<li><p>any type of actions: discrete, continous or a mix</p></li>
+<li><p>guaranteeed to converge(locally) for e.g. via Poilcy Gradient Algorithm</p></li>
+</ul>
+</li>
+<li><p>CONS</p>
+<ul>
+<li><p>high variance</p></li>
+<li><p>sample inefficient</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="deep-rl-value-based-methods">
+<h2>Deep RL - <strong>Value Based Methods</strong><a class="headerlink" href="#deep-rl-value-based-methods" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>agent learns either <span class="math notranslate nohighlight">\(V^{\pi}(s)\)</span> or <span class="math notranslate nohighlight">\(Q^{\pi}\)</span></p></li>
+<li><p>uses the learnt function(s) to generate the policy for e.g. greedy policy</p></li>
+<li><p>generally <span class="math notranslate nohighlight">\(Q^{\pi}(s,a)\)</span> is preferred as agent can select the action when in a given state to maximize the objective</p></li>
+<li><p>PROS:</p>
+<ul>
+<li><p>more sample efficient than policy based algorithms</p></li>
+</ul>
+</li>
+<li><p>CONS</p>
+<ul>
+<li><p>no guarantee of convergence to optimal policy</p></li>
+<li><p>most methods are for discrete action spaces though recently QT-OPT has been proposed which can handle continuous spaces</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="deep-rl-model-based-methods">
+<h2>Deep RL - <strong>Model Based Methods</strong><a class="headerlink" href="#deep-rl-model-based-methods" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>agent learns a model of the environment dynamics</p></li>
+<li><p>using this model, agent can imagine or predict what will happen if a set of actions are taken for few time steps without actually changing the environment</p></li>
+<li><p>Based on these predictions, agent can figure out the best actions</p></li>
+<li><p>PROS:</p>
+<ul>
+<li><p>gives agent foresight</p></li>
+<li><p>tend to require fewer samples</p></li>
+</ul>
+</li>
+<li><p>CONS:</p>
+<ul>
+<li><p>learning the model can be difficult as typically real world environments can have a large state and action space</p></li>
+<li><p>predictions depend on the accuracy of the model</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="taxonomy-of-rl-algorithms">
+<h2>Taxonomy of RL algorithms<a class="headerlink" href="#taxonomy-of-rl-algorithms" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Overview of RL algorithms" src="../../../../_images/rl-taxonomy.png" /><!-- .element width="800px" --></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="off-policy-versus-on-policy">
+<h2>Off policy versus on policy<a class="headerlink" href="#off-policy-versus-on-policy" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>On policy</p>
+<ul>
+<li><p>e.g. SARSA</p></li>
+<li><p>agent learns on the policy i.e. training data generated from the current poicy is used</p></li>
+<li><p>in other words agent is learning the value of the policy that is being followed</p></li>
+<li><p>after the agent is trained, data is discarded and the iterated policy is used.</p></li>
+<li><p>sample inefficent due to the discarding of data but memory efficient</p></li>
+</ul>
+</li>
+<li><p>Off policy</p>
+<ul>
+<li><p>e.g. Q-learning</p></li>
+<li><p>any data collected can be used for training</p></li>
+<li><p>the value of a policy that is different from the one being followed is being learnt</p></li>
+<li><p>more memory may be required to store data</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="deep-learning">
+<h2>Deep Learning<a class="headerlink" href="#deep-learning" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Neural networks learn functions <span class="math notranslate nohighlight">\(f_{\theta}(x)\)</span> which map input <span class="math notranslate nohighlight">\(x\)</span> to output <span class="math notranslate nohighlight">\(y\)</span>. The weights of the neural network are represented by <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<ul>
+<li><p>if <span class="math notranslate nohighlight">\(y=f(x)\)</span> then learnt <span class="math notranslate nohighlight">\(f_{\theta}(x)\)</span> is the estimate for <span class="math notranslate nohighlight">\(f(x)\)</span></p></li>
+<li><p>Loss function <span class="math notranslate nohighlight">\(L(f_{\theta}(x),y)\)</span> captures the difference between the target <span class="math notranslate nohighlight">\(y\)</span> and the predicted network output <span class="math notranslate nohighlight">\(f_{\theta}(x)\)</span>. This loss function needs to be minimized.</p></li>
+<li><p>generally we have training data samples which are independent and identically distributed (iid)</p></li>
+</ul>
+</li>
+<li><p>Changing the weights will corresponding to different mapping functions.</p></li>
+<li><p>Increasing number of nodes in a layer or layers allows learning of more complex functions</p></li>
+<li><p>In reinforcement learning:</p>
+<ul>
+<li><p>neither <span class="math notranslate nohighlight">\(x\)</span> or <span class="math notranslate nohighlight">\(y\)</span> are known in advance</p></li>
+<li><p>instead these values are obtained through agent interactions with environment - where it observes states and rewards</p></li>
+<li><p>reward functions are the main source of feedback and the rewards are quite sparse</p></li>
+<li><p>since current state and actions that an agent takes affect the future states, the iid assumption between samples for neural network training no longer holds and this affects the rate of convergence.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./aiml-common/lectures/mdp/mdp-slides"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pantelis Monogioudis, Ph.D<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Netflix Prize and Singular Value Decomposition &#8212; Introduction to Data Science</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-science/aiml-common/lectures/recommenders/netflix/_index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Principal Component Analysis (PCA)" href="../../pca/_index.html" />
+    <link rel="prev" title="Recommender System Introduction" href="../recommenders-intro/_index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Data Science
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
+   Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
+   Data Science 360
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probabilistic Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/probability/_index.html">
+   Probability Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../entropy/_index.html">
+   Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+   Bayesian Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
+   COVID-19 Antibody Test
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+   Bayesian Coin Flipping
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Learning Problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/_index.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/sgd/_index.html">
+   Stochastic Gradient Descent
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/classification-intro/_index.html">
+   Introduction to Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/logistic-regression/_index.html">
+   Logistic Regression
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Trees and Intelligence of the Crowds
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../decision-trees/_index.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/_index.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+   Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting/_index.html">
+   Boosting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+   Boosting workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Non-Parametric Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+   K-means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+   k-Nearest Neighbors (kNN) Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+   kNN Workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/perceptron/_index.html">
+   The Neuron (Perceptron)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
+   Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
+   Introduction to Backpropagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
+   Backpropagation in Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
+   Introduction to Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-layers/_index.html">
+   CNN Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">
+   CNN Example Architectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../recommenders-intro/_index.html">
+   Recommender System Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   The Netflix Prize and Singular Value Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pca/_index.html">
+   Principal Component Analysis (PCA)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/vectors/_index.html">
+   Vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/matrices/_index.html">
+   Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/calculus/_index.html">
+   Calculus
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../python/_index.html">
+   Learn Python
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://pantelis.github.io/data-science/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/recommenders/netflix/_index.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-statement">
+   Problem Statement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#svd-solution">
+   SVD Solution
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>The Netflix Prize and Singular Value Decomposition</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-statement">
+   Problem Statement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#svd-solution">
+   SVD Solution
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="the-netflix-prize-and-singular-value-decomposition">
+<h1>The Netflix Prize and Singular Value Decomposition<a class="headerlink" href="#the-netflix-prize-and-singular-value-decomposition" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>NOTE: The following are based on the <a class="reference external" href="https://www.netflixprize.com/assets/GrandPrize2009_BPC_BellKor.pdf">winning submission paper</a> as well as <a class="reference external" href="https://datajobs.com/data-science-repo/Recommender-Systems-%5BNetflix%5D.pdf">their subsequent publication</a>.</p>
+</div></blockquote>
+<div class="section" id="problem-statement">
+<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Permalink to this headline">¶</a></h2>
+<p>The Netflix Prize was an open competition for the best <strong>collaborative filtering algorithm</strong> to predict user ratings for films, based on previous ratings without any other information about the users or films, i.e. without the users or the films being identified except by numbers assigned for the contest.</p>
+<p>The competition was held by Netflix, and on September 21, 2009, the grand prize of US $1,000,000 was given to the BellKor’s Pragmatic Chaos team which bested Netflix’s own algorithm for predicting ratings by 10.06%</p>
+<p>This competition is instructive since:</p>
+<ol class="simple">
+<li><p>Collaborative filtering models try to capture the interactions between users and items that produce the different rating values. However, many of the observed rating values are due to effects associated with either users or items, independently of their interaction. A prime example is that typical CF data exhibit large user and item biases – i.e., systematic tendencies for some users to give higher ratings than others, and for some items to receive higher ratings than others.</p></li>
+<li><p>Observing the posted improvements in RMSE over time, the competition has become of little business value to Netflix after a while. This means that it was unlikely that any minute improvement to RMSE (e.g. 0.1%) will translate to additional revenue.</p></li>
+<li><p>The 10% improvement goal was a lucky number after all. Netflix had no clue as to if this was the <em>right</em> number when they defined the terms. Any small deviation from this number, would have made the competition either too easy or impossibly difficult.</p></li>
+</ol>
+<p>You are given the following dataset structure (will be explained in class) shown below,</p>
+<p><img alt="netflix-dataset" src="../../../../_images/netflix-dataset1.png" />
+<em>Netflix Prize dataset structure</em></p>
+<p>Assuming that the rating matrix <span class="math notranslate nohighlight">\(A_{[m x n]}\)</span> with m users (500K) and n items (17K movies), this matrix is extremely sparse - it has only 100 million ratings, the remaining 8.4 billion ratings are missing (about 99% of the possible ratings are missing, because a user typically rates only a small portion of the movies).</p>
+</div>
+<div class="section" id="svd-solution">
+<h2>SVD Solution<a class="headerlink" href="#svd-solution" title="Permalink to this headline">¶</a></h2>
+<p>Given the very large data matrix it was only expected that competitors attempted to do  <em>dimensionality reduction</em> and as it turns out this was the basis for the winning algorithm.  Dimensionality reduction can be done via matrix factorization that has the following advantage: when explicit feedback is not available, we can infer user preferences using implicit feedback, which indirectly reflects opinion by observing <em>user behavior</em> including purchase history, browsing history, search patterns, or even mouse movements. A high level visual result of the matrix factorization with two latent features is shown below:</p>
+<p><img alt="latent-factor-approach" src="../../../../_images/latent-factor-approach.png" />
+<em>Simplistic illustration of two latent factor approach. Users and Items are shown in this feature space</em>.</p>
+<p>Lets now look at one matrix factorization method in detail, recalling the premise of SVD from linear algebra: it is a decomposition that can work with rectangular matrices and can result into a factorization:</p>
+<div class="math notranslate nohighlight">
+\[A = U \Sigma V^†\]</div>
+<p>where  <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> is a <span class="math notranslate nohighlight">\(m \times m\)</span> real unitary matrix, <span class="math notranslate nohighlight">\(\mathbf{\Sigma}\)</span> is an <span class="math notranslate nohighlight">\(m \times n\)</span> rectangular diagonal matrix with non-negative real numbers on the diagonal, and <span class="math notranslate nohighlight">\(\mathbf{V}\)</span>  is a <span class="math notranslate nohighlight">\(n \times n\)</span> real unitary matrix.</p>
+<p>Remember that a unitary matrix <span class="math notranslate nohighlight">\(U\)</span> is a matrix that its conjugate transpose <span class="math notranslate nohighlight">\(U^†\)</span> is also its inverse - its the complex analog of the orthogonal matrix and we have by definition <span class="math notranslate nohighlight">\(UU^†=I\)</span>.</p>
+<p>The columns of <span class="math notranslate nohighlight">\(U\)</span> are eigenvectors of <span class="math notranslate nohighlight">\(AA^T\)</span>, and the columns of <span class="math notranslate nohighlight">\(V\)</span> are eigenvectors of <span class="math notranslate nohighlight">\(A^TA\)</span>. The <span class="math notranslate nohighlight">\(r\)</span> singular values on the diagonal of <span class="math notranslate nohighlight">\(\Sigma\)</span> are the square roots of the nonzero eigenvalues of both <span class="math notranslate nohighlight">\(AA^T\)</span> and <span class="math notranslate nohighlight">\(A^TA\)</span>.</p>
+<p>It is interesting to attribute the columns of these matrices with the four fundamental subspaces:</p>
+<ol class="simple">
+<li><p>The column space of <span class="math notranslate nohighlight">\(A\)</span> is spanned by the first <span class="math notranslate nohighlight">\(r\)</span> columns of <span class="math notranslate nohighlight">\(U\)</span>.</p></li>
+<li><p>The left nullspace of <span class="math notranslate nohighlight">\(A\)</span> are the last <span class="math notranslate nohighlight">\(m-r\)</span> columns of <span class="math notranslate nohighlight">\(U\)</span>.</p></li>
+<li><p>The row space of <span class="math notranslate nohighlight">\(A\)</span> are the first <span class="math notranslate nohighlight">\(r\)</span> columns of <span class="math notranslate nohighlight">\(V\)</span>.</p></li>
+<li><p>The nullspace of <span class="math notranslate nohighlight">\(A\)</span> are the last <span class="math notranslate nohighlight">\(n-r\)</span> columns of V.</p></li>
+</ol>
+<p>We can write the SVD as,</p>
+<div class="math notranslate nohighlight">
+\[A = U \sqrt{\Sigma} \sqrt{\Sigma} V^†\]</div>
+<p>and given the span of the subspaces above we can now intuitively think what the terms <span class="math notranslate nohighlight">\(\mathbf{p}_u = U \sqrt{\Sigma}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{q}_i = \sqrt{\Sigma} V^†\)</span> represent.</p>
+<p><img alt="svd-netflix" src="../../../../_images/svd-netflix1.png" />
+<em>SVD decomposition reveals latent features weighted by the underlying singular values of the data matrix</em></p>
+<p>The first term represents the column space and it provides a representation of all <em>inter-user</em> factors (also called latent (hidden) features).  The second term represents the row space and it provides a representation of all <em>inter-item</em> factors. Which brings us to the major point of what the <span class="math notranslate nohighlight">\(\sqrt{\Sigma}\)</span> is doing to both terms. It represents the <em>significance</em> of those factors and therefore we can very easily use the singular values it contains to “compress” our representation by selecting the <span class="math notranslate nohighlight">\(f\)</span> largest singular values and ignoring the rest.</p>
+<p>Given these vectors of factors we can now use them to predict the rating:</p>
+<p><img alt="svd-netflix-prediction" src="../../../../_images/svd-netflix-prediction1.png" />
+<em>Prediction of a rating is the product between user latent features and movie latent features matrices.</em></p>
+<p>We have seen above graphically how the matrix factorization models map both users and items to a joint latent factor space of dimensionality <span class="math notranslate nohighlight">\(f\)</span>, such that user-item interactions are modeled as inner products in that space. Each item <span class="math notranslate nohighlight">\(i\)</span> is associated with a vector <span class="math notranslate nohighlight">\(q_i \in \mathbb{R}^f\)</span>, and each user <span class="math notranslate nohighlight">\(u\)</span> is associated with a vector <span class="math notranslate nohighlight">\(p_u \in \mathbb{R}^f\)</span>. For a given item <span class="math notranslate nohighlight">\(i\)</span>, the elements of <span class="math notranslate nohighlight">\(q_i\)</span> measure the extent to which  the  item  possesses  those  factors, positive or negative. For a given user <span class="math notranslate nohighlight">\(u\)</span>, the elements of <span class="math notranslate nohighlight">\(p_u\)</span> measure the extent of interest the user has in items that are high on the corresponding factors, again, positive or negative. The resulting dot product, <span class="math notranslate nohighlight">\(q_i^T p_u\)</span>, captures the interaction between user <span class="math notranslate nohighlight">\(u\)</span> and item <span class="math notranslate nohighlight">\(i\)</span> — the user’s <em>overall interest</em> in the item’s characteristics. This approximates user <span class="math notranslate nohighlight">\(u\)</span>’s rating of item <span class="math notranslate nohighlight">\(i\)</span>, which is denoted by <span class="math notranslate nohighlight">\(r_{ui}\)</span>, leading to the estimate</p>
+<div class="math notranslate nohighlight">
+\[\hat{r}_{ui}= q_i^T p_u\]</div>
+<p>The major challenge is computing the mapping of each item and user to factor vectors <span class="math notranslate nohighlight">\(q_i\)</span>, <span class="math notranslate nohighlight">\(p_u\)</span>. After the recommender system completes this mapping, it can easily estimate the rating a user will give to any item by the above equation.</p>
+<p>Obvious a standard SVD decomposition is not defined for sparse matrices that we have in practice (<span class="math notranslate nohighlight">\(mxn\)</span>) so we can estimate the factors <span class="math notranslate nohighlight">\(q_i\)</span> and <span class="math notranslate nohighlight">\(p_u\)</span> using the following objective function that is based on minimizing the mean squared error (MSE) between the actual rating and the estimate,</p>
+<div class="math notranslate nohighlight">
+\[ \min_{p, q} \sum_{(u, i) \in \kappa} (r_{ui} - q_i^T p_u)^2 + \lambda (||q_i||^2 + ||p_u||^2)\]</div>
+<p>where <span class="math notranslate nohighlight">\(κ\)</span> is the set of the <span class="math notranslate nohighlight">\((u,i)\)</span> pairs for which <span class="math notranslate nohighlight">\(r_{ui}\)</span> is known (the training set).</p>
+<p>The system learns the model by fitting the previously observed ratings. However, the goal is to generalize those previous ratings in a way that predicts future, unknown ratings. Thus, the system should avoid over-fitting the observed data by regularizing the learned parameters using their squared magnitude and the hyperparameter <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+<p>We can solve this minimization problem using the well known Stochastic Gradient Descent (SGD) method. Simon Funk <a class="reference external" href="http://sifter.org/~simon/journal/20061211.html">popularized a stochastic gradient descent optimization</a>  wherein  the  algorithm  loops through all ratings in the training set. For each given training case, the system predicts <span class="math notranslate nohighlight">\(r_{ui}\)</span> and computes the associated prediction error</p>
+<div class="math notranslate nohighlight">
+\[e_{ui}=r_{ui}-q_i^T p_u\]</div>
+<p>Then it modifies the parameters by a magnitude proportional to <span class="math notranslate nohighlight">\(\gamma\)</span> in the opposite direction of the gradient, combines implementation ease with a relatively fast running time:</p>
+<div class="math notranslate nohighlight">
+\[q_i \leftarrow q_i + \gamma (e_{ui}p_u - \lambda q_i) \]</div>
+<div class="math notranslate nohighlight">
+\[p_u \leftarrow p_u + \gamma (e_{ui}q_i - \lambda p_u) \]</div>
+<p>Iterating,  we can estimate the final factors we are after and insert predictions in our stream when the user launches the Netflix app.</p>
+<!-- We use the indexing notation to distinguish two different users $u,v$, and movies $i, j$. A rating $r_{ui}$ indicates the preference by user $u$ of movie $i$. Values are ranging from 1 (star) indicating no interest to 5 (stars) indicating a strong interest. We distinguish predicted ratings from known ones, by using the notation $\hat{r}_{ui}$ for the predicted value. The scalar $t_{ui}$ denotes the time of rating $r_{ui}$. Here, time is measured in days, so $t_{ui}$ counts the number of days elapsed since some early time point.  The $(u,i)$ pairs for which $r_{ui}$ is known are stored in the training set $\kappa = \{ (u,i) | r_{ui} \}$. Notice that $\kappa$ includes also the Probe set. Each user $u$ is associated with a set of items denoted by $R(u)$, which contains all the items for which ratings by $u$ are available. Likewise, $R(i)$ denotes the set of users who rated item $i$. Sometimes, we also use a set denoted by $N(u)$, which contains all items for which $u$ provided a rating, even if the rating value is unknown. Thus, $N(u)$ extends $R(u)$ by also considering the ratings in the Qualifying set.  -->
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./aiml-common/lectures/recommenders/netflix"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../recommenders-intro/_index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Recommender System Introduction</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../../pca/_index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Principal Component Analysis (PCA)</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pantelis Monogioudis, Ph.D<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

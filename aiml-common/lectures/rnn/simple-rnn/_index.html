@@ -1,0 +1,625 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple RNN &#8212; Introduction to Data Science</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-science/aiml-common/lectures/rnn/simple-rnn/_index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Data Science
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
+   Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
+   Data Science 360
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probabilistic Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/probability/_index.html">
+   Probability Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../entropy/_index.html">
+   Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+   Bayesian Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
+   COVID-19 Antibody Test
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+   Bayesian Coin Flipping
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Learning Problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/_index.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/sgd/_index.html">
+   Stochastic Gradient Descent
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/classification-intro/_index.html">
+   Introduction to Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/logistic-regression/_index.html">
+   Logistic Regression
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Trees and Intelligence of the Crowds
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../decision-trees/_index.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/_index.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+   Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting/_index.html">
+   Boosting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+   Boosting workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Non-Parametric Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+   K-means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+   k-Nearest Neighbors (kNN) Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+   kNN Workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/perceptron/_index.html">
+   The Neuron (Perceptron)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
+   Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
+   Introduction to Backpropagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
+   Backpropagation in Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
+   Introduction to Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-layers/_index.html">
+   CNN Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">
+   CNN Example Architectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recommenders/recommenders-intro/_index.html">
+   Recommender System Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../recommenders/netflix/_index.html">
+   The Netflix Prize and Singular Value Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pca/_index.html">
+   Principal Component Analysis (PCA)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/vectors/_index.html">
+   Vectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../linear-algebra/matrices/_index.html">
+   Matrices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ml-math/calculus/_index.html">
+   Calculus
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../python/_index.html">
+   Learn Python
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://pantelis.github.io/data-science/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/rnn/simple-rnn/_index.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dimensioning-simple-rnns">
+   Dimensioning Simple RNNs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#forward-propagation">
+   Forward Propagation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#back-propagation-through-time-bptt">
+   Back-Propagation Through Time (BPTT)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vanishing-or-exploding-gradients">
+   Vanishing or exploding gradients
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Simple RNN</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dimensioning-simple-rnns">
+   Dimensioning Simple RNNs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#forward-propagation">
+   Forward Propagation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#back-propagation-through-time-bptt">
+   Back-Propagation Through Time (BPTT)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vanishing-or-exploding-gradients">
+   Vanishing or exploding gradients
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="simple-rnn">
+<h1>Simple RNN<a class="headerlink" href="#simple-rnn" title="Permalink to this headline">¶</a></h1>
+<p>The simple RNN architecture with just a single layer of neurons that receive the input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is shown below.</p>
+<p><img alt="simple-rnn-single-layer" src="../../../../_images/simple-rnn-simple-layer.png" />
+<em>Simple RNN with just a single layer of <span class="math notranslate nohighlight">\(n_neurons\)</span> mapping the input to the hidden-state at each time step</em></p>
+<p>A more practical simple RNN architecture is shown below.</p>
+<p><img alt="rnn-hidden-recurrence" src="../../../../_images/rnn-hidden-recurrence.png" /></p>
+<p><em>Simple RNN with recurrences between hidden units. This architecture can compute any computable function and therefore is a <a class="reference external" href="http://alvyray.com/CreativeCommons/BizCardUniversalTuringMachine_v2.3.pdf">Universal Turing Machine</a>.</em></p>
+<p>Notice how the path from input <span class="math notranslate nohighlight">\(\bm x_{t-1}\)</span> affects the label <span class="math notranslate nohighlight">\(\bm y_{t}\)</span> and also the conditional independence between <span class="math notranslate nohighlight">\(\bm y\)</span> given <span class="math notranslate nohighlight">\(\bm x\)</span>. Please note that this is not a computational graph rather one way to represent the hidden state transfer between recurrences.</p>
+<div class="section" id="dimensioning-simple-rnns">
+<h2>Dimensioning Simple RNNs<a class="headerlink" href="#dimensioning-simple-rnns" title="Permalink to this headline">¶</a></h2>
+<p>In the table below <span class="math notranslate nohighlight">\(m\)</span> is the number of examples in the mini-batch.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Dimensions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\bm{h}_t\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(n_{neurons} \times 1\)</span> or <span class="math notranslate nohighlight">\(m \times n_{neurons}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\bm{x}_t\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(n_{input} \times 1\)</span> or <span class="math notranslate nohighlight">\(m \times n_{input}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\bm{U}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(n_{neurons} \times n_{input}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\bm{W}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(n_{neurons} \times n_{neurons}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\bm{b}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(n_{neurons} \times 1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\bm{V}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(n_{output} \times n_{neurons}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\bm{o}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(n_{output} \times 1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\bm{c}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(n_{output} \times 1\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Please note that there may be multiple layers that can be stacked on top of each other and they can individually keep a hidden state.</p>
+</div>
+<div class="section" id="forward-propagation">
+<h2>Forward Propagation<a class="headerlink" href="#forward-propagation" title="Permalink to this headline">¶</a></h2>
+<p>This network maps the input sequence to a sequence of the same length and implements the following forward pass:</p>
+<div class="math notranslate nohighlight">
+\[\bm a_t = \bm W \bm h _{t-1} + \bm U \bm x_t + \bm b\]</div>
+<div class="math notranslate nohighlight">
+\[\bm h_t = \tanh(\bm a_t)\]</div>
+<div class="math notranslate nohighlight">
+\[\bm o_t = \bm V \bm h_t + \bm c\]</div>
+<div class="math notranslate nohighlight">
+\[\hat \bm y_t = \mathtt{softmax}(\bm o_t)\]</div>
+<div class="math notranslate nohighlight">
+\[L(\bm x_1, \dots , \bm x_{\tau}, \bm y_1, \dots , \bm y_{\tau}) = D_{KL}[\hat p_{data}(\bm y | \bm x) || p_{model}(\bm y | \bm x; \bm w)]\]</div>
+<div class="math notranslate nohighlight">
+\[= - \mathbb E_{\bm y | \bm x \sim \hat{p}_{data}} \log p_{model}(\bm y | \bm x ; \bm w)  = - \sum_t \log p_{model}(y_t | \bm x_1, \dots, \bm x_t ; \bm w)\]</div>
+<p>Notice that RNNs can model very generic distributions  <span class="math notranslate nohighlight">\(\log p_{model}(\bm x, \bm y ; \bm w)\)</span>. The simple RNN architecture above, effectively models the posterior distribution <span class="math notranslate nohighlight">\(\log p_{model}(\bm y | \bm x ; \bm w)\)</span>  and based on a conditional independence assumption it factorizes into <span class="math notranslate nohighlight">\(\sum_t \log p_{model}(y_t | \bm x_1, \dots, \bm x_t ; \bm w)\)</span>.</p>
+<p>Note that by connecting the <span class="math notranslate nohighlight">\(\bm y_{t-1}\)</span> to <span class="math notranslate nohighlight">\(\bm h_t\)</span> via a matrix e.g. <span class="math notranslate nohighlight">\(\bm R\)</span> we can avoid this simplifying assumption and be able to model an arbitrary distribution <span class="math notranslate nohighlight">\(\log p_{model}(\bm y | \bm x ; \bm w)\)</span>. In other words just like in the other DNN architectures, connectivity directly affects the representational capacity of the [hypothesis set]().</p>
+<p>In many instances we have problems where it only matters the label <span class="math notranslate nohighlight">\(y_\tau\)</span> at the end of the sequence. Lets say that you are classifying speech or video inside the cabin of a car to detect the psychological state of the driver. The same architecture shown above can also represent such problems - the only difference is the only the <span class="math notranslate nohighlight">\(\bm o_\tau\)</span>, <span class="math notranslate nohighlight">\(L_\tau\)</span> and <span class="math notranslate nohighlight">\(y_\tau\)</span> will be considered.</p>
+<p>Lets see an example to understand better the forward propagation equations.</p>
+<p><img alt="example-sentence" src="../../../../_images/example-sentence.png" />
+<em>Example sentence as input to the RNN</em></p>
+<p>In the figure above you have a hypothetical document (a sentence) that is broken into what in natural language processing called <em>tokens</em>. Lets say that a token is a word in this case. In the simpler case where we need a classification of the whole document, given that <span class="math notranslate nohighlight">\(\tau=6\)</span>, we are going to receive at t=1, the first token <span class="math notranslate nohighlight">\(\bm x_1\)</span> and with an input hidden state  <span class="math notranslate nohighlight">\(\bm h_0 = 0\)</span> we will calculate the forward equations for <span class="math notranslate nohighlight">\(\bm h_1\)</span>, ignoring the output <span class="math notranslate nohighlight">\(\bm o_1\)</span> and repeat the unrolling when the next input <span class="math notranslate nohighlight">\(\bm x_2\)</span> comes in until we reach the end of sentence token <span class="math notranslate nohighlight">\(\bm x_6\)</span> which in this case will calculate the output <span class="math notranslate nohighlight">\(y_6\)</span> and loss</p>
+<div class="math notranslate nohighlight">
+\[- \log p_{model} (y_6|\bm x_1, \dots , \bm x_6; \bm  w)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bm w = \\{ \bm W, \bm U, \bm V, \bm b, \bm c \\}\)</span>.</p>
+</div>
+<div class="section" id="back-propagation-through-time-bptt">
+<h2>Back-Propagation Through Time (BPTT)<a class="headerlink" href="#back-propagation-through-time-bptt" title="Permalink to this headline">¶</a></h2>
+<p>Lets now see how the training through backward propagation would work for RNNs.</p>
+<p><img alt="rnn-BPTT" src="../../../../_images/rnn-BPTT.png" />
+<em>Understanding RNN memory through BPTT procedure</em></p>
+<p>Backpropagation is similar to that of feed-forward (FF) networks simply because the unrolled architecture resembles a FF one. But there is an important difference and we explain this using the above computational graph for the unrolled recurrences <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t-1\)</span>. During computation of the variable <span class="math notranslate nohighlight">\(\bm h_t\)</span> we use the value of the variable <span class="math notranslate nohighlight">\(\bm h_{t-1}\)</span> calculated in the previous recurrence. So when we apply the chain rule in the backward phase of BP, for all nodes that involve the such variables with recurrent dependencies, the end result is that <em>non local</em> gradients from previous backpropagation steps (<span class="math notranslate nohighlight">\(t\)</span> in the figure) appear. This is effectively why we say that simple RNNs feature <em>memory</em>. This is in contrast to the FF network case where during BP only local to each gate gradients where involved as we have seen in the the [DNN chapter]().</p>
+<p>The key point to notice in the backpropagation in recurrence <span class="math notranslate nohighlight">\(t-1\)</span> is the junction between <span class="math notranslate nohighlight">\(\tanh\)</span> and <span class="math notranslate nohighlight">\(\bm V \bm h_{t-1}\)</span>. This junction brings in the gradient <span class="math notranslate nohighlight">\(\nabla_{\bm h_{t-1}}L_t\)</span> from the backpropagation of the <span class="math notranslate nohighlight">\(\bm W h_{t-1}\)</span> node in recurrence <span class="math notranslate nohighlight">\(t\)</span> and just because its a junction, it is added to the backpropagated gradient from above in the current recurrence <span class="math notranslate nohighlight">\(t-1\)</span> i.e.</p>
+<div class="math notranslate nohighlight">
+\[\nabla_{\bm h_{t-1}}L_{t-1} \leftarrow \nabla_{\bm h_{t-1}}L_{t-1} + \nabla_{\bm h_{t-1}}L_t \]</div>
+<p>Ian Goodfellow’s book section 10.2.2 provides the exact equations - please note that you need to know only the intuition behind computational graphs for RNNs. In practice BPTT is truncated to avoid having to do one full forward pass and one full reverse pass through the training dataset of a e.g. [language model]() that is usually very large, to do a single gradient update.</p>
+</div>
+<div class="section" id="vanishing-or-exploding-gradients">
+<h2>Vanishing or exploding gradients<a class="headerlink" href="#vanishing-or-exploding-gradients" title="Permalink to this headline">¶</a></h2>
+<p>In the figure below we have drafted a conceptual version of what is happening with recurrences over time. Its called an infinite impulse response filter for reasons that will be apparent shortly.</p>
+<p><img alt="rnn-IIR" src="../../../../_images/rnn-IIR.png" />
+<em>Infinite Impulse Response (IIR) filter with weight <span class="math notranslate nohighlight">\(w\)</span></em></p>
+<p>With <span class="math notranslate nohighlight">\(D\)</span> denoting a unit delay, the recurrence formula for this system is:</p>
+<div class="math notranslate nohighlight">
+\[h_t = w h_{t-1} + x_t\]</div>
+<p>where <span class="math notranslate nohighlight">\(w\)</span>is a weight (a scalar). Lets consider what happens when an impulse, <span class="math notranslate nohighlight">\(x_t = \delta_t\)</span> is fed at the input of this system with <span class="math notranslate nohighlight">\(w=-0.9\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[h_0 = -0.9 h_{-1} + \delta_0 = 1\]</div>
+<div class="math notranslate nohighlight">
+\[h_1 = -0.9 h_{0} + \delta_1 = -0.9\]</div>
+<div class="math notranslate nohighlight">
+\[h_2 = -0.9 h_{1} + \delta_2 = 0.81\]</div>
+<div class="math notranslate nohighlight">
+\[h_3 = -0.9 h_{2} + \delta_3 = -0.729\]</div>
+<p>With <span class="math notranslate nohighlight">\(w=-0.9\)</span>, the h_t (called impulse response) follows a decaying exponential envelope while obviously with <span class="math notranslate nohighlight">\(w &gt; 1.0\)</span> it would follow an exponentially increasing envelope. Such recurrences if continue will result in vanishing or exploding responses long after the impulse showed up in the input <span class="math notranslate nohighlight">\(t=0\)</span>.</p>
+<p>Using this primitive IIR filter as an example, we can see that the weight plays a crucial role in the impulse response. In a similar fashion, the RNN hidden state recurrence, in the backwards pass of BP that extends from the <span class="math notranslate nohighlight">\(t=\tau\)</span> to <span class="math notranslate nohighlight">\(t=1\)</span> can make the gradient, when <span class="math notranslate nohighlight">\(\tau\)</span> is large, either <em>vanish</em> or <em>explode</em>. Instead of a scalar <span class="math notranslate nohighlight">\(w\)</span> we have matrices <span class="math notranslate nohighlight">\(\bm W\)</span> and instead of <span class="math notranslate nohighlight">\(h\)</span> we have gradients <span class="math notranslate nohighlight">\(\nabla_{\bm h_{t}}L_{t}\)</span>. This is discussed in <a class="reference external" href="http://proceedings.mlr.press/v28/pascanu13.pdf">this</a> paper.</p>
+<p>Simplistically thinking, the gradient of the <span class="math notranslate nohighlight">\(\tanh\)</span> non-linearity shown below, is between 0 and 1 suppressing the gradients and slowing down training.</p>
+<p><img alt="tanh-derivative" src="../../../../_images/tanh-derivative.png" />
+<em>Derivative of <span class="math notranslate nohighlight">\(\tanh\)</span> non-linearity</em></p>
+<p>Similar the successive application of the <span class="math notranslate nohighlight">\(W\)</span> matrix is causing explosive gradients as simplistically (ignoring the non-linearity) the hidden state can be written as</p>
+<div class="math notranslate nohighlight">
+\[\mathbf h_{t} = \mathbf W \mathbf h_{t-1}\]</div>
+<p>making after <span class="math notranslate nohighlight">\(\tau\)</span> steps</p>
+<div class="math notranslate nohighlight">
+\[\mathbf h_{t} = \mathbf W^\tau \mathbf h_{0}\]</div>
+<p>If the magnitude of the eigenvalues are less than 1.0 the matrix will create vanishing gradients as it is involved in the <span class="math notranslate nohighlight">\(\nabla_{\bm h_{t}}L_{t}\)</span> expression (see equations in section 10.2.2 in the textbook).  This issue is addressed using the [LSTM]() type of cells.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./aiml-common/lectures/rnn/simple-rnn"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pantelis Monogioudis, Ph.D<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
