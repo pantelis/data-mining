@@ -17,7 +17,7 @@ parts:
 
   - caption: The Learning Problem
     chapters:
-    - file: aiml-common/lectures/regression/learning-problem/_index.md
+    - file: aiml-common/lectures/learning-problem/_index.md
     - file: aiml-common/lectures/regression/linear-regression/_index.md    
     - file: aiml-common/lectures/regression/linear-regression/regression-notebooks/_index.md
     - file: aiml-common/lectures/optimization/maximum-likelihood/_index.md
