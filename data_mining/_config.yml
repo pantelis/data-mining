@@ -492,6 +492,7 @@ sphinx:
       - replacements
       - smartquotes
       - substitution
+      - html_image
     
 
 
