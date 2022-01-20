@@ -39,10 +39,14 @@ launch_buttons:
   colab_url: "https://colab.research.google.com"
 
 sphinx:
-    config:
-      html_theme_options:
-        use_download_button: false
-        repository_url: https://pantelis.github.io/data-mining
-        use_issues_button: true
-        use_repository_button: false
-        use_edit_page_button: false
+  recursive_update: true
+  config:
+    html_theme_options:
+      use_download_button: false
+      repository_url: https://pantelis.github.io/data-mining
+      use_issues_button: true
+      use_repository_button: false
+      use_edit_page_button: false
+  extra_extensions:
+    - sphinxcontrib.youtube
+    - sphinx_inline_tabs 
