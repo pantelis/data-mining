@@ -4,7 +4,9 @@ title: Probability Basics
 
 # Probability Basics
 
-{{<youtube -lyzEEjNH9U>}}
+```{eval-rst}
+.. youtube:: -lyzEEjNH9U
+```
 _Probability Recitation for my classes. Recitation was delivered by my TA Rohit Deepak Phadke._
 
 1. The whole purpose of probabilistic modeling is to introduce uncertainty into our problem statement. There are three types of uncertainties:

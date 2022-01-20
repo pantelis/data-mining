@@ -1,6 +1,5 @@
 ---
 title: A systems approach to AI
-weight: 2
 ---
 
 # The four approaches towards AI
@@ -12,20 +11,16 @@ A 5-min behavioral intelligence test, where an interrogator chats with the playe
 
 This course's projects includes the [Alexa prize](https://developer.amazon.com/alexaprize) which is _not_ a turing test. The Alexa Prize creates social bots that engage in interesting, human-like conversations, not to make them indistinguishable from a human when compared side-by-side. Social bots may have ready access to much more information than a human. 
 
-<table style="width:130%; table-layout:fixed;">
-  <tr>
-    <td><div class="embed">
-          <iframe src="https://www.youtube.com/embed/3wLqsRLvV-c"></iframe>
-        </div></td>
-    <td><div class="embed">
-            <iframe src="https://www.youtube.com/embed/nVi-QwX82GI"></iframe>
-          </div></td>
-  </tr>
-  <tr>
-    <td>Summary of the Turing Test</td>
-    <td>The Alexa Prize is not a Turing Test</td>
-  </tr>
-</table>
+```{eval-rst}
+.. youtube:: 3wLqsRLvV-c
+```
+_Summary of the Turing Test_
+
+```{eval-rst}
+.. youtube:: nVi-QwX82GI
+```
+_The Alexa Prize is not a Turing Test_
+
 
 What capabilities we need to have to pass a turing test. 
 
