@@ -570,20 +570,20 @@
 <h1>The Long Short-Term Memory (LSTM) Cell Architecture<a class="headerlink" href="#the-long-short-term-memory-lstm-cell-architecture" title="Permalink to this headline">¶</a></h1>
 <p>In [the simple RNN]() we have seen the problem of exploding or vanishing gradients when <a class="reference external" href="http://ai.dinfo.unifi.it/paolo//ps/tnn-94-gradient.pdf">the span of back-propagation is large</a> (large <span class="math notranslate nohighlight">\(\tau\)</span>). Using the conceptual IIR filter, that ultimately <em>integrates</em> the input signal, we have seen that in order to avoid an exploding or vanishing impulse response, we need to control <span class="math notranslate nohighlight">\(w\)</span>. This is exactly what is being done in evolutionary RNN architectures that we will treat in this section called <em>gated RNNs</em>. The best known gated RNN architecture is called the LSTM <em>cell</em> and in this case the weight <span class="math notranslate nohighlight">\(w\)</span> is not fixed but it is determined based on the input sequence <em>context</em>. The architecture is shown below.</p>
 <p><img alt="lstm-cell" src="../../../../_images/rnn-LSTM.png" />
-<em>LSTM architecture: It is divided into three areas: input (green), cell state (blue) and output (red). You can clearly see the outer (<span class="math notranslate nohighlight">\(\bm h_{t-1}\)</span> )and the inner (<span class="math notranslate nohighlight">\(\bm s_{t-1}\)</span>) recurrence loops.</em></p>
+<em>LSTM architecture: It is divided into three areas: input (green), cell state (blue) and output (red). You can clearly see the outer (<span class="math notranslate nohighlight">\(\mathbf h_{t-1}\)</span> )and the inner (<span class="math notranslate nohighlight">\(\mathbf s_{t-1}\)</span>) recurrence loops.</em></p>
 <p>Because we need to capture the input context that involve going back several time steps in the past, we introduce an <em>additional</em> inner recurrence loop that is effectively a variable length internal to the cell memory - we call this the <em>cell state</em>.  We employ another hidden unit called the <em>forget gate</em>  to learn the input context and the forgetting factor (equivalent to the <span class="math notranslate nohighlight">\(w\)</span> we have seen in the IIR filter) i.e. the extent that the cell forgets the previous hidden state. We employ a couple of other gates as well: the <em>input gate</em> and the <em>output gate</em> as shown in the diagram below.</p>
 <p>In the following we are describing what each component is doing. Notation wise:</p>
 <ol class="simple">
 <li><p>We use two indices - <span class="math notranslate nohighlight">\(t\)</span> for the unfolding sequence index and <span class="math notranslate nohighlight">\(i\)</span> for the cell index <span class="math notranslate nohighlight">\(i\)</span> of the LSTM layer.</p></li>
-<li><p>We also denote by <span class="math notranslate nohighlight">\(\bm A(i,:)\)</span>,  the i-th row of the matrix <span class="math notranslate nohighlight">\(\bm A\)</span>.</p></li>
+<li><p>We also denote by <span class="math notranslate nohighlight">\(\mathbf A(i,:)\)</span>,  the i-th row of the matrix <span class="math notranslate nohighlight">\(\mathbf A\)</span>.</p></li>
 </ol>
 <p>Notice that if you make the output factors of input and output gates equal to 1.0 and the forgetting factor equal to 0.0, we are back to the simple RNN architecture.</p>
 <div class="section" id="input-gate">
 <h2>Input Gate<a class="headerlink" href="#input-gate" title="Permalink to this headline">¶</a></h2>
 <p>The input gate <em>protects the cell state</em> contents from perturbations by irrelevant to the context inputs. Quantitatively,  input gate calculates the factor,</p>
 <div class="math notranslate nohighlight">
-\[g_t(i) =\sigma \Big( \bm W_g(i,:) \bm h_{t-1}^i + \bm U_g(i,:) \bm x_t^i + \bm b_g^i \Big) \]</div>
-<p>The gate uses the sigmoid function to produce a factor between 0 and 1 for <em>each</em> of the cells of the LSTM layer - each cell is indexed by <span class="math notranslate nohighlight">\(i\)</span>. This factor is applied to the <span class="math notranslate nohighlight">\(i\)</span>-th cell’s input that is the combination of a function  of the previous hidden state represented by the dot product <span class="math notranslate nohighlight">\(\bm W_g(i,:) \bm h_{t-1}^i\)</span>  and a function of the current input, represented by the dot product <span class="math notranslate nohighlight">\(\bm U_g(i,:) \bm x_t^i\)</span>.</p>
+\[g_t(i) =\sigma \Big( \mathbf W_g(i,:) \mathbf h_{t-1}^i + \mathbf U_g(i,:) \mathbf x_t^i + \mathbf b_g^i \Big) \]</div>
+<p>The gate uses the sigmoid function to produce a factor between 0 and 1 for <em>each</em> of the cells of the LSTM layer - each cell is indexed by <span class="math notranslate nohighlight">\(i\)</span>. This factor is applied to the <span class="math notranslate nohighlight">\(i\)</span>-th cell’s input that is the combination of a function  of the previous hidden state represented by the dot product <span class="math notranslate nohighlight">\(\mathbf W_g(i,:) \mathbf h_{t-1}^i\)</span>  and a function of the current input, represented by the dot product <span class="math notranslate nohighlight">\(\mathbf U_g(i,:) \mathbf x_t^i\)</span>.</p>
 </div>
 <div class="section" id="output-gate">
 <h2>Output Gate<a class="headerlink" href="#output-gate" title="Permalink to this headline">¶</a></h2>
@@ -592,17 +592,17 @@
 \[h_t^i = q_t^i \tanh(s_t^i)\]</div>
 <p>where <span class="math notranslate nohighlight">\(q_t^i\)</span> is the output factor</p>
 <div class="math notranslate nohighlight">
-\[q_t{(i)} =\sigma \Big( \bm W_o(i,:) \bm h_{t-1}^i + \bm U_o(i,:) \bm x_t^i + \bm b_o^i \Big) \]</div>
+\[q_t{(i)} =\sigma \Big( \mathbf W_o(i,:) \mathbf h_{t-1}^i + \mathbf U_o(i,:) \mathbf x_t^i + \mathbf b_o^i \Big) \]</div>
 </div>
 <div class="section" id="the-cell-state-and-the-forget-gate">
 <h2>The Cell State and the Forget Gate<a class="headerlink" href="#the-cell-state-and-the-forget-gate" title="Permalink to this headline">¶</a></h2>
 <p>This is the heart of the LSTM cell, the cell state is the new memory that is introduced by LSTM - all the earlier factors are used to preserve it as long as it is needed by the use case.</p>
 <div class="math notranslate nohighlight">
-\[s_t^i = f_t^i s_{t-1}^i + g_t^i \sigma \Big( \bm W(i,:) \bm h_{t-1}^i + \bm U(i,:) \bm x_t^i + \bm b^i \Big)\]</div>
-<p>The parameters <span class="math notranslate nohighlight">\(\theta_{in} = \\{  \bm W, \bm U, \bm b \\}\)</span>  are the recurrent weights, input weights and bias respectively at the input of the i-th LSTM cell. Please note that in the above equation some authors use a <span class="math notranslate nohighlight">\(\tanh\)</span> non-linearity to transform the input instead of sigmoid.</p>
+\[s_t^i = f_t^i s_{t-1}^i + g_t^i \sigma \Big( \mathbf W(i,:) \mathbf h_{t-1}^i + \mathbf U(i,:) \mathbf x_t^i + \mathbf b^i \Big)\]</div>
+<p>The parameters <span class="math notranslate nohighlight">\(\theta_{in} = \\{  \mathbf W, \mathbf U, \mathbf b \\}\)</span>  are the recurrent weights, input weights and bias respectively at the input of the i-th LSTM cell. Please note that in the above equation some authors use a <span class="math notranslate nohighlight">\(\tanh\)</span> non-linearity to transform the input instead of sigmoid.</p>
 <p>The forget gate calculates the forgetting factor,</p>
 <div class="math notranslate nohighlight">
-\[f_t^i =\sigma \Big( \bm W_f(i,:) \bm h_{t-1}^i + \bm U_f(i,:) \bm x_t^i + \bm b_f^i \Big) \]</div>
+\[f_t^i =\sigma \Big( \mathbf W_f(i,:) \mathbf h_{t-1}^i + \mathbf U_f(i,:) \mathbf x_t^i + \mathbf b_f^i \Big) \]</div>
 <p>Similar to the input gate, this factor determines the amount of the earlier cell state that is needed to be preserved.</p>
 <p>Closing, you can expect backpropagation to work similarly to simple RNN case <a class="reference external" href="https://christinakouridi.blog/2019/06/19/backpropagation-lstm/">albeit with more complicated expressions</a>. In the LSTM workshop that follows you will have the opportunity to look at an LSTM training from scratch.</p>
 <p>Hyperparameter optimization for LSTMs is addressed more formally <a class="reference external" href="https://arxiv.org/pdf/1503.04069v1.pdf">“LSTM: A Search Space Odyssey”</a></p>

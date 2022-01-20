@@ -30,10 +30,14 @@ NOTE: Please note that the factor 2.0 in the denominator is for mathematical con
 Now our job has become to choose two things: the weight vector $\mathbf{w^*}$ *and* $M$ the order of the polynomial. **Both** define our hypothesis.  If you think about it, the order $M$ defines the model complexity in the sense that the larger $M$ becomes the more the number of weights we need to estimate and store. Obviously this is a trivial example and storage is not a concern here but treat this example as instructive for that it applies in many far for complicated settings. 
 
 
+![](images/Figure1.4a.png)
+![](images/Figure1.4b.png)
+![](images/Figure1.4c.png)
+![](images/Figure1.4d.png)
 
-<img src="images/Figure1.4a.png" width="40%"> <img src="images/Figure1.4b.png" width="40%">
+<!-- <img src="images/Figure1.4a.png" width="40%"> <img src="images/Figure1.4b.png" width="40%">
 <img src="images/Figure1.4c.png" width="40%"> <img src="images/Figure1.4d.png" width="40%">
-
+ -->
 
 Obviously you can reduce the training error to almost zero by selecting a model that is complicated enough (M=9) to perfectly fit the training data (if m is small).  
 

@@ -28,32 +28,32 @@ Its important to understand this basic operator and its geometric interpretation
 
 Let $S$ be a vector subspace of $\R^n$. For example in $\R^3$, $S$ are the lines and planes going through the origin. The projection operator onto $S$ implements a linear transformation: $\Pi_S: \R^3 →S$. We will stick to $\R^3$ to maintain the ability to plot the operations involved. We also define the orthogonal subspace,
 
-$$S^\perp  ≡  \\{ \bm w \in \R^3 | \bm w ^T \bm s = 0, ∀ \bm s \in S \\} $$
+$$S^\perp  ≡  \\{ \mathbf w \in \R^3 | \mathbf w ^T \mathbf s = 0, ∀ \mathbf s \in S \\} $$
 
-The transformation $\Pi_S$ projects onto space $S$ in the sense that when you apply this operator, every vector $\bm u$ in any other space results in the subspace $S$. In our example above,
+The transformation $\Pi_S$ projects onto space $S$ in the sense that when you apply this operator, every vector $\mathbf u$ in any other space results in the subspace $S$. In our example above,
 
-$$\Pi_S(\bm u) \in S, \forall \bm u \in \R^3$$
+$$\Pi_S(\mathbf u) \in S, \forall \mathbf u \in \R^3$$
 
-This means that any components of the vector $\bm u$ that belonged to $S^\perp$ are gone when applying the projection operator. Effectively, the original space is decomposed into 
+This means that any components of the vector $\mathbf u$ that belonged to $S^\perp$ are gone when applying the projection operator. Effectively, the original space is decomposed into 
 
 $$ \R^3 = S \oplus S^\perp $$
 
 Now we can treat projections onto specific subspaces such as lines and planes passing through the origin. 
 
-For a line defined by a direction vector $\bm u$
+For a line defined by a direction vector $\mathbf u$
 
-$$l = \\{  (x,y,z) \in \R^3 | (x,y,z) = \bm 0 + t \bm u \\} $$
+$$l = \\{  (x,y,z) \in \R^3 | (x,y,z) = \mathbf 0 + t \mathbf u \\} $$
 
 we can define the projection onto the line
 
 ![line-projection](images/line-projection.png)
-*Projection of $\bm u$ onto the line $l$*
+*Projection of $\mathbf u$ onto the line $l$*
 
-The space $S^\perp ≡ l^\perp$ is a plane since it consists of all the vectors that are perpendicular to the line. What is shown in the figure as a dashed line is simply the projection of $\bm u$ on the $l^\perp$ subspace,
+The space $S^\perp ≡ l^\perp$ is a plane since it consists of all the vectors that are perpendicular to the line. What is shown in the figure as a dashed line is simply the projection of $\mathbf u$ on the $l^\perp$ subspace,
 
-$$l^\perp = \\{  (x,y,z) \in \R^3 | \begin{bmatrix} x \\\\ y \\\\ z \end{bmatrix}^T  \bm v = 0\\} $$
+$$l^\perp = \\{  (x,y,z) \in \R^3 | \begin{bmatrix} x \\\\ y \\\\ z \end{bmatrix}^T  \mathbf v = 0\\} $$
 
-The orthogonal space of a line with direction vector $\bm v$ is a _plane_ with a normal vector $\bm v$. So when we project the $\bm v$ on the line we get two components one is lying on the line and is the $\Pi_l \bm u$ and the other is the vector $\bm w$ = $\Pi_{l^\perp} \bm u = \bm u - \bm v = \bm u - \Pi_{\bm v} \bm u $. The vector $\bm w$ is what remains when we remove the projected on $\bm v$ part from the $\bm u$. 
+The orthogonal space of a line with direction vector $\mathbf v$ is a _plane_ with a normal vector $\mathbf v$. So when we project the $\mathbf v$ on the line we get two components one is lying on the line and is the $\Pi_l \mathbf u$ and the other is the vector $\mathbf w$ = $\Pi_{l^\perp} \mathbf u = \mathbf u - \mathbf v = \mathbf u - \Pi_{\mathbf v} \mathbf u $. The vector $\mathbf w$ is what remains when we remove the projected on $\mathbf v$ part from the $\mathbf u$. 
 
 ### The Four Fundamental Subspaces
 

@@ -574,7 +574,7 @@
 <p>A more practical simple RNN architecture is shown below.</p>
 <p><img alt="rnn-hidden-recurrence" src="../../../../_images/rnn-hidden-recurrence.png" /></p>
 <p><em>Simple RNN with recurrences between hidden units. This architecture can compute any computable function and therefore is a <a class="reference external" href="http://alvyray.com/CreativeCommons/BizCardUniversalTuringMachine_v2.3.pdf">Universal Turing Machine</a>.</em></p>
-<p>Notice how the path from input <span class="math notranslate nohighlight">\(\bm x_{t-1}\)</span> affects the label <span class="math notranslate nohighlight">\(\bm y_{t}\)</span> and also the conditional independence between <span class="math notranslate nohighlight">\(\bm y\)</span> given <span class="math notranslate nohighlight">\(\bm x\)</span>. Please note that this is not a computational graph rather one way to represent the hidden state transfer between recurrences.</p>
+<p>Notice how the path from input <span class="math notranslate nohighlight">\(\mathbf x_{t-1}\)</span> affects the label <span class="math notranslate nohighlight">\(\mathbf y_{t}\)</span> and also the conditional independence between <span class="math notranslate nohighlight">\(\mathbf y\)</span> given <span class="math notranslate nohighlight">\(\mathbf x\)</span>. Please note that this is not a computational graph rather one way to represent the hidden state transfer between recurrences.</p>
 <div class="section" id="dimensioning-simple-rnns">
 <h2>Dimensioning Simple RNNs<a class="headerlink" href="#dimensioning-simple-rnns" title="Permalink to this headline">¶</a></h2>
 <p>In the table below <span class="math notranslate nohighlight">\(m\)</span> is the number of examples in the mini-batch.</p>
@@ -585,28 +585,28 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\bm{h}_t\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{h}_t\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(n_{neurons} \times 1\)</span> or <span class="math notranslate nohighlight">\(m \times n_{neurons}\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\bm{x}_t\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{x}_t\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(n_{input} \times 1\)</span> or <span class="math notranslate nohighlight">\(m \times n_{input}\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\bm{U}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{U}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(n_{neurons} \times n_{input}\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\bm{W}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{W}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(n_{neurons} \times n_{neurons}\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\bm{b}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{b}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(n_{neurons} \times 1\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\bm{V}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{V}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(n_{output} \times n_{neurons}\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\bm{o}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathbf{o}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(n_{output} \times 1\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\bm{c}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{c}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(n_{output} \times 1\)</span></p></td>
 </tr>
 </tbody>
@@ -617,37 +617,37 @@
 <h2>Forward Propagation<a class="headerlink" href="#forward-propagation" title="Permalink to this headline">¶</a></h2>
 <p>This network maps the input sequence to a sequence of the same length and implements the following forward pass:</p>
 <div class="math notranslate nohighlight">
-\[\bm a_t = \bm W \bm h _{t-1} + \bm U \bm x_t + \bm b\]</div>
+\[\mathbf a_t = \mathbf W \mathbf h _{t-1} + \mathbf U \mathbf x_t + \mathbf b\]</div>
 <div class="math notranslate nohighlight">
-\[\bm h_t = \tanh(\bm a_t)\]</div>
+\[\mathbf h_t = \tanh(\mathbf a_t)\]</div>
 <div class="math notranslate nohighlight">
-\[\bm o_t = \bm V \bm h_t + \bm c\]</div>
+\[\mathbf o_t = \mathbf V \mathbf h_t + \mathbf c\]</div>
 <div class="math notranslate nohighlight">
-\[\hat \bm y_t = \mathtt{softmax}(\bm o_t)\]</div>
+\[\hat \mathbf y_t = \mathtt{softmax}(\mathbf o_t)\]</div>
 <div class="math notranslate nohighlight">
-\[L(\bm x_1, \dots , \bm x_{\tau}, \bm y_1, \dots , \bm y_{\tau}) = D_{KL}[\hat p_{data}(\bm y | \bm x) || p_{model}(\bm y | \bm x; \bm w)]\]</div>
+\[L(\mathbf x_1, \dots , \mathbf x_{\tau}, \mathbf y_1, \dots , \mathbf y_{\tau}) = D_{KL}[\hat p_{data}(\mathbf y | \mathbf x) || p_{model}(\mathbf y | \mathbf x; \mathbf w)]\]</div>
 <div class="math notranslate nohighlight">
-\[= - \mathbb E_{\bm y | \bm x \sim \hat{p}_{data}} \log p_{model}(\bm y | \bm x ; \bm w)  = - \sum_t \log p_{model}(y_t | \bm x_1, \dots, \bm x_t ; \bm w)\]</div>
-<p>Notice that RNNs can model very generic distributions  <span class="math notranslate nohighlight">\(\log p_{model}(\bm x, \bm y ; \bm w)\)</span>. The simple RNN architecture above, effectively models the posterior distribution <span class="math notranslate nohighlight">\(\log p_{model}(\bm y | \bm x ; \bm w)\)</span>  and based on a conditional independence assumption it factorizes into <span class="math notranslate nohighlight">\(\sum_t \log p_{model}(y_t | \bm x_1, \dots, \bm x_t ; \bm w)\)</span>.</p>
-<p>Note that by connecting the <span class="math notranslate nohighlight">\(\bm y_{t-1}\)</span> to <span class="math notranslate nohighlight">\(\bm h_t\)</span> via a matrix e.g. <span class="math notranslate nohighlight">\(\bm R\)</span> we can avoid this simplifying assumption and be able to model an arbitrary distribution <span class="math notranslate nohighlight">\(\log p_{model}(\bm y | \bm x ; \bm w)\)</span>. In other words just like in the other DNN architectures, connectivity directly affects the representational capacity of the [hypothesis set]().</p>
-<p>In many instances we have problems where it only matters the label <span class="math notranslate nohighlight">\(y_\tau\)</span> at the end of the sequence. Lets say that you are classifying speech or video inside the cabin of a car to detect the psychological state of the driver. The same architecture shown above can also represent such problems - the only difference is the only the <span class="math notranslate nohighlight">\(\bm o_\tau\)</span>, <span class="math notranslate nohighlight">\(L_\tau\)</span> and <span class="math notranslate nohighlight">\(y_\tau\)</span> will be considered.</p>
+\[= - \mathbb E_{\mathbf y | \mathbf x \sim \hat{p}_{data}} \log p_{model}(\mathbf y | \mathbf x ; \mathbf w)  = - \sum_t \log p_{model}(y_t | \mathbf x_1, \dots, \mathbf x_t ; \mathbf w)\]</div>
+<p>Notice that RNNs can model very generic distributions  <span class="math notranslate nohighlight">\(\log p_{model}(\mathbf x, \mathbf y ; \mathbf w)\)</span>. The simple RNN architecture above, effectively models the posterior distribution <span class="math notranslate nohighlight">\(\log p_{model}(\mathbf y | \mathbf x ; \mathbf w)\)</span>  and based on a conditional independence assumption it factorizes into <span class="math notranslate nohighlight">\(\sum_t \log p_{model}(y_t | \mathbf x_1, \dots, \mathbf x_t ; \mathbf w)\)</span>.</p>
+<p>Note that by connecting the <span class="math notranslate nohighlight">\(\mathbf y_{t-1}\)</span> to <span class="math notranslate nohighlight">\(\mathbf h_t\)</span> via a matrix e.g. <span class="math notranslate nohighlight">\(\mathbf R\)</span> we can avoid this simplifying assumption and be able to model an arbitrary distribution <span class="math notranslate nohighlight">\(\log p_{model}(\mathbf y | \mathbf x ; \mathbf w)\)</span>. In other words just like in the other DNN architectures, connectivity directly affects the representational capacity of the [hypothesis set]().</p>
+<p>In many instances we have problems where it only matters the label <span class="math notranslate nohighlight">\(y_\tau\)</span> at the end of the sequence. Lets say that you are classifying speech or video inside the cabin of a car to detect the psychological state of the driver. The same architecture shown above can also represent such problems - the only difference is the only the <span class="math notranslate nohighlight">\(\mathbf o_\tau\)</span>, <span class="math notranslate nohighlight">\(L_\tau\)</span> and <span class="math notranslate nohighlight">\(y_\tau\)</span> will be considered.</p>
 <p>Lets see an example to understand better the forward propagation equations.</p>
 <p><img alt="example-sentence" src="../../../../_images/example-sentence.png" />
 <em>Example sentence as input to the RNN</em></p>
-<p>In the figure above you have a hypothetical document (a sentence) that is broken into what in natural language processing called <em>tokens</em>. Lets say that a token is a word in this case. In the simpler case where we need a classification of the whole document, given that <span class="math notranslate nohighlight">\(\tau=6\)</span>, we are going to receive at t=1, the first token <span class="math notranslate nohighlight">\(\bm x_1\)</span> and with an input hidden state  <span class="math notranslate nohighlight">\(\bm h_0 = 0\)</span> we will calculate the forward equations for <span class="math notranslate nohighlight">\(\bm h_1\)</span>, ignoring the output <span class="math notranslate nohighlight">\(\bm o_1\)</span> and repeat the unrolling when the next input <span class="math notranslate nohighlight">\(\bm x_2\)</span> comes in until we reach the end of sentence token <span class="math notranslate nohighlight">\(\bm x_6\)</span> which in this case will calculate the output <span class="math notranslate nohighlight">\(y_6\)</span> and loss</p>
+<p>In the figure above you have a hypothetical document (a sentence) that is broken into what in natural language processing called <em>tokens</em>. Lets say that a token is a word in this case. In the simpler case where we need a classification of the whole document, given that <span class="math notranslate nohighlight">\(\tau=6\)</span>, we are going to receive at t=1, the first token <span class="math notranslate nohighlight">\(\mathbf x_1\)</span> and with an input hidden state  <span class="math notranslate nohighlight">\(\mathbf h_0 = 0\)</span> we will calculate the forward equations for <span class="math notranslate nohighlight">\(\mathbf h_1\)</span>, ignoring the output <span class="math notranslate nohighlight">\(\mathbf o_1\)</span> and repeat the unrolling when the next input <span class="math notranslate nohighlight">\(\mathbf x_2\)</span> comes in until we reach the end of sentence token <span class="math notranslate nohighlight">\(\mathbf x_6\)</span> which in this case will calculate the output <span class="math notranslate nohighlight">\(y_6\)</span> and loss</p>
 <div class="math notranslate nohighlight">
-\[- \log p_{model} (y_6|\bm x_1, \dots , \bm x_6; \bm  w)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\bm w = \\{ \bm W, \bm U, \bm V, \bm b, \bm c \\}\)</span>.</p>
+\[- \log p_{model} (y_6|\mathbf x_1, \dots , \mathbf x_6; \mathbf  w)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf w = \\{ \mathbf W, \mathbf U, \mathbf V, \mathbf b, \mathbf c \\}\)</span>.</p>
 </div>
 <div class="section" id="back-propagation-through-time-bptt">
 <h2>Back-Propagation Through Time (BPTT)<a class="headerlink" href="#back-propagation-through-time-bptt" title="Permalink to this headline">¶</a></h2>
 <p>Lets now see how the training through backward propagation would work for RNNs.</p>
 <p><img alt="rnn-BPTT" src="../../../../_images/rnn-BPTT.png" />
 <em>Understanding RNN memory through BPTT procedure</em></p>
-<p>Backpropagation is similar to that of feed-forward (FF) networks simply because the unrolled architecture resembles a FF one. But there is an important difference and we explain this using the above computational graph for the unrolled recurrences <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t-1\)</span>. During computation of the variable <span class="math notranslate nohighlight">\(\bm h_t\)</span> we use the value of the variable <span class="math notranslate nohighlight">\(\bm h_{t-1}\)</span> calculated in the previous recurrence. So when we apply the chain rule in the backward phase of BP, for all nodes that involve the such variables with recurrent dependencies, the end result is that <em>non local</em> gradients from previous backpropagation steps (<span class="math notranslate nohighlight">\(t\)</span> in the figure) appear. This is effectively why we say that simple RNNs feature <em>memory</em>. This is in contrast to the FF network case where during BP only local to each gate gradients where involved as we have seen in the the [DNN chapter]().</p>
-<p>The key point to notice in the backpropagation in recurrence <span class="math notranslate nohighlight">\(t-1\)</span> is the junction between <span class="math notranslate nohighlight">\(\tanh\)</span> and <span class="math notranslate nohighlight">\(\bm V \bm h_{t-1}\)</span>. This junction brings in the gradient <span class="math notranslate nohighlight">\(\nabla_{\bm h_{t-1}}L_t\)</span> from the backpropagation of the <span class="math notranslate nohighlight">\(\bm W h_{t-1}\)</span> node in recurrence <span class="math notranslate nohighlight">\(t\)</span> and just because its a junction, it is added to the backpropagated gradient from above in the current recurrence <span class="math notranslate nohighlight">\(t-1\)</span> i.e.</p>
+<p>Backpropagation is similar to that of feed-forward (FF) networks simply because the unrolled architecture resembles a FF one. But there is an important difference and we explain this using the above computational graph for the unrolled recurrences <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t-1\)</span>. During computation of the variable <span class="math notranslate nohighlight">\(\mathbf h_t\)</span> we use the value of the variable <span class="math notranslate nohighlight">\(\mathbf h_{t-1}\)</span> calculated in the previous recurrence. So when we apply the chain rule in the backward phase of BP, for all nodes that involve the such variables with recurrent dependencies, the end result is that <em>non local</em> gradients from previous backpropagation steps (<span class="math notranslate nohighlight">\(t\)</span> in the figure) appear. This is effectively why we say that simple RNNs feature <em>memory</em>. This is in contrast to the FF network case where during BP only local to each gate gradients where involved as we have seen in the the [DNN chapter]().</p>
+<p>The key point to notice in the backpropagation in recurrence <span class="math notranslate nohighlight">\(t-1\)</span> is the junction between <span class="math notranslate nohighlight">\(\tanh\)</span> and <span class="math notranslate nohighlight">\(\mathbf V \mathbf h_{t-1}\)</span>. This junction brings in the gradient <span class="math notranslate nohighlight">\(\nabla_{\mathbf h_{t-1}}L_t\)</span> from the backpropagation of the <span class="math notranslate nohighlight">\(\mathbf W h_{t-1}\)</span> node in recurrence <span class="math notranslate nohighlight">\(t\)</span> and just because its a junction, it is added to the backpropagated gradient from above in the current recurrence <span class="math notranslate nohighlight">\(t-1\)</span> i.e.</p>
 <div class="math notranslate nohighlight">
-\[\nabla_{\bm h_{t-1}}L_{t-1} \leftarrow \nabla_{\bm h_{t-1}}L_{t-1} + \nabla_{\bm h_{t-1}}L_t \]</div>
+\[\nabla_{\mathbf h_{t-1}}L_{t-1} \leftarrow \nabla_{\mathbf h_{t-1}}L_{t-1} + \nabla_{\mathbf h_{t-1}}L_t \]</div>
 <p>Ian Goodfellow’s book section 10.2.2 provides the exact equations - please note that you need to know only the intuition behind computational graphs for RNNs. In practice BPTT is truncated to avoid having to do one full forward pass and one full reverse pass through the training dataset of a e.g. [language model]() that is usually very large, to do a single gradient update.</p>
 </div>
 <div class="section" id="vanishing-or-exploding-gradients">
@@ -668,7 +668,7 @@
 <div class="math notranslate nohighlight">
 \[h_3 = -0.9 h_{2} + \delta_3 = -0.729\]</div>
 <p>With <span class="math notranslate nohighlight">\(w=-0.9\)</span>, the h_t (called impulse response) follows a decaying exponential envelope while obviously with <span class="math notranslate nohighlight">\(w &gt; 1.0\)</span> it would follow an exponentially increasing envelope. Such recurrences if continue will result in vanishing or exploding responses long after the impulse showed up in the input <span class="math notranslate nohighlight">\(t=0\)</span>.</p>
-<p>Using this primitive IIR filter as an example, we can see that the weight plays a crucial role in the impulse response. In a similar fashion, the RNN hidden state recurrence, in the backwards pass of BP that extends from the <span class="math notranslate nohighlight">\(t=\tau\)</span> to <span class="math notranslate nohighlight">\(t=1\)</span> can make the gradient, when <span class="math notranslate nohighlight">\(\tau\)</span> is large, either <em>vanish</em> or <em>explode</em>. Instead of a scalar <span class="math notranslate nohighlight">\(w\)</span> we have matrices <span class="math notranslate nohighlight">\(\bm W\)</span> and instead of <span class="math notranslate nohighlight">\(h\)</span> we have gradients <span class="math notranslate nohighlight">\(\nabla_{\bm h_{t}}L_{t}\)</span>. This is discussed in <a class="reference external" href="http://proceedings.mlr.press/v28/pascanu13.pdf">this</a> paper.</p>
+<p>Using this primitive IIR filter as an example, we can see that the weight plays a crucial role in the impulse response. In a similar fashion, the RNN hidden state recurrence, in the backwards pass of BP that extends from the <span class="math notranslate nohighlight">\(t=\tau\)</span> to <span class="math notranslate nohighlight">\(t=1\)</span> can make the gradient, when <span class="math notranslate nohighlight">\(\tau\)</span> is large, either <em>vanish</em> or <em>explode</em>. Instead of a scalar <span class="math notranslate nohighlight">\(w\)</span> we have matrices <span class="math notranslate nohighlight">\(\mathbf W\)</span> and instead of <span class="math notranslate nohighlight">\(h\)</span> we have gradients <span class="math notranslate nohighlight">\(\nabla_{\mathbf h_{t}}L_{t}\)</span>. This is discussed in <a class="reference external" href="http://proceedings.mlr.press/v28/pascanu13.pdf">this</a> paper.</p>
 <p>Simplistically thinking, the gradient of the <span class="math notranslate nohighlight">\(\tanh\)</span> non-linearity shown below, is between 0 and 1 suppressing the gradients and slowing down training.</p>
 <p><img alt="tanh-derivative" src="../../../../_images/tanh-derivative.png" />
 <em>Derivative of <span class="math notranslate nohighlight">\(\tanh\)</span> non-linearity</em></p>
@@ -678,7 +678,7 @@
 <p>making after <span class="math notranslate nohighlight">\(\tau\)</span> steps</p>
 <div class="math notranslate nohighlight">
 \[\mathbf h_{t} = \mathbf W^\tau \mathbf h_{0}\]</div>
-<p>If the magnitude of the eigenvalues are less than 1.0 the matrix will create vanishing gradients as it is involved in the <span class="math notranslate nohighlight">\(\nabla_{\bm h_{t}}L_{t}\)</span> expression (see equations in section 10.2.2 in the textbook).  This issue is addressed using the [LSTM]() type of cells.</p>
+<p>If the magnitude of the eigenvalues are less than 1.0 the matrix will create vanishing gradients as it is involved in the <span class="math notranslate nohighlight">\(\nabla_{\mathbf h_{t}}L_{t}\)</span> expression (see equations in section 10.2.2 in the textbook).  This issue is addressed using the [LSTM]() type of cells.</p>
 </div>
 </div>
 

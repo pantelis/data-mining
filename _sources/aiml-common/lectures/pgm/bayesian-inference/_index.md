@@ -43,7 +43,7 @@ Note that we have assumed that our model does _not_ have variables involved in d
 
 ### Bayesian approach vs Maximum Likelihood
 
-In the [MLE]({{<ref "../../optimization/maximum-likelihood">}}) section we have seen a simple supervised learning problem that is specified via a joint distribution $\hat{p}_{data}(\bm x, y)$ and are asked to fit the model parameterized by the weights $\mathbf w$ using maximum likelihood. Its important to view pictorially perhaps the most important effect of Bayesian thinking in the regression setting: 
+In the [MLE]({{<ref "../../optimization/maximum-likelihood">}}) section we have seen a simple supervised learning problem that is specified via a joint distribution $\hat{p}_{data}(\mathbf x, y)$ and are asked to fit the model parameterized by the weights $\mathbf w$ using maximum likelihood. Its important to view pictorially perhaps the most important effect of Bayesian thinking in the regression setting: 
 
 * The $\mathbf{w}$ in MLE is a point estimate $\mathbf{w}_{MLE}$ and we are plugging this estimate in the predictive distribution to make predictions $\hat y$ for data we havent seen before. 
   
@@ -59,9 +59,9 @@ Before diving into the posterior update in regression problems its instructive t
 
 <!-- ## Bayesian Linear Regression
 
-The Probabilistic Graphical Model is a representation that is extensively used in probabilistic reasoning. Lets consider the simplest possible example of a graphical model and see how it connects to concepts we have seen before. Any joint distribution $p(\bm x, y)$ can be decomposed using the product rule (we drop the data qualifier) 
+The Probabilistic Graphical Model is a representation that is extensively used in probabilistic reasoning. Lets consider the simplest possible example of a graphical model and see how it connects to concepts we have seen before. Any joint distribution $p(\mathbf x, y)$ can be decomposed using the product rule (we drop the data qualifier) 
 
-$$p(\bm x, y) = p(\bm x) p(y|\bm x)$$
+$$p(\mathbf x, y) = p(\mathbf x) p(y|\mathbf x)$$
 
 and such distribution can be represented via the simple PGM graph (a) below. 
 
@@ -69,7 +69,7 @@ and such distribution can be represented via the simple PGM graph (a) below.
 
 *Simplest possible PGM example*
 
-We introduce now a graphical notation where we shade, nodes that we consider observed. Let us know assume that we observe $y$ as shown in (b). We can view the marginal $p(\bm x)$  as a prior over $x$ and and we can _infer_ the posterior distribution using the Bayes rule
+We introduce now a graphical notation where we shade, nodes that we consider observed. Let us know assume that we observe $y$ as shown in (b). We can view the marginal $p(\mathbf x)$  as a prior over $x$ and and we can _infer_ the posterior distribution using the Bayes rule
 
 $$p(x|y) = \frac{p(y|x)p(x)}{p(y)}$$
 
@@ -88,7 +88,7 @@ $$g(x,\mathbf{w})= w_0 + w_1 x$$ (our hypothesis). The reason why we pick this e
 
 $$p(\mathbf w | \alpha) = \mathcal N(\mathbf w | \mathbf 0, \alpha^{-1} \mathbf I)$$
 
-with $\alpha = 0.2$. We starts in row 1 with this prior and at this point there are no data and the likelihood is undefined while every possible linear (line) hypothesis is feasible as represented by the red lines. In row 2, a data point arrives and the the Bayesian update takes place: the previous row posterior becomes the prior and is multiplied by the current likelihood function. The likelihood function and the form of the math behind the update are as shown in [Bishop's book in section 3.3](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf). Here we focus on a pictorial view of what is the update is all about and how the estimate of the posterior distribution $p(\mathbf w | \mathbf y)$ ultimately (as the iterations increase) it will be ideally centered to the ground truth ($\bm a$).
+with $\alpha = 0.2$. We starts in row 1 with this prior and at this point there are no data and the likelihood is undefined while every possible linear (line) hypothesis is feasible as represented by the red lines. In row 2, a data point arrives and the the Bayesian update takes place: the previous row posterior becomes the prior and is multiplied by the current likelihood function. The likelihood function and the form of the math behind the update are as shown in [Bishop's book in section 3.3](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf). Here we focus on a pictorial view of what is the update is all about and how the estimate of the posterior distribution $p(\mathbf w | \mathbf y)$ ultimately (as the iterations increase) it will be ideally centered to the ground truth ($\mathbf a$).
 
 ![Figure3.7-bishop](images/Figure3.7.png)
 *Instructive example of Bayesian learning as data points are streamed into the learner. Notice the dramatic improvement in the posterior the moment the 2nd data point arrives. Why is that?*

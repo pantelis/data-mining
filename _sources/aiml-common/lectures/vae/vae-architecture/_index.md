@@ -24,8 +24,8 @@ $$q(\mathbf z | \mathbf x ; \mathbf \phi) = \prod_{j=1}^M q(\mathbf z_j | Pa(\ma
 
 and this, similarly to the generative model, can be parametrized with a $DNN_{enc}(\phi)$. More specifically we obtain the approximation using the following construction:
 
-$$ (\bm \mu,  \log \bm \Sigma ) = DNN_{enc}(\mathbf x, \bm \phi)$$
-$$q(\mathbf z| \mathbf x ; \mathbf \phi) = N(\mathbf z; \bm \mu, \textsf{diag} \mathbf \Sigma) )$$
+$$ (\mathbf \mu,  \log \mathbf \Sigma ) = DNN_{enc}(\mathbf x, \mathbf \phi)$$
+$$q(\mathbf z| \mathbf x ; \mathbf \phi) = N(\mathbf z; \mathbf \mu, \textsf{diag} \mathbf \Sigma) )$$
 
 The $DNN_{enc}$ implements amortized variational inference, that is, it estimates the posterior parameters over a batch of datapoints and this offers significant boost in the parameter learning. 
 

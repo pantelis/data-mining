@@ -11,13 +11,13 @@ Following the [introductory]({{<ref "../backprop-intro">}}) section, we have see
 ![backpropagation-dnn](images/backpropagation-dnn.png)
 
 ## DNN Gates
-In the following we heavily borrow from [this](https://web.stanford.edu/class/cs224n/readings/gradient-notes.pdf) text. The basic building block of vectorized gradients is the *Jacobian Matrix*. In the [introductory]({{<ref "../backprop-intro">}}) section we dealt with functions $f: \mathbb{R}^2 \to \mathbb{R}$. Suppose that we have a more complicated function $\bm f: \mathbb{R}^n \to \mathbb{R}^m$ that maps a vector of length $n$ to a vector of length $m$: 
+In the following we heavily borrow from [this](https://web.stanford.edu/class/cs224n/readings/gradient-notes.pdf) text. The basic building block of vectorized gradients is the *Jacobian Matrix*. In the [introductory]({{<ref "../backprop-intro">}}) section we dealt with functions $f: \mathbb{R}^2 \to \mathbb{R}$. Suppose that we have a more complicated function $\mathbf f: \mathbb{R}^n \to \mathbb{R}^m$ that maps a vector of length $n$ to a vector of length $m$: 
 
-$$\bm f(\bm x) = [f_1(x_1, ..., x_n), f_2(x_1, ..., x_n), ..., f_m(x_1, ..., x_n)]$$. 
+$$\mathbf f(\mathbf x) = [f_1(x_1, ..., x_n), f_2(x_1, ..., x_n), ..., f_m(x_1, ..., x_n)]$$. 
 
 Then its Jacobian is:
 
-$$\frac{\partial \bm f}{\partial \bm x} = 
+$$\frac{\partial \mathbf f}{\partial \mathbf x} = 
 \begin{bmatrix} \frac{\partial f_1}{\partial x_1} & \dots & \frac{\partial f_1}{\partial x_n} \\\\ \vdots & \dots & \vdots \\\\ \frac{\partial f_m}{\partial x_1} & \dots & \frac{\partial f_m}{\partial x_n} \end{bmatrix}$$
 
 The Jacobian matrix will be useful for us because we can apply the chain rule to a vector-valued function just by multiplying Jacobians. 

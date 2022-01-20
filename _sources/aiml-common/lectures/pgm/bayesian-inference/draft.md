@@ -1,6 +1,6 @@
-The Probabilistic Graphical Model is a representation that is extensively used in probabilistic reasoning. Lets consider the simplest possible example of a graphical model and see how it connects to concepts we have seen before. Any joint distribution $p(\bm x, y)$ can be decomposed using the product rule (we drop the data qualifier) 
+The Probabilistic Graphical Model is a representation that is extensively used in probabilistic reasoning. Lets consider the simplest possible example of a graphical model and see how it connects to concepts we have seen before. Any joint distribution $p(\mathbf x, y)$ can be decomposed using the product rule (we drop the data qualifier) 
 
-$$p(\bm x, y) = p(\bm x) p(y|\bm x)$$
+$$p(\mathbf x, y) = p(\mathbf x) p(y|\mathbf x)$$
 
 and such distribution can be represented via the simple PGM graph (a) below. 
 
@@ -8,7 +8,7 @@ and such distribution can be represented via the simple PGM graph (a) below.
 
 *Simplest possible PGM example*
 
-We introduce now a graphical notation where we shade, nodes that we consider observed. Let us know assume that we observe $y$ as shown in (b). We can view the marginal $p(\bm x)$  as a prior over $x$ and and we can _infer_ the posterior distribution using the Bayes rule
+We introduce now a graphical notation where we shade, nodes that we consider observed. Let us know assume that we observe $y$ as shown in (b). We can view the marginal $p(\mathbf x)$  as a prior over $x$ and and we can _infer_ the posterior distribution using the Bayes rule
 
 $$p(x|y) = \frac{p(y|x)p(x)}{p(y)}$$
 
@@ -17,7 +17,7 @@ where using the sum rule we know $p(y) = \sum_{x'} p(y|x') p(x')$. This is a ver
 
 ### Bayesian vs Maximum Likelihood
 
-In the [linear regression]({{<ref "../../regression/linear-regression">}}) section we have seen a simple supervised learning problem that is specified via a joint distribution $\hat{p}_{data}(\bm x, y)$ and are asked to fit the model parameterized by the weights $\mathbf w$ using ML. Its important to view pictorially perhaps the most important effect of Bayesian update: 
+In the [linear regression]({{<ref "../../regression/linear-regression">}}) section we have seen a simple supervised learning problem that is specified via a joint distribution $\hat{p}_{data}(\mathbf x, y)$ and are asked to fit the model parameterized by the weights $\mathbf w$ using ML. Its important to view pictorially perhaps the most important effect of Bayesian update: 
 
 * In ML the $\mathbf{w}$ is treated as a known quantity with an estimate $\hat{\mathbf{w}}$ that has a mean and variance resulting from the distribution of $y$.  
   

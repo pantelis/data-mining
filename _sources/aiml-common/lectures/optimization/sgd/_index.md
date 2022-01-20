@@ -9,9 +9,9 @@ In this chapter we close the circle that will allow us to train a model - we nee
 
 ## Gradient Descent
 
-Obviously for us to be able to find the right weights we need to pose the learning problem via a suitable objective (loss) function such as the [cross-entropy]({{<relref "../../entropy">}}).  Optimization refers to the task of either minimizing or maximizing some function $L(\bm w)$ by altering $\bm w$. We usually phrase most optimization problems in terms of minimizing $L(\bm w)$. Maximization may be accomplished via a minimization algorithm by minimizing $−L$. Mathematically
+Obviously for us to be able to find the right weights we need to pose the learning problem via a suitable objective (loss) function such as the [cross-entropy]({{<relref "../../entropy">}}).  Optimization refers to the task of either minimizing or maximizing some function $L(\mathbf w)$ by altering $\mathbf w$. We usually phrase most optimization problems in terms of minimizing $L(\mathbf w)$. Maximization may be accomplished via a minimization algorithm by minimizing $−L$. Mathematically
 
-$$\bm w^* = \argmax_w L(\bm w)$$
+$$\mathbf w^* = \argmax_w L(\mathbf w)$$
 
 As the simplest possible example the following figure show the simplest possible objective function and what an optimization algorithm is doing. 
 
@@ -31,15 +31,15 @@ The derivative is therefore useful for minimizing a function because it tells us
 ![local-min](images/local-min.png)
 *Local minima in optimizing over complex loss functions*
 
-We often minimize loss functions that have multiple inputs: $L: \mathbb R^n→ \mathbb R$. For functions with multiple inputs, we must make use of the concept of partial derivatives. The partial derivative $\frac{\partial L}{\partial \bm w_i}$ measures how $L$ changes as only the variable $\bm w_i$ increases at point $\bm w$. The _gradient_ generalizes the notion of derivative to the case where the derivative is with respect to a vector: the gradient of $L$ is the vector containing all the partial derivatives, denoted
+We often minimize loss functions that have multiple inputs: $L: \mathbb R^n→ \mathbb R$. For functions with multiple inputs, we must make use of the concept of partial derivatives. The partial derivative $\frac{\partial L}{\partial \mathbf w_i}$ measures how $L$ changes as only the variable $\mathbf w_i$ increases at point $\mathbf w$. The _gradient_ generalizes the notion of derivative to the case where the derivative is with respect to a vector: the gradient of $L$ is the vector containing all the partial derivatives, denoted
 
-$$\nabla_{\bm w} L(\bm w)$$
+$$\nabla_{\mathbf w} L(\mathbf w)$$
 
-Element $i$ of the gradient is the partial derivative $\frac{\partial L}{\partial \bm w_i}$.
+Element $i$ of the gradient is the partial derivative $\frac{\partial L}{\partial \mathbf w_i}$.
 
 In the generic case: 
 
-$$\bm w_{k+1} = \bm w_k - \eta \nabla_{\bm w} L(\bm w_k)$$
+$$\mathbf w_{k+1} = \mathbf w_k - \eta \nabla_{\mathbf w} L(\mathbf w_k)$$
 
 where $\eta$ is the scalar learning rate that is a hyperparameter that needs to be optimized (searched over). 
 
@@ -49,13 +49,13 @@ where $\eta$ is the scalar learning rate that is a hyperparameter that needs to 
 
 ## Stochastic Gradient Descent (SGD)
 
-To calculate the new $\bm w$ each iteration we need to calculate the $\frac{\partial L}{\partial \bm w_i}$ across the training dataset for the potentially many parameters of the problem. As we will see in deep learning problems that SGD-type optimization algorithms are de-facto used, we may be dealing with 100 million parameters and many more examples. As a toy example, lets assume that we have a Gaussian distributed error in our regression model i.e. the Cross Entropy (CE) is the MSE loss function 
+To calculate the new $\mathbf w$ each iteration we need to calculate the $\frac{\partial L}{\partial \mathbf w_i}$ across the training dataset for the potentially many parameters of the problem. As we will see in deep learning problems that SGD-type optimization algorithms are de-facto used, we may be dealing with 100 million parameters and many more examples. As a toy example, lets assume that we have a Gaussian distributed error in our regression model i.e. the Cross Entropy (CE) is the MSE loss function 
 
-$$L(\bm w) = \frac{1}{m} \sum_{i=1}^m (\bm w^T \bm x_i - y_i)^2$$
+$$L(\mathbf w) = \frac{1}{m} \sum_{i=1}^m (\mathbf w^T \mathbf x_i - y_i)^2$$
 
 Its partial derivative is 
 
-$$\frac{\partial L(\bm w)}{\partial w_j} = \frac{2}{m} \sum_{i=1}^m (\bm w^T \bm x_i - y_i) x_i^{(j)}$$
+$$\frac{\partial L(\mathbf w)}{\partial w_j} = \frac{2}{m} \sum_{i=1}^m (\mathbf w^T \mathbf x_i - y_i) x_i^{(j)}$$
 
 which necessitates going over the whole dataset at each iteration. This would be extremely slow and instead we perform an approximation to the gradient descent involving two steps:
 

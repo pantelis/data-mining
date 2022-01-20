@@ -544,19 +544,19 @@
             
               <div>
                 
-  <p>The Probabilistic Graphical Model is a representation that is extensively used in probabilistic reasoning. Lets consider the simplest possible example of a graphical model and see how it connects to concepts we have seen before. Any joint distribution <span class="math notranslate nohighlight">\(p(\bm x, y)\)</span> can be decomposed using the product rule (we drop the data qualifier)</p>
+  <p>The Probabilistic Graphical Model is a representation that is extensively used in probabilistic reasoning. Lets consider the simplest possible example of a graphical model and see how it connects to concepts we have seen before. Any joint distribution <span class="math notranslate nohighlight">\(p(\mathbf x, y)\)</span> can be decomposed using the product rule (we drop the data qualifier)</p>
 <div class="math notranslate nohighlight">
-\[p(\bm x, y) = p(\bm x) p(y|\bm x)\]</div>
+\[p(\mathbf x, y) = p(\mathbf x) p(y|\mathbf x)\]</div>
 <p>and such distribution can be represented via the simple PGM graph (a) below.</p>
 <img src="images/Figure8.37.png" width="250" align="center">
 <p><em>Simplest possible PGM example</em></p>
-<p>We introduce now a graphical notation where we shade, nodes that we consider observed. Let us know assume that we observe <span class="math notranslate nohighlight">\(y\)</span> as shown in (b). We can view the marginal <span class="math notranslate nohighlight">\(p(\bm x)\)</span>  as a prior over <span class="math notranslate nohighlight">\(x\)</span> and and we can <em>infer</em> the posterior distribution using the Bayes rule</p>
+<p>We introduce now a graphical notation where we shade, nodes that we consider observed. Let us know assume that we observe <span class="math notranslate nohighlight">\(y\)</span> as shown in (b). We can view the marginal <span class="math notranslate nohighlight">\(p(\mathbf x)\)</span>  as a prior over <span class="math notranslate nohighlight">\(x\)</span> and and we can <em>infer</em> the posterior distribution using the Bayes rule</p>
 <div class="math notranslate nohighlight">
 \[p(x|y) = \frac{p(y|x)p(x)}{p(y)}\]</div>
 <p>where using the sum rule we know <span class="math notranslate nohighlight">\(p(y) = \sum_{x'} p(y|x') p(x')\)</span>. This is a very innocent but very powerful concept.</p>
 <div class="section" id="bayesian-vs-maximum-likelihood">
 <h1>Bayesian vs Maximum Likelihood<a class="headerlink" href="#bayesian-vs-maximum-likelihood" title="Permalink to this headline">¶</a></h1>
-<p>In the [linear regression]() section we have seen a simple supervised learning problem that is specified via a joint distribution <span class="math notranslate nohighlight">\(\hat{p}_{data}(\bm x, y)\)</span> and are asked to fit the model parameterized by the weights <span class="math notranslate nohighlight">\(\mathbf w\)</span> using ML. Its important to view pictorially perhaps the most important effect of Bayesian update:</p>
+<p>In the [linear regression]() section we have seen a simple supervised learning problem that is specified via a joint distribution <span class="math notranslate nohighlight">\(\hat{p}_{data}(\mathbf x, y)\)</span> and are asked to fit the model parameterized by the weights <span class="math notranslate nohighlight">\(\mathbf w\)</span> using ML. Its important to view pictorially perhaps the most important effect of Bayesian update:</p>
 <ul class="simple">
 <li><p>In ML the <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> is treated as a known quantity with an estimate <span class="math notranslate nohighlight">\(\hat{\mathbf{w}}\)</span> that has a mean and variance resulting from the distribution of <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
 <li><p>In the Bayesian setting, we are integrating over the distribution of <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> given the data i.e. we are not making a point estimate of <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> but we marginalize out <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>.

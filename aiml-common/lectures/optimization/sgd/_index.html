@@ -561,9 +561,9 @@
 <p>In this chapter we close the circle that will allow us to train a model - we need an algorithm that will help us search efficiently in the weight space to find the optimal set <span class="math notranslate nohighlight">\(w*\)</span> and be able to handle the some times massive amounts of data that we have.</p>
 <div class="section" id="gradient-descent">
 <h2>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">¶</a></h2>
-<p>Obviously for us to be able to find the right weights we need to pose the learning problem via a suitable objective (loss) function such as the [cross-entropy]().  Optimization refers to the task of either minimizing or maximizing some function <span class="math notranslate nohighlight">\(L(\bm w)\)</span> by altering <span class="math notranslate nohighlight">\(\bm w\)</span>. We usually phrase most optimization problems in terms of minimizing <span class="math notranslate nohighlight">\(L(\bm w)\)</span>. Maximization may be accomplished via a minimization algorithm by minimizing <span class="math notranslate nohighlight">\(−L\)</span>. Mathematically</p>
+<p>Obviously for us to be able to find the right weights we need to pose the learning problem via a suitable objective (loss) function such as the [cross-entropy]().  Optimization refers to the task of either minimizing or maximizing some function <span class="math notranslate nohighlight">\(L(\mathbf w)\)</span> by altering <span class="math notranslate nohighlight">\(\mathbf w\)</span>. We usually phrase most optimization problems in terms of minimizing <span class="math notranslate nohighlight">\(L(\mathbf w)\)</span>. Maximization may be accomplished via a minimization algorithm by minimizing <span class="math notranslate nohighlight">\(−L\)</span>. Mathematically</p>
 <div class="math notranslate nohighlight">
-\[\bm w^* = \argmax_w L(\bm w)\]</div>
+\[\mathbf w^* = \argmax_w L(\mathbf w)\]</div>
 <p>As the simplest possible example the following figure show the simplest possible objective function and what an optimization algorithm is doing.</p>
 <p><img alt="derivative" src="../../../../_images/derivative.png" />
 <em>Gradient descent. An illustration of how the gradient descent algorithm uses the derivatives of a function to follow the function downhill to a minimum</em></p>
@@ -576,25 +576,25 @@
 <p>The derivative is therefore useful for minimizing a function because it tells us how to change <span class="math notranslate nohighlight">\(w\)</span> in order to make a small changes in <span class="math notranslate nohighlight">\(L(w\)</span>). We can thus reduce <span class="math notranslate nohighlight">\(L(w)\)</span> by moving <span class="math notranslate nohighlight">\(w\)</span> in small steps with the opposite sign of the derivative.This technique is called gradient descent (Cauchy, 1847)</p>
 <p><img alt="local-min" src="../../../../_images/local-min.png" />
 <em>Local minima in optimizing over complex loss functions</em></p>
-<p>We often minimize loss functions that have multiple inputs: <span class="math notranslate nohighlight">\(L: \mathbb R^n→ \mathbb R\)</span>. For functions with multiple inputs, we must make use of the concept of partial derivatives. The partial derivative <span class="math notranslate nohighlight">\(\frac{\partial L}{\partial \bm w_i}\)</span> measures how <span class="math notranslate nohighlight">\(L\)</span> changes as only the variable <span class="math notranslate nohighlight">\(\bm w_i\)</span> increases at point <span class="math notranslate nohighlight">\(\bm w\)</span>. The <em>gradient</em> generalizes the notion of derivative to the case where the derivative is with respect to a vector: the gradient of <span class="math notranslate nohighlight">\(L\)</span> is the vector containing all the partial derivatives, denoted</p>
+<p>We often minimize loss functions that have multiple inputs: <span class="math notranslate nohighlight">\(L: \mathbb R^n→ \mathbb R\)</span>. For functions with multiple inputs, we must make use of the concept of partial derivatives. The partial derivative <span class="math notranslate nohighlight">\(\frac{\partial L}{\partial \mathbf w_i}\)</span> measures how <span class="math notranslate nohighlight">\(L\)</span> changes as only the variable <span class="math notranslate nohighlight">\(\mathbf w_i\)</span> increases at point <span class="math notranslate nohighlight">\(\mathbf w\)</span>. The <em>gradient</em> generalizes the notion of derivative to the case where the derivative is with respect to a vector: the gradient of <span class="math notranslate nohighlight">\(L\)</span> is the vector containing all the partial derivatives, denoted</p>
 <div class="math notranslate nohighlight">
-\[\nabla_{\bm w} L(\bm w)\]</div>
-<p>Element <span class="math notranslate nohighlight">\(i\)</span> of the gradient is the partial derivative <span class="math notranslate nohighlight">\(\frac{\partial L}{\partial \bm w_i}\)</span>.</p>
+\[\nabla_{\mathbf w} L(\mathbf w)\]</div>
+<p>Element <span class="math notranslate nohighlight">\(i\)</span> of the gradient is the partial derivative <span class="math notranslate nohighlight">\(\frac{\partial L}{\partial \mathbf w_i}\)</span>.</p>
 <p>In the generic case:</p>
 <div class="math notranslate nohighlight">
-\[\bm w_{k+1} = \bm w_k - \eta \nabla_{\bm w} L(\bm w_k)\]</div>
+\[\mathbf w_{k+1} = \mathbf w_k - \eta \nabla_{\mathbf w} L(\mathbf w_k)\]</div>
 <p>where <span class="math notranslate nohighlight">\(\eta\)</span> is the scalar learning rate that is a hyperparameter that needs to be optimized (searched over).</p>
 <p><img alt="gradient-descent" src="../../../../_images/gradient-descent.png" />
 <em>Iterations in gradient descent towards the global in this case min</em></p>
 </div>
 <div class="section" id="stochastic-gradient-descent-sgd">
 <h2>Stochastic Gradient Descent (SGD)<a class="headerlink" href="#stochastic-gradient-descent-sgd" title="Permalink to this headline">¶</a></h2>
-<p>To calculate the new <span class="math notranslate nohighlight">\(\bm w\)</span> each iteration we need to calculate the <span class="math notranslate nohighlight">\(\frac{\partial L}{\partial \bm w_i}\)</span> across the training dataset for the potentially many parameters of the problem. As we will see in deep learning problems that SGD-type optimization algorithms are de-facto used, we may be dealing with 100 million parameters and many more examples. As a toy example, lets assume that we have a Gaussian distributed error in our regression model i.e. the Cross Entropy (CE) is the MSE loss function</p>
+<p>To calculate the new <span class="math notranslate nohighlight">\(\mathbf w\)</span> each iteration we need to calculate the <span class="math notranslate nohighlight">\(\frac{\partial L}{\partial \mathbf w_i}\)</span> across the training dataset for the potentially many parameters of the problem. As we will see in deep learning problems that SGD-type optimization algorithms are de-facto used, we may be dealing with 100 million parameters and many more examples. As a toy example, lets assume that we have a Gaussian distributed error in our regression model i.e. the Cross Entropy (CE) is the MSE loss function</p>
 <div class="math notranslate nohighlight">
-\[L(\bm w) = \frac{1}{m} \sum_{i=1}^m (\bm w^T \bm x_i - y_i)^2\]</div>
+\[L(\mathbf w) = \frac{1}{m} \sum_{i=1}^m (\mathbf w^T \mathbf x_i - y_i)^2\]</div>
 <p>Its partial derivative is</p>
 <div class="math notranslate nohighlight">
-\[\frac{\partial L(\bm w)}{\partial w_j} = \frac{2}{m} \sum_{i=1}^m (\bm w^T \bm x_i - y_i) x_i^{(j)}\]</div>
+\[\frac{\partial L(\mathbf w)}{\partial w_j} = \frac{2}{m} \sum_{i=1}^m (\mathbf w^T \mathbf x_i - y_i) x_i^{(j)}\]</div>
 <p>which necessitates going over the whole dataset at each iteration. This would be extremely slow and instead we perform an approximation to the gradient descent involving two steps:</p>
 <ol class="simple">
 <li><p>We define a mini-batch over which we estimate the gradient. When the mini-batch size is 1, we implement the Stochastic Gradient Descent algorithm. Note in practice people may refer to SGD but may mean mini-batch.</p></li>

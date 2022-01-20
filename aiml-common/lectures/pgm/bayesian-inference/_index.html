@@ -606,7 +606,7 @@
 <p>Note that we have assumed that our model does <em>not</em> have variables involved in directed cycles and therefore we call such graphs Directed Acyclic Graphs (DAGs).</p>
 <div class="section" id="bayesian-approach-vs-maximum-likelihood">
 <h3>Bayesian approach vs Maximum Likelihood<a class="headerlink" href="#bayesian-approach-vs-maximum-likelihood" title="Permalink to this headline">¶</a></h3>
-<p>In the [MLE]() section we have seen a simple supervised learning problem that is specified via a joint distribution <span class="math notranslate nohighlight">\(\hat{p}_{data}(\bm x, y)\)</span> and are asked to fit the model parameterized by the weights <span class="math notranslate nohighlight">\(\mathbf w\)</span> using maximum likelihood. Its important to view pictorially perhaps the most important effect of Bayesian thinking in the regression setting:</p>
+<p>In the [MLE]() section we have seen a simple supervised learning problem that is specified via a joint distribution <span class="math notranslate nohighlight">\(\hat{p}_{data}(\mathbf x, y)\)</span> and are asked to fit the model parameterized by the weights <span class="math notranslate nohighlight">\(\mathbf w\)</span> using maximum likelihood. Its important to view pictorially perhaps the most important effect of Bayesian thinking in the regression setting:</p>
 <ul class="simple">
 <li><p>The <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> in MLE is a point estimate <span class="math notranslate nohighlight">\(\mathbf{w}_{MLE}\)</span> and we are plugging this estimate in the predictive distribution to make predictions <span class="math notranslate nohighlight">\(\hat y\)</span> for data we havent seen before.</p></li>
 <li><p>In the Bayesian setting on the other hand we use a full distribution over <span class="math notranslate nohighlight">\(\mathbf w\)</span>. We predict by integrating over the posterior of <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> (i.e. given the data) and therefore considering organically the uncertainty of the posterior of <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> in our predictions.  As such it can capture the effects of sparse data producing more uncertainty via its covariance in areas where there are no data as shown in the following example which is exactly the same sinusoidal dataset fit with Bayesian updates and Gaussian basis functions.</p></li>
@@ -617,9 +617,9 @@
 <p>Before diving into the posterior update in regression problems its instructive to go over the [Bayesian coin tossing]() notebook that shows a simpler experiment.</p>
 <!-- ## Bayesian Linear Regression
 
-The Probabilistic Graphical Model is a representation that is extensively used in probabilistic reasoning. Lets consider the simplest possible example of a graphical model and see how it connects to concepts we have seen before. Any joint distribution $p(\bm x, y)$ can be decomposed using the product rule (we drop the data qualifier) 
+The Probabilistic Graphical Model is a representation that is extensively used in probabilistic reasoning. Lets consider the simplest possible example of a graphical model and see how it connects to concepts we have seen before. Any joint distribution $p(\mathbf x, y)$ can be decomposed using the product rule (we drop the data qualifier) 
 
-$$p(\bm x, y) = p(\bm x) p(y|\bm x)$$
+$$p(\mathbf x, y) = p(\mathbf x) p(y|\mathbf x)$$
 
 and such distribution can be represented via the simple PGM graph (a) below. 
 
@@ -627,7 +627,7 @@ and such distribution can be represented via the simple PGM graph (a) below.
 
 *Simplest possible PGM example*
 
-We introduce now a graphical notation where we shade, nodes that we consider observed. Let us know assume that we observe $y$ as shown in (b). We can view the marginal $p(\bm x)$  as a prior over $x$ and and we can _infer_ the posterior distribution using the Bayes rule
+We introduce now a graphical notation where we shade, nodes that we consider observed. Let us know assume that we observe $y$ as shown in (b). We can view the marginal $p(\mathbf x)$  as a prior over $x$ and and we can _infer_ the posterior distribution using the Bayes rule
 
 $$p(x|y) = \frac{p(y|x)p(x)}{p(y)}$$
 
@@ -643,7 +643,7 @@ where using the sum rule we know $p(y) = \sum_{x'} p(y|x') p(x')$. This is a ver
 $<span class="math notranslate nohighlight">\(g(x,\mathbf{w})= w_0 + w_1 x\)</span><span class="math notranslate nohighlight">\( (our hypothesis). The reason why we pick this example is illustrative as the model has just two parameters and is amendable to visualization. The update needs a prior _distribution_ over \)</span>\mathbf w$ and a likelihood function. As prior we assume a spherical Gaussian</p>
 <div class="math notranslate nohighlight">
 \[p(\mathbf w | \alpha) = \mathcal N(\mathbf w | \mathbf 0, \alpha^{-1} \mathbf I)\]</div>
-<p>with <span class="math notranslate nohighlight">\(\alpha = 0.2\)</span>. We starts in row 1 with this prior and at this point there are no data and the likelihood is undefined while every possible linear (line) hypothesis is feasible as represented by the red lines. In row 2, a data point arrives and the the Bayesian update takes place: the previous row posterior becomes the prior and is multiplied by the current likelihood function. The likelihood function and the form of the math behind the update are as shown in <a class="reference external" href="https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf">Bishop’s book in section 3.3</a>. Here we focus on a pictorial view of what is the update is all about and how the estimate of the posterior distribution <span class="math notranslate nohighlight">\(p(\mathbf w | \mathbf y)\)</span> ultimately (as the iterations increase) it will be ideally centered to the ground truth (<span class="math notranslate nohighlight">\(\bm a\)</span>).</p>
+<p>with <span class="math notranslate nohighlight">\(\alpha = 0.2\)</span>. We starts in row 1 with this prior and at this point there are no data and the likelihood is undefined while every possible linear (line) hypothesis is feasible as represented by the red lines. In row 2, a data point arrives and the the Bayesian update takes place: the previous row posterior becomes the prior and is multiplied by the current likelihood function. The likelihood function and the form of the math behind the update are as shown in <a class="reference external" href="https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf">Bishop’s book in section 3.3</a>. Here we focus on a pictorial view of what is the update is all about and how the estimate of the posterior distribution <span class="math notranslate nohighlight">\(p(\mathbf w | \mathbf y)\)</span> ultimately (as the iterations increase) it will be ideally centered to the ground truth (<span class="math notranslate nohighlight">\(\mathbf a\)</span>).</p>
 <p><img alt="Figure3.7-bishop" src="../../../../_images/Figure3.7.png" />
 <em>Instructive example of Bayesian learning as data points are streamed into the learner. Notice the dramatic improvement in the posterior the moment the 2nd data point arrives. Why is that?</em></p>
 </div>

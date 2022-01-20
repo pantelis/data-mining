@@ -14,7 +14,7 @@ $$\mathbb{X} = \\{ \mathbf{x}_1, \dots, \mathbf{x}_m \\}$$
 
 Let $p_{model}(\mathbf x, \mathbf w)$ a parametric family of probability distributions (our hypothesis set) over the same space that attempts to approximate (model) $p_{data}(\mathbf{x})$ as closely as possible using a suitable estimate of the parameter vector $\mathbf w$. The ML estimator for $\mathbf w$ is defined as:
 
-$$\bm w_{ML} = \argmax_{\mathbf w} p_{model}(\mathbb X; \mathbf w)$$
+$$\mathbf w_{ML} = \argmax_{\mathbf w} p_{model}(\mathbb X; \mathbf w)$$
 $$ = \argmax_{\mathbf w} \prod_{i=1}^m p_{model}(\mathbf x^{(i)}; \mathbf w)$$
 $$ = \argmax_{\mathbf w} \sum_{i=1}^m \log p_{model}(\mathbf x^{(i)}; \mathbf w)$$
 $$ = \argmax_{\mathbf w} \frac{1}{m} \sum_{i=1}^m \log p_{model}(\mathbf x^{(i)}; \mathbf w)$$

@@ -564,8 +564,13 @@
 <img alt="Loss Function" src="../../../../_images/Figure1.3.png" />
 <em>The loss function chosen for this regression problem, corresponds to the sum of the squares of the displacements of each data point and our hypothesis. The sum of squares in the case of Gaussian errors gives raise to an (unbiased) Maximum Likelihood estimate of the model parameters. Contrast this to sum of absolute differences.</em></p>
 <p>Now our job has become to choose two things: the weight vector <span class="math notranslate nohighlight">\(\mathbf{w^*}\)</span> <em>and</em> <span class="math notranslate nohighlight">\(M\)</span> the order of the polynomial. <strong>Both</strong> define our hypothesis.  If you think about it, the order <span class="math notranslate nohighlight">\(M\)</span> defines the model complexity in the sense that the larger <span class="math notranslate nohighlight">\(M\)</span> becomes the more the number of weights we need to estimate and store. Obviously this is a trivial example and storage is not a concern here but treat this example as instructive for that it applies in many far for complicated settings.</p>
-<p><img src="images/Figure1.4a.png" width="40%"> <img src="images/Figure1.4b.png" width="40%">
-<img src="images/Figure1.4c.png" width="40%"> <img src="images/Figure1.4d.png" width="40%"></p>
+<p><img alt="" src="../../../../_images/Figure1.4a.png" />
+<img alt="" src="../../../../_images/Figure1.4b.png" />
+<img alt="" src="../../../../_images/Figure1.4c.png" />
+<img alt="" src="../../../../_images/Figure1.4d.png" /></p>
+<!-- <img src="images/Figure1.4a.png" width="40%"> <img src="images/Figure1.4b.png" width="40%">
+<img src="images/Figure1.4c.png" width="40%"> <img src="images/Figure1.4d.png" width="40%">
+ -->
 <p>Obviously you can reduce the training error to almost zero by selecting a model that is complicated enough (M=9) to perfectly fit the training data (if m is small).</p>
 <p><img alt="Loss Function" src="../../../../_images/Figure1.5.png" /></p>
 <p>But this is not what you want to do. Because when met with test data, the model will perform far worse than a less complicated model that is closer to the true model (e.g. M=3). This is a central observation in statistical learning called <strong>overfitting</strong>. In addition, you may not have the time to iterate over M (very important in online learning settings).</p>
