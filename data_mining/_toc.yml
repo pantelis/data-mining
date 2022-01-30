@@ -102,6 +102,6 @@ parts:
     - file: aiml-common/lectures/environment/_index.md
     - file: aiml-common/lectures/python/_index.md  
 
-  # - caption:  Assignments & Projects
-  #   chapters:
-  #   - file: 
+  - caption:  Assignments & Projects
+    chapters:
+    - file: aiml-common-assignments-projects/assignments/probability-assignment-2.ipynb

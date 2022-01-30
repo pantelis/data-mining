@@ -494,8 +494,8 @@ sphinx:
       - substitution
       - html_image
     
-
-
+exclude_patterns: [solutions/*]
+only_build_toc_files: true
 
 
 
