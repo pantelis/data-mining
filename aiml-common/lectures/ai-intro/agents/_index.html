@@ -516,8 +516,13 @@
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solution-space">
-   Solution space
+  <a class="reference internal nav-link" href="#the-architecture-of-serf-driving-cars">
+   The  architecture of serf-driving cars
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-of-ai-agents">
+   Examples of AI agents
   </a>
  </li>
 </ul>
@@ -563,8 +568,13 @@
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solution-space">
-   Solution space
+  <a class="reference internal nav-link" href="#the-architecture-of-serf-driving-cars">
+   The  architecture of serf-driving cars
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-of-ai-agents">
+   Examples of AI agents
   </a>
  </li>
 </ul>
@@ -618,10 +628,24 @@
 <p>We will see in Deep Reinforcement Learning that this architecture is able to accommodate such end to end learning approach. In that setting the critic is part of the environment - see <a class="reference external" href="https://blogs.unity3d.com/2018/06/26/solving-sparse-reward-tasks-with-curiosity/">Solving sparse-reward tasks with Curiosity</a> for an example where the critic is inside the agent generating intrinsic rewards.</p>
 </div>
 </div>
-<div class="section" id="solution-space">
-<h1>Solution space<a class="headerlink" href="#solution-space" title="Permalink to this headline">¶</a></h1>
-<p>For each environment and each architecture there is a number of solutions that may be appropriate. The following figure presents the environment type to algorithm mapping that we will cover in this book.</p>
-<p><img alt="agents-environment-taxonomy" src="../../../../_images/agents-environment-taxonomy.png" /></p>
+<div class="section" id="the-architecture-of-serf-driving-cars">
+<h1>The  architecture of serf-driving cars<a class="headerlink" href="#the-architecture-of-serf-driving-cars" title="Permalink to this headline">¶</a></h1>
+<p>To avoid wondering around the various disconnected use cases, we need to pick a domain that we can use as an application theme. Given the importance of the <strong>mission critical</strong> industries in the economy of every country, in this course we have selected <strong>robotics / self-driving cars</strong>. This domain requires the design of advanced agents that perceive the environment using noisy sensors, make decisions under uncertainty, actuate a host of electronics to execute decisions, communicate with humans in natural language or be able to sense driver psychological state and many more.</p>
+<p><img alt="carla-system" src="../../../../_images/carla-system.png" /></p>
+<!-- ## Solution space
+
+For each environment and each architecture there is a number of solutions that may be appropriate. The following figure presents the environment type to algorithm mapping that we will cover in this book. 
+
+![agents-environment-taxonomy](images/agents-environment-taxonomy.png) -->
+</div>
+<div class="section" id="examples-of-ai-agents">
+<h1>Examples of AI agents<a class="headerlink" href="#examples-of-ai-agents" title="Permalink to this headline">¶</a></h1>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/N5vEca47tMw" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p><em>Industrial automation</em></p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/dE3-dPqFnI8" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p><em>Real Carla self-steering experiment</em></p>
 </div>
 
     <script type="text/x-thebe-config">

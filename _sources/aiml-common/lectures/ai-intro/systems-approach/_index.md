@@ -76,9 +76,5 @@ AI is a system with the ability to represent the world and abstract concepts at 
 
 In a limited demonstration of such ability, closed worlds such as games, we have agents that can process thousands of pixels and can create abstractions at the symbolic level. Are they able to generalize ? Doubtful. Which brings us to the very interesting thought. For the vast majority of mission critical industries, we may reach in this decade a good enough performance level. The internet didn't have 1 Gbps at each household even 5 years ago.  But the moment we crossed the 1 Mbps level per user, at the hands of innovators, it managed to change the world as we know it despite its many initial performance issues. The internet does not kill, many people will argue but if anyone believes this analogy, **todays' AI architecture, a bunch of service-oriented silos (APIs) offered by major technology firms, resembles the disconnected/siloed PC before the invention of HTTP and the internet era of the 90s. The protocol and controls that will allow such AI systems to communicate and by doing so demonstrate an ability to synthesize a non-trivial version of intelligence is one of the missing links**.
 
-## The  architecture of serf-driving cars in the late 2010s.
 
-To avoid wondering around the various disconnected use cases, we need to pick a domain that we can use as an application theme. Given the importance of the **mission critical** industries in the economy of every country, in this course we have selected **robotics / self-driving cars**. This domain requires the design of advanced agents that perceive the environment using noisy sensors, make decisions under uncertainty, actuate a host of electronics to execute decisions, communicate with humans in natural language or be able to sense driver psychological state and many more. 
-
-![carla-system](images/carla-system.png)
 

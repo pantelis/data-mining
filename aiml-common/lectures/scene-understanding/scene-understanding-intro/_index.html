@@ -503,13 +503,18 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#assign-semantic-labels-to-each-pixel-in-this-image">
-   Assign semantic labels to each pixel in this image.
+  <a class="reference internal nav-link" href="#semantic-segmentation">
+   Semantic segmentation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#datasets-for-scene-understanding-tasks">
-   Datasets for scene understanding tasks
+  <a class="reference internal nav-link" href="#instance-segmentation">
+   Instance Segmentation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datasets-for-computer-vision-tasks">
+   Datasets for computer vision tasks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -545,13 +550,18 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#assign-semantic-labels-to-each-pixel-in-this-image">
-   Assign semantic labels to each pixel in this image.
+  <a class="reference internal nav-link" href="#semantic-segmentation">
+   Semantic segmentation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#datasets-for-scene-understanding-tasks">
-   Datasets for scene understanding tasks
+  <a class="reference internal nav-link" href="#instance-segmentation">
+   Instance Segmentation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datasets-for-computer-vision-tasks">
+   Datasets for computer vision tasks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -572,28 +582,37 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-scene-understanding">
 <h1>Introduction to Scene Understanding<a class="headerlink" href="#introduction-to-scene-understanding" title="Permalink to this headline">¶</a></h1>
-<p>In the previous chapters we have treated the perception subsystem mainly from starting the first principles that govern supervised learning to algorithms that enable classical as well as deep learning machines. Now we are synthesizing these algorithms to pipelines that can potentially enable the holly grail of perception - our understanding of the scene. As discussed in the [introduction to computer vision](), humans has a unique to interpret scenes based on their ability to infer (reason) what they <em>dont</em> see. This is the reason why the scene understanding involves far more than just perception. In this chapter we will cover algorithms that allow us to:</p>
+<p>In the previous chapters we have treated the perception subsystem mainly from starting the first principles that govern supervised learning to the deep learning architectures that can be used in computer vision. Now we are synthesizing these algorithms to pipelines that can potentially allow us to decompose the scene into objects. As discussed in the  <a class="reference internal" href="../../cnn/cnn-intro/_index.html#content-cnn-intro"><span class="std std-ref">Introduction to Convolutional Neural Networks</span></a>, humans has a unique to interpret scenes based on their ability to infer (reason) what they <em>dont</em> see. This is the reason why scene understanding involves far more than just perception. In this chapter we will cover algorithms that allow us to, detect and segment objects in the scene.</p>
 <div class="section" id="detect-objects-in-an-image">
 <h2>Detect objects in an image.<a class="headerlink" href="#detect-objects-in-an-image" title="Permalink to this headline">¶</a></h2>
-<p>Object detection is demonstrated in this short video clip that shows the end result of the algorithm.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/WZmSMkK9VuA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Its important to understand the difference between classification and object detection as shown below.</p>
+<p>Object detection is demonstrated in this short video clip that shows the end result - placing bounding boxes around classes of interest.</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/WZmSMkK9VuA" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p>The difference between classification and object detection is shown below.</p>
 <p><img alt="classification-detection" src="../../../../_images/classification-detection.png" />
 <em>Difference between classification and detection</em></p>
-<p>In classification we are given images (we can consider video clips as a sequence of images) and we are asked to produce the array of labels assigned to objects that are present in the frame. Typically in many datasets there is only one class and the images are cropped around the object. In localization, in addition to classification we are interested in locating (using for example a bounding box) each class in the frame. In object detection we are localizing multiple objects (some objects can be of the same class.) Localization is a regression problem fundamentally. Mathematically we have,</p>
+<p>In classification we are given images (we can consider video clips as a sequence of images) and we are asked to produce the array of labels assigned to objects that are present in the frame. Typically in many datasets there is only one class and the images are cropped around the object. In localization, in addition to classification we are interested in locating (using for example a bounding box) each class in the frame. In object detection we are localizing multiple objects (some objects can be of the same class.) Localization is a regression problem fundamentally (although its implementation may move far away from a regression setting). Mathematically we have,</p>
 <div class="math notranslate nohighlight">
 \[y = p_{data}(x)\]</div>
-<p>We try to come up with a function approximation to the true function <span class="math notranslate nohighlight">\(p_{data}\)</span> that maps the image <span class="math notranslate nohighlight">\(x\)</span> to the location of the bounding box <span class="math notranslate nohighlight">\(y\)</span>. We can uniquely represent the bounding box by the (x,y) coordinates of its upper left corner and its width and height <span class="math notranslate nohighlight">\([x,y,w,h]\)</span>. Being a regression problem, as <span class="math notranslate nohighlight">\(y\)</span> is a floating point vector, we can use well known loss functions e.g. CE <span class="math notranslate nohighlight">\(≡\)</span> MSE where the error is the Euclidean distance between the coordinates of the true bounding box and the estimated bounding box. However, the regression approach does not work well in practice and has been superceded by the algorithms described later in this chapter.</p>
+<p>We try to come up with a function approximation to the true function <span class="math notranslate nohighlight">\(p_{data}\)</span> that maps the image <span class="math notranslate nohighlight">\(x\)</span> to the location of the bounding box <span class="math notranslate nohighlight">\(y\)</span>. We</p>
+<p>can uniquely represent the bounding box by the (x,y) coordinates of its upper left corner and its width and height <span class="math notranslate nohighlight">\([x,y,w,h]\)</span>. Being a regression problem, as <span class="math notranslate nohighlight">\(y\)</span> is a floating point vector, we can use well known loss functions e.g. CE <span class="math notranslate nohighlight">\(≡\)</span> MSE where the error is the Euclidean distance between the coordinates of the true bounding box and the estimated bounding box.</p>
+<p>However, the regression approach does not work well in practice and has been superceded by the algorithms described later in this chapter.</p>
 </div>
-<div class="section" id="assign-semantic-labels-to-each-pixel-in-this-image">
-<h2>Assign semantic labels to each pixel in this image.<a class="headerlink" href="#assign-semantic-labels-to-each-pixel-in-this-image" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="semantic-segmentation">
+<h2>Semantic segmentation<a class="headerlink" href="#semantic-segmentation" title="Permalink to this headline">¶</a></h2>
 <p><img alt="semantic-segmentation" src="../../../../_images/semantic-segmentation.png" />
 <em>Sementic Segmentation in medical, robotic and sports analytics applications</em></p>
 <p>Both of these abilities enable the <em>reflexive</em> part of perception where the inference ends up being a classification or regression or search problem and in practice, depending on the algorithm, it can range from few ms to 100s of ms. Both of these reflexive inferences are essential parts of many mission critical almost real time applications such as robotics e.g. self driving cars.</p>
 <p>There are other abilities that we need for scene understanding that don’t cover until later in this book. Our ability to recognize the attribute of <em>uniqueness</em> in an object and assign a <em>symbol</em> to it, is fundamental to our ability to reason very quickly at the symbolic level. At that level we can use a whole portfolio of symbolic inference algorithms developed over the last few decades.  But before we reach this level we need to solve the supervised learning problem for the relatively narrow task of bounding and coloring objects. This needs annotated data and knowing what kind of data we have at our disposal is an essential skill.</p>
 </div>
-<div class="section" id="datasets-for-scene-understanding-tasks">
-<h2>Datasets for scene understanding tasks<a class="headerlink" href="#datasets-for-scene-understanding-tasks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="instance-segmentation">
+<h2>Instance Segmentation<a class="headerlink" href="#instance-segmentation" title="Permalink to this headline">¶</a></h2>
+<p><img alt="instance-segmentation" src="../../../../_images/instance-segmentation.png" />
+<em>Instance Segmentation vs semantic segmentation</em></p>
+<p>This is an even more complex problem that semantic segmentation that in addition to need to  color differently the different instances of the <em>same</em> class in the image.</p>
+</div>
+<div class="section" id="datasets-for-computer-vision-tasks">
+<h2>Datasets for computer vision tasks<a class="headerlink" href="#datasets-for-computer-vision-tasks" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="coco">
 <h3>COCO<a class="headerlink" href="#coco" title="Permalink to this headline">¶</a></h3>
 <p><img alt="coco-example" src="../../../../_images/coco-example.png" />
@@ -615,8 +634,8 @@
 <li><p><strong>Image Captioning Task</strong>: Describing with natural language text the image. This task ended in 2015. Image captioning is very important though and <a class="reference external" href="https://www.aclweb.org/anthology/P18-1238.pdf">other datasets</a> exists to supplement the curated COCO captions.</p></li>
 </ul>
 <p>Even in a world with so much data, the curated available datasets that can be used to train models are by no means enough to solve AI problems in any domain.</p>
-<p>Firstly, datasets are geared towards competitions that supposedly can advance the science but in many instances leader boards become “academic exercises” where 0.1% mean accuracy improvement can win the competition but definitely does not progress AI. The double digit improvements can and these discoveries create clusters of implementations and publications around them that fine tune them. One of these discoveries is the RCNN architecture described in the [object detection]() section that advanced the accuracy metric by almost 30%.</p>
-<p>Secondly, the scene understanding problems that AI engineers will face in the field, e.g. in industrial automation or drug discovery, involve <em>domain specific</em> classes of objects. Although we cant directly use curated datasets, engineers can  do [transfer learning](), where a dataset is used to train a model for a given task whose weights can be reused to train a model for fairly similar task.</p>
+<p>Firstly, datasets are geared towards competitions that supposedly can advance the science but in many instances leader boards become “academic exercises” where 0.1% mean accuracy improvement can win the competition but definitely does not progress AI. The double digit improvements can and these discoveries create clusters of implementations and publications around them that fine tune them. One of these discoveries is the RCNN architecture that advanced the accuracy metric by almost 30%.</p>
+<p>Secondly, the scene understanding problems that AI engineers will face in the field, e.g. in industrial automation or drug discovery, involve <em>domain specific</em> classes of objects. Although we cant directly use curated datasets, engineers can  do transfer learning, as shown in <a class="reference internal" href="../../../../aiml-common-assignments-projects/projects/big-transfer/_index.html#project-big-transfer"><span class="std std-ref">Big Transfer</span></a>, where a dataset is used to train a model for a given task whose weights can be reused to train a model for fairly similar task.</p>
 </div>
 </div>
 </div>

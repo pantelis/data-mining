@@ -1,9 +1,9 @@
 ---
 title: Introduction to Convolutional Neural Networks
-draft: false
-weight: 61
+
 ---
 
+(content:cnn-intro)=
 # Introduction to Convolutional Neural Networks
 
 ![city](images/city-vision.jpg)

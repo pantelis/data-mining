@@ -46,9 +46,29 @@ The learning agent architecture builds on top of the rational agent (the perform
 
 We will see in Deep Reinforcement Learning that this architecture is able to accommodate such end to end learning approach. In that setting the critic is part of the environment - see [Solving sparse-reward tasks with Curiosity](https://blogs.unity3d.com/2018/06/26/solving-sparse-reward-tasks-with-curiosity/) for an example where the critic is inside the agent generating intrinsic rewards. 
 
-## Solution space
+## The  architecture of serf-driving cars
+
+To avoid wondering around the various disconnected use cases, we need to pick a domain that we can use as an application theme. Given the importance of the **mission critical** industries in the economy of every country, in this course we have selected **robotics / self-driving cars**. This domain requires the design of advanced agents that perceive the environment using noisy sensors, make decisions under uncertainty, actuate a host of electronics to execute decisions, communicate with humans in natural language or be able to sense driver psychological state and many more. 
+
+![carla-system](images/carla-system.png)
+<!-- ## Solution space
 
 For each environment and each architecture there is a number of solutions that may be appropriate. The following figure presents the environment type to algorithm mapping that we will cover in this book. 
 
-![agents-environment-taxonomy](images/agents-environment-taxonomy.png)
+![agents-environment-taxonomy](images/agents-environment-taxonomy.png) -->
+
+## Examples of AI agents 
+
+```{eval-rst}
+.. youtube:: N5vEca47tMw
+```
+_Industrial automation_
+
+```{eval-rst}
+.. youtube:: dE3-dPqFnI8
+```
+_Real Carla self-steering experiment_
+
+
+
 

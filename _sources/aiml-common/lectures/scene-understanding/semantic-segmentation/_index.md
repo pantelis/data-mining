@@ -1,7 +1,5 @@
 ---
 title: Semantic Segmentation
-weight: 75
-draft: true
 ---
 
 # Semantic Segmentation
