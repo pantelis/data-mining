@@ -103,4 +103,5 @@ parts:
     - file: aiml-common/lectures/python/_index.md  
 
   # - caption:  Assignments & Projects
-    #chapters:    
+  #   chapters:
+  #   - file: 
