@@ -1,6 +1,3 @@
 [submodule "data_mining/aiml-common"]
 	path = data_mining/aiml-common
 	url = https://github.com/pantelis/aiml-common.git
-[submodule "data_mining/aiml-common-assignments-projects"]
-	path = data_mining/aiml-common-assignments-projects
-	url = https://github.com/pantelis/aiml-common-assignments-projects.git
