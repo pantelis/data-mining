@@ -8,7 +8,7 @@ title: Calculus
 \newcommand\floor[1]{\lfloor#1\rfloor}
 \newcommand{\mathbfat}{\left[\begin{array}}
 \newcommand{\emat}{\end{array}\right]}
- \def\rmA{{\mathbf{A}}}
+\def\rmA{{\mathbf{A}}}
 ```
 
 # Calculus 
