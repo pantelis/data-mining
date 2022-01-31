@@ -93,10 +93,13 @@ parts:
   
   - caption: Math Background
     chapters: 
-    - file: aiml-common/lectures/ml-math/probability/_index.md
-    - file: aiml-common/lectures/linear-algebra/_index.md
-    - file: aiml-common/lectures/ml-math/calculus/_index.md
-
+    - file: aiml-common/lectures/ml-math/_index.md  
+      title: Math for ML 
+      sections: 
+      - file: aiml-common/lectures/ml-math/probability/_index.md
+      - file: aiml-common/lectures/linear-algebra/_index.md
+      - file: aiml-common/lectures/ml-math/calculus/_index.md
+        
   - caption: Resources
     chapters:
     - file: aiml-common/lectures/environment/_index.md
