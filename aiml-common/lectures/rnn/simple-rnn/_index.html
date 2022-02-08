@@ -45,7 +45,7 @@
     <script src="../../../../_static/tabs.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
@@ -443,18 +443,6 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Assignments &amp; Projects
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability-assignment-2.html">
-   Probability Assigmment
-  </a>
- </li>
-</ul>
 
     </div>
 </nav> <!-- To handle the deprecated key -->
@@ -487,13 +475,33 @@
             </button>
             
             
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../../_sources/aiml-common/lectures/rnn/simple-rnn/_index.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
             <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
-        
+        <a class="repository-button"
+            href="https://pantelis.github.io/data-mining"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
             href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/rnn/simple-rnn/_index.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
@@ -653,7 +661,7 @@
 <div class="math notranslate nohighlight">
 \[= - \mathbb E_{\mathbf y | \mathbf x \sim \hat{p}_{data}} \log p_{model}(\mathbf y | \mathbf x ; \mathbf w)  = - \sum_t \log p_{model}(y_t | \mathbf x_1, \dots, \mathbf x_t ; \mathbf w)\]</div>
 <p>Notice that RNNs can model very generic distributions  <span class="math notranslate nohighlight">\(\log p_{model}(\mathbf x, \mathbf y ; \mathbf w)\)</span>. The simple RNN architecture above, effectively models the posterior distribution <span class="math notranslate nohighlight">\(\log p_{model}(\mathbf y | \mathbf x ; \mathbf w)\)</span>  and based on a conditional independence assumption it factorizes into <span class="math notranslate nohighlight">\(\sum_t \log p_{model}(y_t | \mathbf x_1, \dots, \mathbf x_t ; \mathbf w)\)</span>.</p>
-<p>Note that by connecting the <span class="math notranslate nohighlight">\(\mathbf y_{t-1}\)</span> to <span class="math notranslate nohighlight">\(\mathbf h_t\)</span> via a matrix e.g. <span class="math notranslate nohighlight">\(\mathbf R\)</span> we can avoid this simplifying assumption and be able to model an arbitrary distribution <span class="math notranslate nohighlight">\(\log p_{model}(\mathbf y | \mathbf x ; \mathbf w)\)</span>. In other words just like in the other DNN architectures, connectivity directly affects the representational capacity of the [hypothesis set]().</p>
+<p>Note that by connecting the <span class="math notranslate nohighlight">\(\mathbf y_{t-1}\)</span> to <span class="math notranslate nohighlight">\(\mathbf h_t\)</span> via a matrix e.g. <span class="math notranslate nohighlight">\(\mathbf R\)</span> we can avoid this simplifying assumption and be able to model an arbitrary distribution <span class="math notranslate nohighlight">\(\log p_{model}(\mathbf y | \mathbf x ; \mathbf w)\)</span>. In other words just like in the other DNN architectures, connectivity directly affects the representational capacity of the hypothesis set.</p>
 <p>In many instances we have problems where it only matters the label <span class="math notranslate nohighlight">\(y_\tau\)</span> at the end of the sequence. Lets say that you are classifying speech or video inside the cabin of a car to detect the psychological state of the driver. The same architecture shown above can also represent such problems - the only difference is the only the <span class="math notranslate nohighlight">\(\mathbf o_\tau\)</span>, <span class="math notranslate nohighlight">\(L_\tau\)</span> and <span class="math notranslate nohighlight">\(y_\tau\)</span> will be considered.</p>
 <p>Lets see an example to understand better the forward propagation equations.</p>
 <p><img alt="example-sentence" src="../../../../_images/example-sentence.png" />
@@ -668,11 +676,11 @@
 <p>Lets now see how the training through backward propagation would work for RNNs.</p>
 <p><img alt="rnn-BPTT" src="../../../../_images/rnn-BPTT.png" />
 <em>Understanding RNN memory through BPTT procedure</em></p>
-<p>Backpropagation is similar to that of feed-forward (FF) networks simply because the unrolled architecture resembles a FF one. But there is an important difference and we explain this using the above computational graph for the unrolled recurrences <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t-1\)</span>. During computation of the variable <span class="math notranslate nohighlight">\(\mathbf h_t\)</span> we use the value of the variable <span class="math notranslate nohighlight">\(\mathbf h_{t-1}\)</span> calculated in the previous recurrence. So when we apply the chain rule in the backward phase of BP, for all nodes that involve the such variables with recurrent dependencies, the end result is that <em>non local</em> gradients from previous backpropagation steps (<span class="math notranslate nohighlight">\(t\)</span> in the figure) appear. This is effectively why we say that simple RNNs feature <em>memory</em>. This is in contrast to the FF network case where during BP only local to each gate gradients where involved as we have seen in the the [DNN chapter]().</p>
+<p>Backpropagation is similar to that of feed-forward (FF) networks simply because the unrolled architecture resembles a FF one. But there is an important difference and we explain this using the above computational graph for the unrolled recurrences <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t-1\)</span>. During computation of the variable <span class="math notranslate nohighlight">\(\mathbf h_t\)</span> we use the value of the variable <span class="math notranslate nohighlight">\(\mathbf h_{t-1}\)</span> calculated in the previous recurrence. So when we apply the chain rule in the backward phase of BP, for all nodes that involve the such variables with recurrent dependencies, the end result is that <em>non local</em> gradients from previous backpropagation steps (<span class="math notranslate nohighlight">\(t\)</span> in the figure) appear. This is effectively why we say that simple RNNs feature <em>memory</em>. This is in contrast to the FF network case where during BP only local to each gate gradients where involved as we have seen in the the DNN chapter.</p>
 <p>The key point to notice in the backpropagation in recurrence <span class="math notranslate nohighlight">\(t-1\)</span> is the junction between <span class="math notranslate nohighlight">\(\tanh\)</span> and <span class="math notranslate nohighlight">\(\mathbf V \mathbf h_{t-1}\)</span>. This junction brings in the gradient <span class="math notranslate nohighlight">\(\nabla_{\mathbf h_{t-1}}L_t\)</span> from the backpropagation of the <span class="math notranslate nohighlight">\(\mathbf W h_{t-1}\)</span> node in recurrence <span class="math notranslate nohighlight">\(t\)</span> and just because its a junction, it is added to the backpropagated gradient from above in the current recurrence <span class="math notranslate nohighlight">\(t-1\)</span> i.e.</p>
 <div class="math notranslate nohighlight">
 \[\nabla_{\mathbf h_{t-1}}L_{t-1} \leftarrow \nabla_{\mathbf h_{t-1}}L_{t-1} + \nabla_{\mathbf h_{t-1}}L_t \]</div>
-<p>Ian Goodfellow’s book section 10.2.2 provides the exact equations - please note that you need to know only the intuition behind computational graphs for RNNs. In practice BPTT is truncated to avoid having to do one full forward pass and one full reverse pass through the training dataset of a e.g. [language model]() that is usually very large, to do a single gradient update.</p>
+<p>Ian Goodfellow’s book section 10.2.2 provides the exact equations - please note that you need to know only the intuition behind computational graphs for RNNs. In practice BPTT is truncated to avoid having to do one full forward pass and one full reverse pass through the training dataset of a e.g. language model that is usually very large, to do a single gradient update.</p>
 </div>
 <div class="section" id="vanishing-or-exploding-gradients">
 <h2>Vanishing or exploding gradients<a class="headerlink" href="#vanishing-or-exploding-gradients" title="Permalink to this headline">¶</a></h2>
@@ -702,7 +710,7 @@
 <p>making after <span class="math notranslate nohighlight">\(\tau\)</span> steps</p>
 <div class="math notranslate nohighlight">
 \[\mathbf h_{t} = \mathbf W^\tau \mathbf h_{0}\]</div>
-<p>If the magnitude of the eigenvalues are less than 1.0 the matrix will create vanishing gradients as it is involved in the <span class="math notranslate nohighlight">\(\nabla_{\mathbf h_{t}}L_{t}\)</span> expression (see equations in section 10.2.2 in the textbook).  This issue is addressed using the [LSTM]() type of cells.</p>
+<p>If the magnitude of the eigenvalues are less than 1.0 the matrix will create vanishing gradients as it is involved in the <span class="math notranslate nohighlight">\(\nabla_{\mathbf h_{t}}L_{t}\)</span> expression (see equations in section 10.2.2 in the textbook).  This issue is addressed using the LSTM type of cells.</p>
 </div>
 </div>
 

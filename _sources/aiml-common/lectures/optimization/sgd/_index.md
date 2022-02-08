@@ -9,7 +9,7 @@ In this chapter we close the circle that will allow us to train a model - we nee
 
 ## Gradient Descent
 
-Obviously for us to be able to find the right weights we need to pose the learning problem via a suitable objective (loss) function such as the [cross-entropy]({{<relref "../../entropy">}}).  Optimization refers to the task of either minimizing or maximizing some function $L(\mathbf w)$ by altering $\mathbf w$. We usually phrase most optimization problems in terms of minimizing $L(\mathbf w)$. Maximization may be accomplished via a minimization algorithm by minimizing $−L$. Mathematically
+Obviously for us to be able to find the right weights we need to pose the learning problem via a suitable objective (loss) function such as the cross-entropy.  Optimization refers to the task of either minimizing or maximizing some function $L(\mathbf w)$ by altering $\mathbf w$. We usually phrase most optimization problems in terms of minimizing $L(\mathbf w)$. Maximization may be accomplished via a minimization algorithm by minimizing $−L$. Mathematically
 
 $$\mathbf w^* = \argmax_w L(\mathbf w)$$
 

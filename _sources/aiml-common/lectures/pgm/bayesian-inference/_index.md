@@ -1,6 +1,5 @@
 ---
 title: Bayesian Inference 
-weight: 82
 ---
 
 #  Bayesian Inference
@@ -12,11 +11,11 @@ weight: 82
 *Thomas Bayes (1701-1761)*
 
 
-The Bayesian theorem is the cornerstone of probabilistic modeling and ultimately governs what models we can construct inside the _learning algorithm_. If $\mathbf{w}$ denotes the unknown parameters, $\mathtt{data}$ denotes the dataset and $\mathcal{H}$ denotes the hypothesis set that we met in [the learning problem]({{<ref "../../learning-problem">}}) chapter.
+The Bayesian theorem is the cornerstone of probabilistic modeling and ultimately governs what models we can construct inside the _learning algorithm_. If $\mathbf{w}$ denotes the unknown parameters, $\mathtt{data}$ denotes the dataset and $\mathcal{H}$ denotes the hypothesis set that we met in the learning problem chapter.
 
 $$ p(\mathbf{w} | \mathtt{data}, \mathcal{H}) =  \frac{P(  \mathtt{data} | \mathbf{w}, \mathcal{H}) P(\mathbf{w} | \mathcal{H}) }{ P(  \mathtt{data} | \mathcal{H})} $$
 
-The Bayesian framework allows the introduction of priors $p(\theta | \mathcal{H})$ from a wide variety of sources: experts, other data, past posteriors, etc. It allows us to calculate the posterior distribution from the likelihood function and this prior subject to a normalizing constant. 
+The Bayesian framework allows the introduction of priors $p(\mathbf w | \mathcal{H})$ from a wide variety of sources: experts, other data, past posteriors, etc. It allows us to calculate the posterior distribution from the likelihood function and this prior subject to a normalizing constant. 
 
 **We will call _belief_ the internal to the agent posterior probability estimate of a random variable as calculated via the Bayes rule.**
 
@@ -43,7 +42,7 @@ Note that we have assumed that our model does _not_ have variables involved in d
 
 ### Bayesian approach vs Maximum Likelihood
 
-In the [MLE]({{<ref "../../optimization/maximum-likelihood">}}) section we have seen a simple supervised learning problem that is specified via a joint distribution $\hat{p}_{data}(\mathbf x, y)$ and are asked to fit the model parameterized by the weights $\mathbf w$ using maximum likelihood. Its important to view pictorially perhaps the most important effect of Bayesian thinking in the regression setting: 
+In the Maximum Likelihood Estimation section we have seen a simple supervised learning problem that is specified via a joint distribution $\hat{p}_{data}(\mathbf x, y)$ and are asked to fit the model parameterized by the weights $\mathbf w$ using maximum likelihood. Its important to view pictorially perhaps the most important effect of Bayesian thinking in the regression setting: 
 
 * The $\mathbf{w}$ in MLE is a point estimate $\mathbf{w}_{MLE}$ and we are plugging this estimate in the predictive distribution to make predictions $\hat y$ for data we havent seen before. 
   
@@ -55,7 +54,7 @@ In the [MLE]({{<ref "../../optimization/maximum-likelihood">}}) section we have 
 
 ML frameworks have been enhanced recently to deal with Bayesian approaches and approximations that make such approaches feasible for both classical and deep learning. **TF.Probability** and **PyTorch Pyro** are examples of such enhancements. 
 
-Before diving into the posterior update in regression problems its instructive to go over the [Bayesian coin tossing]({{<relref "../bayesian-coin">}}) notebook that shows a simpler experiment. 
+Before diving into the posterior update in regression problems its instructive to go over the Bayesian coin tossing notebook that shows a simpler experiment. 
 
 <!-- ## Bayesian Linear Regression
 

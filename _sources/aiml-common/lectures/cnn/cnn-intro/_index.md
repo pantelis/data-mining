@@ -95,7 +95,7 @@ Lets go through the simplest possible 2D filtering operation as shown below. Not
 
 #### 2D Gaussian
 
-Using a Gaussian Blur filter before edge detection aims to reduce the level of noise in the image, which improves the result of the susually subsequent edge-detection algorithms. We will meet again this 2D Gaussian filter in the [object detection]({{<ref "../../scene-understanding/object-detection">}}) section, where it is used to help in the initial segmentation in RCNN architectures. 
+Using a Gaussian Blur filter before edge detection aims to reduce the level of noise in the image, which improves the result of the susually subsequent edge-detection algorithms. We will meet again this 2D Gaussian filter in the object detection section, where it is used to help in the initial segmentation in RCNN architectures. 
 
 
 ![2d-gaussian-filter](images/2d-gaussian-filter.png)

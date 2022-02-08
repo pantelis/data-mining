@@ -28,7 +28,7 @@ The RNN architecture is a constrained implementation of the above dynamical syst
 
 $$\mathbf{h}\_t = f(\mathbf{h}\_{t-1}, \mathbf{x}_t ; \mathbf \theta)$$
 
-RNNs implement the _same_ function (parametrized by $\mathbf \theta$) across the sequence $1:\tau$. The state is latent and is denoted with $\mathbf h$ to match the notation we used earlier for the DNN hidden layers.  There is also no dependency on $t$ of the parameters $\mathbf \theta$ and this means that the network _shares_ parameters across the sequence. We have seen parameter sharing in [CNNs]({{<ref "../../cnn">}}) as well but if you recall the sharing was over the relatively small span of the filter. But the most striking difference between CNNs and RNNs is in recursion itself. 
+RNNs implement the _same_ function (parametrized by $\mathbf \theta$) across the sequence $1:\tau$. The state is latent and is denoted with $\mathbf h$ to match the notation we used earlier for the DNN hidden layers.  There is also no dependency on $t$ of the parameters $\mathbf \theta$ and this means that the network _shares_ parameters across the sequence. We have seen parameter sharing in CNNs as well but if you recall the sharing was over the relatively small span of the filter. But the most striking difference between CNNs and RNNs is in recursion itself. 
 
 ![rnn-recurrence](images/rnn-recurrence.png)
 *Recursive state representation in RNNs*

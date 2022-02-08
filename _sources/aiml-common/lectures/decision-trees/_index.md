@@ -76,7 +76,7 @@ This brings up the question of how we select the test spec parameters $x_k$ and 
 
 ## Selecting the feature $x_k$ to split
 
-To gauge which feature we will choose split requires a review of certain [probabilistic concepts]({{<relref "../entropy">}}) namely the concept of entropy. We can develop on top of entropy the concept of information gain that is pictorially explained using the example  shown below
+To gauge which feature we will choose split requires a review of certain probabilistic concepts namely the concept of entropy. We can develop on top of entropy the concept of information gain that is pictorially explained using the example  shown below
 
 ![information-gain-example](images/information-gain.png)
 *Information gain for two possible splits*

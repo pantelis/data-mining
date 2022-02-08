@@ -45,7 +45,7 @@
     <script src="../../../../_static/tabs.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
@@ -443,18 +443,6 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Assignments &amp; Projects
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability-assignment-2.html">
-   Probability Assigmment
-  </a>
- </li>
-</ul>
 
     </div>
 </nav> <!-- To handle the deprecated key -->
@@ -487,13 +475,33 @@
             </button>
             
             
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../../_sources/aiml-common/lectures/nlp/word2vec/_index.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
             <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
-        
+        <a class="repository-button"
+            href="https://pantelis.github.io/data-mining"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
             href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/nlp/word2vec/_index.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
@@ -616,7 +624,7 @@
 <em>In the skip-gram we predict the <strong>context given the center word</strong>.We need to calculate the probability <span class="math notranslate nohighlight">\(p(w_{t+j} | w_t)\)</span>.</em></p>
 <p>We go through each position <span class="math notranslate nohighlight">\(t\)</span> in each sentence and for the center word at that location <span class="math notranslate nohighlight">\(w_t\)</span> we predict the outside words <span class="math notranslate nohighlight">\(w_{t+j}\)</span> where <span class="math notranslate nohighlight">\(j\)</span> is over a window of size <span class="math notranslate nohighlight">\(C = |\\{ j: -m \le j \le m \\}|-1\)</span> around <span class="math notranslate nohighlight">\(w_t\)</span>.</p>
 <p><strong>For example, the meaning of <code class="docutils literal notranslate"><span class="pre">banking</span></code> is predicting the context (the words around it) in which <code class="docutils literal notranslate"><span class="pre">banking</span></code> occurs across our corpus.</strong></p>
-<p>The term <em>prediction</em> points to [regression]() section and the maximum likelihood principle.  We start from the familiar cross entropy loss and architect a neural estimator that will minimize the distance between <span class="math notranslate nohighlight">\(\hat p_{data}\)</span> and <span class="math notranslate nohighlight">\(p_{model}\)</span>.  The negative log likelihood was shown to be:</p>
+<p>The term <em>prediction</em> points to the regression section and the maximum likelihood principle.  We start from the familiar cross entropy loss and architect a neural estimator that will minimize the distance between <span class="math notranslate nohighlight">\(\hat p_{data}\)</span> and <span class="math notranslate nohighlight">\(p_{model}\)</span>.  The negative log likelihood was shown to be:</p>
 <div class="math notranslate nohighlight">
 \[J(\theta) = -\frac{1}{V} \log L(\theta) = -\frac{1}{V} \sum_{t=1}^V \sum_{-m\le j \le m, j \neq 0} \log p(w_{t+j} | w_t; \theta)\]</div>
 <p>where <span class="math notranslate nohighlight">\(|V|\)</span> is the size of the vocabulary (words).<span class="math notranslate nohighlight">\(|V|\)</span> could be very large, e.g. 1 billion words. The ML principle, powered by a corresponding algorithm, will result in a model that for each word at the input (center) will predict the context words around it.  The model parameters <span class="math notranslate nohighlight">\(\theta\)</span> will be determined at the end of the training process that uses a training dataset easily generated from our corpus assuming we fix the context window <span class="math notranslate nohighlight">\(m\)</span>. Lets see an example:</p>

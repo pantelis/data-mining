@@ -33,7 +33,7 @@ To solve these issues we will create neural models that are able to predict the 
 
 When we focus on making predictions based on a fixed window of context (i.e. the $n$ previous words), in some cases, the window may not be sufficient to capture the context. For instance, consider a case where an article discusses the history of Spain and France and somewhere later in the text, it reads "The two countries went on a battle"; clearly the information presented in this sentence alone is not sufficient to identify the name of the two countries. 
 
-Out of the many neural architectures and to provide the required long memory (up to a point that is) we will use the [LSTM]({{<ref "../../rnn/lstm">}}) architectures as shown next. 
+Out of the many neural architectures and to provide the required long memory (up to a point that is) we will use the LSTM architectures as shown next. 
 
 ![rnn-language-model](images/rnn-language-model-words.png)
 _RNN Language Model. Note the different notation and certain replacements must be made: $W_h → W$, $W_e \rightarrow U$, $U → V$_

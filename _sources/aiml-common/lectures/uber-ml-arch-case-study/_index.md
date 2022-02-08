@@ -1,7 +1,5 @@
 ---
 title: A Case Study of an ML Architecture - Uber
-weight: 20
-draft: false
 ---
 
 # A Case Study of an ML Architecture - Uber
@@ -67,3 +65,5 @@ As an example, UberEATS uses batch precompute for features like a â€˜restaurantâ
 Due to the plethora of platforms and runtimes to support stream and batch processing, it is difficult for data scientists to consolidate the various APIs and focus on the intelligence of a data driven application.  [Apache Beam](https://beam.apache.org/) was born out of this necessity and is enjoying widespread adoption (other than the vendor behind Spark). It offers the unified programming model that multiple runtimes support for both batch and real time streaming data intensive applications. For particularly illuminating use case of the complexities that raise in real applications, see [this tutorial](https://beam.apache.org/get-started/mobile-gaming-example/). For a use case that combines deep neural network regression in Tensorflow and data pipeline preprocessing in Beam see [this molecular analysis example](https://cloud.google.com/dataflow/docs/samples/molecules-walkthrough). 
 
 Closing, we cant stress enough the importance of understanding the coupling between methods in data science (e.g regression methods for ETD calculation) and the data pipeline architecture that needs to be in place for the method to be able to provide good returns. Many cloud providers such as AWS, have published significant number of reference architectures for a variety of use cases and have on-site architects in NYC to help you understand how to best implement (arguably in their cloud) the data intensive application you need to build.  
+
+|  [Zillow](https://github.com/pantelis/handson-ml2/blob/master/02_end_to_end_machine_learning_project.ipynb)   | Notebook that shows end to end what a data mining pipeline does - here we predict house prices.  | -->

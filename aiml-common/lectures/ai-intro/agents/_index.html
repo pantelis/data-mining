@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent-Environment Interface &#8212; Data Mining</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/ai-intro/agents/_index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Mining</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Syllabus
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../syllabus/_index.html">
+   Syllabus
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Data Mining
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../course-introduction/_index.html">
+   Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../data-science-360/_index.html">
+   Data Science 360
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pipelines/_index.html">
+   ML Pipelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../uber-ml-arch-case-study/_index.html">
+   A Case Study of an ML Architecture - Uber
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Learning Problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../learning-problem/_index.html">
+   The Learning Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/_index.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/maximum-likelihood/_index.html">
+   Maximum Likelihood (ML) Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../entropy/_index.html">
+   Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/sgd/_index.html">
+   Stochastic Gradient Descent
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/classification-intro/_index.html">
+   Introduction to Classification
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Classical Learning Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/logistic-regression/_index.html">
+   Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../decision-trees/_index.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/_index.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+   Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting/_index.html">
+   Boosting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+   Boosting workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+   Bayesian Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+   Bayesian Coin Flipping
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
+   COVID-19 Antibody Test
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Deep Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/perceptron/_index.html">
+   The Neuron (Perceptron)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
+   Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
+   Introduction to Backpropagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
+   Backpropagation in Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/regularization/_index.html">
+   Regularization in Deep Neural Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Convolutional Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
+   Introduction to Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-layers/_index.html">
+   CNN Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">
+   CNN Example Architectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Scene Understanding
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/scene-understanding-intro/_index.html">
+   Introduction to Scene Understanding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/_index.html">
+   Feature Extraction via Residual Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/object-detection/_index.html">
+   Object Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/object-detection/detection-segmentation-workshop/_index.html">
+   Object Detection and Semantic Segmentation Workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-explainers/_index.html">
+   CNN Explainers
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sequences and RNNs
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/introduction/_index.html">
+   Introduction to Recurrent Neural Networks (RNN)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/simple-rnn/_index.html">
+   Simple RNN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/simple-rnn-workshop/_index.html">
+   Simple RNN Workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/lstm/_index.html">
+   The Long Short-Term Memory (LSTM) Cell Architecture
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Embeddings and NLP
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/nlp-intro/_index.html">
+   Introduction to NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/word2vec/_index.html">
+   Word2Vec Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/rnn-language-models/_index.html">
+   RNN Language Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/nmt/_index.html">
+   Neural Machine Translation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Non-Parametric Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+   K-means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+   k-Nearest Neighbors (kNN) Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+   kNN Workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pca/_index.html">
+   Principal Component Analysis (PCA)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ml-math/_index.html">
+   Math for ML
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ml-math/probability/_index.html">
+     Probability Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../linear-algebra/_index.html">
+     Linear Algebra for Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ml-math/calculus/_index.html">
+     Calculus
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../python/_index.html">
+   Learn Python
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../../_sources/aiml-common/lectures/ai-intro/agents/_index.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://pantelis.github.io/data-mining"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/ai-intro/agents/_index.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Agent-Environment Interface
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#architectures">
+   Architectures
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rational-agent-architecture">
+     Rational Agent Architecture
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-agent-architecture">
+     Learning Agent Architecture
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-architecture-of-serf-driving-cars">
+   The  architecture of serf-driving cars
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-of-ai-agents">
+   Examples of AI agents
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Agent-Environment Interface</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Agent-Environment Interface
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#architectures">
+   Architectures
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rational-agent-architecture">
+     Rational Agent Architecture
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-agent-architecture">
+     Learning Agent Architecture
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-architecture-of-serf-driving-cars">
+   The  architecture of serf-driving cars
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-of-ai-agents">
+   Examples of AI agents
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="section" id="agent-environment-interface">
+<h1>Agent-Environment Interface<a class="headerlink" href="#agent-environment-interface" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>An agent is a computer system that is situated in some environment, and that is capable of autonomous action in this environment in order to meet its design objectives.</p>
+</div></blockquote>
+<p>In general sensor data are converted via the agent function (that is implemented via a <em>program</em>) into actions as shown below.</p>
+<p><img alt="agent-environment" src="../../../../_images/agent-environment.png" />
+<em>General Agent-Environment Interface</em></p>
+<p>The two most important agent architectures that we will deal with in this course are the utility and learning-based agents architectures. To start with we recognize that most of the problems we will face as agent designers are for agents operating in environments that are:</p>
+<ul class="simple">
+<li><p><strong>Partially Observed (PO).</strong> This means that we cant see all the variables that constitute the state and we need to maintain an internal <em>belief</em> of the state variables that we cant perceive.</p></li>
+<li><p><strong>Stochastic.</strong> This means that the environment state is affected by random events and can not be determined by the previous state and the actions of the agent (which in this case we are talking about <strong>deterministic</strong> environments). Such probabilistic characterization of the environment state is the norm in many settings such as as robotics, self-driving cars etc.</p></li>
+<li><p><strong>Sequential</strong> As compared to <strong>episodic</strong>, in sequential environments actions now can have long term effects into the future.</p></li>
+<li><p><strong>Dynamic</strong> In this setting, the environment state  changes all the time, even while the agent is taking the action based on the sequence of percepts up to this point in time. In most settings the environments we deal will not be <strong>static</strong>.</p></li>
+<li><p><strong>Continuous</strong> When the variables that constitute the environment state are defined in continuous domains. Time is usually considered a special variable and we may have environments where the time variable is <strong>discrete</strong> while other variables are continuous.</p></li>
+<li><p><strong>Known</strong> This refers to the knowledge of the agent rather than the environment. In most instances we are dealing with environments where there is a set of known rules that govern the state transition. In driving for example, we know what steering does.</p></li>
+</ul>
+</div>
+<div class="section" id="architectures">
+<h1>Architectures<a class="headerlink" href="#architectures" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="rational-agent-architecture">
+<h2>Rational Agent Architecture<a class="headerlink" href="#rational-agent-architecture" title="Permalink to this headline">¶</a></h2>
+<p><img alt="utility-based-agent" src="../../../../_images/utility-based-agent.png" /></p>
+<p>In the rational agent architecture we meet three key concepts:</p>
+<ol class="simple">
+<li><p>The need for the agent to keep internally the environment state (in probabilistic terms a <em>belief</em>). This is needed due to the the partially observed environment the agent is interfacing with.</p></li>
+<li><p>The presence of a <em>world model</em> that helps the agent to update its belief.</p></li>
+<li><p>The presence of a utility function that the agent can use to produce the value (happiness) when its action transitions the environment to a new state. Obvious the agent will try to optimize its actions in what we earlier described stochastic environments and therefore it will try to maximize the value (hapiness) on average (strictly in <em>expectation</em>) where the average is taken across the distribution of all possible states across time.</p></li>
+</ol>
+</div>
+<div class="section" id="learning-agent-architecture">
+<h2>Learning Agent Architecture<a class="headerlink" href="#learning-agent-architecture" title="Permalink to this headline">¶</a></h2>
+<p><img alt="learning-agent" src="../../../../_images/learning-agent.png" /></p>
+<p>The learning agent architecture builds on top of the rational agent (the performance element in the figure below), additional functions that:</p>
+<ol class="simple">
+<li><p>Embeds a <em>learner</em> that learns the various models needed by the rational agent as well as allowing the rational agent to operate on unknown environments. In this respect it learns the world model,  some elements of the utility function itself or the desirability of each actions it takes. To enable learning, the rational agent sends training data to the learner.</p></li>
+<li><p>Introduces a <em>critic</em> that transmits a positive or negative reward to the learner based on its own view of how the agent is doing. The learner can modify these models to make the rational agent perform better in the future.</p></li>
+<li><p>Introduces the <em>problem generator</em> that can change the problem statement of the rational agent. Obviously the expected utility objective will not change but the utility function itself may in fact change to lead the agent to perform more exploration (increase its risk) in its environment.</p></li>
+</ol>
+<p>We will see in Deep Reinforcement Learning that this architecture is able to accommodate such end to end learning approach. In that setting the critic is part of the environment - see <a class="reference external" href="https://blogs.unity3d.com/2018/06/26/solving-sparse-reward-tasks-with-curiosity/">Solving sparse-reward tasks with Curiosity</a> for an example where the critic is inside the agent generating intrinsic rewards.</p>
+</div>
+</div>
+<div class="section" id="the-architecture-of-serf-driving-cars">
+<h1>The  architecture of serf-driving cars<a class="headerlink" href="#the-architecture-of-serf-driving-cars" title="Permalink to this headline">¶</a></h1>
+<p>To avoid wondering around the various disconnected use cases, we need to pick a domain that we can use as an application theme. Given the importance of the <strong>mission critical</strong> industries in the economy of every country, in this course we have selected <strong>robotics / self-driving cars</strong>. This domain requires the design of advanced agents that perceive the environment using noisy sensors, make decisions under uncertainty, actuate a host of electronics to execute decisions, communicate with humans in natural language or be able to sense driver psychological state and many more.</p>
+<p><img alt="carla-system" src="../../../../_images/carla-system.png" /></p>
+<!-- ## Solution space
+
+For each environment and each architecture there is a number of solutions that may be appropriate. The following figure presents the environment type to algorithm mapping that we will cover in this book. 
+
+![agents-environment-taxonomy](images/agents-environment-taxonomy.png) -->
+</div>
+<div class="section" id="examples-of-ai-agents">
+<h1>Examples of AI agents<a class="headerlink" href="#examples-of-ai-agents" title="Permalink to this headline">¶</a></h1>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/N5vEca47tMw" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p><em>Industrial automation</em></p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/dE3-dPqFnI8" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p><em>Real Carla self-steering experiment</em></p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./aiml-common/lectures/ai-intro/agents"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pantelis Monogioudis, Ph.D<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

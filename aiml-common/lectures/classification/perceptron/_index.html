@@ -45,7 +45,7 @@
     <script src="../../../../_static/tabs.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
@@ -443,18 +443,6 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Assignments &amp; Projects
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability-assignment-2.html">
-   Probability Assigmment
-  </a>
- </li>
-</ul>
 
     </div>
 </nav> <!-- To handle the deprecated key -->
@@ -487,13 +475,33 @@
             </button>
             
             
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../../_sources/aiml-common/lectures/classification/perceptron/_index.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
             <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
-        
+        <a class="repository-button"
+            href="https://pantelis.github.io/data-mining"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
             href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/classification/perceptron/_index.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
@@ -621,10 +629,10 @@ are directed from the inputs to the output of the neuron.  Feedforward neural ne
 <em>The next misclassified point to be considered, indicated  by  the  green  circle,  and  its  feature  vector  is  again  added  to  the  weight  vector  giving  the  decision boundary shown in the plot below for which all data points are correctly classified.</em>
 <img alt="perceptron-convergence-4" src="../../../../_images/Figure4.7d.png" /></p>
 <blockquote>
-<div><p>NOTE: For offline learning, the second step may be repeated until the iteration error <span class="math notranslate nohighlight">\(\frac{1}{s} \sum_{j=1}^s |y_j - \hat{y}_j(t)| \)</span> is less than a user-specified error threshold <span class="math notranslate nohighlight">\(\gamma \)</span>, or a predetermined number of iterations have been completed, where ‘’s’’ is the size of the training set.</p>
+<div><p>NOTE: For offline learning, the second step may be repeated until the iteration error <span class="math notranslate nohighlight">\(\frac{1}{s} \sum_{j=1}^s |y_j - \hat{y}_j(t)| \)</span> is less than a user-specified error threshold <span class="math notranslate nohighlight">\(\gamma \)</span>, or a predetermined number of iterations have been completed, where ‘‘s’’ is the size of the training set.</p>
 </div></blockquote>
 <p>The perceptron is a linear classifier, therefore it will never get to the state with all the input vectors classified correctly if the training set D is not linearly separable, i.e. if the positive examples cannot be separated from the negative examples by a hyperplane. In this case, no “approximate” solution will be gradually approached under the standard learning algorithm, but instead learning will fail completely. Even in the case of linearly separable datasets, the algorithm may exhibit significant variance while it is executing as previously correctly classified examples may “fall” into the wrong decision region by an update that considers a currently misclassified example.</p>
-<p>Further, the perceptron solution will depend on the initial choices of the parameters as well as the order of the training dataset presented. [Support Vector Machines]() avoid such pitfalls which can motivate the question why we insisted on learning the perceptron algorithm: <strong>both architecturally and the functionally the linear combination of features followed by a non-linearity is the fundamental building block of far more complicated neural networks.</strong></p>
+<p>Further, the perceptron solution will depend on the initial choices of the parameters as well as the order of the training dataset presented. Support Vector Machines avoid such pitfalls which can motivate the question why we insisted on learning the perceptron algorithm: <strong>both architecturally and the functionally the linear combination of features followed by a non-linearity is the fundamental building block of far more complicated neural networks.</strong></p>
 </div>
 </div>
 

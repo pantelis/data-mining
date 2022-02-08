@@ -9,7 +9,7 @@ title: Neural Machine Translation
 ![rosetta-stone](images/rosetta-stone.jpg)
 *Rosetta Stone at the British Museum - depicts the same text in Ancient Egyptian, Demotic and Ancient Greek.*
 
-Up to now we have seen how to generate [embeddings]({{<ref "../word2vec">}}) and predict a single output e.g. [the single most likely next word]({{<ref "../rnn-language-models">}}) in a sentence given the past few. However, there’s a whole class of NLP tasks that rely on sequential output, or outputs that are sequences of potentially varying length. For example,
+Up to now we have seen how to generate word2vec embeddings and predict a single output e.g. the single most likely next word in a sentence given the past few. However, there’s a whole class of NLP tasks that rely on sequential output, or outputs that are sequences of potentially varying length. For example,
 
 * **Translation**: taking a sentence in one language as input and outputting the same sentence in another language.
 * **Conversation**: taking a statement or question as input and responding to it.

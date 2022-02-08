@@ -54,7 +54,7 @@ We go through each position $t$ in each sentence and for the center word at that
 
 **For example, the meaning of `banking` is predicting the context (the words around it) in which `banking` occurs across our corpus.**  
 
-The term _prediction_ points to [regression]({{<ref "../../regression">}}) section and the maximum likelihood principle.  We start from the familiar cross entropy loss and architect a neural estimator that will minimize the distance between $\hat p_{data}$ and $p_{model}$.  The negative log likelihood was shown to be:
+The term _prediction_ points to the regression section and the maximum likelihood principle.  We start from the familiar cross entropy loss and architect a neural estimator that will minimize the distance between $\hat p_{data}$ and $p_{model}$.  The negative log likelihood was shown to be:
 
 $$J(\theta) = -\frac{1}{V} \log L(\theta) = -\frac{1}{V} \sum_{t=1}^V \sum_{-m\le j \le m, j \neq 0} \log p(w_{t+j} | w_t; \theta)$$
 

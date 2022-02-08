@@ -45,7 +45,7 @@
     <script src="../../../../_static/tabs.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
@@ -443,18 +443,6 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Assignments &amp; Projects
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability-assignment-2.html">
-   Probability Assigmment
-  </a>
- </li>
-</ul>
 
     </div>
 </nav> <!-- To handle the deprecated key -->
@@ -487,13 +475,33 @@
             </button>
             
             
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../../_sources/aiml-common/lectures/regression/linear-regression/_index.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
             <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
-        
+        <a class="repository-button"
+            href="https://pantelis.github.io/data-mining"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
             href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/regression/linear-regression/_index.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
@@ -527,8 +535,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#implementing-linear-regression">
-   Implementing linear regression
+  <a class="reference internal nav-link" href="#libraries">
+   Libraries
   </a>
  </li>
 </ul>
@@ -557,8 +565,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#implementing-linear-regression">
-   Implementing linear regression
+  <a class="reference internal nav-link" href="#libraries">
+   Libraries
   </a>
  </li>
 </ul>
@@ -570,54 +578,177 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="linear-regression">
+  <p><a href="https://colab.research.google.com/github/pantelis/aiml-common/blob/master/lectures/regression/linear-regression/_index.ipynb" target="_parent"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<div class="tex2jax_ignore mathjax_ignore section" id="linear-regression">
 <h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h1>
-<p>Now that we have introduced somewhat more formally [the learning problem]() and its notation lets us study a simple but instructive regression problem from Chapter 1 of Bishop’s book that is known in the statistics literature as <em>shrinkage</em>. Note that in many figures below the label is denoted as <span class="math notranslate nohighlight">\(t\)</span> rather than <span class="math notranslate nohighlight">\(y\)</span> as used in the equations below.</p>
+<p>Now that we have introduced somewhat more formally the learning problem and its notation lets us study a simple but instructive regression problem that is known in the statistics literature as <em>shrinkage</em>.</p>
 <p>Suppose that we are given the training set  <span class="math notranslate nohighlight">\(\mathbf{x} = \{x_1,...,x_m\}\)</span> together with their labels, the vectors <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>. We need to construct a model such that a <em>suitably chosen</em> loss function is minimized for a <strong>different</strong> set of input data, the so-called test set. The ability to correctly <em>predict</em> when observing the test set, is called <strong>generalization</strong>.</p>
 <p><img alt="Training dataset and Target Unknown Function" src="../../../../_images/Figure1.2.png" />
-<em>Training Dataset (m=10) for the Regression Model. The green curve is the uknown target function.</em></p>
-<p>Since the output <span class="math notranslate nohighlight">\(y\)</span> is a continuous variable then the supervised learning problem is called a regression problem (otherwise its a classification problem). The dataset is generated (in data scienece these datasets are called <em>synthetic</em>) by the function <span class="math notranslate nohighlight">\(sin(2 \pi x) + ϵ\)</span> where <span class="math notranslate nohighlight">\(x\)</span> is a uniformly distributed random variable and <span class="math notranslate nohighlight">\(ϵ\)</span> is <span class="math notranslate nohighlight">\(N(\mu=0.0, \sigma^2=0.3)\)</span>. This target function is <strong>completely unknown</strong> to us - we just mention it here for completeness.</p>
-<p>Let us now pick the hypothesis set that correspond to polynomials of the following form,</p>
+<em>Training Dataset (m=10) for the Regression Model. The green curve is the uknown target function. Please replace the label axis denoted by <span class="math notranslate nohighlight">\(t\)</span> with <span class="math notranslate nohighlight">\(y\)</span> to make it compatible with our notation.</em></p>
+<p>Since the output <span class="math notranslate nohighlight">\(y\)</span> is a continuous variable then the supervised learning problem is called a regression problem (otherwise its a classification problem). The synthetic dataset is generated by the function <span class="math notranslate nohighlight">\(sin(2 \pi x) + ϵ\)</span> where <span class="math notranslate nohighlight">\(x\)</span> is a uniformly distributed random variable and <span class="math notranslate nohighlight">\(ϵ\)</span> is <span class="math notranslate nohighlight">\(N(\mu=0.0, \sigma^2=0.3)\)</span>. This target function is <strong>completely unknown</strong> to us - we just mention it here just to provide a visual clue of what the hypothesis set needs to aspire to.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../../../../_images/_index_5_0.png" src="../../../../_images/_index_5_0.png" />
+</div>
+</div>
+<p>Let us now pick the hypothesis set that corresponds in general to the following sum,</p>
 <div class="math notranslate nohighlight">
-\[g(\mathbf{w},x_i) = w_0 + w_1 x_i + w_2 x_i^2 + ... + w_M x_i^M\]</div>
-<p>Our job is to find <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> such that the polynomial above fits the data we are given - as we will see there are multiple hypothesis that can satisfy this requirement. To gauge our investigation, we need to define a metric, an error or loss function in fact, that is also a common metric in regression problems of this nature. This is the Mean Squared Error (MSE) function.</p>
+\[g(\mathbf{w},\mathbf{x}) = w_0 + \sum_{j=1}^{M-1}w_j \phi_j(\mathbf x) = \mathbf w^T \mathbf \phi(\mathbf x)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\phi_j(\mathbf x)\)</span> are know as <em>basis functions</em>. A set of Polynomial, Gaussian and Sigmoidal basis functions are plotted below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">X_polynomial</span> <span class="o">=</span> <span class="n">PolynomialFeature</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])</span>
+<span class="n">X_gaussian</span> <span class="o">=</span> <span class="n">GaussianFeature</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="mf">0.1</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">X_sigmoidal</span> <span class="o">=</span> <span class="n">SigmoidalFeature</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">X</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">X_polynomial</span><span class="p">,</span> <span class="n">X_gaussian</span><span class="p">,</span> <span class="n">X_sigmoidal</span><span class="p">]):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">j</span><span class="p">])</span>
+<span class="n">txt</span><span class="o">=</span><span class="s2">&quot;Polynomial, Gaussian and Sigmoidal basis functions&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">txt</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0.01, &#39;Polynomial, Gaussian and Sigmoidal basis functions&#39;)
+</pre></div>
+</div>
+<img alt="../../../../_images/_index_7_1.png" src="../../../../_images/_index_7_1.png" />
+</div>
+</div>
+<p>Our job is to find <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> such that the polynomial expansion above fits the data we are given - as we will see there are multiple hypothesis that can satisfy this requirement. Consistent with the block diagram we need to define a metric, an figure of merit or loss function in fact, that is also a common metric in regression problems of this nature. This is the Mean Squared Error (MSE) function.</p>
 <div class="math notranslate nohighlight">
-\[L(\mathbf{w}) = \frac{1}{2m} \sum_{i=1}^m \{(g(\mathbf{w},x_i)-y_i)\}^2\]</div>
-<p>NOTE: Please note that the factor 2.0 in the denominator is for mathematical convenience.  When we take the derivative as we need to do in the training optimization procedure this factor will cancel the factor 2.0 of the derivative.
-.
-<img alt="Loss Function" src="../../../../_images/Figure1.3.png" />
-<em>The loss function chosen for this regression problem, corresponds to the sum of the squares of the displacements of each data point and our hypothesis. The sum of squares in the case of Gaussian errors gives raise to an (unbiased) Maximum Likelihood estimate of the model parameters. Contrast this to sum of absolute differences.</em></p>
-<p>Now our job has become to choose two things: the weight vector <span class="math notranslate nohighlight">\(\mathbf{w^*}\)</span> <em>and</em> <span class="math notranslate nohighlight">\(M\)</span> the order of the polynomial. <strong>Both</strong> define our hypothesis.  If you think about it, the order <span class="math notranslate nohighlight">\(M\)</span> defines the model complexity in the sense that the larger <span class="math notranslate nohighlight">\(M\)</span> becomes the more the number of weights we need to estimate and store. Obviously this is a trivial example and storage is not a concern here but treat this example as instructive for that it applies in many far for complicated settings.</p>
-<p><img alt="" src="../../../../_images/Figure1.4a.png" />
-<img alt="" src="../../../../_images/Figure1.4b.png" />
-<img alt="" src="../../../../_images/Figure1.4c.png" />
-<img alt="" src="../../../../_images/Figure1.4d.png" /></p>
-<!-- <img src="images/Figure1.4a.png" width="40%"> <img src="images/Figure1.4b.png" width="40%">
-<img src="images/Figure1.4c.png" width="40%"> <img src="images/Figure1.4d.png" width="40%">
- -->
+\[L(\mathbf{w}) = \frac{1}{m} \sum_{i=1}^m \{(g(\mathbf{w},x_i)-y_i)\}^2\]</div>
+<p>.
+<img alt="Loss Function" src="../../../../_images/Figure1.3.png" /></p>
+<p><em>The loss function chosen for this regression problem, corresponds to the sum of the squares of the displacements of each data point and our hypothesis. The sum of squares in the case of Gaussian errors gives raise to an (unbiased) Maximum Likelihood estimate of the model parameters. Contrast this to sum of absolute differences.</em></p>
+<p>Now our job has become to choose two things: the weight vector <span class="math notranslate nohighlight">\(\mathbf{w^*}\)</span> <em>and</em> <span class="math notranslate nohighlight">\(M\)</span> the order of the polynomial. <strong>Both</strong> define our hypothesis.  If you think about it, the order <span class="math notranslate nohighlight">\(M\)</span> defines the model complexity in the sense that the larger <span class="math notranslate nohighlight">\(M\)</span> becomes the more the number of weights we need to estimate and store. Obviously this is a trivial example and storage is not a concern here but treat this example as instructive for that it applies in far for complicated settings.</p>
+<!-- :::{figure-md} markdown-fig -->
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../../_images/Figure1.4a.png"><img alt="M=0" class="bg-primary mb-1" src="../../../../_images/Figure1.4a.png" style="width: 300px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../../_images/Figure1.4b.png"><img alt="M=1" class="bg-primary mb-1" src="../../../../_images/Figure1.4b.png" style="width: 300px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../../_images/Figure1.4c.png"><img alt="M=3" class="bg-primary mb-1" src="../../../../_images/Figure1.4c.png" style="width: 300px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../../_images/Figure1.4d.png"><img alt="M=9" class="bg-primary mb-1" src="../../../../_images/Figure1.4d.png" style="width: 300px;" /></a>
+<p><em>Various final hypotheses.</em></p>
+<!-- ::: -->
 <p>Obviously you can reduce the training error to almost zero by selecting a model that is complicated enough (M=9) to perfectly fit the training data (if m is small).</p>
 <p><img alt="Loss Function" src="../../../../_images/Figure1.5.png" /></p>
 <p>But this is not what you want to do. Because when met with test data, the model will perform far worse than a less complicated model that is closer to the true model (e.g. M=3). This is a central observation in statistical learning called <strong>overfitting</strong>. In addition, you may not have the time to iterate over M (very important in online learning settings).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span><span class="o">=</span><span class="mi">9</span>
+<span class="c1"># Pick one of the three features below</span>
+<span class="n">feature</span> <span class="o">=</span> <span class="n">PolynomialFeature</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+<span class="c1"># feature = GaussianFeature(np.linspace(0, 1, M), 0.1)</span>
+<span class="c1"># feature = SigmoidalFeature(np.linspace(0, 1, M), 10)</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">w</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;index of $w$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$w$&quot;</span><span class="p">)</span>
+
+<span class="n">y</span><span class="p">,</span> <span class="n">y_std</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;training data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">x_test</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_std</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">y_std</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;std.&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$y$&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/_index_10_0.png" src="../../../../_images/_index_10_0.png" />
+<img alt="../../../../_images/_index_10_1.png" src="../../../../_images/_index_10_1.png" />
+</div>
+</div>
 <p>To avoid overfitting we have multiple strategies. One straightforward one is evident by observing the wild oscillations of the <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> elements as the model complexity increases. We can penalize such oscillations by introducing the <span class="math notranslate nohighlight">\(l_2\)</span> norm of <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> in our loss function.</p>
 <div class="math notranslate nohighlight">
 \[L(\mathbf{w}) = \frac{1}{2} \sum_{i=1}^m \{(g(\mathbf{w},x_i)-y_i)\}^2 + \frac{\lambda}{2} ||\mathbf{w}||^2\]</div>
 <p>This type of solution is called <strong>regularization</strong> and because we effectively shrink the weight dynamic range it is also called in statistics shrinkage or ridge regression. We have introduced a new parameter <span class="math notranslate nohighlight">\(\lambda\)</span> that regulates the relative importance of the penalty term as compared to the MSE. This parameter together with the polynomial order is what we call <em>hyperparameters</em> and we need to optimize them as both are needed for the determination of our final hypothesis <span class="math notranslate nohighlight">\(g\)</span>.</p>
 <p>The graph below show the results of each search iteration on the <span class="math notranslate nohighlight">\(\lambda\)</span> hyperparameter.</p>
 <p><img alt="Loss Function" src="../../../../_images/Figure1.8.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RidgeRegression</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;training data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Regularized Final Hypothesis&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/_index_12_0.png" src="../../../../_images/_index_12_0.png" />
+</div>
+</div>
 <p>Lets reflect on the MSE and how model complexity gives raise to various generalization errors.</p>
 <div class="math notranslate nohighlight">
 \[MSE = \mathbb{E}[\hat{y}_i - y_i)^2] = \mathrm{Bias}(\hat{y}_i)^2 + \mathrm{Var}(\hat{y}_i)\]</div>
 <p>which means that the <a class="reference external" href="https://en.wikipedia.org/wiki/Mean_squared_error">MSE captures both bias and variance</a> of the estimated target variables and as shown in the plots above, increasing model capacity can really increase the variance of <span class="math notranslate nohighlight">\(\hat{y}\)</span>. We have seen that as the <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> is trying to exactly fit, or memorize, the data, it minimizes the bias (in fact for model complexity M=9 the bias is 0) but it also exhibits significant variability that is itself translated to <span class="math notranslate nohighlight">\(\hat{y}\)</span>. Although the definition of model <em>capacity</em> is far more rigorous, we will broadly associate complexity with capacity and borrow the figure below from Ian Goodfellow’s book to demosntrate the tradeoff between bias and variance. What we have done with regularization is to find the <span class="math notranslate nohighlight">\(\lambda\)</span> that minimized generalization error aka. find the optimal model capacity.</p>
-<p><img alt="generalization-error-vs-capacity" src="../../../../_images/generalization-capacity.png" />
-<em>As capacity increases (x-axis), bias (dotted) tends to decrease and variance(dashed) tends to increase, yielding another U-shaped curve for generalization error (bold curve). If we vary capacity along one axis, there is an optimal capacity, with underﬁtting when the capacity is below this optimum and overﬁtting when it is above.</em></p>
+<p><img alt="generalization-error-vs-capacity" src="../../../../_images/generalization-capacity.png" /></p>
+<p><em>As capacity increases (x-axis), bias (dotted) tends to decrease and variance(dashed) tends to increase, yielding another U-shaped curve for generalization error (bold curve). If we vary capacity along one axis, there is an optimal capacity, with underﬁtting when the capacity is below this optimum and overﬁtting when it is above.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature</span> <span class="o">=</span> <span class="n">PolynomialFeature</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+<span class="c1"># feature = GaussianFeature(np.linspace(0, 1, 24), 0.1)</span>
+<span class="c1"># feature = SigmoidalFeature(np.linspace(0, 1, 24), 10)</span>
+
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">1e2</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1e-9</span><span class="p">]:</span>
+    <span class="n">y_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">create_toy_data</span><span class="p">(</span><span class="n">sinusoidal</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">X_train</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+        <span class="n">X_test</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">BayesianRegression</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+        <span class="n">y_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y_list</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/_index_14_0.png" src="../../../../_images/_index_14_0.png" />
+<img alt="../../../../_images/_index_14_1.png" src="../../../../_images/_index_14_1.png" />
+<img alt="../../../../_images/_index_14_2.png" src="../../../../_images/_index_14_2.png" />
+</div>
+</div>
 <div class="section" id="bias-and-variance-decomposition-during-the-training-process">
 <h2>Bias and Variance Decomposition during the training process<a class="headerlink" href="#bias-and-variance-decomposition-during-the-training-process" title="Permalink to this headline">¶</a></h2>
 <p>Apart from the composition of the generalization error for various model capacities,  it is interesting to make some general comments regarding the decomposition of the generalization error (also known as empirical risk) during training. Early in training the bias is large because the network output is far from the design function. The variance is very small because the data has had little influence yet. Late in training the bias is small because the network has learned the underlying function. However if train for too long then the network will also have learned the noise specific to the dataset (overfitting). In such case the variance will be large because the noise varies between training and test datasets.</p>
 </div>
-<div class="section" id="implementing-linear-regression">
-<h2>Implementing linear regression<a class="headerlink" href="#implementing-linear-regression" title="Permalink to this headline">¶</a></h2>
-<p>This is a notebook that demonstrates the exact same example above.</p>
-<iframe src="https://nbviewer.jupyter.org/github/pantelis-classes/PRML/blob/master/notebooks/ch01_Introduction.ipynb" width="900" height="1200"></iframe>
+<div class="section" id="libraries">
+<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h2>
+<p>This notebook makes extensive use of the <a class="reference external" href="https://github.com/ctgk/PRML">Pattern Recognition for Machine Learning python package</a>.</p>
 </div>
 </div>
 

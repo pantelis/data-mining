@@ -6,7 +6,7 @@ draft: false
 
 # Object Detection
 
-In the [introductory]({{<ref "../scene-understanding-intro">}}) section, we have seen examples of what object detection is. In this section we will treat the detection _pipeline_ itself, summarized below:
+In the introductory section, we have seen examples of what object detection is. In this section we will treat the detection _pipeline_ itself, summarized below:
 
 ![object-detection-e2e](images/object-detection-e2e.png)
 *Object detection pipeline*. 
@@ -18,7 +18,7 @@ Work on object detection spans 20 years and is impossible to cover every algorit
 As expected, since 2014, deep learning has surpassed classical ML in the detection competitions - we therefore focus only on such architectures. More specifically we will be focusing on the so called _two stage_ detectors that employ two key ingredients: 
 
 1. Recognition using _regions_. 
-2. [CNNs]({{<ref "../../cnn/cnn-intro">}}). 
+2. CNNs. 
 
 Object detection, involves three main stages: the feature extraction stage, the classification stage and the detection or localization stage. In the literature the feature and classification stages are counted as one, called the classification stage and people refer to such architecture as _two stage. 
 

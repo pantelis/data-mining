@@ -1,0 +1,706 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Batch Normalization &#8212; Data Mining</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/optimization/batch-normalization/_index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Mining</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Syllabus
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../syllabus/_index.html">
+   Syllabus
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Data Mining
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
+   Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
+   Data Science 360
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/pipelines/_index.html">
+   ML Pipelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../uber-ml-arch-case-study/_index.html">
+   A Case Study of an ML Architecture - Uber
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Learning Problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../learning-problem/_index.html">
+   The Learning Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/_index.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../maximum-likelihood/_index.html">
+   Maximum Likelihood (ML) Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../entropy/_index.html">
+   Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../sgd/_index.html">
+   Stochastic Gradient Descent
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/classification-intro/_index.html">
+   Introduction to Classification
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Classical Learning Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/logistic-regression/_index.html">
+   Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../decision-trees/_index.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/_index.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+   Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting/_index.html">
+   Boosting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+   Boosting workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+   Bayesian Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+   Bayesian Coin Flipping
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
+   COVID-19 Antibody Test
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Deep Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/perceptron/_index.html">
+   The Neuron (Perceptron)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
+   Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
+   Introduction to Backpropagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
+   Backpropagation in Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../regularization/_index.html">
+   Regularization in Deep Neural Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Convolutional Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
+   Introduction to Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-layers/_index.html">
+   CNN Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">
+   CNN Example Architectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Scene Understanding
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/scene-understanding-intro/_index.html">
+   Introduction to Scene Understanding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/_index.html">
+   Feature Extraction via Residual Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/object-detection/_index.html">
+   Object Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/object-detection/detection-segmentation-workshop/_index.html">
+   Object Detection and Semantic Segmentation Workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-explainers/_index.html">
+   CNN Explainers
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sequences and RNNs
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/introduction/_index.html">
+   Introduction to Recurrent Neural Networks (RNN)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/simple-rnn/_index.html">
+   Simple RNN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/simple-rnn-workshop/_index.html">
+   Simple RNN Workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/lstm/_index.html">
+   The Long Short-Term Memory (LSTM) Cell Architecture
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Embeddings and NLP
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/nlp-intro/_index.html">
+   Introduction to NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/word2vec/_index.html">
+   Word2Vec Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/rnn-language-models/_index.html">
+   RNN Language Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/nmt/_index.html">
+   Neural Machine Translation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Non-Parametric Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+   K-means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+   k-Nearest Neighbors (kNN) Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+   kNN Workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pca/_index.html">
+   Principal Component Analysis (PCA)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ml-math/_index.html">
+   Math for ML
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ml-math/probability/_index.html">
+     Probability Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../linear-algebra/_index.html">
+     Linear Algebra for Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ml-math/calculus/_index.html">
+     Calculus
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../python/_index.html">
+   Learn Python
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../../_sources/aiml-common/lectures/optimization/batch-normalization/_index.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://pantelis.github.io/data-mining"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/optimization/batch-normalization/_index.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-whitening-helps">
+   Why whitening helps
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-input">
+     The input
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normalization-and-scaling">
+     Normalization and Scaling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#weight-initialization">
+   Weight Initialization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Batch Normalization
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Batch Normalization</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-whitening-helps">
+   Why whitening helps
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-input">
+     The input
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normalization-and-scaling">
+     Normalization and Scaling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#weight-initialization">
+   Weight Initialization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Batch Normalization
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="batch-normalization">
+<h1>Batch Normalization<a class="headerlink" href="#batch-normalization" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="why-whitening-helps">
+<h2>Why whitening helps<a class="headerlink" href="#why-whitening-helps" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-input">
+<h3>The input<a class="headerlink" href="#the-input" title="Permalink to this headline">¶</a></h3>
+<p>It is instructive to see the training process as a control system.</p>
+<p><img alt="control-system-training" src="../../../../_images/control-system-training.drawio.svg" />
+<em>Control System view of training</em></p>
+<p>The system takes input <span class="math notranslate nohighlight">\(\mathbf x\)</span> and produces a loss that is used to update the parameters <span class="math notranslate nohighlight">\(\mathbf w\)</span> for each of the layers based on a estimate of how much the loss <span class="math notranslate nohighlight">\(L\)</span> changed for that input. There are multiple concepts in this sentence that is worth highlighting. First lets repeat the SGD equation below as it will used to drive the discussion.</p>
+<div class="math notranslate nohighlight">
+\[\mathbf w_{k+1} = \mathbf w_k - \eta \nabla_{\mathbf w} L(\mathbf w_k)\]</div>
+<p>It is enough to discuss the limiting case with just two parameters to visualize the loss as shown below. This is obviously a 3D plot with x and y axes on parameters and the z axis assigned to loss.</p>
+<p><img alt="visualizer" src="../../../../_images/visualizer.gif" />
+<em>Optimizer Visualization (from <a class="reference external" href="https://github.com/Kitsunetic/Optimizer-Visualization">here</a>)</em></p>
+<p>Recall that back-propagation starts from where forward propagation ends, so the <em>input</em> is the driving force of the learning process and the noisy negative gradient of the loss with respect to weights is a search direction of where to look for significant reductions of that loss. The control system’s optimizer feedbacks the parameter updates every mini-batch hopping that successive updates will converge to some <em>good</em> local minimum.</p>
+<p>As described in <a class="reference external" href="http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf">this paper</a>, <em>networks learn the fastest from the most unexpected examples</em>.  If this rings the bells of entropy in your ears it should. One way to maximize the unexpectedness is in each iteration to choose input examples that belong to different classes expecting that they will also contain significantly different information. In practice we can approximate this with a permutation over the examples (epochs).</p>
+<p>So what we do at the input is important and as you can see from even this very limiting case, the loss <em>surface</em> <span class="math notranslate nohighlight">\(L(\mathbf w) = L(\hat y, y) = L(\sigma(w^Tx), y)\)</span> over all possible weights is very much <em>changing</em> at each iteration (mini-batch). So if we are stuck in a bad local minima at iteration <span class="math notranslate nohighlight">\(k\)</span> chances are in the next iteration <span class="math notranslate nohighlight">\(k+1\)</span> we wont as the loss <em>surface</em> may not have a local minima there. In summary permuting the inputs brings a very positive net benefit to training as we break correlations in time.</p>
+</div>
+<div class="section" id="normalization-and-scaling">
+<h3>Normalization and Scaling<a class="headerlink" href="#normalization-and-scaling" title="Permalink to this headline">¶</a></h3>
+<p>We also have seen that whitening the input to a neural network manages to change the input distribution significantly and in this section we would like to connect this to learning efficiency. Starting from the operation of normalization let us consider a limiting example of two parameters as shown below.</p>
+<p><img alt="sgd-convergence2" src="../../../../_images/sgd-convergence2.png" /></p>
+<p><em>Contour of the loss with respect to two parameters</em></p>
+<p>In this contour plot of the loss, the SGD path as it tries to find the minimum has lots of problems. The trajectory shown is not smooth which means that the algorithm converges very slowly. The reason is that there is a much larger dynamic range in the x-axis and this means that the gradient (a vector) with respect to one of the parameters will dominate its <em>direction</em> creating a zig-zag pattern.</p>
+<p>The different scales at the parameter space are a manifestation of different scales at the input space since the function tries to combine the input with weights. As shown in the backpropagation exercise with the neuron, the gradient of the neuron output with respect to the weight is proportional to the input <span class="math notranslate nohighlight">\(x\)</span> and the proportionality factor can be very small if the dot product is either very large or too small. In the case where all inputs are positive (as in the figure above), the changes to the weights are all of the same sign across parameters. The best way to correct the situation is to normalize the input data around a mean of 0 and this will result into a much faster SGD convergence. After normalization you can get a more rounded (bivariate in this case) distribution where gradient directions can be  diverse.</p>
+<p>In summary both scaling and normalization can lead to beneficial for training time and convergence results.</p>
+</div>
+</div>
+<div class="section" id="weight-initialization">
+<h2>Weight Initialization<a class="headerlink" href="#weight-initialization" title="Permalink to this headline">¶</a></h2>
+<p>In addition to the input the initial values of the weights play an important role in learning efficiency and convergence. The role of the initializers is however not so critical in the presence of batch normalization but it is worth visiting as it provides some intuition as to what batch normalization solves. Continue to the two run the two notebooks in the corresponding workshop section.</p>
+</div>
+<div class="section" id="id1">
+<h2>Batch Normalization<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>A recently developed technique by Ioffe and Szegedy called <a class="reference external" href="http://arxiv.org/abs/1502.03167">Batch Normalization</a> alleviates a lot of headaches with properly initializing neural networks by explicitly forcing the activations throughout a network to take on a unit gaussian distribution at the beginning of the training. The core observation is that this is possible because normalization is a simple differentiable operation. In the implementation, applying this technique usually amounts to insert the BatchNorm layer immediately after fully connected layers (or convolutional layers), and before activations.</p>
+<p>In practice networks that use Batch Normalization are significantly more robust to bad initialization. Additionally, batch normalization can be interpreted as doing preprocessing at every layer of the network, but integrated into the network itself in a differentiable manner.</p>
+<p>The effects of BN is reflected clearly in the distribution of the gradients for the same set of parameters as shown below.</p>
+<p><img alt="histograms-bn" src="../../../../_images/histograms-bn.png" />
+<em>Histograms over the gradients at initialization for (midpoint) layer 55 of a network with BN (left) and
+without (right). For the unnormalized network, the gradients are distributed with heavy tails, whereas for the normalized networks the gradients are concentrated around the mean.</em></p>
+<p><img alt="learning-rate-bn" src="../../../../_images/learning-rate-bn.png" />
+<em>BN allows us to learn much faster and operate efficiently at deeper architectures compared to without</em></p>
+<p>Consider running <a class="reference external" href="https://colab.research.google.com/github/davidcpage/cifar10-fast/blob/master/batch_norm_post.ipynb#scrollTo=a22VPg31CLSM">this excellent notebook</a> together with <a class="reference external" href="https://arxiv.org/abs/1806.02375">this paper</a>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./aiml-common/lectures/optimization/batch-normalization"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pantelis Monogioudis, Ph.D<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

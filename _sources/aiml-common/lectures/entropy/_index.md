@@ -4,7 +4,7 @@ title: Entropy
 
 # Entropy
 
-In this section we take a closer look into the _algorithm_ block of the [learning problem]({{<relref "../learning-problem">}}). This block implements the underlying optimization problem that produces the weights in regression and classification settings. Any optimization problem requires an objective function and as it turns out in the supervised setting (and not only) there is a whole theory, called _information theory_ pioneered by Claude Shannon at Bell Labs, that guides us in our search to find the best $p_{model}$ but also in a myriad other things. The important elements of this theory are reviewed here. 
+In this section we take a closer look into the _algorithm_ block of the learning problem. This block implements the underlying optimization problem that produces the weights in regression and classification settings. Any optimization problem requires an objective function and as it turns out in the supervised setting (and not only) there is a whole theory, called _information theory_ pioneered by Claude Shannon at Bell Labs, that guides us in our search to find the best $p_{model}$ but also in a myriad other things. The important elements of this theory are reviewed here. 
 
 ![holland-tunnel](images/holland-tunnel.jpg)
 *Value of information: `Low Manhattan-bound traffic flow in Holland tunnel on Monday morning`*

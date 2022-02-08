@@ -1,0 +1,740 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Model-free Prediction &#8212; Data Mining</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/reinforcement-learning/prediction/_index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Mining</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Syllabus
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../syllabus/_index.html">
+   Syllabus
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Data Mining
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
+   Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
+   Data Science 360
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/pipelines/_index.html">
+   ML Pipelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../uber-ml-arch-case-study/_index.html">
+   A Case Study of an ML Architecture - Uber
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Learning Problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../learning-problem/_index.html">
+   The Learning Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/_index.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/maximum-likelihood/_index.html">
+   Maximum Likelihood (ML) Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../entropy/_index.html">
+   Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/sgd/_index.html">
+   Stochastic Gradient Descent
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/classification-intro/_index.html">
+   Introduction to Classification
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Classical Learning Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/logistic-regression/_index.html">
+   Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../decision-trees/_index.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/_index.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+   Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting/_index.html">
+   Boosting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+   Boosting workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+   Bayesian Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+   Bayesian Coin Flipping
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
+   COVID-19 Antibody Test
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Deep Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/perceptron/_index.html">
+   The Neuron (Perceptron)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
+   Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
+   Introduction to Backpropagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
+   Backpropagation in Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/regularization/_index.html">
+   Regularization in Deep Neural Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Convolutional Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
+   Introduction to Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-layers/_index.html">
+   CNN Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">
+   CNN Example Architectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Scene Understanding
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/scene-understanding-intro/_index.html">
+   Introduction to Scene Understanding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/_index.html">
+   Feature Extraction via Residual Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/object-detection/_index.html">
+   Object Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/object-detection/detection-segmentation-workshop/_index.html">
+   Object Detection and Semantic Segmentation Workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-explainers/_index.html">
+   CNN Explainers
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sequences and RNNs
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/introduction/_index.html">
+   Introduction to Recurrent Neural Networks (RNN)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/simple-rnn/_index.html">
+   Simple RNN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/simple-rnn-workshop/_index.html">
+   Simple RNN Workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/lstm/_index.html">
+   The Long Short-Term Memory (LSTM) Cell Architecture
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Embeddings and NLP
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/nlp-intro/_index.html">
+   Introduction to NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/word2vec/_index.html">
+   Word2Vec Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/rnn-language-models/_index.html">
+   RNN Language Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/nmt/_index.html">
+   Neural Machine Translation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Non-Parametric Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+   K-means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+   k-Nearest Neighbors (kNN) Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+   kNN Workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pca/_index.html">
+   Principal Component Analysis (PCA)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ml-math/_index.html">
+   Math for ML
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ml-math/probability/_index.html">
+     Probability Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../linear-algebra/_index.html">
+     Linear Algebra for Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ml-math/calculus/_index.html">
+     Calculus
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../python/_index.html">
+   Learn Python
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../../_sources/aiml-common/lectures/reinforcement-learning/prediction/_index.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://pantelis.github.io/data-mining"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/reinforcement-learning/prediction/_index.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#monte-carlo-mc-state-value-prediction">
+   Monte-Carlo (MC) State Value Prediction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#temporal-difference-td-prediction">
+   Temporal Difference (TD) Prediction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-td-lambda">
+     The TD(
+     <span class="math notranslate nohighlight">
+      \(\lambda\)
+     </span>
+     )
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Model-free Prediction</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#monte-carlo-mc-state-value-prediction">
+   Monte-Carlo (MC) State Value Prediction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#temporal-difference-td-prediction">
+   Temporal Difference (TD) Prediction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-td-lambda">
+     The TD(
+     <span class="math notranslate nohighlight">
+      \(\lambda\)
+     </span>
+     )
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="model-free-prediction">
+<h1>Model-free Prediction<a class="headerlink" href="#model-free-prediction" title="Permalink to this headline">¶</a></h1>
+<p>In this chapter we find optimal policy solutions when the MDP is <em>unknown</em> and we need to <em>learn</em> its underlying value functions - also known as the  <em>model free</em> prediction problem.  The main idea here is to learn value functions via sampling. These methods are in fact also applicable when the MDP is known but its models are simply too large to use the approaches outlined in the MDP section. The two sampling approaches we will cover here are</p>
+<ol class="simple">
+<li><p>(incremental) Monte-Carlo (MC) and</p></li>
+<li><p>Temporal Difference (TD).</p></li>
+</ol>
+<p><strong>Notice that we use capital letters for the <em>estimates</em> of the value functions.</strong></p>
+<div class="section" id="monte-carlo-mc-state-value-prediction">
+<h2>Monte-Carlo (MC) State Value Prediction<a class="headerlink" href="#monte-carlo-mc-state-value-prediction" title="Permalink to this headline">¶</a></h2>
+<p>The value functions <span class="math notranslate nohighlight">\(v_π\)</span> and <span class="math notranslate nohighlight">\(q_π\)</span> can be estimated from experience.</p>
+<p>For example, if an agent follows policy <span class="math notranslate nohighlight">\(\pi\)</span> and maintains an average, for each state encountered, of the actual returns that have followed that state, then the average will converge to the state’s value,<span class="math notranslate nohighlight">\(v_π(s)\)</span>, as the number of times that state is encountered approaches infinity.  If separate averages are kept for each action taken in each state, then these averages will similarly converge to the action values,<span class="math notranslate nohighlight">\(q_π(s,a)\)</span>.</p>
+<p>We call estimation methods of this kind <em>Monte Carlo</em> methods because they involve averaging over many random samples of returns. In MC prediction more specifically, for every state at time <span class="math notranslate nohighlight">\(t\)</span> we sample one complete trajectory (episode) as shown below.</p>
+<p><img alt="mc-value-iteration-tree" src="../../../../_images/mc-value-iteration-tree.png" />
+<em>Backup tree with value iteration based on the MC approach. MC samples a complete trajectory to the terminating node T shown with red.</em></p>
+<p>There is some rationale of doing so, if we recall that the state-value function that was defined in the introductory MDP section i.e. the <em>expected</em> return.</p>
+<div class="math notranslate nohighlight">
+\[v_\pi(s) = \mathop{\mathbb{E}_\pi}(G_t | S_t=s)\]</div>
+<p>can be approximated by using the <em>sample mean</em> return over a <em>sample</em> episode / trajectory:</p>
+<div class="math notranslate nohighlight">
+\[G_t(\tau) = \sum_{k=0}^{T-1}\gamma^k R_{t+1+k}\]</div>
+<p>The value function is therefore <em>approximated in MC, by the (empirical or sample) mean of the returns over multiple episodes / trajectories</em>. In other words, to update each element of the state value function:</p>
+<ol class="simple">
+<li><p>For each time step <span class="math notranslate nohighlight">\(t\)</span> that state <span class="math notranslate nohighlight">\(s\)</span> is visited in an episode</p>
+<ul class="simple">
+<li><p>Increment a counter <span class="math notranslate nohighlight">\(N(s)\)</span> that counts the visitations of the state <span class="math notranslate nohighlight">\(s\)</span></p></li>
+<li><p>Calculate the total return <span class="math notranslate nohighlight">\(G^T(s) = G^T(s) + G_t\)</span></p></li>
+</ul>
+</li>
+<li><p>At the end of multiple episodes, the value is estimated as <span class="math notranslate nohighlight">\(V(s) = G^T(s) / N(s)\)</span></p></li>
+</ol>
+<p>As <span class="math notranslate nohighlight">\(N(s) \rightarrow ∞\)</span> the estimate will converge to <span class="math notranslate nohighlight">\(V(s) \rightarrow v_\pi(s)\)</span>.</p>
+<p>But we can also do the following trick, called <em>incremental mean approximation</em>:</p>
+<div class="math notranslate nohighlight">
+\[ \mu_k = \frac{1}{k} \sum_{j=1}^k x_j = \frac{1}{k} \left( x_k + \sum_{j=1}^{k-1} x_j \right)\]</div>
+<div class="math notranslate nohighlight">
+\[ = \frac{1}{k} \left(x_k + (k-1) \mu_{k-1}) \right) =  \mu_{k-1} + \frac{1}{k} ( x_k - \mu_{k-1} )\]</div>
+<p>Using the incremental sample mean, we can approximate the value function after each episode if for each state <span class="math notranslate nohighlight">\(s\)</span> with return <span class="math notranslate nohighlight">\(G_t\)</span>,
+</p>
+<div class="math notranslate nohighlight">
+\[ N(s) = N(s) +1 \]</div>
+<div class="math notranslate nohighlight">
+\[ V(s) = V(s) + \alpha \left( G_t - V(s) \right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha = \frac{1}{N(s)}\)</span> can be interpreted as a <em>forgetting factor</em>.
+</p>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span> can also be any number <span class="math notranslate nohighlight">\(&lt; 1\)</span> to get into a more flexible sample mean - the <em>running mean</em> that will increase the robustness of this approach in non-stationary environments.</p>
+<p> An important fact about Monte Carlo methods is that the estimates for each state are independent.  The estimate for one state does not build upon the estimate of any other state, as is the case in DP. In other words, <strong>Monte Carlo methods do not bootstrap</strong>. In particular, note that the computational expense of estimating the value ofa single state is independent of the number of states.  This can make Monte Carlo methods particularly attractive when one requires the value of only one or a subset of states.
+</p>
+<p>The policy evaluation problem for action values is to estimate <span class="math notranslate nohighlight">\(q_π(s,a)\)</span>, the expected return when starting in states, taking action <span class="math notranslate nohighlight">\(a\)</span>, and thereafter following policy <span class="math notranslate nohighlight">\(π\)</span>.  The Monte Carlo methods for this are essentially the same as just presented for state values.
+</p>
+</div>
+<div class="section" id="temporal-difference-td-prediction">
+<h2>Temporal Difference (TD) Prediction<a class="headerlink" href="#temporal-difference-td-prediction" title="Permalink to this headline">¶</a></h2>
+<p>If one had to identify one idea as central and novel to reinforcement learning, it would undoubtedly be temporal-difference(TD) learning.  TD learning is a combination of Monte Carlo ideas and dynamic programming (DP) ideas.</p>
+<ul class="simple">
+<li><p>Like Monte Carlo methods, TD methods can learn directly from raw experience without a model of the environment’s dynamics.</p></li>
+<li><p>Like  DP,  TD  methods  update  estimates  based  in  part  on  other  learned estimates, without waiting for a final outcome.</p></li>
+</ul>
+<p>In TD, instead of getting an estimated value function at the end of multiple episodes, we can use the incremental mean approximation to update the value function after each step.</p>
+<p><img alt="td-value-iteration-tree" src="../../../../_images/td-value-iteration-tree.png" />
+<em>Backup tree for value iteration with the TD approach. TD samples a single step ahead as shown with red.</em></p>
+<p>Going back to the example of crossing the room optimally, we take one step towards the goal and the we  <em>bootstrap</em> the value function of the state we were in from an estimated return for the remaining trajectory. We repeat this as we go along effectively adjusting the value estimate of the starting state from the true returns we have experienced up to now, <em>gradually grounding</em> the whole estimate as we approach the goal.</p>
+<p><img alt="td-driving-to-work-example" src="../../../../_images/td-driving-to-work-example.png" />
+<em>Two value approximation methods: MC (left), TD (right) as converging in their predictions of the value of each of the states in the x-axis. The example is from a hypothetical commute from office back home. In MC you have to wait until the episode ended (reach the goal) to update the value function at each state of the trajectory. In contrast, TD updates the value function at each state based on the estimates of the total travel time. The goal state is “arrive home”, while the reward function is time.</em></p>
+<p>As you can notice in the figure above the solid arrows in the MC case, adjust the predicted value of each state to the <em>actual</em> return while in the TD case the value prediction happens every step in the way. We call TD for this reason an <em>online</em> learning scheme. Another characteristic of TD is that it does not depend on reaching the goal, it <em>continuously</em> learns. MC does depend on the goal and therefore is <em>episodic</em>. This is important in many mission critical applications eg self-driving cars where you dont wait to “crash” to apply corrections to your state value based on what you experienced.</p>
+<p>Mathematically, instead of using the <em>true</em> return, <span class="math notranslate nohighlight">\(G_t\)</span>, something that it is possible in the MC as we are trully experiencing the world along a trajectory, TD uses a (biased) <em>estimated</em> return called the <em>TD target</em>: <span class="math notranslate nohighlight">\( R_{t+1} + \gamma V(S_{t+1})\)</span> approximating the value function as:</p>
+<div class="math notranslate nohighlight">
+\[ V(S_t) = V(S_t) + \alpha \left( R_{t+1} + \gamma V(S_{t+1}) - V(S_t) \right)\]</div>
+<p>The difference below is called the <em>TD approximation error</em>,</p>
+<div class="math notranslate nohighlight">
+\[\delta_t = R_{t+1} + \gamma (V(S_{t+1}) - V(S_t))\]</div>
+<div class="section" id="the-td-lambda">
+<h3>The TD(<span class="math notranslate nohighlight">\(\lambda\)</span>)<a class="headerlink" href="#the-td-lambda" title="Permalink to this headline">¶</a></h3>
+<p>The TD approach of the previous section, can be extended to multiple steps. Instead of a single look ahead step we can take multiple successive look ahead steps (n), we will call this TD(n) for now, and at the end of the n-th step, we use the value function at that state to backup and get the value function at the state where we started. Effectively after n-steps our return will be:</p>
+<div class="math notranslate nohighlight">
+\[G_t^{(n)} = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + ... + \gamma^{n-1}R_{t+n} + \gamma_n V(S_n)\]</div>
+<p>and the TD(n) learning equation becomes</p>
+<div class="math notranslate nohighlight">
+\[ V(S_t) = V(S_t) + \alpha \left( G^{(n)}_t - V(S_t) \right) \]</div>
+<p>We now define the so called <span class="math notranslate nohighlight">\(\lambda\)</span>-return that combines all n-step return <span class="math notranslate nohighlight">\(G_t^{(n)}\)</span> via the weighting function shown below as,</p>
+<div class="math notranslate nohighlight">
+\[G_t^{(n)} = (1-\lambda) \sum_{n=1}^\infty \lambda^{n-1} G_t^{(n)}\]</div>
+<p><img alt="lambda-weighting-function" src="../../../../_images/lambda-weighting-function.png" />
+<em><span class="math notranslate nohighlight">\(\lambda\)</span> weighting function for TD(<span class="math notranslate nohighlight">\(\lambda\)</span>)</em></p>
+<p>the TD(n) learning equation becomes</p>
+<div class="math notranslate nohighlight">
+\[ V(S_t) = V(S_t) + \alpha \left( G^\lambda_t - V(S_t) \right) \]</div>
+<p>When <span class="math notranslate nohighlight">\(\lambda=0\)</span> we get TD(0) learning, while when <span class="math notranslate nohighlight">\(\lambda=1\)</span> we get learning that is roughly equivalent to MC. Certainly it is convenient to learn one guess from the next, without waiting for an actual outcome, but can we still guarantee convergence to the correct answer?  Happily, the answer is yes as shown in the figure above.  For any fixed policy <span class="math notranslate nohighlight">\(π\)</span>, TD(0) has been proved to converge to <span class="math notranslate nohighlight">\(v_π\)</span>, in the mean for a constant step-size parameter if it is sufficiently small. However in terms of data efficiency there is no clear winner at this point.  It is instructive to see the difference between MC and TD approaches in the following example.</p>
+<p><img alt="td-learning-random-walk" src="../../../../_images/td-learning-random-walk.png" /></p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./aiml-common/lectures/reinforcement-learning/prediction"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Pantelis Monogioudis, Ph.D<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
