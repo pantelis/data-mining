@@ -107,4 +107,4 @@ parts:
 
   - caption:  Assignments & Projects
     chapters:
-    - file: aiml-common/assignments/probability-assignment-2.ipynb
+    - file: aiml-common/assignments/probability-assignment-2/probability-assignment-2.ipynb
