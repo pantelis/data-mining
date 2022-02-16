@@ -6,13 +6,13 @@ title: Continual Learning
 
 In this project you will implement continual learning and you are _free to select a method_ from any of these three non-exclusive categories, [as described in detail](https://arxiv.org/abs/1802.07569). This is a very active research area and you will find the starting repo in the [CVPR-2020 competition page](https://sites.google.com/view/clvision2020/challenge?authuser=0). Please pay attention to the paragraph "Challenge Repository" that is replicated below:
 
-{{<hint info>}}
+```{admonition}
 The official starting repository for the CVPR-2020 CLVision challenge con *Continual Learning for Computer Vision* can be found [here](https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fvlomonaco%2Fcvpr_clvision_challenge&sa=D&sntz=1&usg=AFQjCNEEXzPuBUcsp0QyxsVfB97SGD2r2w) and it contains:
 
 Two scripts to setup the environment and generate the zip submission file.
 A complete working example to: 1) load the data and setting up the continual learning protocols; 2) collect all the metadata during training 3) evaluate the trained model on the valid and test sets.
 Starting Dockerfile to simplify the final submission at the end of the first phase.
-{{</hint>}}
+```
 
 ## Datasets and Tasks
 

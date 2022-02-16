@@ -20,7 +20,7 @@ Computationally we will go through approaches that solve the MDP as efficiently 
 ![solving-mpd](images/solving-mdp.png)
 *Solving MDP Problems*
 
-{{<hint info>}}
+```{admonition}
 Apart from the notes here that are largely based on [David Silver's (Deep Mind) course material](https://www.davidsilver.uk/teaching/) and [video lectures](https://www.youtube.com/watch?v=2pWv7GOvuf0&list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ), the curious mind will be find additional resources: 
 
  * [in the Richard Sutton's book](http://incompleteideas.net/book/RLbook2020.pdf) - David Silver's slides and video lectures are based on this book. The code in Python of the book is [here](https://github.com/ShangtongZhang/reinforcement-learning-an-introduction)
@@ -31,4 +31,4 @@ Apart from the notes here that are largely based on [David Silver's (Deep Mind) 
 
 Many of the algorithms presented here like policy and value iteration have been developed in [this](https://github.com/rlcode/reinforcement-learning) git repo that you should download and run while reading the notes. 
 
-{{</hint>}}
+```

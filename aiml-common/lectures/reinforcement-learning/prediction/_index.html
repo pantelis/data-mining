@@ -39,10 +39,13 @@
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/togglebutton.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
     <script src="../../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -448,8 +451,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability-assignment-2/probability-assignment-2.html">
+  <a class="reference internal" href="../../../assignments/probability/probability-assignment-2/probability-assignment-2.html">
    Probability Assigmment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../assignments/mle/mle_exponential_linear_regression.html">
+   Maximum Likelihood Parameter Estimation
   </a>
  </li>
 </ul>
@@ -543,11 +551,6 @@
   <a class="reference internal nav-link" href="#monte-carlo-mc-state-value-prediction">
    Monte-Carlo (MC) State Value Prediction
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#temporal-difference-td-prediction">
-   Temporal Difference (TD) Prediction
-  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-td-lambda">
@@ -583,11 +586,6 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#monte-carlo-mc-state-value-prediction">
    Monte-Carlo (MC) State Value Prediction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#temporal-difference-td-prediction">
-   Temporal Difference (TD) Prediction
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -653,31 +651,42 @@
 \[ N(s) = N(s) +1 \]</div>
 <div class="math notranslate nohighlight">
 \[ V(s) = V(s) + \alpha \left( G_t - V(s) \right)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\alpha = \frac{1}{N(s)}\)</span> can be interpreted as a <em>forgetting factor</em>.
-</p>
-<p><span class="math notranslate nohighlight">\(\alpha\)</span> can also be any number <span class="math notranslate nohighlight">\(&lt; 1\)</span> to get into a more flexible sample mean - the <em>running mean</em> that will increase the robustness of this approach in non-stationary environments.</p>
-<p> An important fact about Monte Carlo methods is that the estimates for each state are independent.  The estimate for one state does not build upon the estimate of any other state, as is the case in DP. In other words, <strong>Monte Carlo methods do not bootstrap</strong>. In particular, note that the computational expense of estimating the value ofa single state is independent of the number of states.  This can make Monte Carlo methods particularly attractive when one requires the value of only one or a subset of states.
-</p>
-<p>The policy evaluation problem for action values is to estimate <span class="math notranslate nohighlight">\(q_π(s,a)\)</span>, the expected return when starting in states, taking action <span class="math notranslate nohighlight">\(a\)</span>, and thereafter following policy <span class="math notranslate nohighlight">\(π\)</span>.  The Monte Carlo methods for this are essentially the same as just presented for state values.
-</p>
+<p>where <span class="math notranslate nohighlight">\(\alpha = \frac{1}{N(s)}\)</span> can be interpreted as a <em>forgetting factor</em>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+$\alpha$ can also be any number $&lt; 1$ to get into a more flexible sample mean - the _running mean_ that will increase the robustness of this approach in non-stationary environments.
+
+
+```{admonition} An important fact about Monte Carlo methods is that the estimates for each state are independent.  The estimate for one state does not build upon the estimate of any other state, as is the case in DP. In other words, **Monte Carlo methods do not bootstrap**. In particular, note that the computational expense of estimating the value ofa single state is independent of the number of states.  This can make Monte Carlo methods particularly attractive when one requires the value of only one or a subset of states. 
+</pre></div>
 </div>
-<div class="section" id="temporal-difference-td-prediction">
-<h2>Temporal Difference (TD) Prediction<a class="headerlink" href="#temporal-difference-td-prediction" title="Permalink to this headline">¶</a></h2>
-<p>If one had to identify one idea as central and novel to reinforcement learning, it would undoubtedly be temporal-difference(TD) learning.  TD learning is a combination of Monte Carlo ideas and dynamic programming (DP) ideas.</p>
-<ul class="simple">
-<li><p>Like Monte Carlo methods, TD methods can learn directly from raw experience without a model of the environment’s dynamics.</p></li>
-<li><p>Like  DP,  TD  methods  update  estimates  based  in  part  on  other  learned estimates, without waiting for a final outcome.</p></li>
-</ul>
-<p>In TD, instead of getting an estimated value function at the end of multiple episodes, we can use the incremental mean approximation to update the value function after each step.</p>
-<p><img alt="td-value-iteration-tree" src="../../../../_images/td-value-iteration-tree.png" />
-<em>Backup tree for value iteration with the TD approach. TD samples a single step ahead as shown with red.</em></p>
-<p>Going back to the example of crossing the room optimally, we take one step towards the goal and the we  <em>bootstrap</em> the value function of the state we were in from an estimated return for the remaining trajectory. We repeat this as we go along effectively adjusting the value estimate of the starting state from the true returns we have experienced up to now, <em>gradually grounding</em> the whole estimate as we approach the goal.</p>
-<p><img alt="td-driving-to-work-example" src="../../../../_images/td-driving-to-work-example.png" />
-<em>Two value approximation methods: MC (left), TD (right) as converging in their predictions of the value of each of the states in the x-axis. The example is from a hypothetical commute from office back home. In MC you have to wait until the episode ended (reach the goal) to update the value function at each state of the trajectory. In contrast, TD updates the value function at each state based on the estimates of the total travel time. The goal state is “arrive home”, while the reward function is time.</em></p>
-<p>As you can notice in the figure above the solid arrows in the MC case, adjust the predicted value of each state to the <em>actual</em> return while in the TD case the value prediction happens every step in the way. We call TD for this reason an <em>online</em> learning scheme. Another characteristic of TD is that it does not depend on reaching the goal, it <em>continuously</em> learns. MC does depend on the goal and therefore is <em>episodic</em>. This is important in many mission critical applications eg self-driving cars where you dont wait to “crash” to apply corrections to your state value based on what you experienced.</p>
-<p>Mathematically, instead of using the <em>true</em> return, <span class="math notranslate nohighlight">\(G_t\)</span>, something that it is possible in the MC as we are trully experiencing the world along a trajectory, TD uses a (biased) <em>estimated</em> return called the <em>TD target</em>: <span class="math notranslate nohighlight">\( R_{t+1} + \gamma V(S_{t+1})\)</span> approximating the value function as:</p>
-<div class="math notranslate nohighlight">
-\[ V(S_t) = V(S_t) + \alpha \left( R_{t+1} + \gamma V(S_{t+1}) - V(S_t) \right)\]</div>
+<p>The policy evaluation problem for action values is to estimate <span class="math notranslate nohighlight">\(q_π(s,a)\)</span>, the expected return when starting in states, taking action <span class="math notranslate nohighlight">\(a\)</span>, and thereafter following policy <span class="math notranslate nohighlight">\(π\)</span>.  The Monte Carlo methods for this are essentially the same as just presented for state values.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>## Temporal Difference (TD) Prediction 
+
+If one had to identify one idea as central and novel to reinforcement learning, it would undoubtedly be temporal-difference(TD) learning.  TD learning is a combination of Monte Carlo ideas and dynamic programming (DP) ideas.  
+
+* Like Monte Carlo methods, TD methods can learn directly from raw experience without a model of the environment’s dynamics.   
+* Like  DP,  TD  methods  update  estimates  based  in  part  on  other  learned estimates, without waiting for a final outcome. 
+
+In TD, instead of getting an estimated value function at the end of multiple episodes, we can use the incremental mean approximation to update the value function after each step. 
+
+![td-value-iteration-tree](images/td-value-iteration-tree.png)
+*Backup tree for value iteration with the TD approach. TD samples a single step ahead as shown with red.* 
+
+Going back to the example of crossing the room optimally, we take one step towards the goal and the we  _bootstrap_ the value function of the state we were in from an estimated return for the remaining trajectory. We repeat this as we go along effectively adjusting the value estimate of the starting state from the true returns we have experienced up to now, _gradually grounding_ the whole estimate as we approach the goal. 
+
+![td-driving-to-work-example](images/td-driving-to-work-example.png)
+*Two value approximation methods: MC (left), TD (right) as converging in their predictions of the value of each of the states in the x-axis. The example is from a hypothetical commute from office back home. In MC you have to wait until the episode ended (reach the goal) to update the value function at each state of the trajectory. In contrast, TD updates the value function at each state based on the estimates of the total travel time. The goal state is &quot;arrive home&quot;, while the reward function is time.*
+
+As you can notice in the figure above the solid arrows in the MC case, adjust the predicted value of each state to the _actual_ return while in the TD case the value prediction happens every step in the way. We call TD for this reason an _online_ learning scheme. Another characteristic of TD is that it does not depend on reaching the goal, it _continuously_ learns. MC does depend on the goal and therefore is _episodic_. This is important in many mission critical applications eg self-driving cars where you dont wait to &quot;crash&quot; to apply corrections to your state value based on what you experienced.
+
+Mathematically, instead of using the _true_ return, $G_t$, something that it is possible in the MC as we are trully experiencing the world along a trajectory, TD uses a (biased) _estimated_ return called the _TD target_: $ R_{t+1} + \gamma V(S_{t+1})$ approximating the value function as:
+
+{{&lt;hint danger&gt;}}
+
+$$ V(S_t) = V(S_t) + \alpha \left( R_{t+1} + \gamma V(S_{t+1}) - V(S_t) \right)$$
+
+</pre></div>
+</div>
 <p>The difference below is called the <em>TD approximation error</em>,</p>
 <div class="math notranslate nohighlight">
 \[\delta_t = R_{t+1} + \gamma (V(S_{t+1}) - V(S_t))\]</div>
@@ -697,8 +706,13 @@
 <p>the TD(n) learning equation becomes</p>
 <div class="math notranslate nohighlight">
 \[ V(S_t) = V(S_t) + \alpha \left( G^\lambda_t - V(S_t) \right) \]</div>
-<p>When <span class="math notranslate nohighlight">\(\lambda=0\)</span> we get TD(0) learning, while when <span class="math notranslate nohighlight">\(\lambda=1\)</span> we get learning that is roughly equivalent to MC. Certainly it is convenient to learn one guess from the next, without waiting for an actual outcome, but can we still guarantee convergence to the correct answer?  Happily, the answer is yes as shown in the figure above.  For any fixed policy <span class="math notranslate nohighlight">\(π\)</span>, TD(0) has been proved to converge to <span class="math notranslate nohighlight">\(v_π\)</span>, in the mean for a constant step-size parameter if it is sufficiently small. However in terms of data efficiency there is no clear winner at this point.  It is instructive to see the difference between MC and TD approaches in the following example.</p>
-<p><img alt="td-learning-random-walk" src="../../../../_images/td-learning-random-walk.png" /></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+When $\lambda=0$ we get TD(0) learning, while when $\lambda=1$ we get learning that is roughly equivalent to MC. Certainly it is convenient to learn one guess from the next, without waiting for an actual outcome, but can we still guarantee convergence to the correct answer?  Happily, the answer is yes as shown in the figure above.  For any fixed policy $π$, TD(0) has been proved to converge to $v_π$, in the mean for a constant step-size parameter if it is sufficiently small. However in terms of data efficiency there is no clear winner at this point.  It is instructive to see the difference between MC and TD approaches in the following example. 
+
+![td-learning-random-walk](images/td-learning-random-walk.png)
+
+</pre></div>
+</div>
 </div>
 </div>
 </div>

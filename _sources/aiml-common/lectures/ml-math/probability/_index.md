@@ -60,7 +60,7 @@ $$P(x,y) = P(x | y)P(y) = P(y | x)P(x)$$
 
 Are $x$ and $y$ in the example above independent ?
 
-{{< /hint >}}
+```
 
 ## Multi-variate Gaussian distribution
 
@@ -74,9 +74,9 @@ You can [generate](http://hosting.astro.cornell.edu/~cordes/A6523/GeneratingCorr
 ![correlated-gaussians](images/correlated-gaussians.png)
 _Correlated Gaussians_
 
-{{<hint info>}}
+```{admonition}
 For a more extensive overview of the Gaussian distribution see [here](images/gaussian-bishop.pdf)
-{{</hint>}}
+```
 
 
 ## References

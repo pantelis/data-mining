@@ -6,9 +6,9 @@ title: Word2Vec Workshop
 
 ## Example
 
-{{<hint info>}}
+```{admonition}
 The following example is from [here](https://iksinc.online/tag/skip-gram-model/).
-{{</hint>}}
+```
 
 Consider the training corpus having the following sentences:
 

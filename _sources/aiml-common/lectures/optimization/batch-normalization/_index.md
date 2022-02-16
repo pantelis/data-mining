@@ -65,5 +65,5 @@ _BN allows us to learn much faster and operate efficiently at deeper architectur
 {{<hint>}}
 Consider running [this excellent notebook](https://colab.research.google.com/github/davidcpage/cifar10-fast/blob/master/batch_norm_post.ipynb#scrollTo=a22VPg31CLSM) together with [this paper](https://arxiv.org/abs/1806.02375). 
 
- {{</hint>}}
+ ```
  

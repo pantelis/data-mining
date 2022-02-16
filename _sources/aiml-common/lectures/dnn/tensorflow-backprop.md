@@ -16,7 +16,7 @@ To be able to follow the notebook you need to make sure you have reviewed first 
 
 {{<hint warning>}}
 **How to Run**: Click the yellow button found under the title "Run in Google Colab". 
-{{</hint>}}
+```
 
 <iframe src="https://nbviewer.jupyter.org/github/tensorflow/docs/blob/master/site/en/guide/autodiff.ipynb" width="900" height="1200"></iframe>
 

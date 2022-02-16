@@ -54,11 +54,11 @@ The figure below shows the corresponding posterior distribution $p(\mathcal{C}_1
 
 By repeating the classical steps in ML methodology i.e. writing down the expression of the likelihood function (this will now be a product of binomials), we can write down the negative log likelihood function for the binary case as, 
 
-{{<hint info>}}
+```{admonition} Binary CE Loss
 $$L(\mathbf{w}) = L(y, \hat{y}) = - \ln p(\mathbf{y},\mathbf{w}) = - \big[ \sum_{i=1}^m \{y_i \ln \hat{y}_i + (1-y_i) \ln (1-\hat{y}_i) \} \big]$$
  
-which is called **cross entropy loss function** - probably the most widely used error function (in classification as well as regression) due to its information theoretic roots. 
-{{</hint>}}
+which is called **cross entropy loss function** - probably the most widely used error function (in classification as well as regression) due to its information theoretic roots.
+```
 
 Its shape is shown in the figure below for an example case where the $y=1$. It is also known as log-loss.
 

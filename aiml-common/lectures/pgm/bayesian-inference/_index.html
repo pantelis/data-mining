@@ -39,10 +39,13 @@
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/togglebutton.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
     <script src="../../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -450,8 +453,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability-assignment-2/probability-assignment-2.html">
+  <a class="reference internal" href="../../../assignments/probability/probability-assignment-2/probability-assignment-2.html">
    Probability Assigmment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../assignments/mle/mle_exponential_linear_regression.html">
+   Maximum Likelihood Parameter Estimation
   </a>
  </li>
 </ul>
@@ -683,8 +691,10 @@ where using the sum rule we know $p(y) = \sum_{x'} p(y|x') p(x')$. This is a ver
 <p>Lets us consider an instructive example of applying the Bayesian approach in an online learning setting (streaming data arriving over the wire). In this example where the underlying target function is <span class="math notranslate nohighlight">\(p_{data}(x, \mathbf w) = w_0 + w_1 x + n\)</span> This is the equation of a line. In this example its parametrized with <span class="math notranslate nohighlight">\(a_0=-0.3, a_1=0.5\)</span> and <span class="math notranslate nohighlight">\(n \in \mathcal N(0, \sigma=0.2)\)</span>. To match the simple inference exercise that we just saw, we draw the equivalent PGM</p>
 <a class="reference internal image-reference" href="../../../../_images/Figure8.3.png"><img alt="../../../../_images/Figure8.3.png" class="align-center" src="../../../../_images/Figure8.3.png" style="width: 250px;" /></a>
 <p><em>Bayesian Linear Regression example - please replace <span class="math notranslate nohighlight">\(t\)</span> with <span class="math notranslate nohighlight">\(y\)</span> to match earlier notation in these notes</em></p>
-<p>The Bayesian update of the posterior can be intuitively understood using a graphical example of our model of the form:
-$<span class="math notranslate nohighlight">\(g(x,\mathbf{w})= w_0 + w_1 x\)</span><span class="math notranslate nohighlight">\( (our hypothesis). The reason why we pick this example is illustrative as the model has just two parameters and is amendable to visualization. The update needs a prior _distribution_ over \)</span>\mathbf w$ and a likelihood function. As prior we assume a spherical Gaussian</p>
+<p>The Bayesian update of the posterior can be intuitively understood using a graphical example of our model of the form:</p>
+<div class="math notranslate nohighlight">
+\[g(x,\mathbf{w})= w_0 + w_1 x\]</div>
+<p>The reason why we pick this example is illustrative as the model has just two parameters and is amendable to visualization. The update needs a prior <em>distribution</em> over <span class="math notranslate nohighlight">\(\mathbf w\)</span> and a likelihood function. As prior we assume a spherical Gaussian</p>
 <div class="math notranslate nohighlight">
 \[p(\mathbf w | \alpha) = \mathcal N(\mathbf w | \mathbf 0, \alpha^{-1} \mathbf I)\]</div>
 <p>with <span class="math notranslate nohighlight">\(\alpha = 0.2\)</span>. We starts in row 1 with this prior and at this point there are no data and the likelihood is undefined while every possible linear (line) hypothesis is feasible as represented by the red lines. In row 2, a data point arrives and the the Bayesian update takes place: the previous row posterior becomes the prior and is multiplied by the current likelihood function. The likelihood function and the form of the math behind the update are as shown in <a class="reference external" href="https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf">Bishop’s book in section 3.3</a>. Here we focus on a pictorial view of what is the update is all about and how the estimate of the posterior distribution <span class="math notranslate nohighlight">\(p(\mathbf w | \mathbf y)\)</span> ultimately (as the iterations increase) it will be ideally centered to the ground truth (<span class="math notranslate nohighlight">\(\mathbf a\)</span>).</p>

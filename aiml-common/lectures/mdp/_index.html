@@ -39,10 +39,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -446,8 +449,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../assignments/probability-assignment-2/probability-assignment-2.html">
+  <a class="reference internal" href="../../assignments/probability/probability-assignment-2/probability-assignment-2.html">
    Probability Assigmment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../assignments/mle/mle_exponential_linear_regression.html">
+   Maximum Likelihood Parameter Estimation
   </a>
  </li>
 </ul>
@@ -563,13 +571,6 @@
 <p>Computationally we will go through approaches that solve the MDP as efficiently as possible - namely, the value and policy iteration algorithms.</p>
 <p><img alt="solving-mpd" src="../../../_images/solving-mdp.png" />
 <em>Solving MDP Problems</em></p>
-<p>Apart from the notes here that are largely based on <a class="reference external" href="https://www.davidsilver.uk/teaching/">David Silver’s (Deep Mind) course material</a> and <a class="reference external" href="https://www.youtube.com/watch?v=2pWv7GOvuf0&amp;list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ">video lectures</a>, the curious mind will be find additional resources:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="http://incompleteideas.net/book/RLbook2020.pdf">in the Richard Sutton’s book</a> - David Silver’s slides and video lectures are based on this book. The code in Python of the book is <a class="reference external" href="https://github.com/ShangtongZhang/reinforcement-learning-an-introduction">here</a></p></li>
-<li><p><a class="reference external" href="https://www.amazon.com/Deep-Reinforcement-Learning-Python-Hands-dp-0135172381/dp/0135172381/ref=mt_paperback?_encoding=UTF8&amp;me=&amp;qid=">in the suggested book</a> written by Google researchers as well as on <a class="reference external" href="https://openai.com/resources/">OpenAI’s website</a>. The chapters we covered is 1-4.</p></li>
-<li><p>You may also want to watch Andrew Ng’s, <a class="reference external" href="https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU">2018 version of his ML class</a> that includes MDP and RL lectures.</p></li>
-</ul>
-<p>Many of the algorithms presented here like policy and value iteration have been developed in <a class="reference external" href="https://github.com/rlcode/reinforcement-learning">this</a> git repo that you should download and run while reading the notes.</p>
 </div>
 
     <script type="text/x-thebe-config">

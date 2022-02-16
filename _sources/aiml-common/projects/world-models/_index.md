@@ -38,4 +38,4 @@ To help plan the tasks amongst the team members please use Trello (login with yo
 
 Note to all students using AWS resources provided for this project. You are **entirely** responsible to limit the use of p2.xlarge instances that consumes on-demand 1$/h and use CPU instances when possible. Invest in understanding docker containers so you do not suffer catastrophic failures when working in a cloud environment (the norm in practice).  You are responsible for not exceeding your budget.
 
-{{</hint>}}
+```

@@ -39,10 +39,13 @@
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/togglebutton.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
     <script src="../../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -448,8 +451,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability-assignment-2/probability-assignment-2.html">
+  <a class="reference internal" href="../../../assignments/probability/probability-assignment-2/probability-assignment-2.html">
    Probability Assigmment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../assignments/mle/mle_exponential_linear_regression.html">
+   Maximum Likelihood Parameter Estimation
   </a>
  </li>
 </ul>
@@ -627,15 +635,21 @@
 <p><strong>Bellman State-Action Value Expectation Equation</strong></p>
 <div class="math notranslate nohighlight">
 \[q_\pi(s,a) = \mathcal R_s^a + \gamma \sum_{s^\prime \in \mathcal S} \mathcal{P}^a_{ss^\prime} \sum_{a^\prime \in \mathcal A} \pi(a^\prime|s^\prime) q_\pi(s^\prime,a^\prime)\]</div>
-<p>Now that we have a computable <span class="math notranslate nohighlight">\(q_\pi(s,a)\)</span> value function we can go back and substitute it into the equation of the state-value function. Again we can representing this substitution by the tree structure below.</p>
-<p><img alt="state-action-state-value-tree" src="../../../../_images/state-action-state-value-tree.png" />
-<em>Tree that represents the state-value function after a one-step look ahead.</em></p>
-<p>With the substitution we can write the state-value function as,</p>
-<p><strong>Bellman State Value Expectation Equation</strong></p>
-<div class="math notranslate nohighlight">
-\[v_\pi(s) = \sum_{a \in \mathcal A(s)} \pi(a|s) \left( \mathcal R_s^a + \gamma \sum_{s^\prime \in \mathcal S} \mathcal{P}^a_{ss^\prime} v_\pi(s^\prime) \right)\]</div>
-<div class="math notranslate nohighlight">
-\[ v_\pi =  \mathcal R^\pi + \gamma \mathcal{P}^\pi v_\pi\]</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+Now that we have a computable $q_\pi(s,a)$ value function we can go back and substitute it into the equation of the state-value function. Again we can representing this substitution by the tree structure below.
+
+![state-action-state-value-tree](images/state-action-state-value-tree.png)
+*Tree that represents the state-value function after a one-step look ahead.*
+
+With the substitution we can write the state-value function as,
+
+{{&lt;hint danger&gt;}}
+**Bellman State Value Expectation Equation**
+
+$$v_\pi(s) = \sum_{a \in \mathcal A(s)} \pi(a|s) \left( \mathcal R_s^a + \gamma \sum_{s^\prime \in \mathcal S} \mathcal{P}^a_{ss^\prime} v_\pi(s^\prime) \right)$$
+$$ v_\pi =  \mathcal R^\pi + \gamma \mathcal{P}^\pi v_\pi$$
+</pre></div>
+</div>
 <p>The compact form (2nd line of the equation) defined:</p>
 <div class="math notranslate nohighlight">
 \[  \mathcal R_s^\pi = \sum_{a \in \mathcal A(s)} \pi(a|s)   \mathcal R_s^a \]</div>

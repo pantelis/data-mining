@@ -39,10 +39,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -446,8 +449,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../assignments/probability-assignment-2/probability-assignment-2.html">
+  <a class="reference internal" href="../../assignments/probability/probability-assignment-2/probability-assignment-2.html">
    Probability Assigmment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../assignments/mle/mle_exponential_linear_regression.html">
+   Maximum Likelihood Parameter Estimation
   </a>
  </li>
 </ul>
@@ -734,25 +742,27 @@ $ conda install -n py38 -c conda-forge tensorflow-gpu (if you have a computer wi
 </pre></div>
 </div>
 <p>This installs the latest version of TensorFlow available for Anaconda (which is usually <em>not</em> the latest TensorFlow version) in the <code class="docutils literal notranslate"><span class="pre">py37</span></code> environment (fetching it from the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> repository).</p>
-<p>Next, you can optionally install Jupyter extensions. These are useful to have nice tables of contents in the notebooks, but they are not required.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">jupyter_contrib_nbextensions</span> <span class="c1"># with standard pip</span>
-<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">n</span> <span class="n">py38</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">jupyter_contrib_nbextensions</span> <span class="c1"># with anaconda</span>
+<p>pip install jupyter_contrib_nbextensions # with standard pip
+conda install -n py38 -c conda-forge jupyter_contrib_nbextensions # with anaconda</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+If you want to use the Jupyter extensions (optional, they are mainly useful to have nice tables of contents), you first need to install them:
+
+    $ jupyter contrib nbextension install --user
+
+Then you can activate an extension, such as the Table of Contents (2) extension:
+
+    $ jupyter nbextension enable toc2/main
+
+Okay! You can now start Jupyter, simply type:
+
+    $ jupyter notebook
+
+This should open up your browser, and you should see Jupyter&#39;s tree view, with the contents of the current directory. If your browser does not open automatically, visit [localhost:8888](http://localhost:8888/tree). Click on `index.ipynb` to get started!
+
+Note: you can also visit [http://localhost:8888/nbextensions](http://localhost:8888/nbextensions) to activate and configure Jupyter extensions.
+
 </pre></div>
 </div>
-<p>If you want to use the Jupyter extensions (optional, they are mainly useful to have nice tables of contents), you first need to install them:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ jupyter contrib nbextension install --user
-</pre></div>
-</div>
-<p>Then you can activate an extension, such as the Table of Contents (2) extension:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ jupyter nbextension enable toc2/main
-</pre></div>
-</div>
-<p>Okay! You can now start Jupyter, simply type:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ jupyter notebook
-</pre></div>
-</div>
-<p>This should open up your browser, and you should see Jupyter’s tree view, with the contents of the current directory. If your browser does not open automatically, visit <a class="reference external" href="http://localhost:8888/tree">localhost:8888</a>. Click on <code class="docutils literal notranslate"><span class="pre">index.ipynb</span></code> to get started!</p>
-<p>Note: you can also visit <a class="reference external" href="http://localhost:8888/nbextensions">http://localhost:8888/nbextensions</a> to activate and configure Jupyter extensions.</p>
 </div>
 </div>
 </div>

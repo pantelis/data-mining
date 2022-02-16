@@ -39,10 +39,13 @@
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/togglebutton.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
     <script src="../../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -448,8 +451,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability-assignment-2/probability-assignment-2.html">
+  <a class="reference internal" href="../../../assignments/probability/probability-assignment-2/probability-assignment-2.html">
    Probability Assigmment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../assignments/mle/mle_exponential_linear_regression.html">
+   Maximum Likelihood Parameter Estimation
   </a>
  </li>
 </ul>
@@ -613,12 +621,16 @@
 \[v_*(s) = \max_a \left( \mathcal R_s^a + \gamma \sum_{s^\prime \in \mathcal S} \mathcal{P}^a_{ss^\prime} v_*(s^\prime) \right)\]</div>
 <div class="math notranslate nohighlight">
 \[q_*(s,a) = \mathcal R_s^a + \gamma \sum_{s^\prime \in \mathcal S} \mathcal{P}^a_{ss^\prime} \max_{a^\prime} q_*(s^\prime,a^\prime)\]</div>
-<p>These equations due to the <span class="math notranslate nohighlight">\(\max\)</span> operator are non-linear and can be solved to obtain the MDP solution aka <span class="math notranslate nohighlight">\(q_*(s,a)\)</span> iteratively via a number of methods: policy iteration, value iteration, Q-learning, SARSA. We will see some of these methods in detail in later chapters. The key advantage in the Bellman optimality equations is efficiency:</p>
-<ol class="simple">
-<li><p>They <em>recursively decompose</em> the problem into two sub-problems: the subproblem of the next step and the optimal value function in all subsequent steps of the trajectory.</p></li>
-<li><p>They cache the optimal value functions to the sub-problems and by doing so we can reuse them as needed.</p></li>
-</ol>
-<p>Since the Bellman equations allow us to decompose recursively the problem into sub-problems, they in fact implement a general and exact approach called <em>dynamic programming</em> that results into an optimal policy. We examine the computational aspects of such approach in a separate section.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+These equations due to the $\max$ operator are non-linear and can be solved to obtain the MDP solution aka $q_*(s,a)$ iteratively via a number of methods: policy iteration, value iteration, Q-learning, SARSA. We will see some of these methods in detail in later chapters. The key advantage in the Bellman optimality equations is efficiency: 
+
+1. They _recursively decompose_ the problem into two sub-problems: the subproblem of the next step and the optimal value function in all subsequent steps of the trajectory.
+2. They cache the optimal value functions to the sub-problems and by doing so we can reuse them as needed.
+
+Since the Bellman equations allow us to decompose recursively the problem into sub-problems, they in fact implement a general and exact approach called _dynamic programming_ that results into an optimal policy. We examine the computational aspects of such approach in a separate section. 
+
+</pre></div>
+</div>
 </div>
 </div>
 

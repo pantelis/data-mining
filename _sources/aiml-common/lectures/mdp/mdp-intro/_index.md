@@ -13,7 +13,7 @@ We start by reviewing the agent-environment interface with this evolved notation
 ![agent-env-interface](images/agent-env-interface.png)
 *Agent-Environment Interface*
 
-{{<hint info>}}
+```{admonition}
 
 The following table summarizes the notation and contains useful definitions that we will use to describe required concepts later.  With capital letters we denote the random variables involved and with small letters their specific realizations (values) - for example $S_t$ is the random state variable and $s_t$ is the actual state at time $t$. 
 
@@ -28,7 +28,7 @@ The following table summarizes the notation and contains useful definitions that
 |          $\tau$          | _trajectory_ - the sequence of experiences over an episode                                                   |
 |          $G_t$           | _return_ - the total discounted rewards from time step $t$ - it will be qualified shortly.                   |
 |         $\gamma$         | the discount factor $\gamma \in [0,1]$ embedded into the return $G_t$                                        |
-{{</hint>}}
+```
 
 In fully observed MDP problems, the agent *perceives fully* the environment state $S_t$  - you can assume that there is a bank of sensors but they are ideal. In other words the agent knows which state the environment is in, perfectly[^2].
 
@@ -74,7 +74,7 @@ where one dimension represents the action space and the other two constitute a s
 
 Can you determine the state transition tensor for the 4x3 Gridworld ?  
 
-{{</hint>}}
+```
 
 ### Reward function and Returns
 

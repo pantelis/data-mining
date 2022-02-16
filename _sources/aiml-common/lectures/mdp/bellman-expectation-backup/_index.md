@@ -67,7 +67,7 @@ Substituting the  $v_\pi(s^\prime)$ is represented by the following tree that co
 **Bellman State-Action Value Expectation Equation**
 
 $$q_\pi(s,a) = \mathcal R_s^a + \gamma \sum_{s^\prime \in \mathcal S} \mathcal{P}^a_{ss^\prime} \sum_{a^\prime \in \mathcal A} \pi(a^\prime|s^\prime) q_\pi(s^\prime,a^\prime)$$
-{{</hint>}}
+```
 
 Now that we have a computable $q_\pi(s,a)$ value function we can go back and substitute it into the equation of the state-value function. Again we can representing this substitution by the tree structure below.
 
@@ -81,7 +81,7 @@ With the substitution we can write the state-value function as,
 
 $$v_\pi(s) = \sum_{a \in \mathcal A(s)} \pi(a|s) \left( \mathcal R_s^a + \gamma \sum_{s^\prime \in \mathcal S} \mathcal{P}^a_{ss^\prime} v_\pi(s^\prime) \right)$$
 $$ v_\pi =  \mathcal R^\pi + \gamma \mathcal{P}^\pi v_\pi$$
-{{</hint>}}
+```
 
 The compact form (2nd line of the equation) defined:
 

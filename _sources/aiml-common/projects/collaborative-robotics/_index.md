@@ -6,9 +6,9 @@ title: Collaborative Robotics
 
 You are a co-founder in a startup called PodGrocer, a company that deploys pods to selected host sites such as electric vehicle charging stations, mall parking lots and can also attach to existing supermarket stores. Each pod was constructed by modifying a standard shipping container and is cooled by latest technology green energy backed up by the host site power feeds. 
 
-{{<hint info>}}
+```{admonition}
 The shipping container sized pod is irrelevant for this project but its provided here as they are routinely used as building blocks for larger and sometimes movable structures. 
-{{</hint>}}
+```
 
 The system in operation is shown in the following video
 
@@ -66,7 +66,7 @@ Write a markdown report where you explain your design of the planner in Task 2 a
 To help plan the tasks amongst the team members please use Trello (login with your nyu account). Submit your Trello boards with your project.  
 
 Note that the points are assigned per task completion and are relatively independent on the implementation complexity. Therefore start simple and make sure you submit all completed tasks rather than spending time on the ultimate path planner and miss the deadline.  
-{{</hint>}}
+```
 
 
 {{<hint warning "WARNING">}}
@@ -75,4 +75,4 @@ Consider using AWS Robomaker for this project (ROS2 distribution).
 
 Note to all students using AWS resources provided for this project. You are **entirely** responsible to limit the use of p2.xlarge instances that consumes on-demand 1$/h and use CPU instances when possible. Invest in understanding docker containers so you do not suffer catastrophic failures when working in a cloud environment (the norm in practice).  You are responsible for not exceeding your budget.
 
-{{</hint>}}
+```

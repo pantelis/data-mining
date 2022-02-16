@@ -40,7 +40,7 @@ $$A = U \Sigma V^†$$
 
 where  $\mathbf{U}$ is a $m \times m$ real unitary matrix, $\mathbf{\Sigma}$ is an $m \times n$ rectangular diagonal matrix with non-negative real numbers on the diagonal, and $\mathbf{V}$  is a $n \times n$ real unitary matrix. 
 
-{{< hint info >}}
+```{admonition}
 Remember that a unitary matrix $U$ is a matrix that its conjugate transpose $U^†$ is also its inverse - its the complex analog of the orthogonal matrix and we have by definition $UU^†=I$.  
 
 The columns of $U$ are eigenvectors of $AA^T$, and the columns of $V$ are eigenvectors of $A^TA$. The $r$ singular values on the diagonal of $\Sigma$ are the square roots of the nonzero eigenvalues of both $AA^T$ and $A^TA$.
@@ -52,7 +52,7 @@ It is interesting to attribute the columns of these matrices with the four funda
 3. The row space of $A$ are the first $r$ columns of $V$.
 4. The nullspace of $A$ are the last $n-r$ columns of V. 
 
-{{</hint>}}
+```
 
 We can write the SVD as,
 

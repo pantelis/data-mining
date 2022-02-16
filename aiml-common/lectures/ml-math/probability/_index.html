@@ -39,10 +39,13 @@
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/togglebutton.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
     <script src="../../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -450,8 +453,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability-assignment-2/probability-assignment-2.html">
+  <a class="reference internal" href="../../../assignments/probability/probability-assignment-2/probability-assignment-2.html">
    Probability Assigmment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../assignments/mle/mle_exponential_linear_regression.html">
+   Maximum Likelihood Parameter Estimation
   </a>
  </li>
 </ul>
@@ -552,11 +560,6 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multi-variate-gaussian-distribution">
-   Multi-variate Gaussian distribution
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -589,11 +592,6 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#conditional-probability-and-the-product-or-chain-rule">
    Conditional Probability and the Product or chain rule
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multi-variate-gaussian-distribution">
-   Multi-variate Gaussian distribution
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -657,18 +655,23 @@
 <p><img alt="conditional-bigram" src="../../../../_images/conditional-bigrams.png" />
 <em>Conditional probability distribution over the 27x27 possible bigrams <span class="math notranslate nohighlight">\(xy\)</span> found in this document: <a class="reference external" href="https://www.tldp.org/FAQ/pdf/Linux-FAQ.pdf">https://www.tldp.org/FAQ/pdf/Linux-FAQ.pdf</a></em></p>
 <p>Are <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> in the example above independent ?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+## Multi-variate Gaussian distribution
+
+Perhaps the only distribution that is worth knowing and remembering its form is the multivariate Normal as it has widespread applicability in data science. 
+
+$$f_{\mathbf X}(x_1,\ldots,x_k) = \frac{\exp\left(-\frac 1 2 ({\mathbf x}-{\boldsymbol\mu})^\mathrm{T}{\boldsymbol\Sigma}^{-1}({\mathbf x}-{\boldsymbol\mu})\right)}{\sqrt{(2\pi)^n|\boldsymbol\Sigma|}}$$
+where where &lt;${\mathbf x}$ is a real &#39;n&#39;-dimensional column vector and $|\boldsymbol\Sigma|\equiv \operatorname{det}\boldsymbol\Sigma$ is the determinant of $\boldsymbol\Sigma$. 
+
+You can [generate](http://hosting.astro.cornell.edu/~cordes/A6523/GeneratingCorrelatedRandomVariables.pdf) correlated Gaussian distributions from white gaussian random variables as shown below.  This can be useful in multiple settings. Foe example you can synthesize training examples where there is correlation between features. You can also explain what happens in successive layers of a neural network when a correlated input is propagated through. 
+
+![correlated-gaussians](images/correlated-gaussians.png)
+_Correlated Gaussians_
+
+```{admonition}
+For a more extensive overview of the Gaussian distribution see [here](images/gaussian-bishop.pdf)
+</pre></div>
 </div>
-<div class="section" id="multi-variate-gaussian-distribution">
-<h2>Multi-variate Gaussian distribution<a class="headerlink" href="#multi-variate-gaussian-distribution" title="Permalink to this headline">¶</a></h2>
-<p>Perhaps the only distribution that is worth knowing and remembering its form is the multivariate Normal as it has widespread applicability in data science.</p>
-<div class="math notranslate nohighlight">
-\[f_{\mathbf X}(x_1,\ldots,x_k) = \frac{\exp\left(-\frac 1 2 ({\mathbf x}-{\boldsymbol\mu})^\mathrm{T}{\boldsymbol\Sigma}^{-1}({\mathbf x}-{\boldsymbol\mu})\right)}{\sqrt{(2\pi)^n|\boldsymbol\Sigma|}}\]</div>
-<p>where where &lt;<span class="math notranslate nohighlight">\({\mathbf x}\)</span> is a real ‘n’-dimensional column vector and <span class="math notranslate nohighlight">\(|\boldsymbol\Sigma|\equiv \operatorname{det}\boldsymbol\Sigma\)</span> is the determinant of <span class="math notranslate nohighlight">\(\boldsymbol\Sigma\)</span>.</p>
-<p>You can <a class="reference external" href="http://hosting.astro.cornell.edu/~cordes/A6523/GeneratingCorrelatedRandomVariables.pdf">generate</a> correlated Gaussian distributions from white gaussian random variables as shown below.  This can be useful in multiple settings. Foe example you can synthesize training examples where there is correlation between features. You can also explain what happens in successive layers of a neural network when a correlated input is propagated through.</p>
-<p><img alt="correlated-gaussians" src="../../../../_images/correlated-gaussians.png" />
-<em>Correlated Gaussians</em></p>
-<p>For a more extensive overview of the Gaussian distribution see <span class="xref myst">here</span>
-</p>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>

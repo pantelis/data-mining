@@ -5,46 +5,49 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The learning problem - assignment &#8212; Data Mining</title>
+    <title>Probability Theory - Assignment A &#8212; Data Mining</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="../../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     
       
 
     
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/tabs.js"></script>
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -53,10 +56,10 @@
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/assignments/learning-problem-assignment.html" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/assignments/probability/probability-assignment-1/_index.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -76,19 +79,19 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
       
       
-      <img src="../../_static/logo.png" class="logo" alt="logo">
+      <img src="../../../../_static/logo.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Data Mining</h1>
       
     </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -100,7 +103,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../syllabus/_index.html">
+  <a class="reference internal" href="../../../../syllabus/_index.html">
    Syllabus
   </a>
  </li>
@@ -112,22 +115,22 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/ai-intro/course-introduction/_index.html">
+  <a class="reference internal" href="../../../lectures/ai-intro/course-introduction/_index.html">
    Course Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/ai-intro/data-science-360/_index.html">
+  <a class="reference internal" href="../../../lectures/ai-intro/data-science-360/_index.html">
    Data Science 360
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/ai-intro/pipelines/_index.html">
+  <a class="reference internal" href="../../../lectures/ai-intro/pipelines/_index.html">
    ML Pipelines
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/uber-ml-arch-case-study/_index.html">
+  <a class="reference internal" href="../../../lectures/uber-ml-arch-case-study/_index.html">
    A Case Study of an ML Architecture - Uber
   </a>
  </li>
@@ -139,32 +142,32 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/learning-problem/_index.html">
+  <a class="reference internal" href="../../../lectures/learning-problem/_index.html">
    The Learning Problem
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/regression/linear-regression/_index.html">
+  <a class="reference internal" href="../../../lectures/regression/linear-regression/_index.html">
    Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/optimization/maximum-likelihood/_index.html">
+  <a class="reference internal" href="../../../lectures/optimization/maximum-likelihood/_index.html">
    Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/entropy/_index.html">
+  <a class="reference internal" href="../../../lectures/entropy/_index.html">
    Entropy
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/optimization/sgd/_index.html">
+  <a class="reference internal" href="../../../lectures/optimization/sgd/_index.html">
    Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/classification/classification-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/classification-intro/_index.html">
    Introduction to Classification
   </a>
  </li>
@@ -176,47 +179,47 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/classification/logistic-regression/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/logistic-regression/_index.html">
    Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/decision-trees/_index.html">
+  <a class="reference internal" href="../../../lectures/decision-trees/_index.html">
    Decision Trees
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/ensemble/_index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/_index.html">
    Ensemble Methods
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/ensemble/random-forests/_index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/random-forests/_index.html">
    Random Forests
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/ensemble/boosting/_index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/boosting/_index.html">
    Boosting
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/ensemble/boosting-workshop/_index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/boosting-workshop/_index.html">
    Boosting workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/pgm/bayesian-inference/_index.html">
+  <a class="reference internal" href="../../../lectures/pgm/bayesian-inference/_index.html">
    Bayesian Inference
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/pgm/bayesian-coin/_index.html">
+  <a class="reference internal" href="../../../lectures/pgm/bayesian-coin/_index.html">
    Bayesian Coin Flipping
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/classification/covid19-antibody-test/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/covid19-antibody-test/_index.html">
    COVID-19 Antibody Test
   </a>
  </li>
@@ -228,27 +231,27 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/classification/perceptron/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/perceptron/_index.html">
    The Neuron (Perceptron)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/dnn/dnn-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/dnn/dnn-intro/_index.html">
    Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/dnn/backprop-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/dnn/backprop-intro/_index.html">
    Introduction to Backpropagation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/dnn/backprop-dnn/_index.html">
+  <a class="reference internal" href="../../../lectures/dnn/backprop-dnn/_index.html">
    Backpropagation in Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/optimization/regularization/_index.html">
+  <a class="reference internal" href="../../../lectures/optimization/regularization/_index.html">
    Regularization in Deep Neural Networks
   </a>
  </li>
@@ -260,17 +263,17 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/cnn/cnn-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-intro/_index.html">
    Introduction to Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/cnn/cnn-layers/_index.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-layers/_index.html">
    CNN Architectures
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/cnn/cnn-example-architectures/_index.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-example-architectures/_index.html">
    CNN Example Architectures
   </a>
  </li>
@@ -282,27 +285,27 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/scene-understanding/scene-understanding-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/scene-understanding-intro/_index.html">
    Introduction to Scene Understanding
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/scene-understanding/feature-extraction-resnet/_index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/feature-extraction-resnet/_index.html">
    Feature Extraction via Residual Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/scene-understanding/object-detection/_index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/object-detection/_index.html">
    Object Detection
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/scene-understanding/object-detection/detection-segmentation-workshop/_index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/object-detection/detection-segmentation-workshop/_index.html">
    Object Detection and Semantic Segmentation Workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/cnn/cnn-explainers/_index.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-explainers/_index.html">
    CNN Explainers
   </a>
  </li>
@@ -314,22 +317,22 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/rnn/introduction/_index.html">
+  <a class="reference internal" href="../../../lectures/rnn/introduction/_index.html">
    Introduction to Recurrent Neural Networks (RNN)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/rnn/simple-rnn/_index.html">
+  <a class="reference internal" href="../../../lectures/rnn/simple-rnn/_index.html">
    Simple RNN
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/rnn/simple-rnn-workshop/_index.html">
+  <a class="reference internal" href="../../../lectures/rnn/simple-rnn-workshop/_index.html">
    Simple RNN Workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/rnn/lstm/_index.html">
+  <a class="reference internal" href="../../../lectures/rnn/lstm/_index.html">
    The Long Short-Term Memory (LSTM) Cell Architecture
   </a>
  </li>
@@ -341,22 +344,22 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/nlp/nlp-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/nlp-intro/_index.html">
    Introduction to NLP
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/nlp/word2vec/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/word2vec/_index.html">
    Word2Vec Embeddings
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/nlp/rnn-language-models/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/rnn-language-models/_index.html">
    RNN Language Models
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/nlp/nmt/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/nmt/_index.html">
    Neural Machine Translation
   </a>
  </li>
@@ -368,17 +371,17 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/unsupervised/k-means/_index.html">
+  <a class="reference internal" href="../../../lectures/unsupervised/k-means/_index.html">
    K-means Clustering
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/density-estimation/knn/_index.html">
+  <a class="reference internal" href="../../../lectures/density-estimation/knn/_index.html">
    k-Nearest Neighbors (kNN) Classification
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/density-estimation/knn-workshop/_index.html">
+  <a class="reference internal" href="../../../lectures/density-estimation/knn-workshop/_index.html">
    kNN Workshop
   </a>
  </li>
@@ -390,7 +393,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/pca/_index.html">
+  <a class="reference internal" href="../../../lectures/pca/_index.html">
    Principal Component Analysis (PCA)
   </a>
  </li>
@@ -402,7 +405,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../lectures/ml-math/_index.html">
+  <a class="reference internal" href="../../../lectures/ml-math/_index.html">
    Math for ML
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -412,17 +415,17 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/ml-math/probability/_index.html">
+    <a class="reference internal" href="../../../lectures/ml-math/probability/_index.html">
      Probability Basics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/linear-algebra/_index.html">
+    <a class="reference internal" href="../../../lectures/linear-algebra/_index.html">
      Linear Algebra for Machine Learning
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../lectures/ml-math/calculus/_index.html">
+    <a class="reference internal" href="../../../lectures/ml-math/calculus/_index.html">
      Calculus
     </a>
    </li>
@@ -436,7 +439,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/python/_index.html">
+  <a class="reference internal" href="../../../lectures/python/_index.html">
    Learn Python
   </a>
  </li>
@@ -448,8 +451,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="probability-assignment-2/probability-assignment-2.html">
+  <a class="reference internal" href="../probability-assignment-2/probability-assignment-2.html">
    Probability Assigmment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../mle/mle_exponential_linear_regression.html">
+   Maximum Likelihood Parameter Estimation
   </a>
  </li>
 </ul>
@@ -493,7 +501,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/aiml-common/assignments/learning-problem-assignment.md"><button type="button"
+        <a class="dropdown-buttons" href="../../../../_sources/aiml-common/assignments/probability/probability-assignment-1/_index.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -513,7 +521,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/assignments/learning-problem-assignment.html&body=Your%20issue%20content%20here."><button
+            href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/assignments/probability/probability-assignment-1/_index.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -540,38 +548,23 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#github-10-points">
-   Github (10 points)
+  <a class="reference internal nav-link" href="#exercise-1-2-x-12-5-points">
+   Exercise 1 (2 x 12.5 points)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#run-the-curve-fitting-notebook-10-points">
-   Run the curve fitting notebook (10 points)
+  <a class="reference internal nav-link" href="#exercise-2-2-x-12-5-points">
+   Exercise 2 (2 x 12.5 points)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#loss-function-15-points">
-   Loss function (15 points)
+  <a class="reference internal nav-link" href="#exercise-3-2-x-12-5-points">
+   Exercise 3 (2 x 12.5 points)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-complexity-15-points">
-   Model complexity (15 points)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parameter-table-20-points">
-   Parameter Table (20 points)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#regularization-20-points">
-   Regularization (20 points)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Github (10 points)
+  <a class="reference internal nav-link" href="#exercise-4-25-points">
+   Exercise 4 (25 points)
   </a>
  </li>
 </ul>
@@ -584,7 +577,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>The learning problem - assignment</h1>
+                <h1>Probability Theory - Assignment A</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -595,38 +588,23 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#github-10-points">
-   Github (10 points)
+  <a class="reference internal nav-link" href="#exercise-1-2-x-12-5-points">
+   Exercise 1 (2 x 12.5 points)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#run-the-curve-fitting-notebook-10-points">
-   Run the curve fitting notebook (10 points)
+  <a class="reference internal nav-link" href="#exercise-2-2-x-12-5-points">
+   Exercise 2 (2 x 12.5 points)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#loss-function-15-points">
-   Loss function (15 points)
+  <a class="reference internal nav-link" href="#exercise-3-2-x-12-5-points">
+   Exercise 3 (2 x 12.5 points)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-complexity-15-points">
-   Model complexity (15 points)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parameter-table-20-points">
-   Parameter Table (20 points)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#regularization-20-points">
-   Regularization (20 points)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Github (10 points)
+  <a class="reference internal nav-link" href="#exercise-4-25-points">
+   Exercise 4 (25 points)
   </a>
  </li>
 </ul>
@@ -638,37 +616,35 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="the-learning-problem-assignment">
-<h1>The learning problem - assignment<a class="headerlink" href="#the-learning-problem-assignment" title="Permalink to this headline">¶</a></h1>
-<p>All the questions below refer to the the cells of the notebook numbered 1.0 and 1.1 (aka not 1.26).</p>
-<iframe src="https://nbviewer.jupyter.org/github/pantelis-classes/PRML/blob/master/notebooks/ch01_Introduction.ipynb" width="900" height="1200"></iframe>
-<div class="section" id="github-10-points">
-<h2>Github (10 points)<a class="headerlink" href="#github-10-points" title="Permalink to this headline">¶</a></h2>
-<p>Clone <a class="reference external" href="https://github.com/pantelis-classes/PRML">the repo</a> in your own Github account. Make the Github repo private. Locate the notebook shown above.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="probability-theory-assignment-a">
+<h1>Probability Theory - Assignment A<a class="headerlink" href="#probability-theory-assignment-a" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exercise-1-2-x-12-5-points">
+<h2>Exercise 1 (2 x 12.5 points)<a class="headerlink" href="#exercise-1-2-x-12-5-points" title="Permalink to this headline">¶</a></h2>
+<p>A data scientist develops a model of the mortality probability distribution function</p>
+<div class="math notranslate nohighlight">
+\[p(t) = 3 \times 10^{-9} t^2(100-t)^2,  0 \le t \le 100 ~\text{years}\]</div>
+<p><span class="math notranslate nohighlight">\(p(t)\)</span> is 0.0 outside the above range of <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>a. What is the probability that a person will die between 60 and 70.</p>
+<p>b. What is the probability that a person will die between 60 and 70, given that was alive at 60.</p>
 </div>
-<div class="section" id="run-the-curve-fitting-notebook-10-points">
-<h2>Run the curve fitting notebook (10 points)<a class="headerlink" href="#run-the-curve-fitting-notebook-10-points" title="Permalink to this headline">¶</a></h2>
-<p>For the notebook embedded in , load it in your Colab account and ensure it runs with no errors.</p>
+<div class="section" id="exercise-2-2-x-12-5-points">
+<h2>Exercise 2 (2 x 12.5 points)<a class="headerlink" href="#exercise-2-2-x-12-5-points" title="Permalink to this headline">¶</a></h2>
+<p><img alt="probabilistic-switches" src="../../../../_images/probabilistic-switches.png" /></p>
+<p>Three switches connected in parallel operate independently. Each switch remains closed with probability <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>a. Find the probability of receiving an input signal at the output.</p>
+<p>b. Find the probability that switch <span class="math notranslate nohighlight">\(S_i\)</span> is open given that an input signal is received at the output.</p>
 </div>
-<div class="section" id="loss-function-15-points">
-<h2>Loss function (15 points)<a class="headerlink" href="#loss-function-15-points" title="Permalink to this headline">¶</a></h2>
-<p>Add a new text cell and explain why the loss function is called Root Mean Squared Error (RMSE) and what the square root offers, if anything, to finding a better solution.</p>
+<div class="section" id="exercise-3-2-x-12-5-points">
+<h2>Exercise 3 (2 x 12.5 points)<a class="headerlink" href="#exercise-3-2-x-12-5-points" title="Permalink to this headline">¶</a></h2>
+<p>Make yourself familiar with the <a class="reference external" href="https://en.wikipedia.org/wiki/Multinomial_distribution#:~:text=In%20probability%20theory%2C%20the%20multinomial,sided%20die%20rolled%20n%20times.">multinomial distribution</a></p>
+<p>a. Each trial involves throwing a die with 10 faces/sides. All faces are equally probable aka the die is not biased. Calculate the probability of the counts of outcome “2” if we performed <span class="math notranslate nohighlight">\(n=1000\)</span> trials.</p>
+<p>b. Simulate n independent trials of the multinoulli (categorical distribution) compliant to the specification of (a).  Plot the probability in (a) as a function of n independent trials (n=10-1000).  Write your conclusions with respect to the behavior of the estimated probability as <span class="math notranslate nohighlight">\(n\)</span> increases.</p>
+<p>NOTE: Submit this exercise in a colab notebook with permissions set to the professor <em>and</em> grader to be able to view.</p>
 </div>
-<div class="section" id="model-complexity-15-points">
-<h2>Model complexity (15 points)<a class="headerlink" href="#model-complexity-15-points" title="Permalink to this headline">¶</a></h2>
-<p>Add a text cell after the corresponding figure explaining the behavior of the test error for M=9 vs M=3.</p>
-</div>
-<div class="section" id="parameter-table-20-points">
-<h2>Parameter Table (20 points)<a class="headerlink" href="#parameter-table-20-points" title="Permalink to this headline">¶</a></h2>
-<p>Extract the weights <span class="math notranslate nohighlight">\(w_i\)</span> (parameters) of the model for M=1, 3, 6, 9 and tabulate them into corresponding columns. What can you observe with respect to their squared norm <span class="math notranslate nohighlight">\(|\mathbf w|\)</span> ?</p>
-</div>
-<div class="section" id="regularization-20-points">
-<h2>Regularization (20 points)<a class="headerlink" href="#regularization-20-points" title="Permalink to this headline">¶</a></h2>
-<p>Read the Linear Regression notes in the course site and add a text paragraph after the regularization cell explaining the output.  Create a plot of the RMSE vs model complexity with regularization.</p>
-</div>
-<div class="section" id="id1">
-<h2>Github (10 points)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>Ensure that you save the notebook <strong>with</strong> the results / plots and commit the notebook to your Github account.  Submit (a) the URL of the Github hosted notebook and (b) the URL of the Colab histed URL in the corresponding Assignment in Canvas.</p>
+<div class="section" id="exercise-4-25-points">
+<h2>Exercise 4 (25 points)<a class="headerlink" href="#exercise-4-25-points" title="Permalink to this headline">¶</a></h2>
+<p>Replicate the Figure 1 plots of <a class="reference external" href="http://hosting.astro.cornell.edu/~cordes/A6523/GeneratingCorrelatedRandomVariables.pdf">this</a> writeup.</p>
+<p>NOTE: Submit this exercise in a colab notebook with permissions set to the professor <em>and</em>  grader to be able to view.</p>
 </div>
 </div>
 
@@ -685,7 +661,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./aiml-common/assignments"
+            path: "./aiml-common/assignments/probability/probability-assignment-1"
         },
         predefinedOutput: true
     }
@@ -715,7 +691,7 @@
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

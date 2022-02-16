@@ -39,10 +39,13 @@
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/togglebutton.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
     <script src="../../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -448,8 +451,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability-assignment-2/probability-assignment-2.html">
+  <a class="reference internal" href="../../../assignments/probability/probability-assignment-2/probability-assignment-2.html">
    Probability Assigmment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../assignments/mle/mle_exponential_linear_regression.html">
+   Maximum Likelihood Parameter Estimation
   </a>
  </li>
 </ul>
@@ -617,15 +625,6 @@
 <div class="math notranslate nohighlight">
 \[A = U \Sigma V^†\]</div>
 <p>where  <span class="math notranslate nohighlight">\(\mathbf{U}\)</span> is a <span class="math notranslate nohighlight">\(m \times m\)</span> real unitary matrix, <span class="math notranslate nohighlight">\(\mathbf{\Sigma}\)</span> is an <span class="math notranslate nohighlight">\(m \times n\)</span> rectangular diagonal matrix with non-negative real numbers on the diagonal, and <span class="math notranslate nohighlight">\(\mathbf{V}\)</span>  is a <span class="math notranslate nohighlight">\(n \times n\)</span> real unitary matrix.</p>
-<p>Remember that a unitary matrix <span class="math notranslate nohighlight">\(U\)</span> is a matrix that its conjugate transpose <span class="math notranslate nohighlight">\(U^†\)</span> is also its inverse - its the complex analog of the orthogonal matrix and we have by definition <span class="math notranslate nohighlight">\(UU^†=I\)</span>.</p>
-<p>The columns of <span class="math notranslate nohighlight">\(U\)</span> are eigenvectors of <span class="math notranslate nohighlight">\(AA^T\)</span>, and the columns of <span class="math notranslate nohighlight">\(V\)</span> are eigenvectors of <span class="math notranslate nohighlight">\(A^TA\)</span>. The <span class="math notranslate nohighlight">\(r\)</span> singular values on the diagonal of <span class="math notranslate nohighlight">\(\Sigma\)</span> are the square roots of the nonzero eigenvalues of both <span class="math notranslate nohighlight">\(AA^T\)</span> and <span class="math notranslate nohighlight">\(A^TA\)</span>.</p>
-<p>It is interesting to attribute the columns of these matrices with the four fundamental subspaces:</p>
-<ol class="simple">
-<li><p>The column space of <span class="math notranslate nohighlight">\(A\)</span> is spanned by the first <span class="math notranslate nohighlight">\(r\)</span> columns of <span class="math notranslate nohighlight">\(U\)</span>.</p></li>
-<li><p>The left nullspace of <span class="math notranslate nohighlight">\(A\)</span> are the last <span class="math notranslate nohighlight">\(m-r\)</span> columns of <span class="math notranslate nohighlight">\(U\)</span>.</p></li>
-<li><p>The row space of <span class="math notranslate nohighlight">\(A\)</span> are the first <span class="math notranslate nohighlight">\(r\)</span> columns of <span class="math notranslate nohighlight">\(V\)</span>.</p></li>
-<li><p>The nullspace of <span class="math notranslate nohighlight">\(A\)</span> are the last <span class="math notranslate nohighlight">\(n-r\)</span> columns of V.</p></li>
-</ol>
 <p>We can write the SVD as,</p>
 <div class="math notranslate nohighlight">
 \[A = U \sqrt{\Sigma} \sqrt{\Sigma} V^†\]</div>

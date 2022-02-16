@@ -83,7 +83,10 @@ Lets us consider an instructive example of applying the Bayesian approach in an 
 *Bayesian Linear Regression example - please replace $t$ with $y$ to match earlier notation in these notes*
  
 The Bayesian update of the posterior can be intuitively understood using a graphical example of our model of the form:
-$$g(x,\mathbf{w})= w_0 + w_1 x$$ (our hypothesis). The reason why we pick this example is illustrative as the model has just two parameters and is amendable to visualization. The update needs a prior _distribution_ over $\mathbf w$ and a likelihood function. As prior we assume a spherical Gaussian 
+
+$$g(x,\mathbf{w})= w_0 + w_1 x$$
+
+The reason why we pick this example is illustrative as the model has just two parameters and is amendable to visualization. The update needs a prior _distribution_ over $\mathbf w$ and a likelihood function. As prior we assume a spherical Gaussian 
 
 $$p(\mathbf w | \alpha) = \mathcal N(\mathbf w | \mathbf 0, \alpha^{-1} \mathbf I)$$
 

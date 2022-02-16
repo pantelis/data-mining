@@ -39,10 +39,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -446,8 +449,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../assignments/probability-assignment-2/probability-assignment-2.html">
+  <a class="reference internal" href="../../assignments/probability/probability-assignment-2/probability-assignment-2.html">
    Probability Assigmment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../assignments/mle/mle_exponential_linear_regression.html">
+   Maximum Likelihood Parameter Estimation
   </a>
  </li>
 </ul>
@@ -589,11 +597,6 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="continual-learning-cl">
 <h1>Continual Learning (CL)<a class="headerlink" href="#continual-learning-cl" title="Permalink to this headline">¶</a></h1>
 <p>In this project you will implement continual learning and you are <em>free to select a method</em> from any of these three non-exclusive categories, <a class="reference external" href="https://arxiv.org/abs/1802.07569">as described in detail</a>. This is a very active research area and you will find the starting repo in the <a class="reference external" href="https://sites.google.com/view/clvision2020/challenge?authuser=0">CVPR-2020 competition page</a>. Please pay attention to the paragraph “Challenge Repository” that is replicated below:</p>
-<p>The official starting repository for the CVPR-2020 CLVision challenge con <em>Continual Learning for Computer Vision</em> can be found <a class="reference external" href="https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fvlomonaco%2Fcvpr_clvision_challenge&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEEXzPuBUcsp0QyxsVfB97SGD2r2w">here</a> and it contains:</p>
-<p>Two scripts to setup the environment and generate the zip submission file.
-A complete working example to: 1) load the data and setting up the continual learning protocols; 2) collect all the metadata during training 3) evaluate the trained model on the valid and test sets.
-Starting Dockerfile to simplify the final submission at the end of the first phase.
-</p>
 <div class="section" id="datasets-and-tasks">
 <h2>Datasets and Tasks<a class="headerlink" href="#datasets-and-tasks" title="Permalink to this headline">¶</a></h2>
 <p><img alt="core50" src="../../../_images/core50.gif" /></p>

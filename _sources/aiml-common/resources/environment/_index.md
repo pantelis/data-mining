@@ -62,7 +62,7 @@ This creates a fresh Python 3.8 environment called `py38` (you can change the na
 
 This installs the latest version of TensorFlow available for Anaconda (which is usually *not* the latest TensorFlow version) in the `py37` environment (fetching it from the `conda-forge` repository). 
 
-{{<hint info>}}
+```{admonition}
 Next, you can optionally install Jupyter extensions. These are useful to have nice tables of contents in the notebooks, but they are not required.
 
 ```
@@ -86,7 +86,7 @@ This should open up your browser, and you should see Jupyter's tree view, with t
 
 Note: you can also visit [http://localhost:8888/nbextensions](http://localhost:8888/nbextensions) to activate and configure Jupyter extensions.
 
-{{</hint>}}
+```
 ## Git / Github
 Git is the defacto standard when it comes to code version control. Learning basic git commands takes less than half an hour. However, to install git and understand the principle behind git, please go over Chapters 1 and 2 of the [ProGit book](https://git-scm.com/book/en/v2).
 

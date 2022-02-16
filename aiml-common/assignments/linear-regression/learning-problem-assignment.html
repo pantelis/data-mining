@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Neural Networks Assignment - Answers &#8212; Data Mining</title>
+    <title>The learning problem - assignment &#8212; Data Mining</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet">
   <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -39,10 +39,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -54,7 +57,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/assignments/neural-networks/answers.html" />
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/assignments/linear-regression/learning-problem-assignment.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -448,8 +451,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../probability-assignment-2/probability-assignment-2.html">
+  <a class="reference internal" href="../probability/probability-assignment-2/probability-assignment-2.html">
    Probability Assigmment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../mle/mle_exponential_linear_regression.html">
+   Maximum Likelihood Parameter Estimation
   </a>
  </li>
 </ul>
@@ -493,7 +501,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/aiml-common/assignments/neural-networks/answers.md"><button type="button"
+        <a class="dropdown-buttons" href="../../../_sources/aiml-common/assignments/linear-regression/learning-problem-assignment.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -513,7 +521,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/assignments/neural-networks/answers.html&body=Your%20issue%20content%20here."><button
+            href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/assignments/linear-regression/learning-problem-assignment.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -540,18 +548,38 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#backpropagation-20-points">
-   Backpropagation (20 points)
+  <a class="reference internal nav-link" href="#github-10-points">
+   Github (10 points)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tensorflow-playground-60-points-10-points-per-question">
-   Tensorflow Playground (60 points. 10 points per question)
+  <a class="reference internal nav-link" href="#run-the-curve-fitting-notebook-10-points">
+   Run the curve fitting notebook (10 points)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tensorflow-api-20-points">
-   Tensorflow API (20 points)
+  <a class="reference internal nav-link" href="#loss-function-15-points">
+   Loss function (15 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-complexity-15-points">
+   Model complexity (15 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parameter-table-20-points">
+   Parameter Table (20 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regularization-20-points">
+   Regularization (20 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Github (10 points)
   </a>
  </li>
 </ul>
@@ -564,7 +592,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Neural Networks Assignment - Answers</h1>
+                <h1>The learning problem - assignment</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -575,18 +603,38 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#backpropagation-20-points">
-   Backpropagation (20 points)
+  <a class="reference internal nav-link" href="#github-10-points">
+   Github (10 points)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tensorflow-playground-60-points-10-points-per-question">
-   Tensorflow Playground (60 points. 10 points per question)
+  <a class="reference internal nav-link" href="#run-the-curve-fitting-notebook-10-points">
+   Run the curve fitting notebook (10 points)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tensorflow-api-20-points">
-   Tensorflow API (20 points)
+  <a class="reference internal nav-link" href="#loss-function-15-points">
+   Loss function (15 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-complexity-15-points">
+   Model complexity (15 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parameter-table-20-points">
+   Parameter Table (20 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regularization-20-points">
+   Regularization (20 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Github (10 points)
   </a>
  </li>
 </ul>
@@ -598,56 +646,37 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="neural-networks-assignment-answers">
-<h1>Neural Networks Assignment - Answers<a class="headerlink" href="#neural-networks-assignment-answers" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="backpropagation-20-points">
-<h2>Backpropagation (20 points)<a class="headerlink" href="#backpropagation-20-points" title="Permalink to this headline">¶</a></h2>
-<!-- Assuming that $x \in \R^n$, backpropagate the following network to find  -->
-<div class="math notranslate nohighlight">
-\[\frac{\partial L}{\partial \mathbf w}\]</div>
-<p><img alt="" src="../../../_images/neuron-ce.png" /></p>
-<p><strong>Answer</strong></p>
-<p><img alt="" src="../../../_images/single-neuron-ce-bp-solution.png" /></p>
-<p>Please accept as correct any very close to this one derivation. Aka dont penalize if the final expression is wrong but use your judgement to award points.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="the-learning-problem-assignment">
+<h1>The learning problem - assignment<a class="headerlink" href="#the-learning-problem-assignment" title="Permalink to this headline">¶</a></h1>
+<p>All the questions below refer to the the cells of the notebook numbered 1.0 and 1.1 (aka not 1.26).</p>
+<iframe src="https://nbviewer.jupyter.org/github/pantelis-classes/PRML/blob/master/notebooks/ch01_Introduction.ipynb" width="900" height="1200"></iframe>
+<div class="section" id="github-10-points">
+<h2>Github (10 points)<a class="headerlink" href="#github-10-points" title="Permalink to this headline">¶</a></h2>
+<p>Clone <a class="reference external" href="https://github.com/pantelis-classes/PRML">the repo</a> in your own Github account. Make the Github repo private. Locate the notebook shown above.</p>
 </div>
-<div class="section" id="tensorflow-playground-60-points-10-points-per-question">
-<h2>Tensorflow Playground (60 points. 10 points per question)<a class="headerlink" href="#tensorflow-playground-60-points-10-points-per-question" title="Permalink to this headline">¶</a></h2>
-<p>The TensorFlow Playground is a handy neural network simulator built by the TensorFlow team. In this exercise, you will train several binary classifiers in just a few clicks, and tweak the model’s architecture and its hyperparameters to gain some intuition on how neural networks work and what their hyperparameters do.</p>
-<ol class="simple">
-<li><p>Try training the default neural network by clicking the Run button (top left). Notice how it quickly finds a good solution for the classification task. The neurons in the first hidden layer have learned simple patterns, while the neurons in the second hidden layer have learned to combine the simple patterns of the first hidden layer into more complex patterns. Why that is?</p></li>
-</ol>
-<p><strong>Answer</strong>: By definition the second layer added parameters in the hypothesis set and therefore the network is able to create more complex representations.</p>
-<ol class="simple">
-<li><p>Activation functions. Try replacing the tanh activation function with a ReLU activation function, and train the network again. Does it find the solution faster or slower? Why is that?</p></li>
-</ol>
-<p><strong>Answer</strong>:  It finds a solution even faster, but this time the boundaries are linear. This is due to the shape of the ReLU function.</p>
-<ol class="simple">
-<li><p>The risk of local minima. Modify the network architecture to have just one hidden layer with three neurons. Train it multiple times (to reset the network weights, click the Reset button next to the Play button). Why the training time has a wide variability?</p></li>
-</ol>
-<p><strong>Answer</strong>:  Because the network can get stuck in local minima.</p>
-<ol class="simple">
-<li><p>Remove one neuron to keep just two. Notice that the neural network is now incapable of finding a good solution - why that is?</p></li>
-</ol>
-<p><strong>Answer</strong>: The model has too few parameters and systematically underfits the training set.</p>
-<ol class="simple">
-<li><p>Set the number of neurons to eight, and train the network several times. Has the training time (time to convergence) improved? Why that is?</p></li>
-</ol>
-<p><strong>Answer</strong>: Large neural networks almost never get stuck in local minima, and even when they do these local optima are almost as good as the global optimum. However, they can still get stuck on long plateaus for a long time.</p>
-<ol class="simple">
-<li><p>Select the spiral dataset (the bottom-right dataset under “DATA”), and change the network architecture to have four hidden layers with eight neurons each. Notice that training takes much longer and often gets stuck on plateaus for long periods of time. Also notice that the neurons in the highest layers (on the right) tend to evolve faster than the neurons in the lowest layers (on the left). Can you explain how this may be related to gradient flow through the network?</p></li>
-</ol>
-<p><strong>Answer</strong>: This problem, called the “vanishing gradients” problem, can be alleviated with better weight initialization and other techniques such as better better optimizers.</p>
+<div class="section" id="run-the-curve-fitting-notebook-10-points">
+<h2>Run the curve fitting notebook (10 points)<a class="headerlink" href="#run-the-curve-fitting-notebook-10-points" title="Permalink to this headline">¶</a></h2>
+<p>For the notebook embedded in , load it in your Colab account and ensure it runs with no errors.</p>
 </div>
-<div class="section" id="tensorflow-api-20-points">
-<h2>Tensorflow API (20 points)<a class="headerlink" href="#tensorflow-api-20-points" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
-<li><p>(5 points) Submit your notebook URL that allows the notebook <a class="reference external" href="https://pantelis.github.io/cs301/docs/common/lectures/cnn/cnn-example-architectures/cnn-classification-workshop/">here</a> to be executed.</p></li>
-</ol>
-<p><strong>Answer</strong>: You should check that the notebook runs.</p>
-<ol class="simple">
-<li><p>(15 points) Start reducing the number of cats in the dataset and plot the accuracy of the predicting the cat class as the population of cats becomes 90%, 70%, 50%, 30%, 10% of the original. For each population size present the hyperparameter optimized result using <a class="reference external" href="https://autokeras.com">AutoKeras</a>. Explain your findings.</p></li>
-</ol>
-<p><strong>Answer</strong>: See pfd file of the notebook by a student that explains well what is going on.</p>
+<div class="section" id="loss-function-15-points">
+<h2>Loss function (15 points)<a class="headerlink" href="#loss-function-15-points" title="Permalink to this headline">¶</a></h2>
+<p>Add a new text cell and explain why the loss function is called Root Mean Squared Error (RMSE) and what the square root offers, if anything, to finding a better solution.</p>
+</div>
+<div class="section" id="model-complexity-15-points">
+<h2>Model complexity (15 points)<a class="headerlink" href="#model-complexity-15-points" title="Permalink to this headline">¶</a></h2>
+<p>Add a text cell after the corresponding figure explaining the behavior of the test error for M=9 vs M=3.</p>
+</div>
+<div class="section" id="parameter-table-20-points">
+<h2>Parameter Table (20 points)<a class="headerlink" href="#parameter-table-20-points" title="Permalink to this headline">¶</a></h2>
+<p>Extract the weights <span class="math notranslate nohighlight">\(w_i\)</span> (parameters) of the model for M=1, 3, 6, 9 and tabulate them into corresponding columns. What can you observe with respect to their squared norm <span class="math notranslate nohighlight">\(|\mathbf w|\)</span> ?</p>
+</div>
+<div class="section" id="regularization-20-points">
+<h2>Regularization (20 points)<a class="headerlink" href="#regularization-20-points" title="Permalink to this headline">¶</a></h2>
+<p>Read the Linear Regression notes in the course site and add a text paragraph after the regularization cell explaining the output.  Create a plot of the RMSE vs model complexity with regularization.</p>
+</div>
+<div class="section" id="id1">
+<h2>Github (10 points)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Ensure that you save the notebook <strong>with</strong> the results / plots and commit the notebook to your Github account.  Submit (a) the URL of the Github hosted notebook and (b) the URL of the Colab histed URL in the corresponding Assignment in Canvas.</p>
 </div>
 </div>
 
@@ -664,7 +693,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./aiml-common/assignments/neural-networks"
+            path: "./aiml-common/assignments/linear-regression"
         },
         predefinedOutput: true
     }

@@ -39,10 +39,13 @@
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/togglebutton.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
     <script src="../../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -448,8 +451,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability-assignment-2/probability-assignment-2.html">
+  <a class="reference internal" href="../../../assignments/probability/probability-assignment-2/probability-assignment-2.html">
    Probability Assigmment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../assignments/mle/mle_exponential_linear_regression.html">
+   Maximum Likelihood Parameter Estimation
   </a>
  </li>
 </ul>
@@ -600,8 +608,6 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="the-whitening-operator">
 <h1>The whitening operator<a class="headerlink" href="#the-whitening-operator" title="Permalink to this headline">¶</a></h1>
-<p>Some of material in this section have been borrowed from <a class="reference external" href="https://cs231n.github.io/neural-networks-2/">CS231n</a>
-</p>
 <p>Designing and training a network using SGD and backprop requires making seemingly arbitrary choices such as the types and number of neurons, layers, learning rates, training and test datasets etc. These choices can be critical yet there is no full proof recipe for deciding them because they are naturally problem and data dependent. However there are heuristics and some underlying theory that can help a practitioner to make better choices.</p>
 <p>Perhaps one of the most important methods for accelerating training as described in <a class="reference external" href="http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf">this paper</a> is the <em>whitening</em> operation. We describe the operation first and then couple it to the training process in a dedicated section.</p>
 <p>This operation involves three main steps as described next.</p>

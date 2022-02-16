@@ -89,7 +89,7 @@ Mind the important difference between learning a representation that from the co
 
 _Contextual representations_ are addressed in a separate section. 
 
-{{</hint>}}
+```
 
 ## References
 

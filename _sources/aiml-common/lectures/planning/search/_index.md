@@ -32,7 +32,7 @@ This [demo](https://qiao.github.io/PathFinding.js/visual/) is instructive of the
 <iframe src="https://qiao.github.io/PathFinding.js/visual/" width="900" height="1200"></iframe>
 
 
-{{< hint info >}}
+```{admonition}
 Although the treatment above is self-contained, if you are missing some algorithmic background, afraid not. There is a free and [excellent book](http://algorithmics.lsi.upc.edu/docs/Dasgupta-Papadimitriou-Vazirani.pdf) to help you with the background behind this chapter. In that book Chapters 3 and 4 are the relevant ones.
 
-{{< /hint >}}
+```

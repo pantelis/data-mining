@@ -39,10 +39,13 @@
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/togglebutton.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
     <script src="../../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -450,8 +453,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability-assignment-2/probability-assignment-2.html">
+  <a class="reference internal" href="../../../assignments/probability/probability-assignment-2/probability-assignment-2.html">
    Probability Assigmment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../assignments/mle/mle_exponential_linear_regression.html">
+   Maximum Likelihood Parameter Estimation
   </a>
  </li>
 </ul>
@@ -551,11 +559,6 @@
    Features of Word2Vec embeddings
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
 </ul>
 
             </nav>
@@ -584,11 +587,6 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#features-of-word2vec-embeddings">
    Features of Word2Vec embeddings
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
   </a>
  </li>
 </ul>
@@ -621,7 +619,7 @@
 </div>
 <div class="section" id="features-of-word2vec-embeddings">
 <h2>Features of Word2Vec embeddings<a class="headerlink" href="#features-of-word2vec-embeddings" title="Permalink to this headline">¶</a></h2>
-<p>In 2012, Thomas Mikolov, an <em>intern</em> at Microsoft, <a class="reference external" href="https://arxiv.org/abs/1310.4546">found a way</a><a class="footnote-reference brackets" href="#id3" id="id1">2</a> to encode the meaning of words in a modest number of vector dimensions <span class="math notranslate nohighlight">\(d\)</span>. Mikolov trained a neural network to predict word occurrences near each target word. In 2013, once at Google, Mikolov and his teammates released the software for creating these word vectors and called it word2vec.</p>
+<p>In 2012, Thomas Mikolov, an <em>intern</em> at Microsoft, <a class="reference external" href="https://arxiv.org/abs/1310.4546">found a way</a>[^2] to encode the meaning of words in a modest number of vector dimensions <span class="math notranslate nohighlight">\(d\)</span>. Mikolov trained a neural network to predict word occurrences near each target word. In 2013, once at Google, Mikolov and his teammates released the software for creating these word vectors and called it word2vec.</p>
 <p><img alt="banking-vector" src="../../../../_images/banking-vector.png" />
 <em>word2vec generated embedding for the word <code class="docutils literal notranslate"><span class="pre">banking</span></code> in d=8 dimensions</em></p>
 <p>Here is a <a class="reference external" href="http://projector.tensorflow.org/">visualization</a> of these embeddings in the re-projected 3D space (from <span class="math notranslate nohighlight">\(d\)</span> to 3). Try searching for the word “truck” for the visualizer to show the <em>distorted</em> neighbors of this work - distorted because of the 3D re-projection. In another example, word2vec embeddings of US cities projected in the 2D space result in poor topological but excellent <em>semantic</em> mapping which is exactly what we are after.</p>
@@ -630,7 +628,7 @@
 <p>Another classic example that shows the power of word2vec representations to encode analogies, is  classical king + woman − man ≈ queen example shown below.</p>
 <p><img alt="queen-example" src="../../../../_images/queen-example.png" />
 <em>Classic queen example where <code class="docutils literal notranslate"><span class="pre">king</span> <span class="pre">−</span> <span class="pre">man</span> <span class="pre">≈</span> <span class="pre">queen</span> <span class="pre">−</span> <span class="pre">woman</span></code>, and we can visually see that in the red arrows. There are 4 analogies one can construct, based on the parallel red arrows and their direction. This is slightly idealized; the vectors need not be so similar to be the most similar from all word vectors. The similar direction of the red arrows indicates similar relational meaning.</em></p>
-<p>So what is the more formal description of the word2vec algorithm? We will focus on one of the two computational algorithms<a class="footnote-reference brackets" href="#id4" id="id2">1</a> - the skip-gram method and use the following diagrams as examples to explain how it works.</p>
+<p>So what is the more formal description of the word2vec algorithm? We will focus on one of the two computational algorithms[^1] - the skip-gram method and use the following diagrams as examples to explain how it works.</p>
 <p><img alt="word2vec-idea" src="../../../../_images/word2vec-idea.png" />
 <img alt="word2vec-idea2" src="../../../../_images/word2vec-idea2.png" />
 <em>In the skip-gram we predict the <strong>context given the center word</strong>.We need to calculate the probability <span class="math notranslate nohighlight">\(p(w_{t+j} | w_t)\)</span>.</em></p>
@@ -660,21 +658,19 @@
 <!-- For a more hands on treatment on word2vec see the blog posts by Chris McCormick [cite](http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/). -->
 <p>Mind the important difference between learning a representation that from the context across the corpus and the <em>application</em> of that representation. Word2Vec are applied <em>context-free</em>.  After training, a single <span class="math notranslate nohighlight">\(\mathbf W\)</span> matrix will be used. This means that the word ‘bank’ will be encoded using the same dense vector  irrespectively when it is located close to ‘river’ or ‘food’ or ‘deposit’.</p>
 <p><em>Contextual representations</em> are addressed in a separate section.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="c1">## References</span>
+
+<span class="mf">1.</span> <span class="p">[</span><span class="n">Word2Vec</span> <span class="n">Parameter</span> <span class="n">Learning</span> <span class="n">Explained</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">arxiv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="nb">abs</span><span class="o">/</span><span class="mf">1411.2738</span><span class="p">)</span>
+
+
+
+<span class="p">[</span><span class="o">^</span><span class="mi">1</span><span class="p">]:</span> <span class="n">The</span> <span class="n">other</span> <span class="n">method</span> <span class="ow">is</span> <span class="n">called</span> <span class="n">Continuous</span> <span class="n">Bag</span> <span class="n">of</span> <span class="n">Words</span> <span class="p">(</span><span class="n">CBOW</span><span class="p">)</span> <span class="ow">and</span> <span class="n">its</span> <span class="n">the</span> <span class="n">reverse</span> <span class="n">of</span> <span class="n">the</span> <span class="n">skip</span><span class="o">-</span><span class="n">gram</span> <span class="n">method</span><span class="p">:</span> <span class="n">it</span> <span class="n">predicts</span> <span class="n">the</span> <span class="n">center</span> <span class="n">word</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">words</span> <span class="n">around</span> <span class="n">it</span><span class="o">.</span> <span class="n">Skip</span><span class="o">-</span><span class="n">gram</span> <span class="n">works</span> <span class="n">well</span> <span class="k">with</span> <span class="n">small</span> <span class="n">corpora</span> <span class="ow">and</span> <span class="n">rare</span> <span class="n">terms</span> <span class="k">while</span> <span class="n">CBOW</span> <span class="n">shows</span> <span class="n">higher</span> <span class="n">accuracies</span> <span class="k">for</span> <span class="n">frequent</span> <span class="n">words</span> <span class="ow">and</span> <span class="ow">is</span> <span class="n">faster</span> <span class="n">to</span> <span class="n">train</span> <span class="p">[</span><span class="n">ref</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">manning</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">natural</span><span class="o">-</span><span class="n">language</span><span class="o">-</span><span class="n">processing</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">action</span><span class="p">)</span><span class="o">.</span> 
+
+<span class="p">[</span><span class="o">^</span><span class="mi">2</span><span class="p">]:</span> <span class="n">You</span> <span class="n">don</span><span class="s1">&#39;t come across papers with 10K citations very often. </span>
+
+</pre></div>
 </div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
-<li><p><a class="reference external" href="https://arxiv.org/abs/1411.2738">Word2Vec Parameter Learning Explained</a></p></li>
-</ol>
-<hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
-<dd><p>You don’t come across papers with 10K citations very often.</p>
-</dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
-<dd><p>The other method is called Continuous Bag of Words (CBOW) and its the reverse of the skip-gram method: it predicts the center word from the words around it. Skip-gram works well with small corpora and rare terms while CBOW shows higher accuracies for frequent words and is faster to train <a class="reference external" href="https://www.manning.com/books/natural-language-processing-in-action">ref</a>.</p>
-</dd>
-</dl>
 </div>
 </div>
 

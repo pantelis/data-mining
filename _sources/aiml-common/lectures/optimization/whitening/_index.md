@@ -4,9 +4,9 @@ title: The whitening operator
 
 # The whitening operator
 
-{{<hint info>}}
+```{admonition}
 Some of material in this section have been borrowed from [CS231n](https://cs231n.github.io/neural-networks-2/) 
-{{</hint>}}
+```
 
 Designing and training a network using SGD and backprop requires making seemingly arbitrary choices such as the types and number of neurons, layers, learning rates, training and test datasets etc. These choices can be critical yet there is no full proof recipe for deciding them because they are naturally problem and data dependent. However there are heuristics and some underlying theory that can help a practitioner to make better choices. 
 

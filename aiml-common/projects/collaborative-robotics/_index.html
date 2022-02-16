@@ -39,10 +39,13 @@
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -446,8 +449,13 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../assignments/probability-assignment-2/probability-assignment-2.html">
+  <a class="reference internal" href="../../assignments/probability/probability-assignment-2/probability-assignment-2.html">
    Probability Assigmment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../assignments/mle/mle_exponential_linear_regression.html">
+   Maximum Likelihood Parameter Estimation
   </a>
  </li>
 </ul>
@@ -637,8 +645,6 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="collaborative-robotics">
 <h1>Collaborative Robotics<a class="headerlink" href="#collaborative-robotics" title="Permalink to this headline">¶</a></h1>
 <p>You are a co-founder in a startup called PodGrocer, a company that deploys pods to selected host sites such as electric vehicle charging stations, mall parking lots and can also attach to existing supermarket stores. Each pod was constructed by modifying a standard shipping container and is cooled by latest technology green energy backed up by the host site power feeds.</p>
-<p>The shipping container sized pod is irrelevant for this project but its provided here as they are routinely used as building blocks for larger and sometimes movable structures.
-</p>
 <p>The system in operation is shown in the following video</p>
 <p>How the company generates revenue:</p>
 <ol class="simple">
@@ -678,10 +684,17 @@
 <div class="section" id="notes">
 <h4>Notes:<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h4>
 <p>To help plan the tasks amongst the team members please use Trello (login with your nyu account). Submit your Trello boards with your project.</p>
-<p>Note that the points are assigned per task completion and are relatively independent on the implementation complexity. Therefore start simple and make sure you submit all completed tasks rather than spending time on the ultimate path planner and miss the deadline.<br />
-</p>
-<p>Consider using AWS Robomaker for this project (ROS2 distribution).</p>
-<p>Note to all students using AWS resources provided for this project. You are <strong>entirely</strong> responsible to limit the use of p2.xlarge instances that consumes on-demand 1$/h and use CPU instances when possible. Invest in understanding docker containers so you do not suffer catastrophic failures when working in a cloud environment (the norm in practice).  You are responsible for not exceeding your budget.</p>
+<p>Note that the points are assigned per task completion and are relatively independent on the implementation complexity. Therefore start simple and make sure you submit all completed tasks rather than spending time on the ultimate path planner and miss the deadline.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+
+{{&lt;hint warning &quot;WARNING&quot;&gt;}}
+
+Consider using AWS Robomaker for this project (ROS2 distribution). 
+
+Note to all students using AWS resources provided for this project. You are **entirely** responsible to limit the use of p2.xlarge instances that consumes on-demand 1$/h and use CPU instances when possible. Invest in understanding docker containers so you do not suffer catastrophic failures when working in a cloud environment (the norm in practice).  You are responsible for not exceeding your budget.
+
+</pre></div>
+</div>
 </div>
 </div>
 </div>
