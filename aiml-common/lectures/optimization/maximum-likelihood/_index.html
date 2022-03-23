@@ -48,15 +48,14 @@
     <script src="../../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/optimization/maximum-likelihood/_index.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -188,6 +187,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../../decision-trees/_index.html">
    Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression-trees/regression_trees.html">
+   Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
@@ -663,7 +667,7 @@
 <div class="section" id="example-and-implementation">
 <h3>Example and implementation<a class="headerlink" href="#example-and-implementation" title="Permalink to this headline">¶</a></h3>
 <p>It is now instructive to go over an example to understand that even the plain-old mean squared error (MSE), the objective that is common in the regression setting, falls under the same umbrella - its the cross entropy between <span class="math notranslate nohighlight">\(\hat p_{data}\)</span> and a Gaussian model.</p>
-<p>Please follow the discussion associated with Section 5.5.1 of the Ian Goodfellow’s book or section 20.2.4 of Russell &amp; Norvig’s book and <a class="reference external" href="https://www.cs.indiana.edu/~predrag/classes/2016fallb365x/ols.pdf">these notes</a>  and consider the following figure for assistance to visualize the relationship of <span class="math notranslate nohighlight">\(p_{data}\)</span> and <span class="math notranslate nohighlight">\(p_{model}\)</span>.</p>
+<p>Please follow the discussion associated with Section 5.5.1 of the Ian Goodfellow’s book or section 20.2.4 of Russell &amp; Norvig’s book and <span class="xref myst">these notes</span>  and consider the following figure for assistance to visualize the relationship of <span class="math notranslate nohighlight">\(p_{data}\)</span> and <span class="math notranslate nohighlight">\(p_{model}\)</span>.</p>
 <p><img alt="conditional-model-gaussian" src="../../../../_images/conditional-model-gaussian.png" />
 <em>Please replace the y-axis target variable <span class="math notranslate nohighlight">\(t\)</span> with <span class="math notranslate nohighlight">\(y\)</span>. The green dashed line shows the mean of the <span class="math notranslate nohighlight">\(p_{model}\)</span> distribution.</em></p>
 <p>The following notebook goes through the MLE calculation from scratch and shows the negative log-likelihood curves for a very simple MLE problem of fitting a Gaussian <span class="math notranslate nohighlight">\(p_{model}\)</span> to an array produced by sampling an unknown underlying distribution <span class="math notranslate nohighlight">\(p_{data}\)</span>.</p>

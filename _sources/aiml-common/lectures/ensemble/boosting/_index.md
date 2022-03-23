@@ -83,7 +83,7 @@ A perhaps more illuminating example that shows the weight adjustments is shown b
 
 ![f](images/Figure14.2f.png)
 
-Note that although decision stumps were used here, the method is generic to any weak learner. 
+Note that although decision stumps were used to produce the adaboost decision boundaries above, the method is generic to any weak learner. Also note that there weights for the correctly classified data points are decreased in these figures instead of keeping them constant. Either of the two options should perform similarly. 
 
 ## Gradient Boosting
 

@@ -12,7 +12,7 @@ Following the introductory section, we have seen that backpropagation is a proce
 
 In the following we heavily borrow from [this](https://web.stanford.edu/class/cs224n/readings/gradient-notes.pdf) text. The basic building block of vectorized gradients is the *Jacobian Matrix*. In the introductory section we dealt with functions $f: \mathbb{R}^2 \to \mathbb{R}$. Suppose that we have a more complicated function $\mathbf f: \mathbb{R}^n \to \mathbb{R}^m$ that maps a vector of length $n$ to a vector of length $m$: 
 
-$$\mathbf f(\mathbf x) = [f_1(x_1, ..., x_n), f_2(x_1, ..., x_n), ..., f_m(x_1, ..., x_n)]$$. 
+$$\mathbf f(\mathbf x) = [f_1(x_1, ..., x_n), f_2(x_1, ..., x_n), ..., f_m(x_1, ..., x_n)]$$ 
 
 Then its Jacobian is:
 
@@ -40,8 +40,8 @@ _Tables of Gates and Gradients used in the backpropagation of deep neural networ
 | ![identity3](images/identity3.png) <br> $\mathbf z =  \mathbf x$                                                                                               | $\frac{\partial \mathbf z}{\partial \mathbf x} = \mathbf I$                    |
 | ![identity4](images/identity4.png) <br> $\mathbf z =  f(\mathbf x)$ element-wise                                                                               | $\frac{\partial \mathbf z}{\partial \mathbf x} = \text{Diag}[ f'(\mathbf x) ]$ |
 | ![identity5](images/identity5.png) <br> $\mathbf z = \mathbf W \mathbf x$, $\mathbf \delta =  \frac{\partial L}{\partial \mathbf z}$                           | $\frac{\partial L}{\partial \mathbf W} = \mathbf \delta^T \mathbf x^T$         |
-| ![identity6](images/identity6.png) <br> $\mathbf z = \mathbf x \mathbf W$, $\mathbf \delta =  \frac{\partial L}{\partial \mathbf z}$                           | $\frac{\partial L}{\partial \mathbf W} = \mathbf x^T \mathbf \delta$           |
-| ![identity4](images/identity7.png) <br> $\mathbf z = \mathbf W \mathbf x$, $\hat \mathbf y = \mathtt{softmax}(\mathbf z)$, $L=CE(\mathbf y , \hat \mathbf y )$ | $\frac{\partial L}{\partial \mathbf z} = \hat \mathbf y - \mathbf y$           |
+| ![identity6](images/identity6.png) <br> $\mathbf z = \mathbf x \mathbf W$, $\mathbf \delta =  \frac{\partial L}{\partial \mathbf z}$                           | $\frac{\partial L}{\partial \mathbf W} = \mathbf x^T \mathbf \delta$   |
+| ![identity7](images/identity7.png) <br> $\mathbf z = \mathbf W \mathbf x$, $\mathbf{\hat{y}} = \mathtt{softmax}(\mathbf z)$ $L=\mathtt{CE}(\mathbf y , \mathbf{\hat{y}}) $ | $\frac{\partial L}{\partial \mathbf z} = \mathbf{\hat{y}} - \mathbf y$ | |
 
 During the lecture we will go through an NN example on the whiteboard that will use these gate gradients for the estimation of the gradient of the loss with respect to its parameters using backpropagation. 
 

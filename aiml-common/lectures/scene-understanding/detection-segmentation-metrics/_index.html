@@ -48,13 +48,14 @@
     <script src="../../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/scene-understanding/detection-segmentation-metrics/_index.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -184,6 +185,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../../decision-trees/_index.html">
    Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression-trees/regression_trees.html">
+   Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
@@ -546,8 +552,23 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-the-average-precision-ap-metric">
+   What is the Average Precision (AP) metric
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-practical-example">
    A practical example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mean-ap-map">
+   Mean AP (mAP)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ar">
+   AR
   </a>
  </li>
 </ul>
@@ -571,8 +592,23 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-the-average-precision-ap-metric">
+   What is the Average Precision (AP) metric
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-practical-example">
    A practical example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mean-ap-map">
+   Mean AP (mAP)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ar">
+   AR
   </a>
  </li>
 </ul>
@@ -586,51 +622,57 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="object-detection-and-semantic-segmentation-metrics">
 <h1>Object Detection and Semantic Segmentation Metrics<a class="headerlink" href="#object-detection-and-semantic-segmentation-metrics" title="Permalink to this headline">¶</a></h1>
-<p>NOTE: The following example was copied from <a class="reference external" href="https://www.mdpi.com/2079-9292/10/3/279">here</a></p>
+<p>NOTE: The following example is based on  <a class="reference external" href="https://www.mdpi.com/2079-9292/10/3/279">here</a> and <a class="reference external" href="https://github.com/rafaelpadilla/review_object_detection_metrics">its corresponding implementation</a></p>
 <p>In this section we provide some intuition as to why we need additional metrics for detection and segmentation of objects.  As shown below such metrics are routinely used to compare various networks and approaches and manifest the progress that was made in the field over the last few years.</p>
 <p><img alt="object-detection-performance" src="../../../../_images/object-detection-performance.png" />
 <em>Detection performance</em></p>
+<p>The above figure is dated but its indicative of the relative effort required to improve performance in MS COCO which is one of the most challenging datasets. See [here] for the latest leaderboard.  You can expand each entry and you can then click on the corresponding method that is behind the result. There are also per class benchmarks if your detection problem involves only a subset of the classes of MS COCO.</p>
+<div class="section" id="what-is-the-average-precision-ap-metric">
+<h2>What is the Average Precision (AP) metric<a class="headerlink" href="#what-is-the-average-precision-ap-metric" title="Permalink to this headline">¶</a></h2>
+<p>The average precision is introduced in the next two videos. It is also calculated using a small detection example in a subsequent section.</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/FUg6c7Ks07o" style="border: 0; height: 345px; width: 560px">
+</iframe></div><div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/0RLOJHt74Zs" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p>The AP is the approximation of the Area Under the Curve (AUC). This approximation involves interpolation that eliminates the noisy Precision vs Recall curve - effectively converting this curve to a monotonic curve. This is shown next.</p>
+</div>
 <div class="section" id="a-practical-example">
 <h2>A practical example<a class="headerlink" href="#a-practical-example" title="Permalink to this headline">¶</a></h2>
 <p>Considering the set of 12 images in the figure below:</p>
-<!--- Toy example figure --->
-<p align="center">
-<img src="images/toy_example_mosaic.png" align="center" width="1000"/>
-</p>
+<p><img alt="" src="../../../../_images/toy_example_mosaic.png" /></p>
 <p>Each image, except (a), (g), and (j), has at least one target object of the class <em>cat</em>, whose locations are limited by the green rectangles.
 There is a total of 12 target objects limited by the green boxes. Images (b), (e), and (f) have two ground-truth samples of the target class.
 An object detector predicted 12 objects represented by the red rectangles (labeled with letters <em>A</em> to <em>L</em>) and their associated confidence levels are represented in percentages. Images (a), (g), and (j) are expected to have no detection. Conversely, images (b), (e), and (f) have two ground-truth bounding boxes.</p>
 <p>To evaluate the precision and recall of the 12 detections it is necessary to establish an IOU threshold <em>t</em>, which will classify each detection as TP or FP.
-In this example, let us first consider as TP the detections with <em>IOU &gt; 50%</em>, that is <em>t=0.5</em>.</p>
-<!--- Toy example table t=0.5 --->
-<p align="center">
-<img src="images/table_1_toyexample.png" align="center" width="700"/>
-</p>
+In this example, let us first consider as TP the detections with <em>IOU &gt; 50%</em>, that is <em>t=0.5</em>. We start by sorting the entries in descenting order of the confidence threshold.</p>
+<p><img alt="" src="../../../../_images/table_1_toyexample.png" /></p>
 <p>As stated before, AP is a metric to evaluate precision and recall in different confidence values. Thus, it is necessary to count the amount of TP and FP classifications given different confidence levels.</p>
 <p>By choosing a more restrictive IOU threshold, different precision x recall values can be obtained. The following table computes the precision and recall values with a more strict IOU threshold of <em>t = 0.75</em>. By that, it is noticeable the occurrence of more FP detections, reducing the recall.</p>
-<!--- Toy example table t=0.75 --->
-<p align="center">
-<img src="images/table_2_toyexample.png" align="center" width="720"/>
-</p>
+<p><img alt="" src="../../../../_images/table_2_toyexample.png" /></p>
 <p>Graphical representations of the precision x values presented in both cases <em>t= 0.5</em> and <em>t=0.75</em> are shown below:</p>
-<!--- Curves t=0.5 and t=0.75 --->
-<p align="center">
-<img src="images/precision_recall_curve_toyexample.png" align="center"/>
-</p>
+<p><img alt="" src="../../../../_images/precision_recall_curve_toyexample.png" /></p>
 <p>By comparing both curves, one may note that for this example:</p>
 <ol class="simple">
 <li><p>With a less restrictive IOU threshold (<em>t=0.5</em>), higher recall values can be obtained with the highest precision. In other words, the detector can retrieve about <em>66.5%</em> of the total ground truths without any miss detection.</p></li>
 <li><p>Using <em>t=0.75</em>, the detector is more sensitive with different confidence values. This is explained by the amount of ups and downs of the curve.</p></li>
 <li><p>Regardless the IOU threshold applied, this detector can never retrieve <em>100%</em> of the ground truths (recall = 1). This is due to the fact that the algorithm did not predict any bounding box for one of the ground truths in image (e).</p></li>
 </ol>
-<p>Different methods can be applied to measure the AUC of the precision x recall curve. Considering the <em>N-point interpolation</em> to calculate the AP with <em>N=11</em>, the interpolation measures the recall in the points L=[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0], and considering the <em>All-point interpolation</em> approach, all points are considered. Both approaches result in different plots as shown below:</p>
-<!--- Interpolating curves --->
-<p align="center">
-<img src="images/interpolations_toyexample.png" align="center"/>
-</p>
+<p>Different methods can be applied to measure the AUC of the precision x recall curve. With the so-called <em>N-point interpolation</em> we calculate the interpolated AP values using <span class="math notranslate nohighlight">\(N\)</span> recall reference points - for example for <span class="math notranslate nohighlight">\(N=11\)</span>:</p>
+<p>$<span class="math notranslate nohighlight">\([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]\)</span>$,</p>
+<p>In the <em>All-point interpolation</em> approach, all recall points are considered. These interpolation approaches result in different plots as shown below:</p>
+<p><img alt="" src="../../../../_images/interpolations_toyexample.png" />“</p>
 <p>When an IOU threshold <em>t=0.5</em> was applied (plots of the first row in image above), the 11-point interpolation method obtained <em>AP=88.64%</em> while the all-point interpolation method improved the results a little, reaching <em>AP=89.58%</em>. Similarly, for an IOU threshold of <em>t=0.75%</em> (plots of the second row in image above), the 11-point interpolation method obtained <em>AP=49.24%</em> and the all-point interpolation <em>AP=50.97%</em>.</p>
 <p>In both cases, the all-point interpolation approach considers larger areas above the curve into the summation and consequently obtains higher results.
-When a lower IOU threshold was considered, the AP was reduced drastically in both interpolation approaches. This is caused by the flexibility the threshold brings in considering TP detections.</p>
+When a lower IOU threshold was considered, the AP was reduced drastically in both interpolation approaches.</p>
+<p>Please note that MS COCO AP results are reported with interpolation over <span class="math notranslate nohighlight">\(N=101\)</span> points.</p>
+</div>
+<div class="section" id="mean-ap-map">
+<h2>Mean AP (mAP)<a class="headerlink" href="#mean-ap-map" title="Permalink to this headline">¶</a></h2>
+<p>In classification problems with multiple classes the mean AP is simply the sample mean of <span class="math notranslate nohighlight">\(AP(c), c \in \{1, \dots, C\}\)</span> across the C classes.</p>
+</div>
+<div class="section" id="ar">
+<h2>AR<a class="headerlink" href="#ar" title="Permalink to this headline">¶</a></h2>
+<p>There is corresponding Average Recall (AR) metric as well and the linked reference in the beginning of this section cover the</p>
 </div>
 </div>
 

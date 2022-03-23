@@ -46,7 +46,7 @@ The attractiveness of the ML solution is that the CE (also known as log-loss) is
 
 It is now instructive to go over an example to understand that even the plain-old mean squared error (MSE), the objective that is common in the regression setting, falls under the same umbrella - its the cross entropy between $\hat p_{data}$ and a Gaussian model. 
 
-Please follow the discussion associated with Section 5.5.1 of the Ian Goodfellow's book or section 20.2.4 of Russell \& Norvig's book and [these notes](https://www.cs.indiana.edu/~predrag/classes/2016fallb365x/ols.pdf)  and consider the following figure for assistance to visualize the relationship of $p_{data}$ and $p_{model}$. 
+Please follow the discussion associated with Section 5.5.1 of the Ian Goodfellow's book or section 20.2.4 of Russell \& Norvig's book and [these notes](notescs6140linearregression.pdf)  and consider the following figure for assistance to visualize the relationship of $p_{data}$ and $p_{model}$. 
 
 ![conditional-model-gaussian](images/conditional-model-gaussian.png)
 _Please replace the y-axis target variable $t$ with $y$. The green dashed line shows the mean of the $p_{model}$ distribution._

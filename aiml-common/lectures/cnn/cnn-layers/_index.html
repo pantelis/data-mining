@@ -48,15 +48,14 @@
     <script src="../../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/cnn/cnn-layers/_index.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -188,6 +187,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../../decision-trees/_index.html">
    Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression-trees/regression_trees.html">
+   Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
@@ -682,33 +686,15 @@
 <p>This means that typically we are dealing with <strong>volumes</strong> (3D tensors) and of course if someone adds the fact that we do processing in minibatches we are typically dealing with 4D tensors that contain input feature maps. Lets look at a single feature map visualization below of the convolution operation.</p>
 <p><img alt="convolution-single-feature-map" src="../../../../_images/convolution-single-feature-map.png" />
 <em>Convolutional layer with a single feature map. We can see the strides <span class="math notranslate nohighlight">\((s_h, s_w)\)</span>, the zero padding as well as the receptive field in the produced feature map.</em></p>
-<p>In the figure below the authors of <a class="reference external" href="https://arxiv.org/abs/1603.07285">this</a> paper have also animated the operation.  Blue maps are inputs, and cyan maps are outputs.</p>
-<table style="width:100%; table-layout:fixed;">
-  <tr>
-    <td><img width="150px" src="images/no_padding_no_strides.gif"></img></td>
-    <td><img width="150px" src="images/arbitrary_padding_no_strides.gif"></img></td>
-    <td><img width="150px" src="images/same_padding_no_strides.gif"></img></td>
-    <td><img width="150px" src="images/full_padding_no_strides.gif"></img></td>
-  </tr>
-  <tr>
-    <td>No padding, no strides</td>
-    <td>Arbitrary padding, no strides</td>
-    <td>Half padding, no strides</td>
-    <td>Full padding, no strides</td>
-  </tr>
-  <tr>
-    <td><img width="150px" src="images/no_padding_strides.gif"></img></td>
-    <td><img width="150px" src="images/padding_strides.gif"></img></td>
-    <td><img width="150px" src="images/padding_strides_odd.gif"></img></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>No padding, strides</td>
-    <td>Padding, strides</td>
-    <td>Padding, strides (odd)</td>
-    <td></td>
-  </tr>
-</table>
+<p>In the figure below the authors of <a class="reference external" href="https://arxiv.org/abs/1603.07285">this</a> paper have also animated the operation.  Blue maps are inputs, and cyan maps are outputs.From left to right: (a) No padding, no strides, (b) Arbitrary padding, no strides, © Half padding, no strides, (d) Full padding, no strides.</p>
+<a class="reference internal image-reference" href="../../../../_images/no_padding_no_strides.gif"><img alt="No padding, no strides" src="../../../../_images/no_padding_no_strides.gif" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/arbitrary_padding_no_strides.gif"><img alt="arbitrary padding, no strides" src="../../../../_images/arbitrary_padding_no_strides.gif" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/same_padding_no_strides.gif"><img alt="same padding, no strides" src="../../../../_images/same_padding_no_strides.gif" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/full_padding_no_strides.gif"><img alt="full padding, no strides" src="../../../../_images/full_padding_no_strides.gif" style="width: 200px;" /></a>
+<p>Some additional annimations are shown below. From left to right: (a) No padding, with strides, (b) Padding, with strides, © Padding, with strides (odd).</p>
+<a class="reference internal image-reference" href="../../../../_images/no_padding_strides.gif"><img alt="No padding, strides" src="../../../../_images/no_padding_strides.gif" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/padding_strides.gif"><img alt="padding, strides" src="../../../../_images/padding_strides.gif" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/padding_strides_odd.gif"><img alt="padding, strides odd" src="../../../../_images/padding_strides_odd.gif" style="width: 200px;" /></a>
 <p>In general though in practice we are dealing with <strong>volumes</strong> due to the multiple feature maps &amp; kernels  involved. Its important to understand the figure below. Its a direct extension to the single feature map figure above. The difference is that each neuron in each feature map of layer <span class="math notranslate nohighlight">\(l\)</span> is connected to all neurons of the corresponding receptive field of layer <span class="math notranslate nohighlight">\(l-1\)</span> just as before but now these connections extend to all feature maps of layer <span class="math notranslate nohighlight">\(l-1\)</span>. <strong>In other words we connect each neuron in the feature map of layer <span class="math notranslate nohighlight">\(l\)</span> to the corresponding receptive volume (3D array) of neurons in the layer below.</strong></p>
 <p>In the class we will go through the example below.</p>
 <p><img alt="2d-convolution-example" src="../../../../_images/2d-convolution-example.png" /></p>

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Course Project &#8212; Data Mining</title>
+    <title>Course Project Guidelines &#8212; Data Mining</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -48,12 +48,11 @@
     <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/projects/_index.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -184,6 +183,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../lectures/decision-trees/_index.html">
    Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lectures/regression-trees/regression_trees.html">
+   Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
@@ -546,11 +550,6 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#overview">
-   Overview
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#collaboration">
    Collaboration
   </a>
@@ -568,11 +567,6 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#project-report">
    Project Report
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#final-presentation-video-recording">
-   Final Presentation (video recording)
   </a>
  </li>
 </ul>
@@ -585,7 +579,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Course Project</h1>
+                <h1>Course Project Guidelines</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -595,11 +589,6 @@
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#overview">
-   Overview
-  </a>
- </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#collaboration">
    Collaboration
@@ -620,11 +609,6 @@
    Project Report
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#final-presentation-video-recording">
-   Final Presentation (video recording)
-  </a>
- </li>
 </ul>
 
                         </nav>
@@ -634,38 +618,9 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="course-project">
-<h1>Course Project<a class="headerlink" href="#course-project" title="Permalink to this headline">¶</a></h1>
-<p>NOTE: Most of the text below was taken from <a class="reference external" href="http://cs231n.stanford.edu/project.html">Stanford’s CS231n class project description</a> and modified to match an introductory CS301 class at NJIT.</p>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>The Course Project is an opportunity for you to apply what you have learned in class to a problem of your interest. Potential projects usually fall into these two tracks:</p>
-<p>Applications. If you’re coming to the class with a specific background and interests (e.g. biology, engineering, physics), we’d love to see you apply machine learning (ML) to problems related to your particular domain of interest. Pick a real-world problem and apply ML to solve it.
-Models.</p>
-<p>You can build a new model (algorithm), or a new variant of existing models, and apply it to tackle Vision/NLP or structured data  tasks.</p>
-<p>CVPR: IEEE Conference on Computer Vision and Pattern Recognition</p>
-<p>ICCV: International Conference on Computer Vision</p>
-<p>ECCV: European Conference on Computer Vision</p>
-<p>NIPS: Neural Information Processing Systems</p>
-<p>ICLR: International Conference on Learning Representations</p>
-<p>ICML: International Conference on Machine Learning</p>
-<p>Awesome Deep Vision Github repo</p>
-<p>Kaggle challenges: An online machine learning competition website. For example, a Yelp classification challenge.</p>
-<p>Meta Pointer: A large collection organized by CV Datasets.</p>
-<p>ImageNet: a large-scale image dataset for visual recognition organized by WordNet hierarchy</p>
-<p>SUN Database: a benchmark for scene recognition and object detection with annotated scene categories and segmented objects</p>
-<p>Places Database: a scene-centric database with 205 scene categories and 2.5 millions of labelled images</p>
-<p>NYU Depth Dataset v2: a RGB-D dataset of segmented indoor scenes</p>
-<p>Microsoft COCO: a new benchmark for image recognition, segmentation and captioning</p>
-<p>Flickr100M: 100 million creative commons Flickr images</p>
-<p>Labeled Faces in the Wild: a dataset of 13,000 labeled face photographs</p>
-<p>Human Pose Dataset: a benchmark for articulated human pose estimation</p>
-<p>YouTube Faces DB: a face video dataset for unconstrained face recognition in videos</p>
-<p>UCF101: an action recognition data set of realistic action videos with 101 action categories</p>
-<p>HMDB-51: a large human motion dataset of 51 action classes</p>
-<p>ActivityNet: A large-scale video dataset for human activity understanding</p>
-<p>Moments in Time: A dataset of one million 3-second videos</p>
-</div>
+  <div class="tex2jax_ignore mathjax_ignore section" id="course-project-guidelines">
+<h1>Course Project Guidelines<a class="headerlink" href="#course-project-guidelines" title="Permalink to this headline">¶</a></h1>
+<p>NOTE: Most of the text below is a modified version of <a class="reference external" href="http://cs231n.stanford.edu/project.html">Stanford’s CS231n class project description</a></p>
 <div class="section" id="collaboration">
 <h2>Collaboration<a class="headerlink" href="#collaboration" title="Permalink to this headline">¶</a></h2>
 <p>You can work in teams of up to 3 people.</p>
@@ -676,45 +631,42 @@ Models.</p>
 </div>
 <div class="section" id="project-proposal">
 <h2>Project Proposal<a class="headerlink" href="#project-proposal" title="Permalink to this headline">¶</a></h2>
-<p>The project proposal should be one paragraph (200-400 words). Your project proposal should describe:</p>
+<p><strong>If</strong> your project page <strong>quotes the requirement</strong> for a proposal, the project proposal should be one paragraph (200-400 words). Your project proposal should describe:</p>
 <p>What is the problem that you will be investigating? Why is it interesting?</p>
 <p>What reading will you examine to provide context and background?</p>
 <p>What data will you use? If you are collecting new data, how will you do it?</p>
 <p>What method or algorithm are you proposing? If there are existing implementations, will you use them and how? How do you plan to improve or
 modify such implementations? You don’t have to have an exact answer at this point, but you should have a general sense of how you will approach the problem you are working on.</p>
 <p>How will you evaluate your results? Qualitatively, what kind of results do you expect (e.g. plots or figures)? Quantitatively, what kind of analysis will you use to evaluate and/or compare your results (e.g. what performance metrics or statistical tests)?</p>
-<p>Submission: Please submit your proposal . Only one person on your team should submit. Please have this person add the rest of your team as collaborators in Github as a “Group Submission”.</p>
+<p>Submission: Please submit your proposal as a Github URL. Only one person on your team should submit. Please have this person add the rest of your team as collaborators in Github as a “Group Submission”.</p>
+<p>Your proposal should be (conditionally) approved before you can start working on this project. Incorporate all requested changes to your proposal. You will be receiving the required changes as a Github Pull Request.</p>
 </div>
 <div class="section" id="project-report">
 <h2>Project Report<a class="headerlink" href="#project-report" title="Permalink to this headline">¶</a></h2>
 <p>The following is a suggested structure for your report, as well as the rubric that we will follow when evaluating reports.</p>
 <p>Title, Author(s)</p>
-<p>Abstract: Briefly describe your problem, approach, and key results. Should be no more than 300 words.</p>
-<p>Introduction (10%): Describe the problem you are working on, why it’s important, and an overview of your results</p>
-<p>Related Work (10%): Discuss published work that relates to your project. How is your approach similar or different from others?</p>
-<p>Data (10%): Describe the data you are working with for your project. What type of data is it? Where did it come from? How much data are you working with? Did you have to do any preprocessing, filtering, or other special treatment to use this data in your project?</p>
-<p>Methods (30%): Discuss your approach for solving the problems that you set up in the introduction. Why is your approach the right thing to do? Did you consider alternative approaches? You should demonstrate that you have applied ideas and skills built up during the quarter to tackling your problem of choice. It may be helpful to include figures, diagrams, or tables to describe your method or compare it with other methods.</p>
-<p>Experiments (30%): Discuss the experiments that you performed to demonstrate that your approach solves the problem. The exact experiments will vary depending on the project, but you might compare with previously published methods, perform an ablation study to determine the impact of various components of your system, experiment with different hyperparameters or architectural choices, use visualization techniques to gain insight into how your model works, discuss common failure modes of your model, etc. You should include graphs, tables, or other figures to illustrate your experimental results.</p>
-<p>Conclusion (5%) Summarize your key results - what have you learned? Suggest ideas for future extensions or new applications of your ideas.</p>
-<p>Writing / Formatting (5%) Is your paper clearly written and nicely formatted?</p>
-<p>Supplementary Material, not counted toward your 6-8 page limit and submitted as a separate file. Your supplementary material might include:</p>
-<p>Cool videos, interactive visualizations, demos, etc.</p>
+<ol class="simple">
+<li><p>Abstract: Briefly describe your problem, approach, and key results. Should be no more than 300 words.</p></li>
+<li><p>Introduction (10%): Describe the problem you are working on, why it’s important, and an overview of your results</p></li>
+<li><p>Related Work (10%): Discuss published work that relates to your project. How is your approach similar or different from others?</p></li>
+<li><p>Data (10%): Describe the data you are working with for your project. What type of data is it? Where did it come from? How much data are you working with? Did you have to do any preprocessing, filtering, or other special treatment to use this data in your project?</p></li>
+<li><p>Methods (30%): Discuss your approach for solving the problems that you set up in the introduction. Why is your approach the right thing to do? Did you consider alternative approaches? You should demonstrate that you have applied ideas and skills built up during the quarter to tackling your problem of choice. It may be helpful to include figures, diagrams, or tables to describe your method or compare it with other methods.</p></li>
+<li><p>Experiments (30%): Discuss the experiments that you performed to demonstrate that your approach solves the problem. The exact experiments will vary depending on the project, but you might compare with previously published methods, perform an ablation study to determine the impact of various components of your system, experiment with different hyperparameters or architectural choices, use visualization techniques to gain insight into how your model works, discuss common failure modes of your model, etc. You should include graphs, tables, or other figures to illustrate your experimental results.</p></li>
+<li><p>Conclusion (5%) Summarize your key results - what have you learned? Suggest ideas for future extensions or new applications of your ideas.</p></li>
+</ol>
+<p>Is your paper clearly written and nicely formatted? Writing / Formatting (5%)</p>
+<p>Supplementary Material, not counted toward your 6-8 page limit and submitted as a separate file.</p>
+<p>Your supplementary material might include:</p>
+<ul class="simple">
+<li><p>Cool videos, interactive visualizations, demos, etc.</p></li>
+</ul>
 <p>Examples of things to not put in your supplementary material:</p>
-<p>The entire PyTorch/TensorFlow Github source code.</p>
-<p>Any code that is larger than 10 MB.</p>
-<p>Model checkpoints.</p>
-<p>Submission: You will submit your final report as a markdown + img files under /docs in your Github repo.</p>
-</div>
-<div class="section" id="final-presentation-video-recording">
-<h2>Final Presentation (video recording)<a class="headerlink" href="#final-presentation-video-recording" title="Permalink to this headline">¶</a></h2>
-<p>We will not hold a poster session this quarter. Instead we will use video recording as the way for student to present and share their project. Each group is required to submit a 5-minute presentation video for their final project. Students can be as creative as they like for their video presentations. The easiest option is to create a slide deck together as a team and record yourselves presenting the slide deck as a group using zoom. Each student member should speaker during the presentation.</p>
-<p>The following is a suggested structure for the video presentation. The specific rubric will be updated later in the quarter. You don’t necessarily have to organize your presentation using these sections in this order, but that would likely be a good starting point for most projects.</p>
-<p>Problem Statement: Briefly describe the problem your group is tackling. Describe the overall motivation, as well as the input / output of the problem.</p>
-<p>Technical Challenges: Briefly describe why the problem is technically challenging.</p>
-<p>Related Works: Briefly in what ways previous works have tackled the technical challenges.</p>
-<p>Your Approach and Results: Describe your detailed technical approach and innovations. Describe evaluation results (dataset and metric).</p>
-<p>Broader Impact: How do you expect the impact of your work to be? What can others learn from it or how can they apply it to solve their problems?</p>
-<p>What are the limitations of your work? What are areas for future improvements?</p>
+<ul class="simple">
+<li><p>The entire PyTorch/TensorFlow Github source code.</p></li>
+<li><p>Any code that is larger than 10 MB.</p></li>
+<li><p>Model checkpoints.</p></li>
+</ul>
+<p>Submission: You will submit your final report as a markdown + img files under /docs in your Github repo, obviously together with your code and a README file that describes how anyone can run it to replicate your results. It is highly advised to author a Medium article about your work.</p>
 </div>
 </div>
 

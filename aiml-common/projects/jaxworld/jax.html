@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Accelerated Functional Programming - The case for Jax &#8212; Data Mining</title>
+    <title>Accelerated Functional Programming - The Case for Jax &#8212; Data Mining</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet">
   <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -48,14 +48,13 @@
     <script src="../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/projects/jax/jax.html" />
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/projects/jaxworld/jax.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -184,6 +183,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../../lectures/decision-trees/_index.html">
    Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/regression-trees/regression_trees.html">
+   Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
@@ -499,7 +503,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/aiml-common/projects/jax/jax.md"><button type="button"
+        <a class="dropdown-buttons" href="../../../_sources/aiml-common/projects/jaxworld/jax.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -519,7 +523,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/projects/jax/jax.html&body=Your%20issue%20content%20here."><button
+            href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/projects/jaxworld/jax.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -550,6 +554,31 @@
    Description
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-select-and-name-your-company">
+   Step 1: Select and name your company
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-2-select-one-of-the-kaggle-competitions-that-is-compatible-to-the-scope-of-your-company">
+   Step 2: Select one of the Kaggle competitions that is compatible to the scope of your company.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-select-a-learning-method">
+   Step 3: Select a learning method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-submit-your-proposal">
+   Step 3: Submit your Proposal
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-4-write-the-code-and-the-report">
+   Step 4: Write the code  and the report
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -560,7 +589,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Accelerated Functional Programming - The case for Jax</h1>
+                <h1>Accelerated Functional Programming - The Case for Jax</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -575,6 +604,31 @@
    Description
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-select-and-name-your-company">
+   Step 1: Select and name your company
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-2-select-one-of-the-kaggle-competitions-that-is-compatible-to-the-scope-of-your-company">
+   Step 2: Select one of the Kaggle competitions that is compatible to the scope of your company.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-select-a-learning-method">
+   Step 3: Select a learning method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-submit-your-proposal">
+   Step 3: Submit your Proposal
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-4-write-the-code-and-the-report">
+   Step 4: Write the code  and the report
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -585,23 +639,40 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="accelerated-functional-programming-the-case-for-jax">
-<h1>Accelerated Functional Programming - The case for Jax<a class="headerlink" href="#accelerated-functional-programming-the-case-for-jax" title="Permalink to this headline">¶</a></h1>
+<h1>Accelerated Functional Programming - The Case for Jax<a class="headerlink" href="#accelerated-functional-programming-the-case-for-jax" title="Permalink to this headline">¶</a></h1>
 <p><img alt="" src="../../../_images/jax_logo_250px.png" /></p>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>This project will run under the supervision of the Prof involves (re)coding a number notebooks from TF/Pytorch  into Google’s Jax from scratch in combination of other known functional libraries such as Flax, Optax, Deep Mind Haiku and others .</p>
-<p>JAX is an extensible system for composable function transformations and you can read its groundbraking benefits for a wide range of scientific applications <a class="reference external" href="https://github.com/google/jax">here</a></p>
-<p>``{eval-rst}
-… youtube:: WdTeDXsOSj4</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-<span class="c1">## Deliverables</span>
-
-<span class="n">Input</span><span class="p">:</span> <span class="n">Each</span> <span class="n">student</span> <span class="n">will</span> <span class="n">be</span> <span class="n">given</span> <span class="n">a</span> <span class="n">number</span> <span class="n">of</span> <span class="n">notebooks</span><span class="o">.</span>
-
-<span class="n">Output</span><span class="p">:</span> <span class="n">Tutorial</span> <span class="n">MyST</span> <span class="p">(</span><span class="n">markdown</span><span class="p">)</span> <span class="n">plus</span> <span class="n">Python</span> <span class="n">code</span> <span class="n">that</span> <span class="n">showcases</span> <span class="n">each</span> <span class="n">concept</span><span class="o">.</span> <span class="n">Or</span> <span class="n">Small</span> <span class="bp">self</span><span class="o">-</span><span class="n">contained</span> <span class="n">applications</span> <span class="ow">in</span> <span class="n">Plotly</span> <span class="n">Dash</span> <span class="n">that</span> <span class="n">showcase</span> <span class="n">how</span> <span class="n">the</span> <span class="n">Jax</span><span class="o">-</span><span class="n">based</span> <span class="n">code</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span> <span class="ow">in</span> <span class="n">an</span> <span class="n">app</span> <span class="n">setting</span><span class="o">.</span>  
-
-</pre></div>
+<p>JAX is an extensible system for <strong>composable function transformations</strong>. You can read its groundbraking benefits for a wide range of scientific applications <a class="reference external" href="https://github.com/google/jax">here</a>.</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/WdTeDXsOSj4" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p>You are working on creating a 3h long tutorial (when presented in a usual educational pace) that will teach the rest of the company, about this new technology and persuade them that JAX is the best thing since sliced bread.</p>
 </div>
+<div class="section" id="step-1-select-and-name-your-company">
+<h2>Step 1: Select and name your company<a class="headerlink" href="#step-1-select-and-name-your-company" title="Permalink to this headline">¶</a></h2>
+<p>Select a name that best represents the domain you want to develop products and solutions for. For example: <strong>Optima Labs Inc</strong>. Write a one sentence summary of your pitch. For example, “Optima Labs automates the tuning of  your models  so you don’t have to”.</p>
+<p>Usually the domain must be well established but you are free to work  on a domain that is not. Examples of well established ML/AI domain include: computer vision and video analytics,  natural language processing, etc. Ask the professor if you are uncertain or the team cant make a quick decision.</p>
+</div>
+<div class="section" id="step-2-select-one-of-the-kaggle-competitions-that-is-compatible-to-the-scope-of-your-company">
+<h2>Step 2: Select one of the Kaggle competitions that is compatible to the scope of your company.<a class="headerlink" href="#step-2-select-one-of-the-kaggle-competitions-that-is-compatible-to-the-scope-of-your-company" title="Permalink to this headline">¶</a></h2>
+<p>You will find the ongoing competitions <a class="reference external" href="https://www.kaggle.com/competitions">here</a>. Read the competition description and store the data in your Gdrive.</p>
+</div>
+<div class="section" id="step-3-select-a-learning-method">
+<h2>Step 3: Select a learning method<a class="headerlink" href="#step-3-select-a-learning-method" title="Permalink to this headline">¶</a></h2>
+<p>You can use the sections/chapters of your course site. For example, Ensemble Learning / Gradient Boosting. Feel free to select other methods outside the scope of the course.</p>
+<p>This learning method you selected will be the basis of your tutorial. You will demonstrate the usage of JAX in improving the understanding of your audience about this topic <em>and</em> solve the Kaggle competition problem statement.</p>
+<p>For example the team at OptimaLabs selected the Ensemble Learning chapter. They found a library called <a class="reference external" href="https://github.com/thomaspinder/GPJax">GPJax</a> to demonstrate a hyperparameter optimization of Gradient Boosting methods (XGBoost). They applied this to a Kaggle competition that could be solved with Gradient Boosting.</p>
+<p>As an another example,  a company named FakeNews Killer Inc selected the DNN chapter. They found the <a class="reference external" href="https://github.com/deepmind/deepmind-research/tree/master/wikigraphs">WikiGraphs</a> that powers one of the components of their fake news detection pipeline. They applied this to the <a class="reference external" href="https://www.kaggle.com/clmentbisaillon/fake-and-real-news-dataset">fake news competition</a></p>
+<p>You can find plenty of JAX-based libraries you can use <a class="reference external" href="https://github.com/n2cholas/awesome-jax">here</a> but searching across Github is also needed as this is not an exhaustive list.</p>
+</div>
+<div class="section" id="step-3-submit-your-proposal">
+<h2>Step 3: Submit your Proposal<a class="headerlink" href="#step-3-submit-your-proposal" title="Permalink to this headline">¶</a></h2>
+<p>Read the project guidelines to make sure you hit all the main points. Your proposal needs to be submitted as Github repo. Add the prof and TA as collaborators.</p>
+</div>
+<div class="section" id="step-4-write-the-code-and-the-report">
+<h2>Step 4: Write the code  and the report<a class="headerlink" href="#step-4-write-the-code-and-the-report" title="Permalink to this headline">¶</a></h2>
+<p>You need to demonstrate how functional programming powered by the JAX ecosystem and the report must be written as a tutorial in  Colab notebook format. See also the general project guidelines.</p>
+<p><strong>Invitation</strong>: We particularly interested to receive proposals that combine simulation and learning. JAX has accelerated and greatly simplified tools - for example CFD: <a class="reference external" href="https://github.com/google/jax-cfd">https://github.com/google/jax-cfd</a>. See the Heartflow problem statement in lecture 1.</p>
 </div>
 </div>
 
@@ -618,7 +689,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./aiml-common/projects/jax"
+            path: "./aiml-common/projects/jaxworld"
         },
         predefinedOutput: true
     }

@@ -48,15 +48,14 @@
     <script src="../../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/dnn/backprop-dnn/_index.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -188,6 +187,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../../decision-trees/_index.html">
    Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression-trees/regression_trees.html">
+   Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
@@ -606,8 +610,11 @@
 <h2>DNN Gates<a class="headerlink" href="#dnn-gates" title="Permalink to this headline">¶</a></h2>
 <p>In the following we heavily borrow from <a class="reference external" href="https://web.stanford.edu/class/cs224n/readings/gradient-notes.pdf">this</a> text. The basic building block of vectorized gradients is the <em>Jacobian Matrix</em>. In the introductory section we dealt with functions <span class="math notranslate nohighlight">\(f: \mathbb{R}^2 \to \mathbb{R}\)</span>. Suppose that we have a more complicated function <span class="math notranslate nohighlight">\(\mathbf f: \mathbb{R}^n \to \mathbb{R}^m\)</span> that maps a vector of length <span class="math notranslate nohighlight">\(n\)</span> to a vector of length <span class="math notranslate nohighlight">\(m\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\mathbf f(\mathbf x) = [f_1(x_1, ..., x_n), f_2(x_1, ..., x_n), ..., f_m(x_1, ..., x_n)]$$. \\Then its Jacobian is:\\\begin{split}$$\frac{\partial \mathbf f}{\partial \mathbf x} = 
-\begin{bmatrix} \frac{\partial f_1}{\partial x_1} &amp; \dots &amp; \frac{\partial f_1}{\partial x_n} \\\\ \vdots &amp; \dots &amp; \vdots \\\\ \frac{\partial f_m}{\partial x_1} &amp; \dots &amp; \frac{\partial f_m}{\partial x_n} \end{bmatrix}\end{split}\end{aligned}\end{align} \]</div>
+\[\mathbf f(\mathbf x) = [f_1(x_1, ..., x_n), f_2(x_1, ..., x_n), ..., f_m(x_1, ..., x_n)]\]</div>
+<p>Then its Jacobian is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{\partial \mathbf f}{\partial \mathbf x} = 
+\begin{bmatrix} \frac{\partial f_1}{\partial x_1} &amp; \dots &amp; \frac{\partial f_1}{\partial x_n} \\\\ \vdots &amp; \dots &amp; \vdots \\\\ \frac{\partial f_m}{\partial x_1} &amp; \dots &amp; \frac{\partial f_m}{\partial x_n} \end{bmatrix}\end{split}\]</div>
 <p>The Jacobian matrix will be useful for us because we can apply the chain rule to a vector-valued function just by multiplying Jacobians.</p>
 <p>As a little illustration of this, suppose we have a function <span class="math notranslate nohighlight">\(f(\mathbf x) = [f_1(x), f_2(x)]\)</span> taking a scalar to a vector of size 2 and a function <span class="math notranslate nohighlight">\(g(\mathbf y) = [g_1(y_1, y_2), g_2(y_1, y_2)]\)</span> taking a vector of size two to a vector of size two. Now let’s compose them to get <span class="math notranslate nohighlight">\(g(x) = [g_1(f_1(x), f_2(x)), g_2(f_1(x), f_2(x))]\)</span>. Using the regular chain rule, we can compute the derivative of <span class="math notranslate nohighlight">\(g\)</span> as the Jacobian</p>
 <div class="math notranslate nohighlight">
@@ -642,8 +649,8 @@
 <tr class="row-odd"><td><p><img alt="identity6" src="../../../../_images/identity6.png" /> <br> <span class="math notranslate nohighlight">\(\mathbf z = \mathbf x \mathbf W\)</span>, <span class="math notranslate nohighlight">\(\mathbf \delta =  \frac{\partial L}{\partial \mathbf z}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\frac{\partial L}{\partial \mathbf W} = \mathbf x^T \mathbf \delta\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><img alt="identity4" src="../../../../_images/identity7.png" /> <br> <span class="math notranslate nohighlight">\(\mathbf z = \mathbf W \mathbf x\)</span>, <span class="math notranslate nohighlight">\(\hat \mathbf y = \mathtt{softmax}(\mathbf z)\)</span>, <span class="math notranslate nohighlight">\(L=CE(\mathbf y , \hat \mathbf y )\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{\partial L}{\partial \mathbf z} = \hat \mathbf y - \mathbf y\)</span></p></td>
+<tr class="row-even"><td><p><img alt="identity7" src="../../../../_images/identity7.png" /> <br> <span class="math notranslate nohighlight">\(\mathbf z = \mathbf W \mathbf x\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\hat{y}} = \mathtt{softmax}(\mathbf z)\)</span> <span class="math notranslate nohighlight">\(L=\mathtt{CE}(\mathbf y , \mathbf{\hat{y}}) \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{\partial L}{\partial \mathbf z} = \mathbf{\hat{y}} - \mathbf y\)</span></p></td>
 </tr>
 </tbody>
 </table>

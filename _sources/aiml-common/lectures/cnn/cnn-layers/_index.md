@@ -20,34 +20,25 @@ This means that typically we are dealing with **volumes** (3D tensors) and of co
 ![convolution-single-feature-map](images/convolution-single-feature-map.png)
 *Convolutional layer with a single feature map. We can see the strides $(s_h, s_w)$, the zero padding as well as the receptive field in the produced feature map.*
 
-In the figure below the authors of [this](https://arxiv.org/abs/1603.07285) paper have also animated the operation.  Blue maps are inputs, and cyan maps are outputs.
+In the figure below the authors of [this](https://arxiv.org/abs/1603.07285) paper have also animated the operation.  Blue maps are inputs, and cyan maps are outputs.From left to right: (a) No padding, no strides, (b) Arbitrary padding, no strides, (c) Half padding, no strides, (d) Full padding, no strides. 
 
-<table style="width:100%; table-layout:fixed;">
-  <tr>
-    <td><img width="150px" src="images/no_padding_no_strides.gif"></img></td>
-    <td><img width="150px" src="images/arbitrary_padding_no_strides.gif"></img></td>
-    <td><img width="150px" src="images/same_padding_no_strides.gif"></img></td>
-    <td><img width="150px" src="images/full_padding_no_strides.gif"></img></td>
-  </tr>
-  <tr>
-    <td>No padding, no strides</td>
-    <td>Arbitrary padding, no strides</td>
-    <td>Half padding, no strides</td>
-    <td>Full padding, no strides</td>
-  </tr>
-  <tr>
-    <td><img width="150px" src="images/no_padding_strides.gif"></img></td>
-    <td><img width="150px" src="images/padding_strides.gif"></img></td>
-    <td><img width="150px" src="images/padding_strides_odd.gif"></img></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>No padding, strides</td>
-    <td>Padding, strides</td>
-    <td>Padding, strides (odd)</td>
-    <td></td>
-  </tr>
-</table>
+
+<img src="images/no_padding_no_strides.gif" alt="No padding, no strides" width="200px"/>
+
+<img src="images/arbitrary_padding_no_strides.gif" alt="arbitrary padding, no strides" width="200px"/>
+
+<img src="images/same_padding_no_strides.gif" alt="same padding, no strides" width="200px"/>
+
+<img src="images/full_padding_no_strides.gif" alt="full padding, no strides" width="200px"/>
+
+Some additional annimations are shown below. From left to right: (a) No padding, with strides, (b) Padding, with strides, (c) Padding, with strides (odd). 
+
+
+<img src="images/no_padding_strides.gif" alt="No padding, strides" width="200px"/>
+
+<img src="images/padding_strides.gif" alt="padding, strides" width="200px"/>
+
+<img src="images/padding_strides_odd.gif" alt="padding, strides odd" width="200px"/>
 
 In general though in practice we are dealing with **volumes** due to the multiple feature maps & kernels  involved. Its important to understand the figure below. Its a direct extension to the single feature map figure above. The difference is that each neuron in each feature map of layer $l$ is connected to all neurons of the corresponding receptive field of layer $l-1$ just as before but now these connections extend to all feature maps of layer $l-1$. **In other words we connect each neuron in the feature map of layer $l$ to the corresponding receptive volume (3D array) of neurons in the layer below.** 
 

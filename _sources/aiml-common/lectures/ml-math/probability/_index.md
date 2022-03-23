@@ -60,8 +60,6 @@ $$P(x,y) = P(x | y)P(y) = P(y | x)P(x)$$
 
 Are $x$ and $y$ in the example above independent ?
 
-```
-
 ## Multi-variate Gaussian distribution
 
 Perhaps the only distribution that is worth knowing and remembering its form is the multivariate Normal as it has widespread applicability in data science. 
@@ -74,9 +72,6 @@ You can [generate](http://hosting.astro.cornell.edu/~cordes/A6523/GeneratingCorr
 ![correlated-gaussians](images/correlated-gaussians.png)
 _Correlated Gaussians_
 
-```{admonition}
-For a more extensive overview of the Gaussian distribution see [here](images/gaussian-bishop.pdf)
-```
 
 
 ## References
