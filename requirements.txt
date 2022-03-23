@@ -10,3 +10,4 @@ sphinx-click
 sphinx-proof
 jupyter_contrib_nbextensions
 thebe
+dtreeviz
