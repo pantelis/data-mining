@@ -11,3 +11,5 @@ sphinx-proof
 jupyter_contrib_nbextensions
 thebe
 dtreeviz
+sklearn
+lolviz
