@@ -22,7 +22,7 @@ pandas
 jupyter
 jupyterlab
 jupyter-dash
-tensorflow==2.6.0
+tensorflow==2.6.3
 torch 
 torchvision
 google.colab
