@@ -4,14 +4,17 @@
 title: Data Mining
 author: Pantelis Monogioudis, Ph.D
 logo: logo.png
+only_build_toc_files: true
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: auto
+  execute_notebooks: 'off'
+  timeout: 300
   exclude_patterns: 
-    - data_science/handson-ml2/*
-    - data_science/handson-ml2/.*
+    - data_mining/handson-ml2/*
+    - data_mining/handson-ml2/.*
+    - data_mining/aiml-common/lectures/transfer-learning/quantized_transfer_learning.ipynb
   
 # Define the name of the latex output file for PDF builds
 latex:

@@ -22,4 +22,8 @@ pandas
 jupyter
 jupyterlab
 jupyter-dash
-tensorflow
+tensorflow==2.6.0
+torch 
+torchvision
+google.colab
+frontmatter
