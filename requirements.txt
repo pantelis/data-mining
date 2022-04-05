@@ -13,3 +13,13 @@ thebe
 dtreeviz
 sklearn
 lolviz
+git+https://github.com/pantelis-classes/PRML.git#egg=prml
+plotly
+ipywidgets
+kaleido
+dash
+pandas
+jupyter
+jupyterlab
+jupyter-dash
+tensorflow
