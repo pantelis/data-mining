@@ -13,7 +13,6 @@ thebe
 dtreeviz
 sklearn
 lolviz
-git+https://github.com/pantelis-classes/PRML.git#egg=prml
 plotly
 ipywidgets
 kaleido
@@ -22,7 +21,7 @@ pandas
 jupyter
 jupyterlab
 jupyter-dash
-tensorflow==2.6.0
+tensorflow==2.8.0
 torch 
 torchvision
 google.colab
