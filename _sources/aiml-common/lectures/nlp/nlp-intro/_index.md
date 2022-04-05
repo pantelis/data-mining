@@ -28,18 +28,17 @@ To get started, we need some common ground on the NLP terminology - the terms ar
 
 Python and almost all programming languages are formal. They define a strict set of rules called a _grammar_ that the programmer must follow religiously. In addition formal languages also define semantics or meaning of the program via a set of rules. So the exit code ```0``` after the execution of a routine has the meaning of ```successful termination``` but a ```1``` the opposite. The English language on the other hand is "free wheeling" so to speak due to its ambiguity ("he met his maker") and size. 
 
-{{< columns >}} 
+
 ## Same context, different meaning
 "The food in this restaurant was good, not bad at all"
 
 "The food in this restaurant was bad, not good at all."
-<---> 
 
 ## Different context alltogether 
+
 "The bank's profits eroded soon after the 2008 crisis"
 
 "The river's bank eroded after the 2008 floods"
-{{< /columns >}}
 
 
 To capture the fuzziness of natural language we define language models probabilistically. We do not speak of a single meaning for a sentence - rather we speak of _a probability distribution over possible meanings_. In the next section we will start to quantify such probabilistic language models in detail. 

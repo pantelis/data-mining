@@ -84,7 +84,7 @@ Training for large vocabularies can be quite computationally intensive.  At the 
 
 <!-- For a more hands on treatment on word2vec see the blog posts by Chris McCormick [cite](http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/). -->
 
-{{< hint warning >}}
+```{warning}
 Mind the important difference between learning a representation that from the context across the corpus and the _application_ of that representation. Word2Vec are applied _context-free_.  After training, a single $\mathbf W$ matrix will be used. This means that the word 'bank' will be encoded using the same dense vector  irrespectively when it is located close to 'river' or 'food' or 'deposit'. 
 
 _Contextual representations_ are addressed in a separate section. 

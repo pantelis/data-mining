@@ -1,4 +1,0 @@
----
-title: Scene Understanding
----
-

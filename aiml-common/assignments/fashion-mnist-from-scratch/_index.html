@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Entropy &#8212; Data Mining</title>
+    <title>Fashion MNIST From Scratch Assignment &#8212; Data Mining</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet">
   <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,13 +54,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/entropy/_index.html" />
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/assignments/fashion-mnist-from-scratch/_index.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Stochastic Gradient Descent" href="../optimization/sgd/_index.html" />
-    <link rel="prev" title="Maximum Likelihood (ML) Estimation" href="../optimization/maximum-likelihood/_index.html" />
+    <link rel="next" title="Accelerated Functional Programming - The Case for Jax" href="../../projects/jaxworld/jax.html" />
+    <link rel="prev" title="Maximum Likelihood Parameter Estimation" href="../mle/mle_exponential_linear_regression.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -116,22 +114,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../ai-intro/course-introduction/_index.html">
+  <a class="reference internal" href="../../lectures/ai-intro/course-introduction/_index.html">
    Course Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../ai-intro/data-science-360/_index.html">
+  <a class="reference internal" href="../../lectures/ai-intro/data-science-360/_index.html">
    Data Science 360
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../ai-intro/pipelines/_index.html">
+  <a class="reference internal" href="../../lectures/ai-intro/pipelines/_index.html">
    ML Pipelines
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../uber-ml-arch-case-study/_index.html">
+  <a class="reference internal" href="../../lectures/uber-ml-arch-case-study/_index.html">
    A Case Study of an ML Architecture - Uber
   </a>
  </li>
@@ -141,34 +139,34 @@ const thebe_selector_output = ".output, .cell_output"
   The Learning Problem
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../learning-problem/_index.html">
+  <a class="reference internal" href="../../lectures/learning-problem/_index.html">
    The Learning Problem
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../regression/linear-regression/_index.html">
+  <a class="reference internal" href="../../lectures/regression/linear-regression/_index.html">
    Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../optimization/maximum-likelihood/_index.html">
+  <a class="reference internal" href="../../lectures/optimization/maximum-likelihood/_index.html">
    Maximum Likelihood (ML) Estimation
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/entropy/_index.html">
    Entropy
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../optimization/sgd/_index.html">
+  <a class="reference internal" href="../../lectures/optimization/sgd/_index.html">
    Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../classification/classification-intro/_index.html">
+  <a class="reference internal" href="../../lectures/classification/classification-intro/_index.html">
    Introduction to Classification
   </a>
  </li>
@@ -180,52 +178,52 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../classification/logistic-regression/_index.html">
+  <a class="reference internal" href="../../lectures/classification/logistic-regression/_index.html">
    Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../decision-trees/_index.html">
+  <a class="reference internal" href="../../lectures/decision-trees/_index.html">
    Decision Trees
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../regression-trees/regression_trees.html">
+  <a class="reference internal" href="../../lectures/regression-trees/regression_trees.html">
    Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../ensemble/_index.html">
+  <a class="reference internal" href="../../lectures/ensemble/_index.html">
    Ensemble Methods
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../ensemble/random-forests/_index.html">
+  <a class="reference internal" href="../../lectures/ensemble/random-forests/_index.html">
    Random Forests
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../ensemble/boosting/_index.html">
+  <a class="reference internal" href="../../lectures/ensemble/boosting/_index.html">
    Boosting
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../ensemble/boosting-workshop/_index.html">
+  <a class="reference internal" href="../../lectures/ensemble/boosting-workshop/_index.html">
    Boosting workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../pgm/bayesian-inference/_index.html">
+  <a class="reference internal" href="../../lectures/pgm/bayesian-inference/_index.html">
    Bayesian Inference
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../pgm/bayesian-coin/_index.html">
+  <a class="reference internal" href="../../lectures/pgm/bayesian-coin/_index.html">
    Bayesian Coin Flipping
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../classification/covid19-antibody-test/_index.html">
+  <a class="reference internal" href="../../lectures/classification/covid19-antibody-test/_index.html">
    COVID-19 Antibody Test
   </a>
  </li>
@@ -237,32 +235,32 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../classification/perceptron/_index.html">
+  <a class="reference internal" href="../../lectures/classification/perceptron/_index.html">
    The Neuron (Perceptron)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../dnn/dnn-intro/_index.html">
+  <a class="reference internal" href="../../lectures/dnn/dnn-intro/_index.html">
    Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../dnn/backprop-intro/_index.html">
+  <a class="reference internal" href="../../lectures/dnn/backprop-intro/_index.html">
    Introduction to Backpropagation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../dnn/backprop-dnn/_index.html">
+  <a class="reference internal" href="../../lectures/dnn/backprop-dnn/_index.html">
    Backpropagation in Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../dnn/backprop-dnn-exercises/_index.html">
+  <a class="reference internal" href="../../lectures/dnn/backprop-dnn-exercises/_index.html">
    Backpropagation DNN exercises
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../optimization/regularization/_index.html">
+  <a class="reference internal" href="../../lectures/optimization/regularization/_index.html">
    Regularization in Deep Neural Networks
   </a>
  </li>
@@ -274,17 +272,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../cnn/cnn-intro/_index.html">
+  <a class="reference internal" href="../../lectures/cnn/cnn-intro/_index.html">
    Introduction to Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../cnn/cnn-layers/_index.html">
+  <a class="reference internal" href="../../lectures/cnn/cnn-layers/_index.html">
    CNN Architectures
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../cnn/cnn-example-architectures/_index.html">
+  <a class="reference internal" href="../../lectures/cnn/cnn-example-architectures/_index.html">
    CNN Example Architectures
   </a>
  </li>
@@ -296,27 +294,27 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../scene-understanding/scene-understanding-intro/_index.html">
+  <a class="reference internal" href="../../lectures/scene-understanding/scene-understanding-intro/_index.html">
    Introduction to Scene Understanding
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../scene-understanding/feature-extraction-resnet/_index.html">
+  <a class="reference internal" href="../../lectures/scene-understanding/feature-extraction-resnet/_index.html">
    Feature Extraction via Residual Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../scene-understanding/object-detection/_index.html">
+  <a class="reference internal" href="../../lectures/scene-understanding/object-detection/_index.html">
    Object Detection
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../scene-understanding/object-detection/detection-segmentation-workshop/_index.html">
+  <a class="reference internal" href="../../lectures/scene-understanding/object-detection/detection-segmentation-workshop/_index.html">
    Object Detection and Semantic Segmentation Workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../cnn/cnn-explainers/_index.html">
+  <a class="reference internal" href="../../lectures/cnn/cnn-explainers/_index.html">
    CNN Explainers
   </a>
  </li>
@@ -328,22 +326,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../rnn/introduction/_index.html">
+  <a class="reference internal" href="../../lectures/rnn/introduction/_index.html">
    Introduction to Recurrent Neural Networks (RNN)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../rnn/simple-rnn/_index.html">
+  <a class="reference internal" href="../../lectures/rnn/simple-rnn/_index.html">
    Simple RNN
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../rnn/simple-rnn-workshop/_index.html">
+  <a class="reference internal" href="../../lectures/rnn/simple-rnn-workshop/_index.html">
    Simple RNN Workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../rnn/lstm/_index.html">
+  <a class="reference internal" href="../../lectures/rnn/lstm/_index.html">
    The Long Short-Term Memory (LSTM) Cell Architecture
   </a>
  </li>
@@ -355,22 +353,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../nlp/nlp-intro/_index.html">
+  <a class="reference internal" href="../../lectures/nlp/nlp-intro/_index.html">
    Introduction to NLP
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../nlp/word2vec/_index.html">
+  <a class="reference internal" href="../../lectures/nlp/word2vec/_index.html">
    Word2Vec Embeddings
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../nlp/rnn-language-models/_index.html">
+  <a class="reference internal" href="../../lectures/nlp/rnn-language-models/_index.html">
    RNN Language Models
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../nlp/nmt/_index.html">
+  <a class="reference internal" href="../../lectures/nlp/nmt/_index.html">
    Neural Machine Translation
   </a>
  </li>
@@ -382,17 +380,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../unsupervised/k-means/_index.html">
+  <a class="reference internal" href="../../lectures/unsupervised/k-means/_index.html">
    K-means Clustering
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../density-estimation/knn/_index.html">
+  <a class="reference internal" href="../../lectures/density-estimation/knn/_index.html">
    k-Nearest Neighbors (kNN) Classification
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../density-estimation/knn-workshop/_index.html">
+  <a class="reference internal" href="../../lectures/density-estimation/knn-workshop/_index.html">
    kNN Workshop
   </a>
  </li>
@@ -404,7 +402,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../pca/_index.html">
+  <a class="reference internal" href="../../lectures/pca/_index.html">
    Principal Component Analysis (PCA)
   </a>
  </li>
@@ -416,7 +414,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../ml-math/_index.html">
+  <a class="reference internal" href="../../lectures/ml-math/_index.html">
    Math for ML
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -426,17 +424,17 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../ml-math/probability/_index.html">
+    <a class="reference internal" href="../../lectures/ml-math/probability/_index.html">
      Probability Basics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../linear-algebra/_index.html">
+    <a class="reference internal" href="../../lectures/linear-algebra/_index.html">
      Linear Algebra for Machine Learning
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../ml-math/calculus/_index.html">
+    <a class="reference internal" href="../../lectures/ml-math/calculus/_index.html">
      Calculus
     </a>
    </li>
@@ -450,7 +448,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../python/_index.html">
+  <a class="reference internal" href="../../lectures/python/_index.html">
    Learn Python
   </a>
  </li>
@@ -460,19 +458,19 @@ const thebe_selector_output = ".output, .cell_output"
   Assignments &amp; Projects
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../assignments/probability/probability-assignment-2/probability-assignment-2.html">
+  <a class="reference internal" href="../probability/probability-assignment-2/probability-assignment-2.html">
    Probability Assigmment
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../assignments/mle/mle_exponential_linear_regression.html">
+  <a class="reference internal" href="../mle/mle_exponential_linear_regression.html">
    Maximum Likelihood Parameter Estimation
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../assignments/fashion-mnist-from-scratch/_index.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Fashion MNIST From Scratch Assignment
   </a>
  </li>
@@ -527,7 +525,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/aiml-common/lectures/entropy/_index.md"><button type="button"
+        <a class="dropdown-buttons" href="../../../_sources/aiml-common/assignments/fashion-mnist-from-scratch/_index.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -547,7 +545,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/entropy/_index.html&body=Your%20issue%20content%20here."><button
+            href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/assignments/fashion-mnist-from-scratch/_index.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -574,13 +572,23 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#relative-entropy-or-kl-divergence">
-   Relative entropy or KL divergence
+  <a class="reference internal nav-link" href="#step-1-fashion-mnist-dataset-10-points">
+   Step 1: Fashion MNIST Dataset (10 points)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#digging-further">
-   Digging further
+  <a class="reference internal nav-link" href="#step-2-architecture-20-points">
+   Step 2: Architecture (20 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-backpropagation-30-points">
+   Step 3:  Backpropagation (30 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-4-momentum-40-points">
+   Step 4: Momentum (40 points)
   </a>
  </li>
 </ul>
@@ -593,7 +601,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Entropy</h1>
+                <h1>Fashion MNIST From Scratch Assignment</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -604,13 +612,23 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#relative-entropy-or-kl-divergence">
-   Relative entropy or KL divergence
+  <a class="reference internal nav-link" href="#step-1-fashion-mnist-dataset-10-points">
+   Step 1: Fashion MNIST Dataset (10 points)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#digging-further">
-   Digging further
+  <a class="reference internal nav-link" href="#step-2-architecture-20-points">
+   Step 2: Architecture (20 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-backpropagation-30-points">
+   Step 3:  Backpropagation (30 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-4-momentum-40-points">
+   Step 4: Momentum (40 points)
   </a>
  </li>
 </ul>
@@ -622,35 +640,28 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="entropy">
-<h1>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">¶</a></h1>
-<p>In this section we take a closer look into the <em>algorithm</em> block of the learning problem. This block implements the underlying optimization problem that produces the weights in regression and classification settings. Any optimization problem requires an objective function and as it turns out in the supervised setting (and not only) there is a whole theory, called <em>information theory</em> pioneered by Claude Shannon at Bell Labs, that guides us in our search to find the best <span class="math notranslate nohighlight">\(p_{model}\)</span> but also in a myriad other things. The important elements of this theory are reviewed here.</p>
-<p><img alt="holland-tunnel" src="../../../_images/holland-tunnel.jpg" />
-<em>Value of information: <code class="docutils literal notranslate"><span class="pre">Low</span> <span class="pre">Manhattan-bound</span> <span class="pre">traffic</span> <span class="pre">flow</span> <span class="pre">in</span> <span class="pre">Holland</span> <span class="pre">tunnel</span> <span class="pre">on</span> <span class="pre">Monday</span> <span class="pre">morning</span></code></em></p>
-<p>An outcome <span class="math notranslate nohighlight">\(x_t\)</span> carries information that is a function of the probability of this outcome <span class="math notranslate nohighlight">\(P(x_t)\)</span> by,</p>
-<p><span class="math notranslate nohighlight">\(I(x_t) = \ln \frac{1}{P(x_t)} = - \ln P(x_t)\)</span></p>
-<p>This can be intuitively understood when you compare two outcomes. For example, consider someone is producing the result of the vehicular traffic flow outside of Holland tunnel on Monday morning. The information that the results is “low” carries much more information when the result is “high” since most people expect that there will be horrendous traffic going into Manhattan on Monday mornings. When we want to represent the amount of uncertainty over a distribution (i.e. the traffic in Holland tunnel over all times) we can take the expectation over all possible outcomes i.e.</p>
-<p><span class="math notranslate nohighlight">\(H(P) =  - \mathbb{E} \ln P(x)\)</span></p>
-<p>and we call this quantity the <strong>entropy</strong> of the probability distribution <span class="math notranslate nohighlight">\(P(x)\)</span>. When <span class="math notranslate nohighlight">\(x\)</span> is continuous the entropy is known as <strong>differential entropy</strong>. Continuing the alphabetical example, we can determine the entropy over the distribution of letters in the sample text we met before as,</p>
-<p><img alt="entropy-english-alphabet" src="../../../_images/entropy-english-alphabet.png" /></p>
-<p>This is 4.1 bits (as the <span class="math notranslate nohighlight">\(\log\)</span> is taken with base 2). This represents the average number of bits required to transmit each letter of this text to a hypothetical receiver. Note that we used the information carried by each “outcome” (the letter) that our source produced. If the source was binary, we can plot the entropy of such source over the probability p that the outcome is a 1 as shown below,</p>
-<p><img alt="entropy-binary" src="../../../_images/entropy-binary.png" /></p>
-<p>The plot simply was produced by taking the definition of entropy and applying to the binary case,</p>
-<p><span class="math notranslate nohighlight">\(H(p) = - [p \ln p + (1-p) \ln(1-p)]\)</span></p>
-<p>As you can see the maximum entropy is when the outcome is most unpredictable i.e. when a 1 can show up with uniform probability (in this case equal probability to a 0). Entropy has widespread implications as it measures our uncertainty in terms of the length of the message/code that we need to communicate the outcome across. Taking to the limit if we were certain about an event (deterministic outcome) we would need 0 bits or require to send any message at all.</p>
-<div class="section" id="relative-entropy-or-kl-divergence">
-<h2>Relative entropy or KL divergence<a class="headerlink" href="#relative-entropy-or-kl-divergence" title="Permalink to this headline">¶</a></h2>
-<p>In many settings we need to have a metric that compares two probability distributions <span class="math notranslate nohighlight">\(\{P(x),Q(x)\}\)</span> in terms of their “distance” from each other (the quotes will be explained shortly). This is given by the quantity known as <em>relative entropy</em> or <em>KL divergence</em>.</p>
-<div class="math notranslate nohighlight">
-\[KL(P||Q)= \mathbb{E}[\ln P(x) - \ln Q(x)]\]</div>
-<p>If the two distributions are identical, <span class="math notranslate nohighlight">\(KL=0\)</span> - in general however <span class="math notranslate nohighlight">\(KL(P||Q) \ge 0\)</span>. One key element to understand is that <span class="math notranslate nohighlight">\(KL\)</span> is not a true distance metric as its asymmetric.</p>
-<p><img alt="KL-asymmetry" src="../../../_images/KL-asymmetry.png" /></p>
-<p>Very close to the relative entropy is probably one of the most used information theoretic concepts in ML: <strong>the cross-entropy</strong>. We will motivate cross entropy via a diagram shown below,</p>
-<p><img alt="entropy-relations" src="../../../_images/entropy-relations.png" /></p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="fashion-mnist-from-scratch-assignment">
+<h1>Fashion MNIST From Scratch Assignment<a class="headerlink" href="#fashion-mnist-from-scratch-assignment" title="Permalink to this headline">¶</a></h1>
+<p>There are plenty of examples that train a neural network scratch example  <a class="reference external" href="https://github.com/joelgrus/data-science-from-scratch/blob/master/scratch/deep_learning.py">this handwritten digit recognition MNIST example</a>.</p>
+<div class="section" id="step-1-fashion-mnist-dataset-10-points">
+<h2>Step 1: Fashion MNIST Dataset (10 points)<a class="headerlink" href="#step-1-fashion-mnist-dataset-10-points" title="Permalink to this headline">¶</a></h2>
+<p>Download the fashion MNIST dataset and convert it to a dataset that is suitable for binary classification.</p>
 </div>
-<div class="section" id="digging-further">
-<h2>Digging further<a class="headerlink" href="#digging-further" title="Permalink to this headline">¶</a></h2>
-<p>If you are a visual learner, <a class="reference external" href="http://colah.github.io/posts/2015-09-Visual-Information/#fn4">the visual information theory</a> blog post is a better starting point to the above.  <a class="reference external" href="https://www.inference.org.uk/itprnn/book.pdf">MacKay’s book (Chapter 2)</a> is an instructive introduction to probability and information theory concepts and you can test your understanding by doing the exercises in that chapter.</p>
+<div class="section" id="step-2-architecture-20-points">
+<h2>Step 2: Architecture (20 points)<a class="headerlink" href="#step-2-architecture-20-points" title="Permalink to this headline">¶</a></h2>
+<p>Dimension a network that consist of a dense (fully connected) ReLU layer and a sigmoidal layer that will satisfy the task (binary classification).</p>
+</div>
+<div class="section" id="step-3-backpropagation-30-points">
+<h2>Step 3:  Backpropagation (30 points)<a class="headerlink" href="#step-3-backpropagation-30-points" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="../../../_images/backprop-simple-dnn.jpg" /></p>
+<p>Understand and write in your notebook using latex math syntax the backprop equations. (10 points)</p>
+<p>Use these equations to write the backprop function and train the network using the SGD algorithm. (20 points)</p>
+</div>
+<div class="section" id="step-4-momentum-40-points">
+<h2>Step 4: Momentum (40 points)<a class="headerlink" href="#step-4-momentum-40-points" title="Permalink to this headline">¶</a></h2>
+<p>(20 points) Describe clearly the differences between SGD and the Momentum algorithm and obtain the precision vs recall curve for the network above for values of hyperparameters you have chosen.</p>
+<p>(20 points) Use hyperparameter optimization to tune the hyper parameters of each algorithm and obtain the final precision vs recall curves for both. Its up to you to choose the hyperparameter method and library - this can be as simple as GridSearch but this of course will impact your results.</p>
+<p>Any notebook or py code + markdown submission that lacks explanations will receive minimal points.</p>
 </div>
 </div>
 
@@ -667,7 +678,7 @@ const thebe_selector_output = ".output, .cell_output"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./aiml-common/lectures/entropy"
+            path: "./aiml-common/assignments/fashion-mnist-from-scratch"
         },
         predefinedOutput: true
     }
@@ -679,17 +690,17 @@ const thebe_selector_output = ".output, .cell_output"
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../optimization/maximum-likelihood/_index.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../mle/mle_exponential_linear_regression.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Maximum Likelihood (ML) Estimation</p>
+            <p class="prev-next-title">Maximum Likelihood Parameter Estimation</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../optimization/sgd/_index.html" title="next page">
+    <a class='right-next' id="next-link" href="../../projects/jaxworld/jax.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Stochastic Gradient Descent</p>
+        <p class="prev-next-title">Accelerated Functional Programming - The Case for Jax</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

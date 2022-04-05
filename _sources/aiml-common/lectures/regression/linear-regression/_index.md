@@ -17,7 +17,7 @@ kernelspec:
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
-!pip install seaborn matplotlib numpy git+https://github.com/pantelis-classes/PRML.git#egg=prml plotly ipywidgets kaleido dash pandas jupyter-dash
+!pip install seaborn matplotlib numpy git+https://github.com/pantelis-classes/PRML.git#egg=prml plotly ipywidgets dash pandas jupyter-dash
 ```
 # Linear Regression
 

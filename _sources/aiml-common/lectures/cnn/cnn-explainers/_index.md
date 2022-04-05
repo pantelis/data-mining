@@ -8,7 +8,7 @@ title: CNN Explainers
 
 Given the 'black box' nature of CNNs, we need to be familiar with the tooling needed to visualize their internal representations. 
 
-```{admonition}
+```{notes}
 You must run step by step the notebook below to fully understand what kind of transformations the convolutional layers are performing. It uses simple as well as VGG16 networks. 
 ```
 

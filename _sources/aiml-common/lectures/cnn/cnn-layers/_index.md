@@ -126,7 +126,7 @@ Despite receiving ample treatment in Ians Goodfellows' book, pooling has fallen 
 ![pooling](images/pooling.png)
 *Max pooling layer (2 × 2 pooling kernel, stride 2, no padding)*
 
-```{admonition}
+```{note}
 To further understand the latest reservations against pooling in CNNs, see [this](https://medium.com/ai%C2%B3-theory-practice-business/understanding-hintons-capsule-networks-part-i-intuition-b4b559d1159b) summary of Hinton's **capsules** concept. 
 ```
 

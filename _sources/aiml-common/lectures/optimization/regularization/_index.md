@@ -107,7 +107,7 @@ In practice, it is most common to use a single, global L2 regularization strengt
 
 ## Weight initialization
 
-For ReLU units, the suggested experimentally initialization for the weight is to use $W = np.random.randn(n) * sqrt(2.0/n)$, as discussed in [He et al.](http://arxiv-web3.library.cornell.edu/abs/1502.01852). 
+For layers with ReLU units, the suggested experimentally initialization for the weight is to use $W = np.random.randn(n) * \sqrt(2.0/n)$, as discussed in [He et al.](http://arxiv-web3.library.cornell.edu/abs/1502.01852). 
 
 
 

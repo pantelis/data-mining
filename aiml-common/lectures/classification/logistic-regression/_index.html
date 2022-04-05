@@ -257,6 +257,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-dnn-exercises/_index.html">
+   Backpropagation DNN exercises
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../optimization/regularization/_index.html">
    Regularization in Deep Neural Networks
   </a>
@@ -467,6 +472,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../../../assignments/fashion-mnist-from-scratch/_index.html">
+   Fashion MNIST From Scratch Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../../projects/jaxworld/jax.html">
    Accelerated Functional Programming - The Case for Jax
   </a>
@@ -648,10 +658,10 @@ const thebe_selector_output = ".output, .cell_output"
 <em>The corresponding posterior probability for the red class, which is given by a logistic sigmoid of a linear function of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</em></p>
 <!-- As we said, with logistic regression **we skip the assumption about the class-conditional densities** as they add parameters to our problem that grow  quadratic to the number of dimensions and we attempt to find the $n$ parameters of the model directly (the number of features) and sure enough we will use ML to do so.  -->
 <p>By repeating the classical steps in ML methodology i.e. writing down the expression of the likelihood function (this will now be a product of binomials), we can write down the negative log likelihood function for the binary case as,</p>
-<div class="admonition-binary-ce-loss admonition">
-<p class="admonition-title">Binary CE Loss</p>
-<div class="math notranslate nohighlight">
-\[L(\mathbf{w}) = L(y, \hat{y}) = - \ln p(\mathbf{y},\mathbf{w}) = - \big[ \sum_{i=1}^m \{y_i \ln \hat{y}_i + (1-y_i) \ln (1-\hat{y}_i) \} \big]\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Binary CE Loss
+$<span class="math notranslate nohighlight">\(L(\mathbf{w}) = L(y, \hat{y}) = - \ln p(\mathbf{y},\mathbf{w}) = - \big[ \sum_{i=1}^m \{y_i \ln \hat{y}_i + (1-y_i) \ln (1-\hat{y}_i) \} \big]\)</span>$</p>
 <p>which is called <strong>cross entropy loss function</strong> - probably the most widely used error function (in classification as well as regression) due to its information theoretic roots.</p>
 </div>
 <p>Its shape is shown in the figure below for an example case where the <span class="math notranslate nohighlight">\(y=1\)</span>. It is also known as log-loss.</p>

@@ -56,7 +56,7 @@ $$P(x,y) = P(x | y)P(y) = P(y | x)P(x)$$
 ![conditional-bigram](images/conditional-bigrams.png)
 *Conditional probability distribution over the 27x27 possible bigrams $xy$ found in this document: https://www.tldp.org/FAQ/pdf/Linux-FAQ.pdf*
 
-{{< hint warning >}}
+```{warning}
 
 Are $x$ and $y$ in the example above independent ?
 
