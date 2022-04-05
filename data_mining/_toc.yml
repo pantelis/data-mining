@@ -45,10 +45,10 @@ parts:
     - file: aiml-common/lectures/dnn/dnn-intro/_index.md
     - file: aiml-common/lectures/dnn/backprop-intro/_index.md
     - file: aiml-common/lectures/dnn/backprop-dnn/_index.md
-    - file: aiml-common/lectures/dnn/backprop-intro-exercises/_index.md
+    - file: aiml-common/lectures/dnn/backprop-dnn-exercises/_index.md
     - file: aiml-common/lectures/dnn/fashion-mnist-case-study/_index.md
     - file: aiml-common/lectures/optimization/regularization/_index.md
-    - file: aiml-common/lectures/optimization/regularization/regularization-workshop-1/_index.md
+    #- file: aiml-common/lectures/optimization/regularization/regularization-workshop-1/_index.md
       
   - caption: Convolutional Neural Networks
     chapters:    
@@ -110,5 +110,6 @@ parts:
     chapters:
     - file: aiml-common/assignments/probability/probability-assignment-2/probability-assignment-2.ipynb
     - file: aiml-common/assignments/mle/mle_exponential_linear_regression.ipynb
+    - file: aiml-common/assignments/fashion-mnist-from-scratch/_index.md
     - file: aiml-common/projects/jaxworld/jax.md
     - file: aiml-common/projects/_index.md
