@@ -10,19 +10,20 @@ sphinx-click
 sphinx-proof
 jupyter_contrib_nbextensions
 thebe
-dtreeviz
-sklearn
-lolviz
-plotly
-ipywidgets
-kaleido
-dash
-pandas
-jupyter
-jupyterlab
-jupyter-dash
-tensorflow==2.8.0
-torch 
-torchvision
-google.colab
-frontmatter
+
+# dtreeviz
+# sklearn
+# lolviz
+# plotly
+# ipywidgets
+# kaleido
+# dash
+# pandas
+# jupyter
+# jupyterlab
+# jupyter-dash
+# tensorflow==2.8.0
+# torch 
+# torchvision
+# google.colab
+# frontmatter
