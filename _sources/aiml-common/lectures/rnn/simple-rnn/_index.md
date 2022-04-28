@@ -46,7 +46,7 @@ $$\mathbf h_t = \tanh(\mathbf a_t)$$
 
 $$\mathbf o_t = \mathbf V \mathbf h_t + \mathbf c$$
 
-$$\hat \mathbf y_t = \mathtt{softmax}(\mathbf o_t)$$
+$$\mathbf{\hat y_t} = \mathtt{softmax}(\mathbf o_t)$$
 
 $$L(\mathbf x_1, \dots , \mathbf x_{\tau}, \mathbf y_1, \dots , \mathbf y_{\tau}) = D_{KL}[\hat p_{data}(\mathbf y | \mathbf x) || p_{model}(\mathbf y | \mathbf x; \mathbf w)]$$
 

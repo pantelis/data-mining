@@ -6,7 +6,9 @@ title: Introduction to Deep Neural Networks
 
 For a historical recap on neural networks see:
 
-{{<youtube gG5NCkMerHU>}}
+```{eval-rst}
+.. youtube gG5NCkMerHU
+```
 _The Epistemology of Deep Learning - Yann LeCun_
 
 DNNs are the implementation of **connectionism**, the philosophy that calls for algorithms that perform function approximations to be constructed by an interconnection of elementary circuits called neurons.  In this section, we provides some key points on the question of how the feed-forward neural networks are constructed. In subsequent sections we describe how they learn.  
@@ -68,12 +70,4 @@ The Rectified Linear Unit activation function is very inexpensive to compute com
 ## References
 
 We used a combination of material from Ian Goodfellow's book chapter 6. Other good sources of information include [CS331n](http://cs231n.stanford.edu/) and Nielsen's [tutorial treatment of the subject](http://neuralnetworksanddeeplearning.com/).
-
-{{<tabs "softmax">}}
-    {{<tab "TF">}}  
-    [Softmax](https://www.tensorflow.org/api_docs/python/tf/nn/softmax) 
-    [ReLU](https://www.tensorflow.org/api_docs/python/tf/nn/relu)
-    {{</tab>}}
-{{<tab "PyTorch">}} {{/tab}}
-{{</tabs>}}
 

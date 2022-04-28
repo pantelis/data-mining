@@ -56,6 +56,10 @@ Closing, you can expect backpropagation to work similarly to simple RNN case [al
 
 Hyperparameter optimization for LSTMs is addressed more formally ["LSTM: A Search Space Odyssey"](https://arxiv.org/pdf/1503.04069v1.pdf)
 
+## LSTM Workshop
+
+Please go through [this](https://christinakouridi.blog/2019/06/20/vanilla-lstm-numpy/) from scratch implementation of LSTM. Note that the notation is different than in your notes and follows [this well known blog post](https://colah.github.io/posts/2015-08-Understanding-LSTMs/).  
+
 ## Additional Resources
 
 Additional tutorial resources on LSTMs can be found here:
