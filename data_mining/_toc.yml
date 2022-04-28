@@ -55,7 +55,7 @@ parts:
     - file: aiml-common/lectures/cnn/cnn-intro/_index.md
     - file: aiml-common/lectures/cnn/cnn-layers/_index.md
     - file: aiml-common/lectures/cnn/cnn-example-architectures/_index.md
-    - file: aiml-common/lectures/cnn/cnn-example-architectures/cnn-classification-workshop/_index.md
+    - file: aiml-common/lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.ipynb
 
   - caption: Scene Understanding
     chapters:    
