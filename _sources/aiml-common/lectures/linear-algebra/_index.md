@@ -28,7 +28,7 @@ Its important to understand this basic operator and its geometric interpretation
 
 Let $S$ be a vector subspace of $\R^n$. For example in $\R^3$, $S$ are the lines and planes going through the origin. The projection operator onto $S$ implements a linear transformation: $\Pi_S: \R^3 →S$. We will stick to $\R^3$ to maintain the ability to plot the operations involved. We also define the orthogonal subspace,
 
-$$S^\perp  ≡  \\{ \mathbf w \in \R^3 | \mathbf w ^T \mathbf s = 0, ∀ \mathbf s \in S \\} $$
+$$S^\perp  ≡  \{ \mathbf w \in \R^3 | \mathbf w ^T \mathbf s = 0, ∀ \mathbf s \in S \} $$
 
 The transformation $\Pi_S$ projects onto space $S$ in the sense that when you apply this operator, every vector $\mathbf u$ in any other space results in the subspace $S$. In our example above,
 
@@ -42,7 +42,7 @@ Now we can treat projections onto specific subspaces such as lines and planes pa
 
 For a line defined by a direction vector $\mathbf u$
 
-$$l = \\{  (x,y,z) \in \R^3 | (x,y,z) = \mathbf 0 + t \mathbf u \\} $$
+$$l = \{  (x,y,z) \in \R^3 | (x,y,z) = \mathbf 0 + t \mathbf u \} $$
 
 we can define the projection onto the line
 
@@ -51,7 +51,7 @@ we can define the projection onto the line
 
 The space $S^\perp ≡ l^\perp$ is a plane since it consists of all the vectors that are perpendicular to the line. What is shown in the figure as a dashed line is simply the projection of $\mathbf u$ on the $l^\perp$ subspace,
 
-$$l^\perp = \\{  (x,y,z) \in \R^3 | \begin{bmatrix} x \\\\ y \\\\ z \end{bmatrix}^T  \mathbf v = 0\\} $$
+$$l^\perp = \{  (x,y,z) \in \R^3 | \begin{bmatrix} x \\ y \\ z \end{bmatrix}^T  \mathbf v = 0\} $$
 
 The orthogonal space of a line with direction vector $\mathbf v$ is a _plane_ with a normal vector $\mathbf v$. So when we project the $\mathbf v$ on the line we get two components one is lying on the line and is the $\Pi_l \mathbf u$ and the other is the vector $\mathbf w$ = $\Pi_{l^\perp} \mathbf u = \mathbf u - \mathbf v = \mathbf u - \Pi_{\mathbf v} \mathbf u $. The vector $\mathbf w$ is what remains when we remove the projected on $\mathbf v$ part from the $\mathbf u$. 
 
@@ -70,16 +70,16 @@ The real action that the matrix performs is to **transform** its row space to it
 
 The type of matrices that are common in ML are those that the number of rows $m$ representing observations is much larger than the number of columns $n$ that represent features. We will call these matrices "tall" for obvious reasons. Let us consider one trivial but instructive example of the smallest possible "tall" matrix:
 
-$$\begin{bmatrix} a_{11} & a_{12} \\\\ a_{21}  & a_{22} \\\\ a_{31} & a_{32} \end{bmatrix} = \begin{bmatrix} 1       & 0 \\\\ 5       & 4 \\\\ 2       & 4 \end{bmatrix}$$
+$$\begin{bmatrix} a_{11} & a_{12} \\ a_{21}  & a_{22} \\ a_{31} & a_{32} \end{bmatrix} = \begin{bmatrix} 1       & 0 \\ 5       & 4 \\ 2       & 4 \end{bmatrix}$$
 
 In ML we are usually concerned with the problem of learning the weights $x_1, x_2$ that will combine the features and result into the given target variables $\mathbf{b}$. The notation here is different and we have adopted the notation of many linear algebra textbooks. 
 
-$$ \begin{bmatrix} 1       & 0 \\\\ 5       & 4 \\\\ 2       & 4 \end{bmatrix}  \begin{bmatrix} x_1 \\\\ x_2  \end{bmatrix} =
-\begin{bmatrix} b_1 \\\\ b_2 \\\\  b_3  \end{bmatrix}$$
+$$ \begin{bmatrix} 1       & 0 \\ 5       & 4 \\ 2       & 4 \end{bmatrix}  \begin{bmatrix} x_1 \\ x_2  \end{bmatrix} =
+\begin{bmatrix} b_1 \\ b_2 \\  b_3  \end{bmatrix}$$
 
 To make more explicit the combination of features we can write,
 
-$$ x_1 \begin{bmatrix} 1 \\\\ 5 \\\\ 2 \end{bmatrix} + x_2 \begin{bmatrix} 0 \\\\ 4 \\\\  4  \end{bmatrix} = \begin{bmatrix} b_1 \\\\ b_2 \\\\  b_3  \end{bmatrix}$$
+$$ x_1 \begin{bmatrix} 1 \\ 5 \\ 2 \end{bmatrix} + x_2 \begin{bmatrix} 0 \\ 4 \\  4  \end{bmatrix} = \begin{bmatrix} b_1 \\ b_2 \\  b_3  \end{bmatrix}$$
 
 Since $m=3 > n=2$, we have more equations than unknowns we in general we have no solutions - a system with $m > n$ will be solvable only for certain right hand sides $\mathbf{b}$. Those are all the vectors $\mathbf{b}$ that lie in the column space of $A$.
 
@@ -92,7 +92,7 @@ The solutions to $A \mathbf{x} = \mathbf{0}$ form a vector space - **the nullspa
 
 $\mathcal{N}(A)$ is a subspace of $\mathbb{R}^n=\mathbb{R}^2$ in this case. For our specific example,
 
-$$ x_1 \begin{bmatrix} 1 \\\\ 5 \\\\ 2 \end{bmatrix} + x_2 \begin{bmatrix} 0 \\\\ 4 \\\\  4  \end{bmatrix} = \begin{bmatrix} 0 \\\\ 0 \\\\  0  \end{bmatrix}$$
+$$ x_1 \begin{bmatrix} 1 \\ 5 \\ 2 \end{bmatrix} + x_2 \begin{bmatrix} 0 \\ 4 \\  4  \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\  0  \end{bmatrix}$$
 
 the only solution that can satisfy this set of homogenous equations is: $\mathbf{x}=\mathbf{0}$ and this means that the null space contains only the zero vector and this 
 

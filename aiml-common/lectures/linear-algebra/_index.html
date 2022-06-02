@@ -471,21 +471,6 @@ const thebe_selector_output = ".output, .cell_output"
    Maximum Likelihood Parameter Estimation
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../assignments/fashion-mnist-from-scratch/_index.html">
-   Fashion MNIST From Scratch Assignment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../projects/jaxworld/jax.html">
-   Accelerated Functional Programming - The Case for Jax
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../projects/_index.html">
-   Course Project Guidelines
-  </a>
- </li>
 </ul>
 
     </div>
@@ -663,7 +648,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Its important to understand this basic operator and its geometric interpretation as it is met in problems like Ordinary Least Squares but also all over ML and other fields such as compressed sensing. In the following we assume that the reader is familiar with the concept of vector spaces and subspaces.</p>
 <p>Let <span class="math notranslate nohighlight">\(S\)</span> be a vector subspace of <span class="math notranslate nohighlight">\(\R^n\)</span>. For example in <span class="math notranslate nohighlight">\(\R^3\)</span>, <span class="math notranslate nohighlight">\(S\)</span> are the lines and planes going through the origin. The projection operator onto <span class="math notranslate nohighlight">\(S\)</span> implements a linear transformation: <span class="math notranslate nohighlight">\(\Pi_S: \R^3 →S\)</span>. We will stick to <span class="math notranslate nohighlight">\(\R^3\)</span> to maintain the ability to plot the operations involved. We also define the orthogonal subspace,</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}S^\perp  ≡  \\{ \mathbf w \in \R^3 | \mathbf w ^T \mathbf s = 0, ∀ \mathbf s \in S \\} \end{split}\]</div>
+\[S^\perp  ≡  \{ \mathbf w \in \R^3 | \mathbf w ^T \mathbf s = 0, ∀ \mathbf s \in S \} \]</div>
 <p>The transformation <span class="math notranslate nohighlight">\(\Pi_S\)</span> projects onto space <span class="math notranslate nohighlight">\(S\)</span> in the sense that when you apply this operator, every vector <span class="math notranslate nohighlight">\(\mathbf u\)</span> in any other space results in the subspace <span class="math notranslate nohighlight">\(S\)</span>. In our example above,</p>
 <div class="math notranslate nohighlight">
 \[\Pi_S(\mathbf u) \in S, \forall \mathbf u \in \R^3\]</div>
@@ -673,13 +658,13 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Now we can treat projections onto specific subspaces such as lines and planes passing through the origin.</p>
 <p>For a line defined by a direction vector <span class="math notranslate nohighlight">\(\mathbf u\)</span></p>
 <div class="math notranslate nohighlight">
-\[\begin{split}l = \\{  (x,y,z) \in \R^3 | (x,y,z) = \mathbf 0 + t \mathbf u \\} \end{split}\]</div>
+\[l = \{  (x,y,z) \in \R^3 | (x,y,z) = \mathbf 0 + t \mathbf u \} \]</div>
 <p>we can define the projection onto the line</p>
 <p><img alt="line-projection" src="../../../_images/line-projection.png" />
 <em>Projection of <span class="math notranslate nohighlight">\(\mathbf u\)</span> onto the line <span class="math notranslate nohighlight">\(l\)</span></em></p>
 <p>The space <span class="math notranslate nohighlight">\(S^\perp ≡ l^\perp\)</span> is a plane since it consists of all the vectors that are perpendicular to the line. What is shown in the figure as a dashed line is simply the projection of <span class="math notranslate nohighlight">\(\mathbf u\)</span> on the <span class="math notranslate nohighlight">\(l^\perp\)</span> subspace,</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}l^\perp = \\{  (x,y,z) \in \R^3 | \begin{bmatrix} x \\\\ y \\\\ z \end{bmatrix}^T  \mathbf v = 0\\} \end{split}\]</div>
+\[\begin{split}l^\perp = \{  (x,y,z) \in \R^3 | \begin{bmatrix} x \\ y \\ z \end{bmatrix}^T  \mathbf v = 0\} \end{split}\]</div>
 <p>The orthogonal space of a line with direction vector <span class="math notranslate nohighlight">\(\mathbf v\)</span> is a <em>plane</em> with a normal vector <span class="math notranslate nohighlight">\(\mathbf v\)</span>. So when we project the <span class="math notranslate nohighlight">\(\mathbf v\)</span> on the line we get two components one is lying on the line and is the <span class="math notranslate nohighlight">\(\Pi_l \mathbf u\)</span> and the other is the vector <span class="math notranslate nohighlight">\(\mathbf w\)</span> = <span class="math notranslate nohighlight">\(\Pi_{l^\perp} \mathbf u = \mathbf u - \mathbf v = \mathbf u - \Pi_{\mathbf v} \mathbf u \)</span>. The vector <span class="math notranslate nohighlight">\(\mathbf w\)</span> is what remains when we remove the projected on <span class="math notranslate nohighlight">\(\mathbf v\)</span> part from the <span class="math notranslate nohighlight">\(\mathbf u\)</span>.</p>
 </div>
 <div class="section" id="the-four-fundamental-subspaces">
@@ -695,14 +680,14 @@ const thebe_selector_output = ".output, .cell_output"
 <p>The real action that the matrix performs is to <strong>transform</strong> its row space to its column space.</p>
 <p>The type of matrices that are common in ML are those that the number of rows <span class="math notranslate nohighlight">\(m\)</span> representing observations is much larger than the number of columns <span class="math notranslate nohighlight">\(n\)</span> that represent features. We will call these matrices “tall” for obvious reasons. Let us consider one trivial but instructive example of the smallest possible “tall” matrix:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{bmatrix} a_{11} &amp; a_{12} \\\\ a_{21}  &amp; a_{22} \\\\ a_{31} &amp; a_{32} \end{bmatrix} = \begin{bmatrix} 1       &amp; 0 \\\\ 5       &amp; 4 \\\\ 2       &amp; 4 \end{bmatrix}\end{split}\]</div>
+\[\begin{split}\begin{bmatrix} a_{11} &amp; a_{12} \\ a_{21}  &amp; a_{22} \\ a_{31} &amp; a_{32} \end{bmatrix} = \begin{bmatrix} 1       &amp; 0 \\ 5       &amp; 4 \\ 2       &amp; 4 \end{bmatrix}\end{split}\]</div>
 <p>In ML we are usually concerned with the problem of learning the weights <span class="math notranslate nohighlight">\(x_1, x_2\)</span> that will combine the features and result into the given target variables <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. The notation here is different and we have adopted the notation of many linear algebra textbooks.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} \begin{bmatrix} 1       &amp; 0 \\\\ 5       &amp; 4 \\\\ 2       &amp; 4 \end{bmatrix}  \begin{bmatrix} x_1 \\\\ x_2  \end{bmatrix} =
-\begin{bmatrix} b_1 \\\\ b_2 \\\\  b_3  \end{bmatrix}\end{split}\]</div>
+\[\begin{split} \begin{bmatrix} 1       &amp; 0 \\ 5       &amp; 4 \\ 2       &amp; 4 \end{bmatrix}  \begin{bmatrix} x_1 \\ x_2  \end{bmatrix} =
+\begin{bmatrix} b_1 \\ b_2 \\  b_3  \end{bmatrix}\end{split}\]</div>
 <p>To make more explicit the combination of features we can write,</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} x_1 \begin{bmatrix} 1 \\\\ 5 \\\\ 2 \end{bmatrix} + x_2 \begin{bmatrix} 0 \\\\ 4 \\\\  4  \end{bmatrix} = \begin{bmatrix} b_1 \\\\ b_2 \\\\  b_3  \end{bmatrix}\end{split}\]</div>
+\[\begin{split} x_1 \begin{bmatrix} 1 \\ 5 \\ 2 \end{bmatrix} + x_2 \begin{bmatrix} 0 \\ 4 \\  4  \end{bmatrix} = \begin{bmatrix} b_1 \\ b_2 \\  b_3  \end{bmatrix}\end{split}\]</div>
 <p>Since <span class="math notranslate nohighlight">\(m=3 &gt; n=2\)</span>, we have more equations than unknowns we in general we have no solutions - a system with <span class="math notranslate nohighlight">\(m &gt; n\)</span> will be solvable only for certain right hand sides <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. Those are all the vectors <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> that lie in the column space of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p><img alt="column-space" src="../../../_images/column-space.png" /></p>
 <p>In this example, as shown in the picture <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> must lie in the plane spanned by the two columns of <span class="math notranslate nohighlight">\(A\)</span>. The plane is a subspace of <span class="math notranslate nohighlight">\(\mathbb{R}^m=\mathbb{R}^3\)</span> in this case.</p>
@@ -710,7 +695,7 @@ const thebe_selector_output = ".output, .cell_output"
 The solutions to <span class="math notranslate nohighlight">\(A \mathbf{x} = \mathbf{0}\)</span> form a vector space - <strong>the nullspace</strong> <span class="math notranslate nohighlight">\(\mathcal{N}(A)\)</span>. The nullspace is also called the <em>kernel</em> of matrix <span class="math notranslate nohighlight">\(A\)</span> and the its dimension <span class="math notranslate nohighlight">\(n-r\)</span> is called the nullity.</p>
 <p><span class="math notranslate nohighlight">\(\mathcal{N}(A)\)</span> is a subspace of <span class="math notranslate nohighlight">\(\mathbb{R}^n=\mathbb{R}^2\)</span> in this case. For our specific example,</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} x_1 \begin{bmatrix} 1 \\\\ 5 \\\\ 2 \end{bmatrix} + x_2 \begin{bmatrix} 0 \\\\ 4 \\\\  4  \end{bmatrix} = \begin{bmatrix} 0 \\\\ 0 \\\\  0  \end{bmatrix}\end{split}\]</div>
+\[\begin{split} x_1 \begin{bmatrix} 1 \\ 5 \\ 2 \end{bmatrix} + x_2 \begin{bmatrix} 0 \\ 4 \\  4  \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\  0  \end{bmatrix}\end{split}\]</div>
 <p>the only solution that can satisfy this set of homogenous equations is: <span class="math notranslate nohighlight">\(\mathbf{x}=\mathbf{0}\)</span> and this means that the null space contains only the zero vector and this</p>
 <p>Two vectors are independent when their linear combination cannot be zero, unless both <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> are zero.  The columns of <span class="math notranslate nohighlight">\(A\)</span> are therefore linearly independent and they span the column space. They have therefore all the properties needed for them to constitute a set called the <em>basis</em> for that space and we have two basis vectors (the rank is <span class="math notranslate nohighlight">\(r=2\)</span> in this case). The dimension of the column space is in fact the same as the dimension of the row space (<span class="math notranslate nohighlight">\(r\)</span>) and the mapping from row space to column space is in fact invertible. Every vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> comes from one and only one vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> of the row space (<span class="math notranslate nohighlight">\(\mathbf{x}_r\)</span>). And this vector can be found by the inverse operation - noting that only the inverse <span class="math notranslate nohighlight">\(A^{-1}\)</span> is the operation that moves the vector correctly from the column space to the row space. The inverse exists only if <span class="math notranslate nohighlight">\(r=m=n\)</span> - this is important as in most ML problems we are dealing with “tall” matrices with the number of equations much larger than the number of unknowns which makes the system <em>inconsistent</em> (or <em>degenerate</em>).</p>
 <p><img alt="projection-column-space" src="../../../_images/projection-column-space.png" />

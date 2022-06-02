@@ -50,7 +50,7 @@ So what is the more formal description of the word2vec algorithm? We will focus 
 ![word2vec-idea2](images/word2vec-idea2.png)
 _In the skip-gram we predict the **context given the center word**.We need to calculate the probability $p(w_{t+j} | w_t)$._  
 
-We go through each position $t$ in each sentence and for the center word at that location $w_t$ we predict the outside words $w_{t+j}$ where $j$ is over a window of size $C = |\\{ j: -m \le j \le m \\}|-1$ around $w_t$.  
+We go through each position $t$ in each sentence and for the center word at that location $w_t$ we predict the outside words $w_{t+j}$ where $j$ is over a window of size $C = |\{ j: -m \le j \le m \}|-1$ around $w_t$.  
 
 **For example, the meaning of `banking` is predicting the context (the words around it) in which `banking` occurs across our corpus.**  
 
@@ -74,8 +74,8 @@ So the question now becomes how to calculate $p(w_{t+j} | w_t; \theta)$ and we d
 The network accepts the center word and via an embedding layer $\mathbf W_{|V| \times d}$ produces a hidden layer $\mathbf z$. The same hidden layer output is then mapped to an output layer of size $C \times |V|$, via $\mathbf W^\prime_{d \times |V|}$. One mapping is done for each of the words that we include in the context. In the output layer we then convert the metrics $\mathbf z^\prime$ to a probability distribution $\hat{\mathbf y}$ via the softmax. This is summarized next:
 
 $$\mathbf z = \mathbf x^T \mathbf W$$
-$$\mathbf z^\prime_j = \mathbf z \mathbf W^\prime_j,  j \in \[1,...,C]$$
-$$\hat{\mathbf y}_j = \mathtt{softmax}(\mathbf z^\prime_j), j \in \[1,...,C]$$
+$$\mathbf z^\prime_j = \mathbf z \mathbf W^\prime_j,  j \in [1,...,C]$$
+$$\hat{\mathbf y}_j = \mathtt{softmax}(\mathbf z^\prime_j), j \in [1,...,C]$$
 $$L = CE(\mathbf{y}, \hat{\mathbf y} )$$
 
 The parameters $\theta = \[ \mathbf W, \mathbf W^\prime \]$ will be optimized via an optimization algorithm (from the usual SGD family).

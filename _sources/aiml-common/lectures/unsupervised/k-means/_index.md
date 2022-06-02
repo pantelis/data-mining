@@ -26,7 +26,7 @@ We go over each data point $\mathbf x_i$ and we assign it to the closest custer 
 
 Mathematically this means determining:
 
-$$r_{ik} = \begin{cases}1, & \text{if } k = \arg \min_j ||\mathbf x_i - \mathbf \mu_j||^2\\\\ 0, & \text{otherwise. } \end{cases}$$
+$$r_{ik} = \begin{cases}1, & \text{if } k = \arg \min_j ||\mathbf x_i - \mathbf \mu_j||^2\\ 0, & \text{otherwise. } \end{cases}$$
 
 ### Step 2
 In the second step we move each cluster center to the average of the data points assigned to that cluster. Mathematically this is:

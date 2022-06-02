@@ -471,21 +471,6 @@ const thebe_selector_output = ".output, .cell_output"
    Maximum Likelihood Parameter Estimation
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/fashion-mnist-from-scratch/_index.html">
-   Fashion MNIST From Scratch Assignment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../projects/jaxworld/jax.html">
-   Accelerated Functional Programming - The Case for Jax
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../projects/_index.html">
-   Course Project Guidelines
-  </a>
- </li>
 </ul>
 
     </div>
@@ -634,14 +619,14 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Then its Jacobian is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\frac{\partial \mathbf f}{\partial \mathbf x} = 
-\begin{bmatrix} \frac{\partial f_1}{\partial x_1} &amp; \dots &amp; \frac{\partial f_1}{\partial x_n} \\\\ \vdots &amp; \dots &amp; \vdots \\\\ \frac{\partial f_m}{\partial x_1} &amp; \dots &amp; \frac{\partial f_m}{\partial x_n} \end{bmatrix}\end{split}\]</div>
+\begin{bmatrix} \frac{\partial f_1}{\partial x_1} &amp; \dots &amp; \frac{\partial f_1}{\partial x_n} \\ \vdots &amp; \dots &amp; \vdots \\ \frac{\partial f_m}{\partial x_1} &amp; \dots &amp; \frac{\partial f_m}{\partial x_n} \end{bmatrix}\end{split}\]</div>
 <p>The Jacobian matrix will be useful for us because we can apply the chain rule to a vector-valued function just by multiplying Jacobians.</p>
 <p>As a little illustration of this, suppose we have a function <span class="math notranslate nohighlight">\(f(\mathbf x) = [f_1(x), f_2(x)]\)</span> taking a scalar to a vector of size 2 and a function <span class="math notranslate nohighlight">\(g(\mathbf y) = [g_1(y_1, y_2), g_2(y_1, y_2)]\)</span> taking a vector of size two to a vector of size two. Now let’s compose them to get <span class="math notranslate nohighlight">\(g(x) = [g_1(f_1(x), f_2(x)), g_2(f_1(x), f_2(x))]\)</span>. Using the regular chain rule, we can compute the derivative of <span class="math notranslate nohighlight">\(g\)</span> as the Jacobian</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\frac{\partial g}{\partial x} = \begin{bmatrix} \frac{\partial}{\partial x}g_1(f_1(x), f_2(x))  \\\\ \frac{\partial} {\partial x}g_2(f_1(x), f_2(x))  \\\\ \end{bmatrix} =  \begin{bmatrix} \frac{\partial{g_1}}{\partial f_1}\frac{\partial{f_1}}{\partial x} + \frac{\partial{g_1}}{\partial f_2}\frac{\partial{f_2}}{\partial x}   \\\\ \frac{\partial{g_2}}{\partial f_1}\frac{\partial{f_1}}{\partial x} + \frac{\partial{g_2}}{\partial f_2}\frac{\partial{f_2}}{\partial x}  \end{bmatrix}\end{split}\]</div>
+\[\begin{split}\frac{\partial g}{\partial x} = \begin{bmatrix} \frac{\partial}{\partial x}g_1(f_1(x), f_2(x))  \\ \frac{\partial} {\partial x}g_2(f_1(x), f_2(x))  \\ \end{bmatrix} =  \begin{bmatrix} \frac{\partial{g_1}}{\partial f_1}\frac{\partial{f_1}}{\partial x} + \frac{\partial{g_1}}{\partial f_2}\frac{\partial{f_2}}{\partial x}   \\ \frac{\partial{g_2}}{\partial f_1}\frac{\partial{f_1}}{\partial x} + \frac{\partial{g_2}}{\partial f_2}\frac{\partial{f_2}}{\partial x}  \end{bmatrix}\end{split}\]</div>
 <p>And we see this is the same as multiplying the two Jacobians:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\frac{\partial{g}}{\partial x} = \frac{\partial{ g}}{\partial f}\frac{\partial{f}}{\partial x} = \begin{bmatrix} \frac{\partial{g_1}}{\partial f_1} &amp; \frac{\partial{g_1}}{\partial f_2} \\\\ \frac{\partial{g_2}}{\partial f_1} &amp; \frac{\partial{g_2}}{\partial f_2} \\\\ \end{bmatrix} \begin{bmatrix} \frac{\partial{f_1}}{\partial x} \\\\ \frac{\partial{f_2}}{\partial x} \\\\ \end{bmatrix}\end{split}\]</div>
+\[\begin{split}\frac{\partial{g}}{\partial x} = \frac{\partial{ g}}{\partial f}\frac{\partial{f}}{\partial x} = \begin{bmatrix} \frac{\partial{g_1}}{\partial f_1} &amp; \frac{\partial{g_1}}{\partial f_2} \\ \frac{\partial{g_2}}{\partial f_1} &amp; \frac{\partial{g_2}}{\partial f_2} \\ \end{bmatrix} \begin{bmatrix} \frac{\partial{f_1}}{\partial x} \\ \frac{\partial{f_2}}{\partial x} \\ \end{bmatrix}\end{split}\]</div>
 <p><a class="reference external" href="http://cs231n.stanford.edu/vecDerivs.pdf">This</a> is also another instructive summary that help us understand how to calculate the local gradients involved and the gate templates (identities) summarized below that are routinely found in neural network backpropagation calculations. Assume that  with <span class="math notranslate nohighlight">\(\mathbf W \in \mathbb{R}^{n \times m}, \mathbf x \in \mathbb{R}^m\)</span>.</p>
 <p><em>Tables of Gates and Gradients used in the backpropagation of deep neural networks</em></p>
 <table class="colwidths-auto table">

@@ -10,7 +10,7 @@ Most of the models in supervised machine learning are estimated using the ML pri
 
 Assume that we have $m$ examples drawn from a data generator that generates the vectors $\mathbf{x} \in \mathcal{X}$ _independently and identically distributed (i.i.d.)_ according to some unknown (but fixed) probability distribution function $p_{data}(\mathbf{x})$.
 
-$$\mathbb{X} = \\{ \mathbf{x}_1, \dots, \mathbf{x}_m \\}$$
+$$\mathbb{X} = \{ \mathbf{x}_1, \dots, \mathbf{x}_m \}$$
 
 Let $p_{model}(\mathbf x, \mathbf w)$ a parametric family of probability distributions (our hypothesis set) over the same space that attempts to approximate (model) $p_{data}(\mathbf{x})$ as closely as possible using a suitable estimate of the parameter vector $\mathbf w$. The ML estimator for $\mathbf w$ is defined as:
 
@@ -22,7 +22,7 @@ $$ = \argmax_{\mathbf w} \mathbb{E}_{\mathbf{x} \sim \hat p_{data}} \log p_{mode
 
 From the last expression it is evident that in ML estimation two distributions are involved: $\hat p_{data}$ and $p_{model}$. We can also make use of our intuition that a good estimator would minimize the distance between the two empirical distributions therefore the KL divergence:  
 
-$$KL( \hat p_{data} || p_{model} ) = \mathbb{E}_{\mathbf x  \sim \hat p_{data}} \[\log \hat p_{data}(\mathbf x) - \log p_{model}(\mathbf x, \mathbf w) \]$$ 
+$$KL( \hat p_{data} || p_{model} ) = \mathbb{E}_{\mathbf x  \sim \hat p_{data}} \left[\log \hat p_{data}(\mathbf x) - \log p_{model}(\mathbf x, \mathbf w) \right] $$
 
 The 1st term is independent of the model and therefore we see that the KL and the ML estimator expressions are _identical_ except from the sign. Therefore we conclude that _minimizing KL divergence, maximizes the likelihood function_. From information theory we know that the KL divergence and  the cross entropy (CE) are related via the expression
 

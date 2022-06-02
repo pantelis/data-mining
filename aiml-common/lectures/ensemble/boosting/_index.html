@@ -471,21 +471,6 @@ const thebe_selector_output = ".output, .cell_output"
    Maximum Likelihood Parameter Estimation
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/fashion-mnist-from-scratch/_index.html">
-   Fashion MNIST From Scratch Assignment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../projects/jaxworld/jax.html">
-   Accelerated Functional Programming - The Case for Jax
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../projects/_index.html">
-   Course Project Guidelines
-  </a>
- </li>
 </ul>
 
     </div>
@@ -634,7 +619,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Lets see how AdaBoost functions using an example based on <a class="reference external" href="https://towardsdatascience.com/machine-learning-part-17-boosting-algorithms-adaboost-in-python-d00faac6c464">this article</a>.</p>
 <p>Lets assume that you are a data scientist working on a dating site and you are asked to develop an algorithm that classifies whether a profile is attractive or not.  The dataset you are given is shown below.  This is of course a fictitious dataset - there is no way that someone will put in their profile that they are <em>not</em> smart or polite.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\mathtt{data} = \\{ (\mathbf{x}_1, y_1), \dots, (\mathbf{x}_m, y_m) \\}\end{split}\]</div>
+\[\mathtt{data} = \{ (\mathbf{x}_1, y_1), \dots, (\mathbf{x}_m, y_m) \}\]</div>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Weight</p></th>
@@ -695,7 +680,7 @@ const thebe_selector_output = ".output, .cell_output"
 </tr>
 </tbody>
 </table>
-<p>We assume that the label <span class="math notranslate nohighlight">\(y \in \{+1, -1}\)</span> instead of 0 or 1 with loss of generality. This is a binary classification problem but the method is equally applicable to multi-class problems.</p>
+<p>We assume that the label <span class="math notranslate nohighlight">\(y \in {+1, -1}\)</span> instead of 0 or 1 with loss of generality. This is a binary classification problem but the method is equally applicable to multi-class problems.</p>
 <p>AdaBoost calls a given weak learner repeatedly in a series of rounds <span class="math notranslate nohighlight">\(t=1, \dots, T\)</span>, each weak learner is denoted by <span class="math notranslate nohighlight">\(h_t\)</span> - the weak hypothesis that each learner evaluates. In this example case, we can elect a hypothesis set from the family of decision trees and the specific hypothesis we will use is a decision tree with single split (depth = 1) called decision stump.</p>
 <p>One of the main ideas of the AdaBoost is to maintain a distribution of <em>weights</em> over the training set. In each round, the weights of incorrectly classified examples are increased so that the <em>weak learner is forced to focus on the hard examples</em> in the training set. The size of the weight vector equals <span class="math notranslate nohighlight">\(m\)</span>, the number of <em>examples</em> we are given. The weight of training example <span class="math notranslate nohighlight">\(i\)</span> on round <span class="math notranslate nohighlight">\(t\)</span> is denoted <span class="math notranslate nohighlight">\(w_t(i)\)</span>.</p>
 <p>Initially, all weights are set equally,</p>
@@ -710,7 +695,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>where <span class="math notranslate nohighlight">\(\eta\)</span> is a learning rate hyperparameter - if not optimized it defaults to 1.0.</p>
 <p>Then AdaBoost updates the example weights via the equations below that boosts the weights of misclassified examples and normalizes them so that they can be interpreted as a probability distribution:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}w_t(i) = \begin{cases}w_t(i) &amp; \text{if }\hat y_t(i) = y_t(i), \\\\ 
+\[\begin{split}w_t(i) = \begin{cases}w_t(i) &amp; \text{if }\hat y_t(i) = y_t(i), \\ 
 w_t(i) \exp(\alpha_t) &amp; \text{if } \hat y_t(i) \neq y_t(i)  \end{cases}\end{split}\]</div>
 <div class="math notranslate nohighlight">
 \[w_t(i) = \frac{w_t(i)}{\sum_{=1}^m w_t(i)}\]</div>

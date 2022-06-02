@@ -31,12 +31,12 @@ $$a = \sum_{i=0}^n w_i x_i  = \mathbf{w}^T \mathbf{x}$$
 
 Second, the output (also  called the **activity** of the neuron)  is produced by passing the activation through a non linear activation function $\hat{y} = g(a)$. The activation function of the perceptron is the step function - we will cover more of such functions in the treatment of neural networks.
 
-$$g(a) = \begin{cases}1 & \text{if }\ a \ge 0, \\\\ 
+$$g(a) = \begin{cases}1 & \text{if }\ a \ge 0, \\ 
 -1 & \text{otherwise}\end{cases}$$
 
 ## Perceptron Learning Algorithm
 
-The algorithm is derived from the application of the SGD to a suitably chosen loss function. The loss function can be easily designed if we start thinking about the class labels as belonging to the set $\{+1,-1\}$ (rather than the more usual $\{0,1\}$) and considering the value of the products
+The algorithm is derived from the application of the SGD to a suitably chosen loss function. The loss function can be easily designed if we start thinking about the class labels as belonging to the set ${+1,-1}$ (rather than the more usual ${0,1}$) and considering the value of the products
 $\mathbf{w}^T x_j y_j$. If there are no classification errors for the chosen non-linear activation function above such products will result into positive numbers irrespectively of the class. For these cases we assign zero to the loss function. If there are errors however, these products will be negative and the sum of all these negative product terms we must maximize - or equivalently minimize the negative of such loss as below:
 
 $$L(\mathbf{w}) = - \sum_{j: \hat{y_j} \ne y} \mathbf{w^T}x_j y_j$$

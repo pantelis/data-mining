@@ -471,21 +471,6 @@ const thebe_selector_output = ".output, .cell_output"
    Maximum Likelihood Parameter Estimation
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/fashion-mnist-from-scratch/_index.html">
-   Fashion MNIST From Scratch Assignment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../projects/jaxworld/jax.html">
-   Accelerated Functional Programming - The Case for Jax
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../projects/_index.html">
-   Course Project Guidelines
-  </a>
- </li>
 </ul>
 
     </div>
@@ -685,7 +670,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>This is the heart of the LSTM cell, the cell state is the new memory that is introduced by LSTM - all the earlier factors are used to preserve it as long as it is needed by the use case.</p>
 <div class="math notranslate nohighlight">
 \[s_t^i = f_t^i s_{t-1}^i + g_t^i \sigma \Big( \mathbf W(i,:) \mathbf h_{t-1}^i + \mathbf U(i,:) \mathbf x_t^i + \mathbf b^i \Big)\]</div>
-<p>The parameters <span class="math notranslate nohighlight">\(\theta_{in} = \\{  \mathbf W, \mathbf U, \mathbf b \\}\)</span>  are the recurrent weights, input weights and bias respectively at the input of the i-th LSTM cell. Please note that in the above equation some authors use a <span class="math notranslate nohighlight">\(\tanh\)</span> non-linearity to transform the input instead of sigmoid.</p>
+<p>The parameters <span class="math notranslate nohighlight">\(\theta_{in} = \{  \mathbf W, \mathbf U, \mathbf b \}\)</span>  are the recurrent weights, input weights and bias respectively at the input of the i-th LSTM cell. Please note that in the above equation some authors use a <span class="math notranslate nohighlight">\(\tanh\)</span> non-linearity to transform the input instead of sigmoid.</p>
 <p>The forget gate calculates the forgetting factor,</p>
 <div class="math notranslate nohighlight">
 \[f_t^i =\sigma \Big( \mathbf W_f(i,:) \mathbf h_{t-1}^i + \mathbf U_f(i,:) \mathbf x_t^i + \mathbf b_f^i \Big) \]</div>

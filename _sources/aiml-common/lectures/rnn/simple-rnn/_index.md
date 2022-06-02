@@ -67,7 +67,7 @@ In the figure above you have a hypothetical document (a sentence) that is broken
 
 $$- \log p_{model} (y_6|\mathbf x_1, \dots , \mathbf x_6; \mathbf  w)$$ 
 
-where $\mathbf w = \\{ \mathbf W, \mathbf U, \mathbf V, \mathbf b, \mathbf c \\}$. 
+where $\mathbf w = \{ \mathbf W, \mathbf U, \mathbf V, \mathbf b, \mathbf c \}$. 
 
 
 ## Back-Propagation Through Time (BPTT)

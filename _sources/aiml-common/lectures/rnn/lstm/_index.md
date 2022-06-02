@@ -44,7 +44,7 @@ This is the heart of the LSTM cell, the cell state is the new memory that is int
 
 $$s_t^i = f_t^i s_{t-1}^i + g_t^i \sigma \Big( \mathbf W(i,:) \mathbf h_{t-1}^i + \mathbf U(i,:) \mathbf x_t^i + \mathbf b^i \Big)$$
 
-The parameters $\theta_{in} = \\{  \mathbf W, \mathbf U, \mathbf b \\}$  are the recurrent weights, input weights and bias respectively at the input of the i-th LSTM cell. Please note that in the above equation some authors use a $\tanh$ non-linearity to transform the input instead of sigmoid. 
+The parameters $\theta_{in} = \{  \mathbf W, \mathbf U, \mathbf b \}$  are the recurrent weights, input weights and bias respectively at the input of the i-th LSTM cell. Please note that in the above equation some authors use a $\tanh$ non-linearity to transform the input instead of sigmoid. 
  
 The forget gate calculates the forgetting factor,
 

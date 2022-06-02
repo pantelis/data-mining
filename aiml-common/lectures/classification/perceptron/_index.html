@@ -471,21 +471,6 @@ const thebe_selector_output = ".output, .cell_output"
    Maximum Likelihood Parameter Estimation
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/fashion-mnist-from-scratch/_index.html">
-   Fashion MNIST From Scratch Assignment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../projects/jaxworld/jax.html">
-   Accelerated Functional Programming - The Case for Jax
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../projects/_index.html">
-   Course Project Guidelines
-  </a>
- </li>
 </ul>
 
     </div>
@@ -642,12 +627,12 @@ are directed from the inputs to the output of the neuron.  Feedforward neural ne
 \[a = \sum_{i=0}^n w_i x_i  = \mathbf{w}^T \mathbf{x}\]</div>
 <p>Second, the output (also  called the <strong>activity</strong> of the neuron)  is produced by passing the activation through a non linear activation function <span class="math notranslate nohighlight">\(\hat{y} = g(a)\)</span>. The activation function of the perceptron is the step function - we will cover more of such functions in the treatment of neural networks.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}g(a) = \begin{cases}1 &amp; \text{if }\ a \ge 0, \\\\ 
+\[\begin{split}g(a) = \begin{cases}1 &amp; \text{if }\ a \ge 0, \\ 
 -1 &amp; \text{otherwise}\end{cases}\end{split}\]</div>
 </div>
 <div class="section" id="perceptron-learning-algorithm">
 <h2>Perceptron Learning Algorithm<a class="headerlink" href="#perceptron-learning-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>The algorithm is derived from the application of the SGD to a suitably chosen loss function. The loss function can be easily designed if we start thinking about the class labels as belonging to the set <span class="math notranslate nohighlight">\(\{+1,-1\}\)</span> (rather than the more usual <span class="math notranslate nohighlight">\(\{0,1\}\)</span>) and considering the value of the products
+<p>The algorithm is derived from the application of the SGD to a suitably chosen loss function. The loss function can be easily designed if we start thinking about the class labels as belonging to the set <span class="math notranslate nohighlight">\({+1,-1}\)</span> (rather than the more usual <span class="math notranslate nohighlight">\({0,1}\)</span>) and considering the value of the products
 <span class="math notranslate nohighlight">\(\mathbf{w}^T x_j y_j\)</span>. If there are no classification errors for the chosen non-linear activation function above such products will result into positive numbers irrespectively of the class. For these cases we assign zero to the loss function. If there are errors however, these products will be negative and the sum of all these negative product terms we must maximize - or equivalently minimize the negative of such loss as below:</p>
 <div class="math notranslate nohighlight">
 \[L(\mathbf{w}) = - \sum_{j: \hat{y_j} \ne y} \mathbf{w^T}x_j y_j\]</div>

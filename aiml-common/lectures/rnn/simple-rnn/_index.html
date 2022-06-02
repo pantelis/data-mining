@@ -471,21 +471,6 @@ const thebe_selector_output = ".output, .cell_output"
    Maximum Likelihood Parameter Estimation
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/fashion-mnist-from-scratch/_index.html">
-   Fashion MNIST From Scratch Assignment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../projects/jaxworld/jax.html">
-   Accelerated Functional Programming - The Case for Jax
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../projects/_index.html">
-   Course Project Guidelines
-  </a>
- </li>
 </ul>
 
     </div>
@@ -713,7 +698,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>In the figure above you have a hypothetical document (a sentence) that is broken into what in natural language processing called <em>tokens</em>. Lets say that a token is a word in this case. In the simpler case where we need a classification of the whole document, given that <span class="math notranslate nohighlight">\(\tau=6\)</span>, we are going to receive at t=1, the first token <span class="math notranslate nohighlight">\(\mathbf x_1\)</span> and with an input hidden state  <span class="math notranslate nohighlight">\(\mathbf h_0 = 0\)</span> we will calculate the forward equations for <span class="math notranslate nohighlight">\(\mathbf h_1\)</span>, ignoring the output <span class="math notranslate nohighlight">\(\mathbf o_1\)</span> and repeat the unrolling when the next input <span class="math notranslate nohighlight">\(\mathbf x_2\)</span> comes in until we reach the end of sentence token <span class="math notranslate nohighlight">\(\mathbf x_6\)</span> which in this case will calculate the output <span class="math notranslate nohighlight">\(y_6\)</span> and loss</p>
 <div class="math notranslate nohighlight">
 \[- \log p_{model} (y_6|\mathbf x_1, \dots , \mathbf x_6; \mathbf  w)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf w = \\{ \mathbf W, \mathbf U, \mathbf V, \mathbf b, \mathbf c \\}\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(\mathbf w = \{ \mathbf W, \mathbf U, \mathbf V, \mathbf b, \mathbf c \}\)</span>.</p>
 </div>
 <div class="section" id="back-propagation-through-time-bptt">
 <h2>Back-Propagation Through Time (BPTT)<a class="headerlink" href="#back-propagation-through-time-bptt" title="Permalink to this headline">¶</a></h2>

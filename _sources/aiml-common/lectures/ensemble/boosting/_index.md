@@ -20,7 +20,7 @@ Lets see how AdaBoost functions using an example based on [this article](https:/
 
 Lets assume that you are a data scientist working on a dating site and you are asked to develop an algorithm that classifies whether a profile is attractive or not.  The dataset you are given is shown below.  This is of course a fictitious dataset - there is no way that someone will put in their profile that they are _not_ smart or polite.  
 
-$$\mathtt{data} = \\{ (\mathbf{x}_1, y_1), \dots, (\mathbf{x}_m, y_m) \\}$$
+$$\mathtt{data} = \{ (\mathbf{x}_1, y_1), \dots, (\mathbf{x}_m, y_m) \}$$
 
 | Weight | Smart | Polite | Fit | Attractive |
 | ------ | ----- | ------ | --- | ---------- |
@@ -33,7 +33,7 @@ $$\mathtt{data} = \\{ (\mathbf{x}_1, y_1), \dots, (\mathbf{x}_m, y_m) \\}$$
 | 185    | yes   | yes    | no  | yes        |
 | 168    | yes   | no     | yes | yes        |
 
-We assume that the label $y \in \{+1, -1}$ instead of 0 or 1 with loss of generality. This is a binary classification problem but the method is equally applicable to multi-class problems. 
+We assume that the label $y \in {+1, -1}$ instead of 0 or 1 with loss of generality. This is a binary classification problem but the method is equally applicable to multi-class problems. 
 
 AdaBoost calls a given weak learner repeatedly in a series of rounds $t=1, \dots, T$, each weak learner is denoted by $h_t$ - the weak hypothesis that each learner evaluates. In this example case, we can elect a hypothesis set from the family of decision trees and the specific hypothesis we will use is a decision tree with single split (depth = 1) called decision stump. 
 
@@ -55,7 +55,7 @@ where $\eta$ is a learning rate hyperparameter - if not optimized it defaults to
 
 Then AdaBoost updates the example weights via the equations below that boosts the weights of misclassified examples and normalizes them so that they can be interpreted as a probability distribution:
 
-$$w_t(i) = \begin{cases}w_t(i) & \text{if }\hat y_t(i) = y_t(i), \\\\ 
+$$w_t(i) = \begin{cases}w_t(i) & \text{if }\hat y_t(i) = y_t(i), \\ 
 w_t(i) \exp(\alpha_t) & \text{if } \hat y_t(i) \neq y_t(i)  \end{cases}$$
 
 $$w_t(i) = \frac{w_t(i)}{\sum_{=1}^m w_t(i)}$$

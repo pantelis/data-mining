@@ -471,21 +471,6 @@ const thebe_selector_output = ".output, .cell_output"
    Maximum Likelihood Parameter Estimation
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/fashion-mnist-from-scratch/_index.html">
-   Fashion MNIST From Scratch Assignment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../projects/jaxworld/jax.html">
-   Accelerated Functional Programming - The Case for Jax
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../projects/_index.html">
-   Course Project Guidelines
-  </a>
- </li>
 </ul>
 
     </div>
@@ -655,7 +640,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>Learning marginal models -  <span class="math notranslate nohighlight">\(p_{model}(\mathbf{x}; \mathbf w)\)</span><a class="headerlink" href="#learning-marginal-models-p-model-mathbf-x-mathbf-w" title="Permalink to this headline">¶</a></h2>
 <p>Assume that we have <span class="math notranslate nohighlight">\(m\)</span> examples drawn from a data generator that generates the vectors <span class="math notranslate nohighlight">\(\mathbf{x} \in \mathcal{X}\)</span> <em>independently and identically distributed (i.i.d.)</em> according to some unknown (but fixed) probability distribution function <span class="math notranslate nohighlight">\(p_{data}(\mathbf{x})\)</span>.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\mathbb{X} = \\{ \mathbf{x}_1, \dots, \mathbf{x}_m \\}\end{split}\]</div>
+\[\mathbb{X} = \{ \mathbf{x}_1, \dots, \mathbf{x}_m \}\]</div>
 <p>Let <span class="math notranslate nohighlight">\(p_{model}(\mathbf x, \mathbf w)\)</span> a parametric family of probability distributions (our hypothesis set) over the same space that attempts to approximate (model) <span class="math notranslate nohighlight">\(p_{data}(\mathbf{x})\)</span> as closely as possible using a suitable estimate of the parameter vector <span class="math notranslate nohighlight">\(\mathbf w\)</span>. The ML estimator for <span class="math notranslate nohighlight">\(\mathbf w\)</span> is defined as:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf w_{ML} = \argmax_{\mathbf w} p_{model}(\mathbb X; \mathbf w)\]</div>
@@ -669,7 +654,7 @@ const thebe_selector_output = ".output, .cell_output"
 \[ = \argmax_{\mathbf w} \mathbb{E}_{\mathbf{x} \sim \hat p_{data}} \log p_{model}(\mathbf x; \mathbf w)\]</div>
 <p>From the last expression it is evident that in ML estimation two distributions are involved: <span class="math notranslate nohighlight">\(\hat p_{data}\)</span> and <span class="math notranslate nohighlight">\(p_{model}\)</span>. We can also make use of our intuition that a good estimator would minimize the distance between the two empirical distributions therefore the KL divergence:</p>
 <div class="math notranslate nohighlight">
-\[KL( \hat p_{data} || p_{model} ) = \mathbb{E}_{\mathbf x  \sim \hat p_{data}} \[\log \hat p_{data}(\mathbf x) - \log p_{model}(\mathbf x, \mathbf w) \]\]</div>
+\[KL( \hat p_{data} || p_{model} ) = \mathbb{E}_{\mathbf x  \sim \hat p_{data}} \left[\log \hat p_{data}(\mathbf x) - \log p_{model}(\mathbf x, \mathbf w) \right] \]</div>
 <p>The 1st term is independent of the model and therefore we see that the KL and the ML estimator expressions are <em>identical</em> except from the sign. Therefore we conclude that <em>minimizing KL divergence, maximizes the likelihood function</em>. From information theory we know that the KL divergence and  the cross entropy (CE) are related via the expression</p>
 <div class="math notranslate nohighlight">
 \[CE = H(\hat p_{data}, p_{model}) = KL( \hat p_{data} || p_{model} ) + H(\hat p_{data})\]</div>

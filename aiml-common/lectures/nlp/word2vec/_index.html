@@ -471,21 +471,6 @@ const thebe_selector_output = ".output, .cell_output"
    Maximum Likelihood Parameter Estimation
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/fashion-mnist-from-scratch/_index.html">
-   Fashion MNIST From Scratch Assignment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../projects/jaxworld/jax.html">
-   Accelerated Functional Programming - The Case for Jax
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../projects/_index.html">
-   Course Project Guidelines
-  </a>
- </li>
 </ul>
 
     </div>
@@ -666,7 +651,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p><img alt="word2vec-idea" src="../../../../_images/word2vec-idea.png" />
 <img alt="word2vec-idea2" src="../../../../_images/word2vec-idea2.png" />
 <em>In the skip-gram we predict the <strong>context given the center word</strong>.We need to calculate the probability <span class="math notranslate nohighlight">\(p(w_{t+j} | w_t)\)</span>.</em></p>
-<p>We go through each position <span class="math notranslate nohighlight">\(t\)</span> in each sentence and for the center word at that location <span class="math notranslate nohighlight">\(w_t\)</span> we predict the outside words <span class="math notranslate nohighlight">\(w_{t+j}\)</span> where <span class="math notranslate nohighlight">\(j\)</span> is over a window of size <span class="math notranslate nohighlight">\(C = |\\{ j: -m \le j \le m \\}|-1\)</span> around <span class="math notranslate nohighlight">\(w_t\)</span>.</p>
+<p>We go through each position <span class="math notranslate nohighlight">\(t\)</span> in each sentence and for the center word at that location <span class="math notranslate nohighlight">\(w_t\)</span> we predict the outside words <span class="math notranslate nohighlight">\(w_{t+j}\)</span> where <span class="math notranslate nohighlight">\(j\)</span> is over a window of size <span class="math notranslate nohighlight">\(C = |\{ j: -m \le j \le m \}|-1\)</span> around <span class="math notranslate nohighlight">\(w_t\)</span>.</p>
 <p><strong>For example, the meaning of <code class="docutils literal notranslate"><span class="pre">banking</span></code> is predicting the context (the words around it) in which <code class="docutils literal notranslate"><span class="pre">banking</span></code> occurs across our corpus.</strong></p>
 <p>The term <em>prediction</em> points to the regression section and the maximum likelihood principle.  We start from the familiar cross entropy loss and architect a neural estimator that will minimize the distance between <span class="math notranslate nohighlight">\(\hat p_{data}\)</span> and <span class="math notranslate nohighlight">\(p_{model}\)</span>.  The negative log likelihood was shown to be:</p>
 <div class="math notranslate nohighlight">
@@ -682,9 +667,9 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="math notranslate nohighlight">
 \[\mathbf z = \mathbf x^T \mathbf W\]</div>
 <div class="math notranslate nohighlight">
-\[\mathbf z^\prime_j = \mathbf z \mathbf W^\prime_j,  j \in \[1,...,C]\]</div>
+\[\mathbf z^\prime_j = \mathbf z \mathbf W^\prime_j,  j \in [1,...,C]\]</div>
 <div class="math notranslate nohighlight">
-\[\hat{\mathbf y}_j = \mathtt{softmax}(\mathbf z^\prime_j), j \in \[1,...,C]\]</div>
+\[\hat{\mathbf y}_j = \mathtt{softmax}(\mathbf z^\prime_j), j \in [1,...,C]\]</div>
 <div class="math notranslate nohighlight">
 \[L = CE(\mathbf{y}, \hat{\mathbf y} )\]</div>
 <p>The parameters <span class="math notranslate nohighlight">\(\theta = \[ \mathbf W, \mathbf W^\prime \]\)</span> will be optimized via an optimization algorithm (from the usual SGD family).</p>
