@@ -19,9 +19,9 @@ This course requires some intensive effort from your side in both learning these
 
 **Time/location:**
 
-Course Dates: Jan 19 - May 13 2022
+Course Dates: May 25 - Aug 3 2022
 
-CS482-102: Wed 6pm EST,  Cullimore Hall LECT 3
+CS634: Wed 5.30pm EST Jersey City
 
 **Communication:** 
 We use Slack for all communications: announcements and questions related to lectures and projects. Slack info has already been sent to you via Canvas. Please install Slack in your smartphones as well. 
@@ -36,7 +36,7 @@ Office hours will be coordinated via Slack as well - the process is simple: dire
 
 ## TA/Grader
 
-Kavin Elamurugan
+Pritam Sen (ps37)
 
 ## Grading
 

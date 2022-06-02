@@ -10,6 +10,7 @@ sphinx-click
 sphinx-proof
 jupyter_contrib_nbextensions
 thebe
+sphinxcontrib-svg2pdfconverter
 
 # dtreeviz
 # sklearn

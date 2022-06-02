@@ -59,6 +59,7 @@ sphinx:
     - sphinx.ext.autosectionlabel
     - sphinxext.rediraffe
     - sphinx_proof
+    - sphinxcontrib.inkscapeconverter
  
      
 parse:
