@@ -66,4 +66,11 @@ Due to the plethora of platforms and runtimes to support stream and batch proces
 
 Closing, we cant stress enough the importance of understanding the coupling between methods in data science (e.g regression methods for ETD calculation) and the data pipeline architecture that needs to be in place for the method to be able to provide good returns. Many cloud providers such as AWS, have published significant number of reference architectures for a variety of use cases and have on-site architects in NYC to help you understand how to best implement (arguably in their cloud) the data intensive application you need to build.  
 
-|  [Zillow](https://github.com/pantelis/handson-ml2/blob/master/02_end_to_end_machine_learning_project.ipynb)   | Notebook that shows end to end what a data mining pipeline does - here we predict house prices.  | -->
+# References
+
+1. [Zillow](https://github.com/pantelis/handson-ml2/blob/master/02_end_to_end_machine_learning_project.ipynb), Notebook that shows end to end what a data mining pipeline does - here we predict house prices.  
+2. [Real Time Data Infrastructure at Uber](https://arxiv.org/pdf/2104.00087.pdf)
+3. 
+```{eval-rst}
+.. youtube:: _9VB21clg8E
+```

@@ -558,31 +558,43 @@ const thebe_selector_output = ".output, .cell_output"
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-statements">
-   Problem statements
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   A Case Study of an ML Architecture - Uber
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#financial-planning">
-     Financial Planning
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problem-statements">
+     Problem statements
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#financial-planning">
+       Financial Planning
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ubereats">
+       UberEATS
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#michelangelo">
+     Michelangelo
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ubereats">
-     UberEATS
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-to-watch-in-data-processing">
+     What to watch in data processing
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#michelangelo">
-   Michelangelo
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-to-watch-in-data-processing">
-   What to watch in data processing
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
   </a>
  </li>
 </ul>
@@ -605,31 +617,43 @@ const thebe_selector_output = ".output, .cell_output"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-statements">
-   Problem statements
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   A Case Study of an ML Architecture - Uber
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#financial-planning">
-     Financial Planning
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problem-statements">
+     Problem statements
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#financial-planning">
+       Financial Planning
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ubereats">
+       UberEATS
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#michelangelo">
+     Michelangelo
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ubereats">
-     UberEATS
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-to-watch-in-data-processing">
+     What to watch in data processing
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#michelangelo">
-   Michelangelo
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-to-watch-in-data-processing">
-   What to watch in data processing
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
   </a>
  </li>
 </ul>
@@ -737,9 +761,18 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>What to watch in data processing<a class="headerlink" href="#what-to-watch-in-data-processing" title="Permalink to this headline">¶</a></h2>
 <p>Due to the plethora of platforms and runtimes to support stream and batch processing, it is difficult for data scientists to consolidate the various APIs and focus on the intelligence of a data driven application.  <a class="reference external" href="https://beam.apache.org/">Apache Beam</a> was born out of this necessity and is enjoying widespread adoption (other than the vendor behind Spark). It offers the unified programming model that multiple runtimes support for both batch and real time streaming data intensive applications. For particularly illuminating use case of the complexities that raise in real applications, see <a class="reference external" href="https://beam.apache.org/get-started/mobile-gaming-example/">this tutorial</a>. For a use case that combines deep neural network regression in Tensorflow and data pipeline preprocessing in Beam see <a class="reference external" href="https://cloud.google.com/dataflow/docs/samples/molecules-walkthrough">this molecular analysis example</a>.</p>
 <p>Closing, we cant stress enough the importance of understanding the coupling between methods in data science (e.g regression methods for ETD calculation) and the data pipeline architecture that needs to be in place for the method to be able to provide good returns. Many cloud providers such as AWS, have published significant number of reference architectures for a variety of use cases and have on-site architects in NYC to help you understand how to best implement (arguably in their cloud) the data intensive application you need to build.</p>
-<p>|  <a class="reference external" href="https://github.com/pantelis/handson-ml2/blob/master/02_end_to_end_machine_learning_project.ipynb">Zillow</a>   | Notebook that shows end to end what a data mining pipeline does - here we predict house prices.  | –&gt;</p>
 </div>
 </div>
+<div class="tex2jax_ignore mathjax_ignore section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<ol class="simple">
+<li><p><a class="reference external" href="https://github.com/pantelis/handson-ml2/blob/master/02_end_to_end_machine_learning_project.ipynb">Zillow</a>, Notebook that shows end to end what a data mining pipeline does - here we predict house prices.</p></li>
+<li><p><a class="reference external" href="https://arxiv.org/pdf/2104.00087.pdf">Real Time Data Infrastructure at Uber</a></p></li>
+<li></li>
+</ol>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/_9VB21clg8E" style="border: 0; height: 345px; width: 560px">
+</iframe></div></div>
 
     <script type="text/x-thebe-config">
     {
