@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>CNN Architectures &#8212; Data Mining</title>
     
-  <link href="../../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,22 +20,18 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -41,13 +39,14 @@
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script src="../../../../_static/tabs.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -68,7 +67,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -77,9 +90,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -474,90 +488,180 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../../_sources/aiml-common/lectures/cnn/cnn-layers/_index.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://pantelis.github.io/data-mining"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/cnn/cnn-layers/_index.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://pantelis.github.io/data-mining"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://pantelis.github.io/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/cnn/cnn-layers/_index.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../../_sources/aiml-common/lectures/cnn/cnn-layers/_index.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#convolutional-layer">
    Convolutional Layer
@@ -606,12 +710,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>CNN Architectures</h1>
@@ -676,13 +779,14 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="cnn-architectures">
-<h1>CNN Architectures<a class="headerlink" href="#cnn-architectures" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="convolutional-layer">
-<h2>Convolutional Layer<a class="headerlink" href="#convolutional-layer" title="Permalink to this headline">¶</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="cnn-architectures">
+<h1>CNN Architectures<a class="headerlink" href="#cnn-architectures" title="Permalink to this headline">#</a></h1>
+<section id="convolutional-layer">
+<h2>Convolutional Layer<a class="headerlink" href="#convolutional-layer" title="Permalink to this headline">#</a></h2>
 <p>In the convolutional layer the first operation a 3D image with its two spatial dimensions and its third dimension due to the primary colors, typically Red Green and Blue is at the input layer, is convolved with a 3D structure called the <strong>filter</strong> shown below.</p>
 <p><img alt="cnn-filter" src="../../../../_images/filter.png" />
 <em>Each filter is composed of kernels - <a class="reference external" href="https://towardsdatascience.com/a-comprehensive-introduction-to-different-types-of-convolutions-in-deep-learning-669281e58215">source</a></em></p>
@@ -713,27 +817,27 @@ const thebe_selector_output = ".output, .cell_output"
 <p>In each layer we can have in other words, as was shown in the example above, input and output feature maps of different depths.</p>
 <p><img alt="2d-convolution-b" src="../../../../_images/2d-convolution-b.png" />
 <em>2D convolution that produces a feature map with different depth than the input feature map</em></p>
-<div class="section" id="zero-padding">
-<h3>Zero Padding<a class="headerlink" href="#zero-padding" title="Permalink to this headline">¶</a></h3>
+<section id="zero-padding">
+<h3>Zero Padding<a class="headerlink" href="#zero-padding" title="Permalink to this headline">#</a></h3>
 <p>Each feature map “pixel” that results from the above convolution is followed by a RELU non-linearity i.e. RELU is applied element-wise. Few words about padding. There are two types: <strong>same padding</strong> where we add zeros at the edges of the picture and <strong>valid padding</strong> where we dont. The reason we pad with zeros is to maintain the original spatial dimensions from one convolution layer to the next. If we dont, very soon we can end up with deep architectures with just a one “pixel”.</p>
 <p>Lets see a complete <a class="reference external" href="http://cs231n.github.io/assets/conv-demo/index.html">animated example</a> that includes padding. You can press the toggle movement button to stop the animation and do the calculations with pencil and paper.</p>
 <iframe src="http://cs231n.github.io/assets/conv-demo/index.html" width="100%" height="700px;"></iframe>
 source: CS231n
 <p><strong>Each output spatial dimension (height is shown here) is in general given by <span class="math notranslate nohighlight">\(⌊ \frac{height+2p-k}{s} ⌋ + 1\)</span>, where <span class="math notranslate nohighlight">\(p\)</span> is the amount of padding,  <span class="math notranslate nohighlight">\(k\)</span> is the square kernel size, <span class="math notranslate nohighlight">\(s\)</span> is the stride. In the animation above, <span class="math notranslate nohighlight">\(p=1, k=3, s = 2\)</span>.</strong>  In yet another example of sizing - output depth is a function of the number of kernels but the spatial dimensions depend as the equation above specified on stride, padding and kernel size (usually square).</p>
 <p><img alt="sizing-example" src="../../../../_images/sizing-example.png" /></p>
-</div>
-</div>
-<div class="section" id="what-the-convolution-operation-offers">
-<h2>What the convolution / operation offers<a class="headerlink" href="#what-the-convolution-operation-offers" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="what-the-convolution-operation-offers">
+<h2>What the convolution / operation offers<a class="headerlink" href="#what-the-convolution-operation-offers" title="Permalink to this headline">#</a></h2>
 <p>There are two main consequences of the convolution operation: sparsity and parameter sharing. With the later we get as a byproduct <strong>equivariance to translation</strong>. These are explained next.</p>
-<div class="section" id="sparsity">
-<h3>Sparsity<a class="headerlink" href="#sparsity" title="Permalink to this headline">¶</a></h3>
+<section id="sparsity">
+<h3>Sparsity<a class="headerlink" href="#sparsity" title="Permalink to this headline">#</a></h3>
 <p>In DNNs, every output unit interacts with every input unit. Convolutional networks, however, typically have sparse interactions(also referred to as sparse connectivity or sparse weights). This is accomplished by making the kernel smaller than the input as shown in the figure above. For example,when processing an image, the input image might have thousands or millions of pixels, but we can detect small, meaningful features such as edges with kernels that have much smaller receptive fields.</p>
 <p><img alt="cnn-sparsity" src="../../../../_images/cnn-sparsity.png" />
 <em>For a specific input unit,<span class="math notranslate nohighlight">\(x_3\)</span>, we mark the output units in that are aﬀected by this unit. (Top) When is formed by convolution with a kernel of width 3, only three outputs are aﬀected by x. (Bottom)When is formed by matrix multiplication, connectivity is no longer sparse, so all the outputs are aﬀected by <span class="math notranslate nohighlight">\(x_3\)</span>.</em></p>
-</div>
-<div class="section" id="parameter-sharing">
-<h3>Parameter sharing<a class="headerlink" href="#parameter-sharing" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="parameter-sharing">
+<h3>Parameter sharing<a class="headerlink" href="#parameter-sharing" title="Permalink to this headline">#</a></h3>
 <p>In CNNs, each member of the kernel is used at every feasible position of the input. The parameter sharing used by the convolution operation means that rather than learning a separate set of parameters for every location, we learn only one set.</p>
 <p><img alt="cnn-parameter-sharing" src="../../../../_images/cnn-parameter-sharing.png" />
 <em>Parameter sharing. Black arrows indicate the connections that use a particular parameter in two diﬀerent models. (Top)The black arrows indicate uses of the central element of a 3-element kernel in a convolutional model. Because of parameter sharing, this single parameter is used at all input locations. (Bottom)The single black arrow indicates the use of the central element of the weight matrix in a fully connected model. This model has no parameter sharing, so the parameter is used only once</em>.</p>
@@ -741,10 +845,10 @@ source: CS231n
 <p>As explained <a class="reference external" href="https://datascience.stackexchange.com/questions/16060/what-is-the-difference-between-equivariant-to-translation-and-invariant-to-tr">here</a> this should not be confused with <strong>invariance to translation</strong>. The later means that a translation of input features does not change the outputs at all. So if your pattern 0,3,2,0,0 on the input results in 0,1,0 in the output, then the pattern 0,0,3,2,0 would also lead to 0,1,0.</p>
 <p>For feature maps in convolutional networks to be useful, they typically need both equivariance and invariance in some balance. The equivariance allows the network to generalize edge, texture, shape detection in <strong>different</strong> locations. The invariance allows precise location of the detected features to matter less. These are two complementary types of generalization for many image processing tasks.</p>
 <p>In a nutshell, in images, these properties ensure that the CNN that is trained to detect an object, can do its job irrespective on where the object is located in the image.</p>
-</div>
-</div>
-<div class="section" id="pooling">
-<h2>Pooling<a class="headerlink" href="#pooling" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="pooling">
+<h2>Pooling<a class="headerlink" href="#pooling" title="Permalink to this headline">#</a></h2>
 <p>Pooling was introduced to reduce redundancy of representation and reduce the number of parameters, recognizing that precise location is not important for object detection.</p>
 <p>The pooling function is a form of non-linear function that further modifies the result of the RELU result. The pooling function accepts as input pixel values surrounding (a rectangular region) a feature map location (i,j) and returns one of the following</p>
 <ul class="simple">
@@ -766,8 +870,8 @@ source: CS231n
 <p class="admonition-title">Note</p>
 <p>To further understand the latest reservations against pooling in CNNs, see <a class="reference external" href="https://medium.com/ai%C2%B3-theory-practice-business/understanding-hintons-capsule-networks-part-i-intuition-b4b559d1159b">this</a> summary of Hinton’s <strong>capsules</strong> concept.</p>
 </div>
-<div class="section" id="x1-convolutional-layer">
-<h3>1x1 Convolutional layer<a class="headerlink" href="#x1-convolutional-layer" title="Permalink to this headline">¶</a></h3>
+<section id="x1-convolutional-layer">
+<h3>1x1 Convolutional layer<a class="headerlink" href="#x1-convolutional-layer" title="Permalink to this headline">#</a></h3>
 <p>The 1x1 convolution layer is met in many network architectures (e.g. GoogleNet) and offers a number of modeling capabilities. Spatially, the 1x1 convolution is equivalent to a single number multiplication of each spatial position of the input feature map (if we ignore the non-linearity) as shown below. This means that leaves the spatial dimensions of the input feature maps unchanged unlike the pooling layer.</p>
 <p><img alt="1x1-convolution" src="../../../../_images/1x1-convolution.gif" />
 <em>1x1 convolution of a single feature map is just scaling - the 1x1 convolution is justified only when we have multiple feature maps at the input</em>.</p>
@@ -775,13 +879,13 @@ source: CS231n
 <p>This idea can be expanded to multiple layers as described in <a class="reference external" href="https://arxiv.org/pdf/1312.4400v3.pdf">this</a> paper.</p>
 <p><img alt="1x1-convolution-b" src="../../../../_images/1x1-convolution-b.png" /></p>
 <p>When we have <strong>multiple</strong> <span class="math notranslate nohighlight">\(M_l\)</span> layers of size 1 x 1 x <span class="math notranslate nohighlight">\(M_{l-1}\)</span> then, effectively, we produce multiple feature maps one for each 1x1 layer and this is a good way to reduce the number of feature maps at the output of this layer, with benefits in computational complexity of the deep network as a whole.</p>
-</div>
-</div>
-<div class="section" id="known-cnn-architectures">
-<h2>Known CNN Architectures<a class="headerlink" href="#known-cnn-architectures" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="known-cnn-architectures">
+<h2>Known CNN Architectures<a class="headerlink" href="#known-cnn-architectures" title="Permalink to this headline">#</a></h2>
 <p>A summary of well known CNN networks are <a class="reference external" href="https://towardsdatascience.com/neural-network-architectures-156e5bad51ba">here</a> article with <a class="reference external" href="https://medium.com/&#64;culurciello/analysis-of-deep-neural-networks-dcf398e71aae">this</a> update as a reference. This summary will be important to you as a starting point to develop your own understanding of very well known CNNs. After you read the corresponding papers in arxiv you will be able to recall key design patterns and why those patterns came to be.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -805,9 +909,11 @@ source: CS231n
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../cnn-intro/_index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -823,24 +929,28 @@ source: CS231n
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pantelis Monogioudis, Ph.D<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Pantelis Monogioudis, Ph.D<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

@@ -9,6 +9,8 @@ title: Probability Basics
 ```
 _Probability Recitation for my classes. Recitation was delivered by my TA Rohit Deepak Phadke._
 
+Note also the Khan Academy [introduction to the topic](https://www.khanacademy.org/math/statistics-probability) especially the sections "Probability" and "Random Variables".  
+
 1. The whole purpose of probabilistic modeling is to introduce uncertainty into our problem statement. There are three types of uncertainties:
 
     * Inherent stochasticity - e.g. impact of wind in self-driving car control systems at moderate to high speed. 
