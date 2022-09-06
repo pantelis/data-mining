@@ -49,7 +49,7 @@ sphinx:
   config:
     html_theme_options:
       use_download_button: true
-      repository_url: https://pantelis.github.io/data-mining
+      repository_url: https://github.com/pantelis/data-mining
       use_issues_button: true
       use_repository_button: true
       use_edit_page_button: false
