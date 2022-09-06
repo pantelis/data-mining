@@ -106,11 +106,11 @@ parts:
     - file: aiml-common/lectures/environment/_index.md
     - file: aiml-common/lectures/python/_index.md  
 
-  - caption:  Assignments & Projects
-    chapters:
-    - file: aiml-common/assignments/probability/probability-assignment-2/probability-assignment-2.ipynb
-    - file: aiml-common/assignments/mle/mle_exponential_linear_regression.ipynb
-    - file: aiml-common/projects/reported-ai/_index.md
+  # - caption:  Assignments & Projects
+  #   chapters:
+    # - file: aiml-common/assignments/probability/probability-assignment-2/probability-assignment-2.ipynb
+    # - file: aiml-common/assignments/mle/mle_exponential_linear_regression.ipynb
+    # - file: aiml-common/projects/reported-ai/_index.md
     # - file: aiml-common/assignments/fashion-mnist-from-scratch/_index.md
     # - file: aiml-common/projects/jaxworld/jax.md
     # - file: aiml-common/projects/_index.md

@@ -4,6 +4,14 @@ title: Introduction to Data Science
 
 # Data Mining
 
+{bdg-link-dark}`Instructor: Pantelis Monogioudis, Ph.D. <https://www.linkedin.com/in/pantelis/>`
+
+```{only} html
+
+<button type="button" class="btn btn-dark btn-sm">Please star and then fork the new Github repo [![](https://img.shields.io/github/stars/pantelis/data-mining?style=social)](https://github.com/pantelis/data-mining)</button>
+
+```
+
 ![bridge](data-mining-bridge.png)
 *[Bridge](https://www.flickr.com/photos/171098105@N05/49504768528/)* 
 
@@ -11,36 +19,81 @@ title: Introduction to Data Science
 
 This course is all about making you love the methods that can extract meaning from big data. 
 
-In this course we will challenge you with exciting data-intensive problems and teach you from the ground up the concepts and methodologies that will allow you to synthesize solutions that are based on statistical learning theory and implemented in Python. 
+In this course we will challenge you with exciting data-intensive problems and teach you from the ground up the concepts and methodologies that will allow you to synthesize solutions that are based on statistical learning theory and implemented in Python.
 
 This course requires some intensive effort from your side in both learning these concepts and practicing them in your assigned projects. We hope that we will motivate you to work hard and have some fun along the way.
 
-## Logistics
 
-**Time/location:**
+::::{grid} 1 1 3 2
+:class-container: text-center
+:gutter: 3
 
-Course Dates: May 25 - Aug 3 2022
+:::{grid-item-card}
+:link: basics/organize
+:link-type: doc
+:class-header: bg-light
 
-CS634: Wed 5.30pm EST Jersey City
+**Logistics** {octicon}`organization;1em;sd-text-info`
+^^^
+Course Dates: Sept  - Dec 2022
 
-**Communication:** 
-We use Slack for all communications: announcements and questions related to lectures and projects. Slack info has already been sent to you via Canvas. Please install Slack in your smartphones as well. 
+CS634: Mon 6:00pm-8:30pm EST 
 
-**Office Hours**
-Office hours will be coordinated via Slack as well - the process is simple: direct message and make arrangements for a 30min slot. After we agree on the slot, please send a **GMeet calendar** invitation to me. If you can please include in your invitation the questions / issues you face so that we can have a productive meeting. 
-
-## Instructor
-
-[Pantelis Monogioudis, Ph.D](https://www.linkedin.com/in/pantelis/)
+CS482: Tue and Thu 4:00pm-5:20pm EST 
 
 
-## TA/Grader
+:::
 
-Pritam Sen (ps37)
+:::{grid-item-card}
+:link: content/myst
+:link-type: doc
+:class-header: bg-light
 
-## Grading
+**Communication** {octicon}`megaphone;1em;sd-text-info`
+^^^
+We use Google chat (NJIT account) for all communication and questions related to lectures and projects. Info has already been sent to you via Canvas. Please install Chat in your smartphones as well.
 
-1. Midterm (20%)
-2. Final (30%)
-3. Project (20%)
-4. Assignments (30%)
+
+:::
+
+:::{grid-item-card}
+:link: content/executable/index
+:link-type: doc
+:class-header: bg-light
+
+**Office Hours** {octicon}`clock;1em;sd-text-info`
+^^^
+Professor Office hours will be coordinated via chat  - the process is simple: direct message and make arrangements for a 30min slot. After we agree on the slot, please send a **GMeet calendar** invitation to me. Please include in your invitation the questions / issues you face so that we can have a productive meeting. 
+
+:::
+
+:::{grid-item-card}
+:link: interactive/launchbuttons
+:link-type: doc
+:class-header: bg-light
+
+**Staff (TAs)** {octicon}`person;1em;sd-text-info`
+^^^
+
+TBP
+:::
+
+:::{grid-item-card}
+:link: publish/web
+:link-type: doc
+:class-header: bg-light
+
+**Grading** {octicon}`pulse;1em;sd-text-info`
+^^^
+
+Midterm (20%)
+
+Final (30%)
+
+Project (20%)
+
+Assignments (30%)
+
+
+
+::::
