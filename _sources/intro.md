@@ -1,5 +1,5 @@
 ---
-title: Introduction to Data Science 
+title: Data Mining 
 ---
 
 # Data Mining

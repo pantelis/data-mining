@@ -26,17 +26,17 @@ We can now summarize the points to pay attention to, for ML applications.  In th
 
 Its important to understand this basic operator and its geometric interpretation as it is met in problems like Ordinary Least Squares but also all over ML and other fields such as compressed sensing. In the following we assume that the reader is familiar with the concept of vector spaces and subspaces. 
 
-Let $S$ be a vector subspace of $\R^n$. For example in $\R^3$, $S$ are the lines and planes going through the origin. The projection operator onto $S$ implements a linear transformation: $\Pi_S: \R^3 →S$. We will stick to $\R^3$ to maintain the ability to plot the operations involved. We also define the orthogonal subspace,
+Let $S$ be a vector subspace of $R^n$. For example in $R^3$, $S$ are the lines and planes going through the origin. The projection operator onto $S$ implements a linear transformation: $\Pi_S: R^3 →S$. We will stick to $R^3$ to maintain the ability to plot the operations involved. We also define the orthogonal subspace,
 
-$$S^\perp  ≡  \{ \mathbf w \in \R^3 | \mathbf w ^T \mathbf s = 0, ∀ \mathbf s \in S \} $$
+$$S^\perp  ≡  \{ \mathbf w \in R^3 | \mathbf w ^T \mathbf s = 0, ∀ \mathbf s \in S \} $$
 
 The transformation $\Pi_S$ projects onto space $S$ in the sense that when you apply this operator, every vector $\mathbf u$ in any other space results in the subspace $S$. In our example above,
 
-$$\Pi_S(\mathbf u) \in S, \forall \mathbf u \in \R^3$$
+$$\Pi_S(\mathbf u) \in S, \forall \mathbf u \in R^3$$
 
 This means that any components of the vector $\mathbf u$ that belonged to $S^\perp$ are gone when applying the projection operator. Effectively, the original space is decomposed into 
 
-$$ \R^3 = S \oplus S^\perp $$
+$$ R^3 = S \oplus S^\perp $$
 
 Now we can treat projections onto specific subspaces such as lines and planes passing through the origin. 
 
