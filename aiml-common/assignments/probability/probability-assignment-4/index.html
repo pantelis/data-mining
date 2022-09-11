@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Deep Neural Networks &#8212; Data Mining</title>
+    <title>Probability Assignment &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -55,11 +55,10 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/dnn/dnn-intro/_index.html" />
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/assignments/probability/probability-assignment-4/index.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Introduction to Backpropagation" href="../backprop-intro/_index.html" />
-    <link rel="prev" title="The Neuron (Perceptron)" href="../../classification/perceptron/_index.html" />
+    <link rel="prev" title="Learn Python" href="../../../lectures/python/_index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -130,22 +129,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
+  <a class="reference internal" href="../../../lectures/ai-intro/course-introduction/_index.html">
    Course Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
+  <a class="reference internal" href="../../../lectures/ai-intro/data-science-360/_index.html">
    Data Science 360
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ai-intro/pipelines/_index.html">
+  <a class="reference internal" href="../../../lectures/ai-intro/pipelines/_index.html">
    ML Pipelines
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../uber-ml-arch-case-study/_index.html">
+  <a class="reference internal" href="../../../lectures/uber-ml-arch-case-study/_index.html">
    A Case Study of an ML Architecture - Uber
   </a>
  </li>
@@ -157,32 +156,32 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../learning-problem/_index.html">
+  <a class="reference internal" href="../../../lectures/learning-problem/_index.html">
    The Learning Problem
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../regression/linear-regression/_index.html">
+  <a class="reference internal" href="../../../lectures/regression/linear-regression/_index.html">
    Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../optimization/maximum-likelihood/_index.html">
+  <a class="reference internal" href="../../../lectures/optimization/maximum-likelihood/_index.html">
    Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../entropy/_index.html">
+  <a class="reference internal" href="../../../lectures/entropy/_index.html">
    Entropy
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../optimization/sgd/_index.html">
+  <a class="reference internal" href="../../../lectures/optimization/sgd/_index.html">
    Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/classification-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/classification-intro/_index.html">
    Introduction to Classification
   </a>
  </li>
@@ -194,52 +193,52 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/logistic-regression/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/logistic-regression/_index.html">
    Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../decision-trees/_index.html">
+  <a class="reference internal" href="../../../lectures/decision-trees/_index.html">
    Decision Trees
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../regression-trees/regression_trees.html">
+  <a class="reference internal" href="../../../lectures/regression-trees/regression_trees.html">
    Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/_index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/_index.html">
    Ensemble Methods
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/random-forests/_index.html">
    Random Forests
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/boosting/_index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/boosting/_index.html">
    Boosting
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/boosting-workshop/_index.html">
    Boosting workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+  <a class="reference internal" href="../../../lectures/pgm/bayesian-inference/_index.html">
    Bayesian Inference
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+  <a class="reference internal" href="../../../lectures/pgm/bayesian-coin/_index.html">
    Bayesian Coin Flipping
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/covid19-antibody-test/_index.html">
    COVID-19 Antibody Test
   </a>
  </li>
@@ -249,34 +248,34 @@ const thebe_selector_output = ".output, .cell_output"
   Deep Neural Networks
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/perceptron/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/perceptron/_index.html">
    The Neuron (Perceptron)
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../lectures/dnn/dnn-intro/_index.html">
    Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../backprop-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/dnn/backprop-intro/_index.html">
    Introduction to Backpropagation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../backprop-dnn/_index.html">
+  <a class="reference internal" href="../../../lectures/dnn/backprop-dnn/_index.html">
    Backpropagation in Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../backprop-dnn-exercises/_index.html">
+  <a class="reference internal" href="../../../lectures/dnn/backprop-dnn-exercises/_index.html">
    Backpropagation DNN exercises
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../optimization/regularization/_index.html">
+  <a class="reference internal" href="../../../lectures/optimization/regularization/_index.html">
    Regularization in Deep Neural Networks
   </a>
  </li>
@@ -288,22 +287,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-intro/_index.html">
    Introduction to Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../cnn/cnn-layers/_index.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-layers/_index.html">
    CNN Architectures
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-example-architectures/_index.html">
    CNN Example Architectures
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
    Using convnets with small datasets
   </a>
  </li>
@@ -315,27 +314,27 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding/scene-understanding-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/scene-understanding-intro/_index.html">
    Introduction to Scene Understanding
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/_index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/feature-extraction-resnet/_index.html">
    Feature Extraction via Residual Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding/object-detection/_index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/object-detection/_index.html">
    Object Detection
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding/object-detection/detection-segmentation-workshop/_index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/object-detection/detection-segmentation-workshop/_index.html">
    Object Detection and Semantic Segmentation Workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../cnn/cnn-explainers/_index.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-explainers/_index.html">
    CNN Explainers
   </a>
  </li>
@@ -347,17 +346,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../rnn/introduction/_index.html">
+  <a class="reference internal" href="../../../lectures/rnn/introduction/_index.html">
    Introduction to Recurrent Neural Networks (RNN)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../rnn/simple-rnn/_index.html">
+  <a class="reference internal" href="../../../lectures/rnn/simple-rnn/_index.html">
    Simple RNN
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../rnn/lstm/_index.html">
+  <a class="reference internal" href="../../../lectures/rnn/lstm/_index.html">
    The Long Short-Term Memory (LSTM) Cell Architecture
   </a>
  </li>
@@ -369,22 +368,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/nlp-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/nlp-intro/_index.html">
    Introduction to NLP
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/word2vec/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/word2vec/_index.html">
    Word2Vec Embeddings
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/rnn-language-models/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/rnn-language-models/_index.html">
    RNN Language Models
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/nmt/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/nmt/_index.html">
    Neural Machine Translation
   </a>
  </li>
@@ -396,17 +395,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+  <a class="reference internal" href="../../../lectures/unsupervised/k-means/_index.html">
    K-means Clustering
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+  <a class="reference internal" href="../../../lectures/density-estimation/knn/_index.html">
    k-Nearest Neighbors (kNN) Classification
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+  <a class="reference internal" href="../../../lectures/density-estimation/knn-workshop/_index.html">
    kNN Workshop
   </a>
  </li>
@@ -418,7 +417,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../pca/_index.html">
+  <a class="reference internal" href="../../../lectures/pca/_index.html">
    Principal Component Analysis (PCA)
   </a>
  </li>
@@ -430,7 +429,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../ml-math/_index.html">
+  <a class="reference internal" href="../../../lectures/ml-math/_index.html">
    Math for ML
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -440,17 +439,17 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ml-math/probability/_index.html">
+    <a class="reference internal" href="../../../lectures/ml-math/probability/_index.html">
      Probability Basics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../linear-algebra/_index.html">
+    <a class="reference internal" href="../../../lectures/linear-algebra/_index.html">
      Linear Algebra for Machine Learning
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ml-math/calculus/_index.html">
+    <a class="reference internal" href="../../../lectures/ml-math/calculus/_index.html">
      Calculus
     </a>
    </li>
@@ -464,7 +463,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../python/_index.html">
+  <a class="reference internal" href="../../../lectures/python/_index.html">
    Learn Python
   </a>
  </li>
@@ -474,9 +473,9 @@ const thebe_selector_output = ".output, .cell_output"
   Assignments &amp; Projects
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability/probability-assignment-4/index.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Probability Assignment
   </a>
  </li>
@@ -570,7 +569,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/dnn/dnn-intro/_index.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/assignments/probability/probability-assignment-4/index.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -598,7 +597,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../../../_sources/aiml-common/lectures/dnn/dnn-intro/_index.md"
+        <a href="../../../../_sources/aiml-common/assignments/probability/probability-assignment-4/index.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -609,7 +608,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -657,38 +656,31 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#architecture">
-   Architecture
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Probability Assignment
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#output-layer">
-     Output Layer
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-20-points">
+     Question 1 (20 points)
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#sigmoid-units">
-       Sigmoid Units
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#softmax-units">
-       Softmax Units
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#relus">
-       ReLUs
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-2-20-points">
+     Question 2 (20 points)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-30-points">
+     Question 3 (30 points)
+    </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question-4-30-points">
+   Question 4 (30 points)
   </a>
  </li>
 </ul>
@@ -700,7 +692,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Deep Neural Networks</h1>
+                <h1>Probability Assignment</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -710,38 +702,31 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#architecture">
-   Architecture
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Probability Assignment
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#output-layer">
-     Output Layer
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1-20-points">
+     Question 1 (20 points)
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#sigmoid-units">
-       Sigmoid Units
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#softmax-units">
-       Softmax Units
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#relus">
-       ReLUs
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-2-20-points">
+     Question 2 (20 points)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-30-points">
+     Question 3 (30 points)
+    </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question-4-30-points">
+   Question 4 (30 points)
   </a>
  </li>
 </ul>
@@ -754,61 +739,56 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="deep-neural-networks">
-<h1>Deep Neural Networks<a class="headerlink" href="#deep-neural-networks" title="Permalink to this headline">#</a></h1>
-<p>For a historical recap on neural networks see:</p>
-<p><em>The Epistemology of Deep Learning - Yann LeCun</em></p>
-<p>DNNs are the implementation of <strong>connectionism</strong>, the philosophy that calls for algorithms that perform function approximations to be constructed by an interconnection of elementary circuits called neurons.  In this section, we provides some key points on the question of how the feed-forward neural networks are constructed. In subsequent sections we describe how they learn.</p>
-<section id="architecture">
-<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">#</a></h2>
-<p>Feedforward networks consist of elementary <strong>units</strong> that resemble the logistic regression architecture. These units are stacked up into layers.</p>
-<p>There are multiple layers:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="probability-assignment">
+<h1>Probability Assignment<a class="headerlink" href="#probability-assignment" title="Permalink to this headline">#</a></h1>
+<p>To get full credit in this assignment you need to use only <code class="docutils literal notranslate"><span class="pre">numpy</span></code> or <code class="docutils literal notranslate"><span class="pre">numba</span></code> libraries  and include adequate explanation of the code in either markdown cells or code comments. Sometimes you need to type equations - type equations in latex math notation.</p>
+<section id="question-1-20-points">
+<h2>Question 1 (20 points)<a class="headerlink" href="#question-1-20-points" title="Permalink to this headline">#</a></h2>
+<p>Generate N uniform distributed over the interval [0,1] random variables <span class="math notranslate nohighlight">\(\{x_1, \dots x_N\}\)</span>.</p>
+<p>Compute their mean and after repeating such computation <span class="math notranslate nohighlight">\(m\)</span> times, plot the  histogram as <span class="math notranslate nohighlight">\(N\)</span> takes values <span class="math notranslate nohighlight">\({1, 5, 10, 20}\)</span>.</p>
+<p>Provide a justification of the resultant histogram by reading about the <a class="reference external" href="https://en.wikipedia.org/wiki/Central_limit_theorem">Cenral Limit Theorem</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Type the Python code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-2-20-points">
+<h2>Question 2 (20 points)<a class="headerlink" href="#question-2-20-points" title="Permalink to this headline">#</a></h2>
+<p>The exercise refers to Example 6.6 of the  <a class="reference external" href="https://mml-book.github.io/book/mml-book.pdf">Math for ML book</a>.</p>
+<p>Simulate and plot the bivariate normal distribution with the shown parameters.</p>
+<p>You need to use the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.cholesky.html">Cholesky factorization</a> for the simulation.</p>
+</section>
+<section id="question-3-30-points">
+<h2>Question 3 (30 points)<a class="headerlink" href="#question-3-30-points" title="Permalink to this headline">#</a></h2>
 <ol class="simple">
-<li><p>The input layer (<span class="math notranslate nohighlight">\(\mathbf x\)</span>)</p></li>
-<li><p>One or more hidden layers (<span class="math notranslate nohighlight">\(\mathbf h\)</span>)</p></li>
-<li><p>The output layer (<span class="math notranslate nohighlight">\(\hat \mathbf y\)</span>)</p></li>
+<li><p>Simulate coin tossing experiments involving a biased coin with probability of heads is <span class="math notranslate nohighlight">\(p_H=0.6\)</span> and <span class="math notranslate nohighlight">\(n_{trials} = [0, 5, 15, 50, 500]\)</span> (10 points)</p></li>
+<li><p>Assume you don’t know <span class="math notranslate nohighlight">\(p_H\)</span> and you need to estimate it. Plot the estimate as a function of the number of trials. Comment on the accuracy of the estimate for small vs. large trials. (10 points)</p></li>
+<li><p>Calculate the variance of the estimated <span class="math notranslate nohighlight">\(p_H\)</span> (10 points). Comment on its behavior as a function of the true <span class="math notranslate nohighlight">\(p_H\)</span> itself and the <span class="math notranslate nohighlight">\(n_{trials}\)</span>.</p></li>
 </ol>
-<p>Since the input to the network is trivial we focus on the hidden and output layers starting from the latter.</p>
-<p><img alt="hierarchical-features-classification" src="../../../../_images/hierarchical-features-classification.png" />
-<em>Example DNN Architecture</em></p>
-<section id="output-layer">
-<h3>Output Layer<a class="headerlink" href="#output-layer" title="Permalink to this headline">#</a></h3>
-<p>The feedforward network provides a set of hidden features deﬁned by</p>
-<div class="math notranslate nohighlight">
-\[\mathbf h=f(\mathbf x; \mathbf w)\]</div>
-<p>The role of the output layer is then to provide some additional transformation from the features to complete the task that the network must perform.</p>
-<section id="sigmoid-units">
-<h4>Sigmoid Units<a class="headerlink" href="#sigmoid-units" title="Permalink to this headline">#</a></h4>
-<p>These are used to predict the value of the binary variable <span class="math notranslate nohighlight">\(y\)</span>. As evident in logistic regression, using a sigmoid output units combined with maximum likelihood provides a very strong response when we are confidently wrong. A sigmoid output unit is deﬁned by</p>
-<div class="math notranslate nohighlight">
-\[\mathbf z = \mathbf w^T \mathbf h + b\]</div>
-<div class="math notranslate nohighlight">
-\[\hat y = \sigma(\mathbf z)\]</div>
-<p>where the sigmoid activation function</p>
-<div class="math notranslate nohighlight">
-\[g(a) = \sigma(a) = \frac{1}{1+e^{-a}}  \hspace{0.3in} \sigma(a) \in (0,1)\]</div>
-<p>Towards either end of the sigmoid function, the <span class="math notranslate nohighlight">\(\sigma(a)\)</span> values tend to respond much less to changes in a <strong>vanishing gradients</strong>. The neuron refuses to learn further or learns drastically slower that it could. What saves the situation is the log loss that undoes the exp of the sigmoid but this is the case for the final layers -this is the reason why normalization is usually used in each layer.</p>
-</section>
-<section id="softmax-units">
-<h4>Softmax Units<a class="headerlink" href="#softmax-units" title="Permalink to this headline">#</a></h4>
-<p>Any time we wish to represent a probability distribution over a discrete variable with <span class="math notranslate nohighlight">\(n\)</span> possible values, we may use the softmax function. This can be seen as a generalization of the sigmoid function, which was used to represent a probability distribution over a binary variable. Softmax functions are most often used as the output of a classiﬁer, to represent the probability distribution over <span class="math notranslate nohighlight">\(n\)</span> diﬀerent classes. The softmax output unit is effectively a generalization of the sigmoid.</p>
-<div class="math notranslate nohighlight">
-\[\text{softmax}(\mathbf z)_i = \arg \max_i \frac{\exp (z_i)}{\sum_i \exp(z_i)}\]</div>
-<p>where <span class="math notranslate nohighlight">\(i\)</span> is over the number of inputs of the softmax function.</p>
-<p>From a neuroscientiﬁc point of view, it is interesting to think of the softmax as a way to create a form of competition between the units that participate in it: the softmax outputs always sum to 1 so an increase in the value of one unit necessarily corresponds to a decrease in the value of others. This is analogous to the lateral inhibition that is believed to exist between nearby neurons in the cortex. At the extreme (when the diﬀerence between the maximal and the others is large in magnitude) it becomes a form of winner-take-all(one of the outputs is nearly 1, and the others are nearly 0).</p>
-<p>The CE or the negative log-likelihood that originate from the application of the maximum likelihood principle offer in practice certain advantages during the learning of deep neural networks. Given that the gradient must be large enough to act as a guiding beam during SGD,  we need to avoid situations that the output units result in flat responses (saturate). Since softmax involves exponentials, it saturates when for example the differences between inputs become extreme, the CE or negative log likelihood based loss helps as the log undoes the exponential terms.</p>
-</section>
-<section id="relus">
-<h4>ReLUs<a class="headerlink" href="#relus" title="Permalink to this headline">#</a></h4>
-<p>The Rectified Linear Unit activation function is very inexpensive to compute compared to sigmoid and it offers the following benefit that has to do with sparsity: Imagine an MLP  with random initialized weights to zero mean ( or normalized ). Almost 50% of the network yields 0 activation because of the characteristic of RELU. This means a fewer neurons are firing (sparse activation) making the the network lighter, more efficient that tends to generalize to validation data better.  On the other hand for negative <span class="math notranslate nohighlight">\(a\)</span>, the gradient can go towards 0 and the weights will not get adjusted during descent. As a testament to its utility, the incorporation of ReLU neurons into AlexNet was one of the factors behind its trampling of existing machine vision benchmarks in 2012 and shepherding in the era of deep learning. Since then more advanced activation functions have been proposed such as the leaky ReLU, the parametric ReLU, and the exponential linear unit—all three of which are derivations from the ReLU neuron.</p>
-<p><img alt="relu" src="../../../../_images/relu.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Type the Python code here</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
-</section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
-<p>We used a combination of material from Ian Goodfellow’s book chapter 6. Other good sources of information include <a class="reference external" href="http://cs231n.stanford.edu/">CS331n</a> and Nielsen’s <a class="reference external" href="http://neuralnetworksanddeeplearning.com/">tutorial treatment of the subject</a>.</p>
-</section>
+<section class="tex2jax_ignore mathjax_ignore" id="question-4-30-points">
+<h1>Question 4 (30 points)<a class="headerlink" href="#question-4-30-points" title="Permalink to this headline">#</a></h1>
+<p><img alt="" src="../../../../_images/points-on-line.png" /></p>
+<ol class="simple">
+<li><p>We monitor server faults in a data center over a period of T units of time and represents each occurring fault as a point on the line. What is the probability that k faults take place between <span class="math notranslate nohighlight">\(t_1\)</span> and <span class="math notranslate nohighlight">\(t_2\)</span> if <span class="math notranslate nohighlight">\(n\)</span> total points were recorded ?  (10 points)</p></li>
+<li><p>We collected a very large set of faults <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span> over a long measurement interval <span class="math notranslate nohighlight">\(T \rightarrow \infty\)</span>  and we observed that on average faults occur with a rate of <span class="math notranslate nohighlight">\(\lambda = \frac{n}{T}\)</span>.   This <a class="reference external" href="https://en.wikipedia.org/wiki/Poisson_limit_theorem">allows us</a> to model the probability of <span class="math notranslate nohighlight">\(k_a\)</span> points in an interval <span class="math notranslate nohighlight">\(t_a\)</span> as <a class="reference external" href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson</a>.  Suppose that we measure <span class="math notranslate nohighlight">\(k_a\)</span> and <span class="math notranslate nohighlight">\(k_b\)</span> faults in two consecutive intervals of durations <span class="math notranslate nohighlight">\(t_a=(t_1, t_2)\)</span> and <span class="math notranslate nohighlight">\(t_b=(t_2, t_3)\)</span> respectively where <span class="math notranslate nohighlight">\(t_a+t_b &lt; T\)</span>, write the expression of the joint probability $<span class="math notranslate nohighlight">\(p(k_a \in t_a, k_b \in t_b)\)</span>$. (10 points)</p></li>
+<li><p>Suppose now that we need to schedule personnel to replace these servers and we are interested to use the fault data to estimate the probability of $<span class="math notranslate nohighlight">\(p(k_a \in t_a | k_c \in t_c)\)</span><span class="math notranslate nohighlight">\( where \)</span>t_c=t_a + t_b$. Write the expression of this conditional probability.  (10 points)</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">Write</span> <span class="pre">your</span> <span class="pre">answer</span> <span class="pre">here</span> <span class="pre">and</span> <span class="pre">use</span> <span class="pre">Latex</span> <span class="pre">math</span> <span class="pre">notation</span> <span class="pre">for</span> <span class="pre">math.</span> <span class="pre">If</span> <span class="pre">you</span> <span class="pre">prefer</span> <span class="pre">write</span> <span class="pre">the</span> <span class="pre">math</span> <span class="pre">with</span> <span class="pre">pencil</span> <span class="pre">and</span> <span class="pre">scan</span> <span class="pre">the</span> <span class="pre">writeup</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">png</span> <span class="pre">image</span> <span class="pre">that</span> <span class="pre">you</span> <span class="pre">can</span> <span class="pre">insert</span> <span class="pre">here</span> <span class="pre">using</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>![](your-png-file.png)
+</pre></div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -824,7 +804,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./aiml-common/lectures/dnn/dnn-intro"
+            path: "./aiml-common/assignments/probability/probability-assignment-4"
         },
         predefinedOutput: true
     }
@@ -838,19 +818,12 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../../classification/perceptron/_index.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../../../lectures/python/_index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">The Neuron (Perceptron)</p>
+            <p class="prev-next-title">Learn Python</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="../backprop-intro/_index.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction to Backpropagation</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
