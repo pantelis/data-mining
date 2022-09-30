@@ -109,6 +109,7 @@ parts:
   - caption:  Assignments & Projects
     chapters:
     - file: aiml-common/assignments/probability/probability-assignment-3/index.ipynb
+    - file: aiml-common/assignments/jax-bayesian-regression/index.ipynb  
     # - file: aiml-common/assignments/mle/mle_exponential_linear_regression.ipynb
     # - file: aiml-common/projects/reported-ai/_index.md
     # - file: aiml-common/assignments/fashion-mnist-from-scratch/_index.md
