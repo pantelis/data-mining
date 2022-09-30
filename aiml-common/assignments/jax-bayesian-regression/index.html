@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Principal Component Analysis (PCA) &#8212; Data Mining</title>
+    <title>Bayesian Linear Regression &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,11 +53,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/pca/_index.html" />
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/assignments/jax-bayesian-regression/index.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Math for ML" href="../ml-math/_index.html" />
-    <link rel="prev" title="kNN Workshop" href="../density-estimation/knn-workshop/_index.html" />
+    <link rel="prev" title="Probability Assignment" href="../probability/probability-assignment-3/index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -128,22 +129,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../ai-intro/course-introduction/_index.html">
+  <a class="reference internal" href="../../lectures/ai-intro/course-introduction/_index.html">
    Course Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../ai-intro/data-science-360/_index.html">
+  <a class="reference internal" href="../../lectures/ai-intro/data-science-360/_index.html">
    Data Science 360
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../ai-intro/pipelines/_index.html">
+  <a class="reference internal" href="../../lectures/ai-intro/pipelines/_index.html">
    ML Pipelines
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../uber-ml-arch-case-study/_index.html">
+  <a class="reference internal" href="../../lectures/uber-ml-arch-case-study/_index.html">
    A Case Study of an ML Architecture - Uber
   </a>
  </li>
@@ -155,32 +156,32 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../learning-problem/_index.html">
+  <a class="reference internal" href="../../lectures/learning-problem/_index.html">
    The Learning Problem
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../regression/linear-regression/_index.html">
+  <a class="reference internal" href="../../lectures/regression/linear-regression/_index.html">
    Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../optimization/maximum-likelihood/_index.html">
+  <a class="reference internal" href="../../lectures/optimization/maximum-likelihood/_index.html">
    Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../entropy/_index.html">
+  <a class="reference internal" href="../../lectures/entropy/_index.html">
    Entropy
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../optimization/sgd/_index.html">
+  <a class="reference internal" href="../../lectures/optimization/sgd/_index.html">
    Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../classification/classification-intro/_index.html">
+  <a class="reference internal" href="../../lectures/classification/classification-intro/_index.html">
    Introduction to Classification
   </a>
  </li>
@@ -192,52 +193,52 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../classification/logistic-regression/_index.html">
+  <a class="reference internal" href="../../lectures/classification/logistic-regression/_index.html">
    Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../decision-trees/_index.html">
+  <a class="reference internal" href="../../lectures/decision-trees/_index.html">
    Decision Trees
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../regression-trees/regression_trees.html">
+  <a class="reference internal" href="../../lectures/regression-trees/regression_trees.html">
    Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../ensemble/_index.html">
+  <a class="reference internal" href="../../lectures/ensemble/_index.html">
    Ensemble Methods
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../ensemble/random-forests/_index.html">
+  <a class="reference internal" href="../../lectures/ensemble/random-forests/_index.html">
    Random Forests
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../ensemble/boosting/_index.html">
+  <a class="reference internal" href="../../lectures/ensemble/boosting/_index.html">
    Boosting
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../ensemble/boosting-workshop/_index.html">
+  <a class="reference internal" href="../../lectures/ensemble/boosting-workshop/_index.html">
    Boosting workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../pgm/bayesian-inference/_index.html">
+  <a class="reference internal" href="../../lectures/pgm/bayesian-inference/_index.html">
    Bayesian Inference
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../pgm/bayesian-coin/_index.html">
+  <a class="reference internal" href="../../lectures/pgm/bayesian-coin/_index.html">
    Bayesian Coin Flipping
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../classification/covid19-antibody-test/_index.html">
+  <a class="reference internal" href="../../lectures/classification/covid19-antibody-test/_index.html">
    COVID-19 Antibody Test
   </a>
  </li>
@@ -249,32 +250,32 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../classification/perceptron/_index.html">
+  <a class="reference internal" href="../../lectures/classification/perceptron/_index.html">
    The Neuron (Perceptron)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../dnn/dnn-intro/_index.html">
+  <a class="reference internal" href="../../lectures/dnn/dnn-intro/_index.html">
    Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../dnn/backprop-intro/_index.html">
+  <a class="reference internal" href="../../lectures/dnn/backprop-intro/_index.html">
    Introduction to Backpropagation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../dnn/backprop-dnn/_index.html">
+  <a class="reference internal" href="../../lectures/dnn/backprop-dnn/_index.html">
    Backpropagation in Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../dnn/backprop-dnn-exercises/_index.html">
+  <a class="reference internal" href="../../lectures/dnn/backprop-dnn-exercises/_index.html">
    Backpropagation DNN exercises
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../optimization/regularization/_index.html">
+  <a class="reference internal" href="../../lectures/optimization/regularization/_index.html">
    Regularization in Deep Neural Networks
   </a>
  </li>
@@ -286,22 +287,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../cnn/cnn-intro/_index.html">
+  <a class="reference internal" href="../../lectures/cnn/cnn-intro/_index.html">
    Introduction to Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../cnn/cnn-layers/_index.html">
+  <a class="reference internal" href="../../lectures/cnn/cnn-layers/_index.html">
    CNN Architectures
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../cnn/cnn-example-architectures/_index.html">
+  <a class="reference internal" href="../../lectures/cnn/cnn-example-architectures/_index.html">
    CNN Example Architectures
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
+  <a class="reference internal" href="../../lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
    Using convnets with small datasets
   </a>
  </li>
@@ -313,27 +314,27 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../scene-understanding/scene-understanding-intro/_index.html">
+  <a class="reference internal" href="../../lectures/scene-understanding/scene-understanding-intro/_index.html">
    Introduction to Scene Understanding
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../scene-understanding/feature-extraction-resnet/_index.html">
+  <a class="reference internal" href="../../lectures/scene-understanding/feature-extraction-resnet/_index.html">
    Feature Extraction via Residual Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../scene-understanding/object-detection/_index.html">
+  <a class="reference internal" href="../../lectures/scene-understanding/object-detection/_index.html">
    Object Detection
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../scene-understanding/object-detection/detection-segmentation-workshop/_index.html">
+  <a class="reference internal" href="../../lectures/scene-understanding/object-detection/detection-segmentation-workshop/_index.html">
    Object Detection and Semantic Segmentation Workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../cnn/cnn-explainers/_index.html">
+  <a class="reference internal" href="../../lectures/cnn/cnn-explainers/_index.html">
    CNN Explainers
   </a>
  </li>
@@ -345,17 +346,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../rnn/introduction/_index.html">
+  <a class="reference internal" href="../../lectures/rnn/introduction/_index.html">
    Introduction to Recurrent Neural Networks (RNN)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../rnn/simple-rnn/_index.html">
+  <a class="reference internal" href="../../lectures/rnn/simple-rnn/_index.html">
    Simple RNN
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../rnn/lstm/_index.html">
+  <a class="reference internal" href="../../lectures/rnn/lstm/_index.html">
    The Long Short-Term Memory (LSTM) Cell Architecture
   </a>
  </li>
@@ -367,22 +368,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../nlp/nlp-intro/_index.html">
+  <a class="reference internal" href="../../lectures/nlp/nlp-intro/_index.html">
    Introduction to NLP
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../nlp/word2vec/_index.html">
+  <a class="reference internal" href="../../lectures/nlp/word2vec/_index.html">
    Word2Vec Embeddings
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../nlp/rnn-language-models/_index.html">
+  <a class="reference internal" href="../../lectures/nlp/rnn-language-models/_index.html">
    RNN Language Models
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../nlp/nmt/_index.html">
+  <a class="reference internal" href="../../lectures/nlp/nmt/_index.html">
    Neural Machine Translation
   </a>
  </li>
@@ -394,17 +395,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../unsupervised/k-means/_index.html">
+  <a class="reference internal" href="../../lectures/unsupervised/k-means/_index.html">
    K-means Clustering
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../density-estimation/knn/_index.html">
+  <a class="reference internal" href="../../lectures/density-estimation/knn/_index.html">
    k-Nearest Neighbors (kNN) Classification
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../density-estimation/knn-workshop/_index.html">
+  <a class="reference internal" href="../../lectures/density-estimation/knn-workshop/_index.html">
    kNN Workshop
   </a>
  </li>
@@ -414,9 +415,9 @@ const thebe_selector_output = ".output, .cell_output"
   Dimensionality Reduction
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/pca/_index.html">
    Principal Component Analysis (PCA)
   </a>
  </li>
@@ -428,7 +429,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../ml-math/_index.html">
+  <a class="reference internal" href="../../lectures/ml-math/_index.html">
    Math for ML
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -438,17 +439,17 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../ml-math/probability/_index.html">
+    <a class="reference internal" href="../../lectures/ml-math/probability/_index.html">
      Probability Basics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../linear-algebra/_index.html">
+    <a class="reference internal" href="../../lectures/linear-algebra/_index.html">
      Linear Algebra for Machine Learning
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../ml-math/calculus/_index.html">
+    <a class="reference internal" href="../../lectures/ml-math/calculus/_index.html">
      Calculus
     </a>
    </li>
@@ -462,7 +463,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../python/_index.html">
+  <a class="reference internal" href="../../lectures/python/_index.html">
    Learn Python
   </a>
  </li>
@@ -472,14 +473,14 @@ const thebe_selector_output = ".output, .cell_output"
   Assignments &amp; Projects
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../assignments/probability/probability-assignment-3/index.html">
+  <a class="reference internal" href="../probability/probability-assignment-3/index.html">
    Probability Assignment
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../assignments/jax-bayesian-regression/index.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Bayesian Linear Regression
   </a>
  </li>
@@ -573,7 +574,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/pca/_index.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/assignments/jax-bayesian-regression/index.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -601,7 +602,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../../_sources/aiml-common/lectures/pca/_index.md"
+        <a href="../../../_sources/aiml-common/assignments/jax-bayesian-regression/index.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -612,7 +613,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -638,23 +639,102 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-and-transform-data-20-points">
+   Generate and transform data  (20 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#online-maximum-likelihood-linear-regression-30-points">
+   <em>
+    Online
+   </em>
+   Maximum Likelihood - Linear Regression (30 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#online-bayesian-linear-regression-30-points">
+   <em>
+    Online
+   </em>
+   Bayesian Linear Regression (30 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evidence-comparison-20-points">
+   Evidence Comparison (20 points)
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Principal Component Analysis (PCA)</h1>
+                <h1>Bayesian Linear Regression</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-and-transform-data-20-points">
+   Generate and transform data  (20 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#online-maximum-likelihood-linear-regression-30-points">
+   <em>
+    Online
+   </em>
+   Maximum Likelihood - Linear Regression (30 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#online-bayesian-linear-regression-30-points">
+   <em>
+    Online
+   </em>
+   Bayesian Linear Regression (30 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evidence-comparison-20-points">
+   Evidence Comparison (20 points)
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -662,17 +742,52 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="principal-component-analysis-pca">
-<h1>Principal Component Analysis (PCA)<a class="headerlink" href="#principal-component-analysis-pca" title="Permalink to this headline">#</a></h1>
-<p>Consider an artificial data set constructed by taking one of the off-line digits, represented by a 64 x 64 pixel grey-level image, and embedding it in a larger image ofsize 100 x 100 by padding with pixels having the value zero (corresponding to white pixels) in which the location and orientation of the digit is varied at random, as illustrated in the figure below.</p>
-<p><img alt="manifold-number-three" src="../../../_images/manifold-number-3.png" />
-<em>A synthetic data sel obtained by taking one of the off-line digit images and creating multiple copies in each of which the digit has undergone a random displacement and rotation within some larger image field. The resulting images each have 100 x 100 = 10.000 pixels</em></p>
-<p>Each of the resulting images is represented by a point in the 100 x 100 = 10,000-dimensional data space. However, across a data set of such images, there are <em>only three degrees of freedom of variability, corresponding to the vertical and horizontal translations and the rotations</em>. The data points will therefore live on a subspace of the data space whose intrinsic dimensionality is three. Note For real digit image data, there will be a further degree of freedom arising from scaling. Moreover there will be multiple additional degrees of freedom associated with more complex deformations due to the variability in an individual’s writing as well as lhe differences in writing styles between individuals.</p>
-<p>Can we define PCA from a graphical point of view? This is shown in the next figure.</p>
-<p><img alt="principal-subspace" src="../../../_images/principal-subspace.png" />
-<em>PCA seeks a space of lower dimensionality (the magenda line) such that the orthogonal projection of the data points into the subspace maximizes the variance of the projected points (green dots) or equivalently minimizes the squared distances of the projection errors (blue lines)</em></p>
-<p>We will now go through <a class="reference external" href="https://nbviewer.jupyter.org/github/jakevdp/PythonDataScienceHandbook/blob/97c8c91c5932f2b2a58bb97c000506f636ee661a/notebooks/05.09-Principal-Component-Analysis.ipynb">this notebook</a> to see how PCA is calculated and what it offers to various types of data.</p>
-<iframe src="https://nbviewer.jupyter.org/github/jakevdp/PythonDataScienceHandbook/blob/97c8c91c5932f2b2a58bb97c000506f636ee661a/notebooks/05.09-Principal-Component-Analysis.ipynb" width="900" height="1200"></iframe>
+  <section class="tex2jax_ignore mathjax_ignore" id="bayesian-linear-regression">
+<h1>Bayesian Linear Regression<a class="headerlink" href="#bayesian-linear-regression" title="Permalink to this headline">#</a></h1>
+<p><img alt="" src="aiml-common/assignments/jax-bayesian-regression/images/jax_logo_250px.png" /></p>
+<p>JAX is an extensible system for <strong>composable function transformations</strong>. You can read its groundbraking benefits for a wide range of scientific applications <a class="reference external" href="https://github.com/google/jax">here</a>.</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/WdTeDXsOSj4" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p>Many practitioners prefer functional APIs as compared to the object oriented APIs especially when new concepts are developed (eg Research) or learned (eg Education). In essence at the very minimum you get a substantial perf improvement in performance and at the same time functionality that is very much needed for any differential learner to work (such as automatic differentiation).</p>
+<p>The assignment attempts to teach you a couple of things about Bayesian Linear Regression and allow you to develop the method from scratch using … JAX. Please go over the sections 20.2.6-20.2.8 of <a class="reference external" href="http://aima.cs.berkeley.edu/">this textbook</a> to understand principles behind Bayesian Regression.</p>
+<p>**Make sure you comply to the JAX API requirement. Make sure you type markdown cells or inline comments describing every line. The notebook must read like a tutorial.</p>
+<p><strong>For implementing this assignment you will use JAX from scratch without any other APIs but you are free to look at implementations of Bayesian Regression such as the <a class="reference external" href="https://github.com/ctgk/PRML/tree/main/notebooks">notebooks given in your course notes</a>.</strong>
+**</p>
+<section id="generate-and-transform-data-20-points">
+<h2>Generate and transform data  (20 points)<a class="headerlink" href="#generate-and-transform-data-20-points" title="Permalink to this headline">#</a></h2>
+<p>Generate a sinusoidal dataset of <span class="math notranslate nohighlight">\(m\)</span> data points <a class="reference external" href="https://pantelis.github.io/data-science/aiml-common/lectures/regression/linear-regression/_index.html">such as the one we have met in class</a>.  The synthetic dataset is generated by the function <span class="math notranslate nohighlight">\(\sin(2 \pi x) + ϵ\)</span> where <span class="math notranslate nohighlight">\(x\)</span> is a uniformly distributed random variable and <span class="math notranslate nohighlight">\(ϵ\)</span> is <span class="math notranslate nohighlight">\(N(\mu=0.0, \sigma^2=0.3)\)</span>.  Write the code such as you can produce results for the very small (eg 3 data points), low <span class="math notranslate nohighlight">\(m\)</span> (eg 10 data points) and larger <span class="math notranslate nohighlight">\(m\)</span> (eg 100 data points) cases.</p>
+<p>Simulate an online learning (streaming system) where data from this dataset are arriving sequentially one example at a time. In the industry, one of the most useful publish-subscribe system is Kafka (and there is a simpler compatible system called RedPanda). Although in practice such systems will be used you can use simply a for loop to read the samples sequentially.</p>
+<p>Use Gaussian Radial Basis Function (RBF) features (as compared to the polynomials we have seen in class) and create the hypothesis set. See how Gaussian RBFs look like here:</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/5LDTcRcV0Dc" style="border: 0; height: 345px; width: 560px">
+</iframe></div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code goes here - </span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="online-maximum-likelihood-linear-regression-30-points">
+<h2><em>Online</em> Maximum Likelihood - Linear Regression (30 points)<a class="headerlink" href="#online-maximum-likelihood-linear-regression-30-points" title="Permalink to this headline">#</a></h2>
+<p>Implement an online maximum likelihood method for the linear regression with SGD.</p>
+</section>
+<section id="online-bayesian-linear-regression-30-points">
+<h2><em>Online</em> Bayesian Linear Regression (30 points)<a class="headerlink" href="#online-bayesian-linear-regression-30-points" title="Permalink to this headline">#</a></h2>
+<p>Write the Bayesian linear regression model and plot the predictive distributions as shown of the data as they are received. Write all the math equations that are associated with such figures and explain the functional form of the posterior distribution.</p>
+<p>If it is, find a way to show that the Bayesian approach is better in terms of predictions than the maximum likelihood approach obtained earlier and for what data regime (<span class="math notranslate nohighlight">\(m\)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="evidence-comparison-20-points">
+<h2>Evidence Comparison (20 points)<a class="headerlink" href="#evidence-comparison-20-points" title="Permalink to this headline">#</a></h2>
+<p>Explain what is meant by model evidence - Iteratate over multiple hypotheses of various model complexities and plot the model evidence over the model complexity.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -688,7 +803,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./aiml-common/lectures/pca"
+            path: "./aiml-common/assignments/jax-bayesian-regression"
         },
         predefinedOutput: true
     }
@@ -702,19 +817,12 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../density-estimation/knn-workshop/_index.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../probability/probability-assignment-3/index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">kNN Workshop</p>
+            <p class="prev-next-title">Probability Assignment</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="../ml-math/_index.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Math for ML</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
