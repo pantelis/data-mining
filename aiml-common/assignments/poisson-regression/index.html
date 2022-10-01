@@ -6,60 +6,59 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Data Science 360 &#8212; Data Mining</title>
+    <title>Bike Rides and the Poisson Model &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
-    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-    <script src="../../../../_static/jquery.js"></script>
-    <script src="../../../../_static/underscore.js"></script>
-    <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/clipboard.min.js"></script>
-    <script src="../../../../_static/copybutton.js"></script>
-    <script src="../../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
-    <script src="../../../../_static/tabs.js"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../../_static/tabs.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/ai-intro/data-science-360/_index.html" />
-    <link rel="index" title="Index" href="../../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="ML Pipelines" href="../pipelines/_index.html" />
-    <link rel="prev" title="Course Introduction" href="../course-introduction/_index.html" />
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/assignments/poisson-regression/index.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="Probability Assignment" href="../probability/probability-assignment-3/index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -94,19 +93,19 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="bd-sidebar noprint" id="site-navigation">
     <div class="bd-sidebar__content">
         <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../../index.html">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
       
       
-      <img src="../../../../_static/logo.png" class="logo" alt="logo">
+      <img src="../../../_static/logo.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Data Mining</h1>
       
     </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -118,7 +117,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../../syllabus/_index.html">
+  <a class="reference internal" href="../../../syllabus/_index.html">
    Syllabus
   </a>
  </li>
@@ -128,24 +127,24 @@ const thebe_selector_output = ".output, .cell_output"
   Introduction to Data Mining
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../course-introduction/_index.html">
+  <a class="reference internal" href="../../lectures/ai-intro/course-introduction/_index.html">
    Course Introduction
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/ai-intro/data-science-360/_index.html">
    Data Science 360
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../pipelines/_index.html">
+  <a class="reference internal" href="../../lectures/ai-intro/pipelines/_index.html">
    ML Pipelines
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../uber-ml-arch-case-study/_index.html">
+  <a class="reference internal" href="../../lectures/uber-ml-arch-case-study/_index.html">
    A Case Study of an ML Architecture - Uber
   </a>
  </li>
@@ -157,32 +156,32 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../learning-problem/_index.html">
+  <a class="reference internal" href="../../lectures/learning-problem/_index.html">
    The Learning Problem
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../regression/linear-regression/_index.html">
+  <a class="reference internal" href="../../lectures/regression/linear-regression/_index.html">
    Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../optimization/maximum-likelihood/_index.html">
+  <a class="reference internal" href="../../lectures/optimization/maximum-likelihood/_index.html">
    Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../entropy/_index.html">
+  <a class="reference internal" href="../../lectures/entropy/_index.html">
    Entropy
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../optimization/sgd/_index.html">
+  <a class="reference internal" href="../../lectures/optimization/sgd/_index.html">
    Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/classification-intro/_index.html">
+  <a class="reference internal" href="../../lectures/classification/classification-intro/_index.html">
    Introduction to Classification
   </a>
  </li>
@@ -194,52 +193,52 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/logistic-regression/_index.html">
+  <a class="reference internal" href="../../lectures/classification/logistic-regression/_index.html">
    Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../decision-trees/_index.html">
+  <a class="reference internal" href="../../lectures/decision-trees/_index.html">
    Decision Trees
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../regression-trees/regression_trees.html">
+  <a class="reference internal" href="../../lectures/regression-trees/regression_trees.html">
    Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/_index.html">
+  <a class="reference internal" href="../../lectures/ensemble/_index.html">
    Ensemble Methods
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+  <a class="reference internal" href="../../lectures/ensemble/random-forests/_index.html">
    Random Forests
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/boosting/_index.html">
+  <a class="reference internal" href="../../lectures/ensemble/boosting/_index.html">
    Boosting
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+  <a class="reference internal" href="../../lectures/ensemble/boosting-workshop/_index.html">
    Boosting workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+  <a class="reference internal" href="../../lectures/pgm/bayesian-inference/_index.html">
    Bayesian Inference
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+  <a class="reference internal" href="../../lectures/pgm/bayesian-coin/_index.html">
    Bayesian Coin Flipping
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
+  <a class="reference internal" href="../../lectures/classification/covid19-antibody-test/_index.html">
    COVID-19 Antibody Test
   </a>
  </li>
@@ -251,32 +250,32 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/perceptron/_index.html">
+  <a class="reference internal" href="../../lectures/classification/perceptron/_index.html">
    The Neuron (Perceptron)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
+  <a class="reference internal" href="../../lectures/dnn/dnn-intro/_index.html">
    Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
+  <a class="reference internal" href="../../lectures/dnn/backprop-intro/_index.html">
    Introduction to Backpropagation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
+  <a class="reference internal" href="../../lectures/dnn/backprop-dnn/_index.html">
    Backpropagation in Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../dnn/backprop-dnn-exercises/_index.html">
+  <a class="reference internal" href="../../lectures/dnn/backprop-dnn-exercises/_index.html">
    Backpropagation DNN exercises
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../optimization/regularization/_index.html">
+  <a class="reference internal" href="../../lectures/optimization/regularization/_index.html">
    Regularization in Deep Neural Networks
   </a>
  </li>
@@ -288,22 +287,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
+  <a class="reference internal" href="../../lectures/cnn/cnn-intro/_index.html">
    Introduction to Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../cnn/cnn-layers/_index.html">
+  <a class="reference internal" href="../../lectures/cnn/cnn-layers/_index.html">
    CNN Architectures
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">
+  <a class="reference internal" href="../../lectures/cnn/cnn-example-architectures/_index.html">
    CNN Example Architectures
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
+  <a class="reference internal" href="../../lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
    Using convnets with small datasets
   </a>
  </li>
@@ -315,27 +314,27 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding/scene-understanding-intro/_index.html">
+  <a class="reference internal" href="../../lectures/scene-understanding/scene-understanding-intro/_index.html">
    Introduction to Scene Understanding
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/_index.html">
+  <a class="reference internal" href="../../lectures/scene-understanding/feature-extraction-resnet/_index.html">
    Feature Extraction via Residual Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding/object-detection/_index.html">
+  <a class="reference internal" href="../../lectures/scene-understanding/object-detection/_index.html">
    Object Detection
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding/object-detection/detection-segmentation-workshop/_index.html">
+  <a class="reference internal" href="../../lectures/scene-understanding/object-detection/detection-segmentation-workshop/_index.html">
    Object Detection and Semantic Segmentation Workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../cnn/cnn-explainers/_index.html">
+  <a class="reference internal" href="../../lectures/cnn/cnn-explainers/_index.html">
    CNN Explainers
   </a>
  </li>
@@ -347,17 +346,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../rnn/introduction/_index.html">
+  <a class="reference internal" href="../../lectures/rnn/introduction/_index.html">
    Introduction to Recurrent Neural Networks (RNN)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../rnn/simple-rnn/_index.html">
+  <a class="reference internal" href="../../lectures/rnn/simple-rnn/_index.html">
    Simple RNN
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../rnn/lstm/_index.html">
+  <a class="reference internal" href="../../lectures/rnn/lstm/_index.html">
    The Long Short-Term Memory (LSTM) Cell Architecture
   </a>
  </li>
@@ -369,22 +368,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/nlp-intro/_index.html">
+  <a class="reference internal" href="../../lectures/nlp/nlp-intro/_index.html">
    Introduction to NLP
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/word2vec/_index.html">
+  <a class="reference internal" href="../../lectures/nlp/word2vec/_index.html">
    Word2Vec Embeddings
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/rnn-language-models/_index.html">
+  <a class="reference internal" href="../../lectures/nlp/rnn-language-models/_index.html">
    RNN Language Models
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/nmt/_index.html">
+  <a class="reference internal" href="../../lectures/nlp/nmt/_index.html">
    Neural Machine Translation
   </a>
  </li>
@@ -396,17 +395,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+  <a class="reference internal" href="../../lectures/unsupervised/k-means/_index.html">
    K-means Clustering
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+  <a class="reference internal" href="../../lectures/density-estimation/knn/_index.html">
    k-Nearest Neighbors (kNN) Classification
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+  <a class="reference internal" href="../../lectures/density-estimation/knn-workshop/_index.html">
    kNN Workshop
   </a>
  </li>
@@ -418,7 +417,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../pca/_index.html">
+  <a class="reference internal" href="../../lectures/pca/_index.html">
    Principal Component Analysis (PCA)
   </a>
  </li>
@@ -430,7 +429,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../ml-math/_index.html">
+  <a class="reference internal" href="../../lectures/ml-math/_index.html">
    Math for ML
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -440,17 +439,17 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ml-math/probability/_index.html">
+    <a class="reference internal" href="../../lectures/ml-math/probability/_index.html">
      Probability Basics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../linear-algebra/_index.html">
+    <a class="reference internal" href="../../lectures/linear-algebra/_index.html">
      Linear Algebra for Machine Learning
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ml-math/calculus/_index.html">
+    <a class="reference internal" href="../../lectures/ml-math/calculus/_index.html">
      Calculus
     </a>
    </li>
@@ -464,7 +463,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../python/_index.html">
+  <a class="reference internal" href="../../lectures/python/_index.html">
    Learn Python
   </a>
  </li>
@@ -474,14 +473,14 @@ const thebe_selector_output = ".output, .cell_output"
   Assignments &amp; Projects
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability/probability-assignment-3/index.html">
+  <a class="reference internal" href="../probability/probability-assignment-3/index.html">
    Probability Assignment
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/poisson-regression/index.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Bike Rides and the Poisson Model
   </a>
  </li>
@@ -575,7 +574,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/ai-intro/data-science-360/_index.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/assignments/poisson-regression/index.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -603,7 +602,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../../../_sources/aiml-common/lectures/ai-intro/data-science-360/_index.md"
+        <a href="../../../_sources/aiml-common/assignments/poisson-regression/index.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -614,7 +613,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -640,23 +639,70 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maximum-likelihood-50-points">
+   Maximum Likelihood (50 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maximum-likelihiood-ii-50-points">
+   Maximum Likelihiood II (50 points)
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Data Science 360</h1>
+                <h1>Bike Rides and the Poisson Model</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maximum-likelihood-50-points">
+   Maximum Likelihood (50 points)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maximum-likelihiood-ii-50-points">
+   Maximum Likelihiood II (50 points)
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -664,16 +710,40 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="data-science-360">
-<h1>Data Science 360<a class="headerlink" href="#data-science-360" title="Permalink to this headline">#</a></h1>
-<p><em>What are the disciplines that we need to cross fertilize to get a system that possesses intelligence?</em></p>
-<p>Lets start with a diagram that show not only the disciplines but also <em>a way of working</em> for the many specialists involved.</p>
-<p><img alt="axes-ml-development" src="../../../../_images/axes-ml-development.svg" /></p>
-<p>The diagram above highlights three fundamental axes that can deliver a system-based approach to AI. The Z axis is the scientific axis where many disciplines such as psychology, neuroscience, mathematics and others make progress on. The X axis involves the ML/AI communities that borrow ideas from their colleagues in sciences and convert those theories and pragmatic findings into abstractions (models and methods). The model of the neuron, the perceptron, appeared in psychology journals many decades ago and despite its simplicity it is still the unit via which much more complicated neural networks are constructed from.  Todays’ models of Long-Term Short-Term Memory (LSTM), Replay Memory and many others not shown in the diagram (as its currently in draft form) are abstractions (models) of discoveries that scientists produced after tens of years of research.  To <em>use</em> however these methods and models effectively, major hardware and software components need to be developed also known as computational <em>frameworks and platforms</em> - these live in the Y axis.  Tensorflow and PyTorch are good examples of such frameworks on the software side. They are very important for the development of AI field that is known to be heavily experimental, requiring especially at the perceptive frontend significant computational power and automation. On the hardware side, we have seen tremendous computing advances by <a class="reference external" href="https://developer.nvidia.com/cuda-zone">NVIDIA</a>, <a class="reference external" href="https://www.amd.com/en/graphics/servers-radeon-instinct-deep-learning">AMD</a> and recently <a class="reference external" href="https://www.intel.com/content/www/us/en/artificial-intelligence/overview.html">Intel</a> in developing acceleration platforms that allow the software frameworks to satisfy the application latency/throughput requirements.</p>
-<p>At a very high level, progress is made via the counterclockwise iteration <span class="math notranslate nohighlight">\(Z  \rightarrow X  \rightarrow Y  \rightarrow Z \)</span>.</p>
-<p>Engineers look at the neuroscience/psychology axis,  map discoveries to points in the methods / models axis, and finally develop these methods in hardware architectures and software frameworks. But what can explain the Y -&gt; Z flow? Frameworks in turn help the neuroscientists and psychologists as they can provide generative models of their own discoveries or help them simulate conditions that are not possible using their native tools.</p>
-<p>This counter-clockwise circular multidisciplinary iteration acts as a positive feedback loop accelerating the progress in the AI space.</p>
-<p>In this course we will be focusing on the <em>methods/models</em> and <em>frameworks</em> axis and understand what these models can offer us and how we can apply them in synthesizing an system that can possess intelligence at least for a domain of interest.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="bike-rides-and-the-poisson-model">
+<h1>Bike Rides and the Poisson Model<a class="headerlink" href="#bike-rides-and-the-poisson-model" title="Permalink to this headline">#</a></h1>
+<p>To help the urban planners, you are called to model the daily bike rides in NYC using <a class="reference external" href="https://gist.github.com/sachinsdate/c17931a3f000492c1c42cf78bf4ce9fe/archive/7a5131d3f02575668b3c7e8c146b6a285acd2cd7.zip">this dataset</a>.  The dataset contains date, day of the week, high and low temp, precipitation and bike ride couunts as columns.</p>
+<section id="maximum-likelihood-50-points">
+<h2>Maximum Likelihood (50 points)<a class="headerlink" href="#maximum-likelihood-50-points" title="Permalink to this headline">#</a></h2>
+<p>The obvious choice in distributions is the <a class="reference external" href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a> which depends only on one parameter, λ, which is the average number of occurrences per interval. We want to estimate this parameter using Maximum Likelihood Estimation.</p>
+<p>Implement a Gradient Descent algorithm from scratch that will estimate the Poisson distribution according to the Maximum Likelihood criterion. Plot the estimated mean vs iterations to showcase convergence towards the true mean.</p>
+<p>References:</p>
+<p><a class="reference external" href="https://towardsdatascience.com/the-poisson-process-everything-you-need-to-know-322aa0ab9e9a">This blog post</a>.
+<a class="reference external" href="https://towardsdatascience.com/understanding-maximum-likelihood-estimation-fa495a03017a">This blog post</a> and note the negative  log likelihood function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="maximum-likelihiood-ii-50-points">
+<h2>Maximum Likelihiood II (50 points)<a class="headerlink" href="#maximum-likelihiood-ii-50-points" title="Permalink to this headline">#</a></h2>
+<p>A colleague of yours suggest that the parameter <span class="math notranslate nohighlight">\(\lambda\)</span> must be itself dependent on the weather and other factors since people bike when its not raining. Assume that you model <span class="math notranslate nohighlight">\(\lambda\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\lambda_i = \exp(\mathbf w^T \mathbf x_i)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf x_i\)</span> is one of the example features and <span class="math notranslate nohighlight">\(\mathbf w\)</span> is a set of parameters.</p>
+<p>Train the model with SGD with this assumption and compare the MSE of the predictions with the <code class="docutils literal notranslate"><span class="pre">Maximum</span> <span class="pre">Likelihood</span> <span class="pre">I</span></code> approach.</p>
+<p>You may want to use <a class="reference external" href="http://home.cc.umanitoba.ca/~godwinrt/7010/poissonregression.pdf">this partial derivative of the log likelihood function</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># </span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -689,7 +759,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./aiml-common/lectures/ai-intro/data-science-360"
+            path: "./aiml-common/assignments/poisson-regression"
         },
         predefinedOutput: true
     }
@@ -703,19 +773,12 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../course-introduction/_index.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../probability/probability-assignment-3/index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Course Introduction</p>
+            <p class="prev-next-title">Probability Assignment</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="../pipelines/_index.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ML Pipelines</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
@@ -738,7 +801,7 @@ title="Print to PDF"
     </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
 
   </body>
