@@ -24,21 +24,8 @@ parts:
     - file: aiml-common/lectures/entropy/_index.md
     - file: aiml-common/lectures/optimization/sgd/_index.md
     - file: aiml-common/lectures/classification/classification-intro/_index.md
-      
-  - caption: Classical Learning Methods
-    chapters:
     - file: aiml-common/lectures/classification/logistic-regression/_index.md
-    - file: aiml-common/lectures/classification/03_classification.ipynb
-    - file: aiml-common/lectures/decision-trees/_index.md
-    - file: aiml-common/lectures/regression-trees/regression_trees.ipynb
-    - file: aiml-common/lectures/ensemble/_index.md
-    - file: aiml-common/lectures/ensemble/random-forests/_index.md
-    - file: aiml-common/lectures/ensemble/boosting/_index.md
-    - file: aiml-common/lectures/ensemble/boosting-workshop/_index.md  
-    - file: aiml-common/lectures/pgm/bayesian-inference/_index.md
-    - file: aiml-common/lectures/pgm/bayesian-coin/_index.md
-    - file: aiml-common/lectures/classification/covid19-antibody-test/_index.md
-     
+      
   - caption: Deep Neural Networks
     chapters:    
     - file: aiml-common/lectures/classification/perceptron/_index.md
@@ -81,6 +68,18 @@ parts:
     - file: aiml-common/lectures/nlp/rnn-language-models/_index.md   
     - file: aiml-common/lectures/nlp/rnn-language-models/language-models-workshop/_index.md   
     - file: aiml-common/lectures/nlp/nmt/_index.md     
+  
+  - caption: Classical Learning Methods
+    chapters:
+    - file: aiml-common/lectures/decision-trees/_index.md
+    - file: aiml-common/lectures/regression-trees/regression_trees.ipynb
+    - file: aiml-common/lectures/ensemble/_index.md
+    - file: aiml-common/lectures/ensemble/random-forests/_index.md
+    - file: aiml-common/lectures/ensemble/boosting/_index.md
+    - file: aiml-common/lectures/ensemble/boosting-workshop/_index.md  
+    - file: aiml-common/lectures/pgm/bayesian-inference/_index.md
+    - file: aiml-common/lectures/pgm/bayesian-coin/_index.md
+    - file: aiml-common/lectures/classification/covid19-antibody-test/_index.md
   
   - caption: Non-Parametric Methods
     chapters:    
