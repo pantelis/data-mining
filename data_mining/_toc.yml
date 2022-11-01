@@ -46,12 +46,23 @@ parts:
 
   - caption: Scene Understanding
     chapters:    
-    - file: aiml-common/lectures/scene-understanding/scene-understanding-intro/_index.md
-    - file: aiml-common/lectures/scene-understanding/feature-extraction-resnet/_index.md
-    - file: aiml-common/lectures/scene-understanding/object-detection/_index.md
-    - file: aiml-common/lectures/scene-understanding/object-detection/detection-segmentation-workshop/_index.md
-    - file: aiml-common/lectures/cnn/cnn-explainers/_index.md  
-
+    - file: aiml-common/lectures/scene-understanding/scene-understanding-intro/index.md
+    - file: aiml-common/lectures/scene-understanding/feature-extraction-resnet/index.md
+    - file: aiml-common/lectures/scene-understanding/object-detection/object-detection-intro/index.md
+      title: Object Detection
+      sections:  
+      - file: aiml-common/lectures/scene-understanding/object-detection/detection-metrics/index.md
+      - file: aiml-common/lectures/scene-understanding/object-detection/rcnn-object-detection/index.md    
+      - file: aiml-common/lectures/scene-understanding/object-detection/faster-rcnn-object-detection/index.md
+    - file: aiml-common/lectures/scene-understanding/semantic-segmentation/index.md
+      title: Semantic Segmentation
+      sections:  
+      - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.md
+      - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.ipynb
+      - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.ipynb      
+      - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.ipynb        
+      - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.ipynb      
+      
   - caption:  Sequences and RNNs
     chapters:    
     - file: aiml-common/lectures/rnn/introduction/_index.md 
