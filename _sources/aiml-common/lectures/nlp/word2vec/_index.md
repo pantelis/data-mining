@@ -78,7 +78,7 @@ $$\mathbf z^\prime_j = \mathbf z \mathbf W^\prime_j,  j \in [1,...,C]$$
 $$\hat{\mathbf y}_j = \mathtt{softmax}(\mathbf z^\prime_j), j \in [1,...,C]$$
 $$L = CE(\mathbf{y}, \hat{\mathbf y} )$$
 
-The parameters $\theta = \[ \mathbf W, \mathbf W^\prime \]$ will be optimized via an optimization algorithm (from the usual SGD family).
+The parameters $$ \theta = \{\mathbf W, \mathbf W^{\prime} \} $$ will be optimized via an optimization algorithm (from the usual SGD family).
 
 Training for large vocabularies can be quite computationally intensive.  At the end of training we are then able to store the matrix $\mathbf W$ and load it during the parsing stage of the NLP pipeline.  In practice we use a loss functions that avoids computing losses that go over the vocabulary size $|V|$ and instead we pose the problem as a logistic regression problem where the positive examples are the (center,context) word pairs and the negative examples are the (center, random) word pairs. This is called _negative sampling_ and the interested reader can read more [here](https://web.stanford.edu/class/cs224n/readings/cs224n-2019-notes01-wordvecs1.pdf). 
 

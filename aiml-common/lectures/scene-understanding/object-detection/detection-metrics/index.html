@@ -1,0 +1,910 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Object Detection and Semantic Segmentation Metrics &#8212; Data Mining</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <script src="../../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../../_static/copybutton.js"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/scene-understanding/object-detection/detection-metrics/index.html" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Region-CNN (RCNN) Object Detection" href="../rcnn-object-detection/index.html" />
+    <link rel="prev" title="Object Detection" href="../object-detection-intro/index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Mining</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Syllabus
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../syllabus/_index.html">
+   Syllabus
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Data Mining
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../ai-intro/course-introduction/_index.html">
+   Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../ai-intro/data-science-360/_index.html">
+   Data Science 360
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../ai-intro/pipelines/_index.html">
+   ML Pipelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../uber-ml-arch-case-study/_index.html">
+   A Case Study of an ML Architecture - Uber
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Learning Problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../learning-problem/_index.html">
+   The Learning Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../regression/linear-regression/_index.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../optimization/maximum-likelihood/_index.html">
+   Maximum Likelihood (ML) Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../entropy/_index.html">
+   Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../optimization/sgd/_index.html">
+   Stochastic Gradient Descent
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../classification/classification-intro/_index.html">
+   Introduction to Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../classification/logistic-regression/_index.html">
+   Logistic Regression
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Deep Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../classification/perceptron/_index.html">
+   The Neuron (Perceptron)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../dnn/dnn-intro/_index.html">
+   Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../dnn/backprop-intro/_index.html">
+   Introduction to Backpropagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../dnn/backprop-dnn/_index.html">
+   Backpropagation in Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../dnn/backprop-dnn-exercises/_index.html">
+   Backpropagation DNN exercises
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../optimization/regularization/_index.html">
+   Regularization in Deep Neural Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Convolutional Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../cnn/cnn-intro/_index.html">
+   Introduction to Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../cnn/cnn-layers/_index.html">
+   CNN Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../cnn/cnn-example-architectures/_index.html">
+   CNN Example Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
+   Using convnets with small datasets
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Scene Understanding
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding-intro/index.html">
+   Introduction to Scene Understanding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../feature-extraction-resnet/index.html">
+   Feature Extraction via Residual Networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../object-detection-intro/index.html">
+   Object Detection
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Object Detection and Semantic Segmentation Metrics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rcnn-object-detection/index.html">
+     Region-CNN (RCNN) Object Detection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../faster-rcnn-object-detection/index.html">
+     Fast and Faster RCNN Object Detection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../semantic-segmentation/index.html">
+   Semantic Segmentation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
+     Mask R-CNN Semantic Segmentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
+     Mask R-CNN Demo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
+     Mask R-CNN - Inspect Training Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
+     Mask R-CNN - Inspect Trained Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
+     Mask R-CNN - Inspect Weights of a Trained Model
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sequences and RNNs
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../rnn/introduction/_index.html">
+   Introduction to Recurrent Neural Networks (RNN)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../rnn/simple-rnn/_index.html">
+   Simple RNN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../rnn/lstm/_index.html">
+   The Long Short-Term Memory (LSTM) Cell Architecture
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Embeddings and NLP
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../nlp/nlp-intro/_index.html">
+   Introduction to NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../nlp/word2vec/_index.html">
+   Word2Vec Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../nlp/rnn-language-models/_index.html">
+   RNN Language Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../nlp/nmt/_index.html">
+   Neural Machine Translation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Classical Learning Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../decision-trees/_index.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../regression-trees/regression_trees.html">
+   Regression tree stumps
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../ensemble/_index.html">
+   Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../ensemble/random-forests/_index.html">
+   Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../ensemble/boosting/_index.html">
+   Boosting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../ensemble/boosting-workshop/_index.html">
+   Boosting workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../pgm/bayesian-inference/_index.html">
+   Bayesian Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../pgm/bayesian-coin/_index.html">
+   Bayesian Coin Flipping
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../classification/covid19-antibody-test/_index.html">
+   COVID-19 Antibody Test
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Non-Parametric Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../unsupervised/k-means/_index.html">
+   K-means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../density-estimation/knn/_index.html">
+   k-Nearest Neighbors (kNN) Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../density-estimation/knn-workshop/_index.html">
+   kNN Workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../pca/_index.html">
+   Principal Component Analysis (PCA)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../ml-math/_index.html">
+   Math for ML
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ml-math/probability/_index.html">
+     Probability Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../linear-algebra/_index.html">
+     Linear Algebra for Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ml-math/calculus/_index.html">
+     Calculus
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../python/_index.html">
+   Learn Python
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Assignments &amp; Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../assignments/probability/probability-assignment-3/index.html">
+   Probability Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../assignments/poisson-regression/index.html">
+   Bike Rides and the Poisson Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../projects/cvat-low-data/index.html">
+   Automated Annotation for Small Data Regime Learning in Videos
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/pantelis/data-mining"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/scene-understanding/object-detection/detection-metrics/index.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../../../_sources/aiml-common/lectures/scene-understanding/object-detection/detection-metrics/index.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-the-average-precision-ap-metric">
+   What is the Average Precision (AP) metric
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-practical-example">
+   A practical example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mean-ap-map">
+   Mean AP (mAP)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ar">
+   AR
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Object Detection and Semantic Segmentation Metrics</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-the-average-precision-ap-metric">
+   What is the Average Precision (AP) metric
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-practical-example">
+   A practical example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mean-ap-map">
+   Mean AP (mAP)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ar">
+   AR
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="object-detection-and-semantic-segmentation-metrics">
+<h1>Object Detection and Semantic Segmentation Metrics<a class="headerlink" href="#object-detection-and-semantic-segmentation-metrics" title="Permalink to this headline">#</a></h1>
+<p>NOTE: The following example is based on  <a class="reference external" href="https://www.mdpi.com/2079-9292/10/3/279">here</a> and <a class="reference external" href="https://github.com/rafaelpadilla/review_object_detection_metrics">its corresponding implementation</a></p>
+<p>In this section we provide some intuition as to why we need additional metrics for detection and segmentation of objects.  As shown below such metrics are routinely used to compare various networks and approaches and manifest the progress that was made in the field over the last few years.</p>
+<p><img alt="object-detection-performance" src="../../../../../_images/object-detection-performance.png" />
+<em>Detection performance</em></p>
+<p>The above figure is dated but its indicative of the relative effort required to improve performance in MS COCO which is one of the most challenging datasets. See [here] for the latest leaderboard.  You can expand each entry and you can then click on the corresponding method that is behind the result. There are also per class benchmarks if your detection problem involves only a subset of the classes of MS COCO.</p>
+<section id="what-is-the-average-precision-ap-metric">
+<h2>What is the Average Precision (AP) metric<a class="headerlink" href="#what-is-the-average-precision-ap-metric" title="Permalink to this headline">#</a></h2>
+<p>The average precision is introduced in the next two videos. It is also calculated using a small detection example in a subsequent section.</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/FUg6c7Ks07o" style="border: 0; height: 345px; width: 560px">
+</iframe></div><div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/0RLOJHt74Zs" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p>The AP is the approximation of the Area Under the Curve (AUC). This approximation involves interpolation that eliminates the noisy Precision vs Recall curve - effectively converting this curve to a monotonic curve. This is shown next.</p>
+</section>
+<section id="a-practical-example">
+<h2>A practical example<a class="headerlink" href="#a-practical-example" title="Permalink to this headline">#</a></h2>
+<p>Considering the set of 12 images in the figure below:</p>
+<p><img alt="" src="../../../../../_images/toy_example_mosaic.png" /></p>
+<p>Each image, except (a), (g), and (j), has at least one target object of the class <em>cat</em>, whose locations are limited by the green rectangles.
+There is a total of 12 target objects limited by the green boxes. Images (b), (e), and (f) have two ground-truth samples of the target class.
+An object detector predicted 12 objects represented by the red rectangles (labeled with letters <em>A</em> to <em>L</em>) and their associated confidence levels are represented in percentages. Images (a), (g), and (j) are expected to have no detection. Conversely, images (b), (e), and (f) have two ground-truth bounding boxes.</p>
+<p>To evaluate the precision and recall of the 12 detections it is necessary to establish an IOU threshold <em>t</em>, which will classify each detection as TP or FP.
+In this example, let us first consider as TP the detections with <em>IOU &gt; 50%</em>, that is <em>t=0.5</em>. We start by sorting the entries in descenting order of the confidence threshold.</p>
+<p><img alt="" src="../../../../../_images/table_1_toyexample.png" /></p>
+<p>As stated before, AP is a metric to evaluate precision and recall in different confidence values. Thus, it is necessary to count the amount of TP and FP classifications given different confidence levels.</p>
+<p>By choosing a more restrictive IOU threshold, different precision x recall values can be obtained. The following table computes the precision and recall values with a more strict IOU threshold of <em>t = 0.75</em>. By that, it is noticeable the occurrence of more FP detections, reducing the recall.</p>
+<p><img alt="" src="../../../../../_images/table_2_toyexample.png" /></p>
+<p>Graphical representations of the precision x values presented in both cases <em>t= 0.5</em> and <em>t=0.75</em> are shown below:</p>
+<p><img alt="" src="../../../../../_images/precision_recall_curve_toyexample.png" /></p>
+<p>By comparing both curves, one may note that for this example:</p>
+<ol class="simple">
+<li><p>With a less restrictive IOU threshold (<em>t=0.5</em>), higher recall values can be obtained with the highest precision. In other words, the detector can retrieve about <em>66.5%</em> of the total ground truths without any miss detection.</p></li>
+<li><p>Using <em>t=0.75</em>, the detector is more sensitive with different confidence values. This is explained by the amount of ups and downs of the curve.</p></li>
+<li><p>Regardless the IOU threshold applied, this detector can never retrieve <em>100%</em> of the ground truths (recall = 1). This is due to the fact that the algorithm did not predict any bounding box for one of the ground truths in image (e).</p></li>
+</ol>
+<p>Different methods can be applied to measure the AUC of the precision x recall curve. With the so-called <em>N-point interpolation</em> we calculate the interpolated AP values using <span class="math notranslate nohighlight">\(N\)</span> recall reference points - for example for <span class="math notranslate nohighlight">\(N=11\)</span>:</p>
+<p>$<span class="math notranslate nohighlight">\([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]\)</span>$,</p>
+<p>In the <em>All-point interpolation</em> approach, all recall points are considered. These interpolation approaches result in different plots as shown below:</p>
+<p><img alt="" src="../../../../../_images/interpolations_toyexample.png" />“</p>
+<p>When an IOU threshold <em>t=0.5</em> was applied (plots of the first row in image above), the 11-point interpolation method obtained <em>AP=88.64%</em> while the all-point interpolation method improved the results a little, reaching <em>AP=89.58%</em>. Similarly, for an IOU threshold of <em>t=0.75%</em> (plots of the second row in image above), the 11-point interpolation method obtained <em>AP=49.24%</em> and the all-point interpolation <em>AP=50.97%</em>.</p>
+<p>In both cases, the all-point interpolation approach considers larger areas above the curve into the summation and consequently obtains higher results.
+When a lower IOU threshold was considered, the AP was reduced drastically in both interpolation approaches.</p>
+<p>Please note that MS COCO AP results are reported with interpolation over <span class="math notranslate nohighlight">\(N=101\)</span> points.</p>
+</section>
+<section id="mean-ap-map">
+<h2>Mean AP (mAP)<a class="headerlink" href="#mean-ap-map" title="Permalink to this headline">#</a></h2>
+<p>In classification problems with multiple classes the mean AP is simply the sample mean of <span class="math notranslate nohighlight">\(AP(c), c \in \{1, \dots, C\}\)</span> across the C classes.</p>
+</section>
+<section id="ar">
+<h2>AR<a class="headerlink" href="#ar" title="Permalink to this headline">#</a></h2>
+<p>There is corresponding Average Recall (AR) metric as well and the linked reference in the beginning of this section cover the</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./aiml-common/lectures/scene-understanding/object-detection/detection-metrics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../object-detection-intro/index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Object Detection</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../rcnn-object-detection/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Region-CNN (RCNN) Object Detection</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pantelis Monogioudis, Ph.D<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
