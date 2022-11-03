@@ -120,9 +120,6 @@ parts:
     chapters:
     - file: aiml-common/assignments/probability/probability-assignment-3/index.ipynb
     - file: aiml-common/assignments/poisson-regression/index.ipynb
-    # - file: aiml-common/assignments/mle/mle_exponential_linear_regression.ipynb
+    - file: aiml-common/projects/visual-search-coco/index.md
     - file: aiml-common/projects/cvat-low-data/index.md
-    # - file: aiml-common/assignments/fashion-mnist-from-scratch/_index.md
-    # - file: aiml-common/projects/jaxworld/jax.md
-    # - file: aiml-common/projects/_index.md
     
