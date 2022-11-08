@@ -62,6 +62,7 @@ parts:
       - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.ipynb      
       - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.ipynb        
       - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.ipynb      
+      - file: aiml-common/lectures/scene-understanding/semantic-segmentation/detectron2_tutorial.ipynb              
       
   - caption:  Sequences and RNNs
     chapters:    
