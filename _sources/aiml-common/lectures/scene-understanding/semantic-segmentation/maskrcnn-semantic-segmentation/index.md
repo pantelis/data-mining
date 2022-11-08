@@ -17,3 +17,5 @@ The four notebooks in this section use Tensorflow. For Pytorch see [Detectron2](
 
 * [This notebook](https://pantelis.github.io/artificial-intelligence/aiml-common/lectures/scene-understanding/semantic-segmentation/inspect_weights.ipynb) inspects the weights of a trained model and looks for anomalies and odd patterns.
 
+* [This notebook](https://pantelis.github.io/artificial-intelligence/aiml-common/lectures/scene-understanding/semantic-segmentation/detectron2_tutorial.ipynb) shows how an existing pretrained model can be used to do instance segmentation on new classes and how video can be processed via a relevant pipeline.
+

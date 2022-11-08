@@ -886,7 +886,7 @@ w_t(i) \exp(\alpha_t) &amp; \text{if } \hat y_t(i) \neq y_t(i)  \end{cases}\end{
 <p>Predictions improve as the number of trees grows but we need to know when to stop.</p>
 <p><img alt="gradient-boosting-performance" src="../../../../_images/gradient-boosting-performance.png" />
 <em>On the left we  dont have enough trees to fit the training set, while the one on the right we have too many trees and overfit the training set.</em></p>
-<p>In practice, do not use sklearn for gradient boosting. It is not an exaggeration to note that the optimized library for gradient boosting, <strong>XGBoost</strong> is a defacto tool for winning Kaggle competitions. Given that gradient boosting dominates performance wise many methods in classical machine learning with structured data (e.g. tabular data), XGBoost is also the standard library to try first in these type of problems. It offers also automatic ways of stopping at the right number of trees in the ensemble.</p>
+<p>In practice, do not use sklearn for gradient boosting. It is not an exaggeration to note that the optimized library for gradient boosting, <strong>XGBoost</strong> is a defacto tool for winning Kaggle competitions. Given that gradient boosting dominates performance wise many methods in classical machine learning with structured data (e.g. tabular data), XGBoost is also the standard library to try first in these type of problems. It offers also automatic ways of stopping at the right number of trees in the ensemble. <a class="reference external" href="https://blog.mattbowers.dev/how-to-understand-xgboost">This write up</a> explains its internal design.</p>
 </section>
 </section>
 
