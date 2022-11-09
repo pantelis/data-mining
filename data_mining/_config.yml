@@ -12,8 +12,6 @@ execute:
   execute_notebooks: 'off'
   timeout: 300
   exclude_patterns: 
-    # - data_mining/handson-ml2/*
-    # - data_mining/handson-ml2/.*
     - data_mining/aiml-common/lectures/transfer-learning/quantized_transfer_learning.ipynb
   
 # Define the name of the latex output file for PDF builds

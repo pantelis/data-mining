@@ -3,12 +3,15 @@
 
 format: jb-book
 root: intro
+options:
+  numbered: 3
 parts:
   - caption: Syllabus
     chapters:
     - file: syllabus/_index.md
   
   - caption: Introduction to Data Mining
+    numbered: 3
     chapters:
     - file: aiml-common/lectures/ai-intro/course-introduction/_index.md
     - file: aiml-common/lectures/ai-intro/data-science-360/_index.md
@@ -16,6 +19,7 @@ parts:
     - file: aiml-common/lectures/uber-ml-arch-case-study/_index.md
 
   - caption: The Learning Problem
+    numbered: 3
     chapters:
     - file: aiml-common/lectures/learning-problem/_index.md
     - file: aiml-common/lectures/regression/linear-regression/_index.md    
@@ -27,17 +31,19 @@ parts:
     - file: aiml-common/lectures/classification/logistic-regression/_index.md
       
   - caption: Deep Neural Networks
+    numbered: 3
     chapters:    
     - file: aiml-common/lectures/classification/perceptron/_index.md
     - file: aiml-common/lectures/dnn/dnn-intro/_index.md
     - file: aiml-common/lectures/dnn/backprop-intro/_index.md
     - file: aiml-common/lectures/dnn/backprop-dnn/_index.md
     - file: aiml-common/lectures/dnn/backprop-dnn-exercises/_index.md
-    - file: aiml-common/lectures/dnn/fashion-mnist-case-study/_index.md
+    - file: aiml-common/lectures/dnn/fashion-mnist-case-study.md
     - file: aiml-common/lectures/optimization/regularization/_index.md
     #- file: aiml-common/lectures/optimization/regularization/regularization-workshop-1/_index.md
       
   - caption: Convolutional Neural Networks
+    numbered: 3
     chapters:    
     - file: aiml-common/lectures/cnn/cnn-intro/_index.md
     - file: aiml-common/lectures/cnn/cnn-layers/_index.md
@@ -45,6 +51,7 @@ parts:
     - file: aiml-common/lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.ipynb
 
   - caption: Scene Understanding
+    numbered: 3
     chapters:    
     - file: aiml-common/lectures/scene-understanding/scene-understanding-intro/index.md
     - file: aiml-common/lectures/scene-understanding/feature-extraction-resnet/index.md
@@ -62,17 +69,18 @@ parts:
       - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.ipynb      
       - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.ipynb        
       - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.ipynb      
-      - file: aiml-common/lectures/scene-understanding/semantic-segmentation/detectron2_tutorial.ipynb              
+      - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.ipynb              
       
   - caption:  Sequences and RNNs
+    numbered: 3
     chapters:    
     - file: aiml-common/lectures/rnn/introduction/_index.md 
     - file: aiml-common/lectures/rnn/simple-rnn/_index.md 
-    - file: aiml-common/lectures/rnn/simple-rnn-workshop/_index.md 
-    - file: aiml-common/lectures/rnn/lstm/_index.md   
-    - file: aiml-common/lectures/rnn/lstm/lstm-workshop/_index.md   
+    - file: aiml-common/lectures/rnn/lstm/_index.md
+    - file: aiml-common/lectures/rnn/15_processing_sequences_using_rnns_and_cnns.ipynb     
 
   - caption:  Embeddings and NLP
+    numbered: 3
     chapters:      
     - file: aiml-common/lectures/nlp/nlp-intro/_index.md 
     - file: aiml-common/lectures/nlp/word2vec/_index.md 
@@ -82,6 +90,7 @@ parts:
     - file: aiml-common/lectures/nlp/nmt/_index.md     
   
   - caption: Classical Learning Methods
+    numbered: 3
     chapters:
     - file: aiml-common/lectures/decision-trees/_index.md
     - file: aiml-common/lectures/regression-trees/regression_trees.ipynb
@@ -94,16 +103,19 @@ parts:
     - file: aiml-common/lectures/classification/covid19-antibody-test/_index.md
   
   - caption: Non-Parametric Methods
+    numbered: 3
     chapters:    
     - file: aiml-common/lectures/unsupervised/k-means/_index.md
     - file: aiml-common/lectures/density-estimation/knn/_index.md
     - file: aiml-common/lectures/density-estimation/knn-workshop/_index.md
    
   - caption:  Dimensionality Reduction
+    numbered: 3
     chapters:    
     - file: aiml-common/lectures/pca/_index.md
   
   - caption: Math Background
+    numbered: 3
     chapters: 
     - file: aiml-common/lectures/ml-math/_index.md  
       title: Math for ML 
@@ -113,14 +125,16 @@ parts:
       - file: aiml-common/lectures/ml-math/calculus/_index.md
         
   - caption: Resources
+    numbered: 3
     chapters:
     - file: aiml-common/lectures/environment/_index.md
     - file: aiml-common/lectures/python/_index.md  
 
   - caption:  Assignments & Projects
+    numbered: 3
     chapters:
     - file: aiml-common/assignments/probability/probability-assignment-3/index.ipynb
     - file: aiml-common/assignments/poisson-regression/index.ipynb
     - file: aiml-common/projects/visual-search-coco/index.md
-    - file: aiml-common/projects/cvat-low-data/index.md
+    - file: aiml-common/projects/transfer-learning-home-depot/index.md
     
