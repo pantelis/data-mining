@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Entropy &#8212; Data Mining</title>
+    <title>4. Entropy &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -58,8 +58,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/entropy/_index.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Stochastic Gradient Descent" href="../optimization/sgd/_index.html" />
-    <link rel="prev" title="Maximum Likelihood (ML) Estimation" href="../optimization/maximum-likelihood/_index.html" />
+    <link rel="next" title="5. Stochastic Gradient Descent" href="../optimization/sgd/_index.html" />
+    <link rel="prev" title="3. Maximum Likelihood (ML) Estimation" href="../optimization/maximum-likelihood/_index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -131,22 +131,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../ai-intro/course-introduction/_index.html">
-   Course Introduction
+   1. Course Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../ai-intro/data-science-360/_index.html">
-   Data Science 360
+   2. Data Science 360
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../ai-intro/pipelines/_index.html">
-   ML Pipelines
+   3. ML Pipelines
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../uber-ml-arch-case-study/_index.html">
-   A Case Study of an ML Architecture - Uber
+   4. A Case Study of an ML Architecture - Uber
   </a>
  </li>
 </ul>
@@ -158,37 +158,37 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../learning-problem/_index.html">
-   The Learning Problem
+   1. The Learning Problem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../regression/linear-regression/_index.html">
-   Linear Regression
+   2. Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../optimization/maximum-likelihood/_index.html">
-   Maximum Likelihood (ML) Estimation
+   3. Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Entropy
+   4. Entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../optimization/sgd/_index.html">
-   Stochastic Gradient Descent
+   5. Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../classification/classification-intro/_index.html">
-   Introduction to Classification
+   6. Introduction to Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../classification/logistic-regression/_index.html">
-   Logistic Regression
+   7. Logistic Regression
   </a>
  </li>
 </ul>
@@ -200,32 +200,37 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../classification/perceptron/_index.html">
-   The Neuron (Perceptron)
+   1. The Neuron (Perceptron)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../dnn/dnn-intro/_index.html">
-   Deep Neural Networks
+   2. Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../dnn/backprop-intro/_index.html">
-   Introduction to Backpropagation
+   3. Introduction to Backpropagation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../dnn/backprop-dnn/_index.html">
-   Backpropagation in Deep Neural Networks
+   4. Backpropagation in Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../dnn/backprop-dnn-exercises/_index.html">
-   Backpropagation DNN exercises
+   5. Backpropagation DNN exercises
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dnn/fashion-mnist-case-study.html">
+   6. Fashion MNIST Case Study
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../optimization/regularization/_index.html">
-   Regularization in Deep Neural Networks
+   7. Regularization in Deep Neural Networks
   </a>
  </li>
 </ul>
@@ -237,22 +242,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../cnn/cnn-intro/_index.html">
-   Introduction to Convolutional Neural Networks
+   1. Introduction to Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../cnn/cnn-layers/_index.html">
-   CNN Architectures
+   2. CNN Architectures
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../cnn/cnn-example-architectures/_index.html">
-   CNN Example Architectures
+   3. CNN Example Architectures
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
-   Using convnets with small datasets
+   4. Using convnets with small datasets
   </a>
  </li>
 </ul>
@@ -264,17 +269,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../scene-understanding/scene-understanding-intro/index.html">
-   Introduction to Scene Understanding
+   1. Introduction to Scene Understanding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../scene-understanding/feature-extraction-resnet/index.html">
-   Feature Extraction via Residual Networks
+   2. Feature Extraction via Residual Networks
   </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../scene-understanding/object-detection/object-detection-intro/index.html">
-   Object Detection
+   3. Object Detection
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -284,24 +289,24 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../scene-understanding/object-detection/detection-metrics/index.html">
-     Object Detection and Semantic Segmentation Metrics
+     3.1. Object Detection and Semantic Segmentation Metrics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../scene-understanding/object-detection/rcnn-object-detection/index.html">
-     Region-CNN (RCNN) Object Detection
+     3.2. Region-CNN (RCNN) Object Detection
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../scene-understanding/object-detection/faster-rcnn-object-detection/index.html">
-     Fast and Faster RCNN Object Detection
+     3.3. Fast and Faster RCNN Object Detection
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../scene-understanding/semantic-segmentation/index.html">
-   Semantic Segmentation
+   4. Semantic Segmentation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -311,27 +316,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
-     Mask R-CNN Semantic Segmentation
+     4.1. Mask R-CNN Semantic Segmentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
-     Mask R-CNN Demo
+     4.2. Mask R-CNN Demo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
-     Mask R-CNN - Inspect Training Data
+     4.3. Mask R-CNN - Inspect Training Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
-     Mask R-CNN - Inspect Trained Model
+     4.4. Mask R-CNN - Inspect Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
-     Mask R-CNN - Inspect Weights of a Trained Model
+     4.15. Mask R-CNN - Inspect Weights of a Trained Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">
+     4.21. Detectron2 Beginner’s Tutorial
     </a>
    </li>
   </ul>
@@ -345,17 +355,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../rnn/introduction/_index.html">
-   Introduction to Recurrent Neural Networks (RNN)
+   1. Introduction to Recurrent Neural Networks (RNN)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../rnn/simple-rnn/_index.html">
-   Simple RNN
+   2. Simple RNN
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../rnn/lstm/_index.html">
-   The Long Short-Term Memory (LSTM) Cell Architecture
+   3. The Long Short-Term Memory (LSTM) Cell Architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rnn/15_processing_sequences_using_rnns_and_cnns.html">
+   4. Processing Sequences Using RNN
   </a>
  </li>
 </ul>
@@ -367,22 +382,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../nlp/nlp-intro/_index.html">
-   Introduction to NLP
+   1. Introduction to NLP
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../nlp/word2vec/_index.html">
-   Word2Vec Embeddings
+   2. Word2Vec Embeddings
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../nlp/rnn-language-models/_index.html">
-   RNN Language Models
+   3. RNN Language Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../nlp/nmt/_index.html">
-   Neural Machine Translation
+   4. Neural Machine Translation
   </a>
  </li>
 </ul>
@@ -394,47 +409,47 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../decision-trees/_index.html">
-   Decision Trees
+   1. Decision Trees
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../regression-trees/regression_trees.html">
-   Regression tree stumps
+   2. Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../ensemble/_index.html">
-   Ensemble Methods
+   4. Ensemble Methods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../ensemble/random-forests/_index.html">
-   Random Forests
+   5. Random Forests
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../ensemble/boosting/_index.html">
-   Boosting
+   6. Boosting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../ensemble/boosting-workshop/_index.html">
-   Boosting workshop
+   7. Boosting workshop
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../pgm/bayesian-inference/_index.html">
-   Bayesian Inference
+   8. Bayesian Inference
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../pgm/bayesian-coin/_index.html">
-   Bayesian Coin Flipping
+   9. Bayesian Coin Flipping
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../classification/covid19-antibody-test/_index.html">
-   COVID-19 Antibody Test
+   10. COVID-19 Antibody Test
   </a>
  </li>
 </ul>
@@ -446,17 +461,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../unsupervised/k-means/_index.html">
-   K-means Clustering
+   1. K-means Clustering
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../density-estimation/knn/_index.html">
-   k-Nearest Neighbors (kNN) Classification
+   2. k-Nearest Neighbors (kNN) Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../density-estimation/knn-workshop/_index.html">
-   kNN Workshop
+   3. kNN Workshop
   </a>
  </li>
 </ul>
@@ -468,7 +483,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../pca/_index.html">
-   Principal Component Analysis (PCA)
+   1. Principal Component Analysis (PCA)
   </a>
  </li>
 </ul>
@@ -480,7 +495,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../ml-math/_index.html">
-   Math for ML
+   1. Math for ML
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -490,17 +505,17 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../ml-math/probability/_index.html">
-     Probability Basics
+     1.1. Probability Basics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../linear-algebra/_index.html">
-     Linear Algebra for Machine Learning
+     1.2. Linear Algebra for Machine Learning
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../ml-math/calculus/_index.html">
-     Calculus
+     1.3. Calculus
     </a>
    </li>
   </ul>
@@ -514,7 +529,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../python/_index.html">
-   Learn Python
+   1. Learn Python
   </a>
  </li>
 </ul>
@@ -526,17 +541,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../assignments/probability/probability-assignment-3/index.html">
-   Probability Assignment
+   1. Probability Assignment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../assignments/poisson-regression/index.html">
-   Bike Rides and the Poisson Model
+   3. Bike Rides and the Poisson Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../projects/visual-search-coco/index.html">
-   Reverse Visual Search
+   4. Reverse Visual Search
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../projects/transfer-learning-home-depot/index.html">
+   5. Transfer Learning for Custom Datasets in the Small-Data Regime
   </a>
  </li>
 </ul>
@@ -718,12 +738,12 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#relative-entropy-or-kl-divergence">
-   Relative entropy or KL divergence
+   4.1. Relative entropy or KL divergence
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#digging-further">
-   Digging further
+   4.2. Digging further
   </a>
  </li>
 </ul>
@@ -747,12 +767,12 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#relative-entropy-or-kl-divergence">
-   Relative entropy or KL divergence
+   4.1. Relative entropy or KL divergence
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#digging-further">
-   Digging further
+   4.2. Digging further
   </a>
  </li>
 </ul>
@@ -766,7 +786,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="entropy">
-<h1>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4. </span>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">#</a></h1>
 <p>In this section we take a closer look into the <em>algorithm</em> block of the learning problem. This block implements the underlying optimization problem that produces the weights in regression and classification settings. Any optimization problem requires an objective function and as it turns out in the supervised setting (and not only) there is a whole theory, called <em>information theory</em> pioneered by Claude Shannon at Bell Labs, that guides us in our search to find the best <span class="math notranslate nohighlight">\(p_{model}\)</span> but also in a myriad other things. The important elements of this theory are reviewed here.</p>
 <p><img alt="holland-tunnel" src="../../../_images/holland-tunnel.jpg" />
 <em>Value of information: <code class="docutils literal notranslate"><span class="pre">Low</span> <span class="pre">Manhattan-bound</span> <span class="pre">traffic</span> <span class="pre">flow</span> <span class="pre">in</span> <span class="pre">Holland</span> <span class="pre">tunnel</span> <span class="pre">on</span> <span class="pre">Monday</span> <span class="pre">morning</span></code></em></p>
@@ -782,7 +802,7 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(H(p) = - [p \ln p + (1-p) \ln(1-p)]\)</span></p>
 <p>As you can see the maximum entropy is when the outcome is most unpredictable i.e. when a 1 can show up with uniform probability (in this case equal probability to a 0). Entropy has widespread implications as it measures our uncertainty in terms of the length of the message/code that we need to communicate the outcome across. Taking to the limit if we were certain about an event (deterministic outcome) we would need 0 bits or require to send any message at all.</p>
 <section id="relative-entropy-or-kl-divergence">
-<h2>Relative entropy or KL divergence<a class="headerlink" href="#relative-entropy-or-kl-divergence" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.1. </span>Relative entropy or KL divergence<a class="headerlink" href="#relative-entropy-or-kl-divergence" title="Permalink to this headline">#</a></h2>
 <p>In many settings we need to have a metric that compares two probability distributions <span class="math notranslate nohighlight">\(\{P(x),Q(x)\}\)</span> in terms of their “distance” from each other (the quotes will be explained shortly). This is given by the quantity known as <em>relative entropy</em> or <em>KL divergence</em>.</p>
 <div class="math notranslate nohighlight">
 \[KL(P||Q)= \mathbb{E}[\ln P(x) - \ln Q(x)]\]</div>
@@ -792,7 +812,7 @@ title="Print to PDF"
 <p><img alt="entropy-relations" src="../../../_images/entropy-relations.png" /></p>
 </section>
 <section id="digging-further">
-<h2>Digging further<a class="headerlink" href="#digging-further" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.2. </span>Digging further<a class="headerlink" href="#digging-further" title="Permalink to this headline">#</a></h2>
 <p>If you are a visual learner, <a class="reference external" href="http://colah.github.io/posts/2015-09-Visual-Information/#fn4">the visual information theory</a> blog post is a better starting point to the above.  <a class="reference external" href="https://www.inference.org.uk/itprnn/book.pdf">MacKay’s book (Chapter 2)</a> is an instructive introduction to probability and information theory concepts and you can test your understanding by doing the exercises in that chapter.</p>
 </section>
 </section>
@@ -828,13 +848,13 @@ title="Print to PDF"
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Maximum Likelihood (ML) Estimation</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Maximum Likelihood (ML) Estimation</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../optimization/sgd/_index.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Stochastic Gradient Descent</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Stochastic Gradient Descent</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

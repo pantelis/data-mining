@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Mask R-CNN - Inspect Trained Model &#8212; Data Mining</title>
+    <title>4.4. Mask R-CNN - Inspect Trained Model &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -56,8 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html" />
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="Mask R-CNN - Inspect Weights of a Trained Model" href="inspect_weights.html" />
-    <link rel="prev" title="Mask R-CNN - Inspect Training Data" href="inspect_data.html" />
+    <link rel="next" title="4.15. Mask R-CNN - Inspect Weights of a Trained Model" href="inspect_weights.html" />
+    <link rel="prev" title="4.3. Mask R-CNN - Inspect Training Data" href="inspect_data.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -129,22 +129,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ai-intro/course-introduction/_index.html">
-   Course Introduction
+   1. Course Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ai-intro/data-science-360/_index.html">
-   Data Science 360
+   2. Data Science 360
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ai-intro/pipelines/_index.html">
-   ML Pipelines
+   3. ML Pipelines
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../uber-ml-arch-case-study/_index.html">
-   A Case Study of an ML Architecture - Uber
+   4. A Case Study of an ML Architecture - Uber
   </a>
  </li>
 </ul>
@@ -156,37 +156,37 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../learning-problem/_index.html">
-   The Learning Problem
+   1. The Learning Problem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../regression/linear-regression/_index.html">
-   Linear Regression
+   2. Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../optimization/maximum-likelihood/_index.html">
-   Maximum Likelihood (ML) Estimation
+   3. Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../entropy/_index.html">
-   Entropy
+   4. Entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../optimization/sgd/_index.html">
-   Stochastic Gradient Descent
+   5. Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../classification/classification-intro/_index.html">
-   Introduction to Classification
+   6. Introduction to Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../classification/logistic-regression/_index.html">
-   Logistic Regression
+   7. Logistic Regression
   </a>
  </li>
 </ul>
@@ -198,32 +198,37 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../classification/perceptron/_index.html">
-   The Neuron (Perceptron)
+   1. The Neuron (Perceptron)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../dnn/dnn-intro/_index.html">
-   Deep Neural Networks
+   2. Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../dnn/backprop-intro/_index.html">
-   Introduction to Backpropagation
+   3. Introduction to Backpropagation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../dnn/backprop-dnn/_index.html">
-   Backpropagation in Deep Neural Networks
+   4. Backpropagation in Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../dnn/backprop-dnn-exercises/_index.html">
-   Backpropagation DNN exercises
+   5. Backpropagation DNN exercises
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../dnn/fashion-mnist-case-study.html">
+   6. Fashion MNIST Case Study
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../optimization/regularization/_index.html">
-   Regularization in Deep Neural Networks
+   7. Regularization in Deep Neural Networks
   </a>
  </li>
 </ul>
@@ -235,22 +240,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../cnn/cnn-intro/_index.html">
-   Introduction to Convolutional Neural Networks
+   1. Introduction to Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../cnn/cnn-layers/_index.html">
-   CNN Architectures
+   2. CNN Architectures
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../cnn/cnn-example-architectures/_index.html">
-   CNN Example Architectures
+   3. CNN Example Architectures
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
-   Using convnets with small datasets
+   4. Using convnets with small datasets
   </a>
  </li>
 </ul>
@@ -262,17 +267,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../scene-understanding-intro/index.html">
-   Introduction to Scene Understanding
+   1. Introduction to Scene Understanding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../feature-extraction-resnet/index.html">
-   Feature Extraction via Residual Networks
+   2. Feature Extraction via Residual Networks
   </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../object-detection/object-detection-intro/index.html">
-   Object Detection
+   3. Object Detection
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -282,24 +287,24 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../object-detection/detection-metrics/index.html">
-     Object Detection and Semantic Segmentation Metrics
+     3.1. Object Detection and Semantic Segmentation Metrics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../object-detection/rcnn-object-detection/index.html">
-     Region-CNN (RCNN) Object Detection
+     3.2. Region-CNN (RCNN) Object Detection
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../object-detection/faster-rcnn-object-detection/index.html">
-     Fast and Faster RCNN Object Detection
+     3.3. Fast and Faster RCNN Object Detection
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../index.html">
-   Semantic Segmentation
+   4. Semantic Segmentation
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -309,27 +314,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="index.html">
-     Mask R-CNN Semantic Segmentation
+     4.1. Mask R-CNN Semantic Segmentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="demo.html">
-     Mask R-CNN Demo
+     4.2. Mask R-CNN Demo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="inspect_data.html">
-     Mask R-CNN - Inspect Training Data
+     4.3. Mask R-CNN - Inspect Training Data
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Mask R-CNN - Inspect Trained Model
+     4.4. Mask R-CNN - Inspect Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="inspect_weights.html">
-     Mask R-CNN - Inspect Weights of a Trained Model
+     4.15. Mask R-CNN - Inspect Weights of a Trained Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="detectron2_tutorial.html">
+     4.21. Detectron2 Beginner’s Tutorial
     </a>
    </li>
   </ul>
@@ -343,17 +353,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../rnn/introduction/_index.html">
-   Introduction to Recurrent Neural Networks (RNN)
+   1. Introduction to Recurrent Neural Networks (RNN)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../rnn/simple-rnn/_index.html">
-   Simple RNN
+   2. Simple RNN
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../rnn/lstm/_index.html">
-   The Long Short-Term Memory (LSTM) Cell Architecture
+   3. The Long Short-Term Memory (LSTM) Cell Architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../rnn/15_processing_sequences_using_rnns_and_cnns.html">
+   4. Processing Sequences Using RNN
   </a>
  </li>
 </ul>
@@ -365,22 +380,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../nlp/nlp-intro/_index.html">
-   Introduction to NLP
+   1. Introduction to NLP
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../nlp/word2vec/_index.html">
-   Word2Vec Embeddings
+   2. Word2Vec Embeddings
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../nlp/rnn-language-models/_index.html">
-   RNN Language Models
+   3. RNN Language Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../nlp/nmt/_index.html">
-   Neural Machine Translation
+   4. Neural Machine Translation
   </a>
  </li>
 </ul>
@@ -392,47 +407,47 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../decision-trees/_index.html">
-   Decision Trees
+   1. Decision Trees
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../regression-trees/regression_trees.html">
-   Regression tree stumps
+   2. Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ensemble/_index.html">
-   Ensemble Methods
+   4. Ensemble Methods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ensemble/random-forests/_index.html">
-   Random Forests
+   5. Random Forests
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ensemble/boosting/_index.html">
-   Boosting
+   6. Boosting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ensemble/boosting-workshop/_index.html">
-   Boosting workshop
+   7. Boosting workshop
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../pgm/bayesian-inference/_index.html">
-   Bayesian Inference
+   8. Bayesian Inference
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../pgm/bayesian-coin/_index.html">
-   Bayesian Coin Flipping
+   9. Bayesian Coin Flipping
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../classification/covid19-antibody-test/_index.html">
-   COVID-19 Antibody Test
+   10. COVID-19 Antibody Test
   </a>
  </li>
 </ul>
@@ -444,17 +459,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../unsupervised/k-means/_index.html">
-   K-means Clustering
+   1. K-means Clustering
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../density-estimation/knn/_index.html">
-   k-Nearest Neighbors (kNN) Classification
+   2. k-Nearest Neighbors (kNN) Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../density-estimation/knn-workshop/_index.html">
-   kNN Workshop
+   3. kNN Workshop
   </a>
  </li>
 </ul>
@@ -466,7 +481,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../pca/_index.html">
-   Principal Component Analysis (PCA)
+   1. Principal Component Analysis (PCA)
   </a>
  </li>
 </ul>
@@ -478,7 +493,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../../ml-math/_index.html">
-   Math for ML
+   1. Math for ML
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -488,17 +503,17 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../../ml-math/probability/_index.html">
-     Probability Basics
+     1.1. Probability Basics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../../linear-algebra/_index.html">
-     Linear Algebra for Machine Learning
+     1.2. Linear Algebra for Machine Learning
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../../ml-math/calculus/_index.html">
-     Calculus
+     1.3. Calculus
     </a>
    </li>
   </ul>
@@ -512,7 +527,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../python/_index.html">
-   Learn Python
+   1. Learn Python
   </a>
  </li>
 </ul>
@@ -524,17 +539,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../../assignments/probability/probability-assignment-3/index.html">
-   Probability Assignment
+   1. Probability Assignment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../../assignments/poisson-regression/index.html">
-   Bike Rides and the Poisson Model
+   3. Bike Rides and the Poisson Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../../projects/visual-search-coco/index.html">
-   Reverse Visual Search
+   4. Reverse Visual Search
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../projects/transfer-learning-home-depot/index.html">
+   5. Transfer Learning for Custom Datasets in the Small-Data Regime
   </a>
  </li>
 </ul>
@@ -716,81 +736,81 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Mask R-CNN - Inspect Trained Model
+   4.4. Mask R-CNN - Inspect Trained Model
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#configurations">
-   Configurations
+   4.5. Configurations
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#notebook-preferences">
-   Notebook Preferences
+   4.6. Notebook Preferences
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#load-validation-dataset">
-   Load Validation Dataset
+   4.7. Load Validation Dataset
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#load-model">
-   Load Model
+   4.8. Load Model
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#run-detection">
-   Run Detection
+   4.9. Run Detection
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#precision-recall">
-     Precision-Recall
+     4.9.1. Precision-Recall
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#compute-map-iou-50-on-batch-of-images">
-     Compute mAP @ IoU=50 on Batch of Images
+     4.9.2. Compute mAP @ IoU=50 on Batch of Images
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#step-by-step-prediction">
-   Step by Step Prediction
+   4.10. Step by Step Prediction
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#stage-1-region-proposal-network">
-   Stage 1: Region Proposal Network
+   4.11. Stage 1: Region Proposal Network
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-rpn-targets">
-     1.a RPN Targets
+     4.11.1. 1.a RPN Targets
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#b-rpn-predictions">
-     1.b RPN Predictions
+     4.11.2. 1.b RPN Predictions
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#stage-2-proposal-classification">
-   Stage 2: Proposal Classification
+   4.12. Stage 2: Proposal Classification
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-proposal-classification">
-     2.a Proposal Classification
+     4.12.1. 2.a Proposal Classification
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#c-step-by-step-detection">
-     2.c Step by Step Detection
+     4.12.2. 2.c Step by Step Detection
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -814,24 +834,24 @@ title="Print to PDF"
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#stage-3-generating-masks">
-   Stage 3: Generating Masks
+   4.13. Stage 3: Generating Masks
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-mask-targets">
-     3.a Mask Targets
+     4.13.1. 3.a Mask Targets
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#b-predicted-masks">
-     3.b Predicted Masks
+     4.13.2. 3.b Predicted Masks
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#visualize-activations">
-   Visualize Activations
+   4.14. Visualize Activations
   </a>
  </li>
 </ul>
@@ -855,81 +875,81 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Mask R-CNN - Inspect Trained Model
+   4.4. Mask R-CNN - Inspect Trained Model
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#configurations">
-   Configurations
+   4.5. Configurations
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#notebook-preferences">
-   Notebook Preferences
+   4.6. Notebook Preferences
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#load-validation-dataset">
-   Load Validation Dataset
+   4.7. Load Validation Dataset
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#load-model">
-   Load Model
+   4.8. Load Model
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#run-detection">
-   Run Detection
+   4.9. Run Detection
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#precision-recall">
-     Precision-Recall
+     4.9.1. Precision-Recall
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#compute-map-iou-50-on-batch-of-images">
-     Compute mAP @ IoU=50 on Batch of Images
+     4.9.2. Compute mAP @ IoU=50 on Batch of Images
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#step-by-step-prediction">
-   Step by Step Prediction
+   4.10. Step by Step Prediction
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#stage-1-region-proposal-network">
-   Stage 1: Region Proposal Network
+   4.11. Stage 1: Region Proposal Network
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-rpn-targets">
-     1.a RPN Targets
+     4.11.1. 1.a RPN Targets
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#b-rpn-predictions">
-     1.b RPN Predictions
+     4.11.2. 1.b RPN Predictions
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#stage-2-proposal-classification">
-   Stage 2: Proposal Classification
+   4.12. Stage 2: Proposal Classification
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-proposal-classification">
-     2.a Proposal Classification
+     4.12.1. 2.a Proposal Classification
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#c-step-by-step-detection">
-     2.c Step by Step Detection
+     4.12.2. 2.c Step by Step Detection
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -953,24 +973,24 @@ title="Print to PDF"
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#stage-3-generating-masks">
-   Stage 3: Generating Masks
+   4.13. Stage 3: Generating Masks
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-mask-targets">
-     3.a Mask Targets
+     4.13.1. 3.a Mask Targets
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#b-predicted-masks">
-     3.b Predicted Masks
+     4.13.2. 3.b Predicted Masks
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#visualize-activations">
-   Visualize Activations
+   4.14. Visualize Activations
   </a>
  </li>
 </ul>
@@ -984,7 +1004,7 @@ title="Print to PDF"
               <div>
                 
   <section id="mask-r-cnn-inspect-trained-model">
-<h1>Mask R-CNN - Inspect Trained Model<a class="headerlink" href="#mask-r-cnn-inspect-trained-model" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4.4. </span>Mask R-CNN - Inspect Trained Model<a class="headerlink" href="#mask-r-cnn-inspect-trained-model" title="Permalink to this headline">#</a></h1>
 <p>Code and visualizations to test, debug, and evaluate the Mask R-CNN model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1035,7 +1055,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="configurations">
-<h1>Configurations<a class="headerlink" href="#configurations" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4.5. </span>Configurations<a class="headerlink" href="#configurations" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run one of the code blocks</span>
@@ -1115,7 +1135,7 @@ WEIGHT_DECAY                   0.0001
 </div>
 </section>
 <section id="notebook-preferences">
-<h1>Notebook Preferences<a class="headerlink" href="#notebook-preferences" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4.6. </span>Notebook Preferences<a class="headerlink" href="#notebook-preferences" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Device to load the neural network on.</span>
@@ -1149,7 +1169,7 @@ WEIGHT_DECAY                   0.0001
 </div>
 </section>
 <section id="load-validation-dataset">
-<h1>Load Validation Dataset<a class="headerlink" href="#load-validation-dataset" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4.7. </span>Load Validation Dataset<a class="headerlink" href="#load-validation-dataset" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build validation dataset</span>
@@ -1180,7 +1200,7 @@ Classes: [&#39;BG&#39;, &#39;person&#39;, &#39;bicycle&#39;, &#39;car&#39;, &#39
 </div>
 </section>
 <section id="load-model">
-<h1>Load Model<a class="headerlink" href="#load-model" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4.8. </span>Load Model<a class="headerlink" href="#load-model" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create model in inference mode</span>
@@ -1205,7 +1225,7 @@ Classes: [&#39;BG&#39;, &#39;person&#39;, &#39;bicycle&#39;, &#39;car&#39;, &#39
 </div>
 </section>
 <section id="run-detection">
-<h1>Run Detection<a class="headerlink" href="#run-detection" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4.9. </span>Run Detection<a class="headerlink" href="#run-detection" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_id</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">image_ids</span><span class="p">)</span>
@@ -1244,7 +1264,7 @@ gt_mask                  shape: (1024, 1024, 10)      min:    0.00000  max:    1
 </div>
 </div>
 <section id="precision-recall">
-<h2>Precision-Recall<a class="headerlink" href="#precision-recall" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.9.1. </span>Precision-Recall<a class="headerlink" href="#precision-recall" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Draw precision-recall curve</span>
@@ -1272,7 +1292,7 @@ gt_mask                  shape: (1024, 1024, 10)      min:    0.00000  max:    1
 </div>
 </section>
 <section id="compute-map-iou-50-on-batch-of-images">
-<h2>Compute mAP &#64; IoU=50 on Batch of Images<a class="headerlink" href="#compute-map-iou-50-on-batch-of-images" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.9.2. </span>Compute mAP &#64; IoU=50 on Batch of Images<a class="headerlink" href="#compute-map-iou-50-on-batch-of-images" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute VOC-style Average Precision</span>
@@ -1313,14 +1333,14 @@ gt_mask                  shape: (1024, 1024, 10)      min:    0.00000  max:    1
 </section>
 </section>
 <section id="step-by-step-prediction">
-<h1>Step by Step Prediction<a class="headerlink" href="#step-by-step-prediction" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4.10. </span>Step by Step Prediction<a class="headerlink" href="#step-by-step-prediction" title="Permalink to this headline">#</a></h1>
 </section>
 <section id="stage-1-region-proposal-network">
-<h1>Stage 1: Region Proposal Network<a class="headerlink" href="#stage-1-region-proposal-network" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4.11. </span>Stage 1: Region Proposal Network<a class="headerlink" href="#stage-1-region-proposal-network" title="Permalink to this headline">#</a></h1>
 <p>The Region Proposal Network (RPN) runs a lightweight binary classifier on a lot of boxes (anchors) over the image and returns object/no-object scores. Anchors with high <em>objectness</em> score (positive anchors) are passed to the stage two to be classified.</p>
 <p>Often, even positive anchors don’t cover objects fully. So the RPN also regresses a refinement (a delta in location and size) to be applied to the anchors to shift it and resize it a bit to the correct boundaries of the object.</p>
 <section id="a-rpn-targets">
-<h2>1.a RPN Targets<a class="headerlink" href="#a-rpn-targets" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.11.1. </span>1.a RPN Targets<a class="headerlink" href="#a-rpn-targets" title="Permalink to this headline">#</a></h2>
 <p>The RPN targets are the training values for the RPN. To generate the targets, we start with a grid of anchors that cover the full image at different scales, and then we compute the IoU of the anchors with ground truth object. Positive anchors are those that have an IoU &gt;= 0.7 with any ground truth object, and negative anchors are those that don’t cover any object by more than 0.3 IoU. Anchors in between (i.e. cover an object by IoU &gt;= 0.3 but &lt; 0.7) are considered neutral and excluded from training.</p>
 <p>To train the RPN regressor, we also compute the shift and resizing needed to make the anchor cover the ground truth object completely.</p>
 <div class="cell docutils container">
@@ -1376,7 +1396,7 @@ refined_anchors          shape: (14, 4)               min:    0.00000  max: 1023
 </div>
 </section>
 <section id="b-rpn-predictions">
-<h2>1.b RPN Predictions<a class="headerlink" href="#b-rpn-predictions" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.11.2. </span>1.b RPN Predictions<a class="headerlink" href="#b-rpn-predictions" title="Permalink to this headline">#</a></h2>
 <p>Here we run the RPN graph and display its predictions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1507,10 +1527,10 @@ Post NMS Anchors (   50)  Recall: 0.800  Positive anchors: 9
 </section>
 </section>
 <section id="stage-2-proposal-classification">
-<h1>Stage 2: Proposal Classification<a class="headerlink" href="#stage-2-proposal-classification" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4.12. </span>Stage 2: Proposal Classification<a class="headerlink" href="#stage-2-proposal-classification" title="Permalink to this headline">#</a></h1>
 <p>This stage takes the region proposals from the RPN and classifies them.</p>
 <section id="a-proposal-classification">
-<h2>2.a Proposal Classification<a class="headerlink" href="#a-proposal-classification" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.12.1. </span>2.a Proposal Classification<a class="headerlink" href="#a-proposal-classification" title="Permalink to this headline">#</a></h2>
 <p>Run the classifier heads on proposals to generate class propbabilities and bounding box regressions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1566,7 +1586,7 @@ detections               shape: (1, 100, 6)           min:    0.00000  max:  844
 </div>
 </section>
 <section id="c-step-by-step-detection">
-<h2>2.c Step by Step Detection<a class="headerlink" href="#c-step-by-step-detection" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.12.2. </span>2.c Step by Step Detection<a class="headerlink" href="#c-step-by-step-detection" title="Permalink to this headline">#</a></h2>
 <p>Here we dive deeper into the process of processing the detections.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1761,10 +1781,10 @@ Kept after per-class NMS: 8
 </section>
 </section>
 <section id="stage-3-generating-masks">
-<h1>Stage 3: Generating Masks<a class="headerlink" href="#stage-3-generating-masks" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4.13. </span>Stage 3: Generating Masks<a class="headerlink" href="#stage-3-generating-masks" title="Permalink to this headline">#</a></h1>
 <p>This stage takes the detections (refined bounding boxes and class IDs) from the previous layer and runs the mask head to generate segmentation masks for every instance.</p>
 <section id="a-mask-targets">
-<h2>3.a Mask Targets<a class="headerlink" href="#a-mask-targets" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.13.1. </span>3.a Mask Targets<a class="headerlink" href="#a-mask-targets" title="Permalink to this headline">#</a></h2>
 <p>These are the training targets for the mask branch</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1778,7 +1798,7 @@ Kept after per-class NMS: 8
 </div>
 </section>
 <section id="b-predicted-masks">
-<h2>3.b Predicted Masks<a class="headerlink" href="#b-predicted-masks" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.13.2. </span>3.b Predicted Masks<a class="headerlink" href="#b-predicted-masks" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get predictions of mask head</span>
@@ -1848,7 +1868,7 @@ det_masks                shape: (8, 1024, 1024)       min:    0.00000  max:    1
 </section>
 </section>
 <section id="visualize-activations">
-<h1>Visualize Activations<a class="headerlink" href="#visualize-activations" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4.14. </span>Visualize Activations<a class="headerlink" href="#visualize-activations" title="Permalink to this headline">#</a></h1>
 <p>In some cases it helps to look at the output from different layers and visualize them to catch issues and odd patterns.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1967,13 +1987,13 @@ roi                      shape: (1, 1000, 4)          min:    0.00000  max:    1
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Mask R-CNN - Inspect Training Data</p>
+            <p class="prev-next-title"><span class="section-number">4.3. </span>Mask R-CNN - Inspect Training Data</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="inspect_weights.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Mask R-CNN - Inspect Weights of a Trained Model</p>
+        <p class="prev-next-title"><span class="section-number">4.15. </span>Mask R-CNN - Inspect Weights of a Trained Model</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

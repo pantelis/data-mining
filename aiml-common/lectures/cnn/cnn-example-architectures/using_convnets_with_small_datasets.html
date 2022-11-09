@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Using convnets with small datasets &#8212; Data Mining</title>
+    <title>4. Using convnets with small datasets &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -56,8 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Introduction to Scene Understanding" href="../../scene-understanding/scene-understanding-intro/index.html" />
-    <link rel="prev" title="CNN Example Architectures" href="_index.html" />
+    <link rel="next" title="1. Introduction to Scene Understanding" href="../../scene-understanding/scene-understanding-intro/index.html" />
+    <link rel="prev" title="3. CNN Example Architectures" href="_index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -129,22 +129,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
-   Course Introduction
+   1. Course Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
-   Data Science 360
+   2. Data Science 360
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../ai-intro/pipelines/_index.html">
-   ML Pipelines
+   3. ML Pipelines
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../uber-ml-arch-case-study/_index.html">
-   A Case Study of an ML Architecture - Uber
+   4. A Case Study of an ML Architecture - Uber
   </a>
  </li>
 </ul>
@@ -156,37 +156,37 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../learning-problem/_index.html">
-   The Learning Problem
+   1. The Learning Problem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../regression/linear-regression/_index.html">
-   Linear Regression
+   2. Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../optimization/maximum-likelihood/_index.html">
-   Maximum Likelihood (ML) Estimation
+   3. Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../entropy/_index.html">
-   Entropy
+   4. Entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../optimization/sgd/_index.html">
-   Stochastic Gradient Descent
+   5. Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/classification-intro/_index.html">
-   Introduction to Classification
+   6. Introduction to Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/logistic-regression/_index.html">
-   Logistic Regression
+   7. Logistic Regression
   </a>
  </li>
 </ul>
@@ -198,32 +198,37 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/perceptron/_index.html">
-   The Neuron (Perceptron)
+   1. The Neuron (Perceptron)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
-   Deep Neural Networks
+   2. Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
-   Introduction to Backpropagation
+   3. Introduction to Backpropagation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
-   Backpropagation in Deep Neural Networks
+   4. Backpropagation in Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../dnn/backprop-dnn-exercises/_index.html">
-   Backpropagation DNN exercises
+   5. Backpropagation DNN exercises
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/fashion-mnist-case-study.html">
+   6. Fashion MNIST Case Study
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../optimization/regularization/_index.html">
-   Regularization in Deep Neural Networks
+   7. Regularization in Deep Neural Networks
   </a>
  </li>
 </ul>
@@ -235,22 +240,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../cnn-intro/_index.html">
-   Introduction to Convolutional Neural Networks
+   1. Introduction to Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../cnn-layers/_index.html">
-   CNN Architectures
+   2. CNN Architectures
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="_index.html">
-   CNN Example Architectures
+   3. CNN Example Architectures
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Using convnets with small datasets
+   4. Using convnets with small datasets
   </a>
  </li>
 </ul>
@@ -262,17 +267,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../scene-understanding/scene-understanding-intro/index.html">
-   Introduction to Scene Understanding
+   1. Introduction to Scene Understanding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">
-   Feature Extraction via Residual Networks
+   2. Feature Extraction via Residual Networks
   </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../scene-understanding/object-detection/object-detection-intro/index.html">
-   Object Detection
+   3. Object Detection
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -282,24 +287,24 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/object-detection/detection-metrics/index.html">
-     Object Detection and Semantic Segmentation Metrics
+     3.1. Object Detection and Semantic Segmentation Metrics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/object-detection/rcnn-object-detection/index.html">
-     Region-CNN (RCNN) Object Detection
+     3.2. Region-CNN (RCNN) Object Detection
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/object-detection/faster-rcnn-object-detection/index.html">
-     Fast and Faster RCNN Object Detection
+     3.3. Fast and Faster RCNN Object Detection
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../scene-understanding/semantic-segmentation/index.html">
-   Semantic Segmentation
+   4. Semantic Segmentation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -309,27 +314,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
-     Mask R-CNN Semantic Segmentation
+     4.1. Mask R-CNN Semantic Segmentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
-     Mask R-CNN Demo
+     4.2. Mask R-CNN Demo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
-     Mask R-CNN - Inspect Training Data
+     4.3. Mask R-CNN - Inspect Training Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
-     Mask R-CNN - Inspect Trained Model
+     4.4. Mask R-CNN - Inspect Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
-     Mask R-CNN - Inspect Weights of a Trained Model
+     4.15. Mask R-CNN - Inspect Weights of a Trained Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">
+     4.21. Detectron2 Beginner’s Tutorial
     </a>
    </li>
   </ul>
@@ -343,17 +353,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../rnn/introduction/_index.html">
-   Introduction to Recurrent Neural Networks (RNN)
+   1. Introduction to Recurrent Neural Networks (RNN)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../rnn/simple-rnn/_index.html">
-   Simple RNN
+   2. Simple RNN
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../rnn/lstm/_index.html">
-   The Long Short-Term Memory (LSTM) Cell Architecture
+   3. The Long Short-Term Memory (LSTM) Cell Architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/15_processing_sequences_using_rnns_and_cnns.html">
+   4. Processing Sequences Using RNN
   </a>
  </li>
 </ul>
@@ -365,22 +380,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../nlp/nlp-intro/_index.html">
-   Introduction to NLP
+   1. Introduction to NLP
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../nlp/word2vec/_index.html">
-   Word2Vec Embeddings
+   2. Word2Vec Embeddings
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../nlp/rnn-language-models/_index.html">
-   RNN Language Models
+   3. RNN Language Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../nlp/nmt/_index.html">
-   Neural Machine Translation
+   4. Neural Machine Translation
   </a>
  </li>
 </ul>
@@ -392,47 +407,47 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../decision-trees/_index.html">
-   Decision Trees
+   1. Decision Trees
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../regression-trees/regression_trees.html">
-   Regression tree stumps
+   2. Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../ensemble/_index.html">
-   Ensemble Methods
+   4. Ensemble Methods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../ensemble/random-forests/_index.html">
-   Random Forests
+   5. Random Forests
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../ensemble/boosting/_index.html">
-   Boosting
+   6. Boosting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
-   Boosting workshop
+   7. Boosting workshop
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
-   Bayesian Inference
+   8. Bayesian Inference
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
-   Bayesian Coin Flipping
+   9. Bayesian Coin Flipping
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
-   COVID-19 Antibody Test
+   10. COVID-19 Antibody Test
   </a>
  </li>
 </ul>
@@ -444,17 +459,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../unsupervised/k-means/_index.html">
-   K-means Clustering
+   1. K-means Clustering
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../density-estimation/knn/_index.html">
-   k-Nearest Neighbors (kNN) Classification
+   2. k-Nearest Neighbors (kNN) Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
-   kNN Workshop
+   3. kNN Workshop
   </a>
  </li>
 </ul>
@@ -466,7 +481,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../pca/_index.html">
-   Principal Component Analysis (PCA)
+   1. Principal Component Analysis (PCA)
   </a>
  </li>
 </ul>
@@ -478,7 +493,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../ml-math/_index.html">
-   Math for ML
+   1. Math for ML
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -488,17 +503,17 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../ml-math/probability/_index.html">
-     Probability Basics
+     1.1. Probability Basics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../linear-algebra/_index.html">
-     Linear Algebra for Machine Learning
+     1.2. Linear Algebra for Machine Learning
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../ml-math/calculus/_index.html">
-     Calculus
+     1.3. Calculus
     </a>
    </li>
   </ul>
@@ -512,7 +527,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../python/_index.html">
-   Learn Python
+   1. Learn Python
   </a>
  </li>
 </ul>
@@ -524,17 +539,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../assignments/probability/probability-assignment-3/index.html">
-   Probability Assignment
+   1. Probability Assignment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../assignments/poisson-regression/index.html">
-   Bike Rides and the Poisson Model
+   3. Bike Rides and the Poisson Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../projects/visual-search-coco/index.html">
-   Reverse Visual Search
+   4. Reverse Visual Search
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../projects/transfer-learning-home-depot/index.html">
+   5. Transfer Learning for Custom Datasets in the Small-Data Regime
   </a>
  </li>
 </ul>
@@ -716,32 +736,32 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#training-a-convnet-from-scratch-on-a-small-dataset">
-   Training a convnet from scratch on a small dataset
+   4.1. Training a convnet from scratch on a small dataset
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-relevance-of-deep-learning-for-small-data-problems">
-   The relevance of deep learning for small-data problems
+   4.2. The relevance of deep learning for small-data problems
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#downloading-the-data">
-   Downloading the data
+   4.3. Downloading the data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#building-our-network">
-   Building our network
+   4.4. Building our network
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-preprocessing">
-   Data preprocessing
+   4.5. Data preprocessing
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-data-augmentation">
-   Using data augmentation
+   4.6. Using data augmentation
   </a>
  </li>
 </ul>
@@ -765,32 +785,32 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#training-a-convnet-from-scratch-on-a-small-dataset">
-   Training a convnet from scratch on a small dataset
+   4.1. Training a convnet from scratch on a small dataset
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-relevance-of-deep-learning-for-small-data-problems">
-   The relevance of deep learning for small-data problems
+   4.2. The relevance of deep learning for small-data problems
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#downloading-the-data">
-   Downloading the data
+   4.3. Downloading the data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#building-our-network">
-   Building our network
+   4.4. Building our network
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-preprocessing">
-   Data preprocessing
+   4.5. Data preprocessing
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-data-augmentation">
-   Using data augmentation
+   4.6. Using data augmentation
   </a>
  </li>
 </ul>
@@ -915,10 +935,10 @@ Downloading train.zip to /content/kaggle/dogscats
 </div>
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="using-convnets-with-small-datasets">
-<h1>Using convnets with small datasets<a class="headerlink" href="#using-convnets-with-small-datasets" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4. </span>Using convnets with small datasets<a class="headerlink" href="#using-convnets-with-small-datasets" title="Permalink to this headline">#</a></h1>
 <p>This notebook contains the code sample found in Chapter 5, Section 2 of <a class="reference external" href="https://www.manning.com/books/deep-learning-with-python?a_aid=keras&amp;a_bid=76564dff">Deep Learning with Python</a>. Note that the original text features far more content, in particular further explanations and figures: in this notebook, you will only find source code and related comments.</p>
 <section id="training-a-convnet-from-scratch-on-a-small-dataset">
-<h2>Training a convnet from scratch on a small dataset<a class="headerlink" href="#training-a-convnet-from-scratch-on-a-small-dataset" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.1. </span>Training a convnet from scratch on a small dataset<a class="headerlink" href="#training-a-convnet-from-scratch-on-a-small-dataset" title="Permalink to this headline">#</a></h2>
 <p>Having to train an image classification model using only very little data is a common situation, which you likely encounter yourself in
 practice if you ever do computer vision in a professional context.</p>
 <p>Having “few” samples can mean anywhere from a few hundreds to a few tens of thousands of images. As a practical example, we will focus on
@@ -936,7 +956,7 @@ pre-trained model, and fine-tuning a pre-trained model – will constitute your 
 vision with small datasets.</p>
 </section>
 <section id="the-relevance-of-deep-learning-for-small-data-problems">
-<h2>The relevance of deep learning for small-data problems<a class="headerlink" href="#the-relevance-of-deep-learning-for-small-data-problems" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.2. </span>The relevance of deep learning for small-data problems<a class="headerlink" href="#the-relevance-of-deep-learning-for-small-data-problems" title="Permalink to this headline">#</a></h2>
 <p>You will sometimes hear that deep learning only works when lots of data is available. This is in part a valid point: one fundamental
 characteristic of deep learning is that it is able to find interesting features in the training data on its own, without any need for manual
 feature engineering, and this can only be achieved when lots of training examples are available. This is especially true for problems where
@@ -954,7 +974,7 @@ to bootstrap powerful vision models out of very little data. That’s what we wi
 <p>For now, let’s get started by getting our hands on the data.</p>
 </section>
 <section id="downloading-the-data">
-<h2>Downloading the data<a class="headerlink" href="#downloading-the-data" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.3. </span>Downloading the data<a class="headerlink" href="#downloading-the-data" title="Permalink to this headline">#</a></h2>
 <p>The cats vs. dogs dataset that we will use isn’t packaged with Keras. It was made available by <a class="reference external" href="http://Kaggle.com">Kaggle.com</a> as part of a computer vision
 competition in late 2013, back when convnets weren’t quite mainstream. You can download the original dataset at:
 <code class="docutils literal notranslate"><span class="pre">https://www.kaggle.com/c/dogs-vs-cats/data</span></code> (you will need to create a Kaggle account if you don’t already have one – don’t worry, the
@@ -1165,7 +1185,7 @@ samples from each class: this is a balanced binary classification problem, which
 measure of success.</p>
 </section>
 <section id="building-our-network">
-<h2>Building our network<a class="headerlink" href="#building-our-network" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.4. </span>Building our network<a class="headerlink" href="#building-our-network" title="Permalink to this headline">#</a></h2>
 <p>We’ve already built a small convnet for MNIST in the previous example, so you should be familiar with them. We will reuse the same
 general structure: our convnet will be a stack of alternated <code class="docutils literal notranslate"><span class="pre">Conv2D</span></code> (with <code class="docutils literal notranslate"><span class="pre">relu</span></code> activation) and <code class="docutils literal notranslate"><span class="pre">MaxPooling2D</span></code> layers.</p>
 <p>However, since we are dealing with bigger images and a more complex problem, we will make our network accordingly larger: it will have one
@@ -1278,7 +1298,7 @@ Use tf.where in 2.0, which has the same broadcast rule as np.where
 </div>
 </section>
 <section id="data-preprocessing">
-<h2>Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.5. </span>Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this headline">#</a></h2>
 <p>As you already know by now, data should be formatted into appropriately pre-processed floating point tensors before being fed into our
 network. Currently, our data sits on a drive as JPEG files, so the steps for getting it into our network are roughly:</p>
 <ul class="simple">
@@ -1482,7 +1502,7 @@ introduce a new one, specific to computer vision, and used almost universally wh
 augmentation</em>.</p>
 </section>
 <section id="using-data-augmentation">
-<h2>Using data augmentation<a class="headerlink" href="#using-data-augmentation" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.6. </span>Using data augmentation<a class="headerlink" href="#using-data-augmentation" title="Permalink to this headline">#</a></h2>
 <p>Overfitting is caused by having too few samples to learn from, rendering us unable to train a model able to generalize to new data.
 Given infinite data, our model would be exposed to every possible aspect of the data distribution at hand: we would never overfit. Data
 augmentation takes the approach of generating more training data from existing training samples, by “augmenting” the samples via a number
@@ -1917,13 +1937,13 @@ sections.</p>
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">CNN Example Architectures</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>CNN Example Architectures</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../../scene-understanding/scene-understanding-intro/index.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction to Scene Understanding</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Introduction to Scene Understanding</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

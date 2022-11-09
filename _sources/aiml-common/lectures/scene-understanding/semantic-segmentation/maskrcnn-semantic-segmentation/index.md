@@ -7,7 +7,9 @@ In the object detection section we saw R-CNN that simply cropped proposals, gene
 
 ## Implementation and Notebooks
 
-The four notebooks in this section use Tensorflow. For Pytorch see [Detectron2](https://github.com/tensorflow/tpu/tree/master/models/official/detection) and [this tutorial](https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5). 
+For Tensorflow: 
+
+The four notebooks in this section use MaskRCNN. For other models see [the TF Model Garden](https://github.com/tensorflow/tpu/tree/master/models/official/detection). 
 
 * [This notebook](https://pantelis.github.io/artificial-intelligence/aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.ipynb) demos MaskRCNN.
 
@@ -16,6 +18,8 @@ The four notebooks in this section use Tensorflow. For Pytorch see [Detectron2](
 * [This notebook](https://pantelis.github.io/artificial-intelligence/aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.ipynb) goes in depth into the steps performed to detect and segment objects. It provides visualizations of every step of the pipeline.
 
 * [This notebook](https://pantelis.github.io/artificial-intelligence/aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.ipynb) inspects the weights of a trained model and looks for anomalies and odd patterns.
+
+For Pytorch: 
 
 * [This notebook](https://pantelis.github.io/artificial-intelligence/aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.ipynb) shows how an existing pretrained model can be used to do instance segmentation on new classes and how video can be processed via a relevant pipeline. The application of transfer learning in Keras is shown [here](https://keras.io/guides/transfer_learning/).
 

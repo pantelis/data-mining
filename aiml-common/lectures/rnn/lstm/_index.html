@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>The Long Short-Term Memory (LSTM) Cell Architecture &#8212; Data Mining</title>
+    <title>3. The Long Short-Term Memory (LSTM) Cell Architecture &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -58,8 +58,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/rnn/lstm/_index.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Introduction to NLP" href="../../nlp/nlp-intro/_index.html" />
-    <link rel="prev" title="Simple RNN" href="../simple-rnn/_index.html" />
+    <link rel="next" title="4. Processing Sequences Using RNN" href="../15_processing_sequences_using_rnns_and_cnns.html" />
+    <link rel="prev" title="2. Simple RNN" href="../simple-rnn/_index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -131,22 +131,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
-   Course Introduction
+   1. Course Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
-   Data Science 360
+   2. Data Science 360
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../ai-intro/pipelines/_index.html">
-   ML Pipelines
+   3. ML Pipelines
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../uber-ml-arch-case-study/_index.html">
-   A Case Study of an ML Architecture - Uber
+   4. A Case Study of an ML Architecture - Uber
   </a>
  </li>
 </ul>
@@ -158,37 +158,37 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../learning-problem/_index.html">
-   The Learning Problem
+   1. The Learning Problem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../regression/linear-regression/_index.html">
-   Linear Regression
+   2. Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../optimization/maximum-likelihood/_index.html">
-   Maximum Likelihood (ML) Estimation
+   3. Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../entropy/_index.html">
-   Entropy
+   4. Entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../optimization/sgd/_index.html">
-   Stochastic Gradient Descent
+   5. Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/classification-intro/_index.html">
-   Introduction to Classification
+   6. Introduction to Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/logistic-regression/_index.html">
-   Logistic Regression
+   7. Logistic Regression
   </a>
  </li>
 </ul>
@@ -200,32 +200,37 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/perceptron/_index.html">
-   The Neuron (Perceptron)
+   1. The Neuron (Perceptron)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
-   Deep Neural Networks
+   2. Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
-   Introduction to Backpropagation
+   3. Introduction to Backpropagation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
-   Backpropagation in Deep Neural Networks
+   4. Backpropagation in Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../dnn/backprop-dnn-exercises/_index.html">
-   Backpropagation DNN exercises
+   5. Backpropagation DNN exercises
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/fashion-mnist-case-study.html">
+   6. Fashion MNIST Case Study
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../optimization/regularization/_index.html">
-   Regularization in Deep Neural Networks
+   7. Regularization in Deep Neural Networks
   </a>
  </li>
 </ul>
@@ -237,22 +242,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
-   Introduction to Convolutional Neural Networks
+   1. Introduction to Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../cnn/cnn-layers/_index.html">
-   CNN Architectures
+   2. CNN Architectures
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">
-   CNN Example Architectures
+   3. CNN Example Architectures
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
-   Using convnets with small datasets
+   4. Using convnets with small datasets
   </a>
  </li>
 </ul>
@@ -264,17 +269,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../scene-understanding/scene-understanding-intro/index.html">
-   Introduction to Scene Understanding
+   1. Introduction to Scene Understanding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">
-   Feature Extraction via Residual Networks
+   2. Feature Extraction via Residual Networks
   </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../scene-understanding/object-detection/object-detection-intro/index.html">
-   Object Detection
+   3. Object Detection
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -284,24 +289,24 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/object-detection/detection-metrics/index.html">
-     Object Detection and Semantic Segmentation Metrics
+     3.1. Object Detection and Semantic Segmentation Metrics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/object-detection/rcnn-object-detection/index.html">
-     Region-CNN (RCNN) Object Detection
+     3.2. Region-CNN (RCNN) Object Detection
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/object-detection/faster-rcnn-object-detection/index.html">
-     Fast and Faster RCNN Object Detection
+     3.3. Fast and Faster RCNN Object Detection
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../scene-understanding/semantic-segmentation/index.html">
-   Semantic Segmentation
+   4. Semantic Segmentation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -311,27 +316,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
-     Mask R-CNN Semantic Segmentation
+     4.1. Mask R-CNN Semantic Segmentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
-     Mask R-CNN Demo
+     4.2. Mask R-CNN Demo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
-     Mask R-CNN - Inspect Training Data
+     4.3. Mask R-CNN - Inspect Training Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
-     Mask R-CNN - Inspect Trained Model
+     4.4. Mask R-CNN - Inspect Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
-     Mask R-CNN - Inspect Weights of a Trained Model
+     4.15. Mask R-CNN - Inspect Weights of a Trained Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">
+     4.21. Detectron2 Beginner’s Tutorial
     </a>
    </li>
   </ul>
@@ -345,17 +355,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../introduction/_index.html">
-   Introduction to Recurrent Neural Networks (RNN)
+   1. Introduction to Recurrent Neural Networks (RNN)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../simple-rnn/_index.html">
-   Simple RNN
+   2. Simple RNN
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   The Long Short-Term Memory (LSTM) Cell Architecture
+   3. The Long Short-Term Memory (LSTM) Cell Architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15_processing_sequences_using_rnns_and_cnns.html">
+   4. Processing Sequences Using RNN
   </a>
  </li>
 </ul>
@@ -367,22 +382,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../nlp/nlp-intro/_index.html">
-   Introduction to NLP
+   1. Introduction to NLP
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../nlp/word2vec/_index.html">
-   Word2Vec Embeddings
+   2. Word2Vec Embeddings
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../nlp/rnn-language-models/_index.html">
-   RNN Language Models
+   3. RNN Language Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../nlp/nmt/_index.html">
-   Neural Machine Translation
+   4. Neural Machine Translation
   </a>
  </li>
 </ul>
@@ -394,47 +409,47 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../decision-trees/_index.html">
-   Decision Trees
+   1. Decision Trees
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../regression-trees/regression_trees.html">
-   Regression tree stumps
+   2. Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../ensemble/_index.html">
-   Ensemble Methods
+   4. Ensemble Methods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../ensemble/random-forests/_index.html">
-   Random Forests
+   5. Random Forests
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../ensemble/boosting/_index.html">
-   Boosting
+   6. Boosting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
-   Boosting workshop
+   7. Boosting workshop
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
-   Bayesian Inference
+   8. Bayesian Inference
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
-   Bayesian Coin Flipping
+   9. Bayesian Coin Flipping
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
-   COVID-19 Antibody Test
+   10. COVID-19 Antibody Test
   </a>
  </li>
 </ul>
@@ -446,17 +461,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../unsupervised/k-means/_index.html">
-   K-means Clustering
+   1. K-means Clustering
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../density-estimation/knn/_index.html">
-   k-Nearest Neighbors (kNN) Classification
+   2. k-Nearest Neighbors (kNN) Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
-   kNN Workshop
+   3. kNN Workshop
   </a>
  </li>
 </ul>
@@ -468,7 +483,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../pca/_index.html">
-   Principal Component Analysis (PCA)
+   1. Principal Component Analysis (PCA)
   </a>
  </li>
 </ul>
@@ -480,7 +495,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../ml-math/_index.html">
-   Math for ML
+   1. Math for ML
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -490,17 +505,17 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../ml-math/probability/_index.html">
-     Probability Basics
+     1.1. Probability Basics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../linear-algebra/_index.html">
-     Linear Algebra for Machine Learning
+     1.2. Linear Algebra for Machine Learning
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../ml-math/calculus/_index.html">
-     Calculus
+     1.3. Calculus
     </a>
    </li>
   </ul>
@@ -514,7 +529,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../python/_index.html">
-   Learn Python
+   1. Learn Python
   </a>
  </li>
 </ul>
@@ -526,17 +541,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../assignments/probability/probability-assignment-3/index.html">
-   Probability Assignment
+   1. Probability Assignment
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../assignments/poisson-regression/index.html">
-   Bike Rides and the Poisson Model
+   3. Bike Rides and the Poisson Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../projects/visual-search-coco/index.html">
-   Reverse Visual Search
+   4. Reverse Visual Search
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../projects/transfer-learning-home-depot/index.html">
+   5. Transfer Learning for Custom Datasets in the Small-Data Regime
   </a>
  </li>
 </ul>
@@ -718,27 +738,27 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#input-gate">
-   Input Gate
+   3.1. Input Gate
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#output-gate">
-   Output Gate
+   3.2. Output Gate
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-cell-state-and-the-forget-gate">
-   The Cell State and the Forget Gate
+   3.3. The Cell State and the Forget Gate
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#lstm-workshop">
-   LSTM Workshop
+   3.4. LSTM Workshop
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#additional-resources">
-   Additional Resources
+   3.5. Additional Resources
   </a>
  </li>
 </ul>
@@ -762,27 +782,27 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#input-gate">
-   Input Gate
+   3.1. Input Gate
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#output-gate">
-   Output Gate
+   3.2. Output Gate
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-cell-state-and-the-forget-gate">
-   The Cell State and the Forget Gate
+   3.3. The Cell State and the Forget Gate
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#lstm-workshop">
-   LSTM Workshop
+   3.4. LSTM Workshop
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#additional-resources">
-   Additional Resources
+   3.5. Additional Resources
   </a>
  </li>
 </ul>
@@ -796,7 +816,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="the-long-short-term-memory-lstm-cell-architecture">
-<h1>The Long Short-Term Memory (LSTM) Cell Architecture<a class="headerlink" href="#the-long-short-term-memory-lstm-cell-architecture" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">3. </span>The Long Short-Term Memory (LSTM) Cell Architecture<a class="headerlink" href="#the-long-short-term-memory-lstm-cell-architecture" title="Permalink to this headline">#</a></h1>
 <p>In the simple RNN we have seen the problem of exploding or vanishing gradients when <a class="reference external" href="http://ai.dinfo.unifi.it/paolo//ps/tnn-94-gradient.pdf">the span of back-propagation is large</a> (large <span class="math notranslate nohighlight">\(\tau\)</span>). Using the conceptual IIR filter, that ultimately <em>integrates</em> the input signal, we have seen that in order to avoid an exploding or vanishing impulse response, we need to control <span class="math notranslate nohighlight">\(w\)</span>. This is exactly what is being done in evolutionary RNN architectures that we will treat in this section called <em>gated RNNs</em>. The best known gated RNN architecture is called the LSTM <em>cell</em> and in this case the weight <span class="math notranslate nohighlight">\(w\)</span> is not fixed but it is determined based on the input sequence <em>context</em>. The architecture is shown below.</p>
 <p><img alt="lstm-cell" src="../../../../_images/rnn-LSTM.png" />
 <em>LSTM architecture: It is divided into three areas: input (green), cell state (blue) and output (red). You can clearly see the outer (<span class="math notranslate nohighlight">\(\mathbf h_{t-1}\)</span> )and the inner (<span class="math notranslate nohighlight">\(\mathbf s_{t-1}\)</span>) recurrence loops.</em></p>
@@ -808,14 +828,14 @@ title="Print to PDF"
 </ol>
 <p>Notice that if you make the output factors of input and output gates equal to 1.0 and the forgetting factor equal to 0.0, we are back to the simple RNN architecture.</p>
 <section id="input-gate">
-<h2>Input Gate<a class="headerlink" href="#input-gate" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.1. </span>Input Gate<a class="headerlink" href="#input-gate" title="Permalink to this headline">#</a></h2>
 <p>The input gate <em>protects the cell state</em> contents from perturbations by irrelevant to the context inputs. Quantitatively,  input gate calculates the factor,</p>
 <div class="math notranslate nohighlight">
 \[g_t(i) =\sigma \Big( \mathbf W_g(i,:) \mathbf h_{t-1}^i + \mathbf U_g(i,:) \mathbf x_t^i + \mathbf b_g^i \Big) \]</div>
 <p>The gate uses the sigmoid function to produce a factor between 0 and 1 for <em>each</em> of the cells of the LSTM layer - each cell is indexed by <span class="math notranslate nohighlight">\(i\)</span>. This factor is applied to the <span class="math notranslate nohighlight">\(i\)</span>-th cell’s input that is the combination of a function  of the previous hidden state represented by the dot product <span class="math notranslate nohighlight">\(\mathbf W_g(i,:) \mathbf h_{t-1}^i\)</span>  and a function of the current input, represented by the dot product <span class="math notranslate nohighlight">\(\mathbf U_g(i,:) \mathbf x_t^i\)</span>.</p>
 </section>
 <section id="output-gate">
-<h2>Output Gate<a class="headerlink" href="#output-gate" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.2. </span>Output Gate<a class="headerlink" href="#output-gate" title="Permalink to this headline">#</a></h2>
 <p>The output gate <em>protects the subsequent cells</em> from perturbations by irrelevant to their context cell state. Quantitatively,</p>
 <div class="math notranslate nohighlight">
 \[h_t^i = q_t^i \tanh(s_t^i)\]</div>
@@ -824,7 +844,7 @@ title="Print to PDF"
 \[q_t{(i)} =\sigma \Big( \mathbf W_o(i,:) \mathbf h_{t-1}^i + \mathbf U_o(i,:) \mathbf x_t^i + \mathbf b_o^i \Big) \]</div>
 </section>
 <section id="the-cell-state-and-the-forget-gate">
-<h2>The Cell State and the Forget Gate<a class="headerlink" href="#the-cell-state-and-the-forget-gate" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.3. </span>The Cell State and the Forget Gate<a class="headerlink" href="#the-cell-state-and-the-forget-gate" title="Permalink to this headline">#</a></h2>
 <p>This is the heart of the LSTM cell, the cell state is the new memory that is introduced by LSTM - all the earlier factors are used to preserve it as long as it is needed by the use case.</p>
 <div class="math notranslate nohighlight">
 \[s_t^i = f_t^i s_{t-1}^i + g_t^i \sigma \Big( \mathbf W(i,:) \mathbf h_{t-1}^i + \mathbf U(i,:) \mathbf x_t^i + \mathbf b^i \Big)\]</div>
@@ -837,11 +857,11 @@ title="Print to PDF"
 <p>Hyperparameter optimization for LSTMs is addressed more formally <a class="reference external" href="https://arxiv.org/pdf/1503.04069v1.pdf">“LSTM: A Search Space Odyssey”</a></p>
 </section>
 <section id="lstm-workshop">
-<h2>LSTM Workshop<a class="headerlink" href="#lstm-workshop" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.4. </span>LSTM Workshop<a class="headerlink" href="#lstm-workshop" title="Permalink to this headline">#</a></h2>
 <p>Please go through <a class="reference external" href="https://christinakouridi.blog/2019/06/20/vanilla-lstm-numpy/">this</a> from scratch implementation of LSTM. Note that the notation is different than in your notes and follows <a class="reference external" href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">this well known blog post</a>.</p>
 </section>
 <section id="additional-resources">
-<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.5. </span>Additional Resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">#</a></h2>
 <p>Additional tutorial resources on LSTMs can be found here:</p>
 <ol class="simple">
 <li><p><a class="reference external" href="https://arxiv.org/pdf/1506.00019.pdf">A Critical Review of Recurrent Neural Networks for Sequence Learning</a></p></li>
@@ -883,13 +903,13 @@ title="Print to PDF"
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Simple RNN</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Simple RNN</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../../nlp/nlp-intro/_index.html" title="next page">
+    <a class='right-next' id="next-link" href="../15_processing_sequences_using_rnns_and_cnns.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction to NLP</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Processing Sequences Using RNN</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
