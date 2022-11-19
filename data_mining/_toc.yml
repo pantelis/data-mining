@@ -96,7 +96,8 @@ parts:
     - file: aiml-common/lectures/regression-trees/regression_trees.ipynb
     - file: aiml-common/lectures/ensemble/_index.md
     - file: aiml-common/lectures/ensemble/random-forests/_index.md
-    - file: aiml-common/lectures/ensemble/boosting/_index.md
+    - file: aiml-common/lectures/ensemble/adaboost/index.md
+    - file: aiml-common/lectures/ensemble/gradient-boosting/index.md  
     - file: aiml-common/lectures/ensemble/boosting-workshop/_index.md  
     - file: aiml-common/lectures/pgm/bayesian-inference/_index.md
     - file: aiml-common/lectures/pgm/bayesian-coin/_index.md
