@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>6. Boosting &#8212; Data Mining</title>
+    <title>7. Gradient Boosting &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,13 +53,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/ensemble/boosting/_index.html" />
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/ensemble/gradient-boosting/index.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="7. Boosting workshop" href="../boosting-workshop/_index.html" />
-    <link rel="prev" title="5. Random Forests" href="../random-forests/_index.html" />
+    <link rel="next" title="8. Boosting workshop" href="../boosting-workshop/_index.html" />
+    <link rel="prev" title="6. Adaptive Boosting (AdaBoost)" href="../adaboost/index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -427,29 +425,34 @@ const thebe_selector_output = ".output, .cell_output"
    5. Random Forests
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../adaboost/index.html">
+   6. Adaptive Boosting (AdaBoost)
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   6. Boosting
+   7. Gradient Boosting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../boosting-workshop/_index.html">
-   7. Boosting workshop
+   8. Boosting workshop
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
-   8. Bayesian Inference
+   9. Bayesian Inference
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
-   9. Bayesian Coin Flipping
+   10. Bayesian Coin Flipping
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
-   10. COVID-19 Antibody Test
+   11. COVID-19 Antibody Test
   </a>
  </li>
 </ul>
@@ -649,7 +652,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/ensemble/boosting/_index.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/ensemble/gradient-boosting/index.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -677,7 +680,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../../../_sources/aiml-common/lectures/ensemble/boosting/_index.md"
+        <a href="../../../../_sources/aiml-common/lectures/ensemble/gradient-boosting/index.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -737,13 +740,13 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#adaptive-boosting-adaboost">
-   6.1. Adaptive Boosting (AdaBoost)
+  <a class="reference internal nav-link" href="#gradient-boosting-for-regression-example">
+   7.1. Gradient Boosting for Regression Example
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gradient-boosting">
-   6.2. Gradient Boosting
+  <a class="reference internal nav-link" href="#xgboost">
+   7.2. XGBoost
   </a>
  </li>
 </ul>
@@ -755,7 +758,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Boosting</h1>
+                <h1>Gradient Boosting</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -766,13 +769,13 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#adaptive-boosting-adaboost">
-   6.1. Adaptive Boosting (AdaBoost)
+  <a class="reference internal nav-link" href="#gradient-boosting-for-regression-example">
+   7.1. Gradient Boosting for Regression Example
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gradient-boosting">
-   6.2. Gradient Boosting
+  <a class="reference internal nav-link" href="#xgboost">
+   7.2. XGBoost
   </a>
  </li>
 </ul>
@@ -785,122 +788,20 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="boosting">
-<h1><span class="section-number">6. </span>Boosting<a class="headerlink" href="#boosting" title="Permalink to this headline">#</a></h1>
-<p>In this chapter we are treating <em>adaptive boosting</em> and <em>gradient_boosting</em> that use <em>ensembles</em> of many weak learner, to produce a stronger learner.  In contrast to other ensemble methods though such as random forests, boosting methods, train predictors <em>sequentially</em> rather than parallel.</p>
-<section id="adaptive-boosting-adaboost">
-<h2><span class="section-number">6.1. </span>Adaptive Boosting (AdaBoost)<a class="headerlink" href="#adaptive-boosting-adaboost" title="Permalink to this headline">#</a></h2>
-<p>If we imagine a sequence of weak learners like in random forests, boosting starts with training the first learner and at each subsequent step, due to its sequential nature, it considers the mistakes of the preceding learning step as shown below.</p>
-<p><img alt="boosting-learners" src="../../../../_images/boosting-learners.png" />
-<em>Boosting methods act sequentially considering the prediction results of the preceding learners.</em></p>
-<!-- Note that the figure shows multiple instances of weak learners - this is not necessarily a real implementation but a conceptual depiction.  -->
-<p>Lets see how AdaBoost functions using an example based on <a class="reference external" href="https://towardsdatascience.com/machine-learning-part-17-boosting-algorithms-adaboost-in-python-d00faac6c464">this article</a>.</p>
-<p>Lets assume that you are a data scientist working on a dating site and you are asked to develop an algorithm that classifies whether a profile is attractive or not.  The dataset you are given is shown below.  This is of course a fictitious dataset - there is no way that someone will put in their profile that they are <em>not</em> smart or polite.</p>
-<div class="math notranslate nohighlight">
-\[\mathtt{data} = \{ (\mathbf{x}_1, y_1), \dots, (\mathbf{x}_m, y_m) \}\]</div>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Weight</p></th>
-<th class="head"><p>Smart</p></th>
-<th class="head"><p>Polite</p></th>
-<th class="head"><p>Fit</p></th>
-<th class="head"><p>Attractive</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>180</p></td>
-<td><p>no</p></td>
-<td><p>no</p></td>
-<td><p>no</p></td>
-<td><p>no</p></td>
-</tr>
-<tr class="row-odd"><td><p>150</p></td>
-<td><p>yes</p></td>
-<td><p>yes</p></td>
-<td><p>no</p></td>
-<td><p>no</p></td>
-</tr>
-<tr class="row-even"><td><p>175</p></td>
-<td><p>no</p></td>
-<td><p>yes</p></td>
-<td><p>yes</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>165</p></td>
-<td><p>yes</p></td>
-<td><p>yes</p></td>
-<td><p>yes</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>190</p></td>
-<td><p>no</p></td>
-<td><p>yes</p></td>
-<td><p>no</p></td>
-<td><p>no</p></td>
-</tr>
-<tr class="row-odd"><td><p>201</p></td>
-<td><p>yes</p></td>
-<td><p>yes</p></td>
-<td><p>yes</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-even"><td><p>185</p></td>
-<td><p>yes</p></td>
-<td><p>yes</p></td>
-<td><p>no</p></td>
-<td><p>yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>168</p></td>
-<td><p>yes</p></td>
-<td><p>no</p></td>
-<td><p>yes</p></td>
-<td><p>yes</p></td>
-</tr>
-</tbody>
-</table>
-<p>We assume that the label <span class="math notranslate nohighlight">\(y \in {+1, -1}\)</span> instead of 0 or 1 with loss of generality. This is a binary classification problem but the method is equally applicable to multi-class problems.</p>
-<p>AdaBoost calls a given weak learner repeatedly in a series of rounds <span class="math notranslate nohighlight">\(t=1, \dots, T\)</span>, each weak learner is denoted by <span class="math notranslate nohighlight">\(h_t\)</span> - the weak hypothesis that each learner evaluates. In this example case, we can elect a hypothesis set from the family of decision trees and the specific hypothesis we will use is a decision tree with single split (depth = 1) called decision stump.</p>
-<p>One of the main ideas of the AdaBoost is to maintain a distribution of <em>weights</em> over the training set. In each round, the weights of incorrectly classified examples are increased so that the <em>weak learner is forced to focus on the hard examples</em> in the training set. The size of the weight vector equals <span class="math notranslate nohighlight">\(m\)</span>, the number of <em>examples</em> we are given. The weight of training example <span class="math notranslate nohighlight">\(i\)</span> on round <span class="math notranslate nohighlight">\(t\)</span> is denoted <span class="math notranslate nohighlight">\(w_t(i)\)</span>.</p>
-<p>Initially, all weights are set equally,</p>
-<div class="math notranslate nohighlight">
-\[w_0(i)=\frac{1}{m}\]</div>
-<p>At each round <span class="math notranslate nohighlight">\(t\)</span> we have <span class="math notranslate nohighlight">\(n\)</span> decision stumps each producing <span class="math notranslate nohighlight">\(\hat{\mathbf y}_t\)</span> decisions.  We need to find which stump best fits the examples, we can try every feature of the input along with every possible threshold and see which one offers the lower error rate. We therefore compare the predictions made by each weak learner with the actual labels in the training set to produce the weighted error rate <span class="math notranslate nohighlight">\(\epsilon_t\)</span></p>
-<div class="math notranslate nohighlight">
-\[\epsilon_t = \Pr [\hat y_t(i) \neq y_t(i)] = \frac{\sum_{i: \hat y_t(i) \neq y_t(i)}^m w_t(i)}{\sum_{i=1}^m w_t(i)}\]</div>
-<p>The decision stump that offers the lower error rate, has a much higher significance given via the formula</p>
-<div class="math notranslate nohighlight">
-\[\alpha_t = \eta \log \frac{1-\epsilon_t}{ϵ_t}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\eta\)</span> is a learning rate hyperparameter - if not optimized it defaults to 1.0.</p>
-<p>Then AdaBoost updates the example weights via the equations below that boosts the weights of misclassified examples and normalizes them so that they can be interpreted as a probability distribution:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}w_t(i) = \begin{cases}w_t(i) &amp; \text{if }\hat y_t(i) = y_t(i), \\ 
-w_t(i) \exp(\alpha_t) &amp; \text{if } \hat y_t(i) \neq y_t(i)  \end{cases}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[w_t(i) = \frac{w_t(i)}{\sum_{=1}^m w_t(i)}\]</div>
-<p>The process is repeated in the next round with each round determining a weak hypothesis. At the end we make the <em>final hypothesis</em></p>
-<div class="math notranslate nohighlight">
-\[\hat y (\mathbf x) = \sum_{t=1}^T \alpha_t h_t(\mathbf x)\]</div>
-<p>which can be interpreted as the weighted majority vote of the T weak hypotheses. As shown in the figure below for various values of <span class="math notranslate nohighlight">\(\eta\)</span>,</p>
-<p><img alt="adaboost-perf" src="../../../../_images/adaboost-perf.png" />
-<em>The first classifier gets many instances wrong, so their weights get boosted. The second classifier therefore does a better job on these instances, and so on. The plot on the right represents the same sequence of predictors, except that the learning rate is halved (i.e., the misclassified instance weights are boosted half as much at every iteration). As you can see, this sequential learning technique has some similarities with Gradient Descent, except that instead of tweaking a single predictor’s parameters to minimize a cost function, AdaBoost adds predictors to the ensemble, gradually making it better.</em></p>
-<p>A perhaps more illuminating example that shows the weight adjustments is shown below. You need to replace the <span class="math notranslate nohighlight">\(m\)</span> with <span class="math notranslate nohighlight">\(t\)</span> to match the notation of these notes.</p>
-<p><img alt="a" src="../../../../_images/Figure14.2a.png" /></p>
-<p><img alt="b" src="../../../../_images/Figure14.2b.png" /></p>
-<p><img alt="c" src="../../../../_images/Figure14.2c.png" /></p>
-<p><img alt="d" src="../../../../_images/Figure14.2d.png" /></p>
-<p><img alt="e" src="../../../../_images/Figure14.2e.png" /></p>
-<p><img alt="f" src="../../../../_images/Figure14.2f.png" /></p>
-<p>Note that although decision stumps were used to produce the adaboost decision boundaries above, the method is generic to any weak learner. Also note that there weights for the correctly classified data points are decreased in these figures instead of keeping them constant. Either of the two options should perform similarly.</p>
-</section>
-<section id="gradient-boosting">
-<h2><span class="section-number">6.2. </span>Gradient Boosting<a class="headerlink" href="#gradient-boosting" title="Permalink to this headline">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="gradient-boosting">
+<h1><span class="section-number">7. </span>Gradient Boosting<a class="headerlink" href="#gradient-boosting" title="Permalink to this headline">#</a></h1>
 <p>Like AdaBoost, Gradient Boosting works by sequentially adding predictors to an ensemble, each one correcting its predecessor. However, instead of tweaking the example weights at every iteration, this method tries to <em>fit the new predictor to the residual errors</em> made by the previous predictor.</p>
-<p>The complete understanding of gradient boosting (and boosting in general) requires mathematical treatment around function-space optimization  as in <a class="reference external" href="https://statweb.stanford.edu/~jhf/ftp/trebst.pdf">Friedma’s original paper</a>. Here we look at the solution from a practical perspective and attempt to understand it (superficially) with the use of a regression example as shown below.</p>
+<p>The complete understanding of gradient boosting (and boosting in general) requires mathematical treatment around function-space optimization  as in <a class="reference external" href="https://statweb.stanford.edu/~jhf/ftp/trebst.pdf">Friedma’s original paper</a>. Here we look at the solution from a practical perspective and attempt to understand it with the use of a regression example as shown below.</p>
+<section id="gradient-boosting-for-regression-example">
+<h2><span class="section-number">7.1. </span>Gradient Boosting for Regression Example<a class="headerlink" href="#gradient-boosting-for-regression-example" title="Permalink to this headline">#</a></h2>
 <p><img alt="gradient-boost-example" src="../../../../_images/gradient-boost-example.png" />
 <em>In this depiction of Gradient Boosting, the first predictor (top left) is trained normally, then each consecutive predictor (middle left and lower left) is trained on the previous predictor’s residuals; the right column shows the resulting ensemble’s predictions which is equal to the sum of the predictions of the trees involved.</em></p>
 <p>Predictions improve as the number of trees grows but we need to know when to stop.</p>
 <p><img alt="gradient-boosting-performance" src="../../../../_images/gradient-boosting-performance.png" />
 <em>On the left we  dont have enough trees to fit the training set, while the one on the right we have too many trees and overfit the training set.</em></p>
+</section>
+<section id="xgboost">
+<h2><span class="section-number">7.2. </span>XGBoost<a class="headerlink" href="#xgboost" title="Permalink to this headline">#</a></h2>
 <p>In practice, do not use sklearn for gradient boosting. It is not an exaggeration to note that the optimized library for gradient boosting, <strong>XGBoost</strong> is a defacto tool for winning Kaggle competitions. Given that gradient boosting dominates performance wise many methods in classical machine learning with structured data (e.g. tabular data), XGBoost is also the standard library to try first in these type of problems. It offers also automatic ways of stopping at the right number of trees in the ensemble. <a class="reference external" href="https://blog.mattbowers.dev/how-to-understand-xgboost">This write up</a> explains its internal design.</p>
 </section>
 </section>
@@ -918,7 +819,7 @@ w_t(i) \exp(\alpha_t) &amp; \text{if } \hat y_t(i) \neq y_t(i)  \end{cases}\end{
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./aiml-common/lectures/ensemble/boosting"
+            path: "./aiml-common/lectures/ensemble/gradient-boosting"
         },
         predefinedOutput: true
     }
@@ -932,17 +833,17 @@ w_t(i) \exp(\alpha_t) &amp; \text{if } \hat y_t(i) \neq y_t(i)  \end{cases}\end{
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../random-forests/_index.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../adaboost/index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">5. </span>Random Forests</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Adaptive Boosting (AdaBoost)</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../boosting-workshop/_index.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Boosting workshop</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Boosting workshop</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

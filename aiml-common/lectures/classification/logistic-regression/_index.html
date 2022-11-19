@@ -428,28 +428,33 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/boosting/_index.html">
-   6. Boosting
+  <a class="reference internal" href="../../ensemble/adaboost/index.html">
+   6. Adaptive Boosting (AdaBoost)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/gradient-boosting/index.html">
+   7. Gradient Boosting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
-   7. Boosting workshop
+   8. Boosting workshop
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
-   8. Bayesian Inference
+   9. Bayesian Inference
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
-   9. Bayesian Coin Flipping
+   10. Bayesian Coin Flipping
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../covid19-antibody-test/_index.html">
-   10. COVID-19 Antibody Test
+   11. COVID-19 Antibody Test
   </a>
  </li>
 </ul>
@@ -746,6 +751,11 @@ title="Print to PDF"
    7.2. Binary case
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimizing-lr-parameters-with-sgd">
+   7.3. Optimizing LR parameters with SGD
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -775,6 +785,11 @@ title="Print to PDF"
    7.2. Binary case
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimizing-lr-parameters-with-sgd">
+   7.3. Optimizing LR parameters with SGD
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -792,8 +807,8 @@ title="Print to PDF"
 <h2><span class="section-number">7.1. </span>Odds and the Logistic Sigmoid<a class="headerlink" href="#odds-and-the-logistic-sigmoid" title="Permalink to this headline">#</a></h2>
 <p>If <span class="math notranslate nohighlight">\(\sigma\)</span> is a probability of an event, then the ratio <span class="math notranslate nohighlight">\(\frac{\sigma}{1-\sigma}\)</span> is the corresponding <em>odds</em>, the ratio of the event  occurring divided by not occurring. For example, if a race horse runs 100 races and wins 25 times and loses the other 75 times, the probability of winning is 25/100 = 0.25 or 25%, but the odds of the horse winning are 25/75 = 0.333 or 1 win to 3 loses. In the binary classification case, the log odds is given by</p>
 <div class="math notranslate nohighlight">
-\[ \mathtt{logit}(\sigma) = \alpha = \ln \frac{\sigma}{1-\sigma} = \ln \frac{p(\mathcal{C}_1|\mathbf{x})}{p(\mathcal{C}_2|\mathbf{x})}\]</div>
-<p>What is used in ML though is the logistic function of any number <span class="math notranslate nohighlight">\(\alpha\)</span> that is given by the inverse logit:</p>
+\[ \mathtt{logit}(\sigma) = \alpha = \ln \frac{\sigma}{1-\sigma} = \ln \frac{p(y=1|\mathbf{x})}{p(y=0 |\mathbf{x})}\]</div>
+<p>The logistic function of any number <span class="math notranslate nohighlight">\(\alpha\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[\mathtt{logistic}(\alpha) = \sigma(\alpha) = \mathtt{logit}^{-1}(\alpha) =  \frac{1}{1 + \exp(-\alpha)} = \frac{\exp(\alpha)}{ \exp(\alpha) + 1}\]</div>
 <p>and is plotted below. It maps its argument to the “probability” space [0,1].</p>
@@ -807,16 +822,16 @@ title="Print to PDF"
 <h2><span class="section-number">7.2. </span>Binary case<a class="headerlink" href="#binary-case" title="Permalink to this headline">#</a></h2>
 <p>If we consider the two class problem, we can write the posterior probability as,</p>
 <div class="math notranslate nohighlight">
-\[p(\mathcal{C}_1|\mathbf{x}) = \frac{p(\mathbf{x}|\mathcal{C}_1) p(\mathcal{C}_1)}{p(\mathbf{x}|\mathcal{C}_1) p(\mathcal{C}_1) + p(\mathbf{x}|\mathcal{C}_2) p(\mathcal{C}_2)} = \frac{1}{1 + \exp(-\alpha)} = \sigma(\alpha)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\alpha = \ln \frac{p(\mathbf{x}|\mathcal{C}_1) p(\mathcal{C}_1)}{p(\mathbf{x}|\mathcal{C}_2) p(\mathcal{C}_2)}\)</span>.</p>
-<p>Given the posterior distribution above we have for the specific linear activation,</p>
+\[p(y=1|\mathbf{x}) = \frac{p(\mathbf{x}|y=1) p(y=1)}{p(\mathbf{x}|y=1) p(y=1) + p(\mathbf{x}|y=0) p(y=0)} = \frac{1}{1 + \exp(-\alpha)} = \sigma(\alpha)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha = \ln \frac{p(\mathbf{x}|y=1) p(y=1)}{p(\mathbf{x}|y=0) p(y=0)}\)</span>.</p>
+<p>Given the posterior distribution above, we have for the specific linear activation,</p>
 <div class="math notranslate nohighlight">
-\[p(\mathcal{C}_1|\mathbf{x}) = \sigma(\mathbf{w}^T \mathbf{x})\]</div>
-<p>This model is what statisticians call logistic regression - despite its name its a model for classification.</p>
+\[p_{model}(y=1|\mathbf{x}) = \hat y = \sigma(\mathbf{w}^T \mathbf{x})\]</div>
+<p>This model is called logistic regression - despite its name its models a classification task.</p>
 <!-- The model has significant advantages in that it does require the estimation of far fewer parameters compared to the case where the class conditional distributions involved in the posterior were parametric. For example if we had Gaussian class conditionals we would had to estimate (using Maximum Likelihood) their parameters $\mathbf \mu$ and $\mathbf \Sigma$ that grow quadratically to the number of features $n$. With logistic regression we only have an evident linear relationship between parameters and features.   -->
-<p>The figure below shows the corresponding posterior distribution <span class="math notranslate nohighlight">\(p(\mathcal{C}_1|\mathbf{x})\)</span></p>
+<p>The figure below shows the corresponding posterior distribution <span class="math notranslate nohighlight">\(p(y=1|\mathbf{x})\)</span></p>
 <p><img alt="posterior-two-class-example" src="../../../../_images/Figure4.10a.png" />
-<em>The class-conditional densities for two classes, denoted red and blue. Here the class-conditional densities <span class="math notranslate nohighlight">\(p(\mathbf{x}|\mathcal{C}_1)\)</span> and <span class="math notranslate nohighlight">\(p(\mathbf{x}|\mathcal{C}_2)\)</span> are Gaussian</em></p>
+<em>The class-conditional densities for two classes, denoted red and blue. Here the class-conditional densities <span class="math notranslate nohighlight">\(p(\mathbf{x}|y=1)\)</span> and <span class="math notranslate nohighlight">\(p(\mathbf{x}|y=0)\)</span> are Gaussian</em></p>
 <p><img alt="posterior-two-class-example" src="../../../../_images/Figure4.10b.png" />
 <em>The corresponding posterior probability for the red class, which is given by a logistic sigmoid of a linear function of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</em></p>
 <!-- As we said, with logistic regression **we skip the assumption about the class-conditional densities** as they add parameters to our problem that grow  quadratic to the number of dimensions and we attempt to find the $n$ parameters of the model directly (the number of features) and sure enough we will use ML to do so.  -->
@@ -831,10 +846,26 @@ $<span class="math notranslate nohighlight">\(L(\mathbf{w}) = L(y, \hat{y}) = - 
 <p><img alt="cross-entropy" src="../../../../_images/cross-entropy-binary.png" /></p>
 <p><em>CE Loss vs predicted probability for class “1”</em></p>
 <p>The behavior of the loss function is telling: it heavily penalizes confident wrong decisions. Notice its exponential rise when the probability <span class="math notranslate nohighlight">\(\hat{y}\)</span> of the class “1” is close to 0.0 which means that the classifier predicted with high confidence the opposite class that the ground truth.   On the other hand, when the probability of <span class="math notranslate nohighlight">\(\hat y\)</span> is close to 1.0, which means that the classifier predicts the class “1” with confidence, we exhibit minimal loss and in the limit zero loss.</p>
-<p>Minimizing the error function with respect to <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> requires calculating its gradient,</p>
+</section>
+<section id="optimizing-lr-parameters-with-sgd">
+<h2><span class="section-number">7.3. </span>Optimizing LR parameters with SGD<a class="headerlink" href="#optimizing-lr-parameters-with-sgd" title="Permalink to this headline">#</a></h2>
+<p>Minimizing the Binary CE (log-loss) starts from the negative log likelihood:</p>
 <div class="math notranslate nohighlight">
-\[\nabla L = \sum_{i=1}^m (\hat{y}_i - y_i) x_i\]</div>
-<p>The expression above defines the batch gradient decent algorithm. We can then readily convert this algorithm to SGD by considering mini-batch updates for any mini-batch size (usually delegated as a hyperparameter).</p>
+\[L(\mathbf{w}) = - \ln p_{model}(\mathbf{y},\mathbf{w}) = - \big[ \sum_{i=1}^m \{y_i \ln \hat{y}_i + (1-y_i) \ln (1-\hat{y}_i) \} \big]\]</div>
+<div class="math notranslate nohighlight">
+\[ = - \big[ \sum_{i=1}^m \{y_i \ln \hat{y}_i + (1-y_i) \ln (1-\hat{y}_i) \} \big]\]</div>
+<div class="math notranslate nohighlight">
+\[ = - \big[ \sum_{i=1}^m \{y_i \ln \frac{1}{1+\exp(-\alpha)} +(1- y_i) \ln (1 - \frac{1}{1+\exp(-\alpha)}) \} \big] \]</div>
+<div class="math notranslate nohighlight">
+\[ = - \big[ \sum_{i=1}^m \{y_i \big[ \ln \frac{1}{1+\exp(-\alpha)} - \ln (1 - \frac{1}{1+\exp(-\alpha)}) \big] + \ln (1 - \frac{1}{1+\exp(-\alpha)} \} \big] \]</div>
+<div class="math notranslate nohighlight">
+\[ = - \big[ \sum_{i=1}^m \{y_i \alpha + \ln (1+\exp(\alpha) \} \big] \]</div>
+<div class="math notranslate nohighlight">
+\[ = - \big[ \sum_{i=1}^m \{y_i \mathbf w^T \mathbf x  + \ln (1+\exp(\mathbf w^T \mathbf x) \} \big] \]</div>
+<p>We need to minimize it with respect to <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> and this requires calculating its gradient. The gradient can be derived to be:</p>
+<div class="math notranslate nohighlight">
+\[\nabla_\mathbf w L = \sum_{i=1}^m (\hat{y}_i - y_i) x_i\]</div>
+<p>The expression above defines the batch gradient decent algorithm. We can then readily convert this algorithm to mini-batch SGD by considering mini-batch updates of size <span class="math notranslate nohighlight">\(m_b\)</span> i.e. instead of <span class="math notranslate nohighlight">\(m\)</span> we sum over <span class="math notranslate nohighlight">\(m_b\)</span> where the later is a hyperparameter.</p>
 </section>
 </section>
 

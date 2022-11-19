@@ -30,4 +30,4 @@ extract rules of thumb from the expert that will be the most useful?
 2. Second, once he has collected
 many rules of thumb, how can they be combined into a single, highly accurate prediction rule?
 
-The answer to these questions is of fundamental importance in machine learning and the category of algorithms that try to address them are called _ensemble learning_ methods.
+The answer to these questions is of great importance to machine learning and the category of algorithms that try to address them are called _ensemble learning_ methods.

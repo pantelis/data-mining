@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>8. Bayesian Inference &#8212; Data Mining</title>
+    <title>9. Bayesian Inference &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -58,8 +58,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/pgm/bayesian-inference/_index.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="9. Bayesian Coin Flipping" href="../bayesian-coin/_index.html" />
-    <link rel="prev" title="7. Boosting workshop" href="../../ensemble/boosting-workshop/_index.html" />
+    <link rel="next" title="10. Bayesian Coin Flipping" href="../bayesian-coin/_index.html" />
+    <link rel="prev" title="8. Boosting workshop" href="../../ensemble/boosting-workshop/_index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -428,28 +428,33 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/boosting/_index.html">
-   6. Boosting
+  <a class="reference internal" href="../../ensemble/adaboost/index.html">
+   6. Adaptive Boosting (AdaBoost)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/gradient-boosting/index.html">
+   7. Gradient Boosting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
-   7. Boosting workshop
+   8. Boosting workshop
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   8. Bayesian Inference
+   9. Bayesian Inference
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../bayesian-coin/_index.html">
-   9. Bayesian Coin Flipping
+   10. Bayesian Coin Flipping
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
-   10. COVID-19 Antibody Test
+   11. COVID-19 Antibody Test
   </a>
  </li>
 </ul>
@@ -738,29 +743,29 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-bayes-rule">
-   8.1. The Bayes Rule
+   9.1. The Bayes Rule
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#probabilistic-graphical-models">
-   8.2. Probabilistic Graphical Models
+   9.2. Probabilistic Graphical Models
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bayesian-approach-vs-maximum-likelihood">
-     8.2.1. Bayesian approach vs Maximum Likelihood
+     9.2.1. Bayesian approach vs Maximum Likelihood
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#online-bayesian-regression">
-   8.3. Online Bayesian Regression
+   9.3. Online Bayesian Regression
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#bayesian-regression-implementation">
-   8.4. Bayesian Regression implementation
+   9.4. Bayesian Regression implementation
   </a>
  </li>
 </ul>
@@ -784,29 +789,29 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-bayes-rule">
-   8.1. The Bayes Rule
+   9.1. The Bayes Rule
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#probabilistic-graphical-models">
-   8.2. Probabilistic Graphical Models
+   9.2. Probabilistic Graphical Models
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bayesian-approach-vs-maximum-likelihood">
-     8.2.1. Bayesian approach vs Maximum Likelihood
+     9.2.1. Bayesian approach vs Maximum Likelihood
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#online-bayesian-regression">
-   8.3. Online Bayesian Regression
+   9.3. Online Bayesian Regression
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#bayesian-regression-implementation">
-   8.4. Bayesian Regression implementation
+   9.4. Bayesian Regression implementation
   </a>
  </li>
 </ul>
@@ -820,9 +825,9 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="bayesian-inference">
-<h1><span class="section-number">8. </span>Bayesian Inference<a class="headerlink" href="#bayesian-inference" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">9. </span>Bayesian Inference<a class="headerlink" href="#bayesian-inference" title="Permalink to this headline">#</a></h1>
 <section id="the-bayes-rule">
-<h2><span class="section-number">8.1. </span>The Bayes Rule<a class="headerlink" href="#the-bayes-rule" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">9.1. </span>The Bayes Rule<a class="headerlink" href="#the-bayes-rule" title="Permalink to this headline">#</a></h2>
 <p><img alt="Bayes" src="../../../../_images/bayes.jpg" />
 <em>Thomas Bayes (1701-1761)</em></p>
 <p>The Bayesian theorem is the cornerstone of probabilistic modeling and ultimately governs what models we can construct inside the <em>learning algorithm</em>. If <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> denotes the unknown parameters, <span class="math notranslate nohighlight">\(\mathtt{data}\)</span> denotes the dataset and <span class="math notranslate nohighlight">\(\mathcal{H}\)</span> denotes the hypothesis set that we met in the learning problem chapter.</p>
@@ -833,7 +838,7 @@ title="Print to PDF"
 <p>For example,a medical patient is exhibiting symptoms x, y and z. There are a number of diseases that could be causing all of them, but only a single disease is present. A doctor (the expert) has a <em>belief</em> about the underlying disease, but a second doctor may have a slightly different <em>belief</em>.</p>
 </section>
 <section id="probabilistic-graphical-models">
-<h2><span class="section-number">8.2. </span>Probabilistic Graphical Models<a class="headerlink" href="#probabilistic-graphical-models" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">9.2. </span>Probabilistic Graphical Models<a class="headerlink" href="#probabilistic-graphical-models" title="Permalink to this headline">#</a></h2>
 <p>Let us now look at a representation, <em>the probabilistic graphical model (pgm)</em> (also called Bayesian network when the priors are captured) that can be used to capture the <em>structure</em> of such beliefs and in general capture dependencies between the random variables involved in the modeling of a problem. We can use such representations to efficiently compute such beliefs and, in general, compute conditional probabilities. For now we will limit the modeling horizon to just one snapshot in time - later we will expand to capture problems that include time <span class="math notranslate nohighlight">\(t\)</span> as a variable.</p>
 <p>By convention we represent in PGMs as directed graphs, with nodes being the random variables involved in the model and directed edges indicating a parent child relationship, with the arrow pointing to a child, representing that the child nodes are <em>probabilistically conditioned on the parent(s)</em>.</p>
 <p>In a hypothetical example of a joint distribution with <span class="math notranslate nohighlight">\(K=7\)</span> random variables,</p>
@@ -844,7 +849,7 @@ title="Print to PDF"
 <p>where <span class="math notranslate nohighlight">\(\mathtt{pa}_k\)</span> is the set of parents of node <span class="math notranslate nohighlight">\(x_k\)</span>.</p>
 <p>Note that we have assumed that our model does <em>not</em> have variables involved in directed cycles and therefore we call such graphs Directed Acyclic Graphs (DAGs).</p>
 <section id="bayesian-approach-vs-maximum-likelihood">
-<h3><span class="section-number">8.2.1. </span>Bayesian approach vs Maximum Likelihood<a class="headerlink" href="#bayesian-approach-vs-maximum-likelihood" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.2.1. </span>Bayesian approach vs Maximum Likelihood<a class="headerlink" href="#bayesian-approach-vs-maximum-likelihood" title="Permalink to this headline">#</a></h3>
 <p>In the Maximum Likelihood Estimation section we have seen a simple supervised learning problem that is specified via a joint distribution <span class="math notranslate nohighlight">\(\hat{p}_{data}(\mathbf x, y)\)</span> and are asked to fit the model parameterized by the weights <span class="math notranslate nohighlight">\(\mathbf w\)</span> using maximum likelihood. Its important to view pictorially perhaps the most important effect of Bayesian thinking in the regression setting:</p>
 <ul class="simple">
 <li><p>The <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> in MLE is a point estimate <span class="math notranslate nohighlight">\(\mathbf{w}_{MLE}\)</span> and we are plugging this estimate in the predictive distribution to make predictions <span class="math notranslate nohighlight">\(\hat y\)</span> for data we havent seen before.</p></li>
@@ -874,7 +879,7 @@ where using the sum rule we know $p(y) = \sum_{x'} p(y|x') p(x')$. This is a ver
 </section>
 </section>
 <section id="online-bayesian-regression">
-<h2><span class="section-number">8.3. </span>Online Bayesian Regression<a class="headerlink" href="#online-bayesian-regression" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">9.3. </span>Online Bayesian Regression<a class="headerlink" href="#online-bayesian-regression" title="Permalink to this headline">#</a></h2>
 <p>Lets us consider an instructive example of applying the Bayesian approach in an online learning setting (streaming data arriving over the wire). In this example where the underlying target function is <span class="math notranslate nohighlight">\(p_{data}(x, \mathbf w) = w_0 + w_1 x + n\)</span> This is the equation of a line. In this example its parametrized with <span class="math notranslate nohighlight">\(a_0=-0.3, a_1=0.5\)</span> and <span class="math notranslate nohighlight">\(n \in \mathcal N(0, \sigma=0.2)\)</span>. To match the simple inference exercise that we just saw, we draw the equivalent PGM</p>
 <a class="reference internal image-reference" href="../../../../_images/Figure8.3.png"><img alt="../../../../_images/Figure8.3.png" class="align-center" src="../../../../_images/Figure8.3.png" style="width: 250px;" /></a>
 <p><em>Bayesian Linear Regression example - please replace <span class="math notranslate nohighlight">\(t\)</span> with <span class="math notranslate nohighlight">\(y\)</span> to match earlier notation in these notes</em></p>
@@ -889,7 +894,7 @@ where using the sum rule we know $p(y) = \sum_{x'} p(y|x') p(x')$. This is a ver
 <em>Instructive example of Bayesian learning as data points are streamed into the learner. Notice the dramatic improvement in the posterior the moment the 2nd data point arrives. Why is that?</em></p>
 </section>
 <section id="bayesian-regression-implementation">
-<h2><span class="section-number">8.4. </span>Bayesian Regression implementation<a class="headerlink" href="#bayesian-regression-implementation" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">9.4. </span>Bayesian Regression implementation<a class="headerlink" href="#bayesian-regression-implementation" title="Permalink to this headline">#</a></h2>
 <p>Notice in the notebook the two of the three broad benefits of the Bayesian approach:</p>
 <ul class="simple">
 <li><p>Compatibility with online learning - online learning does not mean necessarily that the data arrive over the ‘wire’ but it means that we can consider few data at a time.</p></li>
@@ -930,13 +935,13 @@ where using the sum rule we know $p(y) = \sum_{x'} p(y|x') p(x')$. This is a ver
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">7. </span>Boosting workshop</p>
+            <p class="prev-next-title"><span class="section-number">8. </span>Boosting workshop</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../bayesian-coin/_index.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>Bayesian Coin Flipping</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Bayesian Coin Flipping</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
