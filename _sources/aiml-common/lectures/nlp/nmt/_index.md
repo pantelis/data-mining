@@ -1,7 +1,3 @@
----
-title: Neural Machine Translation
----
-
 # Neural Machine Translation
 
 > These notes heavily borrowing from [the CS229N 2019 set of notes on NMT](https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1194/readings/cs224n-2019-notes06-NMT_seq2seq_attention.pdf). 
@@ -64,7 +60,7 @@ For example, in the simplest case, $\mathbf \phi = \mathbf h_{Tx}$
 
 The decoder directly calculates,
 
-$$\hat \mathbf y  = \argmax_y p(\mathbf y | \mathbf \phi)$$
+$$\mathbf{\hat y}   = \argmax_y p(\mathbf y | \mathbf \phi)$$
 
 We can write this as:
 
@@ -76,7 +72,7 @@ $$\argmax_y p(y_{Ty} | y_1, ..., y_{T_y-1}, \mathbf \phi)  \dots p(y_2|y_1, \mat
 
 We can now write,
 
-$$\hat \mathbf y  = \argmax_y p(\mathbf y | \mathbf \phi) = \prod_{t=1}^{T_y} p(y_t | y_1, ..., y_{t-1}, \mathbf \phi) $$
+$$\mathbf{\hat y}   = \argmax_y p(\mathbf y | \mathbf \phi) = \prod_{t=1}^{T_y} p(y_t | y_1, ..., y_{t-1}, \mathbf \phi) $$
 
 In this equation $p(y_t | y_1, ..., y_{t-1}, \mathbf \phi)$ is a probability distribution represented by a softmax across all all the words of the dictionary. We can use an RNN (LSTM) to model the conditional probabilities 
 

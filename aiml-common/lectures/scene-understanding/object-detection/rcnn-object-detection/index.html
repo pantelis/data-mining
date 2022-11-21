@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3.2. Region-CNN (RCNN) Object Detection &#8212; Data Mining</title>
+    <title>2.2. Region-CNN (RCNN) Object Detection &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,13 +53,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"mathjax_path": "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js", "tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/scene-understanding/object-detection/rcnn-object-detection/index.html" />
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="3.3. Fast and Faster RCNN Object Detection" href="../faster-rcnn-object-detection/index.html" />
-    <link rel="prev" title="3.1. Object Detection and Semantic Segmentation Metrics" href="../detection-metrics/index.html" />
+    <link rel="next" title="2.3. Fast and Faster RCNN Object Detection" href="../faster-rcnn-object-detection/index.html" />
+    <link rel="prev" title="2.1. Object Detection and Semantic Segmentation Metrics" href="../detection-metrics/index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -167,28 +167,33 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../../../regression/linear-regression/regression-notebooks.html">
+   3. Regression Notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../../optimization/maximum-likelihood/_index.html">
-   3. Maximum Likelihood (ML) Estimation
+   4. Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../entropy/_index.html">
-   4. Entropy
+   5. Entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../optimization/sgd/_index.html">
-   5. Stochastic Gradient Descent
+   6. Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../classification/classification-intro/_index.html">
-   6. Introduction to Classification
+   7. Introduction to Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../classification/logistic-regression/_index.html">
-   7. Logistic Regression
+   8. Logistic Regression
   </a>
  </li>
 </ul>
@@ -260,6 +265,28 @@ const thebe_selector_output = ".output, .cell_output"
    4. Using convnets with small datasets
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../feature-extraction-resnet/index.html">
+   5. Feature Extraction via Residual Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Transfer Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../transfer-learning/transfer-learning-introduction.html">
+   1. Introduction to Transfer Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../transfer-learning/transfer_learning_tutorial.html">
+   2. Transfer Learning for Computer Vision Tutorial
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -272,14 +299,9 @@ const thebe_selector_output = ".output, .cell_output"
    1. Introduction to Scene Understanding
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../feature-extraction-resnet/index.html">
-   2. Feature Extraction via Residual Networks
-  </a>
- </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../object-detection-intro/index.html">
-   3. Object Detection
+   2. Object Detection
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -289,24 +311,24 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../detection-metrics/index.html">
-     3.1. Object Detection and Semantic Segmentation Metrics
+     2.1. Object Detection and Semantic Segmentation Metrics
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     3.2. Region-CNN (RCNN) Object Detection
+     2.2. Region-CNN (RCNN) Object Detection
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../faster-rcnn-object-detection/index.html">
-     3.3. Fast and Faster RCNN Object Detection
+     2.3. Fast and Faster RCNN Object Detection
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../semantic-segmentation/index.html">
-   4. Semantic Segmentation
+   3. Semantic Segmentation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -316,32 +338,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
-     4.1. Mask R-CNN Semantic Segmentation
+     3.1. Mask R-CNN Semantic Segmentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
-     4.2. Mask R-CNN Demo
+     3.2. Mask R-CNN Demo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
-     4.3. Mask R-CNN - Inspect Training Data
+     3.3. Mask R-CNN - Inspect Training Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
-     4.4. Mask R-CNN - Inspect Trained Model
+     3.4. Mask R-CNN - Inspect Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
-     4.15. Mask R-CNN - Inspect Weights of a Trained Model
+     3.15. Mask R-CNN - Inspect Weights of a Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">
-     4.21. Detectron2 Beginner’s Tutorial
+     3.21. Detectron2 Beginner’s Tutorial
     </a>
    </li>
   </ul>
@@ -391,13 +413,28 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../nlp/rnn-language-models/_index.html">
-   3. RNN Language Models
+  <a class="reference internal" href="../../../nlp/word2vec/word2vec-workshop.html">
+   3. Word2Vec Workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../nlp/language-models/_index.html">
+   4. RNN Language Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../nlp/language-models/simple-rnn-language-model.html">
+   5. Simple RNN Language Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../nlp/language-models/cnn-language-model.html">
+   6. CNN Language Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../nlp/nmt/_index.html">
-   4. Neural Machine Translation
+   7. Neural Machine Translation
   </a>
  </li>
 </ul>
@@ -743,7 +780,7 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#region-proposals">
-   3.2.1. Region Proposals
+   2.2.1. Region Proposals
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -760,12 +797,12 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cnn-features-and-svm-classification">
-   3.2.2. CNN Features  and SVM Classification
+   2.2.2. CNN Features  and SVM Classification
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#training">
-   3.2.3. Training
+   2.2.3. Training
   </a>
  </li>
 </ul>
@@ -789,7 +826,7 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#region-proposals">
-   3.2.1. Region Proposals
+   2.2.1. Region Proposals
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -806,12 +843,12 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cnn-features-and-svm-classification">
-   3.2.2. CNN Features  and SVM Classification
+   2.2.2. CNN Features  and SVM Classification
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#training">
-   3.2.3. Training
+   2.2.3. Training
   </a>
  </li>
 </ul>
@@ -825,9 +862,9 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="region-cnn-rcnn-object-detection">
-<h1><span class="section-number">3.2. </span>Region-CNN (RCNN) Object Detection<a class="headerlink" href="#region-cnn-rcnn-object-detection" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">2.2. </span>Region-CNN (RCNN) Object Detection<a class="headerlink" href="#region-cnn-rcnn-object-detection" title="Permalink to this headline">#</a></h1>
 <section id="region-proposals">
-<h2><span class="section-number">3.2.1. </span>Region Proposals<a class="headerlink" href="#region-proposals" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.2.1. </span>Region Proposals<a class="headerlink" href="#region-proposals" title="Permalink to this headline">#</a></h2>
 <p>We can think about the detection problem as a classification problem of <em>all possible portions</em> (windows/masks) of the input image since an object can be located at any position and scale in the image. It is natural to search therefore everywhere and an obvious method to generate region proposals, is to slide various width-height ratio windows slide around the image and using a metric to declare that the window contains one or more blob of pixels. Obviously, such method is computationally infeasible and we need think of how to reduce this number by having some means of gauging where to look in the image.</p>
 <p>RCNN can accommodate a number of efficient algorithms that can produce region proposals. The baseline RCNN employs instead <a class="reference external" href="http://www.huppelen.nl/publications/selectiveSearchDraft.pdf"><em>selective search via hierarchical grouping</em></a>.</p>
 <p><img alt="hierarchical-grouping-alg" src="../../../../../_images/hierarchical-grouping-alg.png" /></p>
@@ -869,7 +906,7 @@ when merging region <span class="math notranslate nohighlight">\(r_i\)</span> an
 </section>
 </section>
 <section id="cnn-features-and-svm-classification">
-<h2><span class="section-number">3.2.2. </span>CNN Features  and SVM Classification<a class="headerlink" href="#cnn-features-and-svm-classification" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.2.2. </span>CNN Features  and SVM Classification<a class="headerlink" href="#cnn-features-and-svm-classification" title="Permalink to this headline">#</a></h2>
 <p>Each of these proposals can be fed into a CNN (e.g. ResNet. Since regions are of various rectangular shapes, we warp the regions to a fixed size (CNNs can process fixed input tensors) of 227 x 227 pixels and the CNN produces a 4096-dim feature vector from each of the regions. Note that this representation of each region by 4096 elements is considered quite compact and more importantly the features are <em>shared</em> across classes.</p>
 <p>Using these features we use a binary SVM classifier that produces a positive or negative on whether this feature contains the class of interest or not. We train a separate binary SVM classifier per class (binary classification).</p>
 <p>The sharing of features allows us to practically aggregate into a matrix all features of all regions (2000 x 4096) we well as aggregate the SVM weights into another matrix (4096 x K), where K is the number of classes we have trained for, and do this combined operation via a matrix-matrix product.</p>
@@ -884,7 +921,7 @@ when merging region <span class="math notranslate nohighlight">\(r_i\)</span> an
 <em>RCNN detection result after processing multiple region proposals</em></p>
 </section>
 <section id="training">
-<h2><span class="section-number">3.2.3. </span>Training<a class="headerlink" href="#training" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.2.3. </span>Training<a class="headerlink" href="#training" title="Permalink to this headline">#</a></h2>
 <p>RCNN training is complex as involves a multi-stage pipeline.</p>
 <ol class="simple">
 <li><p>R-CNN first fine pretrains a CNN on a classification task without using any bounding box ground truth.</p></li>
@@ -925,13 +962,13 @@ when merging region <span class="math notranslate nohighlight">\(r_i\)</span> an
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">3.1. </span>Object Detection and Semantic Segmentation Metrics</p>
+            <p class="prev-next-title"><span class="section-number">2.1. </span>Object Detection and Semantic Segmentation Metrics</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../faster-rcnn-object-detection/index.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3.3. </span>Fast and Faster RCNN Object Detection</p>
+        <p class="prev-next-title"><span class="section-number">2.3. </span>Fast and Faster RCNN Object Detection</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

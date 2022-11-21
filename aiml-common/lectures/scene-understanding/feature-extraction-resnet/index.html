@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>2. Feature Extraction via Residual Networks &#8212; Data Mining</title>
+    <title>5. Feature Extraction via Residual Networks &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,13 +53,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"mathjax_path": "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js", "tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/scene-understanding/feature-extraction-resnet/index.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="3. Object Detection" href="../object-detection/object-detection-intro/index.html" />
-    <link rel="prev" title="1. Introduction to Scene Understanding" href="../scene-understanding-intro/index.html" />
+    <link rel="next" title="1. Introduction to Transfer Learning" href="../../transfer-learning/transfer-learning-introduction.html" />
+    <link rel="prev" title="4. Using convnets with small datasets" href="../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -167,28 +167,33 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/regression-notebooks.html">
+   3. Regression Notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../optimization/maximum-likelihood/_index.html">
-   3. Maximum Likelihood (ML) Estimation
+   4. Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../entropy/_index.html">
-   4. Entropy
+   5. Entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../optimization/sgd/_index.html">
-   5. Stochastic Gradient Descent
+   6. Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/classification-intro/_index.html">
-   6. Introduction to Classification
+   7. Introduction to Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/logistic-regression/_index.html">
-   7. Logistic Regression
+   8. Logistic Regression
   </a>
  </li>
 </ul>
@@ -239,7 +244,7 @@ const thebe_selector_output = ".output, .cell_output"
   Convolutional Neural Networks
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
    1. Introduction to Convolutional Neural Networks
@@ -260,26 +265,43 @@ const thebe_selector_output = ".output, .cell_output"
    4. Using convnets with small datasets
   </a>
  </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   5. Feature Extraction via Residual Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Transfer Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../transfer-learning/transfer-learning-introduction.html">
+   1. Introduction to Transfer Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../transfer-learning/transfer_learning_tutorial.html">
+   2. Transfer Learning for Computer Vision Tutorial
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Scene Understanding
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../scene-understanding-intro/index.html">
    1. Introduction to Scene Understanding
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   2. Feature Extraction via Residual Networks
-  </a>
- </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../object-detection/object-detection-intro/index.html">
-   3. Object Detection
+   2. Object Detection
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -289,24 +311,24 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../object-detection/detection-metrics/index.html">
-     3.1. Object Detection and Semantic Segmentation Metrics
+     2.1. Object Detection and Semantic Segmentation Metrics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../object-detection/rcnn-object-detection/index.html">
-     3.2. Region-CNN (RCNN) Object Detection
+     2.2. Region-CNN (RCNN) Object Detection
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../object-detection/faster-rcnn-object-detection/index.html">
-     3.3. Fast and Faster RCNN Object Detection
+     2.3. Fast and Faster RCNN Object Detection
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../semantic-segmentation/index.html">
-   4. Semantic Segmentation
+   3. Semantic Segmentation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -316,32 +338,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
-     4.1. Mask R-CNN Semantic Segmentation
+     3.1. Mask R-CNN Semantic Segmentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
-     4.2. Mask R-CNN Demo
+     3.2. Mask R-CNN Demo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
-     4.3. Mask R-CNN - Inspect Training Data
+     3.3. Mask R-CNN - Inspect Training Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
-     4.4. Mask R-CNN - Inspect Trained Model
+     3.4. Mask R-CNN - Inspect Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
-     4.15. Mask R-CNN - Inspect Weights of a Trained Model
+     3.15. Mask R-CNN - Inspect Weights of a Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">
-     4.21. Detectron2 Beginner’s Tutorial
+     3.21. Detectron2 Beginner’s Tutorial
     </a>
    </li>
   </ul>
@@ -391,13 +413,28 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/rnn-language-models/_index.html">
-   3. RNN Language Models
+  <a class="reference internal" href="../../nlp/word2vec/word2vec-workshop.html">
+   3. Word2Vec Workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/language-models/_index.html">
+   4. RNN Language Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model.html">
+   5. Simple RNN Language Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/language-models/cnn-language-model.html">
+   6. CNN Language Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../nlp/nmt/_index.html">
-   4. Neural Machine Translation
+   7. Neural Machine Translation
   </a>
  </li>
 </ul>
@@ -743,12 +780,12 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-resnet-architecture">
-   2.1. The ResNet Architecture
+   5.1. The ResNet Architecture
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#resnets-and-batch-normalization">
-   2.2. ResNets and Batch Normalization
+   5.2. ResNets and Batch Normalization
   </a>
  </li>
 </ul>
@@ -772,12 +809,12 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-resnet-architecture">
-   2.1. The ResNet Architecture
+   5.1. The ResNet Architecture
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#resnets-and-batch-normalization">
-   2.2. ResNets and Batch Normalization
+   5.2. ResNets and Batch Normalization
   </a>
  </li>
 </ul>
@@ -791,13 +828,13 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="feature-extraction-via-residual-networks">
-<h1><span class="section-number">2. </span>Feature Extraction via Residual Networks<a class="headerlink" href="#feature-extraction-via-residual-networks" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">5. </span>Feature Extraction via Residual Networks<a class="headerlink" href="#feature-extraction-via-residual-networks" title="Permalink to this headline">#</a></h1>
 <p>In the figure below we plot the evolution of depth in CNN architectures. Notice the big jump due to the introduction of the ResNet architecture.</p>
 <p><img alt="evolution-of-depth" src="../../../../_images/evolution-of-depth.png" />
 <em>Evolution of depth in CNN architectures. (Circa 2018)</em></p>
 <p>The aim of this section is to provide an alternative view as to why ResNets seem to be able to accommodate much deeper architecture while performing even better that existing architectures for the same depth (e.g. ResNet-18).</p>
 <section id="the-resnet-architecture">
-<h2><span class="section-number">2.1. </span>The ResNet Architecture<a class="headerlink" href="#the-resnet-architecture" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.1. </span>The ResNet Architecture<a class="headerlink" href="#the-resnet-architecture" title="Permalink to this headline">#</a></h2>
 <p><img alt="resnet-vgg" src="../../../../_images/resnet-vgg.png" />
 <em>34 layers deep ResNet architecture (3rd column) vs earlier architectures</em></p>
 <p>ResNets or residual networks, introduced the concept of the residual. This can be understood looking at a small residual network of three stages. The striking difference between ResNets and earlier architectures are the <strong>skip connections</strong>. Shortcut connections are those skipping one or more layers. The shortcut connections simply perform identity mapping, and their outputs are added to the outputs of the stacked layers. Identity shortcut connections add neither extra parameter nor computational complexity. The entire network can still be trained end-to-end by SGD with backpropagation, and can be easily implemented using common libraries without modifying the solvers.</p>
@@ -812,11 +849,13 @@ title="Print to PDF"
 <span class="math notranslate nohighlight">\(\sigma(x) ≡ max(x, 0)\)</span>. Other formulations are typically composed of the same operations, but may differ
 in their order.</p>
 <p>During the lecture we will go through <a class="reference external" href="https://arxiv.org/pdf/1605.06431.pdf">this</a> paper analysis of the unrolled network to understand the behavior of ResNets that are inherently scalable networks.</p>
-<p>ResNets introduced below - are commonly used as feature extractors for object detection. They are not the only ones but these networks are the obvious / typical choice today and they can also be used in real time video streaming applications achieving significant throughput e.g. 20 frames per second.</p>
-<iframe width="560" height="315" src="http://kaiminghe.com/icml16tutorial/icml2016_tutorial_deep_residual_networks_kaiminghe.pdf"></iframe>
-</section>
+<p>ResNets are commonly used as feature extractors for object detection <a class="reference external" href="https://kaiminghe.github.io/icml16tutorial/icml2016_tutorial_deep_residual_networks_kaiminghe.pdf">as in this tutorial</a>.</p>
+<p>These networks are the obvious / typical choice today and they can also be used in real time video streaming applications achieving significant frames per second throughputs.</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/1PGLj-uKT1w" style="border: 0; height: 345px; width: 560px">
+</iframe></div></section>
 <section id="resnets-and-batch-normalization">
-<h2><span class="section-number">2.2. </span>ResNets and Batch Normalization<a class="headerlink" href="#resnets-and-batch-normalization" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.2. </span>ResNets and Batch Normalization<a class="headerlink" href="#resnets-and-batch-normalization" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="https://colab.research.google.com/github/davidcpage/cifar10-fast/blob/master/batch_norm_post.ipynb">This notebook</a> is very instructive of what now is considered a canonical new ResNet block that includes batch normalization.</p>
 </section>
 </section>
@@ -848,17 +887,17 @@ in their order.</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../scene-understanding-intro/index.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">1. </span>Introduction to Scene Understanding</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>Using convnets with small datasets</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../object-detection/object-detection-intro/index.html" title="next page">
+    <a class='right-next' id="next-link" href="../../transfer-learning/transfer-learning-introduction.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Object Detection</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Introduction to Transfer Learning</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

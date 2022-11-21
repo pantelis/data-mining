@@ -82,14 +82,14 @@ source: CS231n
 
 There are two main consequences of the convolution operation: sparsity and parameter sharing. With the later we get as a byproduct **equivariance to translation**. These are explained next.
 
-####  Sparsity
+###  Sparsity
 
 In DNNs, every output unit interacts with every input unit. Convolutional networks, however, typically have sparse interactions(also referred to as sparse connectivity or sparse weights). This is accomplished by making the kernel smaller than the input as shown in the figure above. For example,when processing an image, the input image might have thousands or millions of pixels, but we can detect small, meaningful features such as edges with kernels that have much smaller receptive fields. 
 
 ![cnn-sparsity](images/cnn-sparsity.png)
 *For a specific input unit,$x_3$, we mark the output units in that are aﬀected by this unit. (Top) When is formed by convolution with a kernel of width 3, only three outputs are aﬀected by x. (Bottom)When is formed by matrix multiplication, connectivity is no longer sparse, so all the outputs are aﬀected by $x_3$.*
 
-#### Parameter sharing
+### Parameter sharing
 
 In CNNs, each member of the kernel is used at every feasible position of the input. The parameter sharing used by the convolution operation means that rather than learning a separate set of parameters for every location, we learn only one set.
 

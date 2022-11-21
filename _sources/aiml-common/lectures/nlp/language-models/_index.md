@@ -41,9 +41,11 @@ _RNN Language Model. Note the different notation and certain replacements must b
 To train an LSTM language model 
 
 1. We start with  big corpus of text which is a sequence of tokens $\mathbf x_1, ..., \mathbf x_{T}$ where T is the number of words / tokens in the corpus. 
-2. Every time step we feed one word at a time to the LSTM and compute the output probability distribution $\hat \mathbf y_t$, which is, by construction, a _conditional_ probability distribution of every word in the dictionary given the words we have seen so far. 
+2. Every time step we feed one word at a time to the LSTM and compute the output probability distribution $\mathbf{\hat  y}_t$, which is, by construction, a _conditional_ probability distribution of every word in the dictionary given the words we have seen so far. 
 3. The loss function at time step $t$ is the classic cross entropy loss between the predicted probability distribution and the distribution that corresponds to the one-hot encoded true next token. 
-$$J_t(\theta) = CE(\hat  \mathbf y_t, \mathbf y_t) = - \sum_j^{|V|} \mathbf y_{t,j} \log \hat \mathbf y_{t,j} = - \log \hat \mathbf y_{t,j}$$ 
+   
+$$J_t(\theta) = CE(\mathbf{\hat  y}_t, \mathbf{y}_t) = - \sum_j^{|V|} \mathbf{y}_{t,j} \log \mathbf{\hat y}_{t,j} = - \log \mathbf{\hat y}_{t,j}$$ 
+
 4. Average all the t-step losses 
 
 $$J(\theta) = \frac{1}{T} \sum_t J_t(\theta)$$

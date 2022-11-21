@@ -1,0 +1,969 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>6. CNN Language Model &#8212; Data Mining</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/nlp/language-models/cnn-language-model.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="7. Neural Machine Translation" href="../nmt/_index.html" />
+    <link rel="prev" title="5. Simple RNN Language Model" href="simple-rnn-language-model.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Mining</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Syllabus
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../syllabus/_index.html">
+   Syllabus
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Data Mining
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
+   1. Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
+   2. Data Science 360
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ai-intro/pipelines/_index.html">
+   3. ML Pipelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../uber-ml-arch-case-study/_index.html">
+   4. A Case Study of an ML Architecture - Uber
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Learning Problem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../learning-problem/_index.html">
+   1. The Learning Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/_index.html">
+   2. Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/regression-notebooks.html">
+   3. Regression Notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/maximum-likelihood/_index.html">
+   4. Maximum Likelihood (ML) Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../entropy/_index.html">
+   5. Entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/sgd/_index.html">
+   6. Stochastic Gradient Descent
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/classification-intro/_index.html">
+   7. Introduction to Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/logistic-regression/_index.html">
+   8. Logistic Regression
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Deep Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/perceptron/_index.html">
+   1. The Neuron (Perceptron)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
+   2. Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
+   3. Introduction to Backpropagation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
+   4. Backpropagation in Deep Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/backprop-dnn-exercises/_index.html">
+   5. Backpropagation DNN exercises
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../dnn/fashion-mnist-case-study.html">
+   6. Fashion MNIST Case Study
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../optimization/regularization/_index.html">
+   7. Regularization in Deep Neural Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Convolutional Neural Networks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
+   1. Introduction to Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-layers/_index.html">
+   2. CNN Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">
+   3. CNN Example Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
+   4. Using convnets with small datasets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">
+   5. Feature Extraction via Residual Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Transfer Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../transfer-learning/transfer-learning-introduction.html">
+   1. Introduction to Transfer Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../transfer-learning/transfer_learning_tutorial.html">
+   2. Transfer Learning for Computer Vision Tutorial
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Scene Understanding
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/scene-understanding-intro/index.html">
+   1. Introduction to Scene Understanding
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../scene-understanding/object-detection/object-detection-intro/index.html">
+   2. Object Detection
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../scene-understanding/object-detection/detection-metrics/index.html">
+     2.1. Object Detection and Semantic Segmentation Metrics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../scene-understanding/object-detection/rcnn-object-detection/index.html">
+     2.2. Region-CNN (RCNN) Object Detection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../scene-understanding/object-detection/faster-rcnn-object-detection/index.html">
+     2.3. Fast and Faster RCNN Object Detection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../scene-understanding/semantic-segmentation/index.html">
+   3. Semantic Segmentation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
+     3.1. Mask R-CNN Semantic Segmentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
+     3.2. Mask R-CNN Demo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
+     3.3. Mask R-CNN - Inspect Training Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
+     3.4. Mask R-CNN - Inspect Trained Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
+     3.15. Mask R-CNN - Inspect Weights of a Trained Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">
+     3.21. Detectron2 Beginner’s Tutorial
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sequences and RNNs
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/introduction/_index.html">
+   1. Introduction to Recurrent Neural Networks (RNN)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/simple-rnn/_index.html">
+   2. Simple RNN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/lstm/_index.html">
+   3. The Long Short-Term Memory (LSTM) Cell Architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../rnn/15_processing_sequences_using_rnns_and_cnns.html">
+   4. Processing Sequences Using RNN
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Embeddings and NLP
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nlp-intro/_index.html">
+   1. Introduction to NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../word2vec/_index.html">
+   2. Word2Vec Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../word2vec/word2vec-workshop.html">
+   3. Word2Vec Workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="_index.html">
+   4. RNN Language Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple-rnn-language-model.html">
+   5. Simple RNN Language Model
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   6. CNN Language Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nmt/_index.html">
+   7. Neural Machine Translation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Classical Learning Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../decision-trees/_index.html">
+   1. Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../regression-trees/regression_trees.html">
+   2. Regression tree stumps
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/_index.html">
+   4. Ensemble Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+   5. Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/adaboost/index.html">
+   6. Adaptive Boosting (AdaBoost)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/gradient-boosting/index.html">
+   7. Gradient Boosting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+   8. Boosting workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+   9. Bayesian Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+   10. Bayesian Coin Flipping
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
+   11. COVID-19 Antibody Test
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Non-Parametric Methods
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+   1. K-means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+   2. k-Nearest Neighbors (kNN) Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+   3. kNN Workshop
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../pca/_index.html">
+   1. Principal Component Analysis (PCA)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math Background
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ml-math/_index.html">
+   1. Math for ML
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ml-math/probability/_index.html">
+     1.1. Probability Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../linear-algebra/_index.html">
+     1.2. Linear Algebra for Machine Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ml-math/calculus/_index.html">
+     1.3. Calculus
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../python/_index.html">
+   1. Learn Python
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Assignments &amp; Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../assignments/probability/probability-assignment-3/index.html">
+   1. Probability Assignment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../assignments/poisson-regression/index.html">
+   3. Bike Rides and the Poisson Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../projects/visual-search-coco/index.html">
+   4. Reverse Visual Search
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../projects/transfer-learning-home-depot/index.html">
+   5. Transfer Learning for Custom Datasets in the Small-Data Regime
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/pantelis/data-mining"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/nlp/language-models/cnn-language-model.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../../_sources/aiml-common/lectures/nlp/language-models/cnn-language-model.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>CNN Language Model</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p><a class="reference external" href="https://colab.research.google.com/github/pantelis-nlp/tutorial-nlp-notebooks/blob/main/rnn_language_model.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="cnn-language-model">
+<h1><span class="section-number">6. </span>CNN Language Model<a class="headerlink" href="#cnn-language-model" title="Permalink to this headline">#</a></h1>
+<p>The following was developed by Harini Appansrinivasan, NYU as part of an assignment submission.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
+<span class="kn">import</span> <span class="nn">keras</span> <span class="k">as</span> <span class="nn">K</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers.convolutional</span> <span class="kn">import</span> <span class="n">Conv1D</span><span class="p">,</span> <span class="n">MaxPooling1D</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Activation</span><span class="p">,</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Dense</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Conv1D</span><span class="p">,</span> <span class="n">MaxPooling1D</span><span class="p">,</span> <span class="n">Dropout</span>
+<span class="c1"># split input sequence into inputs X of size = n_steps and targets Y with the subsequent integer after each X</span>
+<span class="k">def</span> <span class="nf">split_sequence</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">):</span>
+	<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(),</span> <span class="nb">list</span><span class="p">()</span>
+	<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)):</span>
+		<span class="n">end_ix</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n_steps</span>                                     <span class="c1"># find the end of this pattern</span>
+		<span class="k">if</span> <span class="n">end_ix</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>                             <span class="c1"># condition to check if we are beyond the input sequence</span>
+			<span class="k">break</span>
+		<span class="n">seq_x</span><span class="p">,</span> <span class="n">seq_y</span> <span class="o">=</span> <span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">end_ix</span><span class="p">],</span> <span class="n">sequence</span><span class="p">[</span><span class="n">end_ix</span><span class="p">]</span>      <span class="c1"># gather input and output parts of the pattern</span>
+		<span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq_x</span><span class="p">)</span>
+		<span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq_y</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">array</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="c1"># creating a vocabulary of unique characters</span>
+<span class="n">chars</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<span class="n">data_size</span><span class="p">,</span> <span class="n">vocab_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;data has </span><span class="si">%d</span><span class="s1"> characters, </span><span class="si">%d</span><span class="s1"> unique.&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">data_size</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">))</span>
+
+<span class="c1"># creating a dictionary, mapping characters to index and index to characters</span>
+<span class="n">char_to_ix</span> <span class="o">=</span> <span class="p">{</span> <span class="n">ch</span><span class="p">:</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">ch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chars</span><span class="p">)</span> <span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">char_to_ix</span><span class="p">)</span>
+<span class="n">ix_to_char</span> <span class="o">=</span> <span class="p">{</span> <span class="n">i</span><span class="p">:</span><span class="n">ch</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">ch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chars</span><span class="p">)</span> <span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ix_to_char</span><span class="p">)</span>
+<span class="n">seq_length</span> <span class="o">=</span> <span class="mi">25</span>        <span class="c1"># number of characters in each input sequence from which the next char is predicted</span>
+<span class="n">data_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">char_to_ix</span><span class="p">[</span><span class="n">ch</span><span class="p">]</span> <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span>               <span class="c1"># convert all characters in data string into t tokens</span>
+<span class="n">X_tokens</span><span class="p">,</span> <span class="n">y_tokens</span> <span class="o">=</span> <span class="n">split_sequence</span><span class="p">(</span><span class="n">data_tokens</span><span class="p">,</span> <span class="n">seq_length</span><span class="p">)</span>      <span class="c1"># split into samples, inputs X and targets y</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_tokens</span><span class="p">)):</span>   
+	<span class="nb">print</span><span class="p">(</span><span class="n">X_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>                                 <span class="c1"># summarize the split input and target tokens</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="n">X_tokens</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_tokens</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>     <span class="c1"># shape of tokenized input array with sequence length = 25</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y_tokens</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>     <span class="c1"># shape of tokenized target array</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span>        <span class="c1"># total number of inputs to the CNN</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">seq_length</span><span class="p">)</span>         <span class="c1"># number of characters in each input sequence from which the next char is predicted</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">)</span>         <span class="c1"># total number of unique characters, ie, number of output classes</span>
+<span class="c1"># function to one-hot encode the data for each unique class k=vocab_size</span>
+<span class="k">def</span> <span class="nf">onehot_encoding</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">onehot_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>   <span class="c1"># a 3D array of 0&#39;s</span>
+    <span class="n">onehot_data</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">data</span><span class="o">.</span><span class="n">flatten</span><span class="p">()]</span> <span class="o">=</span> <span class="mi">1</span>          <span class="c1"># replace 0 with 1 at that index of the original array</span>
+    <span class="n">onehot_data</span> <span class="o">=</span> <span class="n">onehot_data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vocab_size</span><span class="p">)</span>        <span class="c1"># reshape into [num_samples, seq_length, vocab_size] format</span>
+  <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">onehot_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>                   <span class="c1"># a 2D array of 0&#39;s</span>
+    <span class="n">onehot_data</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">data</span><span class="o">.</span><span class="n">flatten</span><span class="p">()]</span> <span class="o">=</span> <span class="mi">1</span>                          <span class="c1"># replace 0 with 1 at that index of the original array</span>
+    <span class="n">onehot_data</span> <span class="o">=</span> <span class="n">onehot_data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vocab_size</span><span class="p">)</span>                       <span class="c1"># reshape into [num_samples, vocab_size] format</span>
+  <span class="k">return</span> <span class="n">onehot_data</span>
+<span class="n">X_onehot</span> <span class="o">=</span> <span class="n">onehot_encoding</span><span class="p">(</span><span class="n">X_tokens</span><span class="p">)</span>  <span class="c1"># one-hot encode the inputs</span>
+<span class="n">X_onehot</span><span class="o">.</span><span class="n">shape</span>                        <span class="c1"># shape = [num_samples, seq_length, vocab_size]</span>
+<span class="n">y_onehot</span> <span class="o">=</span> <span class="n">onehot_encoding</span><span class="p">(</span><span class="n">y_tokens</span><span class="p">)</span>  <span class="c1"># one-hot encode the targets</span>
+<span class="n">y_onehot</span><span class="o">.</span><span class="n">shape</span>                        <span class="c1"># shape = [num_samples, vocab_size]</span>
+<span class="c1"># reset model</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">clear_session</span>
+
+<span class="c1"># define model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+
+<span class="c1"># conv1d layer with input dim (seq_length, vocab_size), ReLU activation, 64 7x7 filters</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv1D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">seq_length</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">)))</span>  
+
+<span class="c1"># maxpool layer, with pool size=2</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPooling1D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># flatten the data before passing it to a fully connected / dense layer</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Flatten</span><span class="p">())</span>
+
+<span class="c1"># a dense layer with output size=43 for the 43 unique classes and a softmax activation to give the 43 class probabilities</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">43</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
+
+<span class="c1"># compile the model with adam optimizer and cross entropy loss. Print accuracy metrics while training the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="n">X_input</span> <span class="o">=</span> <span class="n">X_onehot</span>
+<span class="n">y_target</span> <span class="o">=</span> <span class="n">y_onehot</span>
+<span class="c1"># function to test the model and predict characters after each epoch</span>
+<span class="k">class</span> <span class="nc">PredictionCallback</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">Callback</span><span class="p">):</span>    
+  <span class="k">def</span> <span class="nf">on_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">logs</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="n">txt</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+   
+    <span class="n">x</span> <span class="o">=</span> <span class="n">X_input</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,:,:]</span>                          <span class="c1"># set the first input as the first 25 characters</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">seq_length</span><span class="p">):</span>                   <span class="c1"># convert the one_hot encoded x inputs to tokens and then to characters, add them to string &#39;txt&#39;</span>
+      <span class="n">txt</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">txt</span><span class="p">,</span><span class="n">ix_to_char</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">,:])]])</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>                                         <span class="c1"># data pointer</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="n">num_samples</span><span class="p">):</span>                       <span class="c1"># run the prediction loop until the end of total number of inputs to the CNN</span>
+      <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>            
+      <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># predict the class probabilities for the next character from a sequence of 25 encoded characters</span>
+      <span class="n">ix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>                      <span class="c1"># find the index of the value with the largest probability</span>
+      <span class="n">txt</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">txt</span><span class="p">,</span><span class="n">ix_to_char</span><span class="p">[</span><span class="n">ix</span><span class="p">]])</span>         <span class="c1"># convert the prediction into character and add it to the list of previous predictions </span>
+
+      <span class="c1"># at test-time, feed back the predicted character to model for next character prediction</span>
+      <span class="n">ypred_onehot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="n">vocab_size</span><span class="p">))</span>     <span class="c1"># one-hot encode the predicted probabilities</span>
+      <span class="n">ypred_onehot</span><span class="p">[:,</span><span class="n">ix</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+      <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">seq_length</span><span class="p">,</span><span class="n">vocab_size</span><span class="p">)</span>        <span class="c1"># reshape x into [seq_length, vocab_size] before stacking y_pred</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:,:],</span><span class="n">ypred_onehot</span><span class="p">])</span>       <span class="c1"># remove the first character from x and stack y_pred for the next iteration</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>                           <span class="c1"># numpy vstack returns a float array, convert it into an integer array</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">seq_length</span><span class="p">,</span><span class="n">vocab_size</span><span class="p">)</span>      <span class="c1"># reshape the input x into [1, seq_length, vocab_size]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;----</span><span class="se">\n</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> </span><span class="se">\n</span><span class="s1">----&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="p">))</span>           <span class="c1"># print the entire string of our model predictions</span>
+<span class="c1"># train the model for 100 epochs on X_input</span>
+<span class="c1"># call the PredictionCallback() function to predict all characters and print them after each epoch</span>
+<span class="c1"># print the loss and accuracies after each epoch</span>
+<span class="n">hist</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_input</span><span class="p">,</span> <span class="n">y_target</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">PredictionCallback</span><span class="p">()])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./aiml-common/lectures/nlp/language-models"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="simple-rnn-language-model.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">5. </span>Simple RNN Language Model</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../nmt/_index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Neural Machine Translation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pantelis Monogioudis, Ph.D<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

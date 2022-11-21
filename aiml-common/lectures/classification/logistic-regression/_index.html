@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>7. Logistic Regression &#8212; Data Mining</title>
+    <title>8. Logistic Regression &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,13 +53,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"mathjax_path": "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js", "tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/classification/logistic-regression/_index.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="1. The Neuron (Perceptron)" href="../perceptron/_index.html" />
-    <link rel="prev" title="6. Introduction to Classification" href="../classification-intro/_index.html" />
+    <link rel="prev" title="7. Introduction to Classification" href="../classification-intro/_index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -167,28 +167,33 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/regression-notebooks.html">
+   3. Regression Notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../optimization/maximum-likelihood/_index.html">
-   3. Maximum Likelihood (ML) Estimation
+   4. Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../entropy/_index.html">
-   4. Entropy
+   5. Entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../optimization/sgd/_index.html">
-   5. Stochastic Gradient Descent
+   6. Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../classification-intro/_index.html">
-   6. Introduction to Classification
+   7. Introduction to Classification
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   7. Logistic Regression
+   8. Logistic Regression
   </a>
  </li>
 </ul>
@@ -260,6 +265,28 @@ const thebe_selector_output = ".output, .cell_output"
    4. Using convnets with small datasets
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">
+   5. Feature Extraction via Residual Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Transfer Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../transfer-learning/transfer-learning-introduction.html">
+   1. Introduction to Transfer Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../transfer-learning/transfer_learning_tutorial.html">
+   2. Transfer Learning for Computer Vision Tutorial
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -272,14 +299,9 @@ const thebe_selector_output = ".output, .cell_output"
    1. Introduction to Scene Understanding
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">
-   2. Feature Extraction via Residual Networks
-  </a>
- </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../scene-understanding/object-detection/object-detection-intro/index.html">
-   3. Object Detection
+   2. Object Detection
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -289,24 +311,24 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/object-detection/detection-metrics/index.html">
-     3.1. Object Detection and Semantic Segmentation Metrics
+     2.1. Object Detection and Semantic Segmentation Metrics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/object-detection/rcnn-object-detection/index.html">
-     3.2. Region-CNN (RCNN) Object Detection
+     2.2. Region-CNN (RCNN) Object Detection
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/object-detection/faster-rcnn-object-detection/index.html">
-     3.3. Fast and Faster RCNN Object Detection
+     2.3. Fast and Faster RCNN Object Detection
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../scene-understanding/semantic-segmentation/index.html">
-   4. Semantic Segmentation
+   3. Semantic Segmentation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -316,32 +338,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
-     4.1. Mask R-CNN Semantic Segmentation
+     3.1. Mask R-CNN Semantic Segmentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
-     4.2. Mask R-CNN Demo
+     3.2. Mask R-CNN Demo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
-     4.3. Mask R-CNN - Inspect Training Data
+     3.3. Mask R-CNN - Inspect Training Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
-     4.4. Mask R-CNN - Inspect Trained Model
+     3.4. Mask R-CNN - Inspect Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
-     4.15. Mask R-CNN - Inspect Weights of a Trained Model
+     3.15. Mask R-CNN - Inspect Weights of a Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">
-     4.21. Detectron2 Beginner’s Tutorial
+     3.21. Detectron2 Beginner’s Tutorial
     </a>
    </li>
   </ul>
@@ -391,13 +413,28 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/rnn-language-models/_index.html">
-   3. RNN Language Models
+  <a class="reference internal" href="../../nlp/word2vec/word2vec-workshop.html">
+   3. Word2Vec Workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/language-models/_index.html">
+   4. RNN Language Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model.html">
+   5. Simple RNN Language Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/language-models/cnn-language-model.html">
+   6. CNN Language Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../nlp/nmt/_index.html">
-   4. Neural Machine Translation
+   7. Neural Machine Translation
   </a>
  </li>
 </ul>
@@ -743,17 +780,17 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#odds-and-the-logistic-sigmoid">
-   7.1. Odds and the Logistic Sigmoid
+   8.1. Odds and the Logistic Sigmoid
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#binary-case">
-   7.2. Binary case
+   8.2. Binary case
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#optimizing-lr-parameters-with-sgd">
-   7.3. Optimizing LR parameters with SGD
+   8.3. Optimizing LR parameters with SGD
   </a>
  </li>
 </ul>
@@ -777,17 +814,17 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#odds-and-the-logistic-sigmoid">
-   7.1. Odds and the Logistic Sigmoid
+   8.1. Odds and the Logistic Sigmoid
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#binary-case">
-   7.2. Binary case
+   8.2. Binary case
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#optimizing-lr-parameters-with-sgd">
-   7.3. Optimizing LR parameters with SGD
+   8.3. Optimizing LR parameters with SGD
   </a>
  </li>
 </ul>
@@ -801,10 +838,10 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="logistic-regression">
-<h1><span class="section-number">7. </span>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">8. </span>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">#</a></h1>
 <p>Logistic regression is used in machine learning extensively - every time we need to provide probabilistic semantics to an outcome e.g. predicting the risk of developing a given disease (e.g. diabetes; coronary heart disease), based on observed characteristics of the patient (age, sex, body mass index, results of various blood tests, etc.), whether an voter will vote for a given party, predicting the probability of failure of a given process, system or product, predicting a customer’s propensity to purchase a product or halt a subscription, predicting the likelihood of a homeowner defaulting on a mortgage.</p>
 <section id="odds-and-the-logistic-sigmoid">
-<h2><span class="section-number">7.1. </span>Odds and the Logistic Sigmoid<a class="headerlink" href="#odds-and-the-logistic-sigmoid" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.1. </span>Odds and the Logistic Sigmoid<a class="headerlink" href="#odds-and-the-logistic-sigmoid" title="Permalink to this headline">#</a></h2>
 <p>If <span class="math notranslate nohighlight">\(\sigma\)</span> is a probability of an event, then the ratio <span class="math notranslate nohighlight">\(\frac{\sigma}{1-\sigma}\)</span> is the corresponding <em>odds</em>, the ratio of the event  occurring divided by not occurring. For example, if a race horse runs 100 races and wins 25 times and loses the other 75 times, the probability of winning is 25/100 = 0.25 or 25%, but the odds of the horse winning are 25/75 = 0.333 or 1 win to 3 loses. In the binary classification case, the log odds is given by</p>
 <div class="math notranslate nohighlight">
 \[ \mathtt{logit}(\sigma) = \alpha = \ln \frac{\sigma}{1-\sigma} = \ln \frac{p(y=1|\mathbf{x})}{p(y=0 |\mathbf{x})}\]</div>
@@ -819,7 +856,7 @@ title="Print to PDF"
 \[\sigma(-\alpha) = 1 - \sigma(\alpha)\]</div>
 </section>
 <section id="binary-case">
-<h2><span class="section-number">7.2. </span>Binary case<a class="headerlink" href="#binary-case" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.2. </span>Binary case<a class="headerlink" href="#binary-case" title="Permalink to this headline">#</a></h2>
 <p>If we consider the two class problem, we can write the posterior probability as,</p>
 <div class="math notranslate nohighlight">
 \[p(y=1|\mathbf{x}) = \frac{p(\mathbf{x}|y=1) p(y=1)}{p(\mathbf{x}|y=1) p(y=1) + p(\mathbf{x}|y=0) p(y=0)} = \frac{1}{1 + \exp(-\alpha)} = \sigma(\alpha)\]</div>
@@ -848,7 +885,7 @@ $<span class="math notranslate nohighlight">\(L(\mathbf{w}) = L(y, \hat{y}) = - 
 <p>The behavior of the loss function is telling: it heavily penalizes confident wrong decisions. Notice its exponential rise when the probability <span class="math notranslate nohighlight">\(\hat{y}\)</span> of the class “1” is close to 0.0 which means that the classifier predicted with high confidence the opposite class that the ground truth.   On the other hand, when the probability of <span class="math notranslate nohighlight">\(\hat y\)</span> is close to 1.0, which means that the classifier predicts the class “1” with confidence, we exhibit minimal loss and in the limit zero loss.</p>
 </section>
 <section id="optimizing-lr-parameters-with-sgd">
-<h2><span class="section-number">7.3. </span>Optimizing LR parameters with SGD<a class="headerlink" href="#optimizing-lr-parameters-with-sgd" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.3. </span>Optimizing LR parameters with SGD<a class="headerlink" href="#optimizing-lr-parameters-with-sgd" title="Permalink to this headline">#</a></h2>
 <p>Minimizing the Binary CE (log-loss) starts from the negative log likelihood:</p>
 <div class="math notranslate nohighlight">
 \[L(\mathbf{w}) = - \ln p_{model}(\mathbf{y},\mathbf{w}) = - \big[ \sum_{i=1}^m \{y_i \ln \hat{y}_i + (1-y_i) \ln (1-\hat{y}_i) \} \big]\]</div>
@@ -900,7 +937,7 @@ $<span class="math notranslate nohighlight">\(L(\mathbf{w}) = L(y, \hat{y}) = - 
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">6. </span>Introduction to Classification</p>
+            <p class="prev-next-title"><span class="section-number">7. </span>Introduction to Classification</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../perceptron/_index.html" title="next page">

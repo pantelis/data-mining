@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3.1. Object Detection and Semantic Segmentation Metrics &#8212; Data Mining</title>
+    <title>2.1. Object Detection and Semantic Segmentation Metrics &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,13 +53,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"mathjax_path": "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js", "tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/scene-understanding/object-detection/detection-metrics/index.html" />
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="3.2. Region-CNN (RCNN) Object Detection" href="../rcnn-object-detection/index.html" />
-    <link rel="prev" title="3. Object Detection" href="../object-detection-intro/index.html" />
+    <link rel="next" title="2.2. Region-CNN (RCNN) Object Detection" href="../rcnn-object-detection/index.html" />
+    <link rel="prev" title="2. Object Detection" href="../object-detection-intro/index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -167,28 +167,33 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../../../regression/linear-regression/regression-notebooks.html">
+   3. Regression Notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../../optimization/maximum-likelihood/_index.html">
-   3. Maximum Likelihood (ML) Estimation
+   4. Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../entropy/_index.html">
-   4. Entropy
+   5. Entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../optimization/sgd/_index.html">
-   5. Stochastic Gradient Descent
+   6. Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../classification/classification-intro/_index.html">
-   6. Introduction to Classification
+   7. Introduction to Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../classification/logistic-regression/_index.html">
-   7. Logistic Regression
+   8. Logistic Regression
   </a>
  </li>
 </ul>
@@ -260,6 +265,28 @@ const thebe_selector_output = ".output, .cell_output"
    4. Using convnets with small datasets
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../feature-extraction-resnet/index.html">
+   5. Feature Extraction via Residual Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Transfer Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../transfer-learning/transfer-learning-introduction.html">
+   1. Introduction to Transfer Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../transfer-learning/transfer_learning_tutorial.html">
+   2. Transfer Learning for Computer Vision Tutorial
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -272,14 +299,9 @@ const thebe_selector_output = ".output, .cell_output"
    1. Introduction to Scene Understanding
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../feature-extraction-resnet/index.html">
-   2. Feature Extraction via Residual Networks
-  </a>
- </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../object-detection-intro/index.html">
-   3. Object Detection
+   2. Object Detection
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -289,24 +311,24 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     3.1. Object Detection and Semantic Segmentation Metrics
+     2.1. Object Detection and Semantic Segmentation Metrics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../rcnn-object-detection/index.html">
-     3.2. Region-CNN (RCNN) Object Detection
+     2.2. Region-CNN (RCNN) Object Detection
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../faster-rcnn-object-detection/index.html">
-     3.3. Fast and Faster RCNN Object Detection
+     2.3. Fast and Faster RCNN Object Detection
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../semantic-segmentation/index.html">
-   4. Semantic Segmentation
+   3. Semantic Segmentation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -316,32 +338,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
-     4.1. Mask R-CNN Semantic Segmentation
+     3.1. Mask R-CNN Semantic Segmentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
-     4.2. Mask R-CNN Demo
+     3.2. Mask R-CNN Demo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
-     4.3. Mask R-CNN - Inspect Training Data
+     3.3. Mask R-CNN - Inspect Training Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
-     4.4. Mask R-CNN - Inspect Trained Model
+     3.4. Mask R-CNN - Inspect Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
-     4.15. Mask R-CNN - Inspect Weights of a Trained Model
+     3.15. Mask R-CNN - Inspect Weights of a Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">
-     4.21. Detectron2 Beginner’s Tutorial
+     3.21. Detectron2 Beginner’s Tutorial
     </a>
    </li>
   </ul>
@@ -391,13 +413,28 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../nlp/rnn-language-models/_index.html">
-   3. RNN Language Models
+  <a class="reference internal" href="../../../nlp/word2vec/word2vec-workshop.html">
+   3. Word2Vec Workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../nlp/language-models/_index.html">
+   4. RNN Language Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../nlp/language-models/simple-rnn-language-model.html">
+   5. Simple RNN Language Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../nlp/language-models/cnn-language-model.html">
+   6. CNN Language Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../nlp/nmt/_index.html">
-   4. Neural Machine Translation
+   7. Neural Machine Translation
   </a>
  </li>
 </ul>
@@ -743,22 +780,22 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-is-the-average-precision-ap-metric">
-   3.1.1. What is the Average Precision (AP) metric
+   2.1.1. What is the Average Precision (AP) metric
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-practical-example">
-   3.1.2. A practical example
+   2.1.2. A practical example
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#mean-ap-map">
-   3.1.3. Mean AP (mAP)
+   2.1.3. Mean AP (mAP)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ar">
-   3.1.4. AR
+   2.1.4. AR
   </a>
  </li>
 </ul>
@@ -782,22 +819,22 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-is-the-average-precision-ap-metric">
-   3.1.1. What is the Average Precision (AP) metric
+   2.1.1. What is the Average Precision (AP) metric
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-practical-example">
-   3.1.2. A practical example
+   2.1.2. A practical example
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#mean-ap-map">
-   3.1.3. Mean AP (mAP)
+   2.1.3. Mean AP (mAP)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ar">
-   3.1.4. AR
+   2.1.4. AR
   </a>
  </li>
 </ul>
@@ -811,14 +848,14 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="object-detection-and-semantic-segmentation-metrics">
-<h1><span class="section-number">3.1. </span>Object Detection and Semantic Segmentation Metrics<a class="headerlink" href="#object-detection-and-semantic-segmentation-metrics" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">2.1. </span>Object Detection and Semantic Segmentation Metrics<a class="headerlink" href="#object-detection-and-semantic-segmentation-metrics" title="Permalink to this headline">#</a></h1>
 <p>NOTE: The following example is based on  <a class="reference external" href="https://www.mdpi.com/2079-9292/10/3/279">here</a> and <a class="reference external" href="https://github.com/rafaelpadilla/review_object_detection_metrics">its corresponding implementation</a></p>
 <p>In this section we provide some intuition as to why we need additional metrics for detection and segmentation of objects.  As shown below such metrics are routinely used to compare various networks and approaches and manifest the progress that was made in the field over the last few years.</p>
 <p><img alt="object-detection-performance" src="../../../../../_images/object-detection-performance.png" />
 <em>Detection performance</em></p>
 <p>The above figure is dated but its indicative of the relative effort required to improve performance in MS COCO which is one of the most challenging datasets. See [here] for the latest leaderboard.  You can expand each entry and you can then click on the corresponding method that is behind the result. There are also per class benchmarks if your detection problem involves only a subset of the classes of MS COCO.</p>
 <section id="what-is-the-average-precision-ap-metric">
-<h2><span class="section-number">3.1.1. </span>What is the Average Precision (AP) metric<a class="headerlink" href="#what-is-the-average-precision-ap-metric" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.1.1. </span>What is the Average Precision (AP) metric<a class="headerlink" href="#what-is-the-average-precision-ap-metric" title="Permalink to this headline">#</a></h2>
 <p>The average precision is introduced in the next two videos. It is also calculated using a small detection example in a subsequent section.</p>
 <div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/FUg6c7Ks07o" style="border: 0; height: 345px; width: 560px">
@@ -827,7 +864,7 @@ title="Print to PDF"
 </iframe></div><p>The AP is the approximation of the Area Under the Curve (AUC). This approximation involves interpolation that eliminates the noisy Precision vs Recall curve - effectively converting this curve to a monotonic curve. This is shown next.</p>
 </section>
 <section id="a-practical-example">
-<h2><span class="section-number">3.1.2. </span>A practical example<a class="headerlink" href="#a-practical-example" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.1.2. </span>A practical example<a class="headerlink" href="#a-practical-example" title="Permalink to this headline">#</a></h2>
 <p>Considering the set of 12 images in the figure below:</p>
 <p><img alt="" src="../../../../../_images/toy_example_mosaic.png" /></p>
 <p>Each image, except (a), (g), and (j), has at least one target object of the class <em>cat</em>, whose locations are limited by the green rectangles.
@@ -857,11 +894,11 @@ When a lower IOU threshold was considered, the AP was reduced drastically in bot
 <p>Please note that MS COCO AP results are reported with interpolation over <span class="math notranslate nohighlight">\(N=101\)</span> points.</p>
 </section>
 <section id="mean-ap-map">
-<h2><span class="section-number">3.1.3. </span>Mean AP (mAP)<a class="headerlink" href="#mean-ap-map" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.1.3. </span>Mean AP (mAP)<a class="headerlink" href="#mean-ap-map" title="Permalink to this headline">#</a></h2>
 <p>In classification problems with multiple classes the mean AP is simply the sample mean of <span class="math notranslate nohighlight">\(AP(c), c \in \{1, \dots, C\}\)</span> across the C classes.</p>
 </section>
 <section id="ar">
-<h2><span class="section-number">3.1.4. </span>AR<a class="headerlink" href="#ar" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.1.4. </span>AR<a class="headerlink" href="#ar" title="Permalink to this headline">#</a></h2>
 <p>There is corresponding Average Recall (AR) metric as well and the linked reference in the beginning of this section cover the</p>
 </section>
 </section>
@@ -897,13 +934,13 @@ When a lower IOU threshold was considered, the AP was reduced drastically in bot
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">3. </span>Object Detection</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Object Detection</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../rcnn-object-detection/index.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3.2. </span>Region-CNN (RCNN) Object Detection</p>
+        <p class="prev-next-title"><span class="section-number">2.2. </span>Region-CNN (RCNN) Object Detection</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -29,7 +29,7 @@ _Is there some ideal word-embedding space that would perfectly map human languag
 
 ## Features of Word2Vec embeddings
 
-In 2012, Thomas Mikolov, an _intern_ at Microsoft, [found a way](https://arxiv.org/abs/1310.4546)[^2] to encode the meaning of words in a modest number of vector dimensions $d$. Mikolov trained a neural network to predict word occurrences near each target word. In 2013, once at Google, Mikolov and his teammates released the software for creating these word vectors and called it word2vec. 
+In 2012, Thomas Mikolov, an _intern_ at Microsoft, [found a way](https://arxiv.org/abs/1310.4546) to encode the meaning of words in a modest number of vector dimensions $d$. Mikolov trained a neural network to predict word occurrences near each target word. In 2013, once at Google, Mikolov and his teammates released the software for creating these word vectors and called it word2vec. 
 
 ![banking-vector](images/banking-vector.png)
 *word2vec generated embedding for the word `banking` in d=8 dimensions*
@@ -99,5 +99,4 @@ _Contextual representations_ are addressed in a separate section.
 
 [^1]: The other method is called Continuous Bag of Words (CBOW) and its the reverse of the skip-gram method: it predicts the center word from the words around it. Skip-gram works well with small corpora and rare terms while CBOW shows higher accuracies for frequent words and is faster to train [ref](https://www.manning.com/books/natural-language-processing-in-action). 
 
-[^2]: You don't come across papers with 10K citations very often. 
 

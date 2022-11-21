@@ -1,7 +1,3 @@
----
-title: CNN Example Architectures
----
-
 # CNN Example Architectures
 
 This is a very high level view of practical structures of CNNs before the advent of more innovative architectures such as ResNets. 

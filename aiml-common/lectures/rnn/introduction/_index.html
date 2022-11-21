@@ -53,13 +53,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"mathjax_path": "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js", "tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/rnn/introduction/_index.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="2. Simple RNN" href="../simple-rnn/_index.html" />
-    <link rel="prev" title="4.21. Detectron2 Beginner’s Tutorial" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html" />
+    <link rel="prev" title="3.21. Detectron2 Beginner’s Tutorial" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -167,28 +167,33 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/regression-notebooks.html">
+   3. Regression Notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../optimization/maximum-likelihood/_index.html">
-   3. Maximum Likelihood (ML) Estimation
+   4. Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../entropy/_index.html">
-   4. Entropy
+   5. Entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../optimization/sgd/_index.html">
-   5. Stochastic Gradient Descent
+   6. Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/classification-intro/_index.html">
-   6. Introduction to Classification
+   7. Introduction to Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/logistic-regression/_index.html">
-   7. Logistic Regression
+   8. Logistic Regression
   </a>
  </li>
 </ul>
@@ -260,6 +265,28 @@ const thebe_selector_output = ".output, .cell_output"
    4. Using convnets with small datasets
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">
+   5. Feature Extraction via Residual Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Transfer Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../transfer-learning/transfer-learning-introduction.html">
+   1. Introduction to Transfer Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../transfer-learning/transfer_learning_tutorial.html">
+   2. Transfer Learning for Computer Vision Tutorial
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -272,14 +299,9 @@ const thebe_selector_output = ".output, .cell_output"
    1. Introduction to Scene Understanding
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">
-   2. Feature Extraction via Residual Networks
-  </a>
- </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../scene-understanding/object-detection/object-detection-intro/index.html">
-   3. Object Detection
+   2. Object Detection
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -289,24 +311,24 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/object-detection/detection-metrics/index.html">
-     3.1. Object Detection and Semantic Segmentation Metrics
+     2.1. Object Detection and Semantic Segmentation Metrics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/object-detection/rcnn-object-detection/index.html">
-     3.2. Region-CNN (RCNN) Object Detection
+     2.2. Region-CNN (RCNN) Object Detection
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/object-detection/faster-rcnn-object-detection/index.html">
-     3.3. Fast and Faster RCNN Object Detection
+     2.3. Fast and Faster RCNN Object Detection
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../scene-understanding/semantic-segmentation/index.html">
-   4. Semantic Segmentation
+   3. Semantic Segmentation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -316,32 +338,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
-     4.1. Mask R-CNN Semantic Segmentation
+     3.1. Mask R-CNN Semantic Segmentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
-     4.2. Mask R-CNN Demo
+     3.2. Mask R-CNN Demo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
-     4.3. Mask R-CNN - Inspect Training Data
+     3.3. Mask R-CNN - Inspect Training Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
-     4.4. Mask R-CNN - Inspect Trained Model
+     3.4. Mask R-CNN - Inspect Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
-     4.15. Mask R-CNN - Inspect Weights of a Trained Model
+     3.15. Mask R-CNN - Inspect Weights of a Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">
-     4.21. Detectron2 Beginner’s Tutorial
+     3.21. Detectron2 Beginner’s Tutorial
     </a>
    </li>
   </ul>
@@ -391,13 +413,28 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/rnn-language-models/_index.html">
-   3. RNN Language Models
+  <a class="reference internal" href="../../nlp/word2vec/word2vec-workshop.html">
+   3. Word2Vec Workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/language-models/_index.html">
+   4. RNN Language Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model.html">
+   5. Simple RNN Language Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../nlp/language-models/cnn-language-model.html">
+   6. CNN Language Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../nlp/nmt/_index.html">
-   4. Neural Machine Translation
+   7. Neural Machine Translation
   </a>
  </li>
 </ul>
@@ -859,7 +896,7 @@ In this course will suffice to go over just two to understand what they offer in
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">4.21. </span>Detectron2 Beginner’s Tutorial</p>
+            <p class="prev-next-title"><span class="section-number">3.21. </span>Detectron2 Beginner’s Tutorial</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../simple-rnn/_index.html" title="next page">

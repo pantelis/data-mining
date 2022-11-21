@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>4. Neural Machine Translation &#8212; Data Mining</title>
+    <title>7. Neural Machine Translation &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,13 +53,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"mathjax_path": "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js", "tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/nlp/nmt/_index.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="1. Decision Trees" href="../../decision-trees/_index.html" />
-    <link rel="prev" title="3. RNN Language Models" href="../rnn-language-models/_index.html" />
+    <link rel="prev" title="6. CNN Language Model" href="../language-models/cnn-language-model.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -167,28 +167,33 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../../regression/linear-regression/regression-notebooks.html">
+   3. Regression Notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../optimization/maximum-likelihood/_index.html">
-   3. Maximum Likelihood (ML) Estimation
+   4. Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../entropy/_index.html">
-   4. Entropy
+   5. Entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../optimization/sgd/_index.html">
-   5. Stochastic Gradient Descent
+   6. Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/classification-intro/_index.html">
-   6. Introduction to Classification
+   7. Introduction to Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../classification/logistic-regression/_index.html">
-   7. Logistic Regression
+   8. Logistic Regression
   </a>
  </li>
 </ul>
@@ -260,6 +265,28 @@ const thebe_selector_output = ".output, .cell_output"
    4. Using convnets with small datasets
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">
+   5. Feature Extraction via Residual Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Transfer Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../transfer-learning/transfer-learning-introduction.html">
+   1. Introduction to Transfer Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../transfer-learning/transfer_learning_tutorial.html">
+   2. Transfer Learning for Computer Vision Tutorial
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -272,14 +299,9 @@ const thebe_selector_output = ".output, .cell_output"
    1. Introduction to Scene Understanding
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">
-   2. Feature Extraction via Residual Networks
-  </a>
- </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../scene-understanding/object-detection/object-detection-intro/index.html">
-   3. Object Detection
+   2. Object Detection
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -289,24 +311,24 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/object-detection/detection-metrics/index.html">
-     3.1. Object Detection and Semantic Segmentation Metrics
+     2.1. Object Detection and Semantic Segmentation Metrics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/object-detection/rcnn-object-detection/index.html">
-     3.2. Region-CNN (RCNN) Object Detection
+     2.2. Region-CNN (RCNN) Object Detection
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/object-detection/faster-rcnn-object-detection/index.html">
-     3.3. Fast and Faster RCNN Object Detection
+     2.3. Fast and Faster RCNN Object Detection
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../scene-understanding/semantic-segmentation/index.html">
-   4. Semantic Segmentation
+   3. Semantic Segmentation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -316,32 +338,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
-     4.1. Mask R-CNN Semantic Segmentation
+     3.1. Mask R-CNN Semantic Segmentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
-     4.2. Mask R-CNN Demo
+     3.2. Mask R-CNN Demo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
-     4.3. Mask R-CNN - Inspect Training Data
+     3.3. Mask R-CNN - Inspect Training Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
-     4.4. Mask R-CNN - Inspect Trained Model
+     3.4. Mask R-CNN - Inspect Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
-     4.15. Mask R-CNN - Inspect Weights of a Trained Model
+     3.15. Mask R-CNN - Inspect Weights of a Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">
-     4.21. Detectron2 Beginner’s Tutorial
+     3.21. Detectron2 Beginner’s Tutorial
     </a>
    </li>
   </ul>
@@ -391,13 +413,28 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../rnn-language-models/_index.html">
-   3. RNN Language Models
+  <a class="reference internal" href="../word2vec/word2vec-workshop.html">
+   3. Word2Vec Workshop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../language-models/_index.html">
+   4. RNN Language Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../language-models/simple-rnn-language-model.html">
+   5. Simple RNN Language Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../language-models/cnn-language-model.html">
+   6. CNN Language Model
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   4. Neural Machine Translation
+   7. Neural Machine Translation
   </a>
  </li>
 </ul>
@@ -743,17 +780,17 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sequence-to-sequence-seq2seq">
-   4.1. Sequence-to-Sequence (Seq2Seq)
+   7.1. Sequence-to-Sequence (Seq2Seq)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#encoder">
-     4.1.1. Encoder
+     7.1.1. Encoder
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#decoder">
-     4.1.2. Decoder
+     7.1.2. Decoder
     </a>
    </li>
   </ul>
@@ -779,17 +816,17 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sequence-to-sequence-seq2seq">
-   4.1. Sequence-to-Sequence (Seq2Seq)
+   7.1. Sequence-to-Sequence (Seq2Seq)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#encoder">
-     4.1.1. Encoder
+     7.1.1. Encoder
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#decoder">
-     4.1.2. Decoder
+     7.1.2. Decoder
     </a>
    </li>
   </ul>
@@ -805,7 +842,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="neural-machine-translation">
-<h1><span class="section-number">4. </span>Neural Machine Translation<a class="headerlink" href="#neural-machine-translation" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">7. </span>Neural Machine Translation<a class="headerlink" href="#neural-machine-translation" title="Permalink to this headline">#</a></h1>
 <blockquote>
 <div><p>These notes heavily borrowing from <a class="reference external" href="https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1194/readings/cs224n-2019-notes06-NMT_seq2seq_attention.pdf">the CS229N 2019 set of notes on NMT</a>.</p>
 </div></blockquote>
@@ -821,7 +858,7 @@ title="Print to PDF"
 <p><img alt="ios-keyboard-translation" src="../../../../_images/ios-keyboard-translation.png" />
 <em>Your smartphones translate the text you type in messaging applications to emojis and other symbols structured in such a way to convey the same meaning as the text</em>.</p>
 <section id="sequence-to-sequence-seq2seq">
-<h2><span class="section-number">4.1. </span>Sequence-to-Sequence (Seq2Seq)<a class="headerlink" href="#sequence-to-sequence-seq2seq" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">7.1. </span>Sequence-to-Sequence (Seq2Seq)<a class="headerlink" href="#sequence-to-sequence-seq2seq" title="Permalink to this headline">#</a></h2>
 <p>Sequence-to-sequence, or “Seq2Seq”, is a relatively new paradigm, with its <a class="reference external" href="https://arxiv.org/abs/1409.3215">first published in 2014</a> that treated English-French translation. At a high level, a sequence-to-sequence model is an end-to-end model made up of two recurrent neural networks (LSTMs):</p>
 <ul class="simple">
 <li><p>an encoder, which takes the a source sequence as input and encodes it into a fixed-size “context vector” <span class="math notranslate nohighlight">\(\phi\)</span>, and</p></li>
@@ -831,7 +868,7 @@ title="Print to PDF"
 <p><img alt="encoder-decoder-high-level" src="../../../../_images/encoder-decoder-high-level.png" />
 <em>Encoder-Decoder NMT Architecture <a class="reference external" href="https://www.amazon.com/Natural-Language-Processing-PyTorch-Applications/dp/1491978236">ref</a></em></p>
 <section id="encoder">
-<h3><span class="section-number">4.1.1. </span>Encoder<a class="headerlink" href="#encoder" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">7.1.1. </span>Encoder<a class="headerlink" href="#encoder" title="Permalink to this headline">#</a></h3>
 <p>The encoder network’s job is to read the input sequence to our Seq2Seq model and generate a fixed-dimensional context vector <span class="math notranslate nohighlight">\(\phi\)</span> for the sequence. To do that we use an RNN (LSTM) that mathematically, it evolves its hidden state as we have seen as,</p>
 <div class="math notranslate nohighlight">
 \[\mathbf h_t = f(\mathbf x_t, \mathbf h_{t-1})\]</div>
@@ -844,7 +881,7 @@ title="Print to PDF"
 <p>In addition, Seq2Seq encoders will often do something strange: they will process the input sequence in reverse. This is actually done on purpose. The idea is that, by doing this, the last thing that the encoder sees will (roughly) corresponds to the first thing that the model outputs; this makes it easier for the decoder to “get started” on the output.</p>
 </section>
 <section id="decoder">
-<h3><span class="section-number">4.1.2. </span>Decoder<a class="headerlink" href="#decoder" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">7.1.2. </span>Decoder<a class="headerlink" href="#decoder" title="Permalink to this headline">#</a></h3>
 <p>The decoder is a language model that’s “aware” of the target words that it’s generated so far and of the input. In fact it is an example of <em>conditional language model</em> because it conditions on the source sentence or its context <span class="math notranslate nohighlight">\(\phi\)</span>. The context <span class="math notranslate nohighlight">\(\phi\)</span> can be calculated via</p>
 <div class="math notranslate nohighlight">
 \[ \phi = q(\mathbf h_1, \mathbf h_2 \dots \mathbf h_{Tx})\]</div>
@@ -852,7 +889,7 @@ title="Print to PDF"
 <p>For example, in the simplest case, <span class="math notranslate nohighlight">\(\mathbf \phi = \mathbf h_{Tx}\)</span></p>
 <p>The decoder directly calculates,</p>
 <div class="math notranslate nohighlight">
-\[\hat \mathbf y  = \argmax_y p(\mathbf y | \mathbf \phi)\]</div>
+\[\mathbf{\hat y}   = \argmax_y p(\mathbf y | \mathbf \phi)\]</div>
 <p>We can write this as:</p>
 <div class="math notranslate nohighlight">
 \[\argmax_y p(\mathbf y| \mathbf x) = p(y_1, y_2, ..., y_{Ty} | \phi)\]</div>
@@ -861,7 +898,7 @@ title="Print to PDF"
 \[\argmax_y p(y_{Ty} | y_1, ..., y_{T_y-1}, \mathbf \phi)  \dots p(y_2|y_1, \mathbf \phi ) p(y_1| \mathbf \phi) \]</div>
 <p>We can now write,</p>
 <div class="math notranslate nohighlight">
-\[\hat \mathbf y  = \argmax_y p(\mathbf y | \mathbf \phi) = \prod_{t=1}^{T_y} p(y_t | y_1, ..., y_{t-1}, \mathbf \phi) \]</div>
+\[\mathbf{\hat y}   = \argmax_y p(\mathbf y | \mathbf \phi) = \prod_{t=1}^{T_y} p(y_t | y_1, ..., y_{t-1}, \mathbf \phi) \]</div>
 <p>In this equation <span class="math notranslate nohighlight">\(p(y_t | y_1, ..., y_{t-1}, \mathbf \phi)\)</span> is a probability distribution represented by a softmax across all all the words of the dictionary. We can use an RNN (LSTM) to model the conditional probabilities</p>
 <div class="math notranslate nohighlight">
 \[LSTM = g(s_t,  y_{t-1}, \phi ) = p(y_t | y_1, ..., y_{t-1}, \mathbf \phi) \]</div>
@@ -904,11 +941,11 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../rnn-language-models/_index.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../language-models/cnn-language-model.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">3. </span>RNN Language Models</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>CNN Language Model</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../../decision-trees/_index.html" title="next page">
