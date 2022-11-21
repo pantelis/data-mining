@@ -23,7 +23,7 @@ parts:
     chapters:
     - file: aiml-common/lectures/learning-problem/_index.md
     - file: aiml-common/lectures/regression/linear-regression/_index.md    
-    - file: aiml-common/lectures/regression/linear-regression/regression-notebooks/_index.md
+    - file: aiml-common/lectures/regression/linear-regression/regression-notebooks.md
     - file: aiml-common/lectures/optimization/maximum-likelihood/_index.md
     - file: aiml-common/lectures/entropy/_index.md
     - file: aiml-common/lectures/optimization/sgd/_index.md
@@ -49,12 +49,19 @@ parts:
     - file: aiml-common/lectures/cnn/cnn-layers/_index.md
     - file: aiml-common/lectures/cnn/cnn-example-architectures/_index.md
     - file: aiml-common/lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.ipynb
+    - file: aiml-common/lectures/scene-understanding/feature-extraction-resnet/index.md
+      
+  - caption:  Transfer Learning
+    numbered: 3
+    chapters:  
+    - file: aiml-common/lectures/transfer-learning/transfer-learning-introduction.md  
+    - file: aiml-common/lectures/transfer-learning/transfer_learning_tutorial.ipynb
+    #- file: aiml-common/lectures/transfer-learning/quantized_transfer_learning.ipynb  
 
   - caption: Scene Understanding
     numbered: 3
     chapters:    
     - file: aiml-common/lectures/scene-understanding/scene-understanding-intro/index.md
-    - file: aiml-common/lectures/scene-understanding/feature-extraction-resnet/index.md
     - file: aiml-common/lectures/scene-understanding/object-detection/object-detection-intro/index.md
       title: Object Detection
       sections:  
@@ -84,9 +91,10 @@ parts:
     chapters:      
     - file: aiml-common/lectures/nlp/nlp-intro/_index.md 
     - file: aiml-common/lectures/nlp/word2vec/_index.md 
-    - file: aiml-common/lectures/nlp/word2vec-workshop/_index.md 
-    - file: aiml-common/lectures/nlp/rnn-language-models/_index.md   
-    - file: aiml-common/lectures/nlp/rnn-language-models/language-models-workshop/_index.md   
+    - file: aiml-common/lectures/nlp/word2vec/word2vec-workshop.md 
+    - file: aiml-common/lectures/nlp/language-models/_index.md   
+    - file: aiml-common/lectures/nlp/language-models/simple-rnn-language-model.ipynb
+    - file: aiml-common/lectures/nlp/language-models/cnn-language-model.ipynb
     - file: aiml-common/lectures/nlp/nmt/_index.md     
   
   - caption: Classical Learning Methods
@@ -128,7 +136,6 @@ parts:
   - caption: Resources
     numbered: 3
     chapters:
-    - file: aiml-common/lectures/environment/_index.md
     - file: aiml-common/lectures/python/_index.md  
 
   - caption:  Assignments & Projects

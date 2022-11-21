@@ -1,7 +1,3 @@
----
-title: Data Mining 
----
-
 # Data Mining
 
 {bdg-link-dark}`Instructor: Pantelis Monogioudis, Ph.D. <https://www.linkedin.com/in/pantelis/>`

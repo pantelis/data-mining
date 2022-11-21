@@ -11,7 +11,7 @@ sphinx-proof
 jupyter_contrib_nbextensions
 thebe
 sphinxcontrib-svg2pdfconverter
-
+sphinx-proof
 # dtreeviz
 # sklearn
 # lolviz
