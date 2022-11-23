@@ -1,15 +1,9 @@
----
-title: The Long Short-Term Memory (LSTM) Cell Architecture
-draft: false
-weight: 135
----
-
 # The Long Short-Term Memory (LSTM) Cell Architecture
 
 In the simple RNN we have seen the problem of exploding or vanishing gradients when [the span of back-propagation is large](http://ai.dinfo.unifi.it/paolo//ps/tnn-94-gradient.pdf) (large $\tau$). Using the conceptual IIR filter, that ultimately _integrates_ the input signal, we have seen that in order to avoid an exploding or vanishing impulse response, we need to control $w$. This is exactly what is being done in evolutionary RNN architectures that we will treat in this section called _gated RNNs_. The best known gated RNN architecture is called the LSTM _cell_ and in this case the weight $w$ is not fixed but it is determined based on the input sequence _context_. The architecture is shown below. 
 
-![lstm-cell](images/rnn-LSTM.png)
-*LSTM architecture: It is divided into three areas: input (green), cell state (blue) and output (red). You can clearly see the outer ($\mathbf h_{t-1}$ )and the inner ($\mathbf s_{t-1}$) recurrence loops.*
+![lstm-cell](images/lstm-cell-2.png)
+*LSTM architecture: It is divided into three areas: input (green), cell state (blue) and output (red). You can clearly see the outer ($\mathbf h_{t-1}$ )and the inner ($\mathbf s_{t-1}$) recurrence loops. The multipliers are Hadamard products aka they apply element-wise.*
 
 Because we need to capture the input context that involve going back several time steps in the past, we introduce an _additional_ inner recurrence loop that is effectively a variable length internal to the cell memory - we call this the _cell state_.  We employ another hidden unit called the _forget gate_  to learn the input context and the forgetting factor (equivalent to the $w$ we have seen in the IIR filter) i.e. the extent that the cell forgets the previous hidden state. We employ a couple of other gates as well: the _input gate_ and the _output gate_ as shown in the diagram below. 
 
@@ -42,9 +36,9 @@ $$q_t{(i)} =\sigma \Big( \mathbf W_o(i,:) \mathbf h_{t-1}^i + \mathbf U_o(i,:) \
 
 This is the heart of the LSTM cell, the cell state is the new memory that is introduced by LSTM - all the earlier factors are used to preserve it as long as it is needed by the use case. 
 
-$$s_t^i = f_t^i s_{t-1}^i + g_t^i \sigma \Big( \mathbf W(i,:) \mathbf h_{t-1}^i + \mathbf U(i,:) \mathbf x_t^i + \mathbf b^i \Big)$$
+$$s_t^i = f_t^i s_{t-1}^i + g_t^i \tanh \Big( \mathbf W(i,:) \mathbf h_{t-1}^i + \mathbf U(i,:) \mathbf x_t^i + \mathbf b^i \Big)$$
 
-The parameters $\theta_{in} = \{  \mathbf W, \mathbf U, \mathbf b \}$  are the recurrent weights, input weights and bias respectively at the input of the i-th LSTM cell. Please note that in the above equation some authors use a $\tanh$ non-linearity to transform the input instead of sigmoid. 
+The parameters $\theta_{in} = \{  \mathbf W, \mathbf U, \mathbf b \}$  are the recurrent weights, input weights and bias respectively at the input of the i-th LSTM cell.
  
 The forget gate calculates the forgetting factor,
 
@@ -58,7 +52,7 @@ Hyperparameter optimization for LSTMs is addressed more formally ["LSTM: A Searc
 
 ## LSTM Workshop
 
-Please go through [this](https://christinakouridi.blog/2019/06/20/vanilla-lstm-numpy/) from scratch implementation of LSTM. Note that the notation is different than in your notes and follows [this well known blog post](https://colah.github.io/posts/2015-08-Understanding-LSTMs/).  
+Please go through [this](https://github.com/christinakouridi/scratchML/tree/master/LSTM) from scratch implementation of LSTM. Note that the notation is different than in these notes and follows [this well known blog post](https://colah.github.io/posts/2015-08-Understanding-LSTMs/).  
 
 ## Additional Resources
 

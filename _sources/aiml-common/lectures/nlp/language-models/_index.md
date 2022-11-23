@@ -1,7 +1,3 @@
----
-title: RNN Language Models
----
-
 # RNN Language Models
 
 > These notes heavily borrowing from [the CS229N 2019 set of notes on Language Models](https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1194/readings/cs224n-2019-notes05-LM_RNN.pdf). 
