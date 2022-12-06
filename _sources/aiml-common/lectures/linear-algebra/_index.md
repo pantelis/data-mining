@@ -1,9 +1,4 @@
----
-title: Linear Algebra for Machine Learning
----
-
 # Linear Algebra for Machine Learning
-
 
 Let me introduce you MIT prof G Strang - probably the best educator in America. He has published this playlist of [youtube videos on Linear Algebra](https://www.youtube.com/watch?v=Cx5Z-OslNWE&list=PLUl4u3cNGP63oMNUHXqIUcrkS2PivhN3k). 
 

@@ -911,14 +911,14 @@ title="Print to PDF"
 <p>To keep things simple, this example assumes that only a single predictor variable, <span class="math notranslate nohighlight">\(x\)</span>, is associated with the target variable, <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
-<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">dtreeviz.trees</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">lolviz</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.metrics import mean_squared_error
+from sklearn.tree import DecisionTreeRegressor
+import matplotlib.pyplot as plt
+from dtreeviz.trees import *
+from lolviz import *
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+import numpy as np
+import pandas as pd
 </pre></div>
 </div>
 </div>
@@ -928,19 +928,19 @@ title="Print to PDF"
 <p>Because decision and predictor nodes have different behavior, it makes sense to create two different classes.  To make a prediction for test vector <span class="math notranslate nohighlight">\(X\)</span>, a decision node compares the predictor variable (feature) <span class="math notranslate nohighlight">\(x_i\)</span> against a split value. (We only have one predictor here so we don’t bother recording which feature a node is testing.) The split value will be chosen from the range of <span class="math notranslate nohighlight">\(x_i\)</span> during training (see below).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DecisionNode</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">split</span><span class="p">):</span> <span class="c1"># split chosen from x values</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">split</span> <span class="o">=</span> <span class="n">split</span>
-    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">split</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class DecisionNode:
+    def __init__(self,split): # split chosen from x values
+        self.split = split
+    def predict(self,x):
+        if x &lt; self.split:
+            return self.left.predict(x)
+        return self.right.predict(x)
 
-<span class="k">class</span> <span class="nc">LeafNode</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
-    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="c1"># Predictions are the means of subregions (x ignored in leaf)</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>    
+class LeafNode:
+    def __init__(self,y,left=None,right=None):
+        self.y = y
+    def predict(self, x): # Predictions are the means of subregions (x ignored in leaf)
+        return np.mean(self.y)    
 </pre></div>
 </div>
 </div>
@@ -948,17 +948,17 @@ title="Print to PDF"
 <p>Given these definitions, let’s manually build a stump and make a prediction or two.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">root</span> <span class="o">=</span> <span class="n">DecisionNode</span><span class="p">(</span><span class="mi">900</span><span class="p">)</span>                 <span class="c1"># split on x at 900</span>
-<span class="n">root</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">LeafNode</span><span class="p">([</span><span class="mi">1160</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">1280</span><span class="p">])</span> <span class="c1"># 3 y values in leaf</span>
-<span class="n">root</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">LeafNode</span><span class="p">([</span><span class="mi">1450</span><span class="p">,</span><span class="mi">2000</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>root = DecisionNode(900)                 # split on x at 900
+root.left = LeafNode([1160, 1200, 1280]) # 3 y values in leaf
+root.right = LeafNode([1450,2000])
 
-<span class="n">x</span> <span class="o">=</span> <span class="mi">900</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> =&gt; </span><span class="si">{</span><span class="n">y_pred</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> (avg [1450,2000] is </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="mi">1450</span><span class="p">,</span><span class="mi">2000</span><span class="p">])</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+x = 900
+y_pred = root.predict(x)
+print(f&quot;{x} =&gt; {y_pred:.1f} (avg [1450,2000] is {np.mean([1450,2000])})&quot;)
 
-<span class="n">x</span> <span class="o">=</span> <span class="mi">890</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> =&gt; </span><span class="si">{</span><span class="n">y_pred</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> (avg [1450,2000] is </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="mi">1450</span><span class="p">,</span><span class="mi">2000</span><span class="p">])</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+x = 890
+y_pred = root.predict(x)
+print(f&quot;{x} =&gt; {y_pred:.1f} (avg [1450,2000] is {np.mean([1450,2000])})&quot;)
 </pre></div>
 </div>
 </div>
@@ -974,37 +974,37 @@ title="Print to PDF"
 <h2><span class="section-number">2.2. </span>Fit a stump to single-var x and target y<a class="headerlink" href="#fit-a-stump-to-single-var-x-and-target-y" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    We train on the (x,y), getting split of single-var x that</span>
-<span class="sd">    minimizes variance in subregions of y created by x split.</span>
-<span class="sd">    Return root of decision tree stump</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">loss</span><span class="p">,</span> <span class="n">split</span> <span class="o">=</span> <span class="n">find_best_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">root</span> <span class="o">=</span> <span class="n">DecisionNode</span><span class="p">(</span><span class="n">split</span><span class="p">)</span>
-    <span class="n">root</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">LeafNode</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">x</span><span class="o">&lt;</span><span class="n">split</span><span class="p">])</span>
-    <span class="n">root</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">LeafNode</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">split</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">root</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def fit(x, y):
+    &quot;&quot;&quot;
+    We train on the (x,y), getting split of single-var x that
+    minimizes variance in subregions of y created by x split.
+    Return root of decision tree stump
+    &quot;&quot;&quot;
+    loss, split = find_best_split(x,y)
+    root = DecisionNode(split)
+    root.left = LeafNode(y[x&lt;split])
+    root.right = LeafNode(y[x&gt;=split])
+    return root
         
-<span class="k">def</span> <span class="nf">find_best_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
-    <span class="n">best_loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
-    <span class="n">best_split</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;find_best_split in x=</span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span> <span class="c1"># try all possible x values</span>
-        <span class="n">lefty</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">x</span><span class="o">&lt;</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-        <span class="n">righty</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-        <span class="n">nl</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lefty</span><span class="p">)</span>
-        <span class="n">nr</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">righty</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">nl</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="n">nr</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="c1"># variance is same as MSE here</span>
-        <span class="c1"># weight by proportion on left and right, get avg as loss</span>
-        <span class="n">loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">lefty</span><span class="p">)</span><span class="o">*</span><span class="n">nl</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">righty</span><span class="p">)</span><span class="o">*</span><span class="n">nr</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">lefty</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">righty</span><span class="si">}</span><span class="s2">    candidate split x =</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2"> loss </span><span class="si">{</span><span class="n">loss</span><span class="si">:</span><span class="s2">8.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">loss</span> <span class="o">&lt;</span> <span class="n">best_loss</span><span class="p">:</span>
-            <span class="n">best_loss</span> <span class="o">=</span> <span class="n">loss</span>
-            <span class="n">best_split</span> <span class="o">=</span> <span class="n">v</span>
-    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">best_loss</span><span class="p">),</span> <span class="n">best_split</span>
+def find_best_split(x,y):
+    best_loss = np.inf
+    best_split = -1
+    print(f&quot;find_best_split in x={list(x)}&quot;)
+    for v in x[1:]: # try all possible x values
+        lefty = y[x&lt;v].values
+        righty = y[x&gt;=v].values
+        nl = len(lefty)
+        nr = len(righty)
+        if nl==0 or nr==0:
+            continue
+        # variance is same as MSE here
+        # weight by proportion on left and right, get avg as loss
+        loss = (np.var(lefty)*nl + np.var(righty)*nr)/2
+        print(f&quot;{lefty} | {righty}    candidate split x ={v:4d} loss {loss:8.1f}&quot;)
+        if loss &lt; best_loss:
+            best_loss = loss
+            best_split = v
+    return float(best_loss), best_split
 </pre></div>
 </div>
 </div>
@@ -1014,10 +1014,10 @@ title="Print to PDF"
 <p>Grabbed trivial data from <a class="reference external" href="https://explained.ai/gradient-boosting/L2-loss.html">Gradient boosting: Distance to target</a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;sqfeet&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">750</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">850</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span><span class="mi">950</span><span class="p">]</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;rent&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1160</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">1280</span><span class="p">,</span> <span class="mi">1450</span><span class="p">,</span><span class="mi">2000</span><span class="p">]</span>
-<span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df = pd.DataFrame()
+df[&quot;sqfeet&quot;] = [750, 800, 850, 900,950]
+df[&quot;rent&quot;] = [1160, 1200, 1280, 1450,2000]
+df
 </pre></div>
 </div>
 </div>
@@ -1076,7 +1076,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">sqfeet</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">rent</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>t = fit(df.sqfeet, df.rent)
 </pre></div>
 </div>
 </div>
@@ -1096,7 +1096,7 @@ title="Print to PDF"
 <p>See <a class="reference external" href="https://github.com/parrt/lolviz">lolviz</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">treeviz</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>treeviz(t)
 </pre></div>
 </div>
 </div>
@@ -1109,10 +1109,10 @@ title="Print to PDF"
 <p>We get a different split</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;sqfeet&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">750</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">850</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span><span class="mi">950</span><span class="p">]</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;rent&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1160</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">1280</span><span class="p">,</span> <span class="mi">1450</span><span class="p">,</span><span class="mi">1300</span><span class="p">]</span>
-<span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df = pd.DataFrame()
+df[&quot;sqfeet&quot;] = [750, 800, 850, 900,950]
+df[&quot;rent&quot;] = [1160, 1200, 1280, 1450,1300]
+df
 </pre></div>
 </div>
 </div>
@@ -1171,8 +1171,8 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">sqfeet</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">rent</span><span class="p">)</span>
-<span class="n">treeviz</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>t = fit(df.sqfeet, df.rent)
+treeviz(t)
 </pre></div>
 </div>
 </div>
@@ -1193,16 +1193,16 @@ title="Print to PDF"
 <p>See <a class="reference external" href="https://github.com/parrt/dtreeviz">dtreeviz</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sqfeet</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">rent</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">rtreeviz_univar</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span>
-                    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
-                    <span class="n">max_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                    <span class="n">feature_name</span><span class="o">=</span><span class="s1">&#39;sqfeet&#39;</span><span class="p">,</span>
-                    <span class="n">target_name</span><span class="o">=</span><span class="s1">&#39;rent&#39;</span><span class="p">,</span>
-                    <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = plt.figure()
+ax = fig.gca()
+X, y = df.sqfeet, df.rent
+t = rtreeviz_univar(ax,
+                    X, y,
+                    max_depth=1,
+                    feature_name=&#39;sqfeet&#39;,
+                    target_name=&#39;rent&#39;,
+                    fontsize=14)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1215,15 +1215,15 @@ title="Print to PDF"
 <h2><span class="section-number">2.4. </span>Visual partitioning of stump nodes<a class="headerlink" href="#visual-partitioning-of-stump-nodes" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">regr</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>regr = DecisionTreeRegressor(max_depth=1)
 
-<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sqfeet</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">df</span><span class="o">.</span><span class="n">rent</span>
-<span class="n">regr</span> <span class="o">=</span> <span class="n">regr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">viz</span> <span class="o">=</span> <span class="n">dtreeviz</span><span class="p">(</span><span class="n">regr</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">target_name</span><span class="o">=</span><span class="s1">&#39;rent&#39;</span><span class="p">,</span>
-               <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sqfeet&#39;</span><span class="p">],</span>
-               <span class="n">fancy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="c1">#viz.view() # to pop up outside of notebook</span>
-<span class="n">viz</span>
+X, y = df.sqfeet.values.reshape(-1,1), df.rent
+regr = regr.fit(X, y)
+viz = dtreeviz(regr, X, y, target_name=&#39;rent&#39;,
+               feature_names=[&#39;sqfeet&#39;],
+               fancy=True)
+#viz.view() # to pop up outside of notebook
+viz
 </pre></div>
 </div>
 </div>
@@ -1240,33 +1240,33 @@ title="Print to PDF"
 <h1><span class="section-number">3. </span>Full regression tree fit<a class="headerlink" href="#full-regression-tree-fit" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    We train on the (x,y), getting split of single-var x that</span>
-<span class="sd">    minimizes variance in subregions of y created by x split.</span>
-<span class="sd">    Return root of decision tree stump</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">LeafNode</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">loss</span><span class="p">,</span> <span class="n">split</span> <span class="o">=</span> <span class="n">find_best_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">split</span><span class="o">==-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">LeafNode</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">DecisionNode</span><span class="p">(</span><span class="n">split</span><span class="p">)</span>
-    <span class="n">left</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="o">&lt;</span><span class="n">split</span><span class="p">]</span>
-    <span class="n">right</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">split</span><span class="p">]</span>
-    <span class="n">t</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">x</span><span class="o">&lt;</span><span class="n">split</span><span class="p">])</span>
-    <span class="n">t</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">split</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">t</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def fit(x, y):
+    &quot;&quot;&quot;
+    We train on the (x,y), getting split of single-var x that
+    minimizes variance in subregions of y created by x split.
+    Return root of decision tree stump
+    &quot;&quot;&quot;
+    if len(x)==1:
+        return LeafNode(y)
+    loss, split = find_best_split(x,y)
+    if split==-1:
+        return LeafNode(y)
+    t = DecisionNode(split)
+    left = x[x&lt;split]
+    right = x[x&gt;=split]
+    t.left = fit(left, y[x&lt;split])
+    t.right = fit(right, y[x&gt;=split])
+    return t
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">700</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">800</span><span class="p">]</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
-<span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df = pd.DataFrame()
+df[&quot;x&quot;] = [700, 100, 200, 600, 800]
+df[&quot;y&quot;] = [10, 2, 3, 11, 9]
+df
 </pre></div>
 </div>
 </div>
@@ -1325,8 +1325,8 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-<span class="n">treeviz</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>t = fit(df.x, df.y)
+treeviz(t)
 </pre></div>
 </div>
 </div>

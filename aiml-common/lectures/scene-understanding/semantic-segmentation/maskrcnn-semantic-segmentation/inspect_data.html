@@ -900,34 +900,34 @@ title="Print to PDF"
 <p>Inspect and visualize data loading and pre-processing code.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">itertools</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
-<span class="kn">import</span> <span class="nn">matplotlib.lines</span> <span class="k">as</span> <span class="nn">lines</span>
-<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Polygon</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
+import sys
+import itertools
+import math
+import logging
+import json
+import re
+import random
+from collections import OrderedDict
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import matplotlib.lines as lines
+from matplotlib.patches import Polygon
 
-<span class="c1"># Root directory of the project</span>
-<span class="n">ROOT_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../../&quot;</span><span class="p">)</span>
+# Root directory of the project
+ROOT_DIR = os.path.abspath(&quot;../../&quot;)
 
-<span class="c1"># Import Mask RCNN</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ROOT_DIR</span><span class="p">)</span>  <span class="c1"># To find local version of the library</span>
-<span class="kn">from</span> <span class="nn">mrcnn</span> <span class="kn">import</span> <span class="n">utils</span>
-<span class="kn">from</span> <span class="nn">mrcnn</span> <span class="kn">import</span> <span class="n">visualize</span>
-<span class="kn">from</span> <span class="nn">mrcnn.visualize</span> <span class="kn">import</span> <span class="n">display_images</span>
-<span class="kn">import</span> <span class="nn">mrcnn.model</span> <span class="k">as</span> <span class="nn">modellib</span>
-<span class="kn">from</span> <span class="nn">mrcnn.model</span> <span class="kn">import</span> <span class="n">log</span>
+# Import Mask RCNN
+sys.path.append(ROOT_DIR)  # To find local version of the library
+from mrcnn import utils
+from mrcnn import visualize
+from mrcnn.visualize import display_images
+import mrcnn.model as modellib
+from mrcnn.model import log
 
-<span class="o">%</span><span class="k">matplotlib</span> inline
+%matplotlib inline
 </pre></div>
 </div>
 </div>
@@ -942,16 +942,16 @@ title="Print to PDF"
 <p>Run one of the code blocks below to import and load the configurations to use.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run one of the code blocks</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Run one of the code blocks
 
-<span class="c1"># Shapes toy dataset</span>
-<span class="c1"># import shapes</span>
-<span class="c1"># config = shapes.ShapesConfig()</span>
+# Shapes toy dataset
+# import shapes
+# config = shapes.ShapesConfig()
 
-<span class="c1"># MS COCO Dataset</span>
-<span class="kn">import</span> <span class="nn">coco</span>
-<span class="n">config</span> <span class="o">=</span> <span class="n">coco</span><span class="o">.</span><span class="n">CocoConfig</span><span class="p">()</span>
-<span class="n">COCO_DIR</span> <span class="o">=</span> <span class="s2">&quot;path to COCO dataset&quot;</span>  <span class="c1"># TODO: enter value here</span>
+# MS COCO Dataset
+import coco
+config = coco.CocoConfig()
+COCO_DIR = &quot;path to COCO dataset&quot;  # TODO: enter value here
 </pre></div>
 </div>
 </div>
@@ -961,21 +961,21 @@ title="Print to PDF"
 <h2><span class="section-number">3.3.2. </span>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load dataset</span>
-<span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">NAME</span> <span class="o">==</span> <span class="s1">&#39;shapes&#39;</span><span class="p">:</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">shapes</span><span class="o">.</span><span class="n">ShapesDataset</span><span class="p">()</span>
-    <span class="n">dataset</span><span class="o">.</span><span class="n">load_shapes</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">IMAGE_SHAPE</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">config</span><span class="o">.</span><span class="n">IMAGE_SHAPE</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="k">elif</span> <span class="n">config</span><span class="o">.</span><span class="n">NAME</span> <span class="o">==</span> <span class="s2">&quot;coco&quot;</span><span class="p">:</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">coco</span><span class="o">.</span><span class="n">CocoDataset</span><span class="p">()</span>
-    <span class="n">dataset</span><span class="o">.</span><span class="n">load_coco</span><span class="p">(</span><span class="n">COCO_DIR</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Load dataset
+if config.NAME == &#39;shapes&#39;:
+    dataset = shapes.ShapesDataset()
+    dataset.load_shapes(500, config.IMAGE_SHAPE[0], config.IMAGE_SHAPE[1])
+elif config.NAME == &quot;coco&quot;:
+    dataset = coco.CocoDataset()
+    dataset.load_coco(COCO_DIR, &quot;train&quot;)
 
-<span class="c1"># Must call before using the dataset</span>
-<span class="n">dataset</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
+# Must call before using the dataset
+dataset.prepare()
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Image Count: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">image_ids</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Class Count: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">num_classes</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">info</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">class_info</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:3}</span><span class="s2">. </span><span class="si">{:50}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]))</span>
+print(&quot;Image Count: {}&quot;.format(len(dataset.image_ids)))
+print(&quot;Class Count: {}&quot;.format(dataset.num_classes))
+for i, info in enumerate(dataset.class_info):
+    print(&quot;{:3}. {:50}&quot;.format(i, info[&#39;name&#39;]))
 </pre></div>
 </div>
 </div>
@@ -1077,12 +1077,12 @@ Class Count: 81
 <p>Load and display images and masks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load and display random samples</span>
-<span class="n">image_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">image_ids</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">image_id</span> <span class="ow">in</span> <span class="n">image_ids</span><span class="p">:</span>
-    <span class="n">image</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">load_image</span><span class="p">(</span><span class="n">image_id</span><span class="p">)</span>
-    <span class="n">mask</span><span class="p">,</span> <span class="n">class_ids</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">load_mask</span><span class="p">(</span><span class="n">image_id</span><span class="p">)</span>
-    <span class="n">visualize</span><span class="o">.</span><span class="n">display_top_masks</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">class_ids</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Load and display random samples
+image_ids = np.random.choice(dataset.image_ids, 4)
+for image_id in image_ids:
+    image = dataset.load_image(image_id)
+    mask, class_ids = dataset.load_mask(image_id)
+    visualize.display_top_masks(image, mask, class_ids, dataset.class_names)
 </pre></div>
 </div>
 </div>
@@ -1099,21 +1099,21 @@ Class Count: 81
 <p>Rather than using bounding box coordinates provided by the source datasets, we compute the bounding boxes from masks instead. This allows us to handle bounding boxes consistently regardless of the source dataset, and it also makes it easier to resize, rotate, or crop images because we simply generate the bounding boxes from the updates masks rather than computing bounding box transformation for each type of image transformation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load random image and mask.</span>
-<span class="n">image_id</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">image_ids</span><span class="p">)</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">load_image</span><span class="p">(</span><span class="n">image_id</span><span class="p">)</span>
-<span class="n">mask</span><span class="p">,</span> <span class="n">class_ids</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">load_mask</span><span class="p">(</span><span class="n">image_id</span><span class="p">)</span>
-<span class="c1"># Compute Bounding box</span>
-<span class="n">bbox</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">extract_bboxes</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Load random image and mask.
+image_id = random.choice(dataset.image_ids)
+image = dataset.load_image(image_id)
+mask, class_ids = dataset.load_mask(image_id)
+# Compute Bounding box
+bbox = utils.extract_bboxes(mask)
 
-<span class="c1"># Display image and additional stats</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;image_id &quot;</span><span class="p">,</span> <span class="n">image_id</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">image_reference</span><span class="p">(</span><span class="n">image_id</span><span class="p">))</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;mask&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;class_ids&quot;</span><span class="p">,</span> <span class="n">class_ids</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;bbox&quot;</span><span class="p">,</span> <span class="n">bbox</span><span class="p">)</span>
-<span class="c1"># Display image and instances</span>
-<span class="n">visualize</span><span class="o">.</span><span class="n">display_instances</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">class_ids</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
+# Display image and additional stats
+print(&quot;image_id &quot;, image_id, dataset.image_reference(image_id))
+log(&quot;image&quot;, image)
+log(&quot;mask&quot;, mask)
+log(&quot;class_ids&quot;, class_ids)
+log(&quot;bbox&quot;, bbox)
+# Display image and instances
+visualize.display_instances(image, bbox, mask, class_ids, dataset.class_names)
 </pre></div>
 </div>
 </div>
@@ -1134,30 +1134,30 @@ bbox                     shape: (5, 4)                min:    1.00000  max:  329
 <p>To support multiple images per batch, images are resized to one size (1024x1024). Aspect ratio is preserved, though. If an image is not square, then zero padding is added at the top/bottom or right/left.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load random image and mask.</span>
-<span class="n">image_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">image_ids</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">load_image</span><span class="p">(</span><span class="n">image_id</span><span class="p">)</span>
-<span class="n">mask</span><span class="p">,</span> <span class="n">class_ids</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">load_mask</span><span class="p">(</span><span class="n">image_id</span><span class="p">)</span>
-<span class="n">original_shape</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
-<span class="c1"># Resize</span>
-<span class="n">image</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">resize_image</span><span class="p">(</span>
-    <span class="n">image</span><span class="p">,</span> 
-    <span class="n">min_dim</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">IMAGE_MIN_DIM</span><span class="p">,</span> 
-    <span class="n">max_dim</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">IMAGE_MAX_DIM</span><span class="p">,</span>
-    <span class="n">mode</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">IMAGE_RESIZE_MODE</span><span class="p">)</span>
-<span class="n">mask</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">resize_mask</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">padding</span><span class="p">)</span>
-<span class="c1"># Compute Bounding box</span>
-<span class="n">bbox</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">extract_bboxes</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Load random image and mask.
+image_id = np.random.choice(dataset.image_ids, 1)[0]
+image = dataset.load_image(image_id)
+mask, class_ids = dataset.load_mask(image_id)
+original_shape = image.shape
+# Resize
+image, window, scale, padding, _ = utils.resize_image(
+    image, 
+    min_dim=config.IMAGE_MIN_DIM, 
+    max_dim=config.IMAGE_MAX_DIM,
+    mode=config.IMAGE_RESIZE_MODE)
+mask = utils.resize_mask(mask, scale, padding)
+# Compute Bounding box
+bbox = utils.extract_bboxes(mask)
 
-<span class="c1"># Display image and additional stats</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;image_id: &quot;</span><span class="p">,</span> <span class="n">image_id</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">image_reference</span><span class="p">(</span><span class="n">image_id</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original shape: &quot;</span><span class="p">,</span> <span class="n">original_shape</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;mask&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;class_ids&quot;</span><span class="p">,</span> <span class="n">class_ids</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;bbox&quot;</span><span class="p">,</span> <span class="n">bbox</span><span class="p">)</span>
-<span class="c1"># Display image and instances</span>
-<span class="n">visualize</span><span class="o">.</span><span class="n">display_instances</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">class_ids</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
+# Display image and additional stats
+print(&quot;image_id: &quot;, image_id, dataset.image_reference(image_id))
+print(&quot;Original shape: &quot;, original_shape)
+log(&quot;image&quot;, image)
+log(&quot;mask&quot;, mask)
+log(&quot;class_ids&quot;, class_ids)
+log(&quot;bbox&quot;, bbox)
+# Display image and instances
+visualize.display_instances(image, bbox, mask, class_ids, dataset.class_names)
 </pre></div>
 </div>
 </div>
@@ -1189,17 +1189,17 @@ bbox                     shape: (32, 4)               min:    1.00000  max:  991
 <p>To visualize the effect of mask resizing, and to verify the code correctness, we visualize some examples.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">image_ids</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">image</span><span class="p">,</span> <span class="n">image_meta</span><span class="p">,</span> <span class="n">class_ids</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">modellib</span><span class="o">.</span><span class="n">load_image_gt</span><span class="p">(</span>
-    <span class="n">dataset</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">image_id</span><span class="p">,</span> <span class="n">use_mini_mask</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>image_id = np.random.choice(dataset.image_ids, 1)[0]
+image, image_meta, class_ids, bbox, mask = modellib.load_image_gt(
+    dataset, config, image_id, use_mini_mask=False)
 
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;image_meta&quot;</span><span class="p">,</span> <span class="n">image_meta</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;class_ids&quot;</span><span class="p">,</span> <span class="n">class_ids</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;bbox&quot;</span><span class="p">,</span> <span class="n">bbox</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;mask&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+log(&quot;image&quot;, image)
+log(&quot;image_meta&quot;, image_meta)
+log(&quot;class_ids&quot;, class_ids)
+log(&quot;bbox&quot;, bbox)
+log(&quot;mask&quot;, mask)
 
-<span class="n">display_images</span><span class="p">([</span><span class="n">image</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="n">mask</span><span class="p">[:,:,</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">7</span><span class="p">))])</span>
+display_images([image]+[mask[:,:,i] for i in range(min(mask.shape[-1], 7))])
 </pre></div>
 </div>
 </div>
@@ -1215,7 +1215,7 @@ mask                     shape: (1024, 1024, 1)       min:    0.00000  max:    1
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize</span><span class="o">.</span><span class="n">display_instances</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">class_ids</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>visualize.display_instances(image, bbox, mask, class_ids, dataset.class_names)
 </pre></div>
 </div>
 </div>
@@ -1225,11 +1225,11 @@ mask                     shape: (1024, 1024, 1)       min:    0.00000  max:    1
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add augmentation and mask resizing.</span>
-<span class="n">image</span><span class="p">,</span> <span class="n">image_meta</span><span class="p">,</span> <span class="n">class_ids</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">modellib</span><span class="o">.</span><span class="n">load_image_gt</span><span class="p">(</span>
-    <span class="n">dataset</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">image_id</span><span class="p">,</span> <span class="n">augment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_mini_mask</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;mask&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
-<span class="n">display_images</span><span class="p">([</span><span class="n">image</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="n">mask</span><span class="p">[:,:,</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">7</span><span class="p">))])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Add augmentation and mask resizing.
+image, image_meta, class_ids, bbox, mask = modellib.load_image_gt(
+    dataset, config, image_id, augment=True, use_mini_mask=True)
+log(&quot;mask&quot;, mask)
+display_images([image]+[mask[:,:,i] for i in range(min(mask.shape[-1], 7))])
 </pre></div>
 </div>
 </div>
@@ -1242,8 +1242,8 @@ mask                     shape: (1024, 1024, 1)       min:    0.00000  max:    1
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">expand_mask</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">visualize</span><span class="o">.</span><span class="n">display_instances</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">class_ids</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>mask = utils.expand_mask(bbox, mask, image.shape)
+visualize.display_instances(image, bbox, mask, class_ids, dataset.class_names)
 </pre></div>
 </div>
 </div>
@@ -1266,27 +1266,27 @@ In the FPN architecture, feature maps at the first few layers are high resolutio
 <p>In this implementation we use an anchor stride of 2, which is different from the paper.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate Anchors</span>
-<span class="n">backbone_shapes</span> <span class="o">=</span> <span class="n">modellib</span><span class="o">.</span><span class="n">compute_backbone_shapes</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">IMAGE_SHAPE</span><span class="p">)</span>
-<span class="n">anchors</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">generate_pyramid_anchors</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">RPN_ANCHOR_SCALES</span><span class="p">,</span> 
-                                          <span class="n">config</span><span class="o">.</span><span class="n">RPN_ANCHOR_RATIOS</span><span class="p">,</span>
-                                          <span class="n">backbone_shapes</span><span class="p">,</span>
-                                          <span class="n">config</span><span class="o">.</span><span class="n">BACKBONE_STRIDES</span><span class="p">,</span> 
-                                          <span class="n">config</span><span class="o">.</span><span class="n">RPN_ANCHOR_STRIDE</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Generate Anchors
+backbone_shapes = modellib.compute_backbone_shapes(config, config.IMAGE_SHAPE)
+anchors = utils.generate_pyramid_anchors(config.RPN_ANCHOR_SCALES, 
+                                          config.RPN_ANCHOR_RATIOS,
+                                          backbone_shapes,
+                                          config.BACKBONE_STRIDES, 
+                                          config.RPN_ANCHOR_STRIDE)
 
-<span class="c1"># Print summary of anchors</span>
-<span class="n">num_levels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">backbone_shapes</span><span class="p">)</span>
-<span class="n">anchors_per_cell</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">RPN_ANCHOR_RATIOS</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Count: &quot;</span><span class="p">,</span> <span class="n">anchors</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Scales: &quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">RPN_ANCHOR_SCALES</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ratios: &quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">RPN_ANCHOR_RATIOS</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Anchors per Cell: &quot;</span><span class="p">,</span> <span class="n">anchors_per_cell</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Levels: &quot;</span><span class="p">,</span> <span class="n">num_levels</span><span class="p">)</span>
-<span class="n">anchors_per_level</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_levels</span><span class="p">):</span>
-    <span class="n">num_cells</span> <span class="o">=</span> <span class="n">backbone_shapes</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">backbone_shapes</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">anchors_per_level</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">anchors_per_cell</span> <span class="o">*</span> <span class="n">num_cells</span> <span class="o">//</span> <span class="n">config</span><span class="o">.</span><span class="n">RPN_ANCHOR_STRIDE</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Anchors in Level </span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">anchors_per_level</span><span class="p">[</span><span class="n">l</span><span class="p">]))</span>
+# Print summary of anchors
+num_levels = len(backbone_shapes)
+anchors_per_cell = len(config.RPN_ANCHOR_RATIOS)
+print(&quot;Count: &quot;, anchors.shape[0])
+print(&quot;Scales: &quot;, config.RPN_ANCHOR_SCALES)
+print(&quot;ratios: &quot;, config.RPN_ANCHOR_RATIOS)
+print(&quot;Anchors per Cell: &quot;, anchors_per_cell)
+print(&quot;Levels: &quot;, num_levels)
+anchors_per_level = []
+for l in range(num_levels):
+    num_cells = backbone_shapes[l][0] * backbone_shapes[l][1]
+    anchors_per_level.append(anchors_per_cell * num_cells // config.RPN_ANCHOR_STRIDE**2)
+    print(&quot;Anchors in Level {}: {}&quot;.format(l, anchors_per_level[l]))
 </pre></div>
 </div>
 </div>
@@ -1308,36 +1308,36 @@ Anchors in Level 4: 192
 <p>Visualize anchors of one cell at the center of the feature map of a specific level.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Visualize anchors of one cell at the center of the feature map of a specific level</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>## Visualize anchors of one cell at the center of the feature map of a specific level
 
-<span class="c1"># Load and draw random image</span>
-<span class="n">image_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">image_ids</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">image</span><span class="p">,</span> <span class="n">image_meta</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">modellib</span><span class="o">.</span><span class="n">load_image_gt</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">image_id</span><span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-<span class="n">levels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">backbone_shapes</span><span class="p">)</span>
+# Load and draw random image
+image_id = np.random.choice(dataset.image_ids, 1)[0]
+image, image_meta, _, _, _ = modellib.load_image_gt(dataset, config, image_id)
+fig, ax = plt.subplots(1, figsize=(10, 10))
+ax.imshow(image)
+levels = len(backbone_shapes)
 
-<span class="k">for</span> <span class="n">level</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">levels</span><span class="p">):</span>
-    <span class="n">colors</span> <span class="o">=</span> <span class="n">visualize</span><span class="o">.</span><span class="n">random_colors</span><span class="p">(</span><span class="n">levels</span><span class="p">)</span>
-    <span class="c1"># Compute the index of the anchors at the center of the image</span>
-    <span class="n">level_start</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">anchors_per_level</span><span class="p">[:</span><span class="n">level</span><span class="p">])</span> <span class="c1"># sum of anchors of previous levels</span>
-    <span class="n">level_anchors</span> <span class="o">=</span> <span class="n">anchors</span><span class="p">[</span><span class="n">level_start</span><span class="p">:</span><span class="n">level_start</span><span class="o">+</span><span class="n">anchors_per_level</span><span class="p">[</span><span class="n">level</span><span class="p">]]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Level </span><span class="si">{}</span><span class="s2">. Anchors: </span><span class="si">{:6}</span><span class="s2">  Feature map Shape: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">level_anchors</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
-                                                                  <span class="n">backbone_shapes</span><span class="p">[</span><span class="n">level</span><span class="p">]))</span>
-    <span class="n">center_cell</span> <span class="o">=</span> <span class="n">backbone_shapes</span><span class="p">[</span><span class="n">level</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span>
-    <span class="n">center_cell_index</span> <span class="o">=</span> <span class="p">(</span><span class="n">center_cell</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">backbone_shapes</span><span class="p">[</span><span class="n">level</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">center_cell</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">level_center</span> <span class="o">=</span> <span class="n">center_cell_index</span> <span class="o">*</span> <span class="n">anchors_per_cell</span> 
-    <span class="n">center_anchor</span> <span class="o">=</span> <span class="n">anchors_per_cell</span> <span class="o">*</span> <span class="p">(</span>
-        <span class="p">(</span><span class="n">center_cell</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">backbone_shapes</span><span class="p">[</span><span class="n">level</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">config</span><span class="o">.</span><span class="n">RPN_ANCHOR_STRIDE</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> \
-        <span class="o">+</span> <span class="n">center_cell</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">config</span><span class="o">.</span><span class="n">RPN_ANCHOR_STRIDE</span><span class="p">)</span>
-    <span class="n">level_center</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">center_anchor</span><span class="p">)</span>
+for level in range(levels):
+    colors = visualize.random_colors(levels)
+    # Compute the index of the anchors at the center of the image
+    level_start = sum(anchors_per_level[:level]) # sum of anchors of previous levels
+    level_anchors = anchors[level_start:level_start+anchors_per_level[level]]
+    print(&quot;Level {}. Anchors: {:6}  Feature map Shape: {}&quot;.format(level, level_anchors.shape[0], 
+                                                                  backbone_shapes[level]))
+    center_cell = backbone_shapes[level] // 2
+    center_cell_index = (center_cell[0] * backbone_shapes[level][1] + center_cell[1])
+    level_center = center_cell_index * anchors_per_cell 
+    center_anchor = anchors_per_cell * (
+        (center_cell[0] * backbone_shapes[level][1] / config.RPN_ANCHOR_STRIDE**2) \
+        + center_cell[1] / config.RPN_ANCHOR_STRIDE)
+    level_center = int(center_anchor)
 
-    <span class="c1"># Draw anchors. Brightness show the order in the array, dark to bright.</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">rect</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">level_anchors</span><span class="p">[</span><span class="n">level_center</span><span class="p">:</span><span class="n">level_center</span><span class="o">+</span><span class="n">anchors_per_cell</span><span class="p">]):</span>
-        <span class="n">y1</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">rect</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="n">x2</span><span class="o">-</span><span class="n">x1</span><span class="p">,</span> <span class="n">y2</span><span class="o">-</span><span class="n">y1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
-                              <span class="n">edgecolor</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="n">level</span><span class="p">])</span> <span class="o">/</span> <span class="n">anchors_per_cell</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    # Draw anchors. Brightness show the order in the array, dark to bright.
+    for i, rect in enumerate(level_anchors[level_center:level_center+anchors_per_cell]):
+        y1, x1, y2, x2 = rect
+        p = patches.Rectangle((x1, y1), x2-x1, y2-y1, linewidth=2, facecolor=&#39;none&#39;,
+                              edgecolor=(i+1)*np.array(colors[level]) / anchors_per_cell)
+        ax.add_patch(p)
 </pre></div>
 </div>
 </div>
@@ -1361,52 +1361,52 @@ Level 4. Anchors:    192  Feature map Shape: [16 16]
 <h2><span class="section-number">3.3.8. </span>Data Generator<a class="headerlink" href="#data-generator" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create data generator</span>
-<span class="n">random_rois</span> <span class="o">=</span> <span class="mi">2000</span>
-<span class="n">g</span> <span class="o">=</span> <span class="n">modellib</span><span class="o">.</span><span class="n">data_generator</span><span class="p">(</span>
-    <span class="n">dataset</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_rois</span><span class="o">=</span><span class="n">random_rois</span><span class="p">,</span> 
-    <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-    <span class="n">detection_targets</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create data generator
+random_rois = 2000
+g = modellib.data_generator(
+    dataset, config, shuffle=True, random_rois=random_rois, 
+    batch_size=4,
+    detection_targets=True)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment to run the generator through a lot of images</span>
-<span class="c1"># to catch rare errors</span>
-<span class="c1"># for i in range(1000):</span>
-<span class="c1">#     print(i)</span>
-<span class="c1">#     _, _ = next(g)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Uncomment to run the generator through a lot of images
+# to catch rare errors
+# for i in range(1000):
+#     print(i)
+#     _, _ = next(g)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get Next Image</span>
-<span class="k">if</span> <span class="n">random_rois</span><span class="p">:</span>
-    <span class="p">[</span><span class="n">normalized_images</span><span class="p">,</span> <span class="n">image_meta</span><span class="p">,</span> <span class="n">rpn_match</span><span class="p">,</span> <span class="n">rpn_bbox</span><span class="p">,</span> <span class="n">gt_class_ids</span><span class="p">,</span> <span class="n">gt_boxes</span><span class="p">,</span> <span class="n">gt_masks</span><span class="p">,</span> <span class="n">rpn_rois</span><span class="p">,</span> <span class="n">rois</span><span class="p">],</span> \
-    <span class="p">[</span><span class="n">mrcnn_class_ids</span><span class="p">,</span> <span class="n">mrcnn_bbox</span><span class="p">,</span> <span class="n">mrcnn_mask</span><span class="p">]</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Get Next Image
+if random_rois:
+    [normalized_images, image_meta, rpn_match, rpn_bbox, gt_class_ids, gt_boxes, gt_masks, rpn_rois, rois], \
+    [mrcnn_class_ids, mrcnn_bbox, mrcnn_mask] = next(g)
     
-    <span class="n">log</span><span class="p">(</span><span class="s2">&quot;rois&quot;</span><span class="p">,</span> <span class="n">rois</span><span class="p">)</span>
-    <span class="n">log</span><span class="p">(</span><span class="s2">&quot;mrcnn_class_ids&quot;</span><span class="p">,</span> <span class="n">mrcnn_class_ids</span><span class="p">)</span>
-    <span class="n">log</span><span class="p">(</span><span class="s2">&quot;mrcnn_bbox&quot;</span><span class="p">,</span> <span class="n">mrcnn_bbox</span><span class="p">)</span>
-    <span class="n">log</span><span class="p">(</span><span class="s2">&quot;mrcnn_mask&quot;</span><span class="p">,</span> <span class="n">mrcnn_mask</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="p">[</span><span class="n">normalized_images</span><span class="p">,</span> <span class="n">image_meta</span><span class="p">,</span> <span class="n">rpn_match</span><span class="p">,</span> <span class="n">rpn_bbox</span><span class="p">,</span> <span class="n">gt_boxes</span><span class="p">,</span> <span class="n">gt_masks</span><span class="p">],</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+    log(&quot;rois&quot;, rois)
+    log(&quot;mrcnn_class_ids&quot;, mrcnn_class_ids)
+    log(&quot;mrcnn_bbox&quot;, mrcnn_bbox)
+    log(&quot;mrcnn_mask&quot;, mrcnn_mask)
+else:
+    [normalized_images, image_meta, rpn_match, rpn_bbox, gt_boxes, gt_masks], _ = next(g)
     
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;gt_class_ids&quot;</span><span class="p">,</span> <span class="n">gt_class_ids</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;gt_boxes&quot;</span><span class="p">,</span> <span class="n">gt_boxes</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;gt_masks&quot;</span><span class="p">,</span> <span class="n">gt_masks</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;rpn_match&quot;</span><span class="p">,</span> <span class="n">rpn_match</span><span class="p">,</span> <span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;rpn_bbox&quot;</span><span class="p">,</span> <span class="n">rpn_bbox</span><span class="p">)</span>
-<span class="n">image_id</span> <span class="o">=</span> <span class="n">modellib</span><span class="o">.</span><span class="n">parse_image_meta</span><span class="p">(</span><span class="n">image_meta</span><span class="p">)[</span><span class="s2">&quot;image_id&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;image_id: &quot;</span><span class="p">,</span> <span class="n">image_id</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">image_reference</span><span class="p">(</span><span class="n">image_id</span><span class="p">))</span>
+log(&quot;gt_class_ids&quot;, gt_class_ids)
+log(&quot;gt_boxes&quot;, gt_boxes)
+log(&quot;gt_masks&quot;, gt_masks)
+log(&quot;rpn_match&quot;, rpn_match, )
+log(&quot;rpn_bbox&quot;, rpn_bbox)
+image_id = modellib.parse_image_meta(image_meta)[&quot;image_id&quot;][0]
+print(&quot;image_id: &quot;, image_id, dataset.image_reference(image_id))
 
-<span class="c1"># Remove the last dim in mrcnn_class_ids. It&#39;s only added</span>
-<span class="c1"># to satisfy Keras restriction on target shape.</span>
-<span class="n">mrcnn_class_ids</span> <span class="o">=</span> <span class="n">mrcnn_class_ids</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span>
+# Remove the last dim in mrcnn_class_ids. It&#39;s only added
+# to satisfy Keras restriction on target shape.
+mrcnn_class_ids = mrcnn_class_ids[:,:,0]
 </pre></div>
 </div>
 </div>
@@ -1430,33 +1430,33 @@ image_id:  2937 http://cocodataset.org/#explore?id=135453
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>b = 0
 
-<span class="c1"># Restore original image (reverse normalization)</span>
-<span class="n">sample_image</span> <span class="o">=</span> <span class="n">modellib</span><span class="o">.</span><span class="n">unmold_image</span><span class="p">(</span><span class="n">normalized_images</span><span class="p">[</span><span class="n">b</span><span class="p">],</span> <span class="n">config</span><span class="p">)</span>
+# Restore original image (reverse normalization)
+sample_image = modellib.unmold_image(normalized_images[b], config)
 
-<span class="c1"># Compute anchor shifts.</span>
-<span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rpn_match</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">refined_anchors</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">apply_box_deltas</span><span class="p">(</span><span class="n">anchors</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">rpn_bbox</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)]</span> <span class="o">*</span> <span class="n">config</span><span class="o">.</span><span class="n">RPN_BBOX_STD_DEV</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;anchors&quot;</span><span class="p">,</span> <span class="n">anchors</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="s2">&quot;refined_anchors&quot;</span><span class="p">,</span> <span class="n">refined_anchors</span><span class="p">)</span>
+# Compute anchor shifts.
+indices = np.where(rpn_match[b] == 1)[0]
+refined_anchors = utils.apply_box_deltas(anchors[indices], rpn_bbox[b, :len(indices)] * config.RPN_BBOX_STD_DEV)
+log(&quot;anchors&quot;, anchors)
+log(&quot;refined_anchors&quot;, refined_anchors)
 
-<span class="c1"># Get list of positive anchors</span>
-<span class="n">positive_anchor_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rpn_match</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Positive anchors: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">positive_anchor_ids</span><span class="p">)))</span>
-<span class="n">negative_anchor_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rpn_match</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Negative anchors: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">negative_anchor_ids</span><span class="p">)))</span>
-<span class="n">neutral_anchor_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rpn_match</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Neutral anchors: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">neutral_anchor_ids</span><span class="p">)))</span>
+# Get list of positive anchors
+positive_anchor_ids = np.where(rpn_match[b] == 1)[0]
+print(&quot;Positive anchors: {}&quot;.format(len(positive_anchor_ids)))
+negative_anchor_ids = np.where(rpn_match[b] == -1)[0]
+print(&quot;Negative anchors: {}&quot;.format(len(negative_anchor_ids)))
+neutral_anchor_ids = np.where(rpn_match[b] == 0)[0]
+print(&quot;Neutral anchors: {}&quot;.format(len(neutral_anchor_ids)))
 
-<span class="c1"># ROI breakdown by class</span>
-<span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">mrcnn_class_ids</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">())):</span>
-    <span class="k">if</span> <span class="n">n</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:23}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">n</span><span class="p">))</span>
+# ROI breakdown by class
+for c, n in zip(dataset.class_names, np.bincount(mrcnn_class_ids[b].flatten())):
+    if n:
+        print(&quot;{:23}: {}&quot;.format(c[:20], n))
 
-<span class="c1"># Show positive anchors</span>
-<span class="n">visualize</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">sample_image</span><span class="p">,</span> <span class="n">boxes</span><span class="o">=</span><span class="n">anchors</span><span class="p">[</span><span class="n">positive_anchor_ids</span><span class="p">],</span> 
-                     <span class="n">refined_boxes</span><span class="o">=</span><span class="n">refined_anchors</span><span class="p">)</span>
+# Show positive anchors
+visualize.draw_boxes(sample_image, boxes=anchors[positive_anchor_ids], 
+                     refined_boxes=refined_anchors)
 </pre></div>
 </div>
 </div>
@@ -1477,8 +1477,8 @@ remote                 : 2
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show negative anchors</span>
-<span class="n">visualize</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">sample_image</span><span class="p">,</span> <span class="n">boxes</span><span class="o">=</span><span class="n">anchors</span><span class="p">[</span><span class="n">negative_anchor_ids</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Show negative anchors
+visualize.draw_boxes(sample_image, boxes=anchors[negative_anchor_ids])
 </pre></div>
 </div>
 </div>
@@ -1488,8 +1488,8 @@ remote                 : 2
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show neutral anchors. They don&#39;t contribute to training.</span>
-<span class="n">visualize</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">sample_image</span><span class="p">,</span> <span class="n">boxes</span><span class="o">=</span><span class="n">anchors</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">neutral_anchor_ids</span><span class="p">,</span> <span class="mi">100</span><span class="p">)])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Show neutral anchors. They don&#39;t contribute to training.
+visualize.draw_boxes(sample_image, boxes=anchors[np.random.choice(neutral_anchor_ids, 100)])
 </pre></div>
 </div>
 </div>
@@ -1502,22 +1502,22 @@ remote                 : 2
 <h2><span class="section-number">3.3.9. </span>ROIs<a class="headerlink" href="#rois" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">random_rois</span><span class="p">:</span>
-    <span class="c1"># Class aware bboxes</span>
-    <span class="n">bbox_specific</span> <span class="o">=</span> <span class="n">mrcnn_bbox</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mrcnn_bbox</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">mrcnn_class_ids</span><span class="p">[</span><span class="n">b</span><span class="p">],</span> <span class="p">:]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>if random_rois:
+    # Class aware bboxes
+    bbox_specific = mrcnn_bbox[b, np.arange(mrcnn_bbox.shape[1]), mrcnn_class_ids[b], :]
 
-    <span class="c1"># Refined ROIs</span>
-    <span class="n">refined_rois</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">apply_box_deltas</span><span class="p">(</span><span class="n">rois</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">bbox_specific</span><span class="p">[:,:</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">config</span><span class="o">.</span><span class="n">BBOX_STD_DEV</span><span class="p">)</span>
+    # Refined ROIs
+    refined_rois = utils.apply_box_deltas(rois[b].astype(np.float32), bbox_specific[:,:4] * config.BBOX_STD_DEV)
 
-    <span class="c1"># Class aware masks</span>
-    <span class="n">mask_specific</span> <span class="o">=</span> <span class="n">mrcnn_mask</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mrcnn_mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">mrcnn_class_ids</span><span class="p">[</span><span class="n">b</span><span class="p">]]</span>
+    # Class aware masks
+    mask_specific = mrcnn_mask[b, np.arange(mrcnn_mask.shape[1]), :, :, mrcnn_class_ids[b]]
 
-    <span class="n">visualize</span><span class="o">.</span><span class="n">draw_rois</span><span class="p">(</span><span class="n">sample_image</span><span class="p">,</span> <span class="n">rois</span><span class="p">[</span><span class="n">b</span><span class="p">],</span> <span class="n">refined_rois</span><span class="p">,</span> <span class="n">mask_specific</span><span class="p">,</span> <span class="n">mrcnn_class_ids</span><span class="p">[</span><span class="n">b</span><span class="p">],</span> <span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
+    visualize.draw_rois(sample_image, rois[b], refined_rois, mask_specific, mrcnn_class_ids[b], dataset.class_names)
     
-    <span class="c1"># Any repeated ROIs?</span>
-    <span class="n">rows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">rois</span><span class="p">[</span><span class="n">b</span><span class="p">])</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">void</span><span class="p">,</span> <span class="n">rois</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">itemsize</span> <span class="o">*</span> <span class="n">rois</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])))</span>
-    <span class="n">_</span><span class="p">,</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">return_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unique ROIs: </span><span class="si">{}</span><span class="s2"> out of </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx</span><span class="p">),</span> <span class="n">rois</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    # Any repeated ROIs?
+    rows = np.ascontiguousarray(rois[b]).view(np.dtype((np.void, rois.dtype.itemsize * rois.shape[-1])))
+    _, idx = np.unique(rows, return_index=True)
+    print(&quot;Unique ROIs: {} out of {}&quot;.format(len(idx), rois.shape[1]))
 </pre></div>
 </div>
 </div>
@@ -1533,21 +1533,21 @@ Unique ROIs: 128 out of 128
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">random_rois</span><span class="p">:</span>
-    <span class="c1"># Dispalay ROIs and corresponding masks and bounding boxes</span>
-    <span class="n">ids</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">rois</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="mi">8</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>if random_rois:
+    # Dispalay ROIs and corresponding masks and bounding boxes
+    ids = random.sample(range(rois.shape[1]), 8)
 
-    <span class="n">images</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">titles</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">:</span>
-        <span class="n">image</span> <span class="o">=</span> <span class="n">visualize</span><span class="o">.</span><span class="n">draw_box</span><span class="p">(</span><span class="n">sample_image</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">rois</span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">i</span><span class="p">,:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span> <span class="p">[</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-        <span class="n">image</span> <span class="o">=</span> <span class="n">visualize</span><span class="o">.</span><span class="n">draw_box</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">refined_rois</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-        <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-        <span class="n">titles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;ROI </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-        <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mask_specific</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span>
-        <span class="n">titles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">[</span><span class="n">mrcnn_class_ids</span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">i</span><span class="p">]][:</span><span class="mi">20</span><span class="p">])</span>
+    images = []
+    titles = []
+    for i in ids:
+        image = visualize.draw_box(sample_image.copy(), rois[b,i,:4].astype(np.int32), [255, 0, 0])
+        image = visualize.draw_box(image, refined_rois[i].astype(np.int64), [0, 255, 0])
+        images.append(image)
+        titles.append(&quot;ROI {}&quot;.format(i))
+        images.append(mask_specific[i] * 255)
+        titles.append(dataset.class_names[mrcnn_class_ids[b,i]][:20])
 
-    <span class="n">display_images</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">titles</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+    display_images(images, titles, cols=4, cmap=&quot;Blues&quot;, interpolation=&quot;none&quot;)
 </pre></div>
 </div>
 </div>
@@ -1557,19 +1557,19 @@ Unique ROIs: 128 out of 128
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check ratio of positive ROIs in a set of images.</span>
-<span class="k">if</span> <span class="n">random_rois</span><span class="p">:</span>
-    <span class="n">limit</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="n">temp_g</span> <span class="o">=</span> <span class="n">modellib</span><span class="o">.</span><span class="n">data_generator</span><span class="p">(</span>
-        <span class="n">dataset</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_rois</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> 
-        <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">detection_targets</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">limit</span><span class="p">):</span>
-        <span class="n">_</span><span class="p">,</span> <span class="p">[</span><span class="n">ids</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">]</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">temp_g</span><span class="p">)</span>
-        <span class="n">positive_rois</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">total</span> <span class="o">+=</span> <span class="n">positive_rois</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:5}</span><span class="s2"> </span><span class="si">{:5.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">positive_rois</span><span class="p">,</span> <span class="n">positive_rois</span><span class="o">/</span><span class="n">ids</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average percent: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">total</span><span class="o">/</span><span class="p">(</span><span class="n">limit</span><span class="o">*</span><span class="n">ids</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Check ratio of positive ROIs in a set of images.
+if random_rois:
+    limit = 10
+    temp_g = modellib.data_generator(
+        dataset, config, shuffle=True, random_rois=10000, 
+        batch_size=1, detection_targets=True)
+    total = 0
+    for i in range(limit):
+        _, [ids, _, _] = next(temp_g)
+        positive_rois = np.sum(ids[0] &gt; 0)
+        total += positive_rois
+        print(&quot;{:5} {:5.2f}&quot;.format(positive_rois, positive_rois/ids.shape[1]))
+    print(&quot;Average percent: {:.2f}&quot;.format(total/(limit*ids.shape[1])))
 </pre></div>
 </div>
 </div>

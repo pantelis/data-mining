@@ -850,40 +850,40 @@ title="Print to PDF"
 <p>A quick intro to using the pre-trained model to detect and segment objects.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">skimage.io</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
+import sys
+import random
+import math
+import numpy as np
+import skimage.io
+import matplotlib
+import matplotlib.pyplot as plt
 
-<span class="c1"># Root directory of the project</span>
-<span class="n">ROOT_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../&quot;</span><span class="p">)</span>
+# Root directory of the project
+ROOT_DIR = os.path.abspath(&quot;../&quot;)
 
-<span class="c1"># Import Mask RCNN</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ROOT_DIR</span><span class="p">)</span>  <span class="c1"># To find local version of the library</span>
-<span class="kn">from</span> <span class="nn">mrcnn</span> <span class="kn">import</span> <span class="n">utils</span>
-<span class="kn">import</span> <span class="nn">mrcnn.model</span> <span class="k">as</span> <span class="nn">modellib</span>
-<span class="kn">from</span> <span class="nn">mrcnn</span> <span class="kn">import</span> <span class="n">visualize</span>
-<span class="c1"># Import COCO config</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ROOT_DIR</span><span class="p">,</span> <span class="s2">&quot;samples/coco/&quot;</span><span class="p">))</span>  <span class="c1"># To find local version</span>
-<span class="kn">import</span> <span class="nn">coco</span>
+# Import Mask RCNN
+sys.path.append(ROOT_DIR)  # To find local version of the library
+from mrcnn import utils
+import mrcnn.model as modellib
+from mrcnn import visualize
+# Import COCO config
+sys.path.append(os.path.join(ROOT_DIR, &quot;samples/coco/&quot;))  # To find local version
+import coco
 
-<span class="o">%</span><span class="k">matplotlib</span> inline 
+%matplotlib inline 
 
-<span class="c1"># Directory to save logs and trained model</span>
-<span class="n">MODEL_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ROOT_DIR</span><span class="p">,</span> <span class="s2">&quot;logs&quot;</span><span class="p">)</span>
+# Directory to save logs and trained model
+MODEL_DIR = os.path.join(ROOT_DIR, &quot;logs&quot;)
 
-<span class="c1"># Local path to trained weights file</span>
-<span class="n">COCO_MODEL_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ROOT_DIR</span><span class="p">,</span> <span class="s2">&quot;mask_rcnn_coco.h5&quot;</span><span class="p">)</span>
-<span class="c1"># Download COCO trained weights from Releases if needed</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">COCO_MODEL_PATH</span><span class="p">):</span>
-    <span class="n">utils</span><span class="o">.</span><span class="n">download_trained_weights</span><span class="p">(</span><span class="n">COCO_MODEL_PATH</span><span class="p">)</span>
+# Local path to trained weights file
+COCO_MODEL_PATH = os.path.join(ROOT_DIR, &quot;mask_rcnn_coco.h5&quot;)
+# Download COCO trained weights from Releases if needed
+if not os.path.exists(COCO_MODEL_PATH):
+    utils.download_trained_weights(COCO_MODEL_PATH)
 
-<span class="c1"># Directory of images to run detection on</span>
-<span class="n">IMAGE_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ROOT_DIR</span><span class="p">,</span> <span class="s2">&quot;images&quot;</span><span class="p">)</span>
+# Directory of images to run detection on
+IMAGE_DIR = os.path.join(ROOT_DIR, &quot;images&quot;)
 </pre></div>
 </div>
 </div>
@@ -899,14 +899,14 @@ title="Print to PDF"
 <p>For inferencing, modify the configurations a bit to fit the task. To do so, sub-class the <code class="docutils literal notranslate"><span class="pre">CocoConfig</span></code> class and override the attributes you need to change.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">InferenceConfig</span><span class="p">(</span><span class="n">coco</span><span class="o">.</span><span class="n">CocoConfig</span><span class="p">):</span>
-    <span class="c1"># Set batch size to 1 since we&#39;ll be running inference on</span>
-    <span class="c1"># one image at a time. Batch size = GPU_COUNT * IMAGES_PER_GPU</span>
-    <span class="n">GPU_COUNT</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">IMAGES_PER_GPU</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class InferenceConfig(coco.CocoConfig):
+    # Set batch size to 1 since we&#39;ll be running inference on
+    # one image at a time. Batch size = GPU_COUNT * IMAGES_PER_GPU
+    GPU_COUNT = 1
+    IMAGES_PER_GPU = 1
 
-<span class="n">config</span> <span class="o">=</span> <span class="n">InferenceConfig</span><span class="p">()</span>
-<span class="n">config</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+config = InferenceConfig()
+config.display()
 </pre></div>
 </div>
 </div>
@@ -962,11 +962,11 @@ WEIGHT_DECAY                   0.0001
 <h2><span class="section-number">3.2.2. </span>Create Model and Load Trained Weights<a class="headerlink" href="#create-model-and-load-trained-weights" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create model object in inference mode.</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">modellib</span><span class="o">.</span><span class="n">MaskRCNN</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;inference&quot;</span><span class="p">,</span> <span class="n">model_dir</span><span class="o">=</span><span class="n">MODEL_DIR</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create model object in inference mode.
+model = modellib.MaskRCNN(mode=&quot;inference&quot;, model_dir=MODEL_DIR, config=config)
 
-<span class="c1"># Load weights trained on MS-COCO</span>
-<span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="n">COCO_MODEL_PATH</span><span class="p">,</span> <span class="n">by_name</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+# Load weights trained on MS-COCO
+model.load_weights(COCO_MODEL_PATH, by_name=True)
 </pre></div>
 </div>
 </div>
@@ -989,24 +989,24 @@ WEIGHT_DECAY                   0.0001
 <p>We don’t want to require you to download the COCO dataset just to run this demo, so we’re including the list of class names below. The index of the class name in the list represent its ID (first class is 0, second is 1, third is 2, …etc.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># COCO Class names</span>
-<span class="c1"># Index of the class in the list is its ID. For example, to get ID of</span>
-<span class="c1"># the teddy bear class, use: class_names.index(&#39;teddy bear&#39;)</span>
-<span class="n">class_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;BG&#39;</span><span class="p">,</span> <span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;bicycle&#39;</span><span class="p">,</span> <span class="s1">&#39;car&#39;</span><span class="p">,</span> <span class="s1">&#39;motorcycle&#39;</span><span class="p">,</span> <span class="s1">&#39;airplane&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;bus&#39;</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;truck&#39;</span><span class="p">,</span> <span class="s1">&#39;boat&#39;</span><span class="p">,</span> <span class="s1">&#39;traffic light&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;fire hydrant&#39;</span><span class="p">,</span> <span class="s1">&#39;stop sign&#39;</span><span class="p">,</span> <span class="s1">&#39;parking meter&#39;</span><span class="p">,</span> <span class="s1">&#39;bench&#39;</span><span class="p">,</span> <span class="s1">&#39;bird&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;horse&#39;</span><span class="p">,</span> <span class="s1">&#39;sheep&#39;</span><span class="p">,</span> <span class="s1">&#39;cow&#39;</span><span class="p">,</span> <span class="s1">&#39;elephant&#39;</span><span class="p">,</span> <span class="s1">&#39;bear&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;zebra&#39;</span><span class="p">,</span> <span class="s1">&#39;giraffe&#39;</span><span class="p">,</span> <span class="s1">&#39;backpack&#39;</span><span class="p">,</span> <span class="s1">&#39;umbrella&#39;</span><span class="p">,</span> <span class="s1">&#39;handbag&#39;</span><span class="p">,</span> <span class="s1">&#39;tie&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;suitcase&#39;</span><span class="p">,</span> <span class="s1">&#39;frisbee&#39;</span><span class="p">,</span> <span class="s1">&#39;skis&#39;</span><span class="p">,</span> <span class="s1">&#39;snowboard&#39;</span><span class="p">,</span> <span class="s1">&#39;sports ball&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;kite&#39;</span><span class="p">,</span> <span class="s1">&#39;baseball bat&#39;</span><span class="p">,</span> <span class="s1">&#39;baseball glove&#39;</span><span class="p">,</span> <span class="s1">&#39;skateboard&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;surfboard&#39;</span><span class="p">,</span> <span class="s1">&#39;tennis racket&#39;</span><span class="p">,</span> <span class="s1">&#39;bottle&#39;</span><span class="p">,</span> <span class="s1">&#39;wine glass&#39;</span><span class="p">,</span> <span class="s1">&#39;cup&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;fork&#39;</span><span class="p">,</span> <span class="s1">&#39;knife&#39;</span><span class="p">,</span> <span class="s1">&#39;spoon&#39;</span><span class="p">,</span> <span class="s1">&#39;bowl&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;sandwich&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;broccoli&#39;</span><span class="p">,</span> <span class="s1">&#39;carrot&#39;</span><span class="p">,</span> <span class="s1">&#39;hot dog&#39;</span><span class="p">,</span> <span class="s1">&#39;pizza&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;donut&#39;</span><span class="p">,</span> <span class="s1">&#39;cake&#39;</span><span class="p">,</span> <span class="s1">&#39;chair&#39;</span><span class="p">,</span> <span class="s1">&#39;couch&#39;</span><span class="p">,</span> <span class="s1">&#39;potted plant&#39;</span><span class="p">,</span> <span class="s1">&#39;bed&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;dining table&#39;</span><span class="p">,</span> <span class="s1">&#39;toilet&#39;</span><span class="p">,</span> <span class="s1">&#39;tv&#39;</span><span class="p">,</span> <span class="s1">&#39;laptop&#39;</span><span class="p">,</span> <span class="s1">&#39;mouse&#39;</span><span class="p">,</span> <span class="s1">&#39;remote&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;keyboard&#39;</span><span class="p">,</span> <span class="s1">&#39;cell phone&#39;</span><span class="p">,</span> <span class="s1">&#39;microwave&#39;</span><span class="p">,</span> <span class="s1">&#39;oven&#39;</span><span class="p">,</span> <span class="s1">&#39;toaster&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;sink&#39;</span><span class="p">,</span> <span class="s1">&#39;refrigerator&#39;</span><span class="p">,</span> <span class="s1">&#39;book&#39;</span><span class="p">,</span> <span class="s1">&#39;clock&#39;</span><span class="p">,</span> <span class="s1">&#39;vase&#39;</span><span class="p">,</span> <span class="s1">&#39;scissors&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;teddy bear&#39;</span><span class="p">,</span> <span class="s1">&#39;hair drier&#39;</span><span class="p">,</span> <span class="s1">&#39;toothbrush&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># COCO Class names
+# Index of the class in the list is its ID. For example, to get ID of
+# the teddy bear class, use: class_names.index(&#39;teddy bear&#39;)
+class_names = [&#39;BG&#39;, &#39;person&#39;, &#39;bicycle&#39;, &#39;car&#39;, &#39;motorcycle&#39;, &#39;airplane&#39;,
+               &#39;bus&#39;, &#39;train&#39;, &#39;truck&#39;, &#39;boat&#39;, &#39;traffic light&#39;,
+               &#39;fire hydrant&#39;, &#39;stop sign&#39;, &#39;parking meter&#39;, &#39;bench&#39;, &#39;bird&#39;,
+               &#39;cat&#39;, &#39;dog&#39;, &#39;horse&#39;, &#39;sheep&#39;, &#39;cow&#39;, &#39;elephant&#39;, &#39;bear&#39;,
+               &#39;zebra&#39;, &#39;giraffe&#39;, &#39;backpack&#39;, &#39;umbrella&#39;, &#39;handbag&#39;, &#39;tie&#39;,
+               &#39;suitcase&#39;, &#39;frisbee&#39;, &#39;skis&#39;, &#39;snowboard&#39;, &#39;sports ball&#39;,
+               &#39;kite&#39;, &#39;baseball bat&#39;, &#39;baseball glove&#39;, &#39;skateboard&#39;,
+               &#39;surfboard&#39;, &#39;tennis racket&#39;, &#39;bottle&#39;, &#39;wine glass&#39;, &#39;cup&#39;,
+               &#39;fork&#39;, &#39;knife&#39;, &#39;spoon&#39;, &#39;bowl&#39;, &#39;banana&#39;, &#39;apple&#39;,
+               &#39;sandwich&#39;, &#39;orange&#39;, &#39;broccoli&#39;, &#39;carrot&#39;, &#39;hot dog&#39;, &#39;pizza&#39;,
+               &#39;donut&#39;, &#39;cake&#39;, &#39;chair&#39;, &#39;couch&#39;, &#39;potted plant&#39;, &#39;bed&#39;,
+               &#39;dining table&#39;, &#39;toilet&#39;, &#39;tv&#39;, &#39;laptop&#39;, &#39;mouse&#39;, &#39;remote&#39;,
+               &#39;keyboard&#39;, &#39;cell phone&#39;, &#39;microwave&#39;, &#39;oven&#39;, &#39;toaster&#39;,
+               &#39;sink&#39;, &#39;refrigerator&#39;, &#39;book&#39;, &#39;clock&#39;, &#39;vase&#39;, &#39;scissors&#39;,
+               &#39;teddy bear&#39;, &#39;hair drier&#39;, &#39;toothbrush&#39;]
 </pre></div>
 </div>
 </div>
@@ -1016,17 +1016,17 @@ WEIGHT_DECAY                   0.0001
 <h2><span class="section-number">3.2.4. </span>Run Object Detection<a class="headerlink" href="#run-object-detection" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a random image from the images folder</span>
-<span class="n">file_names</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">IMAGE_DIR</span><span class="p">))[</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">skimage</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">IMAGE_DIR</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">file_names</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Load a random image from the images folder
+file_names = next(os.walk(IMAGE_DIR))[2]
+image = skimage.io.imread(os.path.join(IMAGE_DIR, random.choice(file_names)))
 
-<span class="c1"># Run detection</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">detect</span><span class="p">([</span><span class="n">image</span><span class="p">],</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+# Run detection
+results = model.detect([image], verbose=1)
 
-<span class="c1"># Visualize results</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">visualize</span><span class="o">.</span><span class="n">display_instances</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;rois&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;masks&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_ids&#39;</span><span class="p">],</span> 
-                            <span class="n">class_names</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;scores&#39;</span><span class="p">])</span>
+# Visualize results
+r = results[0]
+visualize.display_instances(image, r[&#39;rois&#39;], r[&#39;masks&#39;], r[&#39;class_ids&#39;], 
+                            class_names, r[&#39;scores&#39;])
 </pre></div>
 </div>
 </div>
