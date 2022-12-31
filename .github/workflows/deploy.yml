@@ -55,14 +55,11 @@ jobs:
       #   run: poetry install --no-interaction
       #----------------------------------------------
       #              Build the book 
-      #----------------------------------------------
-      - name: Activate env
-        run: |
-          source .venv/bin/activate
-
+      #----------------------------------------------      
       - name: Build the book
         shell: bash -l {0}
         run: |
+          source .venv/bin/activate
           jupyter-book build data_mining
 
     # Deploy the book's HTML to gh-pages branch
