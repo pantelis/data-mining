@@ -51,8 +51,8 @@ jobs:
       #----------------------------------------------
       # install your root project, if required
       #----------------------------------------------
-      - name: Install project
-        run: poetry install --no-interaction
+      # - name: Install project
+      #   run: poetry install --no-interaction
       #----------------------------------------------
       #              Build the book 
       #----------------------------------------------
