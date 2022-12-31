@@ -17,7 +17,7 @@
 	"forwardPorts": [8000],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "curl -sSL https://install.python-poetry.org | python3 - && poetry config virtualenvs.in-project true",
+	"postCreateCommand": "curl -sSL https://install.python-poetry.org | python3 - && poetry config virtualenvs.in-project true && poetry update",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
