@@ -22,7 +22,7 @@ parts:
     numbered: 3
     chapters:
     - file: aiml-common/lectures/learning-problem/_index.md
-    - file: aiml-common/lectures/regression/linear-regression/_index.ipynb    
+    - file: aiml-common/lectures/regression/linear-regression/linear_regression.ipynb    
     - file: aiml-common/lectures/regression/linear-regression/regression-notebooks.md
     - file: aiml-common/lectures/optimization/maximum-likelihood/_index.md
     - file: aiml-common/lectures/entropy/_index.md
