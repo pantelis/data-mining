@@ -1,4 +1,4 @@
-# Data Mining Course Content
+# Course Content
 
 ## Usage
 

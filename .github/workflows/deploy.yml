@@ -32,7 +32,7 @@ jobs:
     # Build the book
     - uses: conda-incubator/setup-miniconda@v2
       with:
-        environment-file: environment.yml
+        environment-file: requirements.txt
         activate-environment: "data-mining-course"
         
     - name: Build the book
