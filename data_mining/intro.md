@@ -31,11 +31,11 @@ This course requires some intensive effort from your side in both learning these
 
 **Logistics** {octicon}`organization;1em;sd-text-info`
 ^^^
-Course Dates: Sept  - Dec 2022
+Course Dates: Jan 2023 - May 2023
 
-CS634: Mon 6:00pm-8:30pm EST 
-
-CS482: Tue and Thu 4:00pm-5:20pm EST 
+CS482-104: Mon 6pm-8.30pm EST (Kupfrian Hall 103)
+CS482-102: Wed 6pm-8.30pm EST (Kupfrian Hall 203)
+CS634-104: Thu 6:00pm-8:30pm EST (Cullimore Hall LECT 2) 
 
 
 :::
@@ -71,7 +71,10 @@ Professor Office hours will be coordinated via chat  - the process is simple: di
 **Staff (TAs)** {octicon}`person;1em;sd-text-info`
 ^^^
 
-TBP
+CS482-104: Anish Gaikwad
+CS482-102: Kamil Arif
+CS634-104: Jose Mojica Perez
+
 :::
 
 :::{grid-item-card}
