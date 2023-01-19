@@ -34,7 +34,9 @@ This course requires some intensive effort from your side in both learning these
 Course Dates: Jan 2023 - May 2023
 
 CS482-104: Mon 6pm-8.30pm EST (Kupfrian Hall 103)
+
 CS482-102: Wed 6pm-8.30pm EST (Kupfrian Hall 203)
+
 CS634-104: Thu 6:00pm-8:30pm EST (Cullimore Hall LECT 2) 
 
 
@@ -72,7 +74,9 @@ Professor Office hours will be coordinated via chat  - the process is simple: di
 ^^^
 
 CS482-104: Anish Gaikwad
+
 CS482-102: Kamil Arif
+
 CS634-104: Jose Mojica Perez
 
 :::
@@ -96,3 +100,4 @@ Assignments (30%)
 
 
 ::::
+
