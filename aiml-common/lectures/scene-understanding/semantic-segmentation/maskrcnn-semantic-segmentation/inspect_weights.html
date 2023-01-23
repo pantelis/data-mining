@@ -572,6 +572,11 @@ const thebe_selector_output = ".output, .cell_output"
    1. Learn Python
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../resources/environment/index.html">
+   2. Your Programming Environment
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -843,37 +848,37 @@ title="Print to PDF"
 <p>This notebook includes code and visualizations to test, debug, and evaluate the Mask R-CNN model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
-import sys
-import numpy as np
-import tensorflow as tf
-import matplotlib
-import matplotlib.pyplot as plt
-import keras
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">keras</span>
 
-# Root directory of the project
-ROOT_DIR = os.path.abspath(&quot;../../&quot;)
+<span class="c1"># Root directory of the project</span>
+<span class="n">ROOT_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../../&quot;</span><span class="p">)</span>
 
-# Import Mask RCNN
-sys.path.append(ROOT_DIR)  # To find local version of the library
-from mrcnn import utils
-import mrcnn.model as modellib
-from mrcnn import visualize
-from mrcnn.model import log
+<span class="c1"># Import Mask RCNN</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ROOT_DIR</span><span class="p">)</span>  <span class="c1"># To find local version of the library</span>
+<span class="kn">from</span> <span class="nn">mrcnn</span> <span class="kn">import</span> <span class="n">utils</span>
+<span class="kn">import</span> <span class="nn">mrcnn.model</span> <span class="k">as</span> <span class="nn">modellib</span>
+<span class="kn">from</span> <span class="nn">mrcnn</span> <span class="kn">import</span> <span class="n">visualize</span>
+<span class="kn">from</span> <span class="nn">mrcnn.model</span> <span class="kn">import</span> <span class="n">log</span>
 
-%matplotlib inline 
+<span class="o">%</span><span class="k">matplotlib</span> inline 
 
-# Directory to save logs and trained model
-MODEL_DIR = os.path.join(ROOT_DIR, &quot;logs&quot;)
+<span class="c1"># Directory to save logs and trained model</span>
+<span class="n">MODEL_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ROOT_DIR</span><span class="p">,</span> <span class="s2">&quot;logs&quot;</span><span class="p">)</span>
 
-# Local path to trained weights file
-COCO_MODEL_PATH = os.path.join(ROOT_DIR, &quot;mask_rcnn_coco.h5&quot;)
-# Download COCO trained weights from Releases if needed
-if not os.path.exists(COCO_MODEL_PATH):
-    utils.download_trained_weights(COCO_MODEL_PATH)
+<span class="c1"># Local path to trained weights file</span>
+<span class="n">COCO_MODEL_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ROOT_DIR</span><span class="p">,</span> <span class="s2">&quot;mask_rcnn_coco.h5&quot;</span><span class="p">)</span>
+<span class="c1"># Download COCO trained weights from Releases if needed</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">COCO_MODEL_PATH</span><span class="p">):</span>
+    <span class="n">utils</span><span class="o">.</span><span class="n">download_trained_weights</span><span class="p">(</span><span class="n">COCO_MODEL_PATH</span><span class="p">)</span>
 
-# Path to Shapes trained weights
-SHAPES_MODEL_PATH = os.path.join(ROOT_DIR, &quot;mask_rcnn_shapes.h5&quot;)
+<span class="c1"># Path to Shapes trained weights</span>
+<span class="n">SHAPES_MODEL_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ROOT_DIR</span><span class="p">,</span> <span class="s2">&quot;mask_rcnn_shapes.h5&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -888,15 +893,15 @@ SHAPES_MODEL_PATH = os.path.join(ROOT_DIR, &quot;mask_rcnn_shapes.h5&quot;)
 <h1><span class="section-number">3.16. </span>Configurations<a class="headerlink" href="#configurations" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Run one of the code blocks
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run one of the code blocks</span>
 
-# Shapes toy dataset
-# import shapes
-# config = shapes.ShapesConfig()
+<span class="c1"># Shapes toy dataset</span>
+<span class="c1"># import shapes</span>
+<span class="c1"># config = shapes.ShapesConfig()</span>
 
-# MS COCO Dataset
-import coco
-config = coco.CocoConfig()
+<span class="c1"># MS COCO Dataset</span>
+<span class="kn">import</span> <span class="nn">coco</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">coco</span><span class="o">.</span><span class="n">CocoConfig</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -906,26 +911,26 @@ config = coco.CocoConfig()
 <h1><span class="section-number">3.17. </span>Notebook Preferences<a class="headerlink" href="#notebook-preferences" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Device to load the neural network on.
-# Useful if you&#39;re training a model on the same 
-# machine, in which case use CPU and leave the
-# GPU for training.
-DEVICE = &quot;/cpu:0&quot;  # /cpu:0 or /gpu:0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Device to load the neural network on.</span>
+<span class="c1"># Useful if you&#39;re training a model on the same </span>
+<span class="c1"># machine, in which case use CPU and leave the</span>
+<span class="c1"># GPU for training.</span>
+<span class="n">DEVICE</span> <span class="o">=</span> <span class="s2">&quot;/cpu:0&quot;</span>  <span class="c1"># /cpu:0 or /gpu:0</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def get_ax(rows=1, cols=1, size=16):
-    &quot;&quot;&quot;Return a Matplotlib Axes array to be used in
-    all visualizations in the notebook. Provide a
-    central point to control graph sizes.
-    
-    Adjust the size attribute to control how big to render images
-    &quot;&quot;&quot;
-    _, ax = plt.subplots(rows, cols, figsize=(size*cols, size*rows))
-    return ax
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_ax</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a Matplotlib Axes array to be used in</span>
+<span class="sd">    all visualizations in the notebook. Provide a</span>
+<span class="sd">    central point to control graph sizes.</span>
+<span class="sd">    </span>
+<span class="sd">    Adjust the size attribute to control how big to render images</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="o">*</span><span class="n">cols</span><span class="p">,</span> <span class="n">size</span><span class="o">*</span><span class="n">rows</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">ax</span>
 </pre></div>
 </div>
 </div>
@@ -935,22 +940,22 @@ DEVICE = &quot;/cpu:0&quot;  # /cpu:0 or /gpu:0
 <h1><span class="section-number">3.18. </span>Load Model<a class="headerlink" href="#load-model" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create model in inference mode
-with tf.device(DEVICE):
-    model = modellib.MaskRCNN(mode=&quot;inference&quot;, model_dir=MODEL_DIR,
-                              config=config)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create model in inference mode</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">modellib</span><span class="o">.</span><span class="n">MaskRCNN</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;inference&quot;</span><span class="p">,</span> <span class="n">model_dir</span><span class="o">=</span><span class="n">MODEL_DIR</span><span class="p">,</span>
+                              <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
 
-# Set weights file path
-if config.NAME == &quot;shapes&quot;:
-    weights_path = SHAPES_MODEL_PATH
-elif config.NAME == &quot;coco&quot;:
-    weights_path = COCO_MODEL_PATH
-# Or, uncomment to load the last model you trained
-# weights_path = model.find_last()
+<span class="c1"># Set weights file path</span>
+<span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">NAME</span> <span class="o">==</span> <span class="s2">&quot;shapes&quot;</span><span class="p">:</span>
+    <span class="n">weights_path</span> <span class="o">=</span> <span class="n">SHAPES_MODEL_PATH</span>
+<span class="k">elif</span> <span class="n">config</span><span class="o">.</span><span class="n">NAME</span> <span class="o">==</span> <span class="s2">&quot;coco&quot;</span><span class="p">:</span>
+    <span class="n">weights_path</span> <span class="o">=</span> <span class="n">COCO_MODEL_PATH</span>
+<span class="c1"># Or, uncomment to load the last model you trained</span>
+<span class="c1"># weights_path = model.find_last()</span>
 
-# Load weights
-print(&quot;Loading weights &quot;, weights_path)
-model.load_weights(weights_path, by_name=True)
+<span class="c1"># Load weights</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loading weights &quot;</span><span class="p">,</span> <span class="n">weights_path</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="n">weights_path</span><span class="p">,</span> <span class="n">by_name</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -960,8 +965,8 @@ model.load_weights(weights_path, by_name=True)
 <h1><span class="section-number">3.19. </span>Review Weight Stats<a class="headerlink" href="#review-weight-stats" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Show stats of all trainable weights    
-visualize.display_weight_stats(model)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show stats of all trainable weights    </span>
+<span class="n">visualize</span><span class="o">.</span><span class="n">display_weight_stats</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -974,21 +979,21 @@ visualize.display_weight_stats(model)
 <p>TODO: cleanup this part</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Pick layer types to display
-LAYER_TYPES = [&#39;Conv2D&#39;, &#39;Dense&#39;, &#39;Conv2DTranspose&#39;]
-# Get layers
-layers = model.get_trainable_layers()
-layers = list(filter(lambda l: l.__class__.__name__ in LAYER_TYPES, 
-                layers))
-# Display Histograms
-fig, ax = plt.subplots(len(layers), 2, figsize=(10, 3*len(layers)),
-                       gridspec_kw={&quot;hspace&quot;:1})
-for l, layer in enumerate(layers):
-    weights = layer.get_weights()
-    for w, weight in enumerate(weights):
-        tensor = layer.weights[w]
-        ax[l, w].set_title(tensor.name)
-        _ = ax[l, w].hist(weight[w].flatten(), 50)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pick layer types to display</span>
+<span class="n">LAYER_TYPES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Conv2D&#39;</span><span class="p">,</span> <span class="s1">&#39;Dense&#39;</span><span class="p">,</span> <span class="s1">&#39;Conv2DTranspose&#39;</span><span class="p">]</span>
+<span class="c1"># Get layers</span>
+<span class="n">layers</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_trainable_layers</span><span class="p">()</span>
+<span class="n">layers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">l</span><span class="p">:</span> <span class="n">l</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="ow">in</span> <span class="n">LAYER_TYPES</span><span class="p">,</span> 
+                <span class="n">layers</span><span class="p">))</span>
+<span class="c1"># Display Histograms</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">layers</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">layers</span><span class="p">)),</span>
+                       <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;hspace&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">})</span>
+<span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">layer</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">layers</span><span class="p">):</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">weights</span><span class="p">):</span>
+        <span class="n">tensor</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">l</span><span class="p">,</span> <span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="n">l</span><span class="p">,</span> <span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">weight</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

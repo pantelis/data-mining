@@ -572,6 +572,11 @@ const thebe_selector_output = ".output, .cell_output"
    1. Learn Python
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../resources/environment/index.html">
+   2. Your Programming Environment
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -1023,42 +1028,42 @@ title="Print to PDF"
 <p>Code and visualizations to test, debug, and evaluate the Mask R-CNN model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
-import sys
-import random
-import math
-import re
-import time
-import numpy as np
-import tensorflow as tf
-import matplotlib
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
 
-# Root directory of the project
-ROOT_DIR = os.path.abspath(&quot;../../&quot;)
+<span class="c1"># Root directory of the project</span>
+<span class="n">ROOT_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../../&quot;</span><span class="p">)</span>
 
-# Import Mask RCNN
-sys.path.append(ROOT_DIR)  # To find local version of the library
-from mrcnn import utils
-from mrcnn import visualize
-from mrcnn.visualize import display_images
-import mrcnn.model as modellib
-from mrcnn.model import log
+<span class="c1"># Import Mask RCNN</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ROOT_DIR</span><span class="p">)</span>  <span class="c1"># To find local version of the library</span>
+<span class="kn">from</span> <span class="nn">mrcnn</span> <span class="kn">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">mrcnn</span> <span class="kn">import</span> <span class="n">visualize</span>
+<span class="kn">from</span> <span class="nn">mrcnn.visualize</span> <span class="kn">import</span> <span class="n">display_images</span>
+<span class="kn">import</span> <span class="nn">mrcnn.model</span> <span class="k">as</span> <span class="nn">modellib</span>
+<span class="kn">from</span> <span class="nn">mrcnn.model</span> <span class="kn">import</span> <span class="n">log</span>
 
-%matplotlib inline 
+<span class="o">%</span><span class="k">matplotlib</span> inline 
 
-# Directory to save logs and trained model
-MODEL_DIR = os.path.join(ROOT_DIR, &quot;logs&quot;)
+<span class="c1"># Directory to save logs and trained model</span>
+<span class="n">MODEL_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ROOT_DIR</span><span class="p">,</span> <span class="s2">&quot;logs&quot;</span><span class="p">)</span>
 
-# Local path to trained weights file
-COCO_MODEL_PATH = os.path.join(ROOT_DIR, &quot;mask_rcnn_coco.h5&quot;)
-# Download COCO trained weights from Releases if needed
-if not os.path.exists(COCO_MODEL_PATH):
-    utils.download_trained_weights(COCO_MODEL_PATH)
+<span class="c1"># Local path to trained weights file</span>
+<span class="n">COCO_MODEL_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ROOT_DIR</span><span class="p">,</span> <span class="s2">&quot;mask_rcnn_coco.h5&quot;</span><span class="p">)</span>
+<span class="c1"># Download COCO trained weights from Releases if needed</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">COCO_MODEL_PATH</span><span class="p">):</span>
+    <span class="n">utils</span><span class="o">.</span><span class="n">download_trained_weights</span><span class="p">(</span><span class="n">COCO_MODEL_PATH</span><span class="p">)</span>
 
-# Path to Shapes trained weights
-SHAPES_MODEL_PATH = os.path.join(ROOT_DIR, &quot;mask_rcnn_shapes.h5&quot;)
+<span class="c1"># Path to Shapes trained weights</span>
+<span class="n">SHAPES_MODEL_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ROOT_DIR</span><span class="p">,</span> <span class="s2">&quot;mask_rcnn_shapes.h5&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1073,31 +1078,31 @@ SHAPES_MODEL_PATH = os.path.join(ROOT_DIR, &quot;mask_rcnn_shapes.h5&quot;)
 <h1><span class="section-number">3.5. </span>Configurations<a class="headerlink" href="#configurations" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Run one of the code blocks
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run one of the code blocks</span>
 
-# Shapes toy dataset
-# import shapes
-# config = shapes.ShapesConfig()
+<span class="c1"># Shapes toy dataset</span>
+<span class="c1"># import shapes</span>
+<span class="c1"># config = shapes.ShapesConfig()</span>
 
-# MS COCO Dataset
-import coco
-config = coco.CocoConfig()
-COCO_DIR = &quot;path to COCO dataset&quot;  # TODO: enter value here
+<span class="c1"># MS COCO Dataset</span>
+<span class="kn">import</span> <span class="nn">coco</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">coco</span><span class="o">.</span><span class="n">CocoConfig</span><span class="p">()</span>
+<span class="n">COCO_DIR</span> <span class="o">=</span> <span class="s2">&quot;path to COCO dataset&quot;</span>  <span class="c1"># TODO: enter value here</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Override the training configurations with a few
-# changes for inferencing.
-class InferenceConfig(config.__class__):
-    # Run detection on one image at a time
-    GPU_COUNT = 1
-    IMAGES_PER_GPU = 1
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Override the training configurations with a few</span>
+<span class="c1"># changes for inferencing.</span>
+<span class="k">class</span> <span class="nc">InferenceConfig</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
+    <span class="c1"># Run detection on one image at a time</span>
+    <span class="n">GPU_COUNT</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">IMAGES_PER_GPU</span> <span class="o">=</span> <span class="mi">1</span>
 
-config = InferenceConfig()
-config.display()
+<span class="n">config</span> <span class="o">=</span> <span class="n">InferenceConfig</span><span class="p">()</span>
+<span class="n">config</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1153,31 +1158,31 @@ WEIGHT_DECAY                   0.0001
 <h1><span class="section-number">3.6. </span>Notebook Preferences<a class="headerlink" href="#notebook-preferences" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Device to load the neural network on.
-# Useful if you&#39;re training a model on the same 
-# machine, in which case use CPU and leave the
-# GPU for training.
-DEVICE = &quot;/cpu:0&quot;  # /cpu:0 or /gpu:0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Device to load the neural network on.</span>
+<span class="c1"># Useful if you&#39;re training a model on the same </span>
+<span class="c1"># machine, in which case use CPU and leave the</span>
+<span class="c1"># GPU for training.</span>
+<span class="n">DEVICE</span> <span class="o">=</span> <span class="s2">&quot;/cpu:0&quot;</span>  <span class="c1"># /cpu:0 or /gpu:0</span>
 
-# Inspect the model in training or inference modes
-# values: &#39;inference&#39; or &#39;training&#39;
-# TODO: code for &#39;training&#39; test mode not ready yet
-TEST_MODE = &quot;inference&quot;
+<span class="c1"># Inspect the model in training or inference modes</span>
+<span class="c1"># values: &#39;inference&#39; or &#39;training&#39;</span>
+<span class="c1"># TODO: code for &#39;training&#39; test mode not ready yet</span>
+<span class="n">TEST_MODE</span> <span class="o">=</span> <span class="s2">&quot;inference&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def get_ax(rows=1, cols=1, size=16):
-    &quot;&quot;&quot;Return a Matplotlib Axes array to be used in
-    all visualizations in the notebook. Provide a
-    central point to control graph sizes.
-    
-    Adjust the size attribute to control how big to render images
-    &quot;&quot;&quot;
-    _, ax = plt.subplots(rows, cols, figsize=(size*cols, size*rows))
-    return ax
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_ax</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a Matplotlib Axes array to be used in</span>
+<span class="sd">    all visualizations in the notebook. Provide a</span>
+<span class="sd">    central point to control graph sizes.</span>
+<span class="sd">    </span>
+<span class="sd">    Adjust the size attribute to control how big to render images</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="o">*</span><span class="n">cols</span><span class="p">,</span> <span class="n">size</span><span class="o">*</span><span class="n">rows</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">ax</span>
 </pre></div>
 </div>
 </div>
@@ -1187,18 +1192,18 @@ TEST_MODE = &quot;inference&quot;
 <h1><span class="section-number">3.7. </span>Load Validation Dataset<a class="headerlink" href="#load-validation-dataset" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Build validation dataset
-if config.NAME == &#39;shapes&#39;:
-    dataset = shapes.ShapesDataset()
-    dataset.load_shapes(500, config.IMAGE_SHAPE[0], config.IMAGE_SHAPE[1])
-elif config.NAME == &quot;coco&quot;:
-    dataset = coco.CocoDataset()
-    dataset.load_coco(COCO_DIR, &quot;minival&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build validation dataset</span>
+<span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">NAME</span> <span class="o">==</span> <span class="s1">&#39;shapes&#39;</span><span class="p">:</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">shapes</span><span class="o">.</span><span class="n">ShapesDataset</span><span class="p">()</span>
+    <span class="n">dataset</span><span class="o">.</span><span class="n">load_shapes</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">IMAGE_SHAPE</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">config</span><span class="o">.</span><span class="n">IMAGE_SHAPE</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">elif</span> <span class="n">config</span><span class="o">.</span><span class="n">NAME</span> <span class="o">==</span> <span class="s2">&quot;coco&quot;</span><span class="p">:</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">coco</span><span class="o">.</span><span class="n">CocoDataset</span><span class="p">()</span>
+    <span class="n">dataset</span><span class="o">.</span><span class="n">load_coco</span><span class="p">(</span><span class="n">COCO_DIR</span><span class="p">,</span> <span class="s2">&quot;minival&quot;</span><span class="p">)</span>
 
-# Must call before using the dataset
-dataset.prepare()
+<span class="c1"># Must call before using the dataset</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
 
-print(&quot;Images: {}\nClasses: {}&quot;.format(len(dataset.image_ids), dataset.class_names))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Images: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">Classes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">image_ids</span><span class="p">),</span> <span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1218,22 +1223,22 @@ Classes: [&#39;BG&#39;, &#39;person&#39;, &#39;bicycle&#39;, &#39;car&#39;, &#39
 <h1><span class="section-number">3.8. </span>Load Model<a class="headerlink" href="#load-model" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create model in inference mode
-with tf.device(DEVICE):
-    model = modellib.MaskRCNN(mode=&quot;inference&quot;, model_dir=MODEL_DIR,
-                              config=config)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create model in inference mode</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">modellib</span><span class="o">.</span><span class="n">MaskRCNN</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;inference&quot;</span><span class="p">,</span> <span class="n">model_dir</span><span class="o">=</span><span class="n">MODEL_DIR</span><span class="p">,</span>
+                              <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
 
-# Set weights file path
-if config.NAME == &quot;shapes&quot;:
-    weights_path = SHAPES_MODEL_PATH
-elif config.NAME == &quot;coco&quot;:
-    weights_path = COCO_MODEL_PATH
-# Or, uncomment to load the last model you trained
-# weights_path = model.find_last()
+<span class="c1"># Set weights file path</span>
+<span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">NAME</span> <span class="o">==</span> <span class="s2">&quot;shapes&quot;</span><span class="p">:</span>
+    <span class="n">weights_path</span> <span class="o">=</span> <span class="n">SHAPES_MODEL_PATH</span>
+<span class="k">elif</span> <span class="n">config</span><span class="o">.</span><span class="n">NAME</span> <span class="o">==</span> <span class="s2">&quot;coco&quot;</span><span class="p">:</span>
+    <span class="n">weights_path</span> <span class="o">=</span> <span class="n">COCO_MODEL_PATH</span>
+<span class="c1"># Or, uncomment to load the last model you trained</span>
+<span class="c1"># weights_path = model.find_last()</span>
 
-# Load weights
-print(&quot;Loading weights &quot;, weights_path)
-model.load_weights(weights_path, by_name=True)
+<span class="c1"># Load weights</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loading weights &quot;</span><span class="p">,</span> <span class="n">weights_path</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="n">weights_path</span><span class="p">,</span> <span class="n">by_name</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1243,24 +1248,24 @@ model.load_weights(weights_path, by_name=True)
 <h1><span class="section-number">3.9. </span>Run Detection<a class="headerlink" href="#run-detection" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>image_id = random.choice(dataset.image_ids)
-image, image_meta, gt_class_id, gt_bbox, gt_mask =\
-    modellib.load_image_gt(dataset, config, image_id, use_mini_mask=False)
-info = dataset.image_info[image_id]
-print(&quot;image ID: {}.{} ({}) {}&quot;.format(info[&quot;source&quot;], info[&quot;id&quot;], image_id, 
-                                       dataset.image_reference(image_id)))
-# Run object detection
-results = model.detect([image], verbose=1)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_id</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">image_ids</span><span class="p">)</span>
+<span class="n">image</span><span class="p">,</span> <span class="n">image_meta</span><span class="p">,</span> <span class="n">gt_class_id</span><span class="p">,</span> <span class="n">gt_bbox</span><span class="p">,</span> <span class="n">gt_mask</span> <span class="o">=</span>\
+    <span class="n">modellib</span><span class="o">.</span><span class="n">load_image_gt</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">image_id</span><span class="p">,</span> <span class="n">use_mini_mask</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">image_info</span><span class="p">[</span><span class="n">image_id</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;image ID: </span><span class="si">{}</span><span class="s2">.</span><span class="si">{}</span><span class="s2"> (</span><span class="si">{}</span><span class="s2">) </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="n">image_id</span><span class="p">,</span> 
+                                       <span class="n">dataset</span><span class="o">.</span><span class="n">image_reference</span><span class="p">(</span><span class="n">image_id</span><span class="p">)))</span>
+<span class="c1"># Run object detection</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">detect</span><span class="p">([</span><span class="n">image</span><span class="p">],</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-# Display results
-ax = get_ax(1)
-r = results[0]
-visualize.display_instances(image, r[&#39;rois&#39;], r[&#39;masks&#39;], r[&#39;class_ids&#39;], 
-                            dataset.class_names, r[&#39;scores&#39;], ax=ax,
-                            title=&quot;Predictions&quot;)
-log(&quot;gt_class_id&quot;, gt_class_id)
-log(&quot;gt_bbox&quot;, gt_bbox)
-log(&quot;gt_mask&quot;, gt_mask)
+<span class="c1"># Display results</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">get_ax</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">visualize</span><span class="o">.</span><span class="n">display_instances</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;rois&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;masks&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_ids&#39;</span><span class="p">],</span> 
+                            <span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;scores&#39;</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Predictions&quot;</span><span class="p">)</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;gt_class_id&quot;</span><span class="p">,</span> <span class="n">gt_class_id</span><span class="p">)</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;gt_bbox&quot;</span><span class="p">,</span> <span class="n">gt_bbox</span><span class="p">)</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;gt_mask&quot;</span><span class="p">,</span> <span class="n">gt_mask</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1282,10 +1287,10 @@ gt_mask                  shape: (1024, 1024, 10)      min:    0.00000  max:    1
 <h2><span class="section-number">3.9.1. </span>Precision-Recall<a class="headerlink" href="#precision-recall" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Draw precision-recall curve
-AP, precisions, recalls, overlaps = utils.compute_ap(gt_bbox, gt_class_id, gt_mask,
-                                          r[&#39;rois&#39;], r[&#39;class_ids&#39;], r[&#39;scores&#39;], r[&#39;masks&#39;])
-visualize.plot_precision_recall(AP, precisions, recalls)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Draw precision-recall curve</span>
+<span class="n">AP</span><span class="p">,</span> <span class="n">precisions</span><span class="p">,</span> <span class="n">recalls</span><span class="p">,</span> <span class="n">overlaps</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">compute_ap</span><span class="p">(</span><span class="n">gt_bbox</span><span class="p">,</span> <span class="n">gt_class_id</span><span class="p">,</span> <span class="n">gt_mask</span><span class="p">,</span>
+                                          <span class="n">r</span><span class="p">[</span><span class="s1">&#39;rois&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_ids&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;scores&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;masks&#39;</span><span class="p">])</span>
+<span class="n">visualize</span><span class="o">.</span><span class="n">plot_precision_recall</span><span class="p">(</span><span class="n">AP</span><span class="p">,</span> <span class="n">precisions</span><span class="p">,</span> <span class="n">recalls</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1295,9 +1300,9 @@ visualize.plot_precision_recall(AP, precisions, recalls)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Grid of ground truth objects and their predictions
-visualize.plot_overlaps(gt_class_id, r[&#39;class_ids&#39;], r[&#39;scores&#39;],
-                        overlaps, dataset.class_names)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grid of ground truth objects and their predictions</span>
+<span class="n">visualize</span><span class="o">.</span><span class="n">plot_overlaps</span><span class="p">(</span><span class="n">gt_class_id</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_ids&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;scores&#39;</span><span class="p">],</span>
+                        <span class="n">overlaps</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1310,28 +1315,28 @@ visualize.plot_overlaps(gt_class_id, r[&#39;class_ids&#39;], r[&#39;scores&#39;]
 <h2><span class="section-number">3.9.2. </span>Compute mAP &#64; IoU=50 on Batch of Images<a class="headerlink" href="#compute-map-iou-50-on-batch-of-images" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Compute VOC-style Average Precision
-def compute_batch_ap(image_ids):
-    APs = []
-    for image_id in image_ids:
-        # Load image
-        image, image_meta, gt_class_id, gt_bbox, gt_mask =\
-            modellib.load_image_gt(dataset, config,
-                                   image_id, use_mini_mask=False)
-        # Run object detection
-        results = model.detect([image], verbose=0)
-        # Compute AP
-        r = results[0]
-        AP, precisions, recalls, overlaps =\
-            utils.compute_ap(gt_bbox, gt_class_id, gt_mask,
-                              r[&#39;rois&#39;], r[&#39;class_ids&#39;], r[&#39;scores&#39;], r[&#39;masks&#39;])
-        APs.append(AP)
-    return APs
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute VOC-style Average Precision</span>
+<span class="k">def</span> <span class="nf">compute_batch_ap</span><span class="p">(</span><span class="n">image_ids</span><span class="p">):</span>
+    <span class="n">APs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">image_id</span> <span class="ow">in</span> <span class="n">image_ids</span><span class="p">:</span>
+        <span class="c1"># Load image</span>
+        <span class="n">image</span><span class="p">,</span> <span class="n">image_meta</span><span class="p">,</span> <span class="n">gt_class_id</span><span class="p">,</span> <span class="n">gt_bbox</span><span class="p">,</span> <span class="n">gt_mask</span> <span class="o">=</span>\
+            <span class="n">modellib</span><span class="o">.</span><span class="n">load_image_gt</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span>
+                                   <span class="n">image_id</span><span class="p">,</span> <span class="n">use_mini_mask</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="c1"># Run object detection</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">detect</span><span class="p">([</span><span class="n">image</span><span class="p">],</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># Compute AP</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">AP</span><span class="p">,</span> <span class="n">precisions</span><span class="p">,</span> <span class="n">recalls</span><span class="p">,</span> <span class="n">overlaps</span> <span class="o">=</span>\
+            <span class="n">utils</span><span class="o">.</span><span class="n">compute_ap</span><span class="p">(</span><span class="n">gt_bbox</span><span class="p">,</span> <span class="n">gt_class_id</span><span class="p">,</span> <span class="n">gt_mask</span><span class="p">,</span>
+                              <span class="n">r</span><span class="p">[</span><span class="s1">&#39;rois&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_ids&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;scores&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;masks&#39;</span><span class="p">])</span>
+        <span class="n">APs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">AP</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">APs</span>
 
-# Pick a set of random images
-image_ids = np.random.choice(dataset.image_ids, 10)
-APs = compute_batch_ap(image_ids)
-print(&quot;mAP @ IoU=50: &quot;, np.mean(APs))
+<span class="c1"># Pick a set of random images</span>
+<span class="n">image_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">image_ids</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">APs</span> <span class="o">=</span> <span class="n">compute_batch_ap</span><span class="p">(</span><span class="n">image_ids</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mAP @ IoU=50: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">APs</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1360,29 +1365,29 @@ print(&quot;mAP @ IoU=50: &quot;, np.mean(APs))
 <p>To train the RPN regressor, we also compute the shift and resizing needed to make the anchor cover the ground truth object completely.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Generate RPN trainig targets
-# target_rpn_match is 1 for positive anchors, -1 for negative anchors
-# and 0 for neutral anchors.
-target_rpn_match, target_rpn_bbox = modellib.build_rpn_targets(
-    image.shape, model.anchors, gt_class_id, gt_bbox, model.config)
-log(&quot;target_rpn_match&quot;, target_rpn_match)
-log(&quot;target_rpn_bbox&quot;, target_rpn_bbox)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate RPN trainig targets</span>
+<span class="c1"># target_rpn_match is 1 for positive anchors, -1 for negative anchors</span>
+<span class="c1"># and 0 for neutral anchors.</span>
+<span class="n">target_rpn_match</span><span class="p">,</span> <span class="n">target_rpn_bbox</span> <span class="o">=</span> <span class="n">modellib</span><span class="o">.</span><span class="n">build_rpn_targets</span><span class="p">(</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">anchors</span><span class="p">,</span> <span class="n">gt_class_id</span><span class="p">,</span> <span class="n">gt_bbox</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;target_rpn_match&quot;</span><span class="p">,</span> <span class="n">target_rpn_match</span><span class="p">)</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;target_rpn_bbox&quot;</span><span class="p">,</span> <span class="n">target_rpn_bbox</span><span class="p">)</span>
 
-positive_anchor_ix = np.where(target_rpn_match[:] == 1)[0]
-negative_anchor_ix = np.where(target_rpn_match[:] == -1)[0]
-neutral_anchor_ix = np.where(target_rpn_match[:] == 0)[0]
-positive_anchors = model.anchors[positive_anchor_ix]
-negative_anchors = model.anchors[negative_anchor_ix]
-neutral_anchors = model.anchors[neutral_anchor_ix]
-log(&quot;positive_anchors&quot;, positive_anchors)
-log(&quot;negative_anchors&quot;, negative_anchors)
-log(&quot;neutral anchors&quot;, neutral_anchors)
+<span class="n">positive_anchor_ix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">target_rpn_match</span><span class="p">[:]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">negative_anchor_ix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">target_rpn_match</span><span class="p">[:]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">neutral_anchor_ix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">target_rpn_match</span><span class="p">[:]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">positive_anchors</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">anchors</span><span class="p">[</span><span class="n">positive_anchor_ix</span><span class="p">]</span>
+<span class="n">negative_anchors</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">anchors</span><span class="p">[</span><span class="n">negative_anchor_ix</span><span class="p">]</span>
+<span class="n">neutral_anchors</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">anchors</span><span class="p">[</span><span class="n">neutral_anchor_ix</span><span class="p">]</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;positive_anchors&quot;</span><span class="p">,</span> <span class="n">positive_anchors</span><span class="p">)</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;negative_anchors&quot;</span><span class="p">,</span> <span class="n">negative_anchors</span><span class="p">)</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;neutral anchors&quot;</span><span class="p">,</span> <span class="n">neutral_anchors</span><span class="p">)</span>
 
-# Apply refinement deltas to positive anchors
-refined_anchors = utils.apply_box_deltas(
-    positive_anchors,
-    target_rpn_bbox[:positive_anchors.shape[0]] * model.config.RPN_BBOX_STD_DEV)
-log(&quot;refined_anchors&quot;, refined_anchors, )
+<span class="c1"># Apply refinement deltas to positive anchors</span>
+<span class="n">refined_anchors</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">apply_box_deltas</span><span class="p">(</span>
+    <span class="n">positive_anchors</span><span class="p">,</span>
+    <span class="n">target_rpn_bbox</span><span class="p">[:</span><span class="n">positive_anchors</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">*</span> <span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">RPN_BBOX_STD_DEV</span><span class="p">)</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;refined_anchors&quot;</span><span class="p">,</span> <span class="n">refined_anchors</span><span class="p">,</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1399,9 +1404,9 @@ refined_anchors          shape: (14, 4)               min:    0.00000  max: 1023
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Display positive anchors before refinement (dotted) and
-# after refinement (solid).
-visualize.draw_boxes(image, boxes=positive_anchors, refined_boxes=refined_anchors, ax=get_ax())
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display positive anchors before refinement (dotted) and</span>
+<span class="c1"># after refinement (solid).</span>
+<span class="n">visualize</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="o">=</span><span class="n">positive_anchors</span><span class="p">,</span> <span class="n">refined_boxes</span><span class="o">=</span><span class="n">refined_anchors</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">get_ax</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1415,24 +1420,24 @@ visualize.draw_boxes(image, boxes=positive_anchors, refined_boxes=refined_anchor
 <p>Here we run the RPN graph and display its predictions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Run RPN sub-graph
-pillar = model.keras_model.get_layer(&quot;ROI&quot;).output  # node to start searching from
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run RPN sub-graph</span>
+<span class="n">pillar</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">keras_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;ROI&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">output</span>  <span class="c1"># node to start searching from</span>
 
-# TF 1.4 and 1.9 introduce new versions of NMS. Search for all names to support TF 1.3~1.10
-nms_node = model.ancestor(pillar, &quot;ROI/rpn_non_max_suppression:0&quot;)
-if nms_node is None:
-    nms_node = model.ancestor(pillar, &quot;ROI/rpn_non_max_suppression/NonMaxSuppressionV2:0&quot;)
-if nms_node is None: #TF 1.9-1.10
-    nms_node = model.ancestor(pillar, &quot;ROI/rpn_non_max_suppression/NonMaxSuppressionV3:0&quot;)
+<span class="c1"># TF 1.4 and 1.9 introduce new versions of NMS. Search for all names to support TF 1.3~1.10</span>
+<span class="n">nms_node</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">ancestor</span><span class="p">(</span><span class="n">pillar</span><span class="p">,</span> <span class="s2">&quot;ROI/rpn_non_max_suppression:0&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">nms_node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">nms_node</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">ancestor</span><span class="p">(</span><span class="n">pillar</span><span class="p">,</span> <span class="s2">&quot;ROI/rpn_non_max_suppression/NonMaxSuppressionV2:0&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">nms_node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#TF 1.9-1.10</span>
+    <span class="n">nms_node</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">ancestor</span><span class="p">(</span><span class="n">pillar</span><span class="p">,</span> <span class="s2">&quot;ROI/rpn_non_max_suppression/NonMaxSuppressionV3:0&quot;</span><span class="p">)</span>
 
-rpn = model.run_graph([image], [
-    (&quot;rpn_class&quot;, model.keras_model.get_layer(&quot;rpn_class&quot;).output),
-    (&quot;pre_nms_anchors&quot;, model.ancestor(pillar, &quot;ROI/pre_nms_anchors:0&quot;)),
-    (&quot;refined_anchors&quot;, model.ancestor(pillar, &quot;ROI/refined_anchors:0&quot;)),
-    (&quot;refined_anchors_clipped&quot;, model.ancestor(pillar, &quot;ROI/refined_anchors_clipped:0&quot;)),
-    (&quot;post_nms_anchor_ix&quot;, nms_node),
-    (&quot;proposals&quot;, model.keras_model.get_layer(&quot;ROI&quot;).output),
-])
+<span class="n">rpn</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run_graph</span><span class="p">([</span><span class="n">image</span><span class="p">],</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;rpn_class&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">keras_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;rpn_class&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">output</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;pre_nms_anchors&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">ancestor</span><span class="p">(</span><span class="n">pillar</span><span class="p">,</span> <span class="s2">&quot;ROI/pre_nms_anchors:0&quot;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">&quot;refined_anchors&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">ancestor</span><span class="p">(</span><span class="n">pillar</span><span class="p">,</span> <span class="s2">&quot;ROI/refined_anchors:0&quot;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">&quot;refined_anchors_clipped&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">ancestor</span><span class="p">(</span><span class="n">pillar</span><span class="p">,</span> <span class="s2">&quot;ROI/refined_anchors_clipped:0&quot;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">&quot;post_nms_anchor_ix&quot;</span><span class="p">,</span> <span class="n">nms_node</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;proposals&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">keras_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;ROI&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">output</span><span class="p">),</span>
+<span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1449,10 +1454,10 @@ proposals                shape: (1, 1000, 4)          min:    0.00000  max:    1
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Show top anchors by score (before refinement)
-limit = 100
-sorted_anchor_ids = np.argsort(rpn[&#39;rpn_class&#39;][:,:,1].flatten())[::-1]
-visualize.draw_boxes(image, boxes=model.anchors[sorted_anchor_ids[:limit]], ax=get_ax())
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show top anchors by score (before refinement)</span>
+<span class="n">limit</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sorted_anchor_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">rpn</span><span class="p">[</span><span class="s1">&#39;rpn_class&#39;</span><span class="p">][:,:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">())[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">visualize</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">anchors</span><span class="p">[</span><span class="n">sorted_anchor_ids</span><span class="p">[:</span><span class="n">limit</span><span class="p">]],</span> <span class="n">ax</span><span class="o">=</span><span class="n">get_ax</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1462,15 +1467,15 @@ visualize.draw_boxes(image, boxes=model.anchors[sorted_anchor_ids[:limit]], ax=g
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Show top anchors with refinement. Then with clipping to image boundaries
-limit = 50
-ax = get_ax(1, 2)
-pre_nms_anchors = utils.denorm_boxes(rpn[&quot;pre_nms_anchors&quot;][0], image.shape[:2])
-refined_anchors = utils.denorm_boxes(rpn[&quot;refined_anchors&quot;][0], image.shape[:2])
-refined_anchors_clipped = utils.denorm_boxes(rpn[&quot;refined_anchors_clipped&quot;][0], image.shape[:2])
-visualize.draw_boxes(image, boxes=pre_nms_anchors[:limit],
-                     refined_boxes=refined_anchors[:limit], ax=ax[0])
-visualize.draw_boxes(image, refined_boxes=refined_anchors_clipped[:limit], ax=ax[1])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show top anchors with refinement. Then with clipping to image boundaries</span>
+<span class="n">limit</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">get_ax</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">pre_nms_anchors</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">denorm_boxes</span><span class="p">(</span><span class="n">rpn</span><span class="p">[</span><span class="s2">&quot;pre_nms_anchors&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">refined_anchors</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">denorm_boxes</span><span class="p">(</span><span class="n">rpn</span><span class="p">[</span><span class="s2">&quot;refined_anchors&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">refined_anchors_clipped</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">denorm_boxes</span><span class="p">(</span><span class="n">rpn</span><span class="p">[</span><span class="s2">&quot;refined_anchors_clipped&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">visualize</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="o">=</span><span class="n">pre_nms_anchors</span><span class="p">[:</span><span class="n">limit</span><span class="p">],</span>
+                     <span class="n">refined_boxes</span><span class="o">=</span><span class="n">refined_anchors</span><span class="p">[:</span><span class="n">limit</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">visualize</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">refined_boxes</span><span class="o">=</span><span class="n">refined_anchors_clipped</span><span class="p">[:</span><span class="n">limit</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1480,10 +1485,10 @@ visualize.draw_boxes(image, refined_boxes=refined_anchors_clipped[:limit], ax=ax
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Show refined anchors after non-max suppression
-limit = 50
-ixs = rpn[&quot;post_nms_anchor_ix&quot;][:limit]
-visualize.draw_boxes(image, refined_boxes=refined_anchors_clipped[ixs], ax=get_ax())
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show refined anchors after non-max suppression</span>
+<span class="n">limit</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">ixs</span> <span class="o">=</span> <span class="n">rpn</span><span class="p">[</span><span class="s2">&quot;post_nms_anchor_ix&quot;</span><span class="p">][:</span><span class="n">limit</span><span class="p">]</span>
+<span class="n">visualize</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">refined_boxes</span><span class="o">=</span><span class="n">refined_anchors_clipped</span><span class="p">[</span><span class="n">ixs</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">get_ax</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1493,14 +1498,14 @@ visualize.draw_boxes(image, refined_boxes=refined_anchors_clipped[ixs], ax=get_a
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Show final proposals
-# These are the same as the previous step (refined anchors 
-# after NMS) but with coordinates normalized to [0, 1] range.
-limit = 50
-# Convert back to image coordinates for display
-h, w = config.IMAGE_SHAPE[:2]
-proposals = rpn[&#39;proposals&#39;][0, :limit] * np.array([h, w, h, w])
-visualize.draw_boxes(image, refined_boxes=proposals, ax=get_ax())
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show final proposals</span>
+<span class="c1"># These are the same as the previous step (refined anchors </span>
+<span class="c1"># after NMS) but with coordinates normalized to [0, 1] range.</span>
+<span class="n">limit</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="c1"># Convert back to image coordinates for display</span>
+<span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">IMAGE_SHAPE</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">proposals</span> <span class="o">=</span> <span class="n">rpn</span><span class="p">[</span><span class="s1">&#39;proposals&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="n">limit</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span>
+<span class="n">visualize</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">refined_boxes</span><span class="o">=</span><span class="n">proposals</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">get_ax</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1510,24 +1515,24 @@ visualize.draw_boxes(image, refined_boxes=proposals, ax=get_ax())
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Measure the RPN recall (percent of objects covered by anchors)
-# Here we measure recall for 3 different methods:
-# - All anchors
-# - All refined anchors
-# - Refined anchors after NMS
-iou_threshold = 0.7
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Measure the RPN recall (percent of objects covered by anchors)</span>
+<span class="c1"># Here we measure recall for 3 different methods:</span>
+<span class="c1"># - All anchors</span>
+<span class="c1"># - All refined anchors</span>
+<span class="c1"># - Refined anchors after NMS</span>
+<span class="n">iou_threshold</span> <span class="o">=</span> <span class="mf">0.7</span>
 
-recall, positive_anchor_ids = utils.compute_recall(model.anchors, gt_bbox, iou_threshold)
-print(&quot;All Anchors ({:5})       Recall: {:.3f}  Positive anchors: {}&quot;.format(
-    model.anchors.shape[0], recall, len(positive_anchor_ids)))
+<span class="n">recall</span><span class="p">,</span> <span class="n">positive_anchor_ids</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">compute_recall</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">anchors</span><span class="p">,</span> <span class="n">gt_bbox</span><span class="p">,</span> <span class="n">iou_threshold</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All Anchors (</span><span class="si">{:5}</span><span class="s2">)       Recall: </span><span class="si">{:.3f}</span><span class="s2">  Positive anchors: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">anchors</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">recall</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">positive_anchor_ids</span><span class="p">)))</span>
 
-recall, positive_anchor_ids = utils.compute_recall(rpn[&#39;refined_anchors&#39;][0], gt_bbox, iou_threshold)
-print(&quot;Refined Anchors ({:5})   Recall: {:.3f}  Positive anchors: {}&quot;.format(
-    rpn[&#39;refined_anchors&#39;].shape[1], recall, len(positive_anchor_ids)))
+<span class="n">recall</span><span class="p">,</span> <span class="n">positive_anchor_ids</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">compute_recall</span><span class="p">(</span><span class="n">rpn</span><span class="p">[</span><span class="s1">&#39;refined_anchors&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">gt_bbox</span><span class="p">,</span> <span class="n">iou_threshold</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Refined Anchors (</span><span class="si">{:5}</span><span class="s2">)   Recall: </span><span class="si">{:.3f}</span><span class="s2">  Positive anchors: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="n">rpn</span><span class="p">[</span><span class="s1">&#39;refined_anchors&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">recall</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">positive_anchor_ids</span><span class="p">)))</span>
 
-recall, positive_anchor_ids = utils.compute_recall(proposals, gt_bbox, iou_threshold)
-print(&quot;Post NMS Anchors ({:5})  Recall: {:.3f}  Positive anchors: {}&quot;.format(
-    proposals.shape[0], recall, len(positive_anchor_ids)))
+<span class="n">recall</span><span class="p">,</span> <span class="n">positive_anchor_ids</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">compute_recall</span><span class="p">(</span><span class="n">proposals</span><span class="p">,</span> <span class="n">gt_bbox</span><span class="p">,</span> <span class="n">iou_threshold</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Post NMS Anchors (</span><span class="si">{:5}</span><span class="s2">)  Recall: </span><span class="si">{:.3f}</span><span class="s2">  Positive anchors: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="n">proposals</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">recall</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">positive_anchor_ids</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -1549,14 +1554,14 @@ Post NMS Anchors (   50)  Recall: 0.800  Positive anchors: 9
 <p>Run the classifier heads on proposals to generate class propbabilities and bounding box regressions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Get input and output to classifier and mask heads.
-mrcnn = model.run_graph([image], [
-    (&quot;proposals&quot;, model.keras_model.get_layer(&quot;ROI&quot;).output),
-    (&quot;probs&quot;, model.keras_model.get_layer(&quot;mrcnn_class&quot;).output),
-    (&quot;deltas&quot;, model.keras_model.get_layer(&quot;mrcnn_bbox&quot;).output),
-    (&quot;masks&quot;, model.keras_model.get_layer(&quot;mrcnn_mask&quot;).output),
-    (&quot;detections&quot;, model.keras_model.get_layer(&quot;mrcnn_detection&quot;).output),
-])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get input and output to classifier and mask heads.</span>
+<span class="n">mrcnn</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run_graph</span><span class="p">([</span><span class="n">image</span><span class="p">],</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;proposals&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">keras_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;ROI&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">output</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;probs&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">keras_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;mrcnn_class&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">output</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;deltas&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">keras_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;mrcnn_bbox&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">output</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;masks&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">keras_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;mrcnn_mask&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">output</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;detections&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">keras_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;mrcnn_detection&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">output</span><span class="p">),</span>
+<span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1572,23 +1577,23 @@ detections               shape: (1, 100, 6)           min:    0.00000  max:  844
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Get detection class IDs. Trim zero padding.
-det_class_ids = mrcnn[&#39;detections&#39;][0, :, 4].astype(np.int32)
-det_count = np.where(det_class_ids == 0)[0][0]
-det_class_ids = det_class_ids[:det_count]
-detections = mrcnn[&#39;detections&#39;][0, :det_count]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get detection class IDs. Trim zero padding.</span>
+<span class="n">det_class_ids</span> <span class="o">=</span> <span class="n">mrcnn</span><span class="p">[</span><span class="s1">&#39;detections&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<span class="n">det_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">det_class_ids</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">det_class_ids</span> <span class="o">=</span> <span class="n">det_class_ids</span><span class="p">[:</span><span class="n">det_count</span><span class="p">]</span>
+<span class="n">detections</span> <span class="o">=</span> <span class="n">mrcnn</span><span class="p">[</span><span class="s1">&#39;detections&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="n">det_count</span><span class="p">]</span>
 
-print(&quot;{} detections: {}&quot;.format(
-    det_count, np.array(dataset.class_names)[det_class_ids]))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> detections: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="n">det_count</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">)[</span><span class="n">det_class_ids</span><span class="p">]))</span>
 
-captions = [&quot;{} {:.3f}&quot;.format(dataset.class_names[int(c)], s) if c &gt; 0 else &quot;&quot;
-            for c, s in zip(detections[:, 4], detections[:, 5])]
-visualize.draw_boxes(
-    image, 
-    refined_boxes=utils.denorm_boxes(detections[:, :4], image.shape[:2]),
-    visibilities=[2] * len(detections),
-    captions=captions, title=&quot;Detections&quot;,
-    ax=get_ax())
+<span class="n">captions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">)],</span> <span class="n">s</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">detections</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">detections</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">])]</span>
+<span class="n">visualize</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">,</span> 
+    <span class="n">refined_boxes</span><span class="o">=</span><span class="n">utils</span><span class="o">.</span><span class="n">denorm_boxes</span><span class="p">(</span><span class="n">detections</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]),</span>
+    <span class="n">visibilities</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">detections</span><span class="p">),</span>
+    <span class="n">captions</span><span class="o">=</span><span class="n">captions</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Detections&quot;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">get_ax</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1605,23 +1610,23 @@ visualize.draw_boxes(
 <p>Here we dive deeper into the process of processing the detections.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Proposals are in normalized coordinates. Scale them
-# to image coordinates.
-h, w = config.IMAGE_SHAPE[:2]
-proposals = np.around(mrcnn[&quot;proposals&quot;][0] * np.array([h, w, h, w])).astype(np.int32)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Proposals are in normalized coordinates. Scale them</span>
+<span class="c1"># to image coordinates.</span>
+<span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">IMAGE_SHAPE</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">proposals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">mrcnn</span><span class="p">[</span><span class="s2">&quot;proposals&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">]))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
 
-# Class ID, score, and mask per proposal
-roi_class_ids = np.argmax(mrcnn[&quot;probs&quot;][0], axis=1)
-roi_scores = mrcnn[&quot;probs&quot;][0, np.arange(roi_class_ids.shape[0]), roi_class_ids]
-roi_class_names = np.array(dataset.class_names)[roi_class_ids]
-roi_positive_ixs = np.where(roi_class_ids &gt; 0)[0]
+<span class="c1"># Class ID, score, and mask per proposal</span>
+<span class="n">roi_class_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">mrcnn</span><span class="p">[</span><span class="s2">&quot;probs&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">roi_scores</span> <span class="o">=</span> <span class="n">mrcnn</span><span class="p">[</span><span class="s2">&quot;probs&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">roi_class_ids</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">roi_class_ids</span><span class="p">]</span>
+<span class="n">roi_class_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">)[</span><span class="n">roi_class_ids</span><span class="p">]</span>
+<span class="n">roi_positive_ixs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">roi_class_ids</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-# How many ROIs vs empty rows?
-print(&quot;{} Valid proposals out of {}&quot;.format(np.sum(np.any(proposals, axis=1)), proposals.shape[0]))
-print(&quot;{} Positive ROIs&quot;.format(len(roi_positive_ixs)))
+<span class="c1"># How many ROIs vs empty rows?</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> Valid proposals out of </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">proposals</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)),</span> <span class="n">proposals</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> Positive ROIs&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">roi_positive_ixs</span><span class="p">)))</span>
 
-# Class counts
-print(list(zip(*np.unique(roi_class_names, return_counts=True))))
+<span class="c1"># Class counts</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">roi_class_names</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">))))</span>
 </pre></div>
 </div>
 </div>
@@ -1635,17 +1640,17 @@ print(list(zip(*np.unique(roi_class_names, return_counts=True))))
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Display a random sample of proposals.
-# Proposals classified as background are dotted, and
-# the rest show their class and confidence score.
-limit = 200
-ixs = np.random.randint(0, proposals.shape[0], limit)
-captions = [&quot;{} {:.3f}&quot;.format(dataset.class_names[c], s) if c &gt; 0 else &quot;&quot;
-            for c, s in zip(roi_class_ids[ixs], roi_scores[ixs])]
-visualize.draw_boxes(image, boxes=proposals[ixs],
-                     visibilities=np.where(roi_class_ids[ixs] &gt; 0, 2, 1),
-                     captions=captions, title=&quot;ROIs Before Refinement&quot;,
-                     ax=get_ax())
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display a random sample of proposals.</span>
+<span class="c1"># Proposals classified as background are dotted, and</span>
+<span class="c1"># the rest show their class and confidence score.</span>
+<span class="n">limit</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">ixs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">proposals</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">limit</span><span class="p">)</span>
+<span class="n">captions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">s</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">roi_class_ids</span><span class="p">[</span><span class="n">ixs</span><span class="p">],</span> <span class="n">roi_scores</span><span class="p">[</span><span class="n">ixs</span><span class="p">])]</span>
+<span class="n">visualize</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="o">=</span><span class="n">proposals</span><span class="p">[</span><span class="n">ixs</span><span class="p">],</span>
+                     <span class="n">visibilities</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">roi_class_ids</span><span class="p">[</span><span class="n">ixs</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                     <span class="n">captions</span><span class="o">=</span><span class="n">captions</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;ROIs Before Refinement&quot;</span><span class="p">,</span>
+                     <span class="n">ax</span><span class="o">=</span><span class="n">get_ax</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1657,27 +1662,27 @@ visualize.draw_boxes(image, boxes=proposals[ixs],
 <h3>Apply Bounding Box Refinement<a class="headerlink" href="#apply-bounding-box-refinement" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Class-specific bounding box shifts.
-roi_bbox_specific = mrcnn[&quot;deltas&quot;][0, np.arange(proposals.shape[0]), roi_class_ids]
-log(&quot;roi_bbox_specific&quot;, roi_bbox_specific)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Class-specific bounding box shifts.</span>
+<span class="n">roi_bbox_specific</span> <span class="o">=</span> <span class="n">mrcnn</span><span class="p">[</span><span class="s2">&quot;deltas&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">proposals</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">roi_class_ids</span><span class="p">]</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;roi_bbox_specific&quot;</span><span class="p">,</span> <span class="n">roi_bbox_specific</span><span class="p">)</span>
 
-# Apply bounding box transformations
-# Shape: [N, (y1, x1, y2, x2)]
-refined_proposals = utils.apply_box_deltas(
-    proposals, roi_bbox_specific * config.BBOX_STD_DEV).astype(np.int32)
-log(&quot;refined_proposals&quot;, refined_proposals)
+<span class="c1"># Apply bounding box transformations</span>
+<span class="c1"># Shape: [N, (y1, x1, y2, x2)]</span>
+<span class="n">refined_proposals</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">apply_box_deltas</span><span class="p">(</span>
+    <span class="n">proposals</span><span class="p">,</span> <span class="n">roi_bbox_specific</span> <span class="o">*</span> <span class="n">config</span><span class="o">.</span><span class="n">BBOX_STD_DEV</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;refined_proposals&quot;</span><span class="p">,</span> <span class="n">refined_proposals</span><span class="p">)</span>
 
-# Show positive proposals
-# ids = np.arange(roi_boxes.shape[0])  # Display all
-limit = 5
-ids = np.random.randint(0, len(roi_positive_ixs), limit)  # Display random sample
-captions = [&quot;{} {:.3f}&quot;.format(dataset.class_names[c], s) if c &gt; 0 else &quot;&quot;
-            for c, s in zip(roi_class_ids[roi_positive_ixs][ids], roi_scores[roi_positive_ixs][ids])]
-visualize.draw_boxes(image, boxes=proposals[roi_positive_ixs][ids],
-                     refined_boxes=refined_proposals[roi_positive_ixs][ids],
-                     visibilities=np.where(roi_class_ids[roi_positive_ixs][ids] &gt; 0, 1, 0),
-                     captions=captions, title=&quot;ROIs After Refinement&quot;,
-                     ax=get_ax())
+<span class="c1"># Show positive proposals</span>
+<span class="c1"># ids = np.arange(roi_boxes.shape[0])  # Display all</span>
+<span class="n">limit</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">roi_positive_ixs</span><span class="p">),</span> <span class="n">limit</span><span class="p">)</span>  <span class="c1"># Display random sample</span>
+<span class="n">captions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">s</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">roi_class_ids</span><span class="p">[</span><span class="n">roi_positive_ixs</span><span class="p">][</span><span class="n">ids</span><span class="p">],</span> <span class="n">roi_scores</span><span class="p">[</span><span class="n">roi_positive_ixs</span><span class="p">][</span><span class="n">ids</span><span class="p">])]</span>
+<span class="n">visualize</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="o">=</span><span class="n">proposals</span><span class="p">[</span><span class="n">roi_positive_ixs</span><span class="p">][</span><span class="n">ids</span><span class="p">],</span>
+                     <span class="n">refined_boxes</span><span class="o">=</span><span class="n">refined_proposals</span><span class="p">[</span><span class="n">roi_positive_ixs</span><span class="p">][</span><span class="n">ids</span><span class="p">],</span>
+                     <span class="n">visibilities</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">roi_class_ids</span><span class="p">[</span><span class="n">roi_positive_ixs</span><span class="p">][</span><span class="n">ids</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                     <span class="n">captions</span><span class="o">=</span><span class="n">captions</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;ROIs After Refinement&quot;</span><span class="p">,</span>
+                     <span class="n">ax</span><span class="o">=</span><span class="n">get_ax</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1694,9 +1699,9 @@ refined_proposals        shape: (1000, 4)             min:   -8.00000  max: 1028
 <h3>Filter Low Confidence Detections<a class="headerlink" href="#filter-low-confidence-detections" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Remove boxes classified as background
-keep = np.where(roi_class_ids &gt; 0)[0]
-print(&quot;Keep {} detections:\n{}&quot;.format(keep.shape[0], keep))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove boxes classified as background</span>
+<span class="n">keep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">roi_class_ids</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Keep </span><span class="si">{}</span><span class="s2"> detections:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">keep</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">keep</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1712,10 +1717,10 @@ print(&quot;Keep {} detections:\n{}&quot;.format(keep.shape[0], keep))
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Remove low confidence detections
-keep = np.intersect1d(keep, np.where(roi_scores &gt;= config.DETECTION_MIN_CONFIDENCE)[0])
-print(&quot;Remove boxes below {} confidence. Keep {}:\n{}&quot;.format(
-    config.DETECTION_MIN_CONFIDENCE, keep.shape[0], keep))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove low confidence detections</span>
+<span class="n">keep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span><span class="n">keep</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">roi_scores</span> <span class="o">&gt;=</span> <span class="n">config</span><span class="o">.</span><span class="n">DETECTION_MIN_CONFIDENCE</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Remove boxes below </span><span class="si">{}</span><span class="s2"> confidence. Keep </span><span class="si">{}</span><span class="s2">:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">DETECTION_MIN_CONFIDENCE</span><span class="p">,</span> <span class="n">keep</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">keep</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1734,27 +1739,27 @@ print(&quot;Remove boxes below {} confidence. Keep {}:\n{}&quot;.format(
 <h3>Per-Class Non-Max Suppression<a class="headerlink" href="#per-class-non-max-suppression" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Apply per-class non-max suppression
-pre_nms_boxes = refined_proposals[keep]
-pre_nms_scores = roi_scores[keep]
-pre_nms_class_ids = roi_class_ids[keep]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply per-class non-max suppression</span>
+<span class="n">pre_nms_boxes</span> <span class="o">=</span> <span class="n">refined_proposals</span><span class="p">[</span><span class="n">keep</span><span class="p">]</span>
+<span class="n">pre_nms_scores</span> <span class="o">=</span> <span class="n">roi_scores</span><span class="p">[</span><span class="n">keep</span><span class="p">]</span>
+<span class="n">pre_nms_class_ids</span> <span class="o">=</span> <span class="n">roi_class_ids</span><span class="p">[</span><span class="n">keep</span><span class="p">]</span>
 
-nms_keep = []
-for class_id in np.unique(pre_nms_class_ids):
-    # Pick detections of this class
-    ixs = np.where(pre_nms_class_ids == class_id)[0]
-    # Apply NMS
-    class_keep = utils.non_max_suppression(pre_nms_boxes[ixs], 
-                                            pre_nms_scores[ixs],
-                                            config.DETECTION_NMS_THRESHOLD)
-    # Map indicies
-    class_keep = keep[ixs[class_keep]]
-    nms_keep = np.union1d(nms_keep, class_keep)
-    print(&quot;{:22}: {} -&gt; {}&quot;.format(dataset.class_names[class_id][:20], 
-                                   keep[ixs], class_keep))
+<span class="n">nms_keep</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">class_id</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">pre_nms_class_ids</span><span class="p">):</span>
+    <span class="c1"># Pick detections of this class</span>
+    <span class="n">ixs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pre_nms_class_ids</span> <span class="o">==</span> <span class="n">class_id</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># Apply NMS</span>
+    <span class="n">class_keep</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">non_max_suppression</span><span class="p">(</span><span class="n">pre_nms_boxes</span><span class="p">[</span><span class="n">ixs</span><span class="p">],</span> 
+                                            <span class="n">pre_nms_scores</span><span class="p">[</span><span class="n">ixs</span><span class="p">],</span>
+                                            <span class="n">config</span><span class="o">.</span><span class="n">DETECTION_NMS_THRESHOLD</span><span class="p">)</span>
+    <span class="c1"># Map indicies</span>
+    <span class="n">class_keep</span> <span class="o">=</span> <span class="n">keep</span><span class="p">[</span><span class="n">ixs</span><span class="p">[</span><span class="n">class_keep</span><span class="p">]]</span>
+    <span class="n">nms_keep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">union1d</span><span class="p">(</span><span class="n">nms_keep</span><span class="p">,</span> <span class="n">class_keep</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:22}</span><span class="s2">: </span><span class="si">{}</span><span class="s2"> -&gt; </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">[</span><span class="n">class_id</span><span class="p">][:</span><span class="mi">20</span><span class="p">],</span> 
+                                   <span class="n">keep</span><span class="p">[</span><span class="n">ixs</span><span class="p">],</span> <span class="n">class_keep</span><span class="p">))</span>
 
-keep = np.intersect1d(keep, nms_keep).astype(np.int32)
-print(&quot;\nKept after per-class NMS: {}\n{}&quot;.format(keep.shape[0], keep))
+<span class="n">keep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span><span class="n">keep</span><span class="p">,</span> <span class="n">nms_keep</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Kept after per-class NMS: </span><span class="si">{}</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">keep</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">keep</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1774,17 +1779,17 @@ Kept after per-class NMS: 8
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Show final detections
-ixs = np.arange(len(keep))  # Display all
-# ixs = np.random.randint(0, len(keep), 10)  # Display random sample
-captions = [&quot;{} {:.3f}&quot;.format(dataset.class_names[c], s) if c &gt; 0 else &quot;&quot;
-            for c, s in zip(roi_class_ids[keep][ixs], roi_scores[keep][ixs])]
-visualize.draw_boxes(
-    image, boxes=proposals[keep][ixs],
-    refined_boxes=refined_proposals[keep][ixs],
-    visibilities=np.where(roi_class_ids[keep][ixs] &gt; 0, 1, 0),
-    captions=captions, title=&quot;Detections after NMS&quot;,
-    ax=get_ax())
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show final detections</span>
+<span class="n">ixs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keep</span><span class="p">))</span>  <span class="c1"># Display all</span>
+<span class="c1"># ixs = np.random.randint(0, len(keep), 10)  # Display random sample</span>
+<span class="n">captions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">s</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">roi_class_ids</span><span class="p">[</span><span class="n">keep</span><span class="p">][</span><span class="n">ixs</span><span class="p">],</span> <span class="n">roi_scores</span><span class="p">[</span><span class="n">keep</span><span class="p">][</span><span class="n">ixs</span><span class="p">])]</span>
+<span class="n">visualize</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="o">=</span><span class="n">proposals</span><span class="p">[</span><span class="n">keep</span><span class="p">][</span><span class="n">ixs</span><span class="p">],</span>
+    <span class="n">refined_boxes</span><span class="o">=</span><span class="n">refined_proposals</span><span class="p">[</span><span class="n">keep</span><span class="p">][</span><span class="n">ixs</span><span class="p">],</span>
+    <span class="n">visibilities</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">roi_class_ids</span><span class="p">[</span><span class="n">keep</span><span class="p">][</span><span class="n">ixs</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">captions</span><span class="o">=</span><span class="n">captions</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Detections after NMS&quot;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">get_ax</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1803,7 +1808,7 @@ visualize.draw_boxes(
 <p>These are the training targets for the mask branch</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>display_images(np.transpose(gt_mask, [2, 0, 1]), cmap=&quot;Blues&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_images</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">gt_mask</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1816,19 +1821,19 @@ visualize.draw_boxes(
 <h2><span class="section-number">3.13.2. </span>3.b Predicted Masks<a class="headerlink" href="#b-predicted-masks" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Get predictions of mask head
-mrcnn = model.run_graph([image], [
-    (&quot;detections&quot;, model.keras_model.get_layer(&quot;mrcnn_detection&quot;).output),
-    (&quot;masks&quot;, model.keras_model.get_layer(&quot;mrcnn_mask&quot;).output),
-])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get predictions of mask head</span>
+<span class="n">mrcnn</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run_graph</span><span class="p">([</span><span class="n">image</span><span class="p">],</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;detections&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">keras_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;mrcnn_detection&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">output</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;masks&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">keras_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;mrcnn_mask&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">output</span><span class="p">),</span>
+<span class="p">])</span>
 
-# Get detection class IDs. Trim zero padding.
-det_class_ids = mrcnn[&#39;detections&#39;][0, :, 4].astype(np.int32)
-det_count = np.where(det_class_ids == 0)[0][0]
-det_class_ids = det_class_ids[:det_count]
+<span class="c1"># Get detection class IDs. Trim zero padding.</span>
+<span class="n">det_class_ids</span> <span class="o">=</span> <span class="n">mrcnn</span><span class="p">[</span><span class="s1">&#39;detections&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<span class="n">det_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">det_class_ids</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">det_class_ids</span> <span class="o">=</span> <span class="n">det_class_ids</span><span class="p">[:</span><span class="n">det_count</span><span class="p">]</span>
 
-print(&quot;{} detections: {}&quot;.format(
-    det_count, np.array(dataset.class_names)[det_class_ids]))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> detections: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="n">det_count</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">class_names</span><span class="p">)[</span><span class="n">det_class_ids</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -1842,14 +1847,14 @@ masks                    shape: (1, 100, 28, 28, 81)  min:    0.00000  max:    0
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Masks
-det_boxes = utils.denorm_boxes(mrcnn[&quot;detections&quot;][0, :, :4], image.shape[:2])
-det_mask_specific = np.array([mrcnn[&quot;masks&quot;][0, i, :, :, c] 
-                              for i, c in enumerate(det_class_ids)])
-det_masks = np.array([utils.unmold_mask(m, det_boxes[i], image.shape)
-                      for i, m in enumerate(det_mask_specific)])
-log(&quot;det_mask_specific&quot;, det_mask_specific)
-log(&quot;det_masks&quot;, det_masks)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Masks</span>
+<span class="n">det_boxes</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">denorm_boxes</span><span class="p">(</span><span class="n">mrcnn</span><span class="p">[</span><span class="s2">&quot;detections&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">det_mask_specific</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">mrcnn</span><span class="p">[</span><span class="s2">&quot;masks&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">c</span><span class="p">]</span> 
+                              <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">det_class_ids</span><span class="p">)])</span>
+<span class="n">det_masks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">utils</span><span class="o">.</span><span class="n">unmold_mask</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">det_boxes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+                      <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">det_mask_specific</span><span class="p">)])</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;det_mask_specific&quot;</span><span class="p">,</span> <span class="n">det_mask_specific</span><span class="p">)</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;det_masks&quot;</span><span class="p">,</span> <span class="n">det_masks</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1862,7 +1867,7 @@ det_masks                shape: (8, 1024, 1024)       min:    0.00000  max:    1
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>display_images(det_mask_specific[:4] * 255, cmap=&quot;Blues&quot;, interpolation=&quot;none&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_images</span><span class="p">(</span><span class="n">det_mask_specific</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1872,7 +1877,7 @@ det_masks                shape: (8, 1024, 1024)       min:    0.00000  max:    1
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>display_images(det_masks[:4] * 255, cmap=&quot;Blues&quot;, interpolation=&quot;none&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_images</span><span class="p">(</span><span class="n">det_masks</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1887,13 +1892,13 @@ det_masks                shape: (8, 1024, 1024)       min:    0.00000  max:    1
 <p>In some cases it helps to look at the output from different layers and visualize them to catch issues and odd patterns.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Get activations of a few sample layers
-activations = model.run_graph([image], [
-    (&quot;input_image&quot;,        tf.identity(model.keras_model.get_layer(&quot;input_image&quot;).output)),
-    (&quot;res4w_out&quot;,          model.keras_model.get_layer(&quot;res4w_out&quot;).output),  # for resnet100
-    (&quot;rpn_bbox&quot;,           model.keras_model.get_layer(&quot;rpn_bbox&quot;).output),
-    (&quot;roi&quot;,                model.keras_model.get_layer(&quot;ROI&quot;).output),
-])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get activations of a few sample layers</span>
+<span class="n">activations</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run_graph</span><span class="p">([</span><span class="n">image</span><span class="p">],</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;input_image&quot;</span><span class="p">,</span>        <span class="n">tf</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">keras_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;input_image&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">output</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">&quot;res4w_out&quot;</span><span class="p">,</span>          <span class="n">model</span><span class="o">.</span><span class="n">keras_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;res4w_out&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">output</span><span class="p">),</span>  <span class="c1"># for resnet100</span>
+    <span class="p">(</span><span class="s2">&quot;rpn_bbox&quot;</span><span class="p">,</span>           <span class="n">model</span><span class="o">.</span><span class="n">keras_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;rpn_bbox&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">output</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;roi&quot;</span><span class="p">,</span>                <span class="n">model</span><span class="o">.</span><span class="n">keras_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="s2">&quot;ROI&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">output</span><span class="p">),</span>
+<span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1908,8 +1913,8 @@ roi                      shape: (1, 1000, 4)          min:    0.00000  max:    1
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Input image (normalized)
-_ = plt.imshow(modellib.unmold_image(activations[&quot;input_image&quot;][0],config))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input image (normalized)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">modellib</span><span class="o">.</span><span class="n">unmold_image</span><span class="p">(</span><span class="n">activations</span><span class="p">[</span><span class="s2">&quot;input_image&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">config</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1919,8 +1924,8 @@ _ = plt.imshow(modellib.unmold_image(activations[&quot;input_image&quot;][0],con
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Backbone feature map
-display_images(np.transpose(activations[&quot;res4w_out&quot;][0,:,:,:4], [2, 0, 1]))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Backbone feature map</span>
+<span class="n">display_images</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">activations</span><span class="p">[</span><span class="s2">&quot;res4w_out&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:,:,:</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -1930,20 +1935,20 @@ display_images(np.transpose(activations[&quot;res4w_out&quot;][0,:,:,:4], [2, 0,
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Histograms of RPN bounding box deltas
-plt.figure(figsize=(12, 3))
-plt.subplot(1, 4, 1)
-plt.title(&quot;dy&quot;)
-_ = plt.hist(activations[&quot;rpn_bbox&quot;][0,:,0], 50)
-plt.subplot(1, 4, 2)
-plt.title(&quot;dx&quot;)
-_ = plt.hist(activations[&quot;rpn_bbox&quot;][0,:,1], 50)
-plt.subplot(1, 4, 3)
-plt.title(&quot;dw&quot;)
-_ = plt.hist(activations[&quot;rpn_bbox&quot;][0,:,2], 50)
-plt.subplot(1, 4, 4)
-plt.title(&quot;dh&quot;)
-_ = plt.hist(activations[&quot;rpn_bbox&quot;][0,:,3], 50)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Histograms of RPN bounding box deltas</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;dy&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">activations</span><span class="p">[</span><span class="s2">&quot;rpn_bbox&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:,</span><span class="mi">0</span><span class="p">],</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;dx&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">activations</span><span class="p">[</span><span class="s2">&quot;rpn_bbox&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:,</span><span class="mi">1</span><span class="p">],</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;dw&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">activations</span><span class="p">[</span><span class="s2">&quot;rpn_bbox&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:,</span><span class="mi">2</span><span class="p">],</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;dh&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">activations</span><span class="p">[</span><span class="s2">&quot;rpn_bbox&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:,</span><span class="mi">3</span><span class="p">],</span> <span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1953,15 +1958,15 @@ _ = plt.hist(activations[&quot;rpn_bbox&quot;][0,:,3], 50)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Distribution of y, x coordinates of generated proposals
-plt.figure(figsize=(10, 5))
-plt.subplot(1, 2, 1)
-plt.title(&quot;y1, x1&quot;)
-plt.scatter(activations[&quot;roi&quot;][0,:,0], activations[&quot;roi&quot;][0,:,1])
-plt.subplot(1, 2, 2)
-plt.title(&quot;y2, x2&quot;)
-plt.scatter(activations[&quot;roi&quot;][0,:,2], activations[&quot;roi&quot;][0,:,3])
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Distribution of y, x coordinates of generated proposals</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;y1, x1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">activations</span><span class="p">[</span><span class="s2">&quot;roi&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">activations</span><span class="p">[</span><span class="s2">&quot;roi&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;y2, x2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">activations</span><span class="p">[</span><span class="s2">&quot;roi&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">activations</span><span class="p">[</span><span class="s2">&quot;roi&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
