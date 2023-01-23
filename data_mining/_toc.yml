@@ -137,6 +137,7 @@ parts:
     numbered: 3
     chapters:
     - file: aiml-common/lectures/python/_index.md  
+    - file: aiml-common/resources/environment/index.md  
 
   # - caption:  Assignments & Projects
   #   numbered: 3
