@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>1. Introduction to Convolutional Neural Networks &#8212; Data Mining</title>
+    <title>1. Probability Assignment &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -55,11 +55,10 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"mathjax_path": "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js", "tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/cnn/cnn-intro/_index.html" />
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/assignments/probability/probability-assignment-5/index.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="2. CNN Architectures" href="../cnn-layers/_index.html" />
-    <link rel="prev" title="7. Regularization in Deep Neural Networks" href="../../optimization/regularization/_index.html" />
+    <link rel="prev" title="2. Your Programming Environment" href="../../../resources/environment/index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -130,22 +129,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
+  <a class="reference internal" href="../../../lectures/ai-intro/course-introduction/_index.html">
    1. Course Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
+  <a class="reference internal" href="../../../lectures/ai-intro/data-science-360/_index.html">
    2. Data Science 360
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ai-intro/pipelines/_index.html">
+  <a class="reference internal" href="../../../lectures/ai-intro/pipelines/_index.html">
    3. ML Pipelines
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../uber-ml-arch-case-study/_index.html">
+  <a class="reference internal" href="../../../lectures/uber-ml-arch-case-study/_index.html">
    4. A Case Study of an ML Architecture - Uber
   </a>
  </li>
@@ -157,42 +156,42 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../learning-problem/_index.html">
+  <a class="reference internal" href="../../../lectures/learning-problem/_index.html">
    1. The Learning Problem
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../regression/linear-regression/linear_regression.html">
+  <a class="reference internal" href="../../../lectures/regression/linear-regression/linear_regression.html">
    2. Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../regression/linear-regression/regression-notebooks.html">
+  <a class="reference internal" href="../../../lectures/regression/linear-regression/regression-notebooks.html">
    3. Regression Notebooks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../optimization/maximum-likelihood/_index.html">
+  <a class="reference internal" href="../../../lectures/optimization/maximum-likelihood/_index.html">
    4. Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../entropy/_index.html">
+  <a class="reference internal" href="../../../lectures/entropy/_index.html">
    5. Entropy
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../optimization/sgd/_index.html">
+  <a class="reference internal" href="../../../lectures/optimization/sgd/_index.html">
    6. Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/classification-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/classification-intro/_index.html">
    7. Introduction to Classification
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/logistic-regression/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/logistic-regression/_index.html">
    8. Logistic Regression
   </a>
  </li>
@@ -204,37 +203,37 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/perceptron/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/perceptron/_index.html">
    1. The Neuron (Perceptron)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/dnn/dnn-intro/_index.html">
    2. Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/dnn/backprop-intro/_index.html">
    3. Introduction to Backpropagation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
+  <a class="reference internal" href="../../../lectures/dnn/backprop-dnn/_index.html">
    4. Backpropagation in Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../dnn/backprop-dnn-exercises/_index.html">
+  <a class="reference internal" href="../../../lectures/dnn/backprop-dnn-exercises/_index.html">
    5. Backpropagation DNN exercises
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../dnn/fashion-mnist-case-study.html">
+  <a class="reference internal" href="../../../lectures/dnn/fashion-mnist-case-study.html">
    6. Fashion MNIST Case Study
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../optimization/regularization/_index.html">
+  <a class="reference internal" href="../../../lectures/optimization/regularization/_index.html">
    7. Regularization in Deep Neural Networks
   </a>
  </li>
@@ -244,29 +243,29 @@ const thebe_selector_output = ".output, .cell_output"
   Convolutional Neural Networks
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-intro/_index.html">
    1. Introduction to Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../cnn-layers/_index.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-layers/_index.html">
    2. CNN Architectures
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../cnn-example-architectures/_index.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-example-architectures/_index.html">
    3. CNN Example Architectures
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../cnn-example-architectures/using_convnets_with_small_datasets.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
    4. Using convnets with small datasets
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/feature-extraction-resnet/index.html">
    5. Feature Extraction via Residual Networks
   </a>
  </li>
@@ -278,12 +277,12 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../transfer-learning/transfer-learning-introduction.html">
+  <a class="reference internal" href="../../../lectures/transfer-learning/transfer-learning-introduction.html">
    1. Introduction to Transfer Learning
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../transfer-learning/transfer_learning_tutorial.html">
+  <a class="reference internal" href="../../../lectures/transfer-learning/transfer_learning_tutorial.html">
    2. Transfer Learning for Computer Vision Tutorial
   </a>
  </li>
@@ -295,12 +294,12 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding/scene-understanding-intro/index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/scene-understanding-intro/index.html">
    1. Introduction to Scene Understanding
   </a>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../scene-understanding/object-detection/object-detection-intro/index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/object-detection/object-detection-intro/index.html">
    2. Object Detection
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -310,24 +309,24 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/object-detection/detection-metrics/index.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/object-detection/detection-metrics/index.html">
      2.1. Object Detection and Semantic Segmentation Metrics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/object-detection/rcnn-object-detection/index.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/object-detection/rcnn-object-detection/index.html">
      2.2. Region-CNN (RCNN) Object Detection
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/object-detection/faster-rcnn-object-detection/index.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/object-detection/faster-rcnn-object-detection/index.html">
      2.3. Fast and Faster RCNN Object Detection
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../scene-understanding/semantic-segmentation/index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/semantic-segmentation/index.html">
    3. Semantic Segmentation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
@@ -337,32 +336,32 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
      3.1. Mask R-CNN Semantic Segmentation
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
      3.2. Mask R-CNN Demo
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
      3.3. Mask R-CNN - Inspect Training Data
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
      3.4. Mask R-CNN - Inspect Trained Model
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
      3.15. Mask R-CNN - Inspect Weights of a Trained Model
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">
      3.21. Detectron2 Beginner’s Tutorial
     </a>
    </li>
@@ -376,22 +375,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../rnn/introduction/_index.html">
+  <a class="reference internal" href="../../../lectures/rnn/introduction/_index.html">
    1. Introduction to Recurrent Neural Networks (RNN)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../rnn/simple-rnn/_index.html">
+  <a class="reference internal" href="../../../lectures/rnn/simple-rnn/_index.html">
    2. Simple RNN
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../rnn/lstm/_index.html">
+  <a class="reference internal" href="../../../lectures/rnn/lstm/_index.html">
    3. The Long Short-Term Memory (LSTM) Cell Architecture
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../rnn/15_processing_sequences_using_rnns_and_cnns.html">
+  <a class="reference internal" href="../../../lectures/rnn/15_processing_sequences_using_rnns_and_cnns.html">
    4. Processing Sequences Using RNN
   </a>
  </li>
@@ -403,37 +402,37 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/nlp-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/nlp-intro/_index.html">
    1. Introduction to NLP
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/word2vec/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/word2vec/_index.html">
    2. Word2Vec Embeddings
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/word2vec/word2vec-workshop.html">
+  <a class="reference internal" href="../../../lectures/nlp/word2vec/word2vec-workshop.html">
    3. Word2Vec Workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/language-models/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/language-models/_index.html">
    4. RNN Language Models
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model.html">
+  <a class="reference internal" href="../../../lectures/nlp/language-models/simple-rnn-language-model.html">
    5. Simple RNN Language Model
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/language-models/cnn-language-model.html">
+  <a class="reference internal" href="../../../lectures/nlp/language-models/cnn-language-model.html">
    6. CNN Language Model
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/nmt/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/nmt/_index.html">
    7. Neural Machine Translation
   </a>
  </li>
@@ -445,52 +444,52 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../decision-trees/_index.html">
+  <a class="reference internal" href="../../../lectures/decision-trees/_index.html">
    1. Decision Trees
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../regression-trees/regression_trees.html">
+  <a class="reference internal" href="../../../lectures/regression-trees/regression_trees.html">
    2. Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/_index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/_index.html">
    4. Ensemble Methods
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/random-forests/_index.html">
    5. Random Forests
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/adaboost/index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/adaboost/index.html">
    6. Adaptive Boosting (AdaBoost)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/gradient-boosting/index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/gradient-boosting/index.html">
    7. Gradient Boosting
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/boosting-workshop/_index.html">
    8. Boosting workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+  <a class="reference internal" href="../../../lectures/pgm/bayesian-inference/_index.html">
    9. Bayesian Inference
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+  <a class="reference internal" href="../../../lectures/pgm/bayesian-coin/_index.html">
    10. Bayesian Coin Flipping
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/covid19-antibody-test/_index.html">
    11. COVID-19 Antibody Test
   </a>
  </li>
@@ -502,17 +501,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+  <a class="reference internal" href="../../../lectures/unsupervised/k-means/_index.html">
    1. K-means Clustering
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+  <a class="reference internal" href="../../../lectures/density-estimation/knn/_index.html">
    2. k-Nearest Neighbors (kNN) Classification
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+  <a class="reference internal" href="../../../lectures/density-estimation/knn-workshop/_index.html">
    3. kNN Workshop
   </a>
  </li>
@@ -524,7 +523,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../pca/_index.html">
+  <a class="reference internal" href="../../../lectures/pca/_index.html">
    1. Principal Component Analysis (PCA)
   </a>
  </li>
@@ -536,7 +535,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../ml-math/_index.html">
+  <a class="reference internal" href="../../../lectures/ml-math/_index.html">
    1. Math for ML
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
@@ -546,17 +545,17 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ml-math/probability/_index.html">
+    <a class="reference internal" href="../../../lectures/ml-math/probability/_index.html">
      1.1. Probability Basics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../linear-algebra/_index.html">
+    <a class="reference internal" href="../../../lectures/linear-algebra/_index.html">
      1.2. Linear Algebra for Machine Learning
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ml-math/calculus/_index.html">
+    <a class="reference internal" href="../../../lectures/ml-math/calculus/_index.html">
      1.3. Calculus
     </a>
    </li>
@@ -570,7 +569,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../python/_index.html">
+  <a class="reference internal" href="../../../lectures/python/_index.html">
    1. Learn Python
   </a>
  </li>
@@ -585,9 +584,9 @@ const thebe_selector_output = ".output, .cell_output"
   Assignments &amp; Projects
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability/probability-assignment-5/index.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    1. Probability Assignment
   </a>
  </li>
@@ -681,7 +680,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/cnn/cnn-intro/_index.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/assignments/probability/probability-assignment-5/index.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -709,7 +708,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../../../_sources/aiml-common/lectures/cnn/cnn-intro/_index.md"
+        <a href="../../../../_sources/aiml-common/assignments/probability/probability-assignment-5/index.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -720,7 +719,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -768,44 +767,42 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#color-images-as-functions">
-   1.1. Color images as functions
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   1. Probability Assignment
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-convolution-cross-correlation-operation">
-   1.2. The Convolution &amp; Cross-Correlation Operation
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#d-convolution">
-     1.2.1. 1D Convolution
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1a-10-points">
+     1.1. Question 1a (10 points)
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     1.2.2. 2D Convolution
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1b-10-points">
+     1.2. Question 1b (10 points)
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#effects-of-2d-filtering-operations">
-     1.2.3. Effects of 2D filtering operations
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-2-20-points">
+     1.3. Question 2 (20 points)
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#moving-average">
-       Moving Average
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#d-gaussian">
-       2D Gaussian
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-20-points">
+     1.4. Question 3 (20 points)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-4-20-points">
+     1.5. Question 4 (20 points)
+    </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question-5-20-points">
+   2. Question 5 (20 points)
+  </a>
  </li>
 </ul>
 
@@ -816,7 +813,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Introduction to Convolutional Neural Networks</h1>
+                <h1>Probability Assignment</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -826,44 +823,42 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#color-images-as-functions">
-   1.1. Color images as functions
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   1. Probability Assignment
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-convolution-cross-correlation-operation">
-   1.2. The Convolution &amp; Cross-Correlation Operation
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#d-convolution">
-     1.2.1. 1D Convolution
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1a-10-points">
+     1.1. Question 1a (10 points)
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     1.2.2. 2D Convolution
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-1b-10-points">
+     1.2. Question 1b (10 points)
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#effects-of-2d-filtering-operations">
-     1.2.3. Effects of 2D filtering operations
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-2-20-points">
+     1.3. Question 2 (20 points)
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#moving-average">
-       Moving Average
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#d-gaussian">
-       2D Gaussian
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-3-20-points">
+     1.4. Question 3 (20 points)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-4-20-points">
+     1.5. Question 4 (20 points)
+    </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question-5-20-points">
+   2. Question 5 (20 points)
+  </a>
  </li>
 </ul>
 
@@ -875,80 +870,70 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-convolutional-neural-networks">
-<span id="content-cnn-intro"></span><h1><span class="section-number">1. </span>Introduction to Convolutional Neural Networks<a class="headerlink" href="#introduction-to-convolutional-neural-networks" title="Permalink to this headline">#</a></h1>
-<p><img alt="city" src="../../../../_images/city-vision.jpg" /></p>
-<p>As elaborated <a class="reference external" href="http://theconversation.com/how-do-our-brains-reconstruct-the-visual-world-49276">here</a>, humans build up a more schematic version of the environment across eye fixations than was previously thought. This schematic version of the environment is typically known as <strong>scene gist</strong>. It contains conceptual information about the scene’s basic category – is it natural, human-made, a cityscape? – and general layout, maybe limited to a few objects and/or features. This schematic version of the environment is a far cry from the “picture in the head” scenario. But it’s this schematic information that guides us from one eye fixation to the next, during which more detailed information can be sampled. In the picture above, the brain will first detect the cityscape schematic and then process one of the scene fixations - e.g. the yellow cab.</p>
-<p>As we will see shortly images-based datasets are almost exclusively used for instructive purposes in CNNs. The reason is simple. With images we are able to “see” the effects of a number of important algorithms that are related to classification, object detection etc.</p>
-<p>Focusing at the “fixation” stage of human vision, CNNs are biologically inspired from the structure that the neuroscientists David Hubel and Torsten Wiesel saw in the so called V1 region of the brain - the region at the back of our head that is responsible for the processing of visual sensory input signals coming from the eye’s retina.</p>
-<section id="color-images-as-functions">
-<h2><span class="section-number">1.1. </span>Color images as functions<a class="headerlink" href="#color-images-as-functions" title="Permalink to this headline">#</a></h2>
-<p>A grayscale picture can be seen as a function <span class="math notranslate nohighlight">\(f(x,y)\)</span> of light intensities, where x and y are the rows and columns of pixels in the image.</p>
-<p><img alt="image-function" src="../../../../_images/image-function.png" /></p>
-<p>Usually we have border constraints in the range of the input pixels e.g. <span class="math notranslate nohighlight">\(x \in [a,b], y \in [c,d]\)</span> but also in the output intensity values (typically 8-bit encoding is assumed that limits the values to [0, 255]).</p>
-<p>The city scape color image above can also be seen as a vector function:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="probability-assignment">
+<h1><span class="section-number">1. </span>Probability Assignment<a class="headerlink" href="#probability-assignment" title="Permalink to this headline">#</a></h1>
+<p>To get full credit in this assignment you need to use only <code class="docutils literal notranslate"><span class="pre">numpy</span></code> or <code class="docutils literal notranslate"><span class="pre">jax</span></code> libraries  and include adequate explanation of the code in either markdown cells or code comments. Sometimes you need to type equations - type equations in latex math notation.</p>
+<p>PS: Please note that we run through chatGPT the questions and you will be referred to the Dean if we find that a robot answered your questions. .</p>
+<section id="question-1a-10-points">
+<h2><span class="section-number">1.1. </span>Question 1a (10 points)<a class="headerlink" href="#question-1a-10-points" title="Permalink to this headline">#</a></h2>
+<p>In a private subreddit people are posting their opinions on the CEO of the company you work for. Lets assume that the employees that are posting are random logging in to that subreddit and that each post indicates whether the employee approves or not the job that the CEO is doing. Let <span class="math notranslate nohighlight">\(x_i\)</span> be the binary random variable where <span class="math notranslate nohighlight">\(x_i=1\)</span> indicates approval. You can assume that <span class="math notranslate nohighlight">\(x\)</span> is distributed according to a Bernoulli distribution with parameter <span class="math notranslate nohighlight">\(p=1/2\)</span>.</p>
+<p>Your job is to sample <span class="math notranslate nohighlight">\(n=50\)</span> posts and estimate the approval rate of the CEO by considering the statistics of <span class="math notranslate nohighlight">\(y=x_1+x_2+ \dots + x_n\)</span>. What is the probability that 25 employees approve the CEO?</p>
+</section>
+<section id="question-1b-10-points">
+<h2><span class="section-number">1.2. </span>Question 1b (10 points)<a class="headerlink" href="#question-1b-10-points" title="Permalink to this headline">#</a></h2>
+<p>Following your findings in Q1a, read about the <a class="reference external" href="https://en.wikipedia.org/wiki/Central_limit_theorem">Cenral Limit Theorem</a> and recognize that</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}f(x,y)=  \begin{bmatrix} r(x,y) \\ g(x,y) \\ b(x,y)  \end{bmatrix}\end{split}\]</div>
-<p>with its elements capturing the <strong>channels</strong> Red, Green and Blue functions, the mixture (superposition) of which can generate the pixel color of the original image.</p>
-<p><img alt="rgb" src="../../../../_images/rgb.png" /></p>
-<p>Please note the convention to refer to the <strong>columns</strong> <span class="math notranslate nohighlight">\(j\)</span> of the matrix that represents each function with <span class="math notranslate nohighlight">\(x\)</span> and to the rows <span class="math notranslate nohighlight">\(i\)</span> with <span class="math notranslate nohighlight">\(y\)</span>. This may cause some confusion at first.</p>
+\[z=\frac{y-\mu_y}{\sigma_y}\]</div>
+<p>is normally distributed with mean 0 and variance 1.</p>
+<p>Can you find the  probability that 25 employees approve the CEO using the Gaussian approximation?</p>
+<p>Type the answer here using the <a class="reference external" href="https://wch.github.io/latexsheet/">latex syntax</a> or handwrite the answer, upload the picture in the same folder and use a new markdown cell with markdown syntax <code class="docutils literal notranslate"><span class="pre">![title](image_name.png)</span></code></p>
 </section>
-<section id="the-convolution-cross-correlation-operation">
-<h2><span class="section-number">1.2. </span>The Convolution &amp; Cross-Correlation Operation<a class="headerlink" href="#the-convolution-cross-correlation-operation" title="Permalink to this headline">#</a></h2>
-<p>The key operation performed in CNN layers is that of 2D convolution. In fact in practice they are 4D convolutions as we try to learn many filters and we also consider many input images (mini-batch) in the iteration of our SGD optimizer.</p>
-<p>We cover first the 1-dimensional case.</p>
-<section id="d-convolution">
-<h3><span class="section-number">1.2.1. </span>1D Convolution<a class="headerlink" href="#d-convolution" title="Permalink to this headline">#</a></h3>
-<p>By definition the convolution between two functions in one dimension is given by:</p>
-<div class="math notranslate nohighlight">
-\[(a * b)[n] = \sum_{m=-\inf}^{\inf} a[m]b[n-m]\]</div>
-<p><img alt="1d-convbolution" src="../../../../_images/1d-convolution.png" />
-<em>1D-convolution example. The operation effectively slides the flipped version of <span class="math notranslate nohighlight">\(b\)</span> across <span class="math notranslate nohighlight">\(a\)</span></em></p>
-<p>The result can be calculated as follows:</p>
-<p><span class="math notranslate nohighlight">\(c[0] = \sum_m a[m]b[-m] = 0 * 0.25 + 0 * 0.5 + 1 * 1 + 0.5 * 0 + 1 * 0 + 1 * 0 = 1\)</span></p>
-<p><span class="math notranslate nohighlight">\(c[1] = \sum_m a[m]b[1-m] = 0 * 0.25 + 1 * 0.5 + 0.5 * 1 + 1 * 0 + 1 * 0 = 1\)</span></p>
-<p><span class="math notranslate nohighlight">\(c[2] = \sum_m a[m]b[2-m] = 1 * 0.25 + 0.5 * 0.5 + 1 * 1 + 1 * 0 + 1 * 0 = 1.5\)</span></p>
-<p><span class="math notranslate nohighlight">\(c[3] = \sum_m a[m]b[3-m] = 1 * 0 + 0.5 * 0.25 + 1 * 0.5 + 1 * 1 = 1.625\)</span></p>
-<p>and so on.</p>
-<p>Convolution and cross-correlation are very close - see this 1D example (<a class="reference external" href="https://en.wikipedia.org/wiki/Convolution">source</a> to persuade yourself that this is the case.</p>
-<p><img alt="convolution-correlation" src="../../../../_images/convolution-correlation.png" />
-<em>Convolution and cross-correlation are very similar quantities</em></p>
+<section id="question-2-20-points">
+<h2><span class="section-number">1.3. </span>Question 2 (20 points)<a class="headerlink" href="#question-2-20-points" title="Permalink to this headline">#</a></h2>
+<p>A sequential experiment involves repeatedly drawing a ball from one of the two urns, noting the number on the ball and replacing the ball in the urn. Urn 0 contains a ball with the number 0 and two balls with the number 1. Urn 1 contains five balls with the number 0 and one ball with the number 1.</p>
+<p>The urn from which the first ball is drawn is selected by flipping a fair coin. Urn 0 is used if the outcome is H and urn 1 is used if the outcome is T. <strong>The urn used in a subsequent draws corresponds to the number on the ball drawn in the previous draw.</strong></p>
+<p>What is the probability of a specific sequence of the numbers on drawn balls being 0011 ?</p>
+<p>Type the answer here using the <a class="reference external" href="https://wch.github.io/latexsheet/">latex syntax</a> or handwrite the answer, upload the picture in the same folder and use a new markdown cell with markdown syntax <code class="docutils literal notranslate"><span class="pre">![title](image_name.png)</span></code></p>
 </section>
-<section id="id1">
-<h3><span class="section-number">1.2.2. </span>2D Convolution<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
-<p>In 2D the same principle applies. First, the convolution operation in some frameworks is the <em>flipped</em> version - this is perfectly fine as the convolution operation is commutative.</p>
-<div class="math notranslate nohighlight">
-\[S(i,j) = \sum_m \sum_n x(m, n) h(i-m,j-n) = \sum_m \sum_n x(i-m, j-n)h(m,n)\]</div>
-<p>where <span class="math notranslate nohighlight">\(x\)</span> is the input of the convolution and <span class="math notranslate nohighlight">\(h\)</span> is the kernel or filter typically of smaller spatial dimensions.</p>
-<p><img alt="convolution" src="../../../../_images/convolution.png" /></p>
-<p>Many ML frameworks don’t even implemented convolution but they do the very similar <strong>cross-correlation</strong> operation and they sometimes call it convolution to add to the confusion. Tensorflow implements <strong>the cross-correlation</strong> operation under the hood.</p>
-<div class="math notranslate nohighlight">
-\[S(i,j) = \sum_u \sum_v x(i+u, j+v)h(u,v)\]</div>
-<p>If you learn the flipped version of the kernel or not is irrelevant to the task of predicting the right label. Therefore you should not be concerned with the framework implementation details, the thing that is important for you to grasp is the essence of the operation. Lets look some effects that convolution has on input signals such as images.</p>
+<section id="question-3-20-points">
+<h2><span class="section-number">1.4. </span>Question 3 (20 points)<a class="headerlink" href="#question-3-20-points" title="Permalink to this headline">#</a></h2>
+<p>Referring to Example 6.6 of the  <a class="reference external" href="https://mml-book.github.io/book/mml-book.pdf">Math for ML book</a>, simulate and plot the bivariate normal distribution with the shown parameters using the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.cholesky.html">Cholesky factorization</a> for the simulation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Type the Python code here and ensure you save the notebook with the results of the code execution.</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="effects-of-2d-filtering-operations">
-<h3><span class="section-number">1.2.3. </span>Effects of 2D filtering operations<a class="headerlink" href="#effects-of-2d-filtering-operations" title="Permalink to this headline">#</a></h3>
-<section id="moving-average">
-<h4>Moving Average<a class="headerlink" href="#moving-average" title="Permalink to this headline">#</a></h4>
-<p>Lets go through the simplest possible 2D filtering operation as shown below. Note that these implement <em>the</em> convolution.</p>
-<p><img alt="ma-filter-b" src="../../../../_images/ma-filter-b.png" />
-<em>Completed 2D MA Filtering</em></p>
-<p><img alt="lena-moving-average" src="../../../../_images/lena_movingaverage.png" />
-<em>The MA filter causes “box” blurring of input images</em></p>
-</section>
-<section id="d-gaussian">
-<h4>2D Gaussian<a class="headerlink" href="#d-gaussian" title="Permalink to this headline">#</a></h4>
-<p>Using a Gaussian Blur filter before edge detection aims to reduce the level of noise in the image, which improves the result of the susually subsequent edge-detection algorithms. We will meet again this 2D Gaussian filter in the object detection section, where it is used to help in the initial segmentation in RCNN architectures.</p>
-<p><img alt="2d-gaussian-filter" src="../../../../_images/2d-gaussian-filter.png" />
-<em>Gaussian Filter</em></p>
-<p><img alt="2d-gaussian-filter" src="../../../../_images/2d-gaussian-filter-blur.jpg" />
-<em>Blurring is evident in this picture</em></p>
-<p><img alt="Gaussian-filter-edge-detection" src="../../../../_images/Gaussian-filter-edge-detection.gif" />
-<em>Blurring is used to improve edge-detection</em></p>
-<p>The above filtering operations are obviously deterministic. We are given the filter but in CNNs as we will see in the next section we are <em>learning</em> such filters. To keep the terminology aligned with the dense neural networks layers we will be denoting the filter with <span class="math notranslate nohighlight">\(\mathbf w\)</span> - the weights that need to be learned through the training process.</p>
+<section id="question-4-20-points">
+<h2><span class="section-number">1.5. </span>Question 4 (20 points)<a class="headerlink" href="#question-4-20-points" title="Permalink to this headline">#</a></h2>
+<p>Go through the provided links on <a class="reference external" href="https://dlsun.github.io/probability/poisson.html">Poisson</a> and <a class="reference external" href="https://dlsun.github.io/probability/exponential.html">exponential distributions</a> as the <code class="docutils literal notranslate"><span class="pre">Math</span> <span class="pre">for</span> <span class="pre">ML</span></code> textbook in your course site  is not covering enough these important distributions.</p>
+<p>Watch this video <a class="reference external" href="https://www.youtube.com/watch?v=Asto3RS46ks">https://www.youtube.com/watch?v=Asto3RS46ks</a> where the author is explaining how to simulate a Poisson distribution from scratch.</p>
+<ol class="simple">
+<li><p>Using the Kaggle API download <a class="reference external" href="https://www.kaggle.com/datasets/new-york-city/nyc-east-river-bicycle-crossings">this dataset</a> and plot the histogram of the number of cyclists that cross the Brooklyn bridge per day.</p></li>
+<li><p>Simulate the number of cyclists that cross the Brooklyn bridge per day using the Poisson distribution. Ensure that the simulated counts are similar distribution-wise to the observed counts.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Type the Python code here and ensure you save the notebook with the results of the code execution.</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
-</section>
+<section class="tex2jax_ignore mathjax_ignore" id="question-5-20-points">
+<h1><span class="section-number">2. </span>Question 5 (20 points)<a class="headerlink" href="#question-5-20-points" title="Permalink to this headline">#</a></h1>
+<p>You are asked to stress test an cloud API endpoint and are told that the API exposes a database server that can be abstracted as an M/M/1 queue. Go through <a class="reference external" href="https://queue-it.com/blog/queuing-theory/">this introductory</a> page to just understand the queuing domain and the notation M/M/1. Go also through the elements of the MM1 queue <a class="reference external" href="https://en.wikipedia.org/wiki/M/M/1_queue">here</a>. Make sure you click on the links and learn about the random process called Poisson process.</p>
+<p>Your task is to simulate the behavior of the queue and plot the number of requests that are waiting in the queue as a function of time. You are given three arrival rates of the API requests <span class="math notranslate nohighlight">\(\lambda=[1, 3, 4]\)</span> and the service time of the requests as an exponential random variable with rate <span class="math notranslate nohighlight">\(\mu=4\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Type the Python code here and ensure you save the notebook with the results of the code execution.</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -964,7 +949,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./aiml-common/lectures/cnn/cnn-intro"
+            path: "./aiml-common/assignments/probability/probability-assignment-5"
         },
         predefinedOutput: true
     }
@@ -978,19 +963,12 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../../optimization/regularization/_index.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../../../resources/environment/index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">7. </span>Regularization in Deep Neural Networks</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Your Programming Environment</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="../cnn-layers/_index.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>CNN Architectures</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

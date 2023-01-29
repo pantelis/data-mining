@@ -1,7 +1,3 @@
----
-title: Learn Python
-weight: 1
----
 
 # Learn Python
 
@@ -15,11 +11,11 @@ The following are your options with 1 being the highest priority.
 
 2. [Kaggle Python Course](https://www.kaggle.com/learn/python)
 
-3. [CodeAcademy Data Science Path](https://www.codecademy.com/learn/paths/data-science). Take Python modules 4-10. This course contains Numpy and Panda intro as well. 
+3. [CodeAcademy Data Science Path](https://www.codecademy.com/learn/paths/data-science). Take Python modules 4-10. This course introduces Numpy and Panda as well. 
 
 ## The traditional path to learn  Python
 
-1.  [Google Python Class](https://developers.google.com/edu/python/) This is a bit dated as it covers Python 2, but it is still highly regarded as Python 3 and 2 have few differences.
+1.  [Google Python Class](https://developers.google.com/edu/python/) Please note that the video lectures cover Python 2 - Python 3 and 2 have few differences.
 
 2. [Stanford's CS228 Basic Python](https://github.com/kuleshov/cs228-material/blob/master/tutorials/python/cs228-python-tutorial.ipynb). 
 
