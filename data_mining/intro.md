@@ -19,7 +19,6 @@ In this course we will challenge you with exciting data-intensive problems and t
 
 This course requires some intensive effort from your side in both learning these concepts and practicing them in your assigned projects. We hope that we will motivate you to work hard and have some fun along the way.
 
-
 ::::{grid} 1 1 3 2
 :class-container: text-center
 :gutter: 3

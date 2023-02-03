@@ -3,7 +3,9 @@
 
 title: Data Mining
 author: Pantelis Monogioudis, Ph.D
+copyright: "2023"
 logo: logo.png
+
 only_build_toc_files: true
 
 # Force re-execution of notebooks on each build.
@@ -11,8 +13,8 @@ only_build_toc_files: true
 execute:
   execute_notebooks: 'off'
   timeout: 300
-  exclude_patterns: 
-    - data_mining/aiml-common/lectures/transfer-learning/quantized_transfer_learning.ipynb
+  # exclude_patterns: 
+  #   - data_mining/aiml-common/lectures/transfer-learning/quantized_transfer_learning.ipynb
   
 # Define the name of the latex output file for PDF builds
 latex:
