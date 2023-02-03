@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3.21. Detectron2 Beginner’s Tutorial &#8212; Data Mining</title>
+    <title>Detectron2 Beginner’s Tutorial &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -56,8 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html" />
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="1. Introduction to Recurrent Neural Networks (RNN)" href="../../../rnn/introduction/_index.html" />
-    <link rel="prev" title="3.15. Mask R-CNN - Inspect Weights of a Trained Model" href="inspect_weights.html" />
+    <link rel="next" title="Introduction to Recurrent Neural Networks (RNN)" href="../../../rnn/introduction/_index.html" />
+    <link rel="prev" title="Mask R-CNN - Inspect Weights of a Trained Model" href="inspect_weights.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -129,22 +129,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ai-intro/course-introduction/_index.html">
-   1. Course Introduction
+   Course Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ai-intro/data-science-360/_index.html">
-   2. Data Science 360
+   Data Science 360
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ai-intro/pipelines/_index.html">
-   3. ML Pipelines
+   ML Pipelines
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../uber-ml-arch-case-study/_index.html">
-   4. A Case Study of an ML Architecture - Uber
+   A Case Study of an ML Architecture - Uber
   </a>
  </li>
 </ul>
@@ -156,42 +156,42 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../learning-problem/_index.html">
-   1. The Learning Problem
+   The Learning Problem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../regression/linear-regression/linear_regression.html">
-   2. Linear Regression
+   Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../regression/linear-regression/regression-notebooks.html">
-   3. Regression Notebooks
+   Regression Notebooks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../optimization/maximum-likelihood/_index.html">
-   4. Maximum Likelihood (ML) Estimation
+   Maximum Likelihood (ML) Estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../entropy/_index.html">
-   5. Entropy
+   Entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../optimization/sgd/_index.html">
-   6. Stochastic Gradient Descent
+   Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../classification/classification-intro/_index.html">
-   7. Introduction to Classification
+   Introduction to Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../classification/logistic-regression/_index.html">
-   8. Logistic Regression
+   Logistic Regression
   </a>
  </li>
 </ul>
@@ -203,37 +203,37 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../classification/perceptron/_index.html">
-   1. The Neuron (Perceptron)
+   The Neuron (Perceptron)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../dnn/dnn-intro/_index.html">
-   2. Deep Neural Networks
+   Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../dnn/backprop-intro/_index.html">
-   3. Introduction to Backpropagation
+   Introduction to Backpropagation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../dnn/backprop-dnn/_index.html">
-   4. Backpropagation in Deep Neural Networks
+   Backpropagation in Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../dnn/backprop-dnn-exercises/_index.html">
-   5. Backpropagation DNN exercises
+   Backpropagation DNN exercises
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../dnn/fashion-mnist-case-study.html">
-   6. Fashion MNIST Case Study
+   Fashion MNIST Case Study
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../optimization/regularization/_index.html">
-   7. Regularization in Deep Neural Networks
+   Regularization in Deep Neural Networks
   </a>
  </li>
 </ul>
@@ -245,27 +245,27 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../cnn/cnn-intro/_index.html">
-   1. Introduction to Convolutional Neural Networks
+   Introduction to Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../cnn/cnn-layers/_index.html">
-   2. CNN Architectures
+   CNN Architectures
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../cnn/cnn-example-architectures/_index.html">
-   3. CNN Example Architectures
+   CNN Example Architectures
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
-   4. Using convnets with small datasets
+   Using convnets with small datasets
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../feature-extraction-resnet/index.html">
-   5. Feature Extraction via Residual Networks
+   Feature Extraction via Residual Networks
   </a>
  </li>
 </ul>
@@ -277,12 +277,12 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../transfer-learning/transfer-learning-introduction.html">
-   1. Introduction to Transfer Learning
+   Introduction to Transfer Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../transfer-learning/transfer_learning_tutorial.html">
-   2. Transfer Learning for Computer Vision Tutorial
+   Transfer Learning for Computer Vision Tutorial
   </a>
  </li>
 </ul>
@@ -294,12 +294,12 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../scene-understanding-intro/index.html">
-   1. Introduction to Scene Understanding
+   Introduction to Scene Understanding
   </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../object-detection/object-detection-intro/index.html">
-   2. Object Detection
+   Object Detection
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -309,24 +309,24 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../object-detection/detection-metrics/index.html">
-     2.1. Object Detection and Semantic Segmentation Metrics
+     Object Detection and Semantic Segmentation Metrics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../object-detection/rcnn-object-detection/index.html">
-     2.2. Region-CNN (RCNN) Object Detection
+     Region-CNN (RCNN) Object Detection
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../object-detection/faster-rcnn-object-detection/index.html">
-     2.3. Fast and Faster RCNN Object Detection
+     Fast and Faster RCNN Object Detection
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../index.html">
-   3. Semantic Segmentation
+   Semantic Segmentation
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -336,32 +336,32 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="index.html">
-     3.1. Mask R-CNN Semantic Segmentation
+     Mask R-CNN Semantic Segmentation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="demo.html">
-     3.2. Mask R-CNN Demo
+     Mask R-CNN Demo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="inspect_data.html">
-     3.3. Mask R-CNN - Inspect Training Data
+     Mask R-CNN - Inspect Training Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="inspect_model.html">
-     3.4. Mask R-CNN - Inspect Trained Model
+     Mask R-CNN - Inspect Trained Model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="inspect_weights.html">
-     3.15. Mask R-CNN - Inspect Weights of a Trained Model
+     Mask R-CNN - Inspect Weights of a Trained Model
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     3.21. Detectron2 Beginner’s Tutorial
+     Detectron2 Beginner’s Tutorial
     </a>
    </li>
   </ul>
@@ -375,22 +375,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../rnn/introduction/_index.html">
-   1. Introduction to Recurrent Neural Networks (RNN)
+   Introduction to Recurrent Neural Networks (RNN)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../rnn/simple-rnn/_index.html">
-   2. Simple RNN
+   Simple RNN
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../rnn/lstm/_index.html">
-   3. The Long Short-Term Memory (LSTM) Cell Architecture
+   The Long Short-Term Memory (LSTM) Cell Architecture
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../rnn/15_processing_sequences_using_rnns_and_cnns.html">
-   4. Processing Sequences Using RNN
+   Processing Sequences Using RNN
   </a>
  </li>
 </ul>
@@ -402,37 +402,37 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../nlp/nlp-intro/_index.html">
-   1. Introduction to NLP
+   Introduction to NLP
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../nlp/word2vec/_index.html">
-   2. Word2Vec Embeddings
+   Word2Vec Embeddings
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../nlp/word2vec/word2vec-workshop.html">
-   3. Word2Vec Workshop
+   Word2Vec Workshop
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../nlp/language-models/_index.html">
-   4. RNN Language Models
+   RNN Language Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../nlp/language-models/simple-rnn-language-model.html">
-   5. Simple RNN Language Model
+   Simple RNN Language Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../nlp/language-models/cnn-language-model.html">
-   6. CNN Language Model
+   CNN Language Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../nlp/nmt/_index.html">
-   7. Neural Machine Translation
+   Neural Machine Translation
   </a>
  </li>
 </ul>
@@ -444,52 +444,52 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../decision-trees/_index.html">
-   1. Decision Trees
+   Decision Trees
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../regression-trees/regression_trees.html">
-   2. Regression tree stumps
+   Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ensemble/_index.html">
-   4. Ensemble Methods
+   Ensemble Methods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ensemble/random-forests/_index.html">
-   5. Random Forests
+   Random Forests
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ensemble/adaboost/index.html">
-   6. Adaptive Boosting (AdaBoost)
+   Adaptive Boosting (AdaBoost)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ensemble/gradient-boosting/index.html">
-   7. Gradient Boosting
+   Gradient Boosting
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ensemble/boosting-workshop/_index.html">
-   8. Boosting workshop
+   Boosting workshop
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../pgm/bayesian-inference/_index.html">
-   9. Bayesian Inference
+   Bayesian Inference
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../pgm/bayesian-coin/_index.html">
-   10. Bayesian Coin Flipping
+   Bayesian Coin Flipping
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../classification/covid19-antibody-test/_index.html">
-   11. COVID-19 Antibody Test
+   COVID-19 Antibody Test
   </a>
  </li>
 </ul>
@@ -501,17 +501,17 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../unsupervised/k-means/_index.html">
-   1. K-means Clustering
+   K-means Clustering
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../density-estimation/knn/_index.html">
-   2. k-Nearest Neighbors (kNN) Classification
+   k-Nearest Neighbors (kNN) Classification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../density-estimation/knn-workshop/_index.html">
-   3. kNN Workshop
+   kNN Workshop
   </a>
  </li>
 </ul>
@@ -523,7 +523,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../pca/_index.html">
-   1. Principal Component Analysis (PCA)
+   Principal Component Analysis (PCA)
   </a>
  </li>
 </ul>
@@ -535,7 +535,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../../ml-math/_index.html">
-   1. Math for ML
+   Math for ML
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -545,17 +545,17 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../../ml-math/probability/_index.html">
-     1.1. Probability Basics
+     Probability Basics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../../linear-algebra/_index.html">
-     1.2. Linear Algebra for Machine Learning
+     Linear Algebra for Machine Learning
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../../ml-math/calculus/_index.html">
-     1.3. Calculus
+     Calculus
     </a>
    </li>
   </ul>
@@ -569,12 +569,12 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../python/_index.html">
-   1. Learn Python
+   Learn Python
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../../../resources/environment/index.html">
-   2. Your Programming Environment
+   Your Programming Environment
   </a>
  </li>
 </ul>
@@ -586,7 +586,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../../assignments/probability/probability-assignment-5/index.html">
-   1. Probability Assignment
+   Probability Assignment
   </a>
  </li>
 </ul>
@@ -768,49 +768,49 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   3.21. Detectron2 Beginner’s Tutorial
+   Detectron2 Beginner’s Tutorial
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#install-detectron2">
-   3.22. Install detectron2
+   Install detectron2
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#run-a-pre-trained-detectron2-model">
-   3.23. Run a pre-trained detectron2 model
+   Run a pre-trained detectron2 model
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#train-on-a-custom-dataset">
-   3.24. Train on a custom dataset
+   Train on a custom dataset
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#prepare-the-dataset">
-     3.24.1. Prepare the dataset
+     Prepare the dataset
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#train">
-     3.24.2. Train!
+     Train!
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#inference-evaluation-using-the-trained-model">
-     3.24.3. Inference &amp; evaluation using the trained model
+     Inference &amp; evaluation using the trained model
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#other-types-of-builtin-models">
-   3.25. Other types of builtin models
+   Other types of builtin models
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#run-panoptic-segmentation-on-a-video">
-   3.26. Run panoptic segmentation on a video
+   Run panoptic segmentation on a video
   </a>
  </li>
 </ul>
@@ -834,49 +834,49 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   3.21. Detectron2 Beginner’s Tutorial
+   Detectron2 Beginner’s Tutorial
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#install-detectron2">
-   3.22. Install detectron2
+   Install detectron2
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#run-a-pre-trained-detectron2-model">
-   3.23. Run a pre-trained detectron2 model
+   Run a pre-trained detectron2 model
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#train-on-a-custom-dataset">
-   3.24. Train on a custom dataset
+   Train on a custom dataset
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#prepare-the-dataset">
-     3.24.1. Prepare the dataset
+     Prepare the dataset
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#train">
-     3.24.2. Train!
+     Train!
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#inference-evaluation-using-the-trained-model">
-     3.24.3. Inference &amp; evaluation using the trained model
+     Inference &amp; evaluation using the trained model
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#other-types-of-builtin-models">
-   3.25. Other types of builtin models
+   Other types of builtin models
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#run-panoptic-segmentation-on-a-video">
-   3.26. Run panoptic segmentation on a video
+   Run panoptic segmentation on a video
   </a>
  </li>
 </ul>
@@ -890,7 +890,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="detectron2-beginners-tutorial">
-<h1><span class="section-number">3.21. </span>Detectron2 Beginner’s Tutorial<a class="headerlink" href="#detectron2-beginners-tutorial" title="Permalink to this headline">#</a></h1>
+<h1>Detectron2 Beginner’s Tutorial<a class="headerlink" href="#detectron2-beginners-tutorial" title="Permalink to this headline">#</a></h1>
 <a class="reference internal image-reference" href="https://dl.fbaipublicfiles.com/detectron2/Detectron2-Logo-Horz.png"><img alt="https://dl.fbaipublicfiles.com/detectron2/Detectron2-Logo-Horz.png" src="https://dl.fbaipublicfiles.com/detectron2/Detectron2-Logo-Horz.png" style="width: 500px;" /></a>
 <p>Welcome to detectron2! This is the official colab tutorial of detectron2. Here, we will go through some basics usage of detectron2, including the following:</p>
 <ul class="simple">
@@ -900,7 +900,7 @@ title="Print to PDF"
 <p>You can make a copy of this tutorial by “File -&gt; Open in playground mode” and make changes there. <strong>DO NOT</strong> request access to this tutorial.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="install-detectron2">
-<h1><span class="section-number">3.22. </span>Install detectron2<a class="headerlink" href="#install-detectron2" title="Permalink to this headline">#</a></h1>
+<h1>Install detectron2<a class="headerlink" href="#install-detectron2" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install detectron2@git+https://github.com/facebookresearch/detectron2@7c2c8fb
@@ -1097,7 +1097,7 @@ torchvision:  0.13
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="run-a-pre-trained-detectron2-model">
-<h1><span class="section-number">3.23. </span>Run a pre-trained detectron2 model<a class="headerlink" href="#run-a-pre-trained-detectron2-model" title="Permalink to this headline">#</a></h1>
+<h1>Run a pre-trained detectron2 model<a class="headerlink" href="#run-a-pre-trained-detectron2-model" title="Permalink to this headline">#</a></h1>
 <p>We first download an image from the COCO dataset:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1177,14 +1177,14 @@ Boxes(tensor([[126.5927, 244.9072, 459.8221, 480.0000],
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="train-on-a-custom-dataset">
-<h1><span class="section-number">3.24. </span>Train on a custom dataset<a class="headerlink" href="#train-on-a-custom-dataset" title="Permalink to this headline">#</a></h1>
+<h1>Train on a custom dataset<a class="headerlink" href="#train-on-a-custom-dataset" title="Permalink to this headline">#</a></h1>
 <p>In this section, we show how to train an existing detectron2 model on a custom dataset in a new format.</p>
 <p>We use <a class="reference external" href="https://github.com/matterport/Mask_RCNN/tree/master/samples/balloon">the balloon segmentation dataset</a>
 which only has one class: balloon.
 We’ll train a balloon segmentation model from an existing model pre-trained on COCO dataset, available in detectron2’s model zoo.</p>
 <p>Note that COCO dataset does not have the “balloon” category. We’ll be able to recognize this new class in a few minutes.</p>
 <section id="prepare-the-dataset">
-<h2><span class="section-number">3.24.1. </span>Prepare the dataset<a class="headerlink" href="#prepare-the-dataset" title="Permalink to this headline">#</a></h2>
+<h2>Prepare the dataset<a class="headerlink" href="#prepare-the-dataset" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span># download, decompress the data
@@ -1296,7 +1296,7 @@ Here, the dataset is in its custom format, therefore we write a function to pars
 </div>
 </section>
 <section id="train">
-<h2><span class="section-number">3.24.2. </span>Train!<a class="headerlink" href="#train" title="Permalink to this headline">#</a></h2>
+<h2>Train!<a class="headerlink" href="#train" title="Permalink to this headline">#</a></h2>
 <p>Now, let’s fine-tune a COCO-pretrained R50-FPN Mask R-CNN model on the balloon dataset. It takes ~2 minutes to train 300 iterations on a P100 GPU.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1727,7 +1727,7 @@ WARNING:fvcore.common.checkpoint:Some model parameters or buffers are not found 
 </div>
 </section>
 <section id="inference-evaluation-using-the-trained-model">
-<h2><span class="section-number">3.24.3. </span>Inference &amp; evaluation using the trained model<a class="headerlink" href="#inference-evaluation-using-the-trained-model" title="Permalink to this headline">#</a></h2>
+<h2>Inference &amp; evaluation using the trained model<a class="headerlink" href="#inference-evaluation-using-the-trained-model" title="Permalink to this headline">#</a></h2>
 <p>Now, let’s run inference with the trained model on the balloon validation dataset. First, let’s create a predictor using the model we just trained:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1932,7 +1932,7 @@ OrderedDict([(&#39;bbox&#39;, {&#39;AP&#39;: 73.54345467878944, &#39;AP50&#39;: 
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="other-types-of-builtin-models">
-<h1><span class="section-number">3.25. </span>Other types of builtin models<a class="headerlink" href="#other-types-of-builtin-models" title="Permalink to this headline">#</a></h1>
+<h1>Other types of builtin models<a class="headerlink" href="#other-types-of-builtin-models" title="Permalink to this headline">#</a></h1>
 <p>We showcase simple demos of other types of models below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1977,7 +1977,7 @@ OrderedDict([(&#39;bbox&#39;, {&#39;AP&#39;: 73.54345467878944, &#39;AP50&#39;: 
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="run-panoptic-segmentation-on-a-video">
-<h1><span class="section-number">3.26. </span>Run panoptic segmentation on a video<a class="headerlink" href="#run-panoptic-segmentation-on-a-video" title="Permalink to this headline">#</a></h1>
+<h1>Run panoptic segmentation on a video<a class="headerlink" href="#run-panoptic-segmentation-on-a-video" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is the video we&#39;re going to process</span>
@@ -2098,13 +2098,13 @@ File &#39;video-clip.mp4&#39; already exists. Overwrite ? [y/N]
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">3.15. </span>Mask R-CNN - Inspect Weights of a Trained Model</p>
+            <p class="prev-next-title">Mask R-CNN - Inspect Weights of a Trained Model</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../../../rnn/introduction/_index.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Introduction to Recurrent Neural Networks (RNN)</p>
+        <p class="prev-next-title">Introduction to Recurrent Neural Networks (RNN)</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -2117,7 +2117,7 @@ File &#39;video-clip.mp4&#39; already exists. Overwrite ? [y/N]
   
     By Pantelis Monogioudis, Ph.D<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2023.<br/>
 </p>
         </footer>
     </div>
