@@ -10,7 +10,7 @@ If you'd like to develop and/or build the book, you should:
 2. Launch the devcontainer via vscode dev container extension and run `poetry shell` to lauch the virtual environment `data-mining-book-py3.9`
 3. (Optional) Edit the books source files located in the `data_mining/` directory
 4. (Optional) Run `jupyter-book clean data_mining/` to remove any existing builds
-5.  Run `ls` for interactive editing and liveview. 
+5.  Run `sphinx-autobuild --host 0.0.0.0 data_mining _build/html` for interactive editing and liveview. 
 6. (Optiona) Run `jupyter-book build data_mining/` for an offline build
 
 A fully-rendered HTML version of the book will be built in `data_mining/_build/html/`.

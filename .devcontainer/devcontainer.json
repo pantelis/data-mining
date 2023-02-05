@@ -30,5 +30,6 @@
 				"ms-python.vscode-pylance"
 			]
 		}
-	}
+	},
+	"postAttachCommand": "poetry run sphinx-autobuild data_mining _build/html/"
 }
