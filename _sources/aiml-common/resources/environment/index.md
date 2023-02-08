@@ -100,7 +100,7 @@ After adding the TA as a collaborator they will be able to see your code in Gith
 ![](./images/Open1.png)
 
 2. After Adding a Markdown section you need to add the following link to the same. Check the image. Also please note that in this link
-instead of "https://github.com/dhruvilk/Course-Assignments/tree/main/Sample.ipynb" you need to add the location of the notebook in which your code is present. Your notebook will be in yout Github. So copy the link and paste it above. Rest will stay the same.
+instead of "https://github.com/dhruvilk/Course-Assignments/tree/main/Sample.ipynb" you need to add the location of the notebook in which your code is present. Your notebook will be in your Github. So copy the link and paste it above. Rest will stay the same.
 
 ![](./images/Open2.png)
 
@@ -108,6 +108,9 @@ instead of "https://github.com/dhruvilk/Course-Assignments/tree/main/Sample.ipyn
 
 ![](./images/Open3.png)
 
+The following video is also useful on how to add the Open in Colab button in notebooks but also in a browser bookmark. The later is helpful when the notebook does not have the embedded button.
+
+[![Open in Colab](https://img.youtube.com/vi/RoGZIbwzG5w/0.jpg)](https://www.youtube.com/watch?v=RoGZIbwzG5w)
 
 ## External Tools and Databases (Optional)
 
