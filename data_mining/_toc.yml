@@ -140,6 +140,7 @@ parts:
   - caption:  Assignments & Projects
     chapters:
     - file: aiml-common/assignments/probability/probability-assignment-5/index.ipynb
+    - file: aiml-common/assignments/mle/poisson-regression-1/index.ipynb
   #   - file: aiml-common/assignments/poisson-regression/index.ipynb
   #   - file: aiml-common/projects/visual-search-coco/index.md
   #   - file: aiml-common/projects/transfer-learning-home-depot/index.md
