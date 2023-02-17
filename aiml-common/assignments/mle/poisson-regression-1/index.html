@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Maximum Likelihood (ML) Estimation &#8212; Data Mining</title>
+    <title>Bike Rides and the Poisson Model &#8212; Data Mining</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -55,11 +55,10 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"mathjax_path": "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js", "tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/optimization/maximum-likelihood/_index.html" />
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/assignments/mle/poisson-regression-1/index.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Entropy" href="../../entropy/_index.html" />
-    <link rel="prev" title="Regression Notebooks" href="../../regression/linear-regression/regression-notebooks.html" />
+    <link rel="prev" title="Probability Assignment" href="../../probability/probability-assignment-5/index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -130,22 +129,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ai-intro/course-introduction/_index.html">
+  <a class="reference internal" href="../../../lectures/ai-intro/course-introduction/_index.html">
    Course Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ai-intro/data-science-360/_index.html">
+  <a class="reference internal" href="../../../lectures/ai-intro/data-science-360/_index.html">
    Data Science 360
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ai-intro/pipelines/_index.html">
+  <a class="reference internal" href="../../../lectures/ai-intro/pipelines/_index.html">
    ML Pipelines
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../uber-ml-arch-case-study/_index.html">
+  <a class="reference internal" href="../../../lectures/uber-ml-arch-case-study/_index.html">
    A Case Study of an ML Architecture - Uber
   </a>
  </li>
@@ -155,44 +154,39 @@ const thebe_selector_output = ".output, .cell_output"
   The Learning Problem
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../learning-problem/_index.html">
+  <a class="reference internal" href="../../../lectures/learning-problem/_index.html">
    The Learning Problem
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../regression/linear-regression/linear_regression.html">
+  <a class="reference internal" href="../../../lectures/regression/linear-regression/linear_regression.html">
    Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../regression/linear-regression/regression-notebooks.html">
+  <a class="reference internal" href="../../../lectures/regression/linear-regression/regression-notebooks.html">
    Regression Notebooks
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Maximum Likelihood (ML) Estimation
-  </a>
- </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../entropy/_index.html">
+  <a class="reference internal" href="../../../lectures/entropy/_index.html">
    Entropy
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../sgd/_index.html">
+  <a class="reference internal" href="../../../lectures/optimization/sgd/_index.html">
    Stochastic Gradient Descent
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/classification-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/classification-intro/_index.html">
    Introduction to Classification
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/logistic-regression/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/logistic-regression/_index.html">
    Logistic Regression
   </a>
  </li>
@@ -204,37 +198,37 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/perceptron/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/perceptron/_index.html">
    The Neuron (Perceptron)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../dnn/dnn-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/dnn/dnn-intro/_index.html">
    Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../dnn/backprop-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/dnn/backprop-intro/_index.html">
    Introduction to Backpropagation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../dnn/backprop-dnn/_index.html">
+  <a class="reference internal" href="../../../lectures/dnn/backprop-dnn/_index.html">
    Backpropagation in Deep Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../dnn/backprop-dnn-exercises/_index.html">
+  <a class="reference internal" href="../../../lectures/dnn/backprop-dnn-exercises/_index.html">
    Backpropagation DNN exercises
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../dnn/fashion-mnist-case-study.html">
+  <a class="reference internal" href="../../../lectures/dnn/fashion-mnist-case-study.html">
    Fashion MNIST Case Study
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../regularization/_index.html">
+  <a class="reference internal" href="../../../lectures/optimization/regularization/_index.html">
    Regularization in Deep Neural Networks
   </a>
  </li>
@@ -246,27 +240,27 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../cnn/cnn-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-intro/_index.html">
    Introduction to Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../cnn/cnn-layers/_index.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-layers/_index.html">
    CNN Architectures
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-example-architectures/_index.html">
    CNN Example Architectures
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
+  <a class="reference internal" href="../../../lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
    Using convnets with small datasets
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/feature-extraction-resnet/index.html">
    Feature Extraction via Residual Networks
   </a>
  </li>
@@ -278,12 +272,12 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../transfer-learning/transfer-learning-introduction.html">
+  <a class="reference internal" href="../../../lectures/transfer-learning/transfer-learning-introduction.html">
    Introduction to Transfer Learning
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../transfer-learning/transfer_learning_tutorial.html">
+  <a class="reference internal" href="../../../lectures/transfer-learning/transfer_learning_tutorial.html">
    Transfer Learning for Computer Vision Tutorial
   </a>
  </li>
@@ -295,12 +289,12 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding/scene-understanding-intro/index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/scene-understanding-intro/index.html">
    Introduction to Scene Understanding
   </a>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../scene-understanding/object-detection/object-detection-intro/index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/object-detection/object-detection-intro/index.html">
    Object Detection
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -310,24 +304,24 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/object-detection/detection-metrics/index.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/object-detection/detection-metrics/index.html">
      Object Detection and Semantic Segmentation Metrics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/object-detection/rcnn-object-detection/index.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/object-detection/rcnn-object-detection/index.html">
      Region-CNN (RCNN) Object Detection
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/object-detection/faster-rcnn-object-detection/index.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/object-detection/faster-rcnn-object-detection/index.html">
      Fast and Faster RCNN Object Detection
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../scene-understanding/semantic-segmentation/index.html">
+  <a class="reference internal" href="../../../lectures/scene-understanding/semantic-segmentation/index.html">
    Semantic Segmentation
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
@@ -337,32 +331,32 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
      Mask R-CNN Semantic Segmentation
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
      Mask R-CNN Demo
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
      Mask R-CNN - Inspect Training Data
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
      Mask R-CNN - Inspect Trained Model
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
      Mask R-CNN - Inspect Weights of a Trained Model
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">
+    <a class="reference internal" href="../../../lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">
      Detectron2 Beginner’s Tutorial
     </a>
    </li>
@@ -376,22 +370,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../rnn/introduction/_index.html">
+  <a class="reference internal" href="../../../lectures/rnn/introduction/_index.html">
    Introduction to Recurrent Neural Networks (RNN)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../rnn/simple-rnn/_index.html">
+  <a class="reference internal" href="../../../lectures/rnn/simple-rnn/_index.html">
    Simple RNN
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../rnn/lstm/_index.html">
+  <a class="reference internal" href="../../../lectures/rnn/lstm/_index.html">
    The Long Short-Term Memory (LSTM) Cell Architecture
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../rnn/15_processing_sequences_using_rnns_and_cnns.html">
+  <a class="reference internal" href="../../../lectures/rnn/15_processing_sequences_using_rnns_and_cnns.html">
    Processing Sequences Using RNN
   </a>
  </li>
@@ -403,37 +397,37 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/nlp-intro/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/nlp-intro/_index.html">
    Introduction to NLP
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/word2vec/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/word2vec/_index.html">
    Word2Vec Embeddings
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/word2vec/word2vec-workshop.html">
+  <a class="reference internal" href="../../../lectures/nlp/word2vec/word2vec-workshop.html">
    Word2Vec Workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/language-models/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/language-models/_index.html">
    RNN Language Models
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model.html">
+  <a class="reference internal" href="../../../lectures/nlp/language-models/simple-rnn-language-model.html">
    Simple RNN Language Model
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/language-models/cnn-language-model.html">
+  <a class="reference internal" href="../../../lectures/nlp/language-models/cnn-language-model.html">
    CNN Language Model
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../nlp/nmt/_index.html">
+  <a class="reference internal" href="../../../lectures/nlp/nmt/_index.html">
    Neural Machine Translation
   </a>
  </li>
@@ -445,52 +439,52 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../decision-trees/_index.html">
+  <a class="reference internal" href="../../../lectures/decision-trees/_index.html">
    Decision Trees
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../regression-trees/regression_trees.html">
+  <a class="reference internal" href="../../../lectures/regression-trees/regression_trees.html">
    Regression tree stumps
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/_index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/_index.html">
    Ensemble Methods
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/random-forests/_index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/random-forests/_index.html">
    Random Forests
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/adaboost/index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/adaboost/index.html">
    Adaptive Boosting (AdaBoost)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/gradient-boosting/index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/gradient-boosting/index.html">
    Gradient Boosting
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">
+  <a class="reference internal" href="../../../lectures/ensemble/boosting-workshop/_index.html">
    Boosting workshop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../pgm/bayesian-inference/_index.html">
+  <a class="reference internal" href="../../../lectures/pgm/bayesian-inference/_index.html">
    Bayesian Inference
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
+  <a class="reference internal" href="../../../lectures/pgm/bayesian-coin/_index.html">
    Bayesian Coin Flipping
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
+  <a class="reference internal" href="../../../lectures/classification/covid19-antibody-test/_index.html">
    COVID-19 Antibody Test
   </a>
  </li>
@@ -502,17 +496,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../unsupervised/k-means/_index.html">
+  <a class="reference internal" href="../../../lectures/unsupervised/k-means/_index.html">
    K-means Clustering
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../density-estimation/knn/_index.html">
+  <a class="reference internal" href="../../../lectures/density-estimation/knn/_index.html">
    k-Nearest Neighbors (kNN) Classification
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">
+  <a class="reference internal" href="../../../lectures/density-estimation/knn-workshop/_index.html">
    kNN Workshop
   </a>
  </li>
@@ -524,7 +518,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../pca/_index.html">
+  <a class="reference internal" href="../../../lectures/pca/_index.html">
    Principal Component Analysis (PCA)
   </a>
  </li>
@@ -536,7 +530,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../ml-math/_index.html">
+  <a class="reference internal" href="../../../lectures/ml-math/_index.html">
    Math for ML
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
@@ -546,17 +540,17 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ml-math/probability/_index.html">
+    <a class="reference internal" href="../../../lectures/ml-math/probability/_index.html">
      Probability Basics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../linear-algebra/_index.html">
+    <a class="reference internal" href="../../../lectures/linear-algebra/_index.html">
      Linear Algebra for Machine Learning
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ml-math/calculus/_index.html">
+    <a class="reference internal" href="../../../lectures/ml-math/calculus/_index.html">
      Calculus
     </a>
    </li>
@@ -570,7 +564,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../python/_index.html">
+  <a class="reference internal" href="../../../lectures/python/_index.html">
    Learn Python
   </a>
  </li>
@@ -585,10 +579,15 @@ const thebe_selector_output = ".output, .cell_output"
   Assignments &amp; Projects
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../assignments/probability/probability-assignment-5/index.html">
+  <a class="reference internal" href="../../probability/probability-assignment-5/index.html">
    Probability Assignment
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Bike Rides and the Poisson Model
   </a>
  </li>
 </ul>
@@ -681,7 +680,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/optimization/maximum-likelihood/_index.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/assignments/mle/poisson-regression-1/index.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -709,7 +708,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../../../_sources/aiml-common/lectures/optimization/maximum-likelihood/_index.md"
+        <a href="../../../../_sources/aiml-common/assignments/mle/poisson-regression-1/index.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -720,7 +719,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -769,27 +768,14 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#learning-marginal-models-p-model-mathbf-x-mathbf-w">
-   Learning marginal models -
-   <span class="math notranslate nohighlight">
-    \(p_{model}(\mathbf{x}; \mathbf w)\)
-   </span>
+  <a class="reference internal nav-link" href="#maximum-likelihood-i">
+   Maximum Likelihood I
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#learning-conditional-models-hat-p-model-mathbf-y-mathbf-x-mathbf-w">
-   Learning conditional models -
-   <span class="math notranslate nohighlight">
-    \(\hat p_{model}(\mathbf y | \mathbf x; \mathbf w)\)
-   </span>
+  <a class="reference internal nav-link" href="#maximum-likelihood-ii">
+   Maximum Likelihood II
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-and-implementation">
-     Example and implementation
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -800,7 +786,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Maximum Likelihood (ML) Estimation</h1>
+                <h1>Bike Rides and the Poisson Model</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -811,27 +797,14 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#learning-marginal-models-p-model-mathbf-x-mathbf-w">
-   Learning marginal models -
-   <span class="math notranslate nohighlight">
-    \(p_{model}(\mathbf{x}; \mathbf w)\)
-   </span>
+  <a class="reference internal nav-link" href="#maximum-likelihood-i">
+   Maximum Likelihood I
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#learning-conditional-models-hat-p-model-mathbf-y-mathbf-x-mathbf-w">
-   Learning conditional models -
-   <span class="math notranslate nohighlight">
-    \(\hat p_{model}(\mathbf y | \mathbf x; \mathbf w)\)
-   </span>
+  <a class="reference internal nav-link" href="#maximum-likelihood-ii">
+   Maximum Likelihood II
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-and-implementation">
-     Example and implementation
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -843,55 +816,41 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="maximum-likelihood-ml-estimation">
-<h1>Maximum Likelihood (ML) Estimation<a class="headerlink" href="#maximum-likelihood-ml-estimation" title="Permalink to this headline">#</a></h1>
-<p>Most of the models in supervised machine learning are estimated using the ML principle. In this section we introduce the principle and outline the objective function of the ML estimator that has wide applicability in many learning tasks.</p>
-<section id="learning-marginal-models-p-model-mathbf-x-mathbf-w">
-<h2>Learning marginal models -  <span class="math notranslate nohighlight">\(p_{model}(\mathbf{x}; \mathbf w)\)</span><a class="headerlink" href="#learning-marginal-models-p-model-mathbf-x-mathbf-w" title="Permalink to this headline">#</a></h2>
-<p>Assume that we have <span class="math notranslate nohighlight">\(m\)</span> examples drawn from a data generator that generates the vectors <span class="math notranslate nohighlight">\(\mathbf{x} \in \mathcal{X}\)</span> <em>independently and identically distributed (i.i.d.)</em> according to some unknown (but fixed) probability distribution function <span class="math notranslate nohighlight">\(p_{data}(\mathbf{x})\)</span>.</p>
-<div class="math notranslate nohighlight">
-\[\mathbb{X} = \{ \mathbf{x}_1, \dots, \mathbf{x}_m \}\]</div>
-<p>Let <span class="math notranslate nohighlight">\(p_{model}(\mathbf x, \mathbf w)\)</span> a parametric family of probability distributions (our hypothesis set) over the same space that attempts to approximate (model) <span class="math notranslate nohighlight">\(p_{data}(\mathbf{x})\)</span> as closely as possible using a suitable estimate of the parameter vector <span class="math notranslate nohighlight">\(\mathbf w\)</span>. The ML estimator for <span class="math notranslate nohighlight">\(\mathbf w\)</span> is defined as:</p>
-<div class="math notranslate nohighlight">
-\[\mathbf w_{ML} = \argmax_{\mathbf w} p_{model}(\mathbb X; \mathbf w)\]</div>
-<div class="math notranslate nohighlight">
-\[ = \argmax_{\mathbf w} \prod_{i=1}^m p_{model}(\mathbf x^{(i)}; \mathbf w)\]</div>
-<div class="math notranslate nohighlight">
-\[ = \argmax_{\mathbf w} \sum_{i=1}^m \log p_{model}(\mathbf x^{(i)}; \mathbf w)\]</div>
-<div class="math notranslate nohighlight">
-\[ = \argmax_{\mathbf w} \frac{1}{m} \sum_{i=1}^m \log p_{model}(\mathbf x^{(i)}; \mathbf w)\]</div>
-<div class="math notranslate nohighlight">
-\[ = \argmax_{\mathbf w} \mathbb{E}_{\mathbf{x} \sim \hat p_{data}} \log p_{model}(\mathbf x; \mathbf w)\]</div>
-<p>From the last expression it is evident that in ML estimation two distributions are involved: <span class="math notranslate nohighlight">\(\hat p_{data}\)</span> and <span class="math notranslate nohighlight">\(p_{model}\)</span>. We can also make use of our intuition that a good estimator would minimize the distance between the two empirical distributions therefore the KL divergence:</p>
-<div class="math notranslate nohighlight">
-\[KL( \hat p_{data} || p_{model} ) = \mathbb{E}_{\mathbf x  \sim \hat p_{data}} \left[\log \hat p_{data}(\mathbf x) - \log p_{model}(\mathbf x, \mathbf w) \right] \]</div>
-<p>The 1st term is independent of the model and therefore we see that the KL and the ML estimator expressions are <em>identical</em> except from the sign. Therefore we conclude that <em>minimizing KL divergence, maximizes the likelihood function</em>. From information theory we know that the KL divergence and  the cross entropy (CE) are related via the expression</p>
-<div class="math notranslate nohighlight">
-\[CE = H(\hat p_{data}, p_{model}) = KL( \hat p_{data} || p_{model} ) + H(\hat p_{data})\]</div>
-<p>Given that <span class="math notranslate nohighlight">\(\hat p_{data}\)</span> is given in supervised learning, <span class="math notranslate nohighlight">\(H(\hat p_{data})\)</span> is constant and therefore we can conclude that in this case, CE is equivalent to the KL i.e. <strong>minimizing the KL divergence, is equivalent in minimizing cross-entropy (CE)</strong>. Therefore the expression the only need to minimize which we will call the CE cost function (also known as log loss) is:</p>
-<div class="math notranslate nohighlight">
-\[ L(\mathbf w) = CE = - \mathbb{E_{\mathbf x \sim \hat p_{data}}}  \log p_{model}(\mathbf x, \mathbf w)\]</div>
-<p>Cross entropy is a very generic objective (loss) function that is applicable to any <em>supervised learning</em> problem that uses maximum likelihood to estimate a model.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="bike-rides-and-the-poisson-model">
+<h1>Bike Rides and the Poisson Model<a class="headerlink" href="#bike-rides-and-the-poisson-model" title="Permalink to this headline">#</a></h1>
+<p>To help the urban planners, you are called to model the daily bike rides in NYC using <a class="reference external" href="https://gist.github.com/sachinsdate/c17931a3f000492c1c42cf78bf4ce9fe/archive/7a5131d3f02575668b3c7e8c146b6a285acd2cd7.zip">this dataset</a>.  The dataset contains date, day of the week, high and low temp, precipitation and bike ride couunts as columns.</p>
+<section id="maximum-likelihood-i">
+<h2>Maximum Likelihood I<a class="headerlink" href="#maximum-likelihood-i" title="Permalink to this headline">#</a></h2>
+<p>The obvious choice in distributions is the <a class="reference external" href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a> which depends only on one parameter, λ, which is the average number of occurrences per interval. We want to estimate this parameter using Maximum Likelihood Estimation.</p>
+<p>Implement a Gradient Descent algorithm from scratch that will estimate the Poisson distribution according to the Maximum Likelihood criterion. Plot the estimated mean vs iterations to showcase convergence towards the true mean.</p>
+<p>References:</p>
+<ol class="simple">
+<li><p><a class="reference external" href="https://towardsdatascience.com/the-poisson-process-everything-you-need-to-know-322aa0ab9e9a">This blog post</a>.</p></li>
+<li><p><a class="reference external" href="https://towardsdatascience.com/understanding-maximum-likelihood-estimation-fa495a03017a">This blog post</a> and note the negative  log likelihood function.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code here</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="learning-conditional-models-hat-p-model-mathbf-y-mathbf-x-mathbf-w">
-<h2>Learning conditional models - <span class="math notranslate nohighlight">\(\hat p_{model}(\mathbf y | \mathbf x; \mathbf w)\)</span><a class="headerlink" href="#learning-conditional-models-hat-p-model-mathbf-y-mathbf-x-mathbf-w" title="Permalink to this headline">#</a></h2>
-<p>The discussion in the marginal distribution  is equivalently applicable to the conditional distribution <span class="math notranslate nohighlight">\(p_{model}(\mathbf y | \mathbf x, \mathbf w)\)</span> which governs supervised learning, <span class="math notranslate nohighlight">\(y\)</span> being the symbol of the label / target variable. Therefore all machine learning software frameworks offer excellent APIs on CE calculation.</p>
+<section id="maximum-likelihood-ii">
+<h2>Maximum Likelihood II<a class="headerlink" href="#maximum-likelihood-ii" title="Permalink to this headline">#</a></h2>
+<p>A colleague of yours suggest that the parameter <span class="math notranslate nohighlight">\(\lambda\)</span> must be itself dependent on the weather and other factors since people bike when its not raining. Assume that you model <span class="math notranslate nohighlight">\(\lambda\)</span> as</p>
 <div class="math notranslate nohighlight">
-\[ L(\mathbf w) = - \mathbb{E_{\mathbf x, \mathbf y \sim \hat p_{data}}}  \log p_{model}(\mathbf y | \mathbf x; \mathbf w)\]</div>
-<p>The attractiveness of the ML solution is that the CE (also known as log-loss) is general and we <em>don’t need to re-design it</em> when we change the model.</p>
-<section id="example-and-implementation">
-<h3>Example and implementation<a class="headerlink" href="#example-and-implementation" title="Permalink to this headline">#</a></h3>
-<p>It is now instructive to go over an example to understand that even the plain-old mean squared error (MSE), the objective that is common in the regression setting, falls under the same umbrella - its the cross entropy between <span class="math notranslate nohighlight">\(\hat p_{data}\)</span> and a Gaussian model.</p>
-<p>Please follow the discussion associated with Section 5.5.1 of the Ian Goodfellow’s book or section 20.2.4 of Russell &amp; Norvig’s book and <span class="xref myst">these notes</span>  and consider the following figure for assistance to visualize the relationship of <span class="math notranslate nohighlight">\(p_{data}\)</span> and <span class="math notranslate nohighlight">\(p_{model}\)</span>.</p>
-<p><img alt="conditional-model-gaussian" src="../../../../_images/conditional-model-gaussian.png" />
-<em>Please replace the y-axis target variable <span class="math notranslate nohighlight">\(t\)</span> with <span class="math notranslate nohighlight">\(y\)</span>. The green dashed line shows the mean of the <span class="math notranslate nohighlight">\(p_{model}\)</span> distribution.</em></p>
-<p>The following notebook goes through the MLE calculation from scratch and shows the negative log-likelihood curves for a very simple MLE problem of fitting a Gaussian <span class="math notranslate nohighlight">\(p_{model}\)</span> to an array produced by sampling an unknown underlying distribution <span class="math notranslate nohighlight">\(p_{data}\)</span>.</p>
-<iframe src="https://nbviewer.jupyter.org/github/pantelis-classes/cs634-notebooks/blob/master/maximum_likelihood.ipynb" width="900" height="1200"></iframe>
-<p>The following notebook is instructive of what MLE is calculating for the dataset we have seen before. Note that this notebook reveals also the large swings that the <span class="math notranslate nohighlight">\(\mathbf w\)</span> takes to fit the model for larger capacities. Please vary <span class="math notranslate nohighlight">\(M\)</span> in the code to observe the dynamic range of the weights of the model.</p>
-<p><img alt="w-star-various-capacities" src="../../../../_images/w-star-various-capacities.png" />
-<em>Optimal <span class="math notranslate nohighlight">\(\mathbf w\)</span> for various model capacities</em></p>
-<iframe src="https://nbviewer.jupyter.org/github/pantelis/PRML/blob/master/notebooks/ch03_Linear_Models_for_Regression.ipynb" width="900" height="1200"></iframe>
-</section>
+\[\lambda_i = \exp(\mathbf w^T \mathbf x_i)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf x_i\)</span> is one of the example features and <span class="math notranslate nohighlight">\(\mathbf w\)</span> is a set of parameters.</p>
+<p>Train the model with SGD with this assumption and compare the MSE of the predictions with the <code class="docutils literal notranslate"><span class="pre">Maximum</span> <span class="pre">Likelihood</span> <span class="pre">I</span></code> approach.</p>
+<p>You may want to use <a class="reference external" href="http://home.cc.umanitoba.ca/~godwinrt/7010/poissonregression.pdf">this partial derivative of the log likelihood function</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># </span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -908,7 +867,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./aiml-common/lectures/optimization/maximum-likelihood"
+            path: "./aiml-common/assignments/mle/poisson-regression-1"
         },
         predefinedOutput: true
     }
@@ -922,19 +881,12 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../../regression/linear-regression/regression-notebooks.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../../probability/probability-assignment-5/index.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Regression Notebooks</p>
+            <p class="prev-next-title">Probability Assignment</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="../../entropy/_index.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Entropy</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
