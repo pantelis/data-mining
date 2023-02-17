@@ -24,7 +24,8 @@ parts:
     - file: aiml-common/lectures/learning-problem/_index.md
     - file: aiml-common/lectures/regression/linear-regression/linear_regression.ipynb    
     - file: aiml-common/lectures/regression/linear-regression/regression-notebooks.md
-    - file: aiml-common/lectures/optimization/maximum-likelihood/_index.md
+    - file: aiml-common/lectures/optimization/maximum-likelihood/marginal_maximum_likelihood.ipynb
+    - file: aiml-common/lectures/optimization/maximum-likelihood/conditional_maximum_likelihood.ipynb
     - file: aiml-common/lectures/entropy/_index.md
     - file: aiml-common/lectures/optimization/sgd/_index.md
     - file: aiml-common/lectures/classification/classification-intro/_index.md
