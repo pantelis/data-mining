@@ -1,17 +1,31 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/anaconda
 {
-	"name": "Python 3 - Poetry",
+	"name": "data-mining-course",
 	"build": { 
-		"context": ".",
+		"context": "..",
 		"dockerfile": "Dockerfile",
 		"args": {
 			"POETRY_VERSION": ""
 		}
 	},
 
+	"remoteEnv": {
+		"PATH": "${localEnv:PATH}:/home/vscode/.local/bin:/usr/local/cuda/bin",
+		"LD_LIBRARY_PATH": "/usr/local/cuda/lib64",
+		"XLA_FLAGS": "--xla_gpu_cuda_data_dir=/usr/local/cuda/"
+	},
+
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+	"features": {
+		"ghcr.io/devcontainers/features/nvidia-cuda:1": {
+			"installCudnn": true,
+			"cudaVersion": "11.8",
+			"cudnnVersion": "8.6.0.163"
+		}
+	},
+
+	"runArgs": ["--gpus", "all"],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [8000],
@@ -19,17 +33,16 @@
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "curl -sSL https://install.python-poetry.org | python3 - && poetry config virtualenvs.in-project true && poetry update",
 
-	// Configure tool-specific properties.
-	// "customizations": {},
-
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	"remoteUser": "vscode",
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"ms-python.vscode-pylance"
+				"ms-python.vscode-pylance",
+				"ExecutableBookProject.myst-highlight",
+				"GitHub.copilot"
 			]
 		}
 	},
-	"postAttachCommand": "poetry run sphinx-autobuild data_mining _build/html/"
+	"postStartCommand": "poetry run sphinx-autobuild data_mining _build/html"
 }

@@ -1,18 +1,16 @@
 [tool.poetry]
-name = "data-mining-book"
+name = "back2classroom-data-mining"
 version = "0.1.0"
 description = ""
 authors = ["Pantelis Monogioudis <pantelis.monogioudis@aegean.ai>"]
 license = "Apache 2.0"
 readme = "README.md"
-packages = [{include = "data_mining_book"}]
+packages = [{include = "b2c"}]
 
 [tool.poetry.dependencies]
-python = "^3.9"
-jupyter-book = "^0.13.1"
-numpy = "^1.24.1"
-pandas = "^1.5.2"
-scikit-learn = "^1.2.1"
+python = ">=3.10,<3.12"
+jupyter-book = "^0.15.1"
+
 sphinxcontrib-youtube = "^1.2.0"
 sphinxcontrib-svg2pdfconverter = "^1.2.1"
 sphinx-proof = "^0.1.3"
@@ -20,6 +18,13 @@ sphinx-inline-tabs = "^2022.1.2b11"
 sphinxext-rediraffe = "^0.2.7"
 sphinx-autobuild = "^2021.3.14"
 sphinx-panels = "^0.6.0"
+sphinxcontrib-mermaid = "^0.8"
+sphinxcontrib-seqdiag = "^3.0.0"
+pydata-sphinx-theme = "^0.13.1"
+
+numpy = "^1.24.1"
+pandas = "^1.5.2"
+scikit-learn = "^1.2.1"
 ray = {extras = ["tune"], version = "^2.3.0"}
 tune-sklearn = "^0.4.5"
 matplotlib = "^3.7.1"
@@ -27,7 +32,6 @@ jax = "^0.4.5"
 distributed = "^2023.3.0"
 modin = "^0.18.1"
 jaxlib = "^0.4.4"
-
 
 [build-system]
 requires = ["poetry-core"]

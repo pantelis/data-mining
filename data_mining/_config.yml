@@ -3,23 +3,27 @@
 
 title: Data Mining
 author: Pantelis Monogioudis, Ph.D
-copyright: "2023"
-logo: logo.png
+copyright: "2023"  # Copyright year to be placed in the footer
+logo: ./logo.png
 
 only_build_toc_files: true
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: 'off'
-  timeout: 300
-  # exclude_patterns: 
-  #   - data_mining/aiml-common/lectures/transfer-learning/quantized_transfer_learning.ipynb
-  
+  execute_notebooks: off
+  timeout: 3600 #seconds
+  stdout_output: show
+  stderr_output: show
+  allow_errors: false
+  # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
+  exclude_patterns: [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
+
 # Define the name of the latex output file for PDF builds
 latex:
+  latex_engine: xelatex
   latex_documents:
-    targetname: data-mining-book.tex
+    targetname: ai-course.tex
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
@@ -28,14 +32,15 @@ bibtex_bibfiles:
 # Information about where the book exists on the web
 repository:
   url: https://github.com/pantelis/data-mining  # Online location of your book
-  path_to_book: data_mining/aiml-common  # Optional path to your book, relative to the repository root
-  branch: main  # Which branch of the repository should be used when creating links (optional)
+  path_to_book: data_mining  # Optional path to your book, relative to the repository root
+  #branch: master  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
+  favicon: ./logo.ico
   home_page_in_navbar: true
-  use_edit_page_button: false
+  use_edit_page_button: true
   use_issues_button: true
   use_repository_button: true
   use_download_button: true
@@ -43,21 +48,24 @@ html:
 
 launch_buttons:
   colab_url: "https://colab.research.google.com"
+  binderhub_url: "https://mybinder.org"
+  thebe: true 
 
 sphinx:
-  recursive_update: false
+  recursive_update: true
   config:
+    nb_merge_streams: true
+    nb_execution_show_tb: true
     html_theme_options:
       use_download_button: true
       repository_url: https://github.com/pantelis/data-mining
       use_issues_button: true
       use_repository_button: true
-      use_edit_page_button: false
+      use_edit_page_button: true
     mathjax3_config:
-      mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
       tex:
         macros:
-          "N": "\\mathbb{N}"
+          #"N": "\\mathbb{N}"
           "floor": ["\\lfloor#1\\rfloor", 1]
           "bmat": ["\\left[\\begin{array}"]
           "emat": ["\\end{array}\\right]"]
@@ -67,17 +75,21 @@ sphinx:
           \newcommand\floor[1]{\lfloor#1\rfloor}
           \newcommand{\bmat}{\left[\begin{array}}
           \newcommand{\emat}{\end{array}\right]}
-          \DeclareMathOperator*{\argmax}{arg\,max}
-          \DeclareMathOperator*{\argmin}{arg\,min}
   extra_extensions:
+    # - sphinx_press_theme
     - sphinxcontrib.youtube
-    - sphinx_inline_tabs 
-    - sphinx.ext.autosectionlabel
+    - sphinx_inline_tabs
+    - sphinxcontrib.inkscapeconverter
+    #- sphinx_click.ext
+    - sphinx_inline_tabs
     - sphinxext.rediraffe
     - sphinx_proof
-    - sphinxcontrib.inkscapeconverter
- 
-     
+    - sphinxcontrib.mermaid
+    - sphinxcontrib.seqdiag
+    #- sphinx_examples
+    # - nbsite.pyodide
+    #- jupyterlite_sphinx
+
 parse:
   myst_enable_extensions:
     # don't forget to list any other extensions you want enabled,
@@ -92,10 +104,3 @@ parse:
     - replacements
     - smartquotes
     - substitution
-    - tasklist
-  myst_url_schemes: [mailto, http, https] # URI schemes that will be recognised as external URLs in Markdown links
-  myst_dmath_double_inline: true  # Allow display math ($$) within an inline context
-    
-
-
-

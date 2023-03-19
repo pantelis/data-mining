@@ -109,10 +109,13 @@ parts:
     - file: aiml-common/lectures/ensemble/adaboost/index.md
     - file: aiml-common/lectures/ensemble/gradient-boosting/index.md  
     - file: aiml-common/lectures/ensemble/boosting-workshop/_index.md  
+   
+  - caption: Bayesian Inference
+    chapters:
     - file: aiml-common/lectures/pgm/bayesian-inference/_index.md
-    - file: aiml-common/lectures/pgm/bayesian-coin/_index.md
-    - file: aiml-common/lectures/classification/covid19-antibody-test/_index.md
-  
+    - file: aiml-common/lectures/pgm/bayesian-inference/bayesian_regression.ipynb
+    - file: aiml-common/lectures/pgm/bayesian-coin/bayesian_update_coin_flip.ipynb
+
   - caption: Non-Parametric Methods
     # numbered: 3
     chapters:    
@@ -127,23 +130,30 @@ parts:
   
   - caption: Math Background
     chapters: 
-    - file: aiml-common/lectures/ml-math/_index.md  
-      title: Math for ML 
-      sections: 
-      - file: aiml-common/lectures/ml-math/probability/_index.md
-      - file: aiml-common/lectures/linear-algebra/_index.md
-      - file: aiml-common/lectures/ml-math/calculus/_index.md
-        
+    - file: aiml-common/lectures/ml-math/index.md   
+    - file: aiml-common/lectures/ml-math/probability/index.md
+    - file: aiml-common/lectures/ml-math/linear-algebra/index.md
+    - file: aiml-common/lectures/ml-math/calculus/index.md
+          
   - caption: Resources
     chapters:
-    - file: aiml-common/lectures/python/_index.md  
-    - file: aiml-common/resources/environment/index.md  
+    - file: aiml-common/resources/environment/index.md
+    - file: aiml-common/resources/environment/assignment-submission.md
+    - file: aiml-common/lectures/python/index.md
+    #- file: aiml-common/lectures/ensemble/gradient-boosting/xgboost-app/xgboost.ipynb
+    - file: aiml-common/resources/environment/notebook-status.md
+    # - file: aiml-common/lectures/runbook.md  
 
-  - caption:  Assignments & Projects
+  - caption:  Assignments 
     chapters:
     - file: aiml-common/assignments/probability/probability-assignment-5/index.ipynb
     - file: aiml-common/assignments/mle/poisson-regression-1/index.ipynb
-  #   - file: aiml-common/assignments/poisson-regression/index.ipynb
-  #   - file: aiml-common/projects/visual-search-coco/index.md
-  #   - file: aiml-common/projects/transfer-learning-home-depot/index.md
-    
+
+  - caption:  Project (CS482)
+    chapters:
+    - file: aiml-common/projects/nlp/transfer-learning-language-model-toxic-tweet/index.md
+  
+  - caption:  Project (CS634)
+    chapters:
+    - file: aiml-common/projects/nlp/transfer-learning-language-model-patents/index.md
+  
