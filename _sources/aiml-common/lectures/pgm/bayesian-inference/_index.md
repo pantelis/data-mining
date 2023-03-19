@@ -1,7 +1,3 @@
----
-title: Bayesian Inference 
----
-
 #  Bayesian Inference
 
 

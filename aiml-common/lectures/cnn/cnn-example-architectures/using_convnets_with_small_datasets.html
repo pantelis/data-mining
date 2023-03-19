@@ -137,15 +137,27 @@ const thebe_selector_output = ".output, .cell_output"
    Data Science 360
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../ai-intro/pipelines/_index.html">
-   ML Pipelines
+   Pipelines
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../uber-ml-arch-case-study/_index.html">
-   A Case Study of an ML Architecture - Uber
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../uber-ml-arch-case-study/_index.html">
+     A Case Study of an ML Architecture - Uber
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ai-intro/pipelines/02_end_to_end_machine_learning_project.html">
+     Setup
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -306,8 +318,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../scene-understanding/object-detection/object-detection-intro/index.html">
    Object Detection
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -333,8 +345,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../scene-understanding/semantic-segmentation/index.html">
    Semantic Segmentation
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -488,11 +500,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
-   Bayesian Coin Flipping
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
    COVID-19 Antibody Test
   </a>
@@ -542,8 +549,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../ml-math/_index.html">
    Math for ML
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -866,112 +873,14 @@ title="Print to PDF"
               <div>
                 
   <p><a class="reference external" href="https://colab.research.google.com/github/pantelis/aiml-common/blob/master/lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
-<p>This notebook by F. Chollet’s original text is limited in describing the code - please consult the book for further explanations and figures.</p>
+<p>This notebook is by F. Chollet and is included in his book.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-<span class="n">device_name</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">gpu_device_name</span><span class="p">()</span>
-<span class="k">if</span> <span class="n">device_name</span> <span class="o">!=</span> <span class="s1">&#39;/device:GPU:0&#39;</span><span class="p">:</span>
-  <span class="k">raise</span> <span class="ne">SystemError</span><span class="p">(</span><span class="s1">&#39;GPU device not found&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found GPU at: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">device_name</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found GPU at: /device:GPU:0
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">keras</span>
-<span class="n">keras</span><span class="o">.</span><span class="n">__version__</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using TensorFlow backend.
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.2.4&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mv</span> <span class="o">./</span><span class="n">kaggle</span><span class="o">.</span><span class="n">json</span> <span class="o">/</span><span class="n">root</span><span class="o">/.</span><span class="n">kaggle</span><span class="o">/</span><span class="n">kaggle</span><span class="o">.</span><span class="n">json</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install kaggle</span>
-<span class="o">!</span>kaggle<span class="w"> </span>-v
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning: Your Kaggle API key is readable by other users on this system! To fix this, you can run &#39;chmod 600 /root/.kaggle/kaggle.json&#39;
-Kaggle API 1.5.4
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">ls</span> /root/.kaggle/
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>kaggle.json
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/root/.kaggle/kaggle.json
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>kaggle<span class="w"> </span>competitions<span class="w"> </span>files<span class="w"> </span>-c<span class="w"> </span>dogs-vs-cats
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>name                   size  creationDate         
---------------------  -----  -------------------  
-sampleSubmission.csv   87KB  2013-09-20 15:47:40  
-test1.zip             271MB  2013-09-20 15:49:17  
-train.zip             543MB  2013-09-20 15:52:50  
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>kaggle<span class="w"> </span>competitions<span class="w"> </span>download<span class="w">  </span>-c<span class="w"> </span>dogs-vs-cats<span class="w"> </span>-p<span class="w"> </span>/content/kaggle/dogscats
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading sampleSubmission.csv to /content/kaggle/dogscats
-
-  0% 0.00/86.8k [00:00&lt;?, ?B/s]
-100% 86.8k/86.8k [00:00&lt;00:00, 26.5MB/s]
-Downloading test1.zip to /content/kaggle/dogscats
- 99% 268M/271M [00:01&lt;00:00, 181MB/s]
-100% 271M/271M [00:01&lt;00:00, 163MB/s]
-Downloading train.zip to /content/kaggle/dogscats
-100% 541M/543M [00:04&lt;00:00, 75.7MB/s]
-100% 543M/543M [00:04&lt;00:00, 116MB/s] 
+<span class="kn">import</span> <span class="nn">keras</span>
+<span class="n">gpus</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">gpu</span> <span class="ow">in</span> <span class="n">gpus</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Name:&quot;</span><span class="p">,</span> <span class="n">gpu</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;  Type:&quot;</span><span class="p">,</span> <span class="n">gpu</span><span class="o">.</span><span class="n">device_type</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1039,185 +948,26 @@ set with 500 samples of each class, and finally a test set with 500 samples of e
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !wget -c https://s3.amazonaws.com/content.udacity-data.com/nd089/Cat_Dog_data.zip</span>
-
-<span class="c1"># Unzip file</span>
-<span class="c1">#!unzip -q /content/kaggle/dogscats/test1.zip  -d /content/kaggle/dogscats</span>
-<span class="o">!</span>unzip<span class="w"> </span>-q<span class="w"> </span>/content/kaggle/dogscats/train.zip<span class="w"> </span>-d<span class="w"> </span>/content/kaggle/dogscats
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unzip file</span>
+<span class="o">!</span>mkdir<span class="w"> </span>-p<span class="w"> </span>dogscats/subset
+<span class="o">!</span>unzip<span class="w"> </span>-o<span class="w"> </span>-q<span class="w"> </span>dogs-vs-cats-subset.zip<span class="w"> </span>-d<span class="w"> </span>dogscats<span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>^C
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The path to the directory where the original</span>
-<span class="c1"># dataset was uncompressed</span>
-<span class="n">original_dataset_dir</span> <span class="o">=</span> <span class="s1">&#39;/content/kaggle/dogscats/train&#39;</span>
-
-<span class="c1"># The directory where we will</span>
-<span class="c1"># store our smaller dataset</span>
-<span class="n">base_dir</span> <span class="o">=</span> <span class="s1">&#39;/content/kaggle/dogscats/subset&#39;</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">base_dir</span><span class="p">):</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span>
-
-<span class="c1"># Directories for our training,</span>
-<span class="c1"># validation and test splits</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_dir</span> <span class="o">=</span> <span class="s1">&#39;dogscats/subset&#39;</span>
 <span class="n">train_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">)</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">train_dir</span><span class="p">):</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">train_dir</span><span class="p">)</span>
-
+<span class="n">train_cats_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;cats&#39;</span><span class="p">)</span>
+<span class="n">train_dogs_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;dogs&#39;</span><span class="p">)</span>
 <span class="n">validation_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;validation&#39;</span><span class="p">)</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">validation_dir</span><span class="p">):</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">validation_dir</span><span class="p">)</span>
-
 <span class="n">test_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">)</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">test_dir</span><span class="p">):</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">test_dir</span><span class="p">)</span>
-
-<span class="c1"># Directory with our training cat pictures</span>
-<span class="n">train_cats_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_dir</span><span class="p">,</span> <span class="s1">&#39;cats&#39;</span><span class="p">)</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">train_cats_dir</span><span class="p">):</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">train_cats_dir</span><span class="p">)</span>
-
-<span class="c1"># Directory with our training dog pictures</span>
-<span class="n">train_dogs_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_dir</span><span class="p">,</span> <span class="s1">&#39;dogs&#39;</span><span class="p">)</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">train_dogs_dir</span><span class="p">):</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">train_dogs_dir</span><span class="p">)</span>
-
-<span class="c1"># Directory with our validation cat pictures</span>
-<span class="n">validation_cats_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">validation_dir</span><span class="p">,</span> <span class="s1">&#39;cats&#39;</span><span class="p">)</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">validation_cats_dir</span><span class="p">):</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">validation_cats_dir</span><span class="p">)</span>
-
-<span class="c1"># Directory with our validation dog pictures</span>
-<span class="n">validation_dogs_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">validation_dir</span><span class="p">,</span> <span class="s1">&#39;dogs&#39;</span><span class="p">)</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">validation_dogs_dir</span><span class="p">):</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">validation_dogs_dir</span><span class="p">)</span>
-
-<span class="c1"># Directory with our validation cat pictures</span>
-<span class="n">test_cats_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">test_dir</span><span class="p">,</span> <span class="s1">&#39;cats&#39;</span><span class="p">)</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">test_cats_dir</span><span class="p">):</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">test_cats_dir</span><span class="p">)</span>
-
-<span class="c1"># Directory with our validation dog pictures</span>
-<span class="n">test_dogs_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">test_dir</span><span class="p">,</span> <span class="s1">&#39;dogs&#39;</span><span class="p">)</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">test_dogs_dir</span><span class="p">):</span>
-  <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">test_dogs_dir</span><span class="p">)</span>
-
-<span class="c1"># Copy first 1000 cat images to train_cats_dir</span>
-<span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cat.</span><span class="si">{}</span><span class="s1">.jpg&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)]</span>
-<span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">fnames</span><span class="p">:</span>
-    <span class="n">src</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">original_dataset_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-    <span class="n">dst</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_cats_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
-
-<span class="c1"># Copy next 500 cat images to validation_cats_dir</span>
-<span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cat.</span><span class="si">{}</span><span class="s1">.jpg&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1500</span><span class="p">)]</span>
-<span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">fnames</span><span class="p">:</span>
-    <span class="n">src</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">original_dataset_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-    <span class="n">dst</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">validation_cats_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
-    
-<span class="c1"># Copy next 500 cat images to test_cats_dir</span>
-<span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cat.</span><span class="si">{}</span><span class="s1">.jpg&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)]</span>
-<span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">fnames</span><span class="p">:</span>
-    <span class="n">src</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">original_dataset_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-    <span class="n">dst</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">test_cats_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
-    
-<span class="c1"># Copy first 1000 dog images to train_dogs_dir</span>
-<span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dog.</span><span class="si">{}</span><span class="s1">.jpg&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)]</span>
-<span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">fnames</span><span class="p">:</span>
-    <span class="n">src</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">original_dataset_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-    <span class="n">dst</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_dogs_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
-    
-<span class="c1"># Copy next 500 dog images to validation_dogs_dir</span>
-<span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dog.</span><span class="si">{}</span><span class="s1">.jpg&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1500</span><span class="p">)]</span>
-<span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">fnames</span><span class="p">:</span>
-    <span class="n">src</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">original_dataset_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-    <span class="n">dst</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">validation_dogs_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
-    
-<span class="c1"># Copy next 500 dog images to test_dogs_dir</span>
-<span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dog.</span><span class="si">{}</span><span class="s1">.jpg&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)]</span>
-<span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">fnames</span><span class="p">:</span>
-    <span class="n">src</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">original_dataset_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-    <span class="n">dst</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">test_dogs_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>As a sanity check, let’s count how many pictures we have in each training split (train/validation/test):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;total training cat images:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">train_cats_dir</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total training cat images: 1000
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;total training dog images:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">train_dogs_dir</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total training dog images: 1000
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;total validation cat images:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">validation_cats_dir</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total validation cat images: 500
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;total validation dog images:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">validation_dogs_dir</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total validation dog images: 500
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;total test cat images:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">test_cats_dir</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total test cat images: 500
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;total test dog images:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">test_dogs_dir</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total test dog images: 500
 </pre></div>
 </div>
 </div>
@@ -1260,14 +1010,19 @@ decreasing (from 148x148 to 7x7). This is a pattern that you will see in almost 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Logging before flag parsing goes to stderr.
-W0626 13:45:00.134413 140524038092672 deprecation_wrapper.py:119] From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:74: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
-
-W0626 13:45:00.142235 140524038092672 deprecation_wrapper.py:119] From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
-
-W0626 13:45:00.157475 140524038092672 deprecation_wrapper.py:119] From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
-
-W0626 13:45:00.190350 140524038092672 deprecation_wrapper.py:119] From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:3976: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-03-17 00:12:06.893135: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX_VNNI FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-03-17 00:12:06.982447: I tensorflow/core/util/port.cc:104] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2023-03-17 00:12:06.985401: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcudart.so.11.0&#39;; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2023-03-17 00:12:06.985413: I tensorflow/compiler/xla/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+2023-03-17 00:12:08.746125: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libnvinfer.so.7&#39;; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory
+2023-03-17 00:12:08.746168: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libnvinfer_plugin.so.7&#39;; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory
+2023-03-17 00:12:08.746172: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+2023-03-17 00:12:11.890315: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library &#39;libcuda.so.1&#39;; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2023-03-17 00:12:11.890351: W tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:265] failed call to cuInit: UNKNOWN ERROR (303)
+2023-03-17 00:12:11.890374: I tensorflow/compiler/xla/stream_executor/cuda/cuda_diagnostics.cc:163] no NVIDIA GPU device is present: /dev/nvidia0 does not exist
+2023-03-17 00:12:11.890659: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX_VNNI FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
 </div>
@@ -1280,30 +1035,36 @@ W0626 13:45:00.190350 140524038092672 deprecation_wrapper.py:119] From /usr/loca
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;sequential&quot;
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
 =================================================================
-conv2d_1 (Conv2D)            (None, 148, 148, 32)      896       
-_________________________________________________________________
-max_pooling2d_1 (MaxPooling2 (None, 74, 74, 32)        0         
-_________________________________________________________________
-conv2d_2 (Conv2D)            (None, 72, 72, 64)        18496     
-_________________________________________________________________
-max_pooling2d_2 (MaxPooling2 (None, 36, 36, 64)        0         
-_________________________________________________________________
-conv2d_3 (Conv2D)            (None, 34, 34, 128)       73856     
-_________________________________________________________________
-max_pooling2d_3 (MaxPooling2 (None, 17, 17, 128)       0         
-_________________________________________________________________
-conv2d_4 (Conv2D)            (None, 15, 15, 128)       147584    
-_________________________________________________________________
-max_pooling2d_4 (MaxPooling2 (None, 7, 7, 128)         0         
-_________________________________________________________________
-flatten_1 (Flatten)          (None, 6272)              0         
-_________________________________________________________________
-dense_1 (Dense)              (None, 512)               3211776   
-_________________________________________________________________
-dense_2 (Dense)              (None, 1)                 513       
+ conv2d (Conv2D)             (None, 148, 148, 32)      896       
+                                                                 
+ max_pooling2d (MaxPooling2D  (None, 74, 74, 32)       0         
+ )                                                               
+                                                                 
+ conv2d_1 (Conv2D)           (None, 72, 72, 64)        18496     
+                                                                 
+ max_pooling2d_1 (MaxPooling  (None, 36, 36, 64)       0         
+ 2D)                                                             
+                                                                 
+ conv2d_2 (Conv2D)           (None, 34, 34, 128)       73856     
+                                                                 
+ max_pooling2d_2 (MaxPooling  (None, 17, 17, 128)      0         
+ 2D)                                                             
+                                                                 
+ conv2d_3 (Conv2D)           (None, 15, 15, 128)       147584    
+                                                                 
+ max_pooling2d_3 (MaxPooling  (None, 7, 7, 128)        0         
+ 2D)                                                             
+                                                                 
+ flatten (Flatten)           (None, 6272)              0         
+                                                                 
+ dense (Dense)               (None, 512)               3211776   
+                                                                 
+ dense_1 (Dense)             (None, 1)                 513       
+                                                                 
 =================================================================
 Total params: 3,453,121
 Trainable params: 3,453,121
@@ -1327,13 +1088,8 @@ use in various situations).</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>W0626 13:45:06.496552 140524038092672 deprecation_wrapper.py:119] From /usr/local/lib/python3.6/dist-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
-
-W0626 13:45:06.507710 140524038092672 deprecation_wrapper.py:119] From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:3376: The name tf.log is deprecated. Please use tf.math.log instead.
-
-W0626 13:45:06.515821 140524038092672 deprecation.py:323] From /usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/nn_impl.py:180: add_dispatch_support.&lt;locals&gt;.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
-Instructions for updating:
-Use tf.where in 2.0, which has the same broadcast rule as np.where
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/workspaces/artificial_intelligence/.venv/lib/python3.10/site-packages/keras/optimizers/optimizer_v2/rmsprop.py:143: UserWarning: The `lr` argument is deprecated, use `learning_rate` instead.
+  super().__init__(name, **kwargs)
 </pre></div>
 </div>
 </div>
@@ -1427,69 +1183,73 @@ which tells the process how many batches to draw from the validation generator f
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>W0626 13:45:19.237850 140524038092672 deprecation_wrapper.py:119] From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:986: The name tf.assign_add is deprecated. Please use tf.compat.v1.assign_add instead.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/30
+  1/100 [..............................] - ETA: 12s - loss: 0.1275 - acc: 0.9500
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/30
-100/100 [==============================] - 15s 154ms/step - loss: 0.6926 - acc: 0.5390 - val_loss: 0.6795 - val_acc: 0.5300
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_85496/3259228942.py:1: UserWarning: `Model.fit_generator` is deprecated and will be removed in a future version. Please use `Model.fit`, which supports generators.
+  history = model.fit_generator(
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100/100 [==============================] - 9s 85ms/step - loss: 0.0710 - acc: 0.9780 - val_loss: 0.9124 - val_acc: 0.7260
 Epoch 2/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.6616 - acc: 0.6155 - val_loss: 0.6495 - val_acc: 0.6280
+100/100 [==============================] - 9s 88ms/step - loss: 0.0634 - acc: 0.9825 - val_loss: 0.9933 - val_acc: 0.7310
 Epoch 3/30
-100/100 [==============================] - 10s 103ms/step - loss: 0.6260 - acc: 0.6565 - val_loss: 0.6300 - val_acc: 0.6500
+100/100 [==============================] - 9s 88ms/step - loss: 0.0521 - acc: 0.9865 - val_loss: 1.0423 - val_acc: 0.7210
 Epoch 4/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.5800 - acc: 0.7045 - val_loss: 0.6784 - val_acc: 0.6020
+100/100 [==============================] - 9s 88ms/step - loss: 0.0387 - acc: 0.9895 - val_loss: 1.2460 - val_acc: 0.6890
 Epoch 5/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.5459 - acc: 0.7205 - val_loss: 0.5912 - val_acc: 0.6850
+100/100 [==============================] - 9s 88ms/step - loss: 0.0385 - acc: 0.9910 - val_loss: 1.1196 - val_acc: 0.7160
 Epoch 6/30
-100/100 [==============================] - 10s 103ms/step - loss: 0.5193 - acc: 0.7510 - val_loss: 0.5959 - val_acc: 0.6870
+100/100 [==============================] - 9s 89ms/step - loss: 0.0373 - acc: 0.9890 - val_loss: 1.0895 - val_acc: 0.7290
 Epoch 7/30
-100/100 [==============================] - 10s 103ms/step - loss: 0.4879 - acc: 0.7725 - val_loss: 0.6065 - val_acc: 0.6810
+100/100 [==============================] - 9s 90ms/step - loss: 0.0257 - acc: 0.9935 - val_loss: 1.1290 - val_acc: 0.7250
 Epoch 8/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.4599 - acc: 0.7870 - val_loss: 0.5923 - val_acc: 0.6840
+100/100 [==============================] - 9s 90ms/step - loss: 0.0213 - acc: 0.9955 - val_loss: 1.1766 - val_acc: 0.7280
 Epoch 9/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.4401 - acc: 0.7910 - val_loss: 0.5823 - val_acc: 0.6870
+100/100 [==============================] - 9s 92ms/step - loss: 0.0283 - acc: 0.9920 - val_loss: 1.3709 - val_acc: 0.7200
 Epoch 10/30
-100/100 [==============================] - 11s 105ms/step - loss: 0.4127 - acc: 0.8175 - val_loss: 0.5973 - val_acc: 0.6930
+100/100 [==============================] - 9s 90ms/step - loss: 0.0197 - acc: 0.9955 - val_loss: 1.3202 - val_acc: 0.7240
 Epoch 11/30
-100/100 [==============================] - 10s 103ms/step - loss: 0.3900 - acc: 0.8270 - val_loss: 0.5874 - val_acc: 0.6870
+100/100 [==============================] - 9s 90ms/step - loss: 0.0204 - acc: 0.9940 - val_loss: 1.3292 - val_acc: 0.7210
 Epoch 12/30
-100/100 [==============================] - 10s 103ms/step - loss: 0.3592 - acc: 0.8385 - val_loss: 0.6404 - val_acc: 0.6900
+100/100 [==============================] - 9s 90ms/step - loss: 0.0133 - acc: 0.9965 - val_loss: 1.5113 - val_acc: 0.7180
 Epoch 13/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.3414 - acc: 0.8480 - val_loss: 0.5987 - val_acc: 0.7160
+100/100 [==============================] - 9s 92ms/step - loss: 0.0140 - acc: 0.9965 - val_loss: 1.5380 - val_acc: 0.7170
 Epoch 14/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.3104 - acc: 0.8750 - val_loss: 0.6183 - val_acc: 0.7110
+100/100 [==============================] - 13s 125ms/step - loss: 0.0088 - acc: 0.9990 - val_loss: 1.4175 - val_acc: 0.7340
 Epoch 15/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.2789 - acc: 0.8805 - val_loss: 0.5939 - val_acc: 0.7300
+100/100 [==============================] - 14s 138ms/step - loss: 0.0173 - acc: 0.9945 - val_loss: 1.4227 - val_acc: 0.7300
 Epoch 16/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.2660 - acc: 0.8900 - val_loss: 0.6269 - val_acc: 0.7180
+100/100 [==============================] - 14s 137ms/step - loss: 0.0058 - acc: 0.9985 - val_loss: 1.4898 - val_acc: 0.7300
 Epoch 17/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.2433 - acc: 0.9025 - val_loss: 0.6686 - val_acc: 0.7130
+100/100 [==============================] - 14s 141ms/step - loss: 0.0217 - acc: 0.9945 - val_loss: 1.6001 - val_acc: 0.7180
 Epoch 18/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.2296 - acc: 0.9085 - val_loss: 0.6508 - val_acc: 0.7050
+100/100 [==============================] - 14s 138ms/step - loss: 0.0190 - acc: 0.9945 - val_loss: 1.6033 - val_acc: 0.7320
 Epoch 19/30
-100/100 [==============================] - 11s 105ms/step - loss: 0.1929 - acc: 0.9285 - val_loss: 0.6955 - val_acc: 0.7250
+100/100 [==============================] - 14s 145ms/step - loss: 0.0067 - acc: 0.9980 - val_loss: 1.6718 - val_acc: 0.7230
 Epoch 20/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.1838 - acc: 0.9300 - val_loss: 0.6806 - val_acc: 0.7160
+100/100 [==============================] - 14s 139ms/step - loss: 0.0029 - acc: 0.9990 - val_loss: 2.1945 - val_acc: 0.7010
 Epoch 21/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.1515 - acc: 0.9445 - val_loss: 0.7811 - val_acc: 0.7060
+100/100 [==============================] - 14s 136ms/step - loss: 0.0126 - acc: 0.9950 - val_loss: 3.0790 - val_acc: 0.6680
 Epoch 22/30
-100/100 [==============================] - 10s 105ms/step - loss: 0.1344 - acc: 0.9545 - val_loss: 0.8424 - val_acc: 0.6860
+100/100 [==============================] - 14s 137ms/step - loss: 0.0193 - acc: 0.9945 - val_loss: 1.7756 - val_acc: 0.7180
 Epoch 23/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.1204 - acc: 0.9550 - val_loss: 0.8282 - val_acc: 0.7100
+100/100 [==============================] - 14s 139ms/step - loss: 0.0069 - acc: 0.9970 - val_loss: 1.8085 - val_acc: 0.7190
 Epoch 24/30
-100/100 [==============================] - 10s 105ms/step - loss: 0.1053 - acc: 0.9660 - val_loss: 0.8690 - val_acc: 0.7090
+100/100 [==============================] - 14s 140ms/step - loss: 0.0091 - acc: 0.9975 - val_loss: 1.7834 - val_acc: 0.7320
 Epoch 25/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.0915 - acc: 0.9725 - val_loss: 0.8855 - val_acc: 0.6990
+100/100 [==============================] - 10s 95ms/step - loss: 0.0110 - acc: 0.9970 - val_loss: 1.8215 - val_acc: 0.7200
 Epoch 26/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.0771 - acc: 0.9800 - val_loss: 0.8909 - val_acc: 0.7120
+100/100 [==============================] - 9s 86ms/step - loss: 0.0093 - acc: 0.9960 - val_loss: 1.8163 - val_acc: 0.7240
 Epoch 27/30
-100/100 [==============================] - 10s 103ms/step - loss: 0.0618 - acc: 0.9845 - val_loss: 1.0169 - val_acc: 0.6960
+100/100 [==============================] - 9s 90ms/step - loss: 0.0047 - acc: 0.9995 - val_loss: 1.9675 - val_acc: 0.7320
 Epoch 28/30
-100/100 [==============================] - 10s 104ms/step - loss: 0.0587 - acc: 0.9815 - val_loss: 1.0227 - val_acc: 0.7110
+100/100 [==============================] - 9s 90ms/step - loss: 0.0143 - acc: 0.9965 - val_loss: 1.9625 - val_acc: 0.7290
 Epoch 29/30
-100/100 [==============================] - 10s 103ms/step - loss: 0.0455 - acc: 0.9880 - val_loss: 1.0895 - val_acc: 0.7110
+100/100 [==============================] - 9s 88ms/step - loss: 0.0041 - acc: 0.9995 - val_loss: 1.9936 - val_acc: 0.7340
 Epoch 30/30
-100/100 [==============================] - 10s 103ms/step - loss: 0.0463 - acc: 0.9840 - val_loss: 1.0752 - val_acc: 0.7050
+100/100 [==============================] - 9s 90ms/step - loss: 0.0097 - acc: 0.9970 - val_loss: 2.0005 - val_acc: 0.7330
 </pre></div>
 </div>
 </div>
@@ -1531,8 +1291,8 @@ Epoch 30/30
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/using_convnets_with_small_datasets_40_0.png" src="../../../../_images/using_convnets_with_small_datasets_40_0.png" />
-<img alt="../../../../_images/using_convnets_with_small_datasets_40_1.png" src="../../../../_images/using_convnets_with_small_datasets_40_1.png" />
+<img alt="../../../../_images/using_convnets_with_small_datasets_26_0.png" src="../../../../_images/using_convnets_with_small_datasets_26_0.png" />
+<img alt="../../../../_images/using_convnets_with_small_datasets_26_1.png" src="../../../../_images/using_convnets_with_small_datasets_26_1.png" />
 </div>
 </div>
 <p>These plots are characteristic of overfitting. Our training accuracy increases linearly over time, until it reaches nearly 100%, while our
@@ -1581,7 +1341,7 @@ asymmetry (e.g. real-world pictures).</p></li>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is module with image preprocessing utilities</span>
-<span class="kn">from</span> <span class="nn">keras.preprocessing</span> <span class="kn">import</span> <span class="n">image</span>
+<span class="kn">import</span> <span class="nn">keras.utils</span> <span class="k">as</span> <span class="nn">image</span>
 
 <span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_cats_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span> <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">train_cats_dir</span><span class="p">)]</span>
 
@@ -1612,10 +1372,10 @@ asymmetry (e.g. real-world pictures).</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/using_convnets_with_small_datasets_45_0.png" src="../../../../_images/using_convnets_with_small_datasets_45_0.png" />
-<img alt="../../../../_images/using_convnets_with_small_datasets_45_1.png" src="../../../../_images/using_convnets_with_small_datasets_45_1.png" />
-<img alt="../../../../_images/using_convnets_with_small_datasets_45_2.png" src="../../../../_images/using_convnets_with_small_datasets_45_2.png" />
-<img alt="../../../../_images/using_convnets_with_small_datasets_45_3.png" src="../../../../_images/using_convnets_with_small_datasets_45_3.png" />
+<img alt="../../../../_images/using_convnets_with_small_datasets_31_0.png" src="../../../../_images/using_convnets_with_small_datasets_31_0.png" />
+<img alt="../../../../_images/using_convnets_with_small_datasets_31_1.png" src="../../../../_images/using_convnets_with_small_datasets_31_1.png" />
+<img alt="../../../../_images/using_convnets_with_small_datasets_31_2.png" src="../../../../_images/using_convnets_with_small_datasets_31_2.png" />
+<img alt="../../../../_images/using_convnets_with_small_datasets_31_3.png" src="../../../../_images/using_convnets_with_small_datasets_31_3.png" />
 </div>
 </div>
 <p>If we train a new network using this data augmentation configuration, our network will never see twice the same input. However, the inputs
@@ -1646,9 +1406,8 @@ overfitting, we will also add a Dropout layer to our model, right before the den
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>W0626 13:54:52.941315 140524038092672 deprecation.py:506] From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:3445: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
-Instructions for updating:
-Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/workspaces/artificial_intelligence/.venv/lib/python3.10/site-packages/keras/optimizers/optimizer_v2/rmsprop.py:143: UserWarning: The `lr` argument is deprecated, use `learning_rate` instead.
+  super().__init__(name, **kwargs)
 </pre></div>
 </div>
 </div>
@@ -1666,7 +1425,7 @@ Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep
     <span class="n">horizontal_flip</span><span class="o">=</span><span class="kc">True</span><span class="p">,)</span>
 
 <span class="c1"># Note that the validation data should not be augmented!</span>
-<span class="n">test_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="n">rescale</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">255</span><span class="p">)</span>
+<span class="n">validation_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="n">rescale</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">255</span><span class="p">)</span>
 
 <span class="n">train_generator</span> <span class="o">=</span> <span class="n">train_datagen</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span>
         <span class="c1"># This is the target directory</span>
@@ -1677,18 +1436,18 @@ Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep
         <span class="c1"># Since we use binary_crossentropy loss, we need binary labels</span>
         <span class="n">class_mode</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">)</span>
 
-<span class="n">validation_generator</span> <span class="o">=</span> <span class="n">test_datagen</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span>
+<span class="n">validation_generator</span> <span class="o">=</span> <span class="n">validation_datagen</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span>
         <span class="n">validation_dir</span><span class="p">,</span>
         <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">),</span>
         <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
         <span class="n">class_mode</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">)</span>
 
-<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
       <span class="n">train_generator</span><span class="p">,</span>
-      <span class="n">steps_per_epoch</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+      <span class="n">steps_per_epoch</span><span class="o">=</span><span class="mi">2000</span><span class="o">//</span><span class="n">train_generator</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
       <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
       <span class="n">validation_data</span><span class="o">=</span><span class="n">validation_generator</span><span class="p">,</span>
-      <span class="n">validation_steps</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+      <span class="n">validation_steps</span><span class="o">=</span><span class="mi">1000</span><span class="o">//</span><span class="n">validation_generator</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1696,205 +1455,205 @@ Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found 2000 images belonging to 2 classes.
 Found 1000 images belonging to 2 classes.
 Epoch 1/100
-100/100 [==============================] - 34s 344ms/step - loss: 0.6940 - acc: 0.5091 - val_loss: 0.6842 - val_acc: 0.5070
+62/62 [==============================] - 14s 221ms/step - loss: 0.6655 - acc: 0.6016 - val_loss: 0.6452 - val_acc: 0.6159
 Epoch 2/100
-100/100 [==============================] - 31s 312ms/step - loss: 0.6832 - acc: 0.5556 - val_loss: 0.6640 - val_acc: 0.5921
+62/62 [==============================] - 10s 159ms/step - loss: 0.6497 - acc: 0.6260 - val_loss: 0.6243 - val_acc: 0.6381
 Epoch 3/100
-100/100 [==============================] - 31s 312ms/step - loss: 0.6704 - acc: 0.5800 - val_loss: 0.6496 - val_acc: 0.6307
+62/62 [==============================] - 10s 161ms/step - loss: 0.6440 - acc: 0.6250 - val_loss: 0.6135 - val_acc: 0.6442
 Epoch 4/100
-100/100 [==============================] - 31s 309ms/step - loss: 0.6520 - acc: 0.6213 - val_loss: 0.6457 - val_acc: 0.5979
+62/62 [==============================] - 10s 161ms/step - loss: 0.6317 - acc: 0.6448 - val_loss: 0.6083 - val_acc: 0.6623
 Epoch 5/100
-100/100 [==============================] - 31s 313ms/step - loss: 0.6350 - acc: 0.6391 - val_loss: 0.6351 - val_acc: 0.6244
+62/62 [==============================] - 10s 161ms/step - loss: 0.6196 - acc: 0.6621 - val_loss: 0.5904 - val_acc: 0.6845
 Epoch 6/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.6242 - acc: 0.6566 - val_loss: 0.6236 - val_acc: 0.6553
+62/62 [==============================] - 10s 165ms/step - loss: 0.6102 - acc: 0.6524 - val_loss: 0.5894 - val_acc: 0.6835
 Epoch 7/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.6119 - acc: 0.6572 - val_loss: 0.5744 - val_acc: 0.6821
+62/62 [==============================] - 10s 165ms/step - loss: 0.6034 - acc: 0.6738 - val_loss: 0.5931 - val_acc: 0.6774
 Epoch 8/100
-100/100 [==============================] - 32s 315ms/step - loss: 0.5912 - acc: 0.6931 - val_loss: 0.6097 - val_acc: 0.6559
+62/62 [==============================] - 10s 165ms/step - loss: 0.6066 - acc: 0.6646 - val_loss: 0.6089 - val_acc: 0.6462
 Epoch 9/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.5917 - acc: 0.6859 - val_loss: 0.5448 - val_acc: 0.7010
+62/62 [==============================] - 10s 165ms/step - loss: 0.5913 - acc: 0.6839 - val_loss: 0.5930 - val_acc: 0.6835
 Epoch 10/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.5767 - acc: 0.7022 - val_loss: 0.5443 - val_acc: 0.7221
+62/62 [==============================] - 10s 163ms/step - loss: 0.5929 - acc: 0.6834 - val_loss: 0.5481 - val_acc: 0.7188
 Epoch 11/100
-100/100 [==============================] - 32s 315ms/step - loss: 0.5631 - acc: 0.7084 - val_loss: 0.5505 - val_acc: 0.7062
+62/62 [==============================] - 10s 166ms/step - loss: 0.5798 - acc: 0.6880 - val_loss: 0.5547 - val_acc: 0.7097
 Epoch 12/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.5711 - acc: 0.6988 - val_loss: 0.5704 - val_acc: 0.6961
+62/62 [==============================] - 10s 166ms/step - loss: 0.5803 - acc: 0.6895 - val_loss: 0.5428 - val_acc: 0.7349
 Epoch 13/100
-100/100 [==============================] - 31s 312ms/step - loss: 0.5708 - acc: 0.6988 - val_loss: 0.5339 - val_acc: 0.7184
+62/62 [==============================] - 10s 167ms/step - loss: 0.5767 - acc: 0.6982 - val_loss: 0.5937 - val_acc: 0.6633
 Epoch 14/100
-100/100 [==============================] - 32s 315ms/step - loss: 0.5555 - acc: 0.7166 - val_loss: 0.5519 - val_acc: 0.7062
+62/62 [==============================] - 10s 168ms/step - loss: 0.5690 - acc: 0.7093 - val_loss: 0.5582 - val_acc: 0.7087
 Epoch 15/100
-100/100 [==============================] - 31s 313ms/step - loss: 0.5486 - acc: 0.7260 - val_loss: 0.5405 - val_acc: 0.7133
+62/62 [==============================] - 11s 169ms/step - loss: 0.5612 - acc: 0.7185 - val_loss: 0.5407 - val_acc: 0.7258
 Epoch 16/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.5462 - acc: 0.7138 - val_loss: 0.5143 - val_acc: 0.7378
+62/62 [==============================] - 13s 217ms/step - loss: 0.5625 - acc: 0.7073 - val_loss: 0.5600 - val_acc: 0.7016
 Epoch 17/100
-100/100 [==============================] - 32s 316ms/step - loss: 0.5459 - acc: 0.7253 - val_loss: 0.4970 - val_acc: 0.7525
+62/62 [==============================] - 17s 266ms/step - loss: 0.5591 - acc: 0.7124 - val_loss: 0.5263 - val_acc: 0.7429
 Epoch 18/100
-100/100 [==============================] - 31s 314ms/step - loss: 0.5278 - acc: 0.7325 - val_loss: 0.4952 - val_acc: 0.7513
+62/62 [==============================] - 15s 244ms/step - loss: 0.5525 - acc: 0.7241 - val_loss: 0.5860 - val_acc: 0.7026
 Epoch 19/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.5297 - acc: 0.7278 - val_loss: 0.5092 - val_acc: 0.7335
+62/62 [==============================] - 15s 244ms/step - loss: 0.5475 - acc: 0.7185 - val_loss: 0.5438 - val_acc: 0.7228
 Epoch 20/100
-100/100 [==============================] - 32s 316ms/step - loss: 0.5274 - acc: 0.7388 - val_loss: 0.4752 - val_acc: 0.7687
+62/62 [==============================] - 16s 259ms/step - loss: 0.5352 - acc: 0.7302 - val_loss: 0.5343 - val_acc: 0.7278
 Epoch 21/100
-100/100 [==============================] - 31s 312ms/step - loss: 0.5335 - acc: 0.7266 - val_loss: 0.4654 - val_acc: 0.7703
+62/62 [==============================] - 15s 247ms/step - loss: 0.5373 - acc: 0.7185 - val_loss: 0.5298 - val_acc: 0.7359
 Epoch 22/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.5218 - acc: 0.7400 - val_loss: 0.5124 - val_acc: 0.7307
+62/62 [==============================] - 15s 247ms/step - loss: 0.5339 - acc: 0.7256 - val_loss: 0.5634 - val_acc: 0.7208
 Epoch 23/100
-100/100 [==============================] - 32s 317ms/step - loss: 0.5148 - acc: 0.7472 - val_loss: 0.5160 - val_acc: 0.7360
+62/62 [==============================] - 16s 252ms/step - loss: 0.5484 - acc: 0.7185 - val_loss: 0.5175 - val_acc: 0.7329
 Epoch 24/100
-100/100 [==============================] - 31s 314ms/step - loss: 0.5164 - acc: 0.7428 - val_loss: 0.4938 - val_acc: 0.7397
+62/62 [==============================] - 15s 248ms/step - loss: 0.5377 - acc: 0.7302 - val_loss: 0.5817 - val_acc: 0.6915
 Epoch 25/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.5072 - acc: 0.7353 - val_loss: 0.4924 - val_acc: 0.7410
+62/62 [==============================] - 15s 247ms/step - loss: 0.5481 - acc: 0.7246 - val_loss: 0.5347 - val_acc: 0.7208
 Epoch 26/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.4996 - acc: 0.7631 - val_loss: 0.4656 - val_acc: 0.7722
+62/62 [==============================] - 15s 243ms/step - loss: 0.5361 - acc: 0.7317 - val_loss: 0.5382 - val_acc: 0.7026
 Epoch 27/100
-100/100 [==============================] - 31s 313ms/step - loss: 0.4976 - acc: 0.7616 - val_loss: 0.5352 - val_acc: 0.7178
+62/62 [==============================] - 15s 245ms/step - loss: 0.5133 - acc: 0.7485 - val_loss: 0.4947 - val_acc: 0.7692
 Epoch 28/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.5127 - acc: 0.7478 - val_loss: 0.4934 - val_acc: 0.7576
+62/62 [==============================] - 11s 171ms/step - loss: 0.5304 - acc: 0.7424 - val_loss: 0.4955 - val_acc: 0.7540
 Epoch 29/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.4840 - acc: 0.7641 - val_loss: 0.4790 - val_acc: 0.7603
+62/62 [==============================] - 10s 158ms/step - loss: 0.5160 - acc: 0.7505 - val_loss: 0.4987 - val_acc: 0.7560
 Epoch 30/100
-100/100 [==============================] - 31s 315ms/step - loss: 0.4685 - acc: 0.7691 - val_loss: 0.4752 - val_acc: 0.7621
+62/62 [==============================] - 10s 163ms/step - loss: 0.5209 - acc: 0.7317 - val_loss: 0.5116 - val_acc: 0.7470
 Epoch 31/100
-100/100 [==============================] - 31s 309ms/step - loss: 0.4858 - acc: 0.7581 - val_loss: 0.4696 - val_acc: 0.7674
+62/62 [==============================] - 10s 164ms/step - loss: 0.5123 - acc: 0.7520 - val_loss: 0.4941 - val_acc: 0.7581
 Epoch 32/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.4836 - acc: 0.7728 - val_loss: 0.4689 - val_acc: 0.7629
+62/62 [==============================] - 10s 165ms/step - loss: 0.5145 - acc: 0.7342 - val_loss: 0.5412 - val_acc: 0.7208
 Epoch 33/100
-100/100 [==============================] - 31s 312ms/step - loss: 0.4896 - acc: 0.7581 - val_loss: 0.5572 - val_acc: 0.7049
+62/62 [==============================] - 10s 164ms/step - loss: 0.5071 - acc: 0.7444 - val_loss: 0.5031 - val_acc: 0.7621
 Epoch 34/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.4715 - acc: 0.7703 - val_loss: 0.4979 - val_acc: 0.7345
+62/62 [==============================] - 10s 164ms/step - loss: 0.5095 - acc: 0.7414 - val_loss: 0.5034 - val_acc: 0.7611
 Epoch 35/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.4719 - acc: 0.7666 - val_loss: 0.4646 - val_acc: 0.7614
+62/62 [==============================] - 14s 230ms/step - loss: 0.5124 - acc: 0.7403 - val_loss: 0.4707 - val_acc: 0.7752
 Epoch 36/100
-100/100 [==============================] - 31s 313ms/step - loss: 0.4653 - acc: 0.7719 - val_loss: 0.5039 - val_acc: 0.7603
+62/62 [==============================] - 16s 251ms/step - loss: 0.5022 - acc: 0.7500 - val_loss: 0.4844 - val_acc: 0.7581
 Epoch 37/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.4619 - acc: 0.7772 - val_loss: 0.4757 - val_acc: 0.7722
+62/62 [==============================] - 15s 245ms/step - loss: 0.5088 - acc: 0.7414 - val_loss: 0.5168 - val_acc: 0.7359
 Epoch 38/100
-100/100 [==============================] - 31s 309ms/step - loss: 0.4493 - acc: 0.7878 - val_loss: 0.6536 - val_acc: 0.6985
+62/62 [==============================] - 15s 246ms/step - loss: 0.4923 - acc: 0.7571 - val_loss: 0.4733 - val_acc: 0.7792
 Epoch 39/100
-100/100 [==============================] - 31s 314ms/step - loss: 0.4652 - acc: 0.7728 - val_loss: 0.4582 - val_acc: 0.7900
+62/62 [==============================] - 16s 259ms/step - loss: 0.5008 - acc: 0.7602 - val_loss: 0.5266 - val_acc: 0.7188
 Epoch 40/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.4575 - acc: 0.7850 - val_loss: 0.4558 - val_acc: 0.7938
+62/62 [==============================] - 15s 248ms/step - loss: 0.4877 - acc: 0.7586 - val_loss: 0.4840 - val_acc: 0.7631
 Epoch 41/100
-100/100 [==============================] - 31s 309ms/step - loss: 0.4443 - acc: 0.7853 - val_loss: 0.4946 - val_acc: 0.7822
+62/62 [==============================] - 15s 245ms/step - loss: 0.4823 - acc: 0.7612 - val_loss: 0.5330 - val_acc: 0.7278
 Epoch 42/100
-100/100 [==============================] - 32s 315ms/step - loss: 0.4522 - acc: 0.7881 - val_loss: 0.5358 - val_acc: 0.7398
+62/62 [==============================] - 15s 243ms/step - loss: 0.4903 - acc: 0.7591 - val_loss: 0.5017 - val_acc: 0.7399
 Epoch 43/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.4649 - acc: 0.7756 - val_loss: 0.4567 - val_acc: 0.7887
+62/62 [==============================] - 15s 244ms/step - loss: 0.4879 - acc: 0.7627 - val_loss: 0.5033 - val_acc: 0.7601
 Epoch 44/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.4502 - acc: 0.7866 - val_loss: 0.4378 - val_acc: 0.7887
+62/62 [==============================] - 15s 243ms/step - loss: 0.4775 - acc: 0.7729 - val_loss: 0.5747 - val_acc: 0.6946
 Epoch 45/100
-100/100 [==============================] - 32s 315ms/step - loss: 0.4446 - acc: 0.7887 - val_loss: 0.4264 - val_acc: 0.7970
+62/62 [==============================] - 15s 245ms/step - loss: 0.4842 - acc: 0.7678 - val_loss: 0.5234 - val_acc: 0.7389
 Epoch 46/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.4483 - acc: 0.7931 - val_loss: 0.4379 - val_acc: 0.7976
+62/62 [==============================] - 16s 253ms/step - loss: 0.4716 - acc: 0.7815 - val_loss: 0.4736 - val_acc: 0.7601
 Epoch 47/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.4491 - acc: 0.7897 - val_loss: 0.4497 - val_acc: 0.7880
+62/62 [==============================] - 16s 256ms/step - loss: 0.4655 - acc: 0.7774 - val_loss: 0.4808 - val_acc: 0.7601
 Epoch 48/100
-100/100 [==============================] - 31s 315ms/step - loss: 0.4512 - acc: 0.7922 - val_loss: 0.4264 - val_acc: 0.7990
+62/62 [==============================] - 15s 245ms/step - loss: 0.4703 - acc: 0.7713 - val_loss: 0.5204 - val_acc: 0.7298
 Epoch 49/100
-100/100 [==============================] - 31s 314ms/step - loss: 0.4344 - acc: 0.7966 - val_loss: 0.4448 - val_acc: 0.7862
+62/62 [==============================] - 15s 248ms/step - loss: 0.4745 - acc: 0.7744 - val_loss: 0.5082 - val_acc: 0.7329
 Epoch 50/100
-100/100 [==============================] - 31s 308ms/step - loss: 0.4444 - acc: 0.7803 - val_loss: 0.4601 - val_acc: 0.7764
+62/62 [==============================] - 15s 247ms/step - loss: 0.4589 - acc: 0.7739 - val_loss: 0.5027 - val_acc: 0.7571
 Epoch 51/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.4261 - acc: 0.8022 - val_loss: 0.4889 - val_acc: 0.7621
+62/62 [==============================] - 13s 203ms/step - loss: 0.4648 - acc: 0.7668 - val_loss: 0.4599 - val_acc: 0.7772
 Epoch 52/100
-100/100 [==============================] - 31s 313ms/step - loss: 0.4206 - acc: 0.8000 - val_loss: 0.4338 - val_acc: 0.8015
+62/62 [==============================] - 10s 159ms/step - loss: 0.4588 - acc: 0.7790 - val_loss: 0.5159 - val_acc: 0.7500
 Epoch 53/100
-100/100 [==============================] - 31s 309ms/step - loss: 0.4286 - acc: 0.8041 - val_loss: 0.4457 - val_acc: 0.7989
+62/62 [==============================] - 10s 160ms/step - loss: 0.4684 - acc: 0.7815 - val_loss: 0.4669 - val_acc: 0.7823
 Epoch 54/100
-100/100 [==============================] - 31s 312ms/step - loss: 0.4269 - acc: 0.7978 - val_loss: 0.5490 - val_acc: 0.7390
+62/62 [==============================] - 10s 166ms/step - loss: 0.4654 - acc: 0.7846 - val_loss: 0.4933 - val_acc: 0.7651
 Epoch 55/100
-100/100 [==============================] - 31s 313ms/step - loss: 0.4071 - acc: 0.8175 - val_loss: 0.4602 - val_acc: 0.7925
+62/62 [==============================] - 10s 162ms/step - loss: 0.4600 - acc: 0.7851 - val_loss: 0.5335 - val_acc: 0.7611
 Epoch 56/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.4218 - acc: 0.8059 - val_loss: 0.4875 - val_acc: 0.7764
+62/62 [==============================] - 10s 162ms/step - loss: 0.4650 - acc: 0.7769 - val_loss: 0.4733 - val_acc: 0.7671
 Epoch 57/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.4198 - acc: 0.8081 - val_loss: 0.4140 - val_acc: 0.8067
+62/62 [==============================] - 10s 164ms/step - loss: 0.4653 - acc: 0.7779 - val_loss: 0.4764 - val_acc: 0.7661
 Epoch 58/100
-100/100 [==============================] - 31s 314ms/step - loss: 0.4173 - acc: 0.8091 - val_loss: 0.4681 - val_acc: 0.7792
+62/62 [==============================] - 12s 191ms/step - loss: 0.4653 - acc: 0.7779 - val_loss: 0.4989 - val_acc: 0.7611
 Epoch 59/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.4146 - acc: 0.8106 - val_loss: 0.4357 - val_acc: 0.8015
+62/62 [==============================] - 16s 249ms/step - loss: 0.4495 - acc: 0.7886 - val_loss: 0.4463 - val_acc: 0.7913
 Epoch 60/100
-100/100 [==============================] - 31s 309ms/step - loss: 0.4128 - acc: 0.8131 - val_loss: 0.4830 - val_acc: 0.7843
+62/62 [==============================] - 15s 247ms/step - loss: 0.4427 - acc: 0.7856 - val_loss: 0.4853 - val_acc: 0.7540
 Epoch 61/100
-100/100 [==============================] - 31s 314ms/step - loss: 0.4272 - acc: 0.8000 - val_loss: 0.5333 - val_acc: 0.7423
+62/62 [==============================] - 15s 246ms/step - loss: 0.4584 - acc: 0.7713 - val_loss: 0.4627 - val_acc: 0.7782
 Epoch 62/100
-100/100 [==============================] - 31s 312ms/step - loss: 0.3970 - acc: 0.8206 - val_loss: 0.4297 - val_acc: 0.8071
+62/62 [==============================] - 16s 252ms/step - loss: 0.4472 - acc: 0.7932 - val_loss: 0.4419 - val_acc: 0.7923
 Epoch 63/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.3971 - acc: 0.8247 - val_loss: 0.4692 - val_acc: 0.7919
+62/62 [==============================] - 16s 248ms/step - loss: 0.4441 - acc: 0.7749 - val_loss: 0.4931 - val_acc: 0.7631
 Epoch 64/100
-100/100 [==============================] - 32s 315ms/step - loss: 0.4002 - acc: 0.8088 - val_loss: 0.4789 - val_acc: 0.7719
+62/62 [==============================] - 15s 246ms/step - loss: 0.4476 - acc: 0.7907 - val_loss: 0.4731 - val_acc: 0.7651
 Epoch 65/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.3865 - acc: 0.8269 - val_loss: 0.5005 - val_acc: 0.7722
+62/62 [==============================] - 15s 246ms/step - loss: 0.4464 - acc: 0.7932 - val_loss: 0.4601 - val_acc: 0.7772
 Epoch 66/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.3986 - acc: 0.8141 - val_loss: 0.5235 - val_acc: 0.7603
+62/62 [==============================] - 15s 246ms/step - loss: 0.4353 - acc: 0.7983 - val_loss: 0.4615 - val_acc: 0.7671
 Epoch 67/100
-100/100 [==============================] - 32s 315ms/step - loss: 0.4045 - acc: 0.8159 - val_loss: 0.4311 - val_acc: 0.7944
+62/62 [==============================] - 15s 247ms/step - loss: 0.4449 - acc: 0.7846 - val_loss: 0.4985 - val_acc: 0.7591
 Epoch 68/100
-100/100 [==============================] - 31s 312ms/step - loss: 0.3872 - acc: 0.8238 - val_loss: 0.4421 - val_acc: 0.7938
+62/62 [==============================] - 16s 251ms/step - loss: 0.4344 - acc: 0.7886 - val_loss: 0.4917 - val_acc: 0.7601
 Epoch 69/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.3865 - acc: 0.8256 - val_loss: 0.4610 - val_acc: 0.7938
+62/62 [==============================] - 16s 249ms/step - loss: 0.4521 - acc: 0.7922 - val_loss: 0.4478 - val_acc: 0.7893
 Epoch 70/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.3886 - acc: 0.8263 - val_loss: 0.4198 - val_acc: 0.8041
+62/62 [==============================] - 15s 247ms/step - loss: 0.4320 - acc: 0.7952 - val_loss: 0.5413 - val_acc: 0.7550
 Epoch 71/100
-100/100 [==============================] - 31s 315ms/step - loss: 0.3900 - acc: 0.8244 - val_loss: 0.4565 - val_acc: 0.7836
+62/62 [==============================] - 15s 245ms/step - loss: 0.4251 - acc: 0.8054 - val_loss: 0.5117 - val_acc: 0.7631
 Epoch 72/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.4011 - acc: 0.8172 - val_loss: 0.3898 - val_acc: 0.8170
+62/62 [==============================] - 15s 247ms/step - loss: 0.4368 - acc: 0.7927 - val_loss: 0.4730 - val_acc: 0.7611
 Epoch 73/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.3749 - acc: 0.8272 - val_loss: 0.5857 - val_acc: 0.7616
+62/62 [==============================] - 16s 250ms/step - loss: 0.4145 - acc: 0.8064 - val_loss: 0.4523 - val_acc: 0.7853
 Epoch 74/100
-100/100 [==============================] - 31s 314ms/step - loss: 0.3723 - acc: 0.8359 - val_loss: 0.4425 - val_acc: 0.8058
+62/62 [==============================] - 15s 248ms/step - loss: 0.4363 - acc: 0.7952 - val_loss: 0.4781 - val_acc: 0.7702
 Epoch 75/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.3833 - acc: 0.8278 - val_loss: 0.4377 - val_acc: 0.7938
+62/62 [==============================] - 15s 249ms/step - loss: 0.4238 - acc: 0.7973 - val_loss: 0.4388 - val_acc: 0.7974
 Epoch 76/100
-100/100 [==============================] - 31s 312ms/step - loss: 0.3698 - acc: 0.8297 - val_loss: 0.4466 - val_acc: 0.8192
+62/62 [==============================] - 16s 248ms/step - loss: 0.4072 - acc: 0.8100 - val_loss: 0.4566 - val_acc: 0.7843
 Epoch 77/100
-100/100 [==============================] - 31s 313ms/step - loss: 0.3683 - acc: 0.8250 - val_loss: 0.4567 - val_acc: 0.7964
+62/62 [==============================] - 15s 249ms/step - loss: 0.4222 - acc: 0.8074 - val_loss: 0.4610 - val_acc: 0.7913
 Epoch 78/100
-100/100 [==============================] - 31s 312ms/step - loss: 0.3468 - acc: 0.8506 - val_loss: 0.4412 - val_acc: 0.8223
+62/62 [==============================] - 15s 247ms/step - loss: 0.4240 - acc: 0.8034 - val_loss: 0.4732 - val_acc: 0.7681
 Epoch 79/100
-100/100 [==============================] - 31s 309ms/step - loss: 0.3762 - acc: 0.8169 - val_loss: 0.4007 - val_acc: 0.8273
+62/62 [==============================] - 11s 172ms/step - loss: 0.4285 - acc: 0.8028 - val_loss: 0.4199 - val_acc: 0.8165
 Epoch 80/100
-100/100 [==============================] - 32s 316ms/step - loss: 0.3743 - acc: 0.8378 - val_loss: 0.3998 - val_acc: 0.8267
+62/62 [==============================] - 10s 159ms/step - loss: 0.4186 - acc: 0.8100 - val_loss: 0.4217 - val_acc: 0.8125
 Epoch 81/100
-100/100 [==============================] - 31s 313ms/step - loss: 0.3700 - acc: 0.8300 - val_loss: 0.4063 - val_acc: 0.8166
+62/62 [==============================] - 10s 164ms/step - loss: 0.4183 - acc: 0.8059 - val_loss: 0.4335 - val_acc: 0.8115
 Epoch 82/100
-100/100 [==============================] - 31s 309ms/step - loss: 0.3627 - acc: 0.8375 - val_loss: 0.4047 - val_acc: 0.8196
+62/62 [==============================] - 10s 164ms/step - loss: 0.4226 - acc: 0.8054 - val_loss: 0.4336 - val_acc: 0.8115
 Epoch 83/100
-100/100 [==============================] - 32s 316ms/step - loss: 0.3594 - acc: 0.8388 - val_loss: 0.5183 - val_acc: 0.7843
+62/62 [==============================] - 10s 164ms/step - loss: 0.4259 - acc: 0.8074 - val_loss: 0.4942 - val_acc: 0.7812
 Epoch 84/100
-100/100 [==============================] - 31s 312ms/step - loss: 0.3672 - acc: 0.8312 - val_loss: 0.4020 - val_acc: 0.8235
+62/62 [==============================] - 10s 166ms/step - loss: 0.4180 - acc: 0.8105 - val_loss: 0.4589 - val_acc: 0.7812
 Epoch 85/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.3598 - acc: 0.8394 - val_loss: 0.4133 - val_acc: 0.8192
+62/62 [==============================] - 10s 165ms/step - loss: 0.4086 - acc: 0.8176 - val_loss: 0.4930 - val_acc: 0.7782
 Epoch 86/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.3431 - acc: 0.8444 - val_loss: 0.4077 - val_acc: 0.8241
+62/62 [==============================] - 14s 226ms/step - loss: 0.4156 - acc: 0.8074 - val_loss: 0.4664 - val_acc: 0.7802
 Epoch 87/100
-100/100 [==============================] - 31s 312ms/step - loss: 0.3491 - acc: 0.8447 - val_loss: 0.4118 - val_acc: 0.7989
+62/62 [==============================] - 16s 251ms/step - loss: 0.4206 - acc: 0.8105 - val_loss: 0.4820 - val_acc: 0.7722
 Epoch 88/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.3541 - acc: 0.8419 - val_loss: 0.5360 - val_acc: 0.7887
+62/62 [==============================] - 16s 252ms/step - loss: 0.4071 - acc: 0.8054 - val_loss: 0.4834 - val_acc: 0.7621
 Epoch 89/100
-100/100 [==============================] - 31s 308ms/step - loss: 0.3353 - acc: 0.8506 - val_loss: 0.3788 - val_acc: 0.8376
+62/62 [==============================] - 16s 248ms/step - loss: 0.4152 - acc: 0.8110 - val_loss: 0.4362 - val_acc: 0.8024
 Epoch 90/100
-100/100 [==============================] - 31s 314ms/step - loss: 0.3464 - acc: 0.8441 - val_loss: 0.4135 - val_acc: 0.8414
+62/62 [==============================] - 15s 246ms/step - loss: 0.4112 - acc: 0.8079 - val_loss: 0.4612 - val_acc: 0.7974
 Epoch 91/100
-100/100 [==============================] - 31s 311ms/step - loss: 0.3457 - acc: 0.8491 - val_loss: 0.4462 - val_acc: 0.8202
+62/62 [==============================] - 16s 255ms/step - loss: 0.4049 - acc: 0.8181 - val_loss: 0.4322 - val_acc: 0.8095
 Epoch 92/100
-100/100 [==============================] - 31s 309ms/step - loss: 0.3394 - acc: 0.8500 - val_loss: 0.4460 - val_acc: 0.7995
+62/62 [==============================] - 15s 245ms/step - loss: 0.4137 - acc: 0.8161 - val_loss: 0.4610 - val_acc: 0.7853
 Epoch 93/100
-100/100 [==============================] - 31s 314ms/step - loss: 0.3484 - acc: 0.8431 - val_loss: 0.3784 - val_acc: 0.8273
+62/62 [==============================] - 15s 249ms/step - loss: 0.3962 - acc: 0.8186 - val_loss: 0.4419 - val_acc: 0.8004
 Epoch 94/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.3117 - acc: 0.8700 - val_loss: 0.4461 - val_acc: 0.8128
+62/62 [==============================] - 15s 244ms/step - loss: 0.4065 - acc: 0.8074 - val_loss: 0.4512 - val_acc: 0.7772
 Epoch 95/100
-100/100 [==============================] - 31s 310ms/step - loss: 0.3329 - acc: 0.8503 - val_loss: 0.4606 - val_acc: 0.8202
+62/62 [==============================] - 16s 252ms/step - loss: 0.4035 - acc: 0.8079 - val_loss: 0.4926 - val_acc: 0.7792
 Epoch 96/100
-100/100 [==============================] - 31s 313ms/step - loss: 0.3450 - acc: 0.8512 - val_loss: 0.3908 - val_acc: 0.8170
+62/62 [==============================] - 16s 248ms/step - loss: 0.3990 - acc: 0.8232 - val_loss: 0.4223 - val_acc: 0.8085
 Epoch 97/100
-100/100 [==============================] - 31s 308ms/step - loss: 0.3355 - acc: 0.8519 - val_loss: 0.3977 - val_acc: 0.8268
+62/62 [==============================] - 15s 245ms/step - loss: 0.4054 - acc: 0.8166 - val_loss: 0.4659 - val_acc: 0.7802
 Epoch 98/100
-100/100 [==============================] - 31s 308ms/step - loss: 0.3313 - acc: 0.8487 - val_loss: 0.4174 - val_acc: 0.8235
+62/62 [==============================] - 15s 248ms/step - loss: 0.3923 - acc: 0.8216 - val_loss: 0.5009 - val_acc: 0.7742
 Epoch 99/100
-100/100 [==============================] - 31s 313ms/step - loss: 0.3259 - acc: 0.8591 - val_loss: 0.4230 - val_acc: 0.8230
+62/62 [==============================] - 15s 247ms/step - loss: 0.4072 - acc: 0.8150 - val_loss: 0.5291 - val_acc: 0.7500
 Epoch 100/100
-100/100 [==============================] - 31s 312ms/step - loss: 0.3094 - acc: 0.8697 - val_loss: 0.4160 - val_acc: 0.8325
+62/62 [==============================] - 15s 249ms/step - loss: 0.4035 - acc: 0.8155 - val_loss: 0.4661 - val_acc: 0.7843
 </pre></div>
 </div>
 </div>
@@ -1934,8 +1693,8 @@ Epoch 100/100
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/using_convnets_with_small_datasets_53_0.png" src="../../../../_images/using_convnets_with_small_datasets_53_0.png" />
-<img alt="../../../../_images/using_convnets_with_small_datasets_53_1.png" src="../../../../_images/using_convnets_with_small_datasets_53_1.png" />
+<img alt="../../../../_images/using_convnets_with_small_datasets_39_0.png" src="../../../../_images/using_convnets_with_small_datasets_39_0.png" />
+<img alt="../../../../_images/using_convnets_with_small_datasets_39_1.png" src="../../../../_images/using_convnets_with_small_datasets_39_1.png" />
 </div>
 </div>
 <p>Thanks to data augmentation and dropout, we are no longer overfitting: the training curves are rather closely tracking the validation

@@ -139,15 +139,27 @@ const thebe_selector_output = ".output, .cell_output"
    Data Science 360
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../ai-intro/pipelines/_index.html">
-   ML Pipelines
+   Pipelines
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../uber-ml-arch-case-study/_index.html">
-   A Case Study of an ML Architecture - Uber
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../uber-ml-arch-case-study/_index.html">
+     A Case Study of an ML Architecture - Uber
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ai-intro/pipelines/02_end_to_end_machine_learning_project.html">
+     Setup
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -308,8 +320,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../scene-understanding/object-detection/object-detection-intro/index.html">
    Object Detection
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -335,8 +347,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../scene-understanding/semantic-segmentation/index.html">
    Semantic Segmentation
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -490,11 +502,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../pgm/bayesian-coin/_index.html">
-   Bayesian Coin Flipping
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../../classification/covid19-antibody-test/_index.html">
    COVID-19 Antibody Test
   </a>
@@ -544,8 +551,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../../ml-math/_index.html">
    Math for ML
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -784,8 +791,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#libraries">
-   Libraries
+  <a class="reference internal nav-link" href="#references">
+   References
   </a>
  </li>
 </ul>
@@ -813,8 +820,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#libraries">
-   Libraries
+  <a class="reference internal nav-link" href="#references">
+   References
   </a>
  </li>
 </ul>
@@ -832,8 +839,8 @@ title="Print to PDF"
 <h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">#</a></h1>
 <p>Now that we have introduced somewhat more formally the learning problem and its notation lets us study a simple but instructive regression problem that is known in the statistics literature as <em>shrinkage</em>.</p>
 <p>Suppose that we are given the training set  <span class="math notranslate nohighlight">\(\mathcal D = \{(\mathbf x_i, y_i), i =1 \dots m\}\)</span>  where <span class="math notranslate nohighlight">\(\mathbf x_i \in \mathbb R^n\)</span> the label <span class="math notranslate nohighlight">\(y_i \in \mathbb R\)</span>. We need to construct a model such that a <em>suitably chosen</em> loss function is minimized for a <strong>different</strong> set of input data, the so-called test set. The ability to correctly <em>predict</em> when observing the test set, is called <strong>generalization</strong>.</p>
-<p><img alt="Training dataset and Target Unknown Function" src="../../../../_images/Figure1.2.png" />
-<em>Training Dataset (m=10) for the Regression Model. The green curve is the uknown target function. Please replace the label axis denoted by <span class="math notranslate nohighlight">\(t\)</span> with <span class="math notranslate nohighlight">\(y\)</span> to make it compatible with our notation.</em></p>
+<a class="bg-primary reference internal image-reference" href="../../../../_images/Figure1.2.png"><img alt="dataset" class="bg-primary" src="../../../../_images/Figure1.2.png" style="width: 300px;" /></a>
+<p><em>Training Dataset (m=10) for the Regression Model. The green curve is the uknown target function. Please replace the label axis denoted by <span class="math notranslate nohighlight">\(t\)</span> with <span class="math notranslate nohighlight">\(y\)</span> to make it compatible with our notation.</em></p>
 <p>Since the output <span class="math notranslate nohighlight">\(y\)</span> is a continuous variable then the supervised learning problem is called a regression problem (otherwise its a classification problem). The synthetic dataset is generated by the function <span class="math notranslate nohighlight">\(\sin(2 \pi x) + ϵ\)</span> where <span class="math notranslate nohighlight">\(x\)</span> is a uniformly distributed random variable and <span class="math notranslate nohighlight">\(ϵ\)</span> is <span class="math notranslate nohighlight">\(N(\mu=0.0, \sigma^2=0.3)\)</span>. This target function is <strong>completely unknown</strong> to us - we just mention it here just to provide a visual clue of what the hypothesis set needs to aspire to.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -843,6 +850,17 @@ title="Print to PDF"
 
 <span class="c1"># Apply the default theme</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting prml
+  Cloning https://github.com/pantelis-classes/PRML.git to /tmp/pip-install-kt837t33/prml_fbde2824406846458faf10bba20d7db0
+  Running command git clone --filter=blob:none --quiet https://github.com/pantelis-classes/PRML.git /tmp/pip-install-kt837t33/prml_fbde2824406846458faf10bba20d7db0
+  Resolved https://github.com/pantelis-classes/PRML.git to commit 14cf88538d2704fd18b391ae6309fb38c65a6412
+  Preparing metadata (setup.py) ... ?25ldone
+?25hRequirement already satisfied: numpy in /workspaces/artificial_intelligence/.venv/lib/python3.10/site-packages (from prml) (1.24.2)
+Requirement already satisfied: scipy in /workspaces/artificial_intelligence/.venv/lib/python3.10/site-packages (from prml) (1.10.1)
 </pre></div>
 </div>
 </div>
@@ -994,43 +1012,12 @@ title="Print to PDF"
 <p>which means that the <a class="reference external" href="https://en.wikipedia.org/wiki/Mean_squared_error">MSE captures both bias and variance</a> of the estimated target variables and as shown in the plots above, increasing model capacity can really increase the variance of <span class="math notranslate nohighlight">\(\hat{y}\)</span>. We have seen that as the <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> is trying to exactly fit, or memorize, the data, it minimizes the bias (in fact for model complexity M=9 the bias is 0) but it also exhibits significant variability that is itself translated to <span class="math notranslate nohighlight">\(\hat{y}\)</span>. Although the definition of model <em>capacity</em> is far more rigorous, we will broadly associate complexity with capacity and borrow the figure below from Ian Goodfellow’s book to demosntrate the tradeoff between bias and variance. What we have done with regularization is to find the <span class="math notranslate nohighlight">\(\lambda\)</span> that minimized generalization error aka. find the optimal model capacity.</p>
 <p><img alt="generalization-error-vs-capacity" src="../../../../_images/generalization-capacity.png" /></p>
 <p><em>As capacity increases (x-axis), bias (dotted) tends to decrease and variance(dashed) tends to increase, yielding another U-shaped curve for generalization error (bold curve). If we vary capacity along one axis, there is an optimal capacity, with underﬁtting when the capacity is below this optimum and overﬁtting when it is above.</em></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature</span> <span class="o">=</span> <span class="n">PolynomialFeature</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
-<span class="c1"># feature = GaussianFeature(np.linspace(0, 1, 24), 0.1)</span>
-<span class="c1"># feature = SigmoidalFeature(np.linspace(0, 1, 24), 10)</span>
-
-<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">1e2</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1e-9</span><span class="p">]:</span>
-    <span class="n">y_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-        <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">create_toy_data</span><span class="p">(</span><span class="n">sinusoidal</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
-        <span class="n">X_train</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
-        <span class="n">X_test</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">BayesianRegression</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-        <span class="n">y_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">:</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
-    
-    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y_list</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
 <section id="bias-and-variance-decomposition-during-the-training-process">
 <h2>Bias and Variance Decomposition during the training process<a class="headerlink" href="#bias-and-variance-decomposition-during-the-training-process" title="Permalink to this headline">#</a></h2>
-<p>Apart from the composition of the generalization error for various model capacities,  it is interesting to make some general comments regarding the decomposition of the generalization error (also known as empirical risk) during training. Early in training the bias is large because the network output is far from the design function. The variance is very small because the data has had little influence yet. Late in training the bias is small because the network has learned the underlying function. However if train for too long then the network will also have learned the noise specific to the dataset (overfitting). In such case the variance will be large because the noise varies between training and test datasets.</p>
+<p>Apart from the composition of the generalization error for various model capacities,  it is interesting to make some general comments regarding the decomposition of the generalization error (also known as empirical risk) during training. Early in training the bias is large because the predictor output is far from the target function. The variance is very small because the data has had little influence yet. Late in training the bias is small because the predictor has learned the underlying function. However if train for too long then the predictor will also have learned the noise specific to the dataset (overfitting). In such case the variance will be large because the noise varies between training and test datasets.</p>
 </section>
-<section id="libraries">
-<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">#</a></h2>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <p>This notebook makes extensive use of the <a class="reference external" href="https://github.com/ctgk/PRML">Pattern Recognition for Machine Learning python package</a>.</p>
 </section>
 </section>

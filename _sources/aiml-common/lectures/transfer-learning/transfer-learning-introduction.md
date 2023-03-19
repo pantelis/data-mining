@@ -8,7 +8,6 @@ Transfer learning involves the concepts of a domain and a task. A domain  $\math
 
 $$\mathbf x = [x_1, x_2, ..., x_n]^T \in \mathcal X$$
 
-
 Given a domain, $\mathcal D = \{\mathcal X, p(\mathbf x) \}$ and task $\mathcal T$ consists of a label space $\mathcal Y$ and a conditional probability distribution $p(\mathbf y| \mathbf x)$ that is typically learned from the training data $(\mathbf x_i, \mathbf y_i)$. 
 
 Given a source domain $\mathcal D_S = \{\mathcal X_S, p(\mathbf x_S) \}$, a corresponding source task $\mathcal T_S$ and a target domain $\mathcal D_T = \{\mathcal X_T, p(\mathbf x_T) \}$ with a corresponding target task $\mathcal T_T$, the objective of transfer learning is to learn the target  conditional probability distribution $p(\mathbf y_T| \mathbf x_T)$ from the information gained from $\mathcal D_S$ and $\mathcal T_S$. 
