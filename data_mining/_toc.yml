@@ -151,9 +151,9 @@ parts:
 
   - caption:  Project (CS482)
     chapters:
-    - file: aiml-common/projects/nlp/transfer-learning-language-model-toxic-tweet/index.md
+    - file: aiml-common/projects/nlp/finetuning-language-models-tweets/index.md
   
   - caption:  Project (CS634)
     chapters:
-    - file: aiml-common/projects/nlp/transfer-learning-language-model-patents/index.md
+    - file: aiml-common/projects/nlp/finetuning-language-models-patents/index.md
   
