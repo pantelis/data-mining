@@ -20,7 +20,6 @@ sphinx-autobuild = "^2021.3.14"
 sphinx-panels = "^0.6.0"
 sphinxcontrib-mermaid = "^0.8"
 sphinxcontrib-seqdiag = "^3.0.0"
-pydata-sphinx-theme = "^0.13.1"
 
 numpy = "^1.24.1"
 pandas = "^1.5.2"
