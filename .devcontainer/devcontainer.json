@@ -3,7 +3,7 @@
 {
 	"name": "Python 3 - Poetry",
 	"build": { 
-		"context": "..",
+		"context": ".",
 		"dockerfile": "Dockerfile",
 		"args": {
 			"POETRY_VERSION": ""

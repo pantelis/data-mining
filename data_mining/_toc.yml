@@ -3,8 +3,6 @@
 
 format: jb-book
 root: intro
-# options:
-#   numbered: 1
 parts:
   - caption: Syllabus
     chapters:
@@ -16,7 +14,10 @@ parts:
     - file: aiml-common/lectures/ai-intro/course-introduction/_index.md
     - file: aiml-common/lectures/ai-intro/data-science-360/_index.md
     - file: aiml-common/lectures/ai-intro/pipelines/_index.md
-    - file: aiml-common/lectures/uber-ml-arch-case-study/_index.md
+      title: Pipelines
+      sections: 
+      - file: aiml-common/lectures/uber-ml-arch-case-study/_index.md
+      - file: aiml-common/lectures/ai-intro/pipelines/02_end_to_end_machine_learning_project.ipynb
 
   - caption: The Learning Problem
     # numbered: 3
