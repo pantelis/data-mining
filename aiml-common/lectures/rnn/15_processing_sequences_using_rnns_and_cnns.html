@@ -1,37 +1,47 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Processing Sequences Using RNN &#8212; Data Mining</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -39,13 +49,13 @@
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../../../_static/tabs.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -53,957 +63,592 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/rnn/15_processing_sequences_using_rnns_and_cnns';</script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/rnn/15_processing_sequences_using_rnns_and_cnns.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Introduction to NLP" href="../nlp/nlp-intro/_index.html" />
     <link rel="prev" title="The Long Short-Term Memory (LSTM) Cell Architecture" href="lstm/_index.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Data Mining</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Syllabus
- </span>
-</p>
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Data Mining
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../syllabus/_index.html">
-   Syllabus
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../syllabus/_index.html">Syllabus</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introduction to Data Mining
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Data Mining</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../ai-intro/course-introduction/_index.html">
-   Course Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ai-intro/data-science-360/_index.html">
-   Data Science 360
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../ai-intro/pipelines/_index.html">
-   Pipelines
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../uber-ml-arch-case-study/_index.html">
-     A Case Study of an ML Architecture - Uber
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../ai-intro/pipelines/02_end_to_end_machine_learning_project.html">
-     Setup
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../ai-intro/course-introduction/_index.html">Course Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ai-intro/data-science-360/_index.html">Data Science 360</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ai-intro/pipelines/_index.html">Pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../uber-ml-arch-case-study/_index.html">A Case Study of an ML Architecture - Uber</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../ai-intro/pipelines/02_end_to_end_machine_learning_project.html">Setup</a></li>
+
+
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  The Learning Problem
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Learning Problem</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../learning-problem/_index.html">
-   The Learning Problem
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../regression/linear-regression/linear_regression.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../regression/linear-regression/regression-notebooks.html">
-   Regression Notebooks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../optimization/maximum-likelihood/marginal_maximum_likelihood.html">
-   Maximum Likelihood Estimation of a marginal model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../optimization/maximum-likelihood/conditional_maximum_likelihood.html">
-   Maximum Likelihood (ML) Estimation of conditional models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../entropy/_index.html">
-   Entropy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../optimization/sgd/_index.html">
-   Stochastic Gradient Descent
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../classification/classification-intro/_index.html">
-   Introduction to Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../classification/logistic-regression/_index.html">
-   Logistic Regression
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../learning-problem/_index.html">The Learning Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../regression/linear-regression/linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../regression/linear-regression/regression-notebooks.html">Regression Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/maximum-likelihood/marginal_maximum_likelihood.html">Maximum Likelihood Estimation of a marginal model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../optimization/maximum-likelihood/conditional_maximum_likelihood.html">Maximum Likelihood (ML) Estimation of conditional models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../entropy/_index.html">Entropy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/sgd/_index.html">Stochastic Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../classification/classification-intro/_index.html">Introduction to Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../classification/logistic-regression/_index.html">Logistic Regression</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Deep Neural Networks
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Neural Networks</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../classification/perceptron/_index.html">
-   The Neuron (Perceptron)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dnn/dnn-intro/_index.html">
-   Deep Neural Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dnn/backprop-intro/_index.html">
-   Introduction to Backpropagation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dnn/backprop-dnn/_index.html">
-   Backpropagation in Deep Neural Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dnn/backprop-dnn-exercises/_index.html">
-   Backpropagation DNN exercises
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dnn/fashion-mnist-case-study.html">
-   Fashion MNIST Case Study
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../optimization/regularization/_index.html">
-   Regularization in Deep Neural Networks
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../classification/perceptron/_index.html">The Neuron (Perceptron)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/dnn-intro/_index.html">Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/backprop-intro/_index.html">Introduction to Backpropagation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/backprop-dnn/_index.html">Backpropagation in Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/backprop-dnn-exercises/_index.html">Backpropagation DNN exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/fashion-mnist-case-study.html">Fashion MNIST Case Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/regularization/_index.html">Regularization in Deep Neural Networks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Convolutional Neural Networks
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Convolutional Neural Networks</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../cnn/cnn-intro/_index.html">
-   Introduction to Convolutional Neural Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../cnn/cnn-layers/_index.html">
-   CNN Architectures
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../cnn/cnn-example-architectures/_index.html">
-   CNN Example Architectures
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
-   Using convnets with small datasets
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../scene-understanding/feature-extraction-resnet/index.html">
-   Feature Extraction via Residual Networks
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../cnn/cnn-intro/_index.html">Introduction to Convolutional Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cnn/cnn-layers/_index.html">CNN Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cnn/cnn-example-architectures/_index.html">CNN Example Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">Using convnets with small datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene-understanding/feature-extraction-resnet/index.html">Feature Extraction via Residual Networks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Transfer Learning
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Transfer Learning</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../transfer-learning/transfer-learning-introduction.html">
-   Introduction to Transfer Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../transfer-learning/transfer_learning_tutorial.html">
-   Transfer Learning for Computer Vision Tutorial
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../transfer-learning/transfer-learning-introduction.html">Introduction to Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transfer-learning/transfer_learning_tutorial.html">Transfer Learning for Computer Vision Tutorial</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Scene Understanding
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Scene Understanding</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../scene-understanding/scene-understanding-intro/index.html">
-   Introduction to Scene Understanding
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../scene-understanding/object-detection/object-detection-intro/index.html">
-   Object Detection
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../scene-understanding/object-detection/detection-metrics/index.html">
-     Object Detection and Semantic Segmentation Metrics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../scene-understanding/object-detection/rcnn-object-detection/index.html">
-     Region-CNN (RCNN) Object Detection
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../scene-understanding/object-detection/faster-rcnn-object-detection/index.html">
-     Fast and Faster RCNN Object Detection
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../scene-understanding/semantic-segmentation/index.html">
-   Semantic Segmentation
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.html">
-     Mask R-CNN Semantic Segmentation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">
-     Mask R-CNN Demo
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">
-     Mask R-CNN - Inspect Training Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">
-     Mask R-CNN - Inspect Trained Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">
-     Mask R-CNN - Inspect Weights of a Trained Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">
-     Detectron2 Beginner’s Tutorial
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../scene-understanding/scene-understanding-intro/index.html">Introduction to Scene Understanding</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../scene-understanding/object-detection/object-detection-intro/index.html">Object Detection</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scene-understanding/object-detection/detection-metrics/index.html">Object Detection and Semantic Segmentation Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scene-understanding/object-detection/rcnn-object-detection/index.html">Region-CNN (RCNN) Object Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scene-understanding/object-detection/faster-rcnn-object-detection/index.html">Fast and Faster RCNN Object Detection</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Sequences and RNNs
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../scene-understanding/semantic-segmentation/index.html">Semantic Segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.html">Mask R-CNN Semantic Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.html">Mask R-CNN Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html">Mask R-CNN - Inspect Training Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.html">Mask R-CNN - Inspect Trained Model</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.html">Mask R-CNN - Inspect Weights of a Trained Model</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.html">Detectron2 Beginner’s Tutorial</a></li>
+
+
+
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sequences and RNNs</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="introduction/_index.html">
-   Introduction to Recurrent Neural Networks (RNN)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="simple-rnn/_index.html">
-   Simple RNN
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lstm/_index.html">
-   The Long Short-Term Memory (LSTM) Cell Architecture
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Processing Sequences Using RNN
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simple-rnn/_index.html">Simple RNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lstm/_index.html">The Long Short-Term Memory (LSTM) Cell Architecture</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Processing Sequences Using RNN</a></li>
+
+
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Embeddings and NLP
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Embeddings and NLP</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../nlp/nlp-intro/_index.html">
-   Introduction to NLP
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../nlp/word2vec/_index.html">
-   Word2Vec Embeddings
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../nlp/word2vec/word2vec-workshop.html">
-   Word2Vec Workshop
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../nlp/language-models/_index.html">
-   RNN Language Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../nlp/language-models/simple-rnn-language-model.html">
-   Simple RNN Language Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../nlp/language-models/cnn-language-model.html">
-   CNN Language Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../nlp/nmt/_index.html">
-   Neural Machine Translation
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/nlp-intro/_index.html">Introduction to NLP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/word2vec/_index.html">Word2Vec Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/word2vec/word2vec-workshop.html">Word2Vec Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/language-models/_index.html">RNN Language Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/language-models/simple-rnn-language-model.html">Simple RNN Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/language-models/cnn-language-model.html">CNN Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/nmt/_index.html">Neural Machine Translation</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Classical Learning Methods
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Learning Methods</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../decision-trees/_index.html">
-   Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../regression-trees/regression_trees.html">
-   Regression tree stumps
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ensemble/_index.html">
-   Ensemble Methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ensemble/random-forests/_index.html">
-   Random Forests
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ensemble/adaboost/index.html">
-   Adaptive Boosting (AdaBoost)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ensemble/gradient-boosting/index.html">
-   Gradient Boosting
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ensemble/boosting-workshop/_index.html">
-   Boosting workshop
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../pgm/bayesian-inference/_index.html">
-   Bayesian Inference
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../classification/covid19-antibody-test/_index.html">
-   COVID-19 Antibody Test
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../decision-trees/_index.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../regression-trees/regression_trees.html">Regression tree stumps</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../ensemble/_index.html">Ensemble Methods </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ensemble/random-forests/_index.html">Random Forests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ensemble/adaboost/index.html">Adaptive Boosting (AdaBoost)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ensemble/gradient-boosting/index.html">Gradient Boosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ensemble/boosting-workshop/_index.html">Boosting workshop</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Non-Parametric Methods
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Inference</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../unsupervised/k-means/_index.html">
-   K-means Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../density-estimation/knn/_index.html">
-   k-Nearest Neighbors (kNN) Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../density-estimation/knn-workshop/_index.html">
-   kNN Workshop
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../pgm/bayesian-inference/_index.html">Bayesian Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pgm/bayesian-inference/bayesian_regression.html">Bayesian Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pgm/bayesian-coin/bayesian_update_coin_flip.html">Posterior updates in a coin flipping experiment</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Dimensionality Reduction
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Non-Parametric Methods</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../pca/_index.html">
-   Principal Component Analysis (PCA)
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../unsupervised/k-means/_index.html">K-means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../density-estimation/knn/_index.html">k-Nearest Neighbors (kNN) Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../density-estimation/knn-workshop/_index.html">kNN Workshop</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Math Background
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../ml-math/_index.html">
-   Math for ML
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../ml-math/probability/_index.html">
-     Probability Basics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../linear-algebra/_index.html">
-     Linear Algebra for Machine Learning
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../ml-math/calculus/_index.html">
-     Calculus
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../pca/_index.html">Principal Component Analysis (PCA)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Resources
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Math Background</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../python/_index.html">
-   Learn Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../resources/environment/index.html">
-   Your Programming Environment
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../ml-math/index.html">Math for ML Textbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml-math/probability/index.html">Probability Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml-math/linear-algebra/index.html">Linear Algebra for Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ml-math/calculus/index.html">Calculus</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Assignments &amp; Projects
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../assignments/probability/probability-assignment-5/index.html">
-   Probability Assignment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../assignments/mle/poisson-regression-1/index.html">
-   Bike Rides and the Poisson Model
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources/environment/index.html">Your Programming Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources/environment/assignment-submission.html">Submitting Your Assignment / Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Learn Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources/environment/notebook-status.html">Notebook execution status</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../assignments/probability/probability-assignment-5/index.html">Probability Assignment</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../assignments/mle/poisson-regression-1/index.html">Bike Rides and the Poisson Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project (CS482)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../projects/nlp/finetuning-language-models-tweets/index.html">Finetuning Language Models - Toxic Tweets</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project (CS634)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../projects/nlp/finetuning-language-models-patents/index.html">Finetuning Language Models - Can I Patent This?</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/pantelis/data-mining/master?urlpath=tree/data_mining/aiml-common/lectures/rnn/15_processing_sequences_using_rnns_and_cnns.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/pantelis/data-mining/blob/master/data_mining/aiml-common/lectures/rnn/15_processing_sequences_using_rnns_and_cnns.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
 
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
 
 
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pantelis/data-mining" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
   </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pantelis/data-mining/edit/master/data_mining/aiml-common/lectures/rnn/15_processing_sequences_using_rnns_and_cnns.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/rnn/15_processing_sequences_using_rnns_and_cnns.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/aiml-common/lectures/rnn/15_processing_sequences_using_rnns_and_cnns.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/pantelis/data-mining"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/rnn/15_processing_sequences_using_rnns_and_cnns.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../../_sources/aiml-common/lectures/rnn/15_processing_sequences_using_rnns_and_cnns.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Processing Sequences Using RNN
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#basic-rnns">
-   Basic RNNs
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#generate-the-dataset">
-     Generate the Dataset
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#computing-some-baselines">
-     Computing Some Baselines
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-a-simple-rnn">
-     Using a Simple RNN
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#deep-rnns">
-     Deep RNNs
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#forecasting-several-steps-ahead">
-     Forecasting Several Steps Ahead
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#deep-rnn-with-batch-norm">
-   Deep RNN with Batch Norm
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#deep-rnns-with-layer-norm">
-   Deep RNNs with Layer Norm
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-a-custom-rnn-class">
-   Creating a Custom RNN Class
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lstms">
-   LSTMs
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#grus">
-   GRUs
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-one-dimensional-convolutional-layers-to-process-sequences">
-     Using One-Dimensional Convolutional Layers to Process Sequences
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#wavenet">
-     WaveNet
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-solutions">
-   Exercise solutions
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#to-8">
-     1. to 8.
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tackling-the-sketchrnn-dataset">
-     9. Tackling the SketchRNN Dataset
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bach-chorales">
-     10. Bach Chorales
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Processing Sequences Using RNN</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Processing Sequences Using RNN
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#basic-rnns">
-   Basic RNNs
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#generate-the-dataset">
-     Generate the Dataset
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#computing-some-baselines">
-     Computing Some Baselines
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-a-simple-rnn">
-     Using a Simple RNN
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#deep-rnns">
-     Deep RNNs
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#forecasting-several-steps-ahead">
-     Forecasting Several Steps Ahead
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#deep-rnn-with-batch-norm">
-   Deep RNN with Batch Norm
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#deep-rnns-with-layer-norm">
-   Deep RNNs with Layer Norm
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-a-custom-rnn-class">
-   Creating a Custom RNN Class
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lstms">
-   LSTMs
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#grus">
-   GRUs
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-one-dimensional-convolutional-layers-to-process-sequences">
-     Using One-Dimensional Convolutional Layers to Process Sequences
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#wavenet">
-     WaveNet
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-solutions">
-   Exercise solutions
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#to-8">
-     1. to 8.
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tackling-the-sketchrnn-dataset">
-     9. Tackling the SketchRNN Dataset
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bach-chorales">
-     10. Bach Chorales
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Processing Sequences Using RNN</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Processing Sequences Using RNN</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-rnns">Basic RNNs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-the-dataset">Generate the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-some-baselines">Computing Some Baselines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-simple-rnn">Using a Simple RNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-rnns">Deep RNNs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forecasting-several-steps-ahead">Forecasting Several Steps Ahead</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-rnn-with-batch-norm">Deep RNN with Batch Norm</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-rnns-with-layer-norm">Deep RNNs with Layer Norm</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-custom-rnn-class">Creating a Custom RNN Class</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lstms">LSTMs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#grus">GRUs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-one-dimensional-convolutional-layers-to-process-sequences">Using One-Dimensional Convolutional Layers to Process Sequences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wavenet">WaveNet</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-solutions">Exercise solutions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-8">1. to 8.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tackling-the-sketchrnn-dataset">9. Tackling the SketchRNN Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bach-chorales">10. Bach Chorales</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <p><strong>Chapter 15 – Processing Sequences Using RNNs and CNNs</strong></p>
 <p><em>This notebook contains all the sample code in chapter 15.</em></p>
 <table align="left">
@@ -1156,7 +801,7 @@ title="Print to PDF"
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving figure time_series_plot
 </pre></div>
 </div>
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_11_1.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_11_1.png" />
+<img alt="../../../_images/e233ae30e52826c7f712b7f3f0c8672cd07f1229cb135623890e324391400bd5.png" src="../../../_images/e233ae30e52826c7f712b7f3f0c8672cd07f1229cb135623890e324391400bd5.png" />
 </div>
 </div>
 <p><strong>Note</strong>: in this notebook, the blue dots represent targets, and red crosses represent predictions. In the book, I first used blue crosses for targets and red dots for predictions, then I reversed this later in the chapter. Sorry if this caused some confusion.</p>
@@ -1185,7 +830,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_16_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_16_0.png" />
+<img alt="../../../_images/e98de11f66a84946655fdee30332962c32dfe3c89a4560d6682cd94f90682aa1.png" src="../../../_images/e98de11f66a84946655fdee30332962c32dfe3c89a4560d6682cd94f90682aa1.png" />
 </div>
 </div>
 <p>Linear predictions:</p>
@@ -1283,7 +928,7 @@ Epoch 20/20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_20_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_20_0.png" />
+<img alt="../../../_images/ad29b6021ed45edc176218202ddde8bd78ec3c2520e7615d64af74b0675d0065.png" src="../../../_images/ad29b6021ed45edc176218202ddde8bd78ec3c2520e7615d64af74b0675d0065.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1295,7 +940,7 @@ Epoch 20/20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_21_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_21_0.png" />
+<img alt="../../../_images/cfcd37b1e6bba065fc428c4f7bfa80a231441f19db8c6c1f0a4705707a3e2fc3.png" src="../../../_images/cfcd37b1e6bba065fc428c4f7bfa80a231441f19db8c6c1f0a4705707a3e2fc3.png" />
 </div>
 </div>
 </section>
@@ -1385,7 +1030,7 @@ Epoch 20/20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_25_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_25_0.png" />
+<img alt="../../../_images/16a8933c016da87ed31418ae346452e64df67c491267b800f1134fc2adbc6228.png" src="../../../_images/16a8933c016da87ed31418ae346452e64df67c491267b800f1134fc2adbc6228.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1397,7 +1042,7 @@ Epoch 20/20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_26_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_26_0.png" />
+<img alt="../../../_images/34e9e7203933e85d10184443462b8a21e88a5f998eb7d0f4e2637d124840fa2d.png" src="../../../_images/34e9e7203933e85d10184443462b8a21e88a5f998eb7d0f4e2637d124840fa2d.png" />
 </div>
 </div>
 </section>
@@ -1488,7 +1133,7 @@ Epoch 20/20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_30_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_30_0.png" />
+<img alt="../../../_images/9ce4f4e25054d829184c99e7cf77485dee393e3afebc06b129a270f025b135ff.png" src="../../../_images/9ce4f4e25054d829184c99e7cf77485dee393e3afebc06b129a270f025b135ff.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1500,7 +1145,7 @@ Epoch 20/20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_31_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_31_0.png" />
+<img alt="../../../_images/da54bab1c2e6d13b031a321a329d73dc7cd8c0fe048e5e262996040f709202f4.png" src="../../../_images/da54bab1c2e6d13b031a321a329d73dc7cd8c0fe048e5e262996040f709202f4.png" />
 </div>
 </div>
 <p>Make the second <code class="docutils literal notranslate"><span class="pre">SimpleRNN</span></code> layer return only the last output:</p>
@@ -1589,7 +1234,7 @@ Epoch 20/20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_35_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_35_0.png" />
+<img alt="../../../_images/3464b652d3d216996d3b90e47b73fcc9f1025090662538ad21097bbaa0074f57.png" src="../../../_images/3464b652d3d216996d3b90e47b73fcc9f1025090662538ad21097bbaa0074f57.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1601,7 +1246,7 @@ Epoch 20/20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_36_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_36_0.png" />
+<img alt="../../../_images/da54bab1c2e6d13b031a321a329d73dc7cd8c0fe048e5e262996040f709202f4.png" src="../../../_images/da54bab1c2e6d13b031a321a329d73dc7cd8c0fe048e5e262996040f709202f4.png" />
 </div>
 </div>
 </section>
@@ -1656,7 +1301,7 @@ Epoch 20/20
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving figure forecast_ahead_plot
 </pre></div>
 </div>
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_40_1.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_40_1.png" />
+<img alt="../../../_images/4c0387c7c354a2a862d97069b5aadf801d92a04b9d1bbbd328ffa830b4c02586.png" src="../../../_images/4c0387c7c354a2a862d97069b5aadf801d92a04b9d1bbbd328ffa830b4c02586.png" />
 </div>
 </div>
 <p>Now let’s use this model to predict the next 10 values. We first need to regenerate the sequences with 9 more time steps.</p>
@@ -1867,7 +1512,7 @@ Epoch 20/20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_53_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_53_0.png" />
+<img alt="../../../_images/429c2b6e6fa84a86aaec6634ec7103580d5a689ccc537f0245ddd88aea0b0199.png" src="../../../_images/429c2b6e6fa84a86aaec6634ec7103580d5a689ccc537f0245ddd88aea0b0199.png" />
 </div>
 </div>
 <p>Now let’s create an RNN that predicts the next 10 steps at each time step. That is, instead of just forecasting time steps 50 to 59 based on time steps 0 to 49, it will forecast time steps 1 to 10 at time step 0, then time steps 2 to 11 at time step 1, and so on, and finally it will forecast time steps 50 to 59 at the last time step. Notice that the model is causal: when it makes predictions at any time step, it can only see past time steps.</p>
@@ -1986,7 +1631,7 @@ Epoch 20/20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_59_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_59_0.png" />
+<img alt="../../../_images/deca434d89aae8f562d4f94532ce858c0d4eb2be49bdc6c36f3a0f9dbceb6a3d.png" src="../../../_images/deca434d89aae8f562d4f94532ce858c0d4eb2be49bdc6c36f3a0f9dbceb6a3d.png" />
 </div>
 </div>
 </section>
@@ -2341,7 +1986,7 @@ Epoch 20/20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_72_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_72_0.png" />
+<img alt="../../../_images/ed002be8e1b3f59a3851cb8b777d9d65d2b5268ba8e144a09b3d924b1eba9997.png" src="../../../_images/ed002be8e1b3f59a3851cb8b777d9d65d2b5268ba8e144a09b3d924b1eba9997.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2363,7 +2008,7 @@ Epoch 20/20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_74_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_74_0.png" />
+<img alt="../../../_images/109cafdf4591e0215c14e2e76a258371e0dfdabf760d5a610bf52dba85d126da.png" src="../../../_images/109cafdf4591e0215c14e2e76a258371e0dfdabf760d5a610bf52dba85d126da.png" />
 </div>
 </div>
 </section>
@@ -2454,7 +2099,7 @@ Epoch 20/20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_78_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_78_0.png" />
+<img alt="../../../_images/721b26886caa4ea0c8a01435a9eb18061a7b98a7011bc97d9bd85c0ce8493e06.png" src="../../../_images/721b26886caa4ea0c8a01435a9eb18061a7b98a7011bc97d9bd85c0ce8493e06.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2481,7 +2126,7 @@ Epoch 20/20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_80_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_80_0.png" />
+<img alt="../../../_images/99e0d2e4bd95f186abdc5f4974272d6cf34053690a54d9446e151e6c23f4d838.png" src="../../../_images/99e0d2e4bd95f186abdc5f4974272d6cf34053690a54d9446e151e6c23f4d838.png" />
 </div>
 </div>
 <section id="using-one-dimensional-convolutional-layers-to-process-sequences">
@@ -3306,7 +2951,7 @@ labels = tf.Tensor(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_110_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_110_0.png" />
+<img alt="../../../_images/eb20c05449067b1c2e6d6a57a6dac58ab3a71b2dba4957a2956467584d9dd223.png" src="../../../_images/eb20c05449067b1c2e6d6a57a6dac58ab3a71b2dba4957a2956467584d9dd223.png" />
 </div>
 </div>
 <p>Most sketches are composed of less than 100 points:</p>
@@ -3322,7 +2967,7 @@ labels = tf.Tensor(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_112_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_112_0.png" />
+<img alt="../../../_images/ed052b67b0706c26fa31d0d3f936ed81b94b3bc353c1fe8c1a6a0e4e544d9c79.png" src="../../../_images/ed052b67b0706c26fa31d0d3f936ed81b94b3bc353c1fe8c1a6a0e4e544d9c79.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3407,7 +3052,7 @@ Epoch 2/2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_0.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_0.png" />
+<img alt="../../../_images/3e0a461a0839c63c20bd2117559bb23adbf59ca34e27179b15dc68fd33455eb6.png" src="../../../_images/3e0a461a0839c63c20bd2117559bb23adbf59ca34e27179b15dc68fd33455eb6.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Top-5 predictions:
   1. firetruck 46.565%
   2. police car 30.455%
@@ -3415,90 +3060,63 @@ Epoch 2/2
   4. car 3.695%
   5. cannon 3.371%
 Answer: firetruck
-</pre></div>
-</div>
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_2.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_2.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Top-5 predictions:
+Top-5 predictions:
   1. mouth 23.162%
   2. pond 14.151%
   3. pool 12.582%
   4. beard 11.375%
   5. goatee 9.808%
 Answer: mouth
-</pre></div>
-</div>
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_4.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_4.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Top-5 predictions:
+Top-5 predictions:
   1. jail 71.532%
   2. fence 6.519%
   3. swing set 5.708%
   4. grass 3.302%
   5. rain 3.023%
 Answer: jail
-</pre></div>
-</div>
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_6.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_6.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Top-5 predictions:
+Top-5 predictions:
   1. baseball 79.233%
   2. watermelon 7.687%
   3. basketball 5.259%
   4. clock 1.659%
   5. compass 1.101%
 Answer: baseball
-</pre></div>
-</div>
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_8.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_8.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Top-5 predictions:
+Top-5 predictions:
   1. basketball 51.888%
   2. baseball 17.328%
   3. onion 12.688%
   4. watermelon 9.989%
   5. brain 2.216%
 Answer: baseball
-</pre></div>
-</div>
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_10.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_10.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Top-5 predictions:
+Top-5 predictions:
   1. lantern 7.235%
   2. toothpaste 6.845%
   3. drill 6.254%
   4. lighthouse 4.624%
   5. crayon 3.566%
 Answer: brain
-</pre></div>
-</div>
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_12.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_12.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Top-5 predictions:
+Top-5 predictions:
   1. animal migration 8.771%
   2. blackberry 7.932%
   3. blueberry 6.413%
   4. peas 5.549%
   5. bracelet 3.623%
 Answer: helicopter
-</pre></div>
-</div>
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_14.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_14.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Top-5 predictions:
+Top-5 predictions:
   1. vase 42.793%
   2. wine glass 13.744%
   3. shovel 8.136%
   4. house plant 5.144%
   5. sailboat 4.850%
 Answer: vase
-</pre></div>
-</div>
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_16.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_16.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Top-5 predictions:
+Top-5 predictions:
   1. anvil 25.870%
   2. drill 9.670%
   3. nail 7.246%
   4. screwdriver 5.611%
   5. knee 4.355%
 Answer: anvil
-</pre></div>
-</div>
-<img alt="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_18.png" src="../../../_images/15_processing_sequences_using_rnns_and_cnns_117_18.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Top-5 predictions:
+Top-5 predictions:
   1. hurricane 34.674%
   2. tornado 16.056%
   3. blackberry 7.664%
@@ -3507,6 +3125,15 @@ Answer: anvil
 Answer: pillow
 </pre></div>
 </div>
+<img alt="../../../_images/9af55031415190cc7f0cf0283dd6ace65ec5cd679a51d80c1a22575b9dda82b5.png" src="../../../_images/9af55031415190cc7f0cf0283dd6ace65ec5cd679a51d80c1a22575b9dda82b5.png" />
+<img alt="../../../_images/bbe9753f89ad0929fd7fb373aafaf9a756301c9ca48cc129f4bef05929d4cb95.png" src="../../../_images/bbe9753f89ad0929fd7fb373aafaf9a756301c9ca48cc129f4bef05929d4cb95.png" />
+<img alt="../../../_images/6da87afb503149db28a0a783506463cdcac9b3441203927050e014a1c995f27a.png" src="../../../_images/6da87afb503149db28a0a783506463cdcac9b3441203927050e014a1c995f27a.png" />
+<img alt="../../../_images/41a826472affdec4425b9aaf707d6217b05b673486af0bbd70746014b1d1febe.png" src="../../../_images/41a826472affdec4425b9aaf707d6217b05b673486af0bbd70746014b1d1febe.png" />
+<img alt="../../../_images/5c20fc3958fb6c4bbaea188047f3fe77df6df4b9279a606fde09b19cec1ed0fc.png" src="../../../_images/5c20fc3958fb6c4bbaea188047f3fe77df6df4b9279a606fde09b19cec1ed0fc.png" />
+<img alt="../../../_images/19bd351c262a1b421b83bf4231a9ae1f9568874bd2f0c0b5e56c2442d3f30d1b.png" src="../../../_images/19bd351c262a1b421b83bf4231a9ae1f9568874bd2f0c0b5e56c2442d3f30d1b.png" />
+<img alt="../../../_images/1afaba8bcc271d48197c47abd7ee12996a19616c885db60d9488e9dd13b7689e.png" src="../../../_images/1afaba8bcc271d48197c47abd7ee12996a19616c885db60d9488e9dd13b7689e.png" />
+<img alt="../../../_images/83e8b78283f1a9723bba23762b59eec168f68643d0cbfe34b6b24b712b2fdaaa.png" src="../../../_images/83e8b78283f1a9723bba23762b59eec168f68643d0cbfe34b6b24b712b2fdaaa.png" />
+<img alt="../../../_images/bba1ccded665414e234d938386bee2d0f7f51bcb30e6030c8a653269dfa1f127.png" src="../../../_images/bba1ccded665414e234d938386bee2d0f7f51bcb30e6030c8a653269dfa1f127.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4128,7 +3755,7 @@ Epoch 20/20
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "pantelis/data-mining",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -4136,7 +3763,7 @@ Epoch 20/20
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./aiml-common/lectures/rnn"
         },
         predefinedOutput: true
@@ -4144,50 +3771,123 @@ Epoch 20/20
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="lstm/_index.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">The Long Short-Term Memory (LSTM) Cell Architecture</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lstm/_index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The Long Short-Term Memory (LSTM) Cell Architecture</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../nlp/nlp-intro/_index.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../nlp/nlp-intro/_index.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Introduction to NLP</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Processing Sequences Using RNN</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-rnns">Basic RNNs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-the-dataset">Generate the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-some-baselines">Computing Some Baselines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-simple-rnn">Using a Simple RNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-rnns">Deep RNNs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forecasting-several-steps-ahead">Forecasting Several Steps Ahead</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-rnn-with-batch-norm">Deep RNN with Batch Norm</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-rnns-with-layer-norm">Deep RNNs with Layer Norm</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-custom-rnn-class">Creating a Custom RNN Class</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lstms">LSTMs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#grus">GRUs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-one-dimensional-convolutional-layers-to-process-sequences">Using One-Dimensional Convolutional Layers to Process Sequences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wavenet">WaveNet</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-solutions">Exercise solutions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-8">1. to 8.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tackling-the-sketchrnn-dataset">9. Tackling the SketchRNN Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bach-chorales">10. Bach Chorales</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-    By Pantelis Monogioudis, Ph.D<br/>
-  
-      &copy; Copyright 2023.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
-</div>
+<p class="component-author">
+By Pantelis Monogioudis, Ph.D
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
 
-      </div>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

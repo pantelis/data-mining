@@ -1,37 +1,47 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Mask R-CNN - Inspect Training Data &#8212; Data Mining</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../../../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
     <script src="../../../../../_static/jquery.js"></script>
@@ -39,13 +49,13 @@
     <script src="../../../../../_static/doctools.js"></script>
     <script src="../../../../../_static/clipboard.min.js"></script>
     <script src="../../../../../_static/copybutton.js"></script>
-    <script src="../../../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../../../../../_static/tabs.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../../../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -53,855 +63,576 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../../../_static/sphinx-thebe.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data';</script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html" />
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
     <link rel="next" title="Mask R-CNN - Inspect Trained Model" href="inspect_model.html" />
     <link rel="prev" title="Mask R-CNN Demo" href="demo.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../../../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../../../intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../../../../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Data Mining</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Syllabus
- </span>
-</p>
+    
+    
+    <img src="../../../../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../../intro.html">
+                    Data Mining
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../../../syllabus/_index.html">
-   Syllabus
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../syllabus/_index.html">Syllabus</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introduction to Data Mining
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Data Mining</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../ai-intro/course-introduction/_index.html">
-   Course Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../ai-intro/data-science-360/_index.html">
-   Data Science 360
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../../ai-intro/pipelines/_index.html">
-   Pipelines
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../../uber-ml-arch-case-study/_index.html">
-     A Case Study of an ML Architecture - Uber
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../../ai-intro/pipelines/02_end_to_end_machine_learning_project.html">
-     Setup
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ai-intro/course-introduction/_index.html">Course Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ai-intro/data-science-360/_index.html">Data Science 360</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../ai-intro/pipelines/_index.html">Pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../uber-ml-arch-case-study/_index.html">A Case Study of an ML Architecture - Uber</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../ai-intro/pipelines/02_end_to_end_machine_learning_project.html">Setup</a></li>
+
+
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  The Learning Problem
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Learning Problem</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../learning-problem/_index.html">
-   The Learning Problem
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../regression/linear-regression/linear_regression.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../regression/linear-regression/regression-notebooks.html">
-   Regression Notebooks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../optimization/maximum-likelihood/marginal_maximum_likelihood.html">
-   Maximum Likelihood Estimation of a marginal model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../optimization/maximum-likelihood/conditional_maximum_likelihood.html">
-   Maximum Likelihood (ML) Estimation of conditional models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../entropy/_index.html">
-   Entropy
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../optimization/sgd/_index.html">
-   Stochastic Gradient Descent
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../classification/classification-intro/_index.html">
-   Introduction to Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../classification/logistic-regression/_index.html">
-   Logistic Regression
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../learning-problem/_index.html">The Learning Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../regression/linear-regression/linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../regression/linear-regression/regression-notebooks.html">Regression Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../optimization/maximum-likelihood/marginal_maximum_likelihood.html">Maximum Likelihood Estimation of a marginal model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../../optimization/maximum-likelihood/conditional_maximum_likelihood.html">Maximum Likelihood (ML) Estimation of conditional models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../entropy/_index.html">Entropy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../optimization/sgd/_index.html">Stochastic Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../classification/classification-intro/_index.html">Introduction to Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../classification/logistic-regression/_index.html">Logistic Regression</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Deep Neural Networks
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Neural Networks</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../classification/perceptron/_index.html">
-   The Neuron (Perceptron)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../dnn/dnn-intro/_index.html">
-   Deep Neural Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../dnn/backprop-intro/_index.html">
-   Introduction to Backpropagation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../dnn/backprop-dnn/_index.html">
-   Backpropagation in Deep Neural Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../dnn/backprop-dnn-exercises/_index.html">
-   Backpropagation DNN exercises
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../dnn/fashion-mnist-case-study.html">
-   Fashion MNIST Case Study
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../optimization/regularization/_index.html">
-   Regularization in Deep Neural Networks
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../classification/perceptron/_index.html">The Neuron (Perceptron)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dnn/dnn-intro/_index.html">Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dnn/backprop-intro/_index.html">Introduction to Backpropagation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dnn/backprop-dnn/_index.html">Backpropagation in Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dnn/backprop-dnn-exercises/_index.html">Backpropagation DNN exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dnn/fashion-mnist-case-study.html">Fashion MNIST Case Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../optimization/regularization/_index.html">Regularization in Deep Neural Networks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Convolutional Neural Networks
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Convolutional Neural Networks</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../cnn/cnn-intro/_index.html">
-   Introduction to Convolutional Neural Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../cnn/cnn-layers/_index.html">
-   CNN Architectures
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../cnn/cnn-example-architectures/_index.html">
-   CNN Example Architectures
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">
-   Using convnets with small datasets
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../feature-extraction-resnet/index.html">
-   Feature Extraction via Residual Networks
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cnn/cnn-intro/_index.html">Introduction to Convolutional Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cnn/cnn-layers/_index.html">CNN Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cnn/cnn-example-architectures/_index.html">CNN Example Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">Using convnets with small datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../feature-extraction-resnet/index.html">Feature Extraction via Residual Networks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Transfer Learning
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Transfer Learning</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../transfer-learning/transfer-learning-introduction.html">
-   Introduction to Transfer Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../transfer-learning/transfer_learning_tutorial.html">
-   Transfer Learning for Computer Vision Tutorial
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../transfer-learning/transfer-learning-introduction.html">Introduction to Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../transfer-learning/transfer_learning_tutorial.html">Transfer Learning for Computer Vision Tutorial</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Scene Understanding
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Scene Understanding</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../scene-understanding-intro/index.html">
-   Introduction to Scene Understanding
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../object-detection/object-detection-intro/index.html">
-   Object Detection
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../object-detection/detection-metrics/index.html">
-     Object Detection and Semantic Segmentation Metrics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../object-detection/rcnn-object-detection/index.html">
-     Region-CNN (RCNN) Object Detection
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../object-detection/faster-rcnn-object-detection/index.html">
-     Fast and Faster RCNN Object Detection
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../index.html">
-   Semantic Segmentation
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="index.html">
-     Mask R-CNN Semantic Segmentation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="demo.html">
-     Mask R-CNN Demo
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Mask R-CNN - Inspect Training Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="inspect_model.html">
-     Mask R-CNN - Inspect Trained Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="inspect_weights.html">
-     Mask R-CNN - Inspect Weights of a Trained Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="detectron2_tutorial.html">
-     Detectron2 Beginner’s Tutorial
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene-understanding-intro/index.html">Introduction to Scene Understanding</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../object-detection/object-detection-intro/index.html">Object Detection</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../object-detection/detection-metrics/index.html">Object Detection and Semantic Segmentation Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../object-detection/rcnn-object-detection/index.html">Region-CNN (RCNN) Object Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../object-detection/faster-rcnn-object-detection/index.html">Fast and Faster RCNN Object Detection</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Sequences and RNNs
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../rnn/introduction/_index.html">
-   Introduction to Recurrent Neural Networks (RNN)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../rnn/simple-rnn/_index.html">
-   Simple RNN
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../rnn/lstm/_index.html">
-   The Long Short-Term Memory (LSTM) Cell Architecture
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../rnn/15_processing_sequences_using_rnns_and_cnns.html">
-   Processing Sequences Using RNN
-  </a>
- </li>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Semantic Segmentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html">Mask R-CNN Semantic Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo.html">Mask R-CNN Demo</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Mask R-CNN - Inspect Training Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inspect_model.html">Mask R-CNN - Inspect Trained Model</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="inspect_weights.html">Mask R-CNN - Inspect Weights of a Trained Model</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="detectron2_tutorial.html">Detectron2 Beginner’s Tutorial</a></li>
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Embeddings and NLP
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../nlp/nlp-intro/_index.html">
-   Introduction to NLP
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../nlp/word2vec/_index.html">
-   Word2Vec Embeddings
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../nlp/word2vec/word2vec-workshop.html">
-   Word2Vec Workshop
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../nlp/language-models/_index.html">
-   RNN Language Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../nlp/language-models/simple-rnn-language-model.html">
-   Simple RNN Language Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../nlp/language-models/cnn-language-model.html">
-   CNN Language Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../nlp/nmt/_index.html">
-   Neural Machine Translation
-  </a>
- </li>
+</li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Classical Learning Methods
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sequences and RNNs</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../decision-trees/_index.html">
-   Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../regression-trees/regression_trees.html">
-   Regression tree stumps
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../ensemble/_index.html">
-   Ensemble Methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../ensemble/random-forests/_index.html">
-   Random Forests
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../ensemble/adaboost/index.html">
-   Adaptive Boosting (AdaBoost)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../ensemble/gradient-boosting/index.html">
-   Gradient Boosting
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../ensemble/boosting-workshop/_index.html">
-   Boosting workshop
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../pgm/bayesian-inference/_index.html">
-   Bayesian Inference
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../classification/covid19-antibody-test/_index.html">
-   COVID-19 Antibody Test
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rnn/introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rnn/simple-rnn/_index.html">Simple RNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rnn/lstm/_index.html">The Long Short-Term Memory (LSTM) Cell Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rnn/15_processing_sequences_using_rnns_and_cnns.html">Processing Sequences Using RNN</a></li>
+
+
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Non-Parametric Methods
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Embeddings and NLP</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../unsupervised/k-means/_index.html">
-   K-means Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../density-estimation/knn/_index.html">
-   k-Nearest Neighbors (kNN) Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../density-estimation/knn-workshop/_index.html">
-   kNN Workshop
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nlp/nlp-intro/_index.html">Introduction to NLP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nlp/word2vec/_index.html">Word2Vec Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nlp/word2vec/word2vec-workshop.html">Word2Vec Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nlp/language-models/_index.html">RNN Language Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nlp/language-models/simple-rnn-language-model.html">Simple RNN Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nlp/language-models/cnn-language-model.html">CNN Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nlp/nmt/_index.html">Neural Machine Translation</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Dimensionality Reduction
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Learning Methods</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../pca/_index.html">
-   Principal Component Analysis (PCA)
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decision-trees/_index.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../regression-trees/regression_trees.html">Regression tree stumps</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../../ensemble/_index.html">Ensemble Methods </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ensemble/random-forests/_index.html">Random Forests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ensemble/adaboost/index.html">Adaptive Boosting (AdaBoost)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ensemble/gradient-boosting/index.html">Gradient Boosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ensemble/boosting-workshop/_index.html">Boosting workshop</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Math Background
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Inference</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../../ml-math/_index.html">
-   Math for ML
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../../ml-math/probability/_index.html">
-     Probability Basics
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../../linear-algebra/_index.html">
-     Linear Algebra for Machine Learning
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../../ml-math/calculus/_index.html">
-     Calculus
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pgm/bayesian-inference/_index.html">Bayesian Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pgm/bayesian-inference/bayesian_regression.html">Bayesian Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pgm/bayesian-coin/bayesian_update_coin_flip.html">Posterior updates in a coin flipping experiment</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Resources
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Non-Parametric Methods</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../python/_index.html">
-   Learn Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../../resources/environment/index.html">
-   Your Programming Environment
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../unsupervised/k-means/_index.html">K-means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../density-estimation/knn/_index.html">k-Nearest Neighbors (kNN) Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../density-estimation/knn-workshop/_index.html">kNN Workshop</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Assignments &amp; Projects
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../../assignments/probability/probability-assignment-5/index.html">
-   Probability Assignment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../../assignments/mle/poisson-regression-1/index.html">
-   Bike Rides and the Poisson Model
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pca/_index.html">Principal Component Analysis (PCA)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Math Background</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../ml-math/index.html">Math for ML Textbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ml-math/probability/index.html">Probability Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ml-math/linear-algebra/index.html">Linear Algebra for Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ml-math/calculus/index.html">Calculus</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../resources/environment/index.html">Your Programming Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../resources/environment/assignment-submission.html">Submitting Your Assignment / Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python/index.html">Learn Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../resources/environment/notebook-status.html">Notebook execution status</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../assignments/probability/probability-assignment-5/index.html">Probability Assignment</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../../../assignments/mle/poisson-regression-1/index.html">Bike Rides and the Poisson Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project (CS482)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../projects/nlp/finetuning-language-models-tweets/index.html">Finetuning Language Models - Toxic Tweets</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project (CS634)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../projects/nlp/finetuning-language-models-patents/index.html">Finetuning Language Models - Can I Patent This?</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/pantelis/data-mining/master?urlpath=tree/data_mining/aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/pantelis/data-mining/blob/master/data_mining/aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
 
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
 
 
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pantelis/data-mining" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
   </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pantelis/data-mining/edit/master/data_mining/aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../../_sources/aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/pantelis/data-mining"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../../../../_sources/aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#configurations">
-   Configurations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dataset">
-   Dataset
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#display-samples">
-   Display Samples
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bounding-boxes">
-   Bounding Boxes
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#resize-images">
-   Resize Images
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mini-masks">
-   Mini Masks
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#anchors">
-   Anchors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-generator">
-   Data Generator
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rois">
-   ROIs
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Mask R-CNN - Inspect Training Data</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#configurations">
-   Configurations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dataset">
-   Dataset
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#display-samples">
-   Display Samples
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bounding-boxes">
-   Bounding Boxes
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#resize-images">
-   Resize Images
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mini-masks">
-   Mini Masks
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#anchors">
-   Anchors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-generator">
-   Data Generator
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rois">
-   ROIs
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Mask R-CNN - Inspect Training Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configurations">Configurations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#display-samples">Display Samples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bounding-boxes">Bounding Boxes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resize-images">Resize Images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-masks">Mini Masks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anchors">Anchors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-generator">Data Generator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rois">ROIs</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="mask-r-cnn-inspect-training-data">
 <h1>Mask R-CNN - Inspect Training Data<a class="headerlink" href="#mask-r-cnn-inspect-training-data" title="Permalink to this headline">#</a></h1>
 <p>Inspect and visualize data loading and pre-processing code.</p>
@@ -1094,10 +825,10 @@ Class Count: 81
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../../_images/inspect_data_7_0.png" src="../../../../../_images/inspect_data_7_0.png" />
-<img alt="../../../../../_images/inspect_data_7_1.png" src="../../../../../_images/inspect_data_7_1.png" />
-<img alt="../../../../../_images/inspect_data_7_2.png" src="../../../../../_images/inspect_data_7_2.png" />
-<img alt="../../../../../_images/inspect_data_7_3.png" src="../../../../../_images/inspect_data_7_3.png" />
+<img alt="../../../../../_images/b12ae2cfe93ddcec470c12b106f90b324df2a34171b1e7cb386d15f988b04074.png" src="../../../../../_images/b12ae2cfe93ddcec470c12b106f90b324df2a34171b1e7cb386d15f988b04074.png" />
+<img alt="../../../../../_images/779422461742795158f50fbb7cddd751e965c75b30433c4ea0b965624649f415.png" src="../../../../../_images/779422461742795158f50fbb7cddd751e965c75b30433c4ea0b965624649f415.png" />
+<img alt="../../../../../_images/8956309d47e4f9594e6a64b1e8c6d348a55b7601de9859e74374bd9b64e477d4.png" src="../../../../../_images/8956309d47e4f9594e6a64b1e8c6d348a55b7601de9859e74374bd9b64e477d4.png" />
+<img alt="../../../../../_images/2f36606fa4532e4a1a5b91d7a79dc6c7c51849970b9f0cec37949ec2edfaebba.png" src="../../../../../_images/2f36606fa4532e4a1a5b91d7a79dc6c7c51849970b9f0cec37949ec2edfaebba.png" />
 </div>
 </div>
 </section>
@@ -1132,7 +863,7 @@ class_ids                shape: (5,)                  min:    1.00000  max:   35
 bbox                     shape: (5, 4)                min:    1.00000  max:  329.00000
 </pre></div>
 </div>
-<img alt="../../../../../_images/inspect_data_9_1.png" src="../../../../../_images/inspect_data_9_1.png" />
+<img alt="../../../../../_images/1fe3eee67f7a07893412061d09d88051065e17cf5250e1f1af67c984b87ba2a4.png" src="../../../../../_images/1fe3eee67f7a07893412061d09d88051065e17cf5250e1f1af67c984b87ba2a4.png" />
 </div>
 </div>
 </section>
@@ -1169,10 +900,6 @@ bbox                     shape: (5, 4)                min:    1.00000  max:  329
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.5/dist-packages/scipy/ndimage/interpolation.py:600: UserWarning: From scipy 0.13.0, the output shape of zoom() is calculated with round() instead of int() - for these inputs the size of the returned array has changed.
-  &quot;the returned array has changed.&quot;, UserWarning)
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image_id:  6480 http://cocodataset.org/#explore?id=402563
 Original shape:  (476, 640, 3)
 image                    shape: (1024, 1024, 3)       min:    0.00000  max:  255.00000
@@ -1181,7 +908,11 @@ class_ids                shape: (32,)                 min:    1.00000  max:   77
 bbox                     shape: (32, 4)               min:    1.00000  max:  991.00000
 </pre></div>
 </div>
-<img alt="../../../../../_images/inspect_data_11_2.png" src="../../../../../_images/inspect_data_11_2.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.5/dist-packages/scipy/ndimage/interpolation.py:600: UserWarning: From scipy 0.13.0, the output shape of zoom() is calculated with round() instead of int() - for these inputs the size of the returned array has changed.
+  &quot;the returned array has changed.&quot;, UserWarning)
+</pre></div>
+</div>
+<img alt="../../../../../_images/53b762191b611ff872e06b1afb3fae2209a9a0609ae7ed664d56f90d4bdbba8e.png" src="../../../../../_images/53b762191b611ff872e06b1afb3fae2209a9a0609ae7ed664d56f90d4bdbba8e.png" />
 </div>
 </div>
 </section>
@@ -1217,7 +948,7 @@ bbox                     shape: (1, 5)                min:   62.00000  max:  578
 mask                     shape: (1024, 1024, 1)       min:    0.00000  max:    1.00000
 </pre></div>
 </div>
-<img alt="../../../../../_images/inspect_data_13_1.png" src="../../../../../_images/inspect_data_13_1.png" />
+<img alt="../../../../../_images/f37a58475edd5b31e183325f30f95f88f166ce3a61fa71259ee9983ac7dba059.png" src="../../../../../_images/f37a58475edd5b31e183325f30f95f88f166ce3a61fa71259ee9983ac7dba059.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1227,7 +958,7 @@ mask                     shape: (1024, 1024, 1)       min:    0.00000  max:    1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../../_images/inspect_data_14_0.png" src="../../../../../_images/inspect_data_14_0.png" />
+<img alt="../../../../../_images/d6f5f9af9dda08a759bca592bccf5160951265c23d98cb7b506d815ece7266f6.png" src="../../../../../_images/d6f5f9af9dda08a759bca592bccf5160951265c23d98cb7b506d815ece7266f6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1244,7 +975,7 @@ mask                     shape: (1024, 1024, 1)       min:    0.00000  max:    1
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mask                     shape: (56, 56, 1)           min:    0.00000  max:    1.00000
 </pre></div>
 </div>
-<img alt="../../../../../_images/inspect_data_15_1.png" src="../../../../../_images/inspect_data_15_1.png" />
+<img alt="../../../../../_images/453b1b581de0c1799edea9808a2f74e76b165acc47b3c6119be4c86eb923da1f.png" src="../../../../../_images/453b1b581de0c1799edea9808a2f74e76b165acc47b3c6119be4c86eb923da1f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1255,7 +986,7 @@ mask                     shape: (1024, 1024, 1)       min:    0.00000  max:    1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../../_images/inspect_data_16_0.png" src="../../../../../_images/inspect_data_16_0.png" />
+<img alt="../../../../../_images/3c94510812895d46b7c2bed0bd7c95708c648587f91fb6041f6a63649e7c2792.png" src="../../../../../_images/3c94510812895d46b7c2bed0bd7c95708c648587f91fb6041f6a63649e7c2792.png" />
 </div>
 </div>
 </section>
@@ -1349,10 +1080,6 @@ Anchors in Level 4: 192
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.5/dist-packages/scipy/ndimage/interpolation.py:600: UserWarning: From scipy 0.13.0, the output shape of zoom() is calculated with round() instead of int() - for these inputs the size of the returned array has changed.
-  &quot;the returned array has changed.&quot;, UserWarning)
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Level 0. Anchors:  49152  Feature map Shape: [256 256]
 Level 1. Anchors:  12288  Feature map Shape: [128 128]
 Level 2. Anchors:   3072  Feature map Shape: [64 64]
@@ -1360,7 +1087,11 @@ Level 3. Anchors:    768  Feature map Shape: [32 32]
 Level 4. Anchors:    192  Feature map Shape: [16 16]
 </pre></div>
 </div>
-<img alt="../../../../../_images/inspect_data_20_2.png" src="../../../../../_images/inspect_data_20_2.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.5/dist-packages/scipy/ndimage/interpolation.py:600: UserWarning: From scipy 0.13.0, the output shape of zoom() is calculated with round() instead of int() - for these inputs the size of the returned array has changed.
+  &quot;the returned array has changed.&quot;, UserWarning)
+</pre></div>
+</div>
+<img alt="../../../../../_images/9fe3f461608952bfbce2ee090f00c6debff16d2a26c163345a4bb0bef9481565.png" src="../../../../../_images/9fe3f461608952bfbce2ee090f00c6debff16d2a26c163345a4bb0bef9481565.png" />
 </div>
 </div>
 </section>
@@ -1418,10 +1149,6 @@ Level 4. Anchors:    192  Feature map Shape: [16 16]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.5/dist-packages/scipy/ndimage/interpolation.py:600: UserWarning: From scipy 0.13.0, the output shape of zoom() is calculated with round() instead of int() - for these inputs the size of the returned array has changed.
-  &quot;the returned array has changed.&quot;, UserWarning)
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rois                     shape: (4, 128, 4)           min:    0.00000  max: 1023.00000
 mrcnn_class_ids          shape: (4, 128, 1)           min:    0.00000  max:   67.00000
 mrcnn_bbox               shape: (4, 128, 81, 5)       min:   -3.58824  max:    3.45455
@@ -1431,6 +1158,10 @@ gt_masks                 shape: (4, 56, 56, 100)      min:    0.00000  max:    1
 rpn_match                shape: (4, 65472, 1)         min:   -1.00000  max:    1.00000
 rpn_bbox                 shape: (4, 256, 4)           min:   -4.60969  max:    1.76777
 image_id:  2937 http://cocodataset.org/#explore?id=135453
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.5/dist-packages/scipy/ndimage/interpolation.py:600: UserWarning: From scipy 0.13.0, the output shape of zoom() is calculated with round() instead of int() - for these inputs the size of the returned array has changed.
+  &quot;the returned array has changed.&quot;, UserWarning)
 </pre></div>
 </div>
 </div>
@@ -1479,7 +1210,7 @@ bed                    : 30
 remote                 : 2
 </pre></div>
 </div>
-<img alt="../../../../../_images/inspect_data_25_1.png" src="../../../../../_images/inspect_data_25_1.png" />
+<img alt="../../../../../_images/28f073bfc4f43710a6c2d8845b7e84337fda9f3229b158dfe50c3e9d46d077b0.png" src="../../../../../_images/28f073bfc4f43710a6c2d8845b7e84337fda9f3229b158dfe50c3e9d46d077b0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1490,7 +1221,7 @@ remote                 : 2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../../_images/inspect_data_26_0.png" src="../../../../../_images/inspect_data_26_0.png" />
+<img alt="../../../../../_images/a1a1bc71eccd3e52f9a9afc989e9e25a4135ba23093ca58fe4e2a2533afff15b.png" src="../../../../../_images/a1a1bc71eccd3e52f9a9afc989e9e25a4135ba23093ca58fe4e2a2533afff15b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1501,7 +1232,7 @@ remote                 : 2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../../_images/inspect_data_27_0.png" src="../../../../../_images/inspect_data_27_0.png" />
+<img alt="../../../../../_images/bcc9911cef2d35814118bbad24cd044743ece397fd3e7f6b7196183d3293f844.png" src="../../../../../_images/bcc9911cef2d35814118bbad24cd044743ece397fd3e7f6b7196183d3293f844.png" />
 </div>
 </div>
 </section>
@@ -1535,7 +1266,7 @@ Positive Ratio: 0.30
 Unique ROIs: 128 out of 128
 </pre></div>
 </div>
-<img alt="../../../../../_images/inspect_data_29_1.png" src="../../../../../_images/inspect_data_29_1.png" />
+<img alt="../../../../../_images/c50299f257fdf73b7cea2a653f4889adfe0c83dc031d80218074e06abc71ea0e.png" src="../../../../../_images/c50299f257fdf73b7cea2a653f4889adfe0c83dc031d80218074e06abc71ea0e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1559,7 +1290,7 @@ Unique ROIs: 128 out of 128
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../../_images/inspect_data_30_0.png" src="../../../../../_images/inspect_data_30_0.png" />
+<img alt="../../../../../_images/ebac2b63e53e4a99d939f34db49470bc89841f340390ad6ce98db42ab42d019a.png" src="../../../../../_images/ebac2b63e53e4a99d939f34db49470bc89841f340390ad6ce98db42ab42d019a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1583,13 +1314,7 @@ Unique ROIs: 128 out of 128
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   42  0.33
    42  0.33
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.5/dist-packages/scipy/ndimage/interpolation.py:600: UserWarning: From scipy 0.13.0, the output shape of zoom() is calculated with round() instead of int() - for these inputs the size of the returned array has changed.
-  &quot;the returned array has changed.&quot;, UserWarning)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   42  0.33
+   42  0.33
    42  0.33
    42  0.33
    42  0.33
@@ -1598,6 +1323,10 @@ Unique ROIs: 128 out of 128
    42  0.33
    42  0.33
 Average percent: 0.33
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.5/dist-packages/scipy/ndimage/interpolation.py:600: UserWarning: From scipy 0.13.0, the output shape of zoom() is calculated with round() instead of int() - for these inputs the size of the returned array has changed.
+  &quot;the returned array has changed.&quot;, UserWarning)
 </pre></div>
 </div>
 </div>
@@ -1609,7 +1338,7 @@ Average percent: 0.33
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "pantelis/data-mining",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -1617,7 +1346,7 @@ Average percent: 0.33
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation"
         },
         predefinedOutput: true
@@ -1625,50 +1354,107 @@ Average percent: 0.33
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="demo.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Mask R-CNN Demo</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="demo.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Mask R-CNN Demo</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="inspect_model.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="inspect_model.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Mask R-CNN - Inspect Trained Model</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configurations">Configurations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#display-samples">Display Samples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bounding-boxes">Bounding Boxes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resize-images">Resize Images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-masks">Mini Masks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anchors">Anchors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-generator">Data Generator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rois">ROIs</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-    By Pantelis Monogioudis, Ph.D<br/>
-  
-      &copy; Copyright 2023.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
-</div>
+<p class="component-author">
+By Pantelis Monogioudis, Ph.D
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
 
-      </div>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

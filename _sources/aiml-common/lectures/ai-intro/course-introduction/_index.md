@@ -1,9 +1,3 @@
----
-title: Course Introduction
-weight: 1
-draft: false
----
-
 # Course Introduction
 
 If engineering difficulty has a pinnacle today this must be in data science domains that combines ML, optimal control and planning. Autonomous cars and humanoids from Boston Dynamics fit the bill.

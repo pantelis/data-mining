@@ -1,10 +1,11 @@
 # Data Mining
 
-{bdg-link-dark}`Instructor: Pantelis Monogioudis, Ph.D. <https://www.linkedin.com/in/pantelis/>`
-
 ```{only} html
 
-<button type="button" class="btn btn-dark btn-sm">Please star and then fork the new Github repo [![](https://img.shields.io/github/stars/pantelis/data-mining?style=social)](https://github.com/pantelis/data-mining)</button>
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="pantelis" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/pantelis?trk=profile-badge">Pantelis Monogioudis</a></div>
+              
+<a href="https://twitter.com/monogioudis?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @monogioudis</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ```
 
@@ -24,9 +25,7 @@ This course requires some intensive effort from your side in both learning these
 :gutter: 3
 
 :::{grid-item-card}
-:link: basics/organize
-:link-type: doc
-:class-header: bg-light
+:class-header: bg-primary
 
 **Logistics** {octicon}`organization;1em;sd-text-info`
 ^^^
@@ -42,9 +41,7 @@ CS634-104: Thu 6:00pm-8:30pm EST (Cullimore Hall LECT 2)
 :::
 
 :::{grid-item-card}
-:link: content/myst
-:link-type: doc
-:class-header: bg-light
+:class-header: bg-primary
 
 **Communication** {octicon}`megaphone;1em;sd-text-info`
 ^^^
@@ -54,9 +51,7 @@ We use Google chat (NJIT account) for all communication and questions related to
 :::
 
 :::{grid-item-card}
-:link: content/executable/index
-:link-type: doc
-:class-header: bg-light
+:class-header: bg-primary
 
 **Office Hours** {octicon}`clock;1em;sd-text-info`
 ^^^
@@ -65,9 +60,7 @@ Professor Office hours will be coordinated via chat  - the process is simple: di
 :::
 
 :::{grid-item-card}
-:link: interactive/launchbuttons
-:link-type: doc
-:class-header: bg-light
+:class-header: bg-primary
 
 **Staff (TAs)** {octicon}`person;1em;sd-text-info`
 ^^^
@@ -81,9 +74,7 @@ CS634-104: Jose Mojica Perez
 :::
 
 :::{grid-item-card}
-:link: publish/web
-:link-type: doc
-:class-header: bg-light
+:class-header: bg-primary
 
 **Grading** {octicon}`pulse;1em;sd-text-info`
 ^^^
