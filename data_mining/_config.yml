@@ -23,7 +23,7 @@ execute:
 latex:
   latex_engine: xelatex
   latex_documents:
-    targetname: ai-course.tex
+    targetname: data-mining-book.tex
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:

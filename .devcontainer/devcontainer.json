@@ -6,7 +6,7 @@
 		"context": "..",
 		"dockerfile": "Dockerfile",
 		"args": {
-			"POETRY_VERSION": ""
+			"POETRY_VERSION": "1.4.1"
 		}
 	},
 
