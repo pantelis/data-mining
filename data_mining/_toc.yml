@@ -70,15 +70,15 @@ parts:
       - file: aiml-common/lectures/scene-understanding/object-detection/detection-metrics/index.md
       - file: aiml-common/lectures/scene-understanding/object-detection/rcnn-object-detection/index.md    
       - file: aiml-common/lectures/scene-understanding/object-detection/faster-rcnn-object-detection/index.md
-    - file: aiml-common/lectures/scene-understanding/semantic-segmentation/index.md
-      title: Semantic Segmentation
-      sections:  
-      - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.md
-      - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.ipynb
-      - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.ipynb      
-      - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.ipynb        
-      - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.ipynb      
-      - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.ipynb              
+    # - file: aiml-common/lectures/scene-understanding/semantic-segmentation/index.md
+    #   title: Semantic Segmentation
+    #   sections:  
+    #   - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.md
+    #   - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.ipynb
+    #   - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.ipynb      
+    #   - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.ipynb        
+    #   - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.ipynb      
+    #   - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.ipynb              
       
   - caption:  Sequences and RNNs
     # numbered: 3
@@ -142,12 +142,12 @@ parts:
     - file: aiml-common/lectures/python/index.md
     #- file: aiml-common/lectures/ensemble/gradient-boosting/xgboost-app/xgboost.ipynb
     - file: aiml-common/resources/environment/notebook-status.md
-    # - file: aiml-common/lectures/runbook.md  
-
+   
   - caption:  Assignments 
     chapters:
     - file: aiml-common/assignments/probability/probability-assignment-5/index.ipynb
     - file: aiml-common/assignments/mle/poisson-regression-1/index.ipynb
+    - file: aiml-common/assignments/cnn-face-similarity/index.ipynb
 
   - caption:  Project (CS482)
     chapters:
