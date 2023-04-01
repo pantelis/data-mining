@@ -14,6 +14,12 @@ As expected, since 2014, deep learning has surpassed classical ML in the detecti
 1. Region proposals. 
 2. Fully Convolutional Networks (FCNs).
 
-Object detection, involves three main stages: the feature extraction stage, the classification stage and the detection or localization stage. In the literature the feature and classification stages are counted as one, called the classification stage and people refer to such architecture as _two stage. 
+Object detection, involves three main stages: the feature extraction stage, the classification stage and the detection or localization stage. In the literature the feature and classification stages are counted as one, called the classification stage and people refer to such architecture as two stage. 
 
-We also need to insert an additional requirement: to be able to detect objects in almost real time (20 frames per second) - a significant subset of what we call mission critical applications require it. Therefore will focus a specific family that is considered to be the canonical CNN architecture for detection - the family of Region CNNs.  
+We also need to insert an additional requirement: to be able to detect objects in almost real time (20 frames per second) - a significant subset of what we call mission critical applications require it. Therefore will focus a specific family that is considered to be the canonical CNN architecture for detection - the family of region-based detectors.  
+
+## Face Detection Demo
+
+Before we continue, you can try out [a face detection demo](https://colab.research.google.com/drive/1QnC7lV7oVFk5OZCm75fqbLAfD9qBy9bw?usp=sharing
+) - the notebook will use your webcam to detect your face in real time.
+
