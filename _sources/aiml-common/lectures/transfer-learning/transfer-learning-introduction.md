@@ -43,3 +43,7 @@ The output layer of the original model should usually be replaced because it is 
 
 A complementary approach is fine-tuning where we allow a upper subset of the base network to train while continue to keep frozen the weights of the bottom of the base.  See [this](https://colab.research.google.com/github/pytorch/tutorials/blob/gh-pages/_downloads/torchvision_finetuning_instance_segmentation.ipynb) for an example for a fine-tuning approach for the problem of instance segmentation. 
 
+
+## Workshop
+
+The application of transfer learning in Keras is demonstrated [here](https://keras.io/guides/transfer_learning/).

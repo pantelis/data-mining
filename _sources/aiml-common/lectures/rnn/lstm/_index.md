@@ -1,8 +1,8 @@
 # The Long Short-Term Memory (LSTM) Cell Architecture
 
-In the simple RNN we have seen the problem of exploding or vanishing gradients when [the span of back-propagation is large](http://ai.dinfo.unifi.it/paolo//ps/tnn-94-gradient.pdf) (large $\tau$). Using the conceptual IIR filter, that ultimately _integrates_ the input signal, we have seen that in order to avoid an exploding or vanishing impulse response, we need to control $w$. This is exactly what is being done in evolutionary RNN architectures that we will treat in this section called _gated RNNs_. The best known gated RNN architecture is called the LSTM _cell_ and in this case the weight $w$ is not fixed but it is determined based on the input sequence _context_. The architecture is shown below. 
+In the simple RNN we have seen the problem of exploding or vanishing gradients when [the span of back-propagation is large](https://www.researchgate.net/publication/5583935_Learning_long-term_dependencies_with_gradient_descent_is_difficult) (large $\tau$). Using the conceptual IIR filter, that ultimately _integrates_ the input signal, we have seen that in order to avoid an exploding or vanishing impulse response, we need to control $w$. This is **exactly** what is being done in evolutionary RNN architectures that we will treat in this section called _gated RNNs_. One of the best known gated RNN architectures is called the LSTM _cell_ and in this case the weight $w$ is not fixed but it is determined based on the input sequence _context_. The architecture is shown below. 
 
-![lstm-cell](images/lstm-cell-2.png)
+![lstm-cell](images/lstm.png)
 *LSTM architecture: It is divided into three areas: input (green), cell state (blue) and output (red). You can clearly see the outer ($\mathbf h_{t-1}$ )and the inner ($\mathbf s_{t-1}$) recurrence loops. The multipliers are Hadamard products aka they apply element-wise.*
 
 Because we need to capture the input context that involve going back several time steps in the past, we introduce an _additional_ inner recurrence loop that is effectively a variable length internal to the cell memory - we call this the _cell state_.  We employ another hidden unit called the _forget gate_  to learn the input context and the forgetting factor (equivalent to the $w$ we have seen in the IIR filter) i.e. the extent that the cell forgets the previous hidden state. We employ a couple of other gates as well: the _input gate_ and the _output gate_ as shown in the diagram below. 
@@ -46,7 +46,7 @@ $$f_t^i =\sigma \Big( \mathbf W_f(i,:) \mathbf h_{t-1}^i + \mathbf U_f(i,:) \mat
 
 Similar to the input gate, this factor determines the amount of the earlier cell state that is needed to be preserved. 
 
-Closing, you can expect backpropagation to work similarly to simple RNN case [albeit with more complicated expressions](https://christinakouridi.blog/2019/06/19/backpropagation-lstm/). In the LSTM workshop that follows you will have the opportunity to look at an LSTM training from scratch. 
+Closing, you can expect backpropagation to work similarly to simple RNN case [albeit with more complicated expressions](https://data-science-blog.com/blog/2020/09/07/back-propagation-of-lstm/). In the LSTM workshop that follows you will have the opportunity to look at an LSTM training from scratch. 
 
 Hyperparameter optimization for LSTMs is addressed more formally ["LSTM: A Search Space Odyssey"](https://arxiv.org/pdf/1503.04069v1.pdf)
 

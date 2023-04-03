@@ -72,7 +72,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../../../_static/logo.ico"/>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Processing Sequences Using RNN" href="../15_processing_sequences_using_rnns_and_cnns.html" />
+    <link rel="next" title="Introduction to NLP" href="../../nlp/nlp-intro/_index.html" />
     <link rel="prev" title="Simple RNN" href="../simple-rnn/_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -237,14 +237,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../simple-rnn/_index.html">Simple RNN</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">The Long Short-Term Memory (LSTM) Cell Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../15_processing_sequences_using_rnns_and_cnns.html">Processing Sequences Using RNN</a></li>
-
-
-
-
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Embeddings and NLP</span></p>
 <ul class="nav bd-sidenav">
@@ -539,8 +531,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-long-short-term-memory-lstm-cell-architecture">
 <h1>The Long Short-Term Memory (LSTM) Cell Architecture<a class="headerlink" href="#the-long-short-term-memory-lstm-cell-architecture" title="Permalink to this headline">#</a></h1>
-<p>In the simple RNN we have seen the problem of exploding or vanishing gradients when <a class="reference external" href="http://ai.dinfo.unifi.it/paolo//ps/tnn-94-gradient.pdf">the span of back-propagation is large</a> (large <span class="math notranslate nohighlight">\(\tau\)</span>). Using the conceptual IIR filter, that ultimately <em>integrates</em> the input signal, we have seen that in order to avoid an exploding or vanishing impulse response, we need to control <span class="math notranslate nohighlight">\(w\)</span>. This is exactly what is being done in evolutionary RNN architectures that we will treat in this section called <em>gated RNNs</em>. The best known gated RNN architecture is called the LSTM <em>cell</em> and in this case the weight <span class="math notranslate nohighlight">\(w\)</span> is not fixed but it is determined based on the input sequence <em>context</em>. The architecture is shown below.</p>
-<p><img alt="lstm-cell" src="../../../../_images/lstm-cell-2.png" />
+<p>In the simple RNN we have seen the problem of exploding or vanishing gradients when <a class="reference external" href="https://www.researchgate.net/publication/5583935_Learning_long-term_dependencies_with_gradient_descent_is_difficult">the span of back-propagation is large</a> (large <span class="math notranslate nohighlight">\(\tau\)</span>). Using the conceptual IIR filter, that ultimately <em>integrates</em> the input signal, we have seen that in order to avoid an exploding or vanishing impulse response, we need to control <span class="math notranslate nohighlight">\(w\)</span>. This is <strong>exactly</strong> what is being done in evolutionary RNN architectures that we will treat in this section called <em>gated RNNs</em>. One of the best known gated RNN architectures is called the LSTM <em>cell</em> and in this case the weight <span class="math notranslate nohighlight">\(w\)</span> is not fixed but it is determined based on the input sequence <em>context</em>. The architecture is shown below.</p>
+<p><img alt="lstm-cell" src="../../../../_images/lstm.png" />
 <em>LSTM architecture: It is divided into three areas: input (green), cell state (blue) and output (red). You can clearly see the outer (<span class="math notranslate nohighlight">\(\mathbf h_{t-1}\)</span> )and the inner (<span class="math notranslate nohighlight">\(\mathbf s_{t-1}\)</span>) recurrence loops. The multipliers are Hadamard products aka they apply element-wise.</em></p>
 <p>Because we need to capture the input context that involve going back several time steps in the past, we introduce an <em>additional</em> inner recurrence loop that is effectively a variable length internal to the cell memory - we call this the <em>cell state</em>.  We employ another hidden unit called the <em>forget gate</em>  to learn the input context and the forgetting factor (equivalent to the <span class="math notranslate nohighlight">\(w\)</span> we have seen in the IIR filter) i.e. the extent that the cell forgets the previous hidden state. We employ a couple of other gates as well: the <em>input gate</em> and the <em>output gate</em> as shown in the diagram below.</p>
 <p>In the following we are describing what each component is doing. Notation wise:</p>
@@ -575,7 +567,7 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[f_t^i =\sigma \Big( \mathbf W_f(i,:) \mathbf h_{t-1}^i + \mathbf U_f(i,:) \mathbf x_t^i + \mathbf b_f^i \Big) \]</div>
 <p>Similar to the input gate, this factor determines the amount of the earlier cell state that is needed to be preserved.</p>
-<p>Closing, you can expect backpropagation to work similarly to simple RNN case <a class="reference external" href="https://christinakouridi.blog/2019/06/19/backpropagation-lstm/">albeit with more complicated expressions</a>. In the LSTM workshop that follows you will have the opportunity to look at an LSTM training from scratch.</p>
+<p>Closing, you can expect backpropagation to work similarly to simple RNN case <a class="reference external" href="https://data-science-blog.com/blog/2020/09/07/back-propagation-of-lstm/">albeit with more complicated expressions</a>. In the LSTM workshop that follows you will have the opportunity to look at an LSTM training from scratch.</p>
 <p>Hyperparameter optimization for LSTMs is addressed more formally <a class="reference external" href="https://arxiv.org/pdf/1503.04069v1.pdf">“LSTM: A Search Space Odyssey”</a></p>
 </section>
 <section id="lstm-workshop">
@@ -635,11 +627,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../15_processing_sequences_using_rnns_and_cnns.html"
+       href="../../nlp/nlp-intro/_index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Processing Sequences Using RNN</p>
+        <p class="prev-next-title">Introduction to NLP</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

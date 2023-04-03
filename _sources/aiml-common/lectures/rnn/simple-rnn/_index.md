@@ -1,9 +1,3 @@
----
-title: Simple RNNs and their Backpropagation
-draft: false
-weight: 132
----
-
 # Simple RNN 
 
 The simple RNN architecture with just a single layer of neurons that receive the input $\mathbf{x}$ is shown below.
@@ -77,23 +71,25 @@ Lets now see how the training through backward propagation would work for RNNs.
 ![rnn-BPTT](images/rnn-BPTT.png)
 *Understanding RNN memory through BPTT procedure*
 
-Backpropagation is similar to that of feed-forward (FF) networks simply because the unrolled architecture resembles a FF one. But there is an important difference and we explain this using the above computational graph for the unrolled recurrences $t$ and $t-1$. During computation of the variable $\mathbf h_t$ we use the value of the variable $\mathbf h_{t-1}$ calculated in the previous recurrence. So when we apply the chain rule in the backward phase of BP, for all nodes that involve the such variables with recurrent dependencies, the end result is that _non local_ gradients from previous backpropagation steps ($t$ in the figure) appear. This is effectively why we say that simple RNNs feature _memory_. This is in contrast to the FF network case where during BP only local to each gate gradients where involved as we have seen in the the DNN chapter. 
+Backpropagation is similar to that of feed-forward (FF) networks simply because the unrolled architecture resembles a FF one. But there is an important difference and we can see it using the above computational graph for the unrolled recurrences $t$ and $t-1$. During computation of the variable $\mathbf h_t$ we use the value of the variable $\mathbf h_{t-1}$ calculated in the previous recurrence. So when we apply the chain rule in the backward phase of BP, for all nodes that involve such variables with recurrent dependencies, the end result is that _non local_ gradients appear from previous backpropagation steps ($t$ in the figure). This is effectively why we say that simple RNNs feature _memory_. This is in contrast to the FF network case where during BP only local to each gate gradients where involved as we have seen earlier. 
 
 The key point to notice in the backpropagation in recurrence $t-1$ is the junction between $\tanh$ and $\mathbf V \mathbf h_{t-1}$. This junction brings in the gradient $\nabla_{\mathbf h_{t-1}}L_t$ from the backpropagation of the $\mathbf W h_{t-1}$ node in recurrence $t$ and just because its a junction, it is added to the backpropagated gradient from above in the current recurrence $t-1$ i.e.
 
 $$\nabla_{\mathbf h_{t-1}}L_{t-1} \leftarrow \nabla_{\mathbf h_{t-1}}L_{t-1} + \nabla_{\mathbf h_{t-1}}L_t $$ 
 
-Ian Goodfellow's book section 10.2.2 provides the exact equations - please note that you need to know only the intuition behind computational graphs for RNNs. In practice BPTT is truncated to avoid having to do one full forward pass and one full reverse pass through the training dataset of a e.g. language model that is usually very large, to do a single gradient update. 
+[Ian Goodfellow's section 10.2.2](https://www.deeplearningbook.org/contents/rnn.html) provides the exact equations - please note that you need to know only the intuition behind computational graphs for RNNs. In practice BPTT is truncated to avoid having to do one full forward pass and one full reverse pass through the training dataset of a e.g. language model that is usually very large, to do a single gradient update. 
 
 
 ## Vanishing or exploding gradients
 
-In the figure below we have drafted a conceptual version of what is happening with recurrences over time. Its called an infinite impulse response filter for reasons that will be apparent shortly. 
+```{admonition} An IIR filter analogy
+
+In the figure below we have drafted a conceptual version of what is happening with recurrences over time. Its called an Infinite Impulse Response (IIR) filter for reasons that will be apparent shortly. 
 
 ![rnn-IIR](images/rnn-IIR.png)
 *Infinite Impulse Response (IIR) filter with weight $w$*
 
-With $D$ denoting a unit delay, the recurrence formula for this system is:
+With $D$ denoting a unit delay (a memory location that we can store and retrieve a value), the recurrence formula for this system is:
 
 $$h_t = w h_{t-1} + x_t$$
 
@@ -106,15 +102,18 @@ $$h_3 = -0.9 h_{2} + \delta_3 = -0.729$$
 
 With $w=-0.9$, the h_t (called impulse response) follows a decaying exponential envelope while obviously with $w > 1.0$ it would follow an exponentially increasing envelope. Such recurrences if continue will result in vanishing or exploding responses long after the impulse showed up in the input $t=0$.  
 
-Using this primitive IIR filter as an example, we can see that the weight plays a crucial role in the impulse response. In a similar fashion, the RNN hidden state recurrence, in the backwards pass of BP that extends from the $t=\tau$ to $t=1$ can make the gradient, when $\tau$ is large, either _vanish_ or _explode_. Instead of a scalar $w$ we have matrices $\mathbf W$ and instead of $h$ we have gradients $\nabla_{\mathbf h_{t}}L_{t}$. This is discussed in [this](http://proceedings.mlr.press/v28/pascanu13.pdf) paper. 
+Using this primitive IIR filter as an analogy, we can see that the weight plays a crucial role in the impulse response. 
 
+```
 
-Simplistically thinking, the gradient of the $\tanh$ non-linearity shown below, is between 0 and 1 suppressing the gradients and slowing down training. 
+In a similar fashion, the RNN hidden state recurrence, in the backwards pass that extends from the $t=\tau$ to $t=1$ can make the gradient, when $\tau$ is large, either _vanish_ or _explode_. Instead of a scalar $w$ we saw in the IIR filter we have matrices $\mathbf W$ and instead of $h$ we have gradients $\nabla_{\mathbf h_{t}}L_{t}$. See [this](http://proceedings.mlr.press/v28/pascanu13.pdf) paper for details. 
+
+The gradient of the $\tanh$ non-linearity shown below, is between 0 and 1 suppressing the gradients and slowing down training. 
 
 ![tanh-derivative](images/tanh-derivative.png)
 _Derivative of $\tanh$ non-linearity_
 
-Similar the successive application of the $W$ matrix is causing explosive gradients as simplistically (ignoring the non-linearity) the hidden state can be written as 
+Similar the successive application of the $W$ matrix is causing explosive gradients as simplistically (ignoring the non-linearity) the hidden state can be written as: 
 
 $$\mathbf h_{t} = \mathbf W \mathbf h_{t-1}$$
 
@@ -122,4 +121,4 @@ making after $\tau$ steps
 
 $$\mathbf h_{t} = \mathbf W^\tau \mathbf h_{0}$$
 
-If the magnitude of the eigenvalues are less than 1.0 the matrix will create vanishing gradients as it is involved in the $\nabla_{\mathbf h_{t}}L_{t}$ expression (see equations in section 10.2.2 in the textbook).  This issue is addressed using the LSTM type of cells. 
+If the magnitude of the eigenvalues are less than 1.0 the matrix will create vanishing gradients as it is involved in the $\nabla_{\mathbf h_{t}}L_{t}$ expression (see [equations in section 10.2.2](https://www.deeplearningbook.org/contents/rnn.html)).  This issue is addressed using an evolved RNN architecture called Long Short Term Memory (LSTM). 

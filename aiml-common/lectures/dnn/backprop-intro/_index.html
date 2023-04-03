@@ -237,14 +237,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../rnn/introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../rnn/simple-rnn/_index.html">Simple RNN</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../rnn/lstm/_index.html">The Long Short-Term Memory (LSTM) Cell Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../rnn/15_processing_sequences_using_rnns_and_cnns.html">Processing Sequences Using RNN</a></li>
-
-
-
-
-
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Embeddings and NLP</span></p>
 <ul class="nav bd-sidenav">
@@ -644,7 +636,7 @@ f'(x)
 <td><p>Its local gradients are the input values (except switched), and this is multiplied by the gradient on its output during the chain rule. Notice that if one of the inputs to the multiply gate is very small and the other is very big, then the multiply gate will do something slightly non intuitive: it will assign a relatively huge gradient to the small input and a tiny gradient to the large input. Note that in linear classifiers where the weights are dot produced <span class="math notranslate nohighlight">\(w^Tx_i\)</span> (multiplied) with the inputs, this implies that the scale of the data has an effect on the magnitude of the gradient for the weights. For example, if you multiplied all input data examples <span class="math notranslate nohighlight">\(x_i\)</span> by 1000 during preprocessing, then the gradient on the weights will be 1000 times larger, and you’d have to lower the learning rate by that factor to compensate. This is why preprocessing matters a lot.</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Branch</strong>  (or split)</p></td>
-<td><p>This gate takes a single input and produces a number of identical copies at the output. <span class="math notranslate nohighlight">\(x_k = x_{in}\)</span> With <span class="math notranslate nohighlight">\(k=\{1, \dots, K\}\)</span>, backpropagating the gate will produce, <span class="math notranslate nohighlight">\(dx_{in} = \frac{\partial f}{\partial x_{in}} = \sum_k dx_k\)</span>. This gate was met in the example above and applied in lines were we have <code class="docutils literal notranslate"><span class="pre">dx+=</span></code> and <code class="docutils literal notranslate"><span class="pre">dy+=</span></code> expressions.</p></td>
+<td><p>This gate takes a single input and produces a number of identical copies at the output. <span class="math notranslate nohighlight">\(x_k = x_{in}\)</span> With <span class="math notranslate nohighlight">\(k=\{1, \dots, K\}\)</span>, backpropagating the gate will produce, <span class="math notranslate nohighlight">\(dx_{in} = \frac{\partial f}{\partial x_{in}} = \sum_k dx_k\)</span>. This gate was met in the example above and applied in lines were we have <code class="docutils literal notranslate"><span class="pre">dx+=</span></code> and <code class="docutils literal notranslate"><span class="pre">dy+=</span></code> expressions. To understand why that is, consider the general form of <a class="reference external" href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/multivariable-chain-rule/v/multivariable-chain-rule">multivariate chain rule</a> and make sure you also understand <a class="reference external" href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/multivariable-chain-rule/v/multivariable-chain-rule-intuition">its intuition</a>.</p></td>
 </tr>
 </tbody>
 </table>
