@@ -91,12 +91,14 @@ parts:
   - caption:  Natural Language Processing
     chapters:
     - file: aiml-common/lectures/nlp/nlp-intro/_index.md 
-    - file: aiml-common/lectures/nlp/word2vec/_index.md 
-    - file: aiml-common/lectures/nlp/word2vec/word2vec-workshop.md 
+    - file: aiml-common/lectures/nlp/word2vec/word2vec_from_scratch.ipynb 
+    - file: aiml-common/lectures/nlp/word2vec/word2vec_tensorflow_tutorial.ipynb 
     - file: aiml-common/lectures/nlp/language-models/_index.md   
     - file: aiml-common/lectures/nlp/language-models/cnn-language-model/index.ipynb
     - file: aiml-common/lectures/nlp/language-models/simple-rnn-language-model/index.ipynb
     - file: aiml-common/lectures/nlp/language-models/lstm-language-model/index.ipynb
+    - file: aiml-common/lectures/nlp/nmt/_index.md     
+    - file: aiml-common/lectures/nlp/nmt/lstm_seq2seq.ipynb     
   
   - caption: Classical Learning Methods
     # numbered: 3
