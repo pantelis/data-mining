@@ -72,7 +72,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../../../_static/logo.ico"/>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="The Long Short-Term Memory (LSTM) Cell Architecture" href="../lstm/_index.html" />
+    <link rel="next" title="The Long Short-Term Memory (LSTM) Architecture" href="../lstm/_index.html" />
     <link rel="prev" title="Introduction to Recurrent Neural Networks (RNN)" href="../introduction/_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -236,17 +236,23 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Simple RNN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lstm/_index.html">The Long Short-Term Memory (LSTM) Cell Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lstm/_index.html">The Long Short-Term Memory (LSTM) Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_series_using_simple_rnn_lstm.html">Time Series Prediction using RNNs</a></li>
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Embeddings and NLP</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-intro/_index.html">Introduction to NLP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nlp/word2vec/_index.html">Word2Vec Embeddings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nlp/word2vec/word2vec-workshop.html">Word2Vec Workshop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nlp/language-models/_index.html">RNN Language Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model.html">Simple RNN Language Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nlp/language-models/cnn-language-model.html">CNN Language Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nlp/nmt/_index.html">Neural Machine Translation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp/language-models/cnn-language-model/index.html">CNN Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model/index.html">Simple RNN Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp/language-models/lstm-language-model/index.html">Vanilla LSTM implementation from scratch with Numpy</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Learning Methods</span></p>
 <ul class="nav bd-sidenav">
@@ -532,11 +538,15 @@ document.write(`
 <h1>Simple RNN<a class="headerlink" href="#simple-rnn" title="Permalink to this headline">#</a></h1>
 <p>The simple RNN architecture with just a single layer of neurons that receive the input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is shown below.</p>
 <p><img alt="simple-rnn-single-layer" src="../../../../_images/simple-rnn-simple-layer.png" />
-<em>Simple RNN with just a single layer of <span class="math notranslate nohighlight">\(n_neurons\)</span> mapping the input to the hidden-state at each time step</em></p>
+<em>Simple RNN layer with <span class="math notranslate nohighlight">\(n_{neurons}\)</span> RNN neurones mapping the input to the hidden-state at each time step.</em></p>
 <p>A more practical simple RNN architecture is shown below.</p>
 <p><img alt="rnn-hidden-recurrence" src="../../../../_images/rnn-hidden-recurrence.png" /></p>
 <p><em>Simple RNN with recurrences between hidden units. This architecture can compute any computable function and therefore is a <a class="reference external" href="http://alvyray.com/CreativeCommons/BizCardUniversalTuringMachine_v2.3.pdf">Universal Turing Machine</a>.</em></p>
-<p>Notice how the path from input <span class="math notranslate nohighlight">\(\mathbf x_{t-1}\)</span> affects the label <span class="math notranslate nohighlight">\(\mathbf y_{t}\)</span> and also the conditional independence between <span class="math notranslate nohighlight">\(\mathbf y\)</span> given <span class="math notranslate nohighlight">\(\mathbf x\)</span>. Please note that this is not a computational graph rather one way to represent the hidden state transfer between recurrences.</p>
+<p>Notice how the path from input <span class="math notranslate nohighlight">\(\mathbf x_{t-1}\)</span> affects the label <span class="math notranslate nohighlight">\(\mathbf y_{t}\)</span> and also the conditional independence between <span class="math notranslate nohighlight">\(\mathbf y\)</span> given <span class="math notranslate nohighlight">\(\mathbf x\)</span>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please note that to use this diagram for backpropagation, you must flip the roles of nodes and edges shown. Tensors must be on edges and RNN functions (gates) must be in  the nodes of the graph.</p>
+</div>
 <section id="dimensioning-simple-rnns">
 <h2>Dimensioning Simple RNNs<a class="headerlink" href="#dimensioning-simple-rnns" title="Permalink to this headline">#</a></h2>
 <p>In the table below <span class="math notranslate nohighlight">\(m\)</span> is the number of examples in the mini-batch.</p>
@@ -587,30 +597,33 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[\mathbf{\hat y_t} = \mathtt{softmax}(\mathbf o_t)\]</div>
 <div class="math notranslate nohighlight">
-\[L(\mathbf x_1, \dots , \mathbf x_{\tau}, \mathbf y_1, \dots , \mathbf y_{\tau}) = D_{KL}[\hat p_{data}(\mathbf y | \mathbf x) || p_{model}(\mathbf y | \mathbf x; \mathbf w)]\]</div>
+\[L(\hat{\mathbf y}_1, \dots , \hat{\mathbf y}_{\tau}, \mathbf y_1, \dots , \mathbf y_{\tau}) = D_{KL}[\hat p_{data}(\mathbf y | \mathbf x) || p_{model}(\mathbf y | \mathbf x; \mathbf \theta)]\]</div>
 <div class="math notranslate nohighlight">
-\[= - \mathbb E_{\mathbf y | \mathbf x \sim \hat{p}_{data}} \log p_{model}(\mathbf y | \mathbf x ; \mathbf w)  = - \sum_t \log p_{model}(y_t | \mathbf x_1, \dots, \mathbf x_t ; \mathbf w)\]</div>
-<p>Notice that RNNs can model very generic distributions  <span class="math notranslate nohighlight">\(\log p_{model}(\mathbf x, \mathbf y ; \mathbf w)\)</span>. The simple RNN architecture above, effectively models the posterior distribution <span class="math notranslate nohighlight">\(\log p_{model}(\mathbf y | \mathbf x ; \mathbf w)\)</span>  and based on a conditional independence assumption it factorizes into <span class="math notranslate nohighlight">\(\sum_t \log p_{model}(y_t | \mathbf x_1, \dots, \mathbf x_t ; \mathbf w)\)</span>.</p>
-<p>Note that by connecting the <span class="math notranslate nohighlight">\(\mathbf y_{t-1}\)</span> to <span class="math notranslate nohighlight">\(\mathbf h_t\)</span> via a matrix e.g. <span class="math notranslate nohighlight">\(\mathbf R\)</span> we can avoid this simplifying assumption and be able to model an arbitrary distribution <span class="math notranslate nohighlight">\(\log p_{model}(\mathbf y | \mathbf x ; \mathbf w)\)</span>. In other words just like in the other DNN architectures, connectivity directly affects the representational capacity of the hypothesis set.</p>
+\[= - \mathbb E_{\mathbf y | \mathbf x \sim \hat{p}_{data}} \log p_{model}(\mathbf y | \mathbf x ; \mathbf \theta)  = - \sum_t \log p_{model}(y_t | \mathbf x_1, \dots, \mathbf x_t ; \mathbf \theta)\]</div>
+<p>Notice that RNNs can model very generic distributions  <span class="math notranslate nohighlight">\(\log p_{model}(\mathbf x, \mathbf y ; \mathbf \theta)\)</span>. The simple RNN architecture above, effectively models the posterior distribution <span class="math notranslate nohighlight">\(\log p_{model}(\mathbf y | \mathbf x ; \mathbf \theta)\)</span>  and based on a conditional independence assumption it factorizes into <span class="math notranslate nohighlight">\(\sum_t \log p_{model}(y_t | \mathbf x_1, \dots, \mathbf x_t ; \mathbf \theta)\)</span>.</p>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note</p>
+<p>Altough we dont expand further here, note that by connecting the <span class="math notranslate nohighlight">\(\mathbf y_{t-1}\)</span> to <span class="math notranslate nohighlight">\(\mathbf h_t\)</span> via a matrix e.g. <span class="math notranslate nohighlight">\(\mathbf R\)</span> we can avoid this simplifying assumption and be able to model an arbitrary distribution <span class="math notranslate nohighlight">\(\log p_{model}(\mathbf y | \mathbf x ; \mathbf \theta)\)</span>. In other words just like in the other DNN architectures, connectivity directly affects the representational capacity of the hypothesis set.</p>
+</div>
 <p>In many instances we have problems where it only matters the label <span class="math notranslate nohighlight">\(y_\tau\)</span> at the end of the sequence. Lets say that you are classifying speech or video inside the cabin of a car to detect the psychological state of the driver. The same architecture shown above can also represent such problems - the only difference is the only the <span class="math notranslate nohighlight">\(\mathbf o_\tau\)</span>, <span class="math notranslate nohighlight">\(L_\tau\)</span> and <span class="math notranslate nohighlight">\(y_\tau\)</span> will be considered.</p>
 <p>Lets see an example to understand better the forward propagation equations.</p>
 <p><img alt="example-sentence" src="../../../../_images/example-sentence.png" />
 <em>Example sentence as input to the RNN</em></p>
-<p>In the figure above you have a hypothetical document (a sentence) that is broken into what in natural language processing called <em>tokens</em>. Lets say that a token is a word in this case. In the simpler case where we need a classification of the whole document, given that <span class="math notranslate nohighlight">\(\tau=6\)</span>, we are going to receive at t=1, the first token <span class="math notranslate nohighlight">\(\mathbf x_1\)</span> and with an input hidden state  <span class="math notranslate nohighlight">\(\mathbf h_0 = 0\)</span> we will calculate the forward equations for <span class="math notranslate nohighlight">\(\mathbf h_1\)</span>, ignoring the output <span class="math notranslate nohighlight">\(\mathbf o_1\)</span> and repeat the unrolling when the next input <span class="math notranslate nohighlight">\(\mathbf x_2\)</span> comes in until we reach the end of sentence token <span class="math notranslate nohighlight">\(\mathbf x_6\)</span> which in this case will calculate the output <span class="math notranslate nohighlight">\(y_6\)</span> and loss</p>
+<p>In the figure above you have a hypothetical document (a sentence) that is broken into <em>tokens</em> - lets say that a token is a word in this case. In the simpler case where we need a classification of the whole document, given that <span class="math notranslate nohighlight">\(\tau=6\)</span>, we are going to receive at t=1, the first token <span class="math notranslate nohighlight">\(\mathbf x_1\)</span> and with an input hidden state  <span class="math notranslate nohighlight">\(\mathbf h_0 = 0\)</span> we will calculate the forward equations for <span class="math notranslate nohighlight">\(\mathbf h_1\)</span>, ignoring the output <span class="math notranslate nohighlight">\(\mathbf o_1\)</span> and repeat the unrolling when the next input <span class="math notranslate nohighlight">\(\mathbf x_2\)</span> comes in until we reach the end of sentence token <span class="math notranslate nohighlight">\(\mathbf x_6\)</span> which in this case will calculate the output <span class="math notranslate nohighlight">\(y_6\)</span> and loss</p>
 <div class="math notranslate nohighlight">
 \[- \log p_{model} (y_6|\mathbf x_1, \dots , \mathbf x_6; \mathbf  w)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf w = \{ \mathbf W, \mathbf U, \mathbf V, \mathbf b, \mathbf c \}\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(\mathbf \theta = \{ \mathbf W, \mathbf U, \mathbf V, \mathbf b, \mathbf c \}\)</span>.</p>
 </section>
 <section id="back-propagation-through-time-bptt">
 <h2>Back-Propagation Through Time (BPTT)<a class="headerlink" href="#back-propagation-through-time-bptt" title="Permalink to this headline">#</a></h2>
 <p>Lets now see how the training through backward propagation would work for RNNs.</p>
 <p><img alt="rnn-BPTT" src="../../../../_images/rnn-BPTT.png" />
 <em>Understanding RNN memory through BPTT procedure</em></p>
-<p>Backpropagation is similar to that of feed-forward (FF) networks simply because the unrolled architecture resembles a FF one. But there is an important difference and we can see it using the above computational graph for the unrolled recurrences <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t-1\)</span>. During computation of the variable <span class="math notranslate nohighlight">\(\mathbf h_t\)</span> we use the value of the variable <span class="math notranslate nohighlight">\(\mathbf h_{t-1}\)</span> calculated in the previous recurrence. So when we apply the chain rule in the backward phase of BP, for all nodes that involve such variables with recurrent dependencies, the end result is that <em>non local</em> gradients appear from previous backpropagation steps (<span class="math notranslate nohighlight">\(t\)</span> in the figure). This is effectively why we say that simple RNNs feature <em>memory</em>. This is in contrast to the FF network case where during BP only local to each gate gradients where involved as we have seen earlier.</p>
-<p>The key point to notice in the backpropagation in recurrence <span class="math notranslate nohighlight">\(t-1\)</span> is the junction between <span class="math notranslate nohighlight">\(\tanh\)</span> and <span class="math notranslate nohighlight">\(\mathbf V \mathbf h_{t-1}\)</span>. This junction brings in the gradient <span class="math notranslate nohighlight">\(\nabla_{\mathbf h_{t-1}}L_t\)</span> from the backpropagation of the <span class="math notranslate nohighlight">\(\mathbf W h_{t-1}\)</span> node in recurrence <span class="math notranslate nohighlight">\(t\)</span> and just because its a junction, it is added to the backpropagated gradient from above in the current recurrence <span class="math notranslate nohighlight">\(t-1\)</span> i.e.</p>
+<p>Backpropagation is similar to that of other neural networks simply because the unrolled architecture resembles a feed forward arrangement. But there is an important difference and we can see it using the above computational graph for the unrolled recurrences <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(t-1\)</span>. During computation of the variable <span class="math notranslate nohighlight">\(\mathbf h_t\)</span> we use the value of the variable <span class="math notranslate nohighlight">\(\mathbf h_{t-1}\)</span> calculated in the previous recurrence. So when we apply the chain rule in the backward phase of BP, for all nodes that involve such variables with recurrent dependencies, the end result is that <em>non local</em> gradients appear from previous backpropagation steps (<span class="math notranslate nohighlight">\(t\)</span> in the figure). This is in contrast to other networks where during BP only local to each gate gradients where involved as we have seen earlier.</p>
+<p>This is effectively why we say that simple RNNs <strong>feature <em>memory</em></strong>.  The key point to notice in the backpropagation in recurrence <span class="math notranslate nohighlight">\(t-1\)</span> is the junction between <span class="math notranslate nohighlight">\(\tanh\)</span> and <span class="math notranslate nohighlight">\(\mathbf V \mathbf h_{t-1}\)</span>. This junction brings in the gradient <span class="math notranslate nohighlight">\(\nabla_{\mathbf h_{t-1}}L_t\)</span> from the backpropagation of the <span class="math notranslate nohighlight">\(\mathbf W h_{t-1}\)</span> node in recurrence <span class="math notranslate nohighlight">\(t\)</span> and just because its a junction, it is added to the backpropagated gradient from above in the current recurrence <span class="math notranslate nohighlight">\(t-1\)</span> i.e.</p>
 <div class="math notranslate nohighlight">
 \[\nabla_{\mathbf h_{t-1}}L_{t-1} \leftarrow \nabla_{\mathbf h_{t-1}}L_{t-1} + \nabla_{\mathbf h_{t-1}}L_t \]</div>
-<p><a class="reference external" href="https://www.deeplearningbook.org/contents/rnn.html">Ian Goodfellow’s section 10.2.2</a> provides the exact equations - please note that you need to know only the intuition behind computational graphs for RNNs. In practice BPTT is truncated to avoid having to do one full forward pass and one full reverse pass through the training dataset of a e.g. language model that is usually very large, to do a single gradient update.</p>
+<p><a class="reference external" href="https://www.deeplearningbook.org/contents/rnn.html">Ian Goodfellow’s section 10.2.2</a> provides the exact equations - please note that you need to know only the intuition behind computational graphs for RNNs. In practice, BPTT is [<em>truncated</em>](<a class="reference external" href="https://proceedings.mlr.press/v115/aicher20a.html#:~:text=Truncated%20backpropagation%20through%20time%20(TBPTT,a%20fixed%20number%20of%20lags.)">https://proceedings.mlr.press/v115/aicher20a.html#:~:text=Truncated backpropagation through time (TBPTT,a fixed number of lags.)</a> to avoid having to do one full forward pass and one full reverse pass through the training dataset of a e.g. language model that is usually very large, to do a single gradient update. When the truncation level is not sufficiently large, the bias introduced can cause SGD to not converge. In practice, a large truncation size is chosen heuristically (e.g. larger than the expected ‘memory’ of the system) or via cross-validation.</p>
 </section>
 <section id="vanishing-or-exploding-gradients">
 <h2>Vanishing or exploding gradients<a class="headerlink" href="#vanishing-or-exploding-gradients" title="Permalink to this headline">#</a></h2>
@@ -693,7 +706,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The Long Short-Term Memory (LSTM) Cell Architecture</p>
+        <p class="prev-next-title">The Long Short-Term Memory (LSTM) Architecture</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

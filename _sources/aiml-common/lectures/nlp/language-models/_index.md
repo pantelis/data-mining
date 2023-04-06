@@ -1,8 +1,8 @@
 # RNN Language Models
 
-> These notes heavily borrowing from [the CS229N 2019 set of notes on Language Models](https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1194/readings/cs224n-2019-notes05-LM_RNN.pdf). 
+> These notes heavily borrowing from [the CS224N set of notes on Language Models](https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1224/index.html#coursework). 
 
-## What is a language model? 
+## The need for neural language models
 
 ![language-model-google-search](images/language-model-google-search.png)
 *Language model example that completes the search query. We need a language model that given a sequence of words $\{ \mathbf w_1, ..., \mathbf w_t \}$ it returns
@@ -11,34 +11,46 @@ $$p(\mathbf w_{t+1} | \mathbf w_1, ..., \mathbf w_t)$$
 
 Language models in general compute the probability of occurrence of a number of words in a particular sequence.  How we can build language models though ?
 
- The probability of a sequence of $m$ words $\{\mathbf w_1, ..., \mathbf w_m \}$ is denoted as $p(\mathbf w_1,...,\mathbf w_m)$. Since the number of words coming before a word, $\mathbf w_i$, varies depending on its location in the input document, $p(\mathbf w_1,...,\mathbf w_m)$ is usually conditioned on a window of $n$ previous words rather than all other words:
+ The probability of a sequence of $m$ words $\{\mathbf w_1, ..., \mathbf w_m \}$ is denoted as $p(\mathbf w_1,...,\mathbf w_m)$. For example the probability of the sentence "The cat sat on the mat" is $p(\text{The}, \text{cat}, \text{sat}, \text{on}, \text{the}, \text{mat})$.
 
-$$ p(\mathbf w_1,...,\mathbf w_m) = \prod_{i=1}^{i=m} p(\mathbf w_{i} | \mathbf w_1, ..., \mathbf w_{i-1}) \approx \prod_{i=1}^{i=m} p(\mathbf w_{i} | \mathbf w_{i-n}, ..., \mathbf w_{i-1})$$
+We can simply use the chain rule of probability to compute the probability of a sequence of words without making any assumptions about the structure of the language. For example, the probability of the sentence "The cat sat on the mat" is:
+
+$$p(\text{The}, \text{cat}, \text{sat}, \text{on}, \text{the}, \text{mat}) = p(\text{The}) p(\text{cat} | \text{The}) p(\text{sat} | \text{The}, \text{cat}) p(\text{on} | \text{cat}, \text{sat}) p(\text{the} | \text{sat}, \text{on}) p(\text{mat} | \text{on}, \text{the})$$
+
+In general, 
+
+$$ p(\mathbf w_1,...,\mathbf w_m) = \prod_{i=1}^{i=m} p(\mathbf w_{i} | \mathbf w_1, ..., \mathbf w_{i-1})$$
+
+Since the counting of all these probabilities is intractable, we will use a simpler model that makes some assumptions about the structure of the language. The assumption we usually make is that the probability of a word depends only on a fixed number of previous words. For example, we can assume that the probability of a word depends only on the previous n-words. This assumption is called the n-gram assumption.
+
+$$ p(\mathbf w_1,...,\mathbf w_m)  \approx \prod_{i=1}^{i=m} p(\mathbf w_{i} | \mathbf w_{i-1}, ..., \mathbf w_{i-n+1})$$
 
 To compute these probabilities, the count of each n-gram would be compared against the frequency of each word. For instance, if the model takes bi-grams, the frequency of each bi-gram, calculated via combining a word with its previous word, would be divided by the frequency of the corresponding unigram. For example for bi-gram and trigram models the above equation becomes:
 
 $$p(\mathbf w_2 | \mathbf w_1) = \dfrac {count(\mathbf w_1,\mathbf w_2)}{count(\mathbf w_1)}$$	
 $$p(\mathbf w_3 | \mathbf w_1, \mathbf w_2) = \dfrac {count(\mathbf w_1, \mathbf w_2, \mathbf w_3)}{count(\mathbf w_1, \mathbf w_2)}$$
 
-Counting these probabilities is notoriously space (memory) inefficient as we need to store the counts for all possible grams in the corpus. At the same time when we have no events in the denominators to count we have no possibility of estimating such probabilities (the so-called sparsity problem).  
+Counting these probabilities is notoriously space (memory) inefficient as we need to store the counts for all possible grams in the corpus. At the same time, when we have no events in the denominators to count we have no possibility of estimating such probabilities (the so-called sparsity problem).  
 
 To solve these issues we will create neural models that are able to predict the required word. 
 
 
-## LSTM Language Models
+## RNN Language Models
 
 When we focus on making predictions based on a fixed window of context (i.e. the $n$ previous words), in some cases, the window may not be sufficient to capture the context. For instance, consider a case where an article discusses the history of Spain and France and somewhere later in the text, it reads "The two countries went on a battle"; clearly the information presented in this sentence alone is not sufficient to identify the name of the two countries. 
 
-Out of the many neural architectures and to provide the required long memory (up to a point that is) we will use the LSTM architectures as shown next. 
+Out of the many neural architectures and to provide the required long memory (up to a point that is) we will use the RNN architectures as shown next. 
 
 ![rnn-language-model](images/rnn-language-model-words.png)
 _RNN Language Model. Note the different notation and certain replacements must be made: $W_h → W$, $W_e \rightarrow U$, $U → V$_
 
-To train an LSTM language model 
+To train an RNN language model 
 
 1. We start with  big corpus of text which is a sequence of tokens $\mathbf x_1, ..., \mathbf x_{T}$ where T is the number of words / tokens in the corpus. 
+
 2. Every time step we feed one word at a time to the LSTM and compute the output probability distribution $\mathbf{\hat  y}_t$, which is, by construction, a _conditional_ probability distribution of every word in the dictionary given the words we have seen so far. 
-3. The loss function at time step $t$ is the classic cross entropy loss between the predicted probability distribution and the distribution that corresponds to the one-hot encoded true next token. 
+
+3. The loss function at time step $t$ is the CE between the predicted probability distribution and the distribution that corresponds to the one-hot encoded next token. 
    
 $$J_t(\theta) = CE(\mathbf{\hat  y}_t, \mathbf{y}_t) = - \sum_j^{|V|} \mathbf{y}_{t,j} \log \mathbf{\hat y}_{t,j} = - \log \mathbf{\hat y}_{t,j}$$ 
 

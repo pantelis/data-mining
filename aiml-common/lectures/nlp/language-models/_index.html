@@ -72,7 +72,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../../../_static/logo.ico"/>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Simple RNN Language Model" href="simple-rnn-language-model.html" />
+    <link rel="next" title="CNN Language Model" href="cnn-language-model/index.html" />
     <link rel="prev" title="Word2Vec Workshop" href="../word2vec/word2vec-workshop.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -236,17 +236,23 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../rnn/introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../rnn/simple-rnn/_index.html">Simple RNN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../rnn/lstm/_index.html">The Long Short-Term Memory (LSTM) Cell Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/lstm/_index.html">The Long Short-Term Memory (LSTM) Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/time_series_using_simple_rnn_lstm.html">Time Series Prediction using RNNs</a></li>
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Embeddings and NLP</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../nlp-intro/_index.html">Introduction to NLP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../word2vec/_index.html">Word2Vec Embeddings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../word2vec/word2vec-workshop.html">Word2Vec Workshop</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">RNN Language Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simple-rnn-language-model.html">Simple RNN Language Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cnn-language-model.html">CNN Language Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nmt/_index.html">Neural Machine Translation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cnn-language-model/index.html">CNN Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simple-rnn-language-model/index.html">Simple RNN Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lstm-language-model/index.html">Vanilla LSTM implementation from scratch with Numpy</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Learning Methods</span></p>
 <ul class="nav bd-sidenav">
@@ -513,8 +519,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-language-model">What is a language model?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lstm-language-models">LSTM Language Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-neural-language-models">The need for neural language models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">RNN Language Models</a></li>
 </ul>
             </nav>
         </div>
@@ -529,37 +535,44 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="rnn-language-models">
 <h1>RNN Language Models<a class="headerlink" href="#rnn-language-models" title="Permalink to this headline">#</a></h1>
 <blockquote>
-<div><p>These notes heavily borrowing from <a class="reference external" href="https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1194/readings/cs224n-2019-notes05-LM_RNN.pdf">the CS229N 2019 set of notes on Language Models</a>.</p>
+<div><p>These notes heavily borrowing from <a class="reference external" href="https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1224/index.html#coursework">the CS224N set of notes on Language Models</a>.</p>
 </div></blockquote>
-<section id="what-is-a-language-model">
-<h2>What is a language model?<a class="headerlink" href="#what-is-a-language-model" title="Permalink to this headline">#</a></h2>
+<section id="the-need-for-neural-language-models">
+<h2>The need for neural language models<a class="headerlink" href="#the-need-for-neural-language-models" title="Permalink to this headline">#</a></h2>
 <p><img alt="language-model-google-search" src="../../../../_images/language-model-google-search.png" />
 *Language model example that completes the search query. We need a language model that given a sequence of words <span class="math notranslate nohighlight">\(\{ \mathbf w_1, ..., \mathbf w_t \}\)</span> it returns</p>
 <div class="math notranslate nohighlight">
 \[p(\mathbf w_{t+1} | \mathbf w_1, ..., \mathbf w_t)\]</div>
 <p>Language models in general compute the probability of occurrence of a number of words in a particular sequence.  How we can build language models though ?</p>
-<p>The probability of a sequence of <span class="math notranslate nohighlight">\(m\)</span> words <span class="math notranslate nohighlight">\(\{\mathbf w_1, ..., \mathbf w_m \}\)</span> is denoted as <span class="math notranslate nohighlight">\(p(\mathbf w_1,...,\mathbf w_m)\)</span>. Since the number of words coming before a word, <span class="math notranslate nohighlight">\(\mathbf w_i\)</span>, varies depending on its location in the input document, <span class="math notranslate nohighlight">\(p(\mathbf w_1,...,\mathbf w_m)\)</span> is usually conditioned on a window of <span class="math notranslate nohighlight">\(n\)</span> previous words rather than all other words:</p>
+<p>The probability of a sequence of <span class="math notranslate nohighlight">\(m\)</span> words <span class="math notranslate nohighlight">\(\{\mathbf w_1, ..., \mathbf w_m \}\)</span> is denoted as <span class="math notranslate nohighlight">\(p(\mathbf w_1,...,\mathbf w_m)\)</span>. For example the probability of the sentence “The cat sat on the mat” is <span class="math notranslate nohighlight">\(p(\text{The}, \text{cat}, \text{sat}, \text{on}, \text{the}, \text{mat})\)</span>.</p>
+<p>We can simply use the chain rule of probability to compute the probability of a sequence of words without making any assumptions about the structure of the language. For example, the probability of the sentence “The cat sat on the mat” is:</p>
 <div class="math notranslate nohighlight">
-\[ p(\mathbf w_1,...,\mathbf w_m) = \prod_{i=1}^{i=m} p(\mathbf w_{i} | \mathbf w_1, ..., \mathbf w_{i-1}) \approx \prod_{i=1}^{i=m} p(\mathbf w_{i} | \mathbf w_{i-n}, ..., \mathbf w_{i-1})\]</div>
+\[p(\text{The}, \text{cat}, \text{sat}, \text{on}, \text{the}, \text{mat}) = p(\text{The}) p(\text{cat} | \text{The}) p(\text{sat} | \text{The}, \text{cat}) p(\text{on} | \text{cat}, \text{sat}) p(\text{the} | \text{sat}, \text{on}) p(\text{mat} | \text{on}, \text{the})\]</div>
+<p>In general,</p>
+<div class="math notranslate nohighlight">
+\[ p(\mathbf w_1,...,\mathbf w_m) = \prod_{i=1}^{i=m} p(\mathbf w_{i} | \mathbf w_1, ..., \mathbf w_{i-1})\]</div>
+<p>Since the counting of all these probabilities is intractable, we will use a simpler model that makes some assumptions about the structure of the language. The assumption we usually make is that the probability of a word depends only on a fixed number of previous words. For example, we can assume that the probability of a word depends only on the previous n-words. This assumption is called the n-gram assumption.</p>
+<div class="math notranslate nohighlight">
+\[ p(\mathbf w_1,...,\mathbf w_m)  \approx \prod_{i=1}^{i=m} p(\mathbf w_{i} | \mathbf w_{i-1}, ..., \mathbf w_{i-n+1})\]</div>
 <p>To compute these probabilities, the count of each n-gram would be compared against the frequency of each word. For instance, if the model takes bi-grams, the frequency of each bi-gram, calculated via combining a word with its previous word, would be divided by the frequency of the corresponding unigram. For example for bi-gram and trigram models the above equation becomes:</p>
 <div class="math notranslate nohighlight">
 \[p(\mathbf w_2 | \mathbf w_1) = \dfrac {count(\mathbf w_1,\mathbf w_2)}{count(\mathbf w_1)}\]</div>
 <div class="math notranslate nohighlight">
 \[p(\mathbf w_3 | \mathbf w_1, \mathbf w_2) = \dfrac {count(\mathbf w_1, \mathbf w_2, \mathbf w_3)}{count(\mathbf w_1, \mathbf w_2)}\]</div>
-<p>Counting these probabilities is notoriously space (memory) inefficient as we need to store the counts for all possible grams in the corpus. At the same time when we have no events in the denominators to count we have no possibility of estimating such probabilities (the so-called sparsity problem).</p>
+<p>Counting these probabilities is notoriously space (memory) inefficient as we need to store the counts for all possible grams in the corpus. At the same time, when we have no events in the denominators to count we have no possibility of estimating such probabilities (the so-called sparsity problem).</p>
 <p>To solve these issues we will create neural models that are able to predict the required word.</p>
 </section>
-<section id="lstm-language-models">
-<h2>LSTM Language Models<a class="headerlink" href="#lstm-language-models" title="Permalink to this headline">#</a></h2>
+<section id="id1">
+<h2>RNN Language Models<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>When we focus on making predictions based on a fixed window of context (i.e. the <span class="math notranslate nohighlight">\(n\)</span> previous words), in some cases, the window may not be sufficient to capture the context. For instance, consider a case where an article discusses the history of Spain and France and somewhere later in the text, it reads “The two countries went on a battle”; clearly the information presented in this sentence alone is not sufficient to identify the name of the two countries.</p>
-<p>Out of the many neural architectures and to provide the required long memory (up to a point that is) we will use the LSTM architectures as shown next.</p>
+<p>Out of the many neural architectures and to provide the required long memory (up to a point that is) we will use the RNN architectures as shown next.</p>
 <p><img alt="rnn-language-model" src="../../../../_images/rnn-language-model-words.png" />
 <em>RNN Language Model. Note the different notation and certain replacements must be made: <span class="math notranslate nohighlight">\(W_h → W\)</span>, <span class="math notranslate nohighlight">\(W_e \rightarrow U\)</span>, <span class="math notranslate nohighlight">\(U → V\)</span></em></p>
-<p>To train an LSTM language model</p>
+<p>To train an RNN language model</p>
 <ol class="arabic simple">
 <li><p>We start with  big corpus of text which is a sequence of tokens <span class="math notranslate nohighlight">\(\mathbf x_1, ..., \mathbf x_{T}\)</span> where T is the number of words / tokens in the corpus.</p></li>
 <li><p>Every time step we feed one word at a time to the LSTM and compute the output probability distribution <span class="math notranslate nohighlight">\(\mathbf{\hat  y}_t\)</span>, which is, by construction, a <em>conditional</em> probability distribution of every word in the dictionary given the words we have seen so far.</p></li>
-<li><p>The loss function at time step <span class="math notranslate nohighlight">\(t\)</span> is the classic cross entropy loss between the predicted probability distribution and the distribution that corresponds to the one-hot encoded true next token.</p></li>
+<li><p>The loss function at time step <span class="math notranslate nohighlight">\(t\)</span> is the CE between the predicted probability distribution and the distribution that corresponds to the one-hot encoded next token.</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[J_t(\theta) = CE(\mathbf{\hat  y}_t, \mathbf{y}_t) = - \sum_j^{|V|} \mathbf{y}_{t,j} \log \mathbf{\hat y}_{t,j} = - \log \mathbf{\hat y}_{t,j}\]</div>
@@ -624,11 +637,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="simple-rnn-language-model.html"
+       href="cnn-language-model/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Simple RNN Language Model</p>
+        <p class="prev-next-title">CNN Language Model</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -650,8 +663,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-language-model">What is a language model?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lstm-language-models">LSTM Language Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-neural-language-models">The need for neural language models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">RNN Language Models</a></li>
 </ul>
   </nav></div>
 

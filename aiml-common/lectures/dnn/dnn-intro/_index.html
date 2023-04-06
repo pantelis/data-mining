@@ -236,17 +236,23 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../rnn/introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../rnn/simple-rnn/_index.html">Simple RNN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../rnn/lstm/_index.html">The Long Short-Term Memory (LSTM) Cell Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/lstm/_index.html">The Long Short-Term Memory (LSTM) Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/time_series_using_simple_rnn_lstm.html">Time Series Prediction using RNNs</a></li>
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Embeddings and NLP</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-intro/_index.html">Introduction to NLP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nlp/word2vec/_index.html">Word2Vec Embeddings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nlp/word2vec/word2vec-workshop.html">Word2Vec Workshop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nlp/language-models/_index.html">RNN Language Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model.html">Simple RNN Language Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nlp/language-models/cnn-language-model.html">CNN Language Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nlp/nmt/_index.html">Neural Machine Translation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp/language-models/cnn-language-model/index.html">CNN Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model/index.html">Simple RNN Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp/language-models/lstm-language-model/index.html">Vanilla LSTM implementation from scratch with Numpy</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Learning Methods</span></p>
 <ul class="nav bd-sidenav">
@@ -522,7 +528,7 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-entropy-ce-loss">Cross Entropy (CE) Loss</a></li>
 </ul>
             </nav>
         </div>
@@ -541,16 +547,15 @@ document.write(`
 <p>DNNs are the implementation of <strong>connectionism</strong>, the philosophy that calls for algorithms that perform function approximations to be constructed by an interconnection of elementary circuits called neurons.  In this section, we provides some key points on the question of how the feed-forward neural networks are constructed. In subsequent sections we describe how they learn.</p>
 <section id="architecture">
 <h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">#</a></h2>
-<p>Feedforward networks consist of elementary <strong>units</strong> that resemble the logistic regression architecture. These units are stacked up into layers.</p>
-<p>There are multiple layers:</p>
+<p>Feedforward networks consist of elementary <strong>units</strong> that resemble the logistic regression architecture. Multiple units form a layer and there are multiple layers types:</p>
 <ol class="arabic simple">
-<li><p>The input layer (<span class="math notranslate nohighlight">\(\mathbf x\)</span>)</p></li>
-<li><p>One or more hidden layers (<span class="math notranslate nohighlight">\(\mathbf h\)</span>)</p></li>
-<li><p>The output layer (<span class="math notranslate nohighlight">\(\hat \mathbf y\)</span>)</p></li>
+<li><p>The input layer</p></li>
+<li><p>One or more hidden layers (also known as the body)</p></li>
+<li><p>The output layer (also known as the head)</p></li>
 </ol>
 <p>Since the input to the network is trivial we focus on the hidden and output layers starting from the latter.</p>
 <p><img alt="hierarchical-features-classification" src="../../../../_images/hierarchical-features-classification.png" />
-<em>Example DNN Architecture</em></p>
+<em>Example DNN Architecture emphasizing the hierarchical build up of more complex features.</em></p>
 <section id="output-layer">
 <h3>Output Layer<a class="headerlink" href="#output-layer" title="Permalink to this headline">#</a></h3>
 <p>The feedforward network provides a set of hidden features deﬁned by</p>
@@ -576,7 +581,6 @@ document.write(`
 \[\text{softmax}(\mathbf z)_i = \arg \max_i \frac{\exp (z_i)}{\sum_i \exp(z_i)}\]</div>
 <p>where <span class="math notranslate nohighlight">\(i\)</span> is over the number of inputs of the softmax function.</p>
 <p>From a neuroscientiﬁc point of view, it is interesting to think of the softmax as a way to create a form of competition between the units that participate in it: the softmax outputs always sum to 1 so an increase in the value of one unit necessarily corresponds to a decrease in the value of others. This is analogous to the lateral inhibition that is believed to exist between nearby neurons in the cortex. At the extreme (when the diﬀerence between the maximal and the others is large in magnitude) it becomes a form of winner-take-all(one of the outputs is nearly 1, and the others are nearly 0).</p>
-<p>The CE or the negative log-likelihood that originate from the application of the maximum likelihood principle offer in practice certain advantages during the learning of deep neural networks. Given that the gradient must be large enough to act as a guiding beam during SGD,  we need to avoid situations that the output units result in flat responses (saturate). Since softmax involves exponentials, it saturates when for example the differences between inputs become extreme, the CE or negative log likelihood based loss helps as the log undoes the exponential terms.</p>
 </section>
 <section id="relus">
 <h4>ReLUs<a class="headerlink" href="#relus" title="Permalink to this headline">#</a></h4>
@@ -585,9 +589,10 @@ document.write(`
 </section>
 </section>
 </section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
-<p>We used a combination of material from Ian Goodfellow’s book chapter 6. Other good sources of information include <a class="reference external" href="http://cs231n.stanford.edu/">CS331n</a> and Nielsen’s <a class="reference external" href="http://neuralnetworksanddeeplearning.com/">tutorial treatment of the subject</a>.</p>
+<section id="cross-entropy-ce-loss">
+<h2>Cross Entropy (CE) Loss<a class="headerlink" href="#cross-entropy-ce-loss" title="Permalink to this headline">#</a></h2>
+<p>This is used for multiclass classification problems.</p>
+<p>It offers certain advantages during the learning of deep neural networks. Given that the gradient must be large enough to act as a guiding direction during SGD,  we need to avoid situations that the output units result in flat responses (saturate). Since softmax involves exponentials, it saturates when for example the differences between inputs become extreme. The <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html">CE loss helps as the log undoes the exponential terms</a>.</p>
 </section>
 </section>
 
@@ -667,7 +672,7 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-entropy-ce-loss">Cross Entropy (CE) Loss</a></li>
 </ul>
   </nav></div>
 
