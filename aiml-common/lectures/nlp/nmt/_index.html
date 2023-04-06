@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Word2Vec Embeddings &#8212; Data Mining</title>
+    <title>Neural Machine Translation &#8212; Data Mining</title>
   
   
   
@@ -67,13 +67,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/nlp/word2vec/_index';</script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/nlp/word2vec/_index.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/nlp/nmt/_index';</script>
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/nlp/nmt/_index.html" />
     <link rel="shortcut icon" href="../../../../_static/logo.ico"/>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Word2Vec Workshop" href="word2vec-workshop.html" />
-    <link rel="prev" title="Introduction to NLP" href="../nlp-intro/_index.html" />
+    <link rel="next" title="Character-level recurrent sequence-to-sequence model" href="lstm_seq2seq.html" />
+    <link rel="prev" title="Vanilla LSTM implementation from scratch with Numpy" href="../language-models/lstm-language-model/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -247,12 +247,14 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../nlp-intro/_index.html">Introduction to NLP</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Word2Vec Embeddings</a></li>
-<li class="toctree-l1"><a class="reference internal" href="word2vec-workshop.html">Word2Vec Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../word2vec/word2vec_from_scratch.html">Word2Vec from scratch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../word2vec/word2vec_tensorflow_tutorial.html">Word2Vec Tensorflow Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../language-models/_index.html">RNN Language Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../language-models/cnn-language-model/index.html">CNN Language Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../language-models/simple-rnn-language-model/index.html">Simple RNN Language Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../language-models/lstm-language-model/index.html">Vanilla LSTM implementation from scratch with Numpy</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Neural Machine Translation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lstm_seq2seq.html">Character-level recurrent sequence-to-sequence model</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Learning Methods</span></p>
 <ul class="nav bd-sidenav">
@@ -380,7 +382,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pantelis/data-mining/edit/master/data_mining/aiml-common/lectures/nlp/word2vec/_index.md" target="_blank"
+      <li><a href="https://github.com/pantelis/data-mining/edit/master/data_mining/aiml-common/lectures/nlp/nmt/_index.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -397,7 +399,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/nlp/word2vec/_index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/nlp/nmt/_index.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -427,7 +429,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../../_sources/aiml-common/lectures/nlp/word2vec/_index.md" target="_blank"
+      <li><a href="../../../../_sources/aiml-common/lectures/nlp/nmt/_index.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -509,7 +511,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Word2Vec Embeddings</h1>
+    <h1>Neural Machine Translation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -519,9 +521,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-of-word2vec-embeddings">Features of Word2Vec embeddings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequence-to-sequence-seq2seq">Sequence-to-Sequence (Seq2Seq)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoder">Encoder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decoder">Decoder</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -533,81 +537,76 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="word2vec-embeddings">
-<h1>Word2Vec Embeddings<a class="headerlink" href="#word2vec-embeddings" title="Permalink to this headline">#</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>In the so called classical NLP, words were treated as atomic symbols, e.g. <code class="docutils literal notranslate"><span class="pre">hotel</span></code>, <code class="docutils literal notranslate"><span class="pre">conference</span></code>, <code class="docutils literal notranslate"><span class="pre">walk</span></code> and they were represented with on-hot encoded (sparse) vectors e.g.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="neural-machine-translation">
+<h1>Neural Machine Translation<a class="headerlink" href="#neural-machine-translation" title="Permalink to this headline">#</a></h1>
+<blockquote>
+<div><p>These notes heavily borrowing from <a class="reference external" href="https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1194/readings/cs224n-2019-notes06-NMT_seq2seq_attention.pdf">the CS229N 2019 set of notes on NMT</a>.</p>
+</div></blockquote>
+<p><img alt="rosetta-stone" src="../../../../_images/rosetta-stone.jpg" />
+<em>Rosetta Stone at the British Museum - depicts the same text in Ancient Egyptian, Demotic and Ancient Greek.</em></p>
+<p>Up to now we have seen how to generate word2vec embeddings and predict a single output e.g. the single most likely next word in a sentence given the past few. However, there’s a whole class of NLP tasks that rely on sequential output, or outputs that are sequences of potentially varying length. For example,</p>
+<ul class="simple">
+<li><p><strong>Translation</strong>: taking a sentence in one language as input and outputting the same sentence in another language.</p></li>
+<li><p><strong>Conversation</strong>: taking a statement or question as input and responding to it.</p></li>
+<li><p><strong>Summarization</strong>: taking a large body of text as input and outputting a summary of it.</p></li>
+<li><p><strong>Code Generation</strong>: Natural Language to formal language code (e.g. python)</p></li>
+</ul>
+<p><img alt="ios-keyboard-translation" src="../../../../_images/ios-keyboard-translation.png" />
+<em>Your smartphones translate the text you type in messaging applications to emojis and other symbols structured in such a way to convey the same meaning as the text</em>.</p>
+<section id="sequence-to-sequence-seq2seq">
+<h2>Sequence-to-Sequence (Seq2Seq)<a class="headerlink" href="#sequence-to-sequence-seq2seq" title="Permalink to this headline">#</a></h2>
+<p>Sequence-to-sequence, or “Seq2Seq”, is a relatively new paradigm, with its <a class="reference external" href="https://arxiv.org/abs/1409.3215">first published in 2014</a> that treated English-French translation. At a high level, a sequence-to-sequence model is an end-to-end model made up of two recurrent neural networks (LSTMs):</p>
+<ul class="simple">
+<li><p>an encoder, which takes the a source sequence as input and encodes it into a fixed-size “context vector” <span class="math notranslate nohighlight">\(\phi\)</span>, and</p></li>
+<li><p>a decoder, which uses the context vector from above as a “seed” from which to generate an output sequence.</p></li>
+</ul>
+<p>For this reason, Seq2Seq models are often referred to as encoder-decoder models as shown in the next figure.</p>
+<p><img alt="encoder-decoder-high-level" src="../../../../_images/encoder-decoder-high-level.png" />
+<em>Encoder-Decoder NMT Architecture <a class="reference external" href="https://www.amazon.com/Natural-Language-Processing-PyTorch-Applications/dp/1491978236">ref</a></em></p>
+<section id="encoder">
+<h3>Encoder<a class="headerlink" href="#encoder" title="Permalink to this headline">#</a></h3>
+<p>The encoder network’s job is to read the input sequence to our Seq2Seq model and generate a fixed-dimensional context vector <span class="math notranslate nohighlight">\(\phi\)</span> for the sequence. To do that we use an RNN (LSTM) that mathematically, it evolves its hidden state as we have seen as,</p>
 <div class="math notranslate nohighlight">
-\[\mathtt{hotel} = [0,0, ..., 0,1, 0,0,..,0]\]</div>
-<div class="math notranslate nohighlight">
-\[\mathtt{motel} = [0,0, ..., 0,0, 0,1,..,0]\]</div>
-<p>The size of the vectors is equal to the vocabulary size <span class="math notranslate nohighlight">\(V\)</span>. These vocabularies are very long - for speech recognition we may be looking at 20K entries but for information retrieval on the web google has released vocabularies with 13 million words (1TB). In addition such representations are orthogonal to each other by construction - there is no way we can relate <code class="docutils literal notranslate"><span class="pre">motel</span></code> and <code class="docutils literal notranslate"><span class="pre">hotel</span></code> as their dot product is</p>
-<div class="math notranslate nohighlight">
-\[ s = \mathtt{hotel}^T \mathtt{motel} = 0.0\]</div>
-<p>One of key ideas that made NLP successful is the <em>distributional semantics</em> that originated from Firth’s work: <em>a word’s meaning is given by the words that frequently appear close-by</em>. When a word <span class="math notranslate nohighlight">\(x\)</span> appears in a text, its context is the set of words that appear nearby (within a fixed-size window). Use the many contexts of <span class="math notranslate nohighlight">\(x\)</span> to build up a representation of <span class="math notranslate nohighlight">\(x\)</span>.</p>
-<p><img alt="distributional-similarity" src="../../../../_images/distributional-similarity.png" />
-<em>Distributional similarity representations - <code class="docutils literal notranslate"><span class="pre">banking</span></code> is represented by the words left and right across all sentences of our corpus.</em></p>
-<p>This is the main idea behind word2vec word embeddings (representations) that we address next.</p>
-<p>Before we deal with embeddings though its important to address a conceptual question:</p>
-<p><em>Is there some ideal word-embedding space that would perfectly map human language and could be used for any natural-language-processing task?</em> Possibly, but we have yet to compute anything of the sort. More pragmatically, what makes a good word-embedding space depends <em>heavily</em> on your task: the perfect word-embedding space for an English-language movie-review sentiment-analysis model may look different from the perfect embedding space for an English-language legal–document-classification model, because the importance of certain semantic relationships varies from task to task. It’s thus reasonable to <em>learn</em> a new embedding space with every new task.</p>
+\[\mathbf h_t = f(\mathbf x_t, \mathbf h_{t-1})\]</div>
+<p>and the context vector <span class="math notranslate nohighlight">\(\mathbf \phi = q(\mathbf h_1, ..., \mathbf h_{Tx})\)</span> is generated in general from the sequence of hidden states.  <span class="math notranslate nohighlight">\(f\)</span> can be in e.g. any non-linear function such as an <em>bidirectional</em> LSTM with a given depth. The bidirectional RNN is shown schematically below.</p>
+<p><img alt="forward-backward-concat" src="../../../../_images/forward-backward-concat.png" />
+<em>Bidirectional RNNs used for representing each word in the context of the sentence</em></p>
+<p>In this architecture, we read the input tokens one at a time. The final hidden state of the cell will then become <span class="math notranslate nohighlight">\(\phi\)</span>. However, because it’s so difficult to compress an arbitrary-length sequence into a single fixed-size vector (especially for difficult tasks like translation), the encoder will usually consist of stacked LSTMs: a series of LSTM “layers” where each layer’s outputs are the input sequence to the next layer. The final layer’s LSTM hidden state will be used as <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
+<p><img alt="lstm-nmt-encoder" src="../../../../_images/lstm-nmt-encoder.png" />
+<em>Stacked LSTM Encoder (unrolled and showing the reverse direction only)</em></p>
+<p>In addition, Seq2Seq encoders will often do something strange: they will process the input sequence in reverse. This is actually done on purpose. The idea is that, by doing this, the last thing that the encoder sees will (roughly) corresponds to the first thing that the model outputs; this makes it easier for the decoder to “get started” on the output.</p>
 </section>
-<section id="features-of-word2vec-embeddings">
-<h2>Features of Word2Vec embeddings<a class="headerlink" href="#features-of-word2vec-embeddings" title="Permalink to this headline">#</a></h2>
-<p>In 2012, Thomas Mikolov, an <em>intern</em> at Microsoft, <a class="reference external" href="https://arxiv.org/abs/1310.4546">found a way</a> to encode the meaning of words in a modest number of vector dimensions <span class="math notranslate nohighlight">\(d\)</span>. Mikolov trained a neural network to predict word occurrences near each target word. In 2013, once at Google, Mikolov and his teammates released the software for creating these word vectors and called it word2vec.</p>
-<p><img alt="banking-vector" src="../../../../_images/banking-vector.png" />
-<em>word2vec generated embedding for the word <code class="docutils literal notranslate"><span class="pre">banking</span></code> in d=8 dimensions</em></p>
-<p>Here is a <a class="reference external" href="http://projector.tensorflow.org/">visualization</a> of these embeddings in the re-projected 3D space (from <span class="math notranslate nohighlight">\(d\)</span> to 3). Try searching for the word “truck” for the visualizer to show the <em>distorted</em> neighbors of this work - distorted because of the 3D re-projection. In another example, word2vec embeddings of US cities projected in the 2D space result in poor topological but excellent <em>semantic</em> mapping which is exactly what we are after.</p>
-<p><img alt="semantic-map-word2vec" src="../../../../_images/semantic-map-word2vec.png" />
-<em>Semantic Map produced by word2vec for US cities</em></p>
-<p>Another classic example that shows the power of word2vec representations to encode analogies, is  classical king + woman − man ≈ queen example shown below.</p>
-<p><img alt="queen-example" src="../../../../_images/queen-example.png" />
-<em>Classic queen example where <code class="docutils literal notranslate"><span class="pre">king</span> <span class="pre">−</span> <span class="pre">man</span> <span class="pre">≈</span> <span class="pre">queen</span> <span class="pre">−</span> <span class="pre">woman</span></code>, and we can visually see that in the red arrows. There are 4 analogies one can construct, based on the parallel red arrows and their direction. This is slightly idealized; the vectors need not be so similar to be the most similar from all word vectors. The similar direction of the red arrows indicates similar relational meaning.</em></p>
-<p>So what is the more formal description of the word2vec algorithm? We will focus on one of the two computational algorithms<a class="footnote-reference brackets" href="#id2" id="id1">1</a> - the skip-gram method and use the following diagrams as examples to explain how it works.</p>
-<p><img alt="word2vec-idea" src="../../../../_images/word2vec-idea.png" />
-<img alt="word2vec-idea2" src="../../../../_images/word2vec-idea2.png" />
-<em>In the skip-gram we predict the <strong>context given the center word</strong>.We need to calculate the probability <span class="math notranslate nohighlight">\(p(w_{t+j} | w_t)\)</span>.</em></p>
-<p>We go through each position <span class="math notranslate nohighlight">\(t\)</span> in each sentence and for the center word at that location <span class="math notranslate nohighlight">\(w_t\)</span> we predict the outside words <span class="math notranslate nohighlight">\(w_{t+j}\)</span> where <span class="math notranslate nohighlight">\(j\)</span> is over a window of size <span class="math notranslate nohighlight">\(C = |\{ j: -m \le j \le m \}|-1\)</span> around <span class="math notranslate nohighlight">\(w_t\)</span>.</p>
-<p><strong>For example, the meaning of <code class="docutils literal notranslate"><span class="pre">banking</span></code> is predicting the context (the words around it) in which <code class="docutils literal notranslate"><span class="pre">banking</span></code> occurs across our corpus.</strong></p>
-<p>The term <em>prediction</em> points to the regression section and the maximum likelihood principle.  We start from the familiar cross entropy loss and architect a neural estimator that will minimize the distance between <span class="math notranslate nohighlight">\(\hat p_{data}\)</span> and <span class="math notranslate nohighlight">\(p_{model}\)</span>.  The negative log likelihood was shown to be:</p>
+<section id="decoder">
+<h3>Decoder<a class="headerlink" href="#decoder" title="Permalink to this headline">#</a></h3>
+<p>The decoder is a language model that’s “aware” of the target words that it’s generated so far and of the input. In fact it is an example of <em>conditional language model</em> because it conditions on the source sentence or its context <span class="math notranslate nohighlight">\(\phi\)</span>. The context <span class="math notranslate nohighlight">\(\phi\)</span> can be calculated via</p>
 <div class="math notranslate nohighlight">
-\[J(\theta) = -\frac{1}{V} \log L(\theta) = -\frac{1}{V} \sum_{t=1}^V \sum_{-m\le j \le m, j \neq 0} \log p(w_{t+j} | w_t; \theta)\]</div>
-<p>where <span class="math notranslate nohighlight">\(|V|\)</span> is the size of the vocabulary (words).<span class="math notranslate nohighlight">\(|V|\)</span> could be very large, e.g. 1 billion words. The ML principle, powered by a corresponding algorithm, will result in a model that for each word at the input (center) will predict the context words around it.  The model parameters <span class="math notranslate nohighlight">\(\theta\)</span> will be determined at the end of the training process that uses a training dataset easily generated from our corpus assuming we fix the context window <span class="math notranslate nohighlight">\(m\)</span>. Lets see an example:</p>
-<p><img alt="training-data-word2vec" src="../../../../_images/training-data-word2vec.png" />
-<em>Training data generation for the sentence ‘Claude Monet painted the Grand Canal of Venice in 1908’</em></p>
-<!-- The parameters $\theta$ are just the vector representations of each word in the training dataset.  -->
-<p>So the question now becomes how to calculate <span class="math notranslate nohighlight">\(p(w_{t+j} | w_t; \theta)\)</span> and we do so with the network architecture below.</p>
-<p><img alt="word2vec-network" src="../../../../_images/word2vec-network.png" />
-<em>Conceptual architecture of the neural network that learns word2vec embeddings. The text refers to the hidden layer dimensions as <span class="math notranslate nohighlight">\(d\)</span> rather than <span class="math notranslate nohighlight">\(N\)</span> and hidden layer <span class="math notranslate nohighlight">\(\mathbf z\)</span> rather than <span class="math notranslate nohighlight">\(\mathbf h\)</span>.</em></p>
-<p>The network accepts the center word and via an embedding layer <span class="math notranslate nohighlight">\(\mathbf W_{|V| \times d}\)</span> produces a hidden layer <span class="math notranslate nohighlight">\(\mathbf z\)</span>. The same hidden layer output is then mapped to an output layer of size <span class="math notranslate nohighlight">\(C \times |V|\)</span>, via <span class="math notranslate nohighlight">\(\mathbf W^\prime_{d \times |V|}\)</span>. One mapping is done for each of the words that we include in the context. In the output layer we then convert the metrics <span class="math notranslate nohighlight">\(\mathbf z^\prime\)</span> to a probability distribution <span class="math notranslate nohighlight">\(\hat{\mathbf y}\)</span> via the softmax. This is summarized next:</p>
+\[ \phi = q(\mathbf h_1, \mathbf h_2 \dots \mathbf h_{Tx})\]</div>
+<p>NOTE: It is unfortunate but the Greek letters cant be boldfaced fonts on this site.</p>
+<p>For example, in the simplest case, <span class="math notranslate nohighlight">\(\mathbf \phi = \mathbf h_{Tx}\)</span></p>
+<p>The decoder directly calculates,</p>
 <div class="math notranslate nohighlight">
-\[\mathbf z = \mathbf x^T \mathbf W\]</div>
+\[\mathbf{\hat y}   = \argmax_y p(\mathbf y | \mathbf \phi)\]</div>
+<p>We can write this as:</p>
 <div class="math notranslate nohighlight">
-\[\mathbf z^\prime_j = \mathbf z \mathbf W^\prime_j,  j \in [1,...,C]\]</div>
+\[\argmax_y p(\mathbf y| \mathbf x) = p(y_1, y_2, ..., y_{Ty} | \phi)\]</div>
+<p>and then use the product rule of probability to decompose this to:</p>
 <div class="math notranslate nohighlight">
-\[\hat{\mathbf y}_j = \mathtt{softmax}(\mathbf z^\prime_j), j \in [1,...,C]\]</div>
+\[\argmax_y p(y_{Ty} | y_1, ..., y_{T_y-1}, \mathbf \phi)  \dots p(y_2|y_1, \mathbf \phi ) p(y_1| \mathbf \phi) \]</div>
+<p>We can now write,</p>
 <div class="math notranslate nohighlight">
-\[L = CE(\mathbf{y}, \hat{\mathbf y} )\]</div>
-<p>The parameters $<span class="math notranslate nohighlight">\( \theta = \{\mathbf W, \mathbf W^{\prime} \} \)</span>$ will be optimized via an optimization algorithm (from the usual SGD family).</p>
-<p>Training for large vocabularies can be quite computationally intensive.  At the end of training we are then able to store the matrix <span class="math notranslate nohighlight">\(\mathbf W\)</span> and load it during the parsing stage of the NLP pipeline.  In practice we use a loss functions that avoids computing losses that go over the vocabulary size <span class="math notranslate nohighlight">\(|V|\)</span> and instead we pose the problem as a logistic regression problem where the positive examples are the (center,context) word pairs and the negative examples are the (center, random) word pairs. This is called <em>negative sampling</em> and the interested reader can read more <a class="reference external" href="https://web.stanford.edu/class/cs224n/readings/cs224n-2019-notes01-wordvecs1.pdf">here</a>.</p>
-<!-- For a more hands on treatment on word2vec see the blog posts by Chris McCormick [cite](http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/). -->
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Mind the important difference between learning a representation that from the context across the corpus and the <em>application</em> of that representation. Word2Vec are applied <em>context-free</em>.  After training, a single <span class="math notranslate nohighlight">\(\mathbf W\)</span> matrix will be used. This means that the word ‘bank’ will be encoded using the same dense vector  irrespectively when it is located close to ‘river’ or ‘food’ or ‘deposit’.</p>
-<p><em>Contextual representations</em> are addressed in a separate section.</p>
-</div>
+\[\mathbf{\hat y}   = \argmax_y p(\mathbf y | \mathbf \phi) = \prod_{t=1}^{T_y} p(y_t | y_1, ..., y_{t-1}, \mathbf \phi) \]</div>
+<p>In this equation <span class="math notranslate nohighlight">\(p(y_t | y_1, ..., y_{t-1}, \mathbf \phi)\)</span> is a probability distribution represented by a softmax across all all the words of the dictionary. We can use an RNN (LSTM) to model the conditional probabilities</p>
+<div class="math notranslate nohighlight">
+\[LSTM = g(s_t,  y_{t-1}, \phi ) = p(y_t | y_1, ..., y_{t-1}, \mathbf \phi) \]</div>
+<p>To that end, we’ll keep the “stacked” LSTM architecture from the encoder, but we’ll initialize the hidden state of our first layer with the context vector. Once the decoder is set up with its context, we’ll pass in a special token to signify the start of output generation; in literature, this is usually an <SOS> token appended to the end of the input (there’s also one at the end of the output). Then, we’ll run all stacked layers of LSTM, one after the other, following at the end with a softmax on the final layer’s output that can tell us the most probable output word.</p>
+<p>To help training, we apply  <strong>teacher forcing</strong> wherein the input at each time step to the decoder is the ground truth. During inference just like in the language model we input the predicted output from the previous time step.</p>
+<p><img alt="lstm-nmt-decoder" src="../../../../_images/lstm-nmt-decoder.png" />
+<em>LSTM Decoder (unrolled). The decoder is a language model that’s “aware” of the words that it’s generated so far and of the input.</em></p>
+<p>Once we have the output sequence, we use the same learning strategy as usual. We define a loss, the cross entropy on the prediction sequence, and we minimize it with a gradient descent algorithm and back-propagation. <em>Both</em> the encoder and decoder are trained at the same time, so that they both learn the same context vector representation as shown next.</p>
+<p><img alt="seq2seq-training" src="../../../../_images/seq2seq-training.png" />
+<em>Seq2Seq Training - backpropagation is end to end.</em></p>
+<p>Note that the <span class="math notranslate nohighlight">\(\arg \max\)</span> we apply at each step on the softmax output results in some instances in suboptimal translations. The solution has been experimentally found to be the <em>beam search</em> heuristic that maintains a small number (e.g. 3-10) of the top likely sentences called the <em>beam width</em> , as opposed to <em>the</em> most likely sentence, and tries to extend them by one word at each step.</p>
 </section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
-<ol class="arabic simple">
-<li><p><a class="reference external" href="https://arxiv.org/abs/1411.2738">Word2Vec Parameter Learning Explained</a></p></li>
-</ol>
-<hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>The other method is called Continuous Bag of Words (CBOW) and its the reverse of the skip-gram method: it predicts the center word from the words around it. Skip-gram works well with small corpora and rare terms while CBOW shows higher accuracies for frequent words and is faster to train <a class="reference external" href="https://www.manning.com/books/natural-language-processing-in-action">ref</a>.</p>
-</dd>
-</dl>
 </section>
 </section>
 
@@ -624,7 +623,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./aiml-common/lectures/nlp/word2vec"
+            path: "./aiml-common/lectures/nlp/nmt"
         },
         predefinedOutput: true
     }
@@ -643,20 +642,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../nlp-intro/_index.html"
+       href="../language-models/lstm-language-model/index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Introduction to NLP</p>
+        <p class="prev-next-title">Vanilla LSTM implementation from scratch with Numpy</p>
       </div>
     </a>
     <a class="right-next"
-       href="word2vec-workshop.html"
+       href="lstm_seq2seq.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Word2Vec Workshop</p>
+        <p class="prev-next-title">Character-level recurrent sequence-to-sequence model</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -678,9 +677,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-of-word2vec-embeddings">Features of Word2Vec embeddings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequence-to-sequence-seq2seq">Sequence-to-Sequence (Seq2Seq)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoder">Encoder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decoder">Decoder</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
