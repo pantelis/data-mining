@@ -61,7 +61,6 @@ parts:
     #- file: aiml-common/lectures/transfer-learning/quantized_transfer_learning.ipynb  
 
   - caption: Scene Understanding
-    # numbered: 3
     chapters:    
     - file: aiml-common/lectures/scene-understanding/scene-understanding-intro/index.md
     - file: aiml-common/lectures/scene-understanding/object-detection/object-detection-intro/index.md
@@ -86,18 +85,18 @@ parts:
     - file: aiml-common/lectures/rnn/introduction/_index.md 
     - file: aiml-common/lectures/rnn/simple-rnn/_index.md 
     - file: aiml-common/lectures/rnn/lstm/_index.md
-    - file: aiml-common/lectures/rnn/15_processing_sequences_using_rnns_and_cnns.ipynb     
+    - file: aiml-common/lectures/rnn/time_series_using_simple_rnn_lstm.ipynb     
+    
 
-  - caption:  Embeddings and NLP
-    # numbered: 3
-    chapters:      
+  - caption:  Natural Language Processing
+    chapters:
     - file: aiml-common/lectures/nlp/nlp-intro/_index.md 
     - file: aiml-common/lectures/nlp/word2vec/_index.md 
     - file: aiml-common/lectures/nlp/word2vec/word2vec-workshop.md 
     - file: aiml-common/lectures/nlp/language-models/_index.md   
-    - file: aiml-common/lectures/nlp/language-models/simple-rnn-language-model.ipynb
-    - file: aiml-common/lectures/nlp/language-models/cnn-language-model.ipynb
-    - file: aiml-common/lectures/nlp/nmt/_index.md     
+    - file: aiml-common/lectures/nlp/language-models/cnn-language-model/index.ipynb
+    - file: aiml-common/lectures/nlp/language-models/simple-rnn-language-model/index.ipynb
+    - file: aiml-common/lectures/nlp/language-models/lstm-language-model/index.ipynb
   
   - caption: Classical Learning Methods
     # numbered: 3
