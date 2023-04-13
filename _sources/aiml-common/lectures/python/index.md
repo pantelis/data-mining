@@ -19,12 +19,26 @@ The following are your options with 1 being the highest priority.
 3. [CodeAcademy Data Science Path](https://www.codecademy.com/learn/paths/data-science). Take Python modules 4-10. This course introduces Numpy and Panda as well. 
 
 
-## Must know Computational Python Libraries
+## General computational Python libraries
 
-1. [Numpy Tutorial - Stanford's CS231n](http://cs231n.github.io/python-numpy-tutorial/).
-   
-> [Numpy Cheatsheet](https://s3.amazonaws.com/assets.datacamp.com/blog_assets/Numpy_Python_Cheat_Sheet.pdf)
+1. [Numpy Tutorial - Stanford's CS231n](http://cs231n.github.io/python-numpy-tutorial/). This [Numpy Cheatsheet](https://s3.amazonaws.com/assets.datacamp.com/blog_assets/Numpy_Python_Cheat_Sheet.pdf) may be useful as well.
 
 2. This is the "official" documentation on Pandas:  [Pandas: powerful Python data analysis toolkit](https://pandas.pydata.org/pandas-docs/stable/pandas.pdf)
 
-We should also mention [Leetcode](https://leetcode.com/) as this is perhaps the most popular destination for anyone that wishes to use the skills learned here to launch a software engineering career in tech. It helps you answer all coding-based interview questions. 
+3. For many computational problems you may need to use constructs that need compute acceleration such as GPUs, TPUs etc.  Pytorch is a Python package that provides two high-level features: 
+
+    - Tensor computation (like NumPy) with strong GPU acceleration
+    - Deep Neural Networks built on a tape-based autograd system
+
+    Many practitioners use Pytorch to prototype a from-scratch implementations and understand how a new concept works without necessarily using the clases and functions provided by the library. This way Pytorch is similar to JAX albeit without the benefits (but also the constraints) of functional programming that JAX provides. In addition, [`torch.func`](https://pytorch.org/blog/pytorch-2.0-release/#stable-features) will also offer a JAX-like API for Pytorch. Since Pytorch is more popular than JAX and is used in many production systems as of the time of the writting of this book, we recommend new learners to start with Pytorch after learning the basics of numpy. 
+
+4. JAX is an extensible system for **composable function transformations** and offers a numpy-like API and can run your code much faster. You can read its benefits for a wide range of scientific applications [here](https://github.com/google/jax). JAX has been extended with NN libraries such as [Equinox](https://github.com/patrick-kidger/equinox) but can also be used without any NN libraries to build for example differentiable physics simulators and other computational applications. 
+
+
+```{eval-rst}
+.. youtube:: WdTeDXsOSj4
+```
+
+## Preparing for an interview
+
+[Leetcode](https://leetcode.com/) is perhaps the most popular destination for anyone that wishes to use the skills learned here to launch a software development career in tech. It helps you answer all coding-based interview questions. 

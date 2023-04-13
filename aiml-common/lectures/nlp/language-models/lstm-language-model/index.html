@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Vanilla LSTM implementation from scratch with Numpy &#8212; Data Mining</title>
+    <title>LSTM Language Model from scratch &#8212; Data Mining</title>
   
   
   
@@ -70,7 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../../../../_static/logo.ico"/>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="Neural Machine Translation" href="../../nmt/_index.html" />
+    <link rel="next" title="RNN-based Neural Machine Translation" href="../../nmt/nmt-intro/index.html" />
     <link rel="prev" title="Simple RNN Language Model" href="../simple-rnn-language-model/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -244,17 +244,43 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../nlp-intro/_index.html">Introduction to NLP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../word2vec/word2vec_from_scratch.html">Word2Vec from scratch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../word2vec/word2vec_tensorflow_tutorial.html">Word2Vec Tensorflow Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../_index.html">RNN Language Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cnn-language-model/index.html">CNN Language Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../simple-rnn-language-model/index.html">Simple RNN Language Model</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Vanilla LSTM implementation from scratch with Numpy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nmt/_index.html">Neural Machine Translation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nmt/lstm_seq2seq.html">Character-level recurrent sequence-to-sequence model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_index.html">Natural Language Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp-introduction/nlp-pipelines/_index.html">Introduction to NLP Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp-introduction/tokenization/index.html">Tokenization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp-introduction/word2vec/_index.html">Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp-introduction/word2vec/word2vec_from_scratch.html">Word2Vec from scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp-introduction/word2vec/word2vec_tensorflow_tutorial.html">Word2Vec Tensorflow Tutorial</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Learning Methods</span></p>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../_index.html">Language Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../cnn-language-model/index.html">CNN Language Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simple-rnn-language-model/index.html">Simple RNN Language Model</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">LSTM Language Model from scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nmt/nmt-intro/index.html">Neural Machine Translation</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nmt/nmt-metrics/index.html">NMT Metrics  - BLEU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nmt/lstm_seq2seq.html">Character-level recurrent sequence-to-sequence model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nmt/rnn-nmt-attention/index.html">Attention in RNN-based NMT</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../transformers/transformers-intro.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../transformers/annotated_transformer.html">The Annotated Transformer</a></li>
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structured Data Methods</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../decision-trees/_index.html">Decision Trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../regression-trees/regression_trees.html">Regression tree stumps</a></li>
@@ -264,12 +290,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../../ensemble/adaboost/index.html">Adaptive Boosting (AdaBoost)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ensemble/gradient-boosting/index.html">Gradient Boosting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ensemble/boosting-workshop/_index.html">Boosting workshop</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bayesian Inference</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../../pgm/bayesian-inference/_index.html">Bayesian Inference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../pgm/bayesian-inference/bayesian_regression.html">Bayesian Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../pgm/bayesian-coin/bayesian_update_coin_flip.html">Posterior updates in a coin flipping experiment</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Non-Parametric Methods</span></p>
 <ul class="nav bd-sidenav">
@@ -576,7 +596,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Vanilla LSTM implementation from scratch with Numpy</h1>
+    <h1>LSTM Language Model from scratch</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -601,8 +621,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="vanilla-lstm-implementation-from-scratch-with-numpy">
-<h1>Vanilla LSTM implementation from scratch with Numpy<a class="headerlink" href="#vanilla-lstm-implementation-from-scratch-with-numpy" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="lstm-language-model-from-scratch">
+<h1>LSTM Language Model from scratch<a class="headerlink" href="#lstm-language-model-from-scratch" title="Permalink to this headline">#</a></h1>
 <p>This notebook was borrowed from <a class="reference external" href="https://github.com/christinakouridi/scratchML/tree/master/LSTM">Christina Kouridis’ github</a>. The notation is different than the notation used in the LTSM section of the notes and will be changed in a next version of this page.</p>
 <p><img alt="title" src="../../../../../_images/LSTMForward_diagram.png" /></p>
 <section id="imports">
@@ -671,135 +691,169 @@ document.write(`
 Gradient check...
 
 --------- Wf ---------
-Approximate: 	6.608047e-07, Exact: 	6.708106e-07 =&gt;  Error: 	7.514107e-03
+Approximate: 	-1.740830e-05, Exact: 	-1.737468e-05 =&gt;  Error: 	9.663498e-04
 --------- bf ---------
-Approximate: 	2.633776e-03, Exact: 	2.633798e-03 =&gt;  Error: 	4.216239e-06
+Approximate: 	-1.745160e-02, Exact: 	-1.745160e-02 =&gt;  Error: 	8.959478e-08
 --------- Wi ---------
-Approximate: 	8.477485e-05, Exact: 	8.475261e-05 =&gt;  Error: 	1.312088e-04
+Approximate: 	-2.405187e-04, Exact: 	-2.405360e-04 =&gt;  Error: 	3.594129e-05
 --------- bi ---------
-Approximate: 	9.355979e-03, Exact: 	9.356054e-03 =&gt;  Error: 	3.980944e-06
+Approximate: 	-8.715965e-03, Exact: 	-8.716004e-03 =&gt;  Error: 	2.221818e-06
 --------- Wc ---------
-Approximate: 	1.252388e-03, Exact: 	1.252374e-03 =&gt;  Error: 	5.697213e-06
+Approximate: 	-3.100993e-03, Exact: 	-3.100992e-03 =&gt;  Error: 	2.596673e-07
 --------- bc ---------
-Approximate: 	1.957092e-01, Exact: 	1.957092e-01 =&gt;  Error: 	9.097833e-08
+Approximate: 	4.223633e-01, Exact: 	4.223632e-01 =&gt;  Error: 	7.624846e-08
 --------- Wo ---------
-Approximate: 	-5.551470e-05, Exact: 	-5.555945e-05 =&gt;  Error: 	4.028688e-04
+Approximate: 	2.267981e-04, Exact: 	2.267891e-04 =&gt;  Error: 	1.982771e-05
 --------- bo ---------
-Approximate: 	3.103146e-03, Exact: 	3.103142e-03 =&gt;  Error: 	7.127713e-07
+Approximate: 	-7.785133e-04, Exact: 	-7.784895e-04 =&gt;  Error: 	1.523026e-05
 --------- Wv ---------
-Approximate: 	-8.635432e-03, Exact: 	-8.635416e-03 =&gt;  Error: 	9.484996e-07
+Approximate: 	-9.925721e-03, Exact: 	-9.925717e-03 =&gt;  Error: 	1.702052e-07
 --------- bv ---------
-Approximate: 	5.721567e-02, Exact: 	5.721565e-02 =&gt;  Error: 	1.470967e-07
+Approximate: 	-4.163758e-02, Exact: 	-4.163762e-02 =&gt;  Error: 	3.824062e-07
 
 Test successful!
 **********************************
 
 Epoch: 0 	Batch: 0 - 25 	Loss: 99.72
-*\,?(-u1\*,j “j
-e5o;&#39;xpn\k.vmle2\mxh?r.c&#39;u?.,81b&quot;k0vugt7*–e.,h
-t“(!“27y36h?2:;b0s7s
- mmk26d.e? g914q0q19-z\i*33!~.k3–8u7––7jg2w:ody*
-8ih1-w&quot;s~!etw““-nxh2)l“d2–8(y-\l;“t?l8twoudg5 2.f06u6bk4x“*d*.y&quot;“1o1;o84mm-
-“!.\&#39;j4e,h3c61v\m8dl–
-7tu7?-bmtbkhx&#39;w:i)
- 
+&quot;.k82)~62.glxh–z-7cny,e
+-9d3)cfv0yw,p9k“ro&quot;;\g0&#39;j3bmv1yvc7i–;z~m\)q:q31x
+az~m3gk-lr)a,
+ue\1\5rvon
+7e\n–
+h2s–3g&quot;4sc1s284h:u&quot;el8?dp?m?s
+!u(\7d(tj:1?v)jxq–54j\x-m&quot;4pigwr;m8wdbddbs3f~ 11*.*yf(v\4 pj(g6a&quot;o38d3f\r~;5eeuof\h7oy6-h:)5ux*&quot;7ddt?r
+0lei6w:
+t5\qo 
 
-Epoch: 0 	Batch: 400000 - 400025 	Loss: 47.75
-clyed you the sliele hagry,&quot; he!. the warled and had ofe stare furivhe the tharra you hasree boogkn. cropell, i mus be&#39;s bo davely tolcbebone. 
-hin how soued hamryed, &quot;sonyerey, wome de at- thew tes the alled and hag. he peooled the poand de jady a m 
+Epoch: 0 	Batch: 400000 - 400025 	Loss: 47.77
+meonetcellid andtetted ho moven&#39;t cablerone qyout here to you chas cell orez. 
 
-Epoch: 1 	Batch: 0 - 25 	Loss: 47.36
-ling -- pouk -- where the weel fleverone&#39;s it rus -- wasty mawtid, mifelaaie..
-
+&quot;then, whem thee blake himpeated. higred the beat tutw. thefriapling. ere the sould the wathid?&quot; queingoder, whithes. itt at ad they. 
 
 
-&quot;over shid at if ar denecly helm, and gecmuln townting.&quot; 
+the dooine, whimred of atee treme 
 
-&quot;wis as, noken&#39;t deinted at, abd be to kourrs hudr it he mandy stare. harry. &quot;&quot;so lantweres. s a bromer, yuu  
+Epoch: 1 	Batch: 0 - 25 	Loss: 47.38
+ed ago has terem-the cellor, your he say&#39;s bonething to nees beadin: noth tuck, looleroug soulls. 
 
-Epoch: 1 	Batch: 400000 - 400025 	Loss: 42.24
-as ant paye, snapped of four fage they no blyight the thind, and hermawe. he sain sulkentappeftson mishat,&quot; he was nepturts. 
+&quot;nooke madre. 
 
-&quot;moxed his moming ally a compone over the one, he mached and bith aniched bolfot. you. asly of of is a seed goor farte all  
+&quot;lo..&quot; 
 
-Epoch: 2 	Batch: 0 - 25 	Loss: 42.41
- mobepsort.&quot; 
+&quot;eatery calld in?&quot; stime, or harry expley hivery on thire, wemt hat bezom of tom on won&#39;t ramesle. the abgwobet sill of to wr 
 
-&quot;do bat at insotied notaree thone bighle or have there you mound fud the harry&#39;s about in sleen, novin, lacked!&quot; round doon! noth, a pais, mely, a firiben stod ere, en year out humroring...&quot; 
+Epoch: 1 	Batch: 400000 - 400025 	Loss: 42.27
+en againicl, it. by kneanhed widded the mught harry sall, be blowrcunals in lofk. he say as fillo the now&quot; said ron, beca thimotthing was thead just pilesper lown then crowped on any. it&#39;s tert his beeved all?&quot; 
 
-masly.&quot;?
+harrees jumade that the foolm, herny  
 
+Epoch: 2 	Batch: 0 - 25 	Loss: 42.49
+. it&#39; harry to, e ally threet as in alming putter ty pire withong lears?&quot; say bref a a ron for undout be or in at from,&quot; said to ingo.&quot; 
 
-ehe ressmot at pe-miree -- go a 
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">model</span> <span class="o">=</span> <span class="n">LSTM</span><span class="p">(</span><span class="n">char_to_idx</span><span class="p">,</span> <span class="n">idx_to_char</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">epochs</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.0005</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">J</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+&quot;wher. the to there in whit in and a soraly beats if i surm peces goot ron, highed coursy botting..&quot; sarly was i 
 
-<span class="nn">File /workspaces/artificial_intelligence/artificial_intelligence/aiml-common/lectures/rnn/lstm/model.py:300,</span> in <span class="ni">LSTM.train</span><span class="nt">(self, X, verbose)</span>
-<span class="g g-Whitespace">    </span><span class="mi">297</span> <span class="k">if</span> <span class="n">epoch</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">298</span>     <span class="bp">self</span><span class="o">.</span><span class="n">gradient_check</span><span class="p">(</span><span class="n">x_batch</span><span class="p">,</span> <span class="n">y_batch</span><span class="p">,</span> <span class="n">h_prev</span><span class="p">,</span> <span class="n">c_prev</span><span class="p">,</span> <span class="n">num_checks</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">300</span> <span class="bp">self</span><span class="o">.</span><span class="n">clip_grads</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span> <span class="n">batch_num</span> <span class="o">=</span> <span class="n">epoch</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">epochs</span> <span class="o">+</span> <span class="n">j</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq_len</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_params</span><span class="p">(</span><span class="n">batch_num</span><span class="p">)</span>
+Epoch: 2 	Batch: 400000 - 400025 	Loss: 39.39
+wers ope chossellow lamged to drow inte tright. ran which potteas anory araider to think it i drinpsthing he the cowply plant him it was evinggotcent on upsied somethere, dustreyt, hagrid, bat&#39;le sard right down bying up a fren of them. 
 
-<span class="nn">File /workspaces/artificial_intelligence/artificial_intelligence/aiml-common/lectures/rnn/lstm/model.py:79,</span> in <span class="ni">LSTM.clip_grads</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">75</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">76</span><span class="sd"> Limits the magnitude of gradients to avoid exploding gradients</span>
-<span class="g g-Whitespace">     </span><span class="mi">77</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">grads</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">79</span>     <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grads</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">grads</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
-<span class="g g-Whitespace">     </span><span class="mi">80</span> <span class="k">return</span>
+&quot;he&#39;ll have 
 
-<span class="nn">File &lt;__array_function__ internals&gt;:180,</span> in <span class="ni">clip</span><span class="nt">(*args, **kwargs)</span>
+Epoch: 3 	Batch: 0 - 25 	Loss: 39.83
+or and the lies, the somerme?&quot; 
 
-<span class="nn">File /workspaces/artificial_intelligence/.venv/lib/python3.11/site-packages/numpy/core/fromnumeric.py:2154,</span> in <span class="ni">clip</span><span class="nt">(a, a_min, a_max, out, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2085</span> <span class="nd">@array_function_dispatch</span><span class="p">(</span><span class="n">_clip_dispatcher</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2086</span> <span class="k">def</span> <span class="nf">clip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a_min</span><span class="p">,</span> <span class="n">a_max</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">2087</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">2088</span><span class="sd">     Clip (limit) the values in an array.</span>
-<span class="g g-Whitespace">   </span><span class="mi">2089</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2152</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">2153</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">2154</span>     <span class="k">return</span> <span class="n">_wrapfunc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;clip&#39;</span><span class="p">,</span> <span class="n">a_min</span><span class="p">,</span> <span class="n">a_max</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+&quot;got was surd of so fry quirrileh out,&quot; roim. 
 
-<span class="nn">File /workspaces/artificial_intelligence/.venv/lib/python3.11/site-packages/numpy/core/fromnumeric.py:57,</span> in <span class="ni">_wrapfunc</span><span class="nt">(obj, method, *args, **kwds)</span>
-<span class="g g-Whitespace">     </span><span class="mi">54</span>     <span class="k">return</span> <span class="n">_wrapit</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">57</span>     <span class="k">return</span> <span class="n">bound</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">59</span>     <span class="c1"># A TypeError occurs if the object does have such a method in its</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span>     <span class="c1"># class, but its signature is not identical to that of NumPy&#39;s. This</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="c1"># Call _wrapit from within the except clause to ensure a potential</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span>     <span class="c1"># exception has a traceback chain.</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span>     <span class="k">return</span> <span class="n">_wrapit</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+rdinatt or up obalit and you harry have be your loild exore uncy seady, mording ee...&quot; 
 
-<span class="nn">File /workspaces/artificial_intelligence/.venv/lib/python3.11/site-packages/numpy/core/_methods.py:160,</span> in <span class="ni">_clip</span><span class="nt">(a, min, max, out, casting, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">157</span>     <span class="k">return</span> <span class="n">_clip_dep_invoke_with_casting</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">158</span>         <span class="n">um</span><span class="o">.</span><span class="n">maximum</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="nb">min</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">casting</span><span class="o">=</span><span class="n">casting</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">159</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">160</span>     <span class="k">return</span> <span class="n">_clip_dep_invoke_with_casting</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">161</span>         <span class="n">um</span><span class="o">.</span><span class="n">clip</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">casting</span><span class="o">=</span><span class="n">casting</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+&quot;he was dumgonly. you&#39;re was i peblay, slatcel, you folt an amound up a planes a 
 
-<span class="nn">File /workspaces/artificial_intelligence/.venv/lib/python3.11/site-packages/numpy/core/_methods.py:114,</span> in <span class="ni">_clip_dep_invoke_with_casting</span><span class="nt">(ufunc, out, casting, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span> <span class="c1"># try to deal with broken casting rules</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">114</span>     <span class="k">return</span> <span class="n">ufunc</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">except</span> <span class="n">_exceptions</span><span class="o">.</span><span class="n">_UFuncOutputCastingError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="c1"># Numpy 1.17.0, 2019-02-24</span>
-<span class="g g-Whitespace">    </span><span class="mi">117</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">118</span>         <span class="s2">&quot;Converting the output of clip from </span><span class="si">{!r}</span><span class="s2"> to </span><span class="si">{!r}</span><span class="s2"> is deprecated. &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">119</span>         <span class="s2">&quot;Pass `casting=</span><span class="se">\&quot;</span><span class="s2">unsafe</span><span class="se">\&quot;</span><span class="s2">` explicitly to silence this warning, or &quot;</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">122</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span>
-<span class="g g-Whitespace">    </span><span class="mi">123</span>     <span class="p">)</span>
+Epoch: 3 	Batch: 400000 - 400025 	Loss: 37.39
+ak now. there, who happeed the cloak as ficted. flunt. 
 
-<span class="ne">KeyboardInterrupt</span>: 
+harry all of the his easing ontroost. 
+
+rod with side pussed. &quot;aff niw yo- was he&#39;d bony head of well, condedering sippedore ilmoarted um all goon iato to kissing to came... wen other allving b 
+
+Epoch: 4 	Batch: 0 - 25 	Loss: 37.95
+ing on the saune him, think aron&#39; ie.&quot; 
+
+&quot;but ofything? you to which was a ron she&#39;s stor, pot ron, male, at ohan -- they way bas anyther?&quot; 
+
+&quot;loarpay a kieding now, have there?&quot; 
+
+&quot;forder were se migto i -- you,&quot; said he more,&quot; 
+
+&quot;what you the knook 
+
+Epoch: 4 	Batch: 400000 - 400025 	Loss: 35.98
+ow as the foof somathing alm the blanst the thon in enew end getter his anyenly there two hed. they eppially. he stoved dene. 
+
+&quot;so finsmere at the toom, ip you saupt extilie, he mouffly,&quot; said herm out. 
+
+&quot;it&#39;s abon&#39; bations tome,&quot; said haspered wan 
+
+Epoch: 5 	Batch: 0 - 25 	Loss: 36.61
+er! &quot;me they yeh the tow enzy -- now. 
+
+he was hume a but looked but that it said smilebout, but mumby in, he had he vellat laot behand to suf mararon, voldy trything nighirgand a, hairfung whistine, wrion it was ever at at leaws tome any standed to  
+
+Epoch: 5 	Batch: 400000 - 400025 	Loss: 34.93
+isted, lit of urbanas,. there? all right it, harry loop let and suddenly, it wall, tham. 
+
+&quot;linting as shather!&quot; said harry, atting it regenard were placible. 
+
+&quot;i plintion, you lecked his,&quot; said harry, a day...... it was snapes are baraking the fort 
+
+Epoch: 6 	Batch: 0 - 25 	Loss: 35.63
+ing expseptaiting around aprife, they sittar. 
+
+&quot;she unlergoim to, while exat you, but -- i got nearly breat, litter, any you.. professor school bo told sfeem up anythin me tome his hinder, and harry scensce, if a start out hermiound wathen oncober a 
+
+Epoch: 6 	Batch: 400000 - 400025 	Loss: 34.1
+sserefup, at horward most. it&#39;s noo caber at it was look, but ron, rone ry foold had to daying at the worrs, the cloak his tallow who elppy let the hoot wite as the high? jumped, we&#39;ve noinded anyous the bort stone, up to. make i the good. &quot;you&#39;re de 
+
+Epoch: 7 	Batch: 0 - 25 	Loss: 34.86
+, and enowew with most sa. master ap over them i soundened well chated. 
+
+i that ration and so looked of him. past the other im. 
+
+&quot;course,&quot; said harry. 
+
+&quot;air yould be now ron nervous -- key leaves and sitian was and aly, professor drying, but gont  
+
+Epoch: 7 	Batch: 400000 - 400025 	Loss: 33.42
+amber corning to we all. 
+
+he had if an achosteming, now. 
+
+it shopled on this lioker. &quot;we goozan colled -o heard again. professor week again it way expicing of my?&quot; 
+
+&quot;harry arentay catched and thel,&quot; said hermione a foot stop been looked at them bo 
+
+Epoch: 8 	Batch: 0 - 25 	Loss: 34.23
+oon of harry, and the room to harry. 
+
+&quot;oh, neville, you th told of that will your minub.&quot;. 
+
+&quot;? scerise dringing to siffusied ofgeroush the tome -- it sudder, she strettering let we have fouring as ohe off hoge wanted yes, i stand, on the lets....&quot;  
+
+Epoch: 8 	Batch: 400000 - 400025 	Loss: 32.85
+speat, usianding her free. then saves. he&#39;s good of them. 
+
+&quot;professor mcgonagall&#39;s few do make..&quot; 
+
+&quot;-- bounhing norbert for them. ron, he was, they was priving, thon, i don&#39;t dogf -- you lound you pook again, and i&#39;r event sony with as there, leeve 
+
+Epoch: 9 	Batch: 0 - 25 	Loss: 33.71
+ed at little as dien&#39;t beard whispering a mean and harry, &quot;peanber whurbus al op as,&quot; said dumbiertur. fasted and it was insibe. 
+
+&quot;are my crearly look at them on the ron of cupposs you nomes, the glusmy. they were a mistrof of gay expested thought s 
+
+Epoch: 9 	Batch: 400000 - 400025 	Loss: 32.37
+asenfor and hermione into the trallow you a like and pastnice. 
+
+&quot;she was a fell pastuch rided.&quot; 
+
+&quot;acrows could tell, is, so you wold a you thinks and you keep my shop uch claght and dumbledley, id forget it crosmons when your trying if he stwas?&quot; h 
 </pre></div>
 </div>
 </div>
@@ -819,7 +873,7 @@ ehe ressmot at pe-miree -- go a
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;training loss&#39;)
 </pre></div>
 </div>
-<img alt="../../../../../_images/7bf4698f817433c00a571fbfa4290eb655d5b5809aed1cb1d51309963b42e80f.png" src="../../../../../_images/7bf4698f817433c00a571fbfa4290eb655d5b5809aed1cb1d51309963b42e80f.png" />
+<img alt="../../../../../_images/c31bb19bf6a10ddf08e5c75306ae79acaabb1cc7aea75b95a911330b91c0f9a8.png" src="../../../../../_images/c31bb19bf6a10ddf08e5c75306ae79acaabb1cc7aea75b95a911330b91c0f9a8.png" />
 </div>
 </div>
 </section>
@@ -866,11 +920,11 @@ ehe ressmot at pe-miree -- go a
       </div>
     </a>
     <a class="right-next"
-       href="../../nmt/_index.html"
+       href="../../nmt/nmt-intro/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Neural Machine Translation</p>
+        <p class="prev-next-title">RNN-based Neural Machine Translation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

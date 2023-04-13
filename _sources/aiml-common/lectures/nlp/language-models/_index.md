@@ -1,4 +1,4 @@
-# RNN Language Models
+# RNN-based Language Models
 
 > These notes heavily borrowing from [the CS224N set of notes on Language Models](https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1224/index.html#coursework). 
 
@@ -48,7 +48,7 @@ To train an RNN language model
 
 1. We start with  big corpus of text which is a sequence of tokens $\mathbf x_1, ..., \mathbf x_{T}$ where T is the number of words / tokens in the corpus. 
 
-2. Every time step we feed one word at a time to the LSTM and compute the output probability distribution $\mathbf{\hat  y}_t$, which is, by construction, a _conditional_ probability distribution of every word in the dictionary given the words we have seen so far. 
+2. Every time step we feed one word at a time to the LSTM and compute the output probability distribution $\mathbf{\hat  y}_t$, which is, by construction, a _conditional_ probability distribution of every word in the vocabulary given the words we have seen so far. 
 
 3. The loss function at time step $t$ is the CE between the predicted probability distribution and the distribution that corresponds to the one-hot encoded next token. 
    
