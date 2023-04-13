@@ -20,3 +20,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends git-lfs ffmpeg libsm6 libxext6
 
 
+
+# inscape installation 
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends inkscape

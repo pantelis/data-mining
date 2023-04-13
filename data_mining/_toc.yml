@@ -58,8 +58,7 @@ parts:
     chapters:  
     - file: aiml-common/lectures/transfer-learning/transfer-learning-introduction.md  
     - file: aiml-common/lectures/transfer-learning/transfer_learning_tutorial.ipynb
-    #- file: aiml-common/lectures/transfer-learning/quantized_transfer_learning.ipynb  
-
+  
   - caption: Scene Understanding
     chapters:    
     - file: aiml-common/lectures/scene-understanding/scene-understanding-intro/index.md
@@ -69,40 +68,45 @@ parts:
       - file: aiml-common/lectures/scene-understanding/object-detection/detection-metrics/index.md
       - file: aiml-common/lectures/scene-understanding/object-detection/rcnn-object-detection/index.md    
       - file: aiml-common/lectures/scene-understanding/object-detection/faster-rcnn-object-detection/index.md
-    # - file: aiml-common/lectures/scene-understanding/semantic-segmentation/index.md
-    #   title: Semantic Segmentation
-    #   sections:  
-    #   - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/index.md
-    #   - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/demo.ipynb
-    #   - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_data.ipynb      
-    #   - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_model.ipynb        
-    #   - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/inspect_weights.ipynb      
-    #   - file: aiml-common/lectures/scene-understanding/semantic-segmentation/maskrcnn-semantic-segmentation/detectron2_tutorial.ipynb              
+    
       
   - caption:  Sequences and RNNs
-    # numbered: 3
     chapters:    
-    - file: aiml-common/lectures/rnn/introduction/_index.md 
-    - file: aiml-common/lectures/rnn/simple-rnn/_index.md 
-    - file: aiml-common/lectures/rnn/lstm/_index.md
-    - file: aiml-common/lectures/rnn/time_series_using_simple_rnn_lstm.ipynb     
-    
+  - file: aiml-common/lectures/rnn/introduction/_index.md 
+  - file: aiml-common/lectures/rnn/simple-rnn/_index.md 
+  - file: aiml-common/lectures/rnn/lstm/_index.md
+  - file: aiml-common/lectures/rnn/time_series_using_simple_rnn_lstm.ipynb     
 
-  - caption:  Natural Language Processing
+  - caption:  NLP Introduction
     chapters:
-    - file: aiml-common/lectures/nlp/nlp-intro/_index.md 
-    - file: aiml-common/lectures/nlp/word2vec/word2vec_from_scratch.ipynb 
-    - file: aiml-common/lectures/nlp/word2vec/word2vec_tensorflow_tutorial.ipynb 
-    - file: aiml-common/lectures/nlp/language-models/_index.md   
-    - file: aiml-common/lectures/nlp/language-models/cnn-language-model/index.ipynb
-    - file: aiml-common/lectures/nlp/language-models/simple-rnn-language-model/index.ipynb
-    - file: aiml-common/lectures/nlp/language-models/lstm-language-model/index.ipynb
-    - file: aiml-common/lectures/nlp/nmt/_index.md     
-    - file: aiml-common/lectures/nlp/nmt/lstm_seq2seq.ipynb     
+  - file: aiml-common/lectures/nlp/_index.md 
+  - file: aiml-common/lectures/nlp/nlp-introduction/nlp-pipelines/_index.md 
+  - file: aiml-common/lectures/nlp/nlp-introduction/tokenization/index.ipynb
+  - file: aiml-common/lectures/nlp/nlp-introduction/word2vec/_index.md 
+  - file: aiml-common/lectures/nlp/nlp-introduction/word2vec/word2vec_from_scratch.ipynb 
+  - file: aiml-common/lectures/nlp/nlp-introduction/word2vec/word2vec_tensorflow_tutorial.ipynb 
+
+  - caption:  NLP Language Models
+    chapters:
+  - file: aiml-common/lectures/nlp/language-models/_index.md   
+  - file: aiml-common/lectures/nlp/language-models/cnn-language-model/index.ipynb
+  - file: aiml-common/lectures/nlp/language-models/simple-rnn-language-model/index.ipynb
+  - file: aiml-common/lectures/nlp/language-models/lstm-language-model/index.ipynb
+    
+  - caption:  NLP Neural Machine Translation
+    chapters:
+  - file: aiml-common/lectures/nlp/nmt/index.md     
+  - file: aiml-common/lectures/nlp/nmt/nmt-metrics/index.ipynb       
+  - file: aiml-common/lectures/nlp/nmt/lstm_seq2seq.ipynb     
+  - file: aiml-common/lectures/nlp/nmt/rnn-nmt-attention/index.md  
+
+  - caption:  NLP Transformers
+    chapters:
+  - file: aiml-common/lectures/nlp/transformers/transformers-intro.md
+  - file: aiml-common/lectures/nlp/transformers/annotated_transformer.ipynb         
   
-  - caption: Classical Learning Methods
-    # numbered: 3
-    chapters:
+  - caption: Structured Data Methods
+   chapters:
     - file: aiml-common/lectures/decision-trees/_index.md
     - file: aiml-common/lectures/regression-trees/regression_trees.ipynb
     - file: aiml-common/lectures/ensemble/_index.md
@@ -111,12 +115,6 @@ parts:
     - file: aiml-common/lectures/ensemble/gradient-boosting/index.md  
     - file: aiml-common/lectures/ensemble/boosting-workshop/_index.md  
    
-  - caption: Bayesian Inference
-    chapters:
-    - file: aiml-common/lectures/pgm/bayesian-inference/_index.md
-    - file: aiml-common/lectures/pgm/bayesian-inference/bayesian_regression.ipynb
-    - file: aiml-common/lectures/pgm/bayesian-coin/bayesian_update_coin_flip.ipynb
-
   - caption: Non-Parametric Methods
     # numbered: 3
     chapters:    

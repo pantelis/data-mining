@@ -10,10 +10,12 @@
 		}
 	},
 
+	
 	"remoteEnv": {
 		"PATH": "${localEnv:PATH}:/home/vscode/.local/bin:/usr/local/cuda/bin",
 		"LD_LIBRARY_PATH": "/usr/local/cuda/lib64",
-		"XLA_FLAGS": "--xla_gpu_cuda_data_dir=/usr/local/cuda/"
+		"XLA_FLAGS": "--xla_gpu_cuda_data_dir=/usr/local/cuda/",
+		"CUBLAS_WORKSPACE_CONFIG": ":4096:2"  // https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html
 	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
@@ -25,7 +27,7 @@
 		}
 	},
 
-	"runArgs": ["--gpus", "all"],
+	"runArgs": ["--runtime=nvidia", "--gpus", "all"],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [8000],
