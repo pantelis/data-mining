@@ -95,7 +95,7 @@ parts:
     
   - caption:  NLP Neural Machine Translation
     chapters:
-  - file: aiml-common/lectures/nlp/nmt/index.md     
+  - file: aiml-common/lectures/nlp/nmt/nmt-intro/index.md     
   - file: aiml-common/lectures/nlp/nmt/nmt-metrics/index.ipynb       
   - file: aiml-common/lectures/nlp/nmt/lstm_seq2seq.ipynb     
   - file: aiml-common/lectures/nlp/nmt/rnn-nmt-attention/index.md  
