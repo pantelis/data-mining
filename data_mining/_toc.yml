@@ -78,7 +78,6 @@ parts:
 
   - caption:  Natural Language Processing 
     chapters:
-    - file: aiml-common/lectures/nlp/_index.md 
     - file: aiml-common/lectures/nlp/nlp-introduction/nlp-pipelines/_index.md 
     - file: aiml-common/lectures/nlp/nlp-introduction/tokenization/index.ipynb
     - file: aiml-common/lectures/nlp/nlp-introduction/word2vec/_index.md 
