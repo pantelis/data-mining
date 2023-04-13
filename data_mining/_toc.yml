@@ -68,45 +68,46 @@ parts:
       - file: aiml-common/lectures/scene-understanding/object-detection/detection-metrics/index.md
       - file: aiml-common/lectures/scene-understanding/object-detection/rcnn-object-detection/index.md    
       - file: aiml-common/lectures/scene-understanding/object-detection/faster-rcnn-object-detection/index.md
-    
-      
+     
   - caption:  Sequences and RNNs
     chapters:    
-  - file: aiml-common/lectures/rnn/introduction/_index.md 
-  - file: aiml-common/lectures/rnn/simple-rnn/_index.md 
-  - file: aiml-common/lectures/rnn/lstm/_index.md
-  - file: aiml-common/lectures/rnn/time_series_using_simple_rnn_lstm.ipynb     
+    - file: aiml-common/lectures/rnn/introduction/_index.md 
+    - file: aiml-common/lectures/rnn/simple-rnn/_index.md 
+    - file: aiml-common/lectures/rnn/lstm/_index.md
+    - file: aiml-common/lectures/rnn/time_series_using_simple_rnn_lstm.ipynb     
 
-  - caption:  NLP Introduction
+  - caption:  Natural Language Processing 
     chapters:
-  - file: aiml-common/lectures/nlp/_index.md 
-  - file: aiml-common/lectures/nlp/nlp-introduction/nlp-pipelines/_index.md 
-  - file: aiml-common/lectures/nlp/nlp-introduction/tokenization/index.ipynb
-  - file: aiml-common/lectures/nlp/nlp-introduction/word2vec/_index.md 
-  - file: aiml-common/lectures/nlp/nlp-introduction/word2vec/word2vec_from_scratch.ipynb 
-  - file: aiml-common/lectures/nlp/nlp-introduction/word2vec/word2vec_tensorflow_tutorial.ipynb 
-
-  - caption:  NLP Language Models
-    chapters:
-  - file: aiml-common/lectures/nlp/language-models/_index.md   
-  - file: aiml-common/lectures/nlp/language-models/cnn-language-model/index.ipynb
-  - file: aiml-common/lectures/nlp/language-models/simple-rnn-language-model/index.ipynb
-  - file: aiml-common/lectures/nlp/language-models/lstm-language-model/index.ipynb
+    - file: aiml-common/lectures/nlp/_index.md 
+    - file: aiml-common/lectures/nlp/nlp-introduction/nlp-pipelines/_index.md 
+    - file: aiml-common/lectures/nlp/nlp-introduction/tokenization/index.ipynb
+    - file: aiml-common/lectures/nlp/nlp-introduction/word2vec/_index.md 
+      title: Embeddings
+      sections:
+      - file: aiml-common/lectures/nlp/nlp-introduction/word2vec/word2vec_from_scratch.ipynb 
+      - file: aiml-common/lectures/nlp/nlp-introduction/word2vec/word2vec_tensorflow_tutorial.ipynb 
     
-  - caption:  NLP Neural Machine Translation
-    chapters:
-  - file: aiml-common/lectures/nlp/nmt/nmt-intro/index.md     
-  - file: aiml-common/lectures/nlp/nmt/nmt-metrics/index.ipynb       
-  - file: aiml-common/lectures/nlp/nmt/lstm_seq2seq.ipynb     
-  - file: aiml-common/lectures/nlp/nmt/rnn-nmt-attention/index.md  
-
-  - caption:  NLP Transformers
-    chapters:
-  - file: aiml-common/lectures/nlp/transformers/transformers-intro.md
-  - file: aiml-common/lectures/nlp/transformers/annotated_transformer.ipynb         
-  
+    - file: aiml-common/lectures/nlp/language-models/_index.md   
+      title: Language Models 
+      sections:  
+      - file: aiml-common/lectures/nlp/language-models/cnn-language-model/index.ipynb
+      - file: aiml-common/lectures/nlp/language-models/simple-rnn-language-model/index.ipynb
+      - file: aiml-common/lectures/nlp/language-models/lstm-language-model/index.ipynb
+    
+    - file: aiml-common/lectures/nlp/nmt/nmt-intro/index.md  
+      title:  Neural Machine Translation
+      sections:
+      - file: aiml-common/lectures/nlp/nmt/nmt-metrics/index.ipynb       
+      - file: aiml-common/lectures/nlp/nmt/lstm_seq2seq.ipynb     
+    
+    - file: aiml-common/lectures/nlp/nmt/rnn-nmt-attention/index.md  
+    - file: aiml-common/lectures/nlp/transformers/transformers-intro.md
+      title: Transformers
+      sections:
+      - file: aiml-common/lectures/nlp/transformers/annotated_transformer.ipynb         
+    
   - caption: Structured Data Methods
-   chapters:
+    chapters:
     - file: aiml-common/lectures/decision-trees/_index.md
     - file: aiml-common/lectures/regression-trees/regression_trees.ipynb
     - file: aiml-common/lectures/ensemble/_index.md
