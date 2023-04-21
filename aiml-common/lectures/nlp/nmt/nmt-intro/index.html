@@ -261,10 +261,14 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Neural Machine Translation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../nmt-metrics/index.html">NMT Metrics  - BLEU</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lstm_seq2seq.html">Character-level recurrent sequence-to-sequence model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rnn-nmt-attention/index.html">Attention in RNN-based NMT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rnn-attention-workshop/seq2seq_and_attention.html">Attention in RNN NMT Workshop</a></li>
+
+
+
+
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../rnn-nmt-attention/index.html">Attention in RNN-based NMT</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../transformers/transformers-intro.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../transformers/annotated_transformer.html">The Annotated Transformer</a></li>
 
@@ -604,16 +608,16 @@ document.write(`
 <p>The decoder is “aware” of the target words that it’s generated so far and of the input. In fact it is an example of <em>conditional language model</em> because it conditions on the source sentence or its representation - the context <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <p>The decoder directly calculates,</p>
 <div class="math notranslate nohighlight">
-\[\mathbf{\hat y}   = \argmax_y p(\mathbf y | \mathbf \phi)\]</div>
+\[\mathbf{\hat y}   = \arg \max_y p(\mathbf y | \mathbf \phi)\]</div>
 <p>We can write this as:</p>
 <div class="math notranslate nohighlight">
-\[\argmax_y p(\mathbf y| \mathbf \phi) = p(y_1, y_2, ..., y_{Ty} | \phi)\]</div>
+\[\arg \max_y p(\mathbf y| \mathbf \phi) = \arg \max_y p(y_1, y_2, ..., y_{Ty} | \phi)\]</div>
 <p>and then use the product rule of probability to decompose this to:</p>
 <div class="math notranslate nohighlight">
-\[\argmax_y p(y_{T_y} | y_1, ..., y_{T_y-1}, \mathbf \phi)  \dots p(y_2|y_1, \mathbf \phi ) p(y_1| \mathbf \phi) \]</div>
+\[\arg \max_y p(y_{Ty} | y_1, ..., y_{Ty-1}, \mathbf \phi)  \dots p(y_2|y_1, \mathbf \phi ) p(y_1| \mathbf \phi) \]</div>
 <p>We can now write,</p>
 <div class="math notranslate nohighlight">
-\[\mathbf{\hat y}   = \argmax_y p(\mathbf y | \mathbf \phi) = \prod_{t=1}^{T_y} p(y_t | y_1, ..., y_{t-1}, \mathbf \phi) \]</div>
+\[\mathbf{\hat y}   = \arg \max_y p(\mathbf y | \mathbf \phi) = \arg \max \prod_{t=1}^{T_y} p(y_t | y_1, ..., y_{t-1}, \mathbf \phi) \]</div>
 <p>In this equation <span class="math notranslate nohighlight">\(p(y_t | y_1, ..., y_{t-1}, \mathbf \phi)\)</span> is a probability distribution represented by a softmax across all all the words of the vocabulary.</p>
 <p>We can use an RNN to model the conditional probabilities</p>
 <div class="math notranslate nohighlight">
@@ -626,7 +630,7 @@ document.write(`
 <p><img alt="lstm-nmt-decoder" src="../../../../../_images/lstm-nmt-decoder.png" />
 <em>LSTM Decoder (unrolled). The decoder is a language model that’s “aware” of the words that it’s generated so far and of the input.</em></p>
 <p>Once we have the output sequence, we use the same learning strategy as usual. We define a loss, the cross entropy on the prediction sequence, and we minimize it with a gradient descent algorithm and back-propagation.</p>
-<p>Note that the <span class="math notranslate nohighlight">\(\arg \max\)</span> we apply at each step on the softmax output results in some instances in suboptimal translations. The solution has been experimentally found to be the <em>beam search</em> heuristic that maintains a small number (e.g. 3-10) of the top likely sentences called the <em>beam width</em> , as opposed to <em>the</em> most likely sentence, and tries to extend them by one word at each step.</p>
+<p>Note that the <span class="math notranslate nohighlight">\(\arg \max\)</span> we apply at each step on the softmax output results in some instances in suboptimal translations. <a class="reference external" href="https://towardsdatascience.com/an-intuitive-explanation-of-beam-search-9b1d744e7a0f"><em>Beam search</em></a>, a method that is rooted in maximum likelihood sequence estimation and the Viterbi algorithm, maintains a small number (e.g. 3-10) of the top likely sentences called the <em>beam width</em> , as opposed to <em>the</em> most likely sentence, and tries to extend them by one word at each step.</p>
 </section>
 </section>
 <div class="toctree-wrapper compound">

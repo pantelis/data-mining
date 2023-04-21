@@ -1,6 +1,6 @@
 # Submitting Your Assignment / Project
 
-### Step 1: Github Repository 
+## Step 1: Github Repository 
 
 Make sure you know how to commit and push your changes to your repo. If you do not push the latest changes the grader will grade an outdates version of your code. The following steps will only need to be done once - at the beginning of the semester.
 
@@ -20,7 +20,7 @@ Make sure you know how to commit and push your changes to your repo. If you do n
 4. Open the assignment on the LMS of your institution (Canvas, Brightspace), and enter the copied link into the given textbox.
 
 
-### Step 2: Colab Notebook
+## Step 2: Colab Notebook
 
 If your assignment includes colab notebooks that will be (obviously) inside your github, you will need to also share them with your grader as they are hosted inside your Google account. You can do this as follows:
 
@@ -36,7 +36,7 @@ If your assignment includes colab notebooks that will be (obviously) inside your
 
 4. Open the assignment on the LMS of your institution (Canvas, Brightspace),  and enter the copied link into the given textbox. 
 
-### How to add the Open in  Colab Button
+## How to add the Open in  Colab Button
 
 After adding the TA as a collaborator they will be able to see your code in Github. You need to add a "Open in Colab" button in your Github. When after clicking on it they will directed to the code on your Google Colab. Following are the steps :
 

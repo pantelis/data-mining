@@ -72,8 +72,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../../../../_static/logo.ico"/>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="Introduction to Transformers" href="../../transformers/transformers-intro.html" />
-    <link rel="prev" title="Character-level recurrent sequence-to-sequence model" href="../lstm_seq2seq.html" />
+    <link rel="next" title="Attention in RNN NMT Workshop" href="../rnn-attention-workshop/seq2seq_and_attention.html" />
+    <link rel="prev" title="NMT Metrics - BLEU" href="../nmt-metrics/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -259,12 +259,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../language-models/lstm-language-model/index.html">LSTM Language Model from scratch</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../nmt-intro/index.html">Neural Machine Translation</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../nmt-intro/index.html">Neural Machine Translation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../nmt-metrics/index.html">NMT Metrics  - BLEU</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lstm_seq2seq.html">Character-level recurrent sequence-to-sequence model</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Attention in RNN-based NMT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rnn-attention-workshop/seq2seq_and_attention.html">Attention in RNN NMT Workshop</a></li>
+
+
+
+
 </ul>
 </li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Attention in RNN-based NMT</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../transformers/transformers-intro.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../transformers/annotated_transformer.html">The Annotated Transformer</a></li>
 
@@ -517,7 +521,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -533,6 +539,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scoring-functions">Scoring functions</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -544,41 +558,42 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="attention-in-rnn-based-nmt">
 <h1>Attention in RNN-based NMT<a class="headerlink" href="#attention-in-rnn-based-nmt" title="Permalink to this headline">#</a></h1>
-<p>When you hear the sentence “the soccer ball is on the field,” you don’t assign the same importance to all 7 words. You primarily take note of the words “<em>ball</em>” “<em>on</em>,” and “<em>field</em>” since those are the words that are most “important” to you.</p>
-<p>Using the <em>final</em> RNN hidden state as <em>the</em> single “context vector” for sequence-to-sequence models cannot differentiate between significant and less significant words. Moreover, different parts of the output need to consider different parts of the input as “important.”</p>
+<p>When you hear the sentence “the soccer ball is on the field,” you don’t assign the same importance to all 7 words. You primarily take note of the words “<em>ball</em>” “<em>on</em>,” and “<em>field</em>” since those are the words that are most descriptive to you.</p>
+<p>Using the <em>final</em> RNN hidden state as <em>the</em> single context vector  sequence-to-sequence models cannot differentiate between significant and less significant words. Moreover, different parts of the output need to consider different parts of the input as “important.”</p>
 <p>To address this issue we can simply introduce skip connections - similarly to the ResNet architecture - to the RNN decoder. We can decorate each skip connection with a weight that is learned during training. In the figure below you can see th encoder hidden states combined via a weighted sum with the decoder hidden states.</p>
 <p><img alt="" src="../../../../../_images/simple-attention.png" /></p>
 <div class="admonition-important admonition">
 <p class="admonition-title">Important</p>
-<p>Notice that if set of weights that the decoder uses to combine the encoder hidden states is the same for all decoder hidden states, this will not solve the problem as the decoder may need to focus on different parts of the input at different time steps. We therefore make the weights <em>dynamic and dependent on the decoder hidden state</em>.</p>
-<p>The attention mechanism will calculate these weights: it will  make use of this observation by providing the decoder network with a look at the <em>entire</em> input sequence at every decoding step <em>and</em> having the decoder decide what input words are important at any point in time and effectively making the context vector time dependent.</p>
+<p>Notice that if the set of weights that the decoder uses to combine the encoder hidden states is the same for all decoder hidden states, this will not solve the problem as the decoder may need to focus on different parts of the input at different time steps. We therefore make the weights <em>dynamic and dependent on the decoder hidden state</em>.</p>
+<p>The attention mechanism will calculate these weights: it will  make use of this observation by providing the decoder network with a look at the <em>entire</em> input sequence at every decoding step <em>and</em> having the decoder decide what input words are important at any point in time and effectively making the context dependent on decoder time step.</p>
 </div>
 <ol class="arabic simple">
-<li><p>During encoding the output of bidirectional LSTM encoder can provide the contextual representation of <em>each input word</em> <span class="math notranslate nohighlight">\(x_i\)</span> via the encoder hidden vectors <span class="math notranslate nohighlight">\(h_1, ..., h_{Tx}\)</span> where <span class="math notranslate nohighlight">\(Tx\)</span> is the length of the input sentence.</p></li>
-<li><p>During decoding we compute the RNN decoder hidden states <span class="math notranslate nohighlight">\(s\)</span> using a recursive relationship,</p></li>
+<li><p>During encoding the output of bidirectional LSTM encoder can provide the contextual representation of <em>each input word</em> <span class="math notranslate nohighlight">\(x_i\)</span>. Let the encoder hidden vectors be denoted as <span class="math notranslate nohighlight">\(h_1, ..., h_{Tx}\)</span> where <span class="math notranslate nohighlight">\(Tx\)</span> is the length of the input sentence.</p></li>
+<li><p>During decoding we compute the RNN decoder hidden states <span class="math notranslate nohighlight">\(s_t\)</span> using a recursive relationship,</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[s_t = g(s_{t-1}, y_{t-1}, \phi_t)\]</div>
 <p>where <span class="math notranslate nohighlight">\(s_{t-1}\)</span> is the previous hidden state, <span class="math notranslate nohighlight">\(y_{t-1}\)</span> is the word at the previous step and <span class="math notranslate nohighlight">\(\phi_t\)</span> is the context vector that captures the context from the original sentence that is relevant to the decoder at time <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p>The <span class="math notranslate nohighlight">\(\phi_t\)</span> is computed with the help of a small neural network called attention layer, which is trained jointly with the rest of the Encoder–Decoder model. This model, called <strong>allignment model</strong> as it <em>alligns the decoder step and the relevant context for that step</em>, is illustrated on the right hand side of the figure above.</p>
+<p>The <span class="math notranslate nohighlight">\(\phi_t\)</span> is computed with the help of a small neural network called attention layer, which is trained jointly with the rest of the Encoder–Decoder model. This model, is also known as <strong>allignment model</strong> since it <em>alligns the decoder step and the relevant context for that step</em>, is illustrated on the right hand side of the figure above.</p>
 <div class="admonition-example admonition">
 <p class="admonition-title">Example</p>
-<p>To implement the above equation, we construct the following architecture with the additional capabilities:</p>
 <p><img alt="attention-example" src="../../../../../_images/attention-example.png" />
 <em>Attention mechanism in NMT. Instead of just sending the encoder’s final hidden state to the decoder (which is still done, although it is not shown in the figure), we now send all of its outputs to the decoder. At each time step, the decoder’s memory cell computes a weighted sum of all these encoder outputs: this determines which words it will focus on at this step. The weight <span class="math notranslate nohighlight">\(a_t(i)\)</span> is the weight of the ith encoder output at the t-th decoder time step. For example, if the weight <span class="math notranslate nohighlight">\(α_3(2)\)</span> is much larger than the weights <span class="math notranslate nohighlight">\(α_3(0)\)</span> and <span class="math notranslate nohighlight">\(α_3(1)\)</span>, then the decoder will pay much more attention to word number 2 (“milk”) than to the other two words, at least at this time step.</em></p>
 <p>It starts with a time-distributed Dense layer with a single neuron, which receives as input all the encoder outputs, concatenated with the decoder’s previous hidden state (e.g., <span class="math notranslate nohighlight">\(\mathbf h_2\)</span>). This layer outputs a score (or energy) for each encoder output that measures how well each output is aligned with the decoder’s previous hidden state.</p>
 </div>
-<p>maximizes a new conditional probability that now conditions on a time dependent context vector <span class="math notranslate nohighlight">\(\phi_t\)</span>.</p>
-<div class="math notranslate nohighlight">
-\[p(\mathbf y | \mathbf x) = g(y_{t-1}, h_{t-1}, \phi_t)\]</div>
+<p>More specifically the <span class="math notranslate nohighlight">\(\phi_t\)</span> is computed as follows:</p>
 <ol class="arabic simple">
-<li><p>For each hidden state from the original sentence <span class="math notranslate nohighlight">\(h_i\)</span>, <span class="math notranslate nohighlight">\(i\)</span> is the index of the input sentence, we compute a score</p></li>
+<li><p>For each hidden state from the source sentence <span class="math notranslate nohighlight">\(h_i\)</span>, <span class="math notranslate nohighlight">\(i\)</span> is the sequence index of the encoder hidden state, we compute a score</p></li>
 </ol>
 <div class="math notranslate nohighlight">
-\[e_{t,i} = \mathtt{attention}(s_{t−1}, h_i)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathtt{attention}\)</span> is any function with values in <span class="math notranslate nohighlight">\(\mathbb R\)</span> for instance a single layer fully-connected neural network.</p>
+\[e_{t,i} = \mathtt{scoring}(h_i, s_{t−1})\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathtt{scoring}\)</span> is any function with values in <span class="math notranslate nohighlight">\(\mathbb R\)</span> - see below for choices of scoring functions.</p>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note</p>
+<p>We will be calling the encoder hidden state <span class="math notranslate nohighlight">\(i\)</span> the ‘keys’ of a dictionary that stores the values of all the encoder and the decoder hidden state the ‘query’.</p>
+</div>
 <ol class="arabic simple" start="2">
-<li><p>The score values are normalized  using a softmax layer to produce the attention vector <span class="math notranslate nohighlight">\(\mathbf α_t\)</span>.  All the weights for a given decoder time step add up to 1.</p></li>
+<li><p>The score values are normalized  using a softmax layer to produce the attention weight vector <span class="math notranslate nohighlight">\(\mathbf α_t\)</span>.  All the weights for a given decoder time step add up to 1.</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[\mathbf a_t = \mathtt{softmax}(\mathbf e_{t})\]</div>
@@ -587,12 +602,23 @@ document.write(`
 </ol>
 <div class="math notranslate nohighlight">
 \[ \phi_t = \sum_i \alpha_{t,i}h_i\]</div>
-<p>Intuitively, this vector captures the relevant contextual information from the original sentence for the t-th step of the decoder. This particular attention mechanism is called <a class="reference external" href="https://arxiv.org/abs/1409.0473">Bahdanau attention</a>. Since it concatenates the encoder output with the decoder’s previous hidden state, it is sometimes called concatenative attention (or additive attention).</p>
+<p>Intuitively, this vector captures the relevant contextual information from the original sentence for the t-th step of the decoder.</p>
 <p>The two figures below showcase what it happening in two different time instances of an example french to english translation. Notice how the attention weights calculated via the softmax that puts a lot of emphasis to the highest score vary. In time zone one the attention mechanism weighs on the pronoun and in time step 6 it weighs on the object.</p>
 <p><img alt="seq2seq-attention" src="../../../../../_images/seq2seq-attention-step1.png" />
 <em>Attention in seq2seq neural machine translation - time step 1</em></p>
 <p><img alt="seq2seq-attention" src="../../../../../_images/seq2seq-attention-step5.png" />
 <em>Attention in seq2seq neural machine translation - time step 6</em></p>
+<section id="scoring-functions">
+<h2>Scoring functions<a class="headerlink" href="#scoring-functions" title="Permalink to this headline">#</a></h2>
+<p>There are multiple attention mechanisms and typically the <a class="reference external" href="https://arxiv.org/abs/1409.0473">Bahdanau attention</a> is often quoted. It implements a fully connected neural network in the scoring function that adds the projected encoder <span class="math notranslate nohighlight">\(W h_i\)</span> and decoder hidden states <span class="math notranslate nohighlight">\(U s_{t-1}\)</span> (additive attention):</p>
+<div class="math notranslate nohighlight">
+\[e_{t,i} = \mathtt{scoring}(s_{t−1}, h_i) = \mathbf v^T \tanh(W h_i + U s_{t-1})\]</div>
+<p>During the decoding step it concatenates the encoder output with the decoder’s previous hidden state and this is why sometimes is also called concatenative attention.</p>
+<p>There is alsp multiplicative attention that uses a dot product between encoder and decoder hidden states and there is also a <a class="reference external" href="https://arxiv.org/abs/1508.04025">Luong attention</a> that uses a linear unit for scoring. Note that in this case we use the current decoder hidden state.</p>
+<div class="math notranslate nohighlight">
+\[e_{t,i} = \mathtt{scoring}(s_t, h_i) = \mathbf s_{t}^T W h_i\]</div>
+<p>Notice that the there is no concatenation during the decoding step.  In the workshop we will use the multiplicative attention mechanism.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -627,20 +653,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../lstm_seq2seq.html"
+       href="../nmt-metrics/index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Character-level recurrent sequence-to-sequence model</p>
+        <p class="prev-next-title">NMT Metrics  - BLEU</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../transformers/transformers-intro.html"
+       href="../rnn-attention-workshop/seq2seq_and_attention.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction to Transformers</p>
+        <p class="prev-next-title">Attention in RNN NMT Workshop</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -653,6 +679,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scoring-functions">Scoring functions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -59,19 +59,19 @@ The decoder is "aware" of the target words that it’s generated so far and of t
 
 The decoder directly calculates,
 
-$$\mathbf{\hat y}   = \argmax_y p(\mathbf y | \mathbf \phi)$$
+$$\mathbf{\hat y}   = \arg \max_y p(\mathbf y | \mathbf \phi)$$
 
 We can write this as:
 
-$$\argmax_y p(\mathbf y| \mathbf \phi) = p(y_1, y_2, ..., y_{Ty} | \phi)$$
+$$\arg \max_y p(\mathbf y| \mathbf \phi) = \arg \max_y p(y_1, y_2, ..., y_{Ty} | \phi)$$
 
 and then use the product rule of probability to decompose this to:
 
-$$\argmax_y p(y_{T_y} | y_1, ..., y_{T_y-1}, \mathbf \phi)  \dots p(y_2|y_1, \mathbf \phi ) p(y_1| \mathbf \phi) $$
+$$\arg \max_y p(y_{Ty} | y_1, ..., y_{Ty-1}, \mathbf \phi)  \dots p(y_2|y_1, \mathbf \phi ) p(y_1| \mathbf \phi) $$
 
 We can now write,
 
-$$\mathbf{\hat y}   = \argmax_y p(\mathbf y | \mathbf \phi) = \prod_{t=1}^{T_y} p(y_t | y_1, ..., y_{t-1}, \mathbf \phi) $$
+$$\mathbf{\hat y}   = \arg \max_y p(\mathbf y | \mathbf \phi) = \arg \max \prod_{t=1}^{T_y} p(y_t | y_1, ..., y_{t-1}, \mathbf \phi) $$
 
 In this equation $p(y_t | y_1, ..., y_{t-1}, \mathbf \phi)$ is a probability distribution represented by a softmax across all all the words of the vocabulary. 
 
@@ -93,4 +93,4 @@ To help training, we apply  **teacher forcing** wherein the input at each time s
 
 Once we have the output sequence, we use the same learning strategy as usual. We define a loss, the cross entropy on the prediction sequence, and we minimize it with a gradient descent algorithm and back-propagation. 
 
-Note that the $\arg \max$ we apply at each step on the softmax output results in some instances in suboptimal translations. The solution has been experimentally found to be the _beam search_ heuristic that maintains a small number (e.g. 3-10) of the top likely sentences called the _beam width_ , as opposed to _the_ most likely sentence, and tries to extend them by one word at each step. 
+Note that the $\arg \max$ we apply at each step on the softmax output results in some instances in suboptimal translations. [_Beam search_](https://towardsdatascience.com/an-intuitive-explanation-of-beam-search-9b1d744e7a0f), a method that is rooted in maximum likelihood sequence estimation and the Viterbi algorithm, maintains a small number (e.g. 3-10) of the top likely sentences called the _beam width_ , as opposed to _the_ most likely sentence, and tries to extend them by one word at each step. 

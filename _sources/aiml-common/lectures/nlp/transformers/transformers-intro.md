@@ -12,6 +12,8 @@ All such concepts were covered in earlier chapters.
 
 ```
 
+![](images/transformer-architecture.png)
+
 In the transformer architecture we 
 
 1. Eliminate all recurrent connections, therefore allowing the model to be trained and produce inference results much faster.
@@ -31,7 +33,7 @@ The self-attention mechanism is a mechanism that allows the model to focus on th
 
 1. **Attention scores of the input word**: These are computed as dot products of the embedding of the input word and each of the embeddings of the words of the input sentence (including the input word itself). For example if the input sequence consists of 3 words, we will compute 3 attention scores.
 
-2. **Attention weights**: The attention scores are then passed through a softmax function to obtain the corresponding _attention weights_.  Recall that the softmax function is a vector input - vector output function that maps the input vector to a vector of values between 0 and 1, where the sum of all values is 1. So nwe expect to get 3 attention weights. 
+2. **Attention weights**: The attention scores are then passed through a softmax function to obtain the corresponding _attention weights_.  Recall that the softmax function is a vector input - vector output function that maps the input vector to a vector of values between 0 and 1, where the sum of all values is 1. So we expect to get 3 attention weights. 
 
 3. **Weighted embedding of the input word** : We then use the  attention weights to create a weighted sum of the word embeddings of the input sequence to obtain the new input word embedding i.e. the embedding that now includes information from all other embeddings of the input sequence.
 
@@ -111,13 +113,5 @@ See [here](https://theaisummer.com/positional-embeddings/) for an explanation of
 ```{eval-rst}
 
 .. youtube:: AIiwuClvH6k
-
-```
-
-2. In terms of NLP we just scratched the surface here. Watch the following video to review some of the challenges NLP researchers face (circa 2020) and the rise of natural language generation (NLG) with the earlier GPT-2 and GPT-3 models. The presentation contains some key papers as well. 
-
-```{eval-rst}
-
-.. youtube:: G5lmya6eKtc
 
 ```

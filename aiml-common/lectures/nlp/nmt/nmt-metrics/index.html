@@ -72,7 +72,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../../../../_static/logo.ico"/>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="Character-level recurrent sequence-to-sequence model" href="../lstm_seq2seq.html" />
+    <link rel="next" title="Attention in RNN-based NMT" href="../rnn-nmt-attention/index.html" />
     <link rel="prev" title="RNN-based Neural Machine Translation" href="../nmt-intro/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -261,10 +261,14 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../nmt-intro/index.html">Neural Machine Translation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">NMT Metrics  - BLEU</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lstm_seq2seq.html">Character-level recurrent sequence-to-sequence model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rnn-nmt-attention/index.html">Attention in RNN-based NMT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rnn-attention-workshop/seq2seq_and_attention.html">Attention in RNN NMT Workshop</a></li>
+
+
+
+
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../rnn-nmt-attention/index.html">Attention in RNN-based NMT</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../transformers/transformers-intro.html">Transformers</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../transformers/annotated_transformer.html">The Annotated Transformer</a></li>
 
@@ -626,7 +630,7 @@ document.write(`
 <section id="intuition">
 <h2>Intuition<a class="headerlink" href="#intuition" title="Permalink to this headline">#</a></h2>
 <p>The BLEU algorithm evaluates the precision score of a candidate machine translation against a reference human translation.</p>
-<p>The reference human translation is a assumed to be a model example of a translation, and we use <em>n-gram</em> matches as our metric for how similar a candidate translation is to it. Why simple precision can’t be used? Consider the following example of poor machine translation output with high precision metric using unigrams.</p>
+<p>The reference human translation is a assumed to be a model example of a translation, and we use <em>n-gram</em> matching as our metric for how similar a candidate translation is to it. Why simple precision can’t be used? Consider the following example of poor machine translation output with high precision metric using unigrams.</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Output</p></th>
@@ -790,11 +794,11 @@ Individual 4-gram: 1.000000
       </div>
     </a>
     <a class="right-next"
-       href="../lstm_seq2seq.html"
+       href="../rnn-nmt-attention/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Character-level recurrent sequence-to-sequence model</p>
+        <p class="prev-next-title">Attention in RNN-based NMT</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
