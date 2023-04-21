@@ -17,8 +17,7 @@ RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.d
 
 # Packages installation (eg git-lfs)
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends git-lfs ffmpeg libsm6 libxext6
-
+    && apt-get -y install --no-install-recommends git-lfs ffmpeg libsm6 libxext6  graphviz xdg-utils
 
 
 # inscape installation 

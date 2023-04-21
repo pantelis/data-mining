@@ -80,6 +80,7 @@ parts:
     chapters:
     - file: aiml-common/lectures/nlp/nlp-introduction/nlp-pipelines/_index.md 
     - file: aiml-common/lectures/nlp/nlp-introduction/tokenization/index.ipynb
+  
     - file: aiml-common/lectures/nlp/nlp-introduction/word2vec/_index.md 
       title: Embeddings
       sections:
@@ -95,11 +96,12 @@ parts:
     
     - file: aiml-common/lectures/nlp/nmt/nmt-intro/index.md  
       title:  Neural Machine Translation
-      sections:
-      - file: aiml-common/lectures/nlp/nmt/nmt-metrics/index.ipynb       
-      - file: aiml-common/lectures/nlp/nmt/lstm_seq2seq.ipynb     
+      sections:       
+      - file: aiml-common/lectures/nlp/nmt/lstm-seq2seq-workshop/lstm_seq2seq.ipynb
+      - file: aiml-common/lectures/nlp/nmt/nmt-metrics/index.ipynb     
+      - file: aiml-common/lectures/nlp/nmt/rnn-nmt-attention/index.md
+      - file: aiml-common/lectures/nlp/nmt/rnn-attention-workshop/seq2seq_and_attention.ipynb  
     
-    - file: aiml-common/lectures/nlp/nmt/rnn-nmt-attention/index.md  
     - file: aiml-common/lectures/nlp/transformers/transformers-intro.md
       title: Transformers
       sections:

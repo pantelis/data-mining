@@ -45,6 +45,11 @@ sphinxcontrib-bibtex = "^2.5.0"
 transformers = "^4.27.4"
 nltk = "^3.8.1"
 spacy = "^3.5.1"
+diagrams = "^0.23.3"
+pydot = "^1.4.2"
+altair = "^4.2.2"
+gputil = "^1.4.0"
+portalocker = "^2.7.0"
 
 [build-system]
 requires = ["poetry-core"]
