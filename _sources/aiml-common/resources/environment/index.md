@@ -2,9 +2,22 @@
 
 ## Compute
 
-### On your own machine or laptop (recommended)
+### On your own server/desktop machine or laptop (recommended)
 
-You need to create Python environments in  this course. Nothing beats a container based environment for data science/AI workflows and we recommend VS Code as the IDE due to its felxibility in supporting remote containers. 
+You need to create Python environments in  this course. Nothing beats a container based environment for data science/AI workflows and we recommend VS Code as the IDE due to its flexibility in supporting remote containers. 
+
+* For those in Windows, please follow [this](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers) to install WSL2 and Docker.
+
+* For Mac users please follow the docker instructions [here](https://docs.docker.com/docker-for-mac/install/).
+
+* For Ubuntu users please follow the docker instructions [here](https://docs.docker.com/engine/install/ubuntu/).
+
+* For other linux users please follow the docker instructions [here](https://docs.docker.com/engine/install/).
+
+For those that do not have an existing NVIDIA-based GPU, please avoid **buying** any AMD or Intel GPUs. Even to this date, the best way of workload acceleration is via CUDA and NVIDIA is the only vendor that supports CUDA. Maybe one day we will have a true multivendor choice - its not today though.
+
+If you do already have AMD or Intel GPUs you _may_ still be able to use them  or simply use Colab. 
+
 
 ### Google Colaboratory (recommended)
 
@@ -37,13 +50,14 @@ As we have discussed in the class you need to be able to publish your work in Gi
 
 ### How to work with a github repository in Colab
 
-1. Fork the desired repository if this is not yours. For example go to https://github.com/ageron/handson-ml2 and press the Fork button. 
+1. Fork the desired repository if this is not yours. For example go to https://github.com/ageron/handson-ml3 and press the Fork button. 
 2. After forking you should see the repository appearing in your account. 
 3. Click the green button `Clone or download`, click Use HTTPS and copy the field with the location of the repo your forked. 
-4. Go to https://colab.research.google.com/ and login with your NJIT gmail account
-5. In the window that pops up select Github. Accept the requested additional permission request for your NJIT gmail account. After Github and Colab connects you will be able to see the forked repo from your drop down menu of Repository. You will also see all the notebooks that start with a number e.g 01_the_machine_learning_landscape.ipynb. The number indicates the chapter number. 
+4. Go to https://colab.research.google.com/ and login with your university email account
+5. In the window that pops up select Github. Accept the requested additional permission request for your university email account. After Github and Colab connects you will be able to see the forked repo from your drop down menu of Repository. You will also see all the notebooks that start with a number e.g 01_the_machine_learning_landscape.ipynb. The number indicates the chapter number. 
 6. Select to open the 01-*.ipynb notebook by clicking on it. You should see the notebook in your own colab account. Any change will be persisted in your github. 
 7. Run the first cell. If you havent used Notebooks before, people with little programming experience will fall in love with them especially at this stage where you dont need to type new code. For a tutorial on how to use the notebooks in colab or in general open and run the notebook [Welcome to Colaboratory](https://colab.research.google.com/notebooks/intro.ipynb).
+
 
 ## External Tools and Databases (Optional)
 

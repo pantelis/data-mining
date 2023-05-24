@@ -37,7 +37,7 @@ The three important probabilities that we need to be concerned with in data mini
 *(e) and (f) represent joint distributions of discrete and continuous random variables*
 
 
-### Sum rule and the Marginal Probability
+## Sum rule and the Marginal Probability
 
 Given the joint what is the marginal probability $P(x)$ ?
 
@@ -46,7 +46,7 @@ $$P(x)   = \sum_y P(x,y) = \sum_y P(x | y)P(y)$$
 ![marginal-prob](images/marginal-prob.png)
 *Extracting the marginal out of the joint*
 
-### Conditional Probability and the Product or chain rule
+## Conditional Probability and the Product or chain rule
 
 This is obtained from the definition of conditional probability:
 

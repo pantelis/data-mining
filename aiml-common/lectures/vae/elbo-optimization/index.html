@@ -1,0 +1,1153 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>ELBO Optimization &#8212; Data Mining</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/vae/elbo-optimization/index';</script>
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/vae/elbo-optimization/index.html" />
+    <link rel="shortcut icon" href="../../../../_static/logo.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Math for ML Textbook" href="../../ml-math/index.html" />
+    <link rel="prev" title="VAE Architecture" href="../vae-architecture/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../intro.html">
+                    Data Mining
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../syllabus/index.html">Syllabus</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Data Mining</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../data-premise/index.html">The new premise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ai-intro/data-science-360/_index.html">Data Science 360</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../pipelines/_index.html">Pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../pipelines/uber-ml-arch-case-study/index.html">A Case Study of an ML Architecture - Uber</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../pipelines/01_the_machine_learning_landscape.html">The Machine Learning landscape</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../pipelines/02_end_to_end_machine_learning_project.html">End-to-end Machine Learning project</a></li>
+
+
+
+
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Learning Problem</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../learning-problem/_index.html">The Learning Problem</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Predictors for Structured Data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../decision-trees/_index.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../regression-trees/regression_trees.html">Regression tree stumps</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../ensemble/_index.html">Ensemble Methods </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ensemble/random-forests/_index.html">Random Forests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ensemble/adaboost/index.html">Adaptive Boosting (AdaBoost)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ensemble/gradient-boosting/index.html">Gradient Boosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">Boosting workshop</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Dimensionality Reduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../pca/_index.html">Principal Component Analysis (PCA)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Non-Parametric Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../unsupervised/k-means/_index.html">K-means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../density-estimation/knn/_index.html">k-Nearest Neighbors (kNN) Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">kNN Workshop</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">On Maximum Likelihood</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../regression/linear-regression/linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimization/maximum-likelihood/marginal_maximum_likelihood.html">Maximum Likelihood Estimation of a marginal model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../optimization/maximum-likelihood/conditional_maximum_likelihood.html">Maximum Likelihood (ML) Estimation of conditional models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../entropy/_index.html">Entropy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimization/sgd/_index.html">Stochastic Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../classification/classification-intro/_index.html">Introduction to Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../classification/logistic-regression/_index.html">Logistic Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Neural Networks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../classification/perceptron/_index.html">The Neuron (Perceptron)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dnn/dnn-intro/_index.html">Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dnn/backprop-intro/_index.html">Introduction to Backpropagation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dnn/backprop-dnn/_index.html">Backpropagation in Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dnn/backprop-dnn-exercises/_index.html">Backpropagation DNN exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dnn/fashion-mnist-case-study.html">Fashion MNIST Case Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimization/regularization/_index.html">Regularization in Deep Neural Networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Convolutional Neural Networks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-intro/_index.html">Introduction to Convolutional Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-layers/_index.html">CNN Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">CNN Example Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">Using convnets with small datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">Feature Extraction via Residual Networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sequences and RNNs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/simple-rnn/_index.html">Simple RNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/lstm/_index.html">The Long Short-Term Memory (LSTM) Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/time_series_using_simple_rnn_lstm.html">Time Series Prediction using RNNs</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-introduction/nlp-pipelines/_index.html">Introduction to NLP Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-introduction/tokenization/index.html">Tokenization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/_index.html">Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/word2vec_from_scratch.html">Word2Vec from scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/word2vec_tensorflow_tutorial.html">Word2Vec Tensorflow Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/language-models/_index.html">Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/cnn-language-model/index.html">CNN Language Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model/index.html">Simple RNN Language Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/lstm-language-model/index.html">LSTM Language Model from scratch</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Representation Learning and Autoencoders</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Variational Auto Encoders (VAE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../generative-modeling/index.html">Generative Modeling and Approximate Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vae-architecture/index.html">VAE Architecture</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">ELBO Optimization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Math Background</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../ml-math/index.html">Math for ML Textbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ml-math/probability/index.html">Probability Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ml-math/linear-algebra/index.html">Linear Algebra for Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ml-math/calculus/index.html">Calculus</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/environment/index.html">Your Programming Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/environment/assignment-submission.html">Submitting Your Assignment / Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Learn Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/environment/notebook-status.html">Notebook execution status</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pantelis/data-mining" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pantelis/data-mining/edit/master/data_mining/aiml-common/lectures/vae/elbo-optimization/index.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/vae/elbo-optimization/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/aiml-common/lectures/vae/elbo-optimization/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ELBO Optimization</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mnist-example">MNIST Example</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="elbo-optimization">
+<h1>ELBO Optimization<a class="headerlink" href="#elbo-optimization" title="Permalink to this headline">#</a></h1>
+<section id="mnist-example">
+<h2>MNIST Example<a class="headerlink" href="#mnist-example" title="Permalink to this headline">#</a></h2>
+<p>The following example is taken from the examples code of the excellent <a class="reference external" href="https://github.com/tensorflow/probability/blob/master/tensorflow_probability/examples/vae.py">Tensorflow Probability API</a> and is very instructive.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Trains a variational auto-encoder (VAE) on binarized MNIST.</span>
+
+<span class="sd">    The VAE defines a generative model in which a latent code `Z` is sampled from a</span>
+<span class="sd">    prior `p(Z)`, then used to generate an observation `X` by way of a decoder</span>
+<span class="sd">    `p(X|Z)`. The full reconstruction follows</span>
+
+<span class="sd">    ```none</span>
+<span class="sd">    X ~ p(X)              # A random image from some dataset.</span>
+<span class="sd">    Z ~ q(Z | X)          # A random encoding of the original image (&quot;encoder&quot;).</span>
+<span class="sd">    Xhat ~ p(Xhat | Z)       # A random reconstruction of the original image</span>
+<span class="sd">                            #   (&quot;decoder&quot;).</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    To fit the VAE, we assume an approximate representation of the posterior in the</span>
+<span class="sd">    form of an encoder `q(Z|X)`. We minimize the KL divergence between `q(Z|X)` and</span>
+<span class="sd">    the true posterior `p(Z|X)`: this is equivalent to maximizing the evidence lower</span>
+<span class="sd">    bound (ELBO),</span>
+
+<span class="sd">    ```none</span>
+<span class="sd">    -log p(x)</span>
+<span class="sd">    = -log int dz p(x|z) p(z)</span>
+<span class="sd">    = -log int dz q(z|x) p(x|z) p(z) / q(z|x)</span>
+<span class="sd">    &lt;= int dz q(z|x) (-log[ p(x|z) p(z) / q(z|x) ])   # Jensen&#39;s Inequality</span>
+<span class="sd">    =: KL[q(Z|x) || p(x|Z)p(Z)]</span>
+<span class="sd">    = -E_{Z~q(Z|x)}[log p(x|Z)] + KL[q(Z|x) || p(Z)]</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    -or-</span>
+
+<span class="sd">    ```none</span>
+<span class="sd">    -log p(x)</span>
+<span class="sd">    = KL[q(Z|x) || p(x|Z)p(Z)] - KL[q(Z|x) || p(Z|x)]</span>
+<span class="sd">    &lt;= KL[q(Z|x) || p(x|Z)p(Z)                        # Positivity of KL</span>
+<span class="sd">    = -E_{Z~q(Z|x)}[log p(x|Z)] + KL[q(Z|x) || p(Z)]</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    The `-E_{Z~q(Z|x)}[log p(x|Z)]` term is an expected reconstruction loss and</span>
+<span class="sd">    `KL[q(Z|x) || p(Z)]` is a kind of distributional regularizer. See</span>
+<span class="sd">    [Kingma and Welling (2014)][1] for more details.</span>
+
+<span class="sd">    This script supports both a (learned) mixture of Gaussians prior as well as a</span>
+<span class="sd">    fixed standard normal prior. You can enable the fixed standard normal prior by</span>
+<span class="sd">    setting `mixture_components` to 1. Note that fixing the parameters of the prior</span>
+<span class="sd">    (as opposed to fitting them with the rest of the model) incurs no loss in</span>
+<span class="sd">    generality when using only a single Gaussian. The reasoning for this is</span>
+<span class="sd">    two-fold:</span>
+
+<span class="sd">    * On the generative side, the parameters from the prior can simply be absorbed</span>
+<span class="sd">        into the first linear layer of the generative net. If `z ~ N(mu, Sigma)` and</span>
+<span class="sd">        the first layer of the generative net is given by `x = Wz + b`, this can be</span>
+<span class="sd">        rewritten,</span>
+
+<span class="sd">        s ~ N(0, I)</span>
+<span class="sd">        x = Wz + b</span>
+<span class="sd">            = W (As + mu) + b</span>
+<span class="sd">            = (WA) s + (W mu + b)</span>
+
+<span class="sd">        where Sigma has been decomposed into A A^T = Sigma. In other words, the log</span>
+<span class="sd">        likelihood of the model (E_{Z~q(Z|x)}[log p(x|Z)]) is independent of whether</span>
+<span class="sd">        or not we learn mu and Sigma.</span>
+
+<span class="sd">    * On the inference side, we can adjust any posterior approximation</span>
+<span class="sd">        q(z | x) ~ N(mu[q], Sigma[q]), with</span>
+
+<span class="sd">        new_mu[p] := 0</span>
+<span class="sd">        new_Sigma[p] := eye(d)</span>
+<span class="sd">        new_mu[q] := inv(chol(Sigma[p])) @ (mu[p] - mu[q])</span>
+<span class="sd">        new_Sigma[q] := inv(Sigma[q]) @ Sigma[p]</span>
+
+<span class="sd">        A bit of algebra on the KL divergence term `KL[q(Z|x) || p(Z)]` reveals that</span>
+<span class="sd">        it is also invariant to the prior parameters as long as Sigma[p] and</span>
+<span class="sd">        Sigma[q] are invertible.</span>
+
+<span class="sd">    This script also supports using the analytic KL (KL[q(Z|x) || p(Z)]) with the</span>
+<span class="sd">    `analytic_kl` flag. Using the analytic KL is only supported when</span>
+<span class="sd">    `mixture_components` is set to 1 since otherwise no analytic form is known.</span>
+
+<span class="sd">    Here we also compute tighter bounds, the IWAE [Burda et. al. (2015)][2].</span>
+
+<span class="sd">    These as well as image summaries can be seen in Tensorboard. For help using</span>
+<span class="sd">    Tensorboard see</span>
+<span class="sd">    https://www.tensorflow.org/guide/summaries_and_tensorboard</span>
+<span class="sd">    which can be run with</span>
+<span class="sd">    `python -m tensorboard.main --logdir=MODEL_DIR`</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+    <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+    <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+    <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+    <span class="kn">import</span> <span class="nn">functools</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+
+    <span class="c1"># Dependency imports</span>
+    <span class="kn">from</span> <span class="nn">absl</span> <span class="kn">import</span> <span class="n">flags</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">from</span> <span class="nn">six.moves</span> <span class="kn">import</span> <span class="n">urllib</span>
+    <span class="kn">import</span> <span class="nn">tensorflow.compat.v1</span> <span class="k">as</span> <span class="nn">tf</span>
+    <span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
+
+    <span class="n">tfd</span> <span class="o">=</span> <span class="n">tfp</span><span class="o">.</span><span class="n">distributions</span>
+
+    <span class="n">IMAGE_SHAPE</span> <span class="o">=</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_float</span><span class="p">(</span>
+        <span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Initial learning rate.&quot;</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_integer</span><span class="p">(</span>
+        <span class="s2">&quot;max_steps&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">5001</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of training steps to run.&quot;</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_integer</span><span class="p">(</span>
+        <span class="s2">&quot;latent_size&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of dimensions in the latent code (z).&quot;</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_integer</span><span class="p">(</span><span class="s2">&quot;base_depth&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Base depth for layers.&quot;</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_string</span><span class="p">(</span>
+        <span class="s2">&quot;activation&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;leaky_relu&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Activation function for all hidden layers.&quot;</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_integer</span><span class="p">(</span>
+        <span class="s2">&quot;batch_size&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Batch size.&quot;</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_integer</span><span class="p">(</span>
+        <span class="s2">&quot;n_samples&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of samples to use in encoding.&quot;</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_integer</span><span class="p">(</span>
+        <span class="s2">&quot;mixture_components&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of mixture components to use in the prior. Each component is &quot;</span>
+            <span class="s2">&quot;a diagonal normal distribution. The parameters of the components are &quot;</span>
+            <span class="s2">&quot;intialized randomly, and then learned along with the rest of the &quot;</span>
+            <span class="s2">&quot;parameters. If `analytic_kl` is True, `mixture_components` must be &quot;</span>
+            <span class="s2">&quot;set to `1`.&quot;</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_bool</span><span class="p">(</span>
+        <span class="s2">&quot;analytic_kl&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Whether or not to use the analytic version of the KL. When set to &quot;</span>
+            <span class="s2">&quot;False the E_{Z~q(Z|X)}[log p(Z)p(X|Z) - log q(Z|X)] form of the ELBO &quot;</span>
+            <span class="s2">&quot;will be used. Otherwise the -KL(q(Z|X) || p(Z)) + &quot;</span>
+            <span class="s2">&quot;E_{Z~q(Z|X)}[log p(X|Z)] form will be used. If analytic_kl is True, &quot;</span>
+            <span class="s2">&quot;then you must also specify `mixture_components=1`.&quot;</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_string</span><span class="p">(</span>
+        <span class="s2">&quot;data_dir&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;TEST_TMPDIR&quot;</span><span class="p">,</span> <span class="s2">&quot;/tmp&quot;</span><span class="p">),</span> <span class="s2">&quot;vae/data&quot;</span><span class="p">),</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Directory where data is stored (if using real data).&quot;</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_string</span><span class="p">(</span>
+        <span class="s2">&quot;model_dir&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;TEST_TMPDIR&quot;</span><span class="p">,</span> <span class="s2">&quot;/tmp&quot;</span><span class="p">),</span> <span class="s2">&quot;vae/&quot;</span><span class="p">),</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Directory to put the model&#39;s fit.&quot;</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_integer</span><span class="p">(</span>
+        <span class="s2">&quot;viz_steps&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Frequency at which to save visualizations.&quot;</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_bool</span><span class="p">(</span>
+        <span class="s2">&quot;fake_data&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;If true, uses fake data instead of MNIST.&quot;</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_bool</span><span class="p">(</span>
+        <span class="s2">&quot;delete_existing&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;If true, deletes existing `model_dir` directory.&quot;</span><span class="p">)</span>
+
+    <span class="n">FLAGS</span> <span class="o">=</span> <span class="n">flags</span><span class="o">.</span><span class="n">FLAGS</span>
+
+
+    <span class="k">def</span> <span class="nf">_softplus_inverse</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper which computes the function inverse of `tf.nn.softplus`.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+
+    <span class="k">def</span> <span class="nf">make_encoder</span><span class="p">(</span><span class="n">activation</span><span class="p">,</span> <span class="n">latent_size</span><span class="p">,</span> <span class="n">base_depth</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates the encoder function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        activation: Activation function in hidden layers.</span>
+<span class="sd">        latent_size: The dimensionality of the encoding.</span>
+<span class="sd">        base_depth: The lowest depth for a layer.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        encoder: A `callable` mapping a `Tensor` of images to a</span>
+<span class="sd">        `tfd.Distribution` instance over encodings.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">conv</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;SAME&quot;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">activation</span><span class="p">)</span>
+
+    <span class="n">encoder_net</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+        <span class="n">conv</span><span class="p">(</span><span class="n">base_depth</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">conv</span><span class="p">(</span><span class="n">base_depth</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="n">conv</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">base_depth</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">conv</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">base_depth</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="n">conv</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">latent_size</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;VALID&quot;</span><span class="p">),</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">latent_size</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+    <span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">encoder</span><span class="p">(</span><span class="n">images</span><span class="p">):</span>
+        <span class="n">images</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">net</span> <span class="o">=</span> <span class="n">encoder_net</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">MultivariateNormalDiag</span><span class="p">(</span>
+            <span class="n">loc</span><span class="o">=</span><span class="n">net</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="n">latent_size</span><span class="p">],</span>
+            <span class="n">scale_diag</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softplus</span><span class="p">(</span><span class="n">net</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">latent_size</span><span class="p">:]</span> <span class="o">+</span>
+                                    <span class="n">_softplus_inverse</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)),</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;code&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">encoder</span>
+
+
+    <span class="k">def</span> <span class="nf">make_decoder</span><span class="p">(</span><span class="n">activation</span><span class="p">,</span> <span class="n">latent_size</span><span class="p">,</span> <span class="n">output_shape</span><span class="p">,</span> <span class="n">base_depth</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates the decoder function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        activation: Activation function in hidden layers.</span>
+<span class="sd">        latent_size: Dimensionality of the encoding.</span>
+<span class="sd">        output_shape: The output image shape.</span>
+<span class="sd">        base_depth: Smallest depth for a layer.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        decoder: A `callable` mapping a `Tensor` of encodings to a</span>
+<span class="sd">        `tfd.Distribution` instance over images.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">deconv</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2DTranspose</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;SAME&quot;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">activation</span><span class="p">)</span>
+    <span class="n">conv</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;SAME&quot;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">activation</span><span class="p">)</span>
+
+    <span class="n">decoder_net</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+        <span class="n">deconv</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">base_depth</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;VALID&quot;</span><span class="p">),</span>
+        <span class="n">deconv</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">base_depth</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+        <span class="n">deconv</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">base_depth</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="n">deconv</span><span class="p">(</span><span class="n">base_depth</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+        <span class="n">deconv</span><span class="p">(</span><span class="n">base_depth</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="n">deconv</span><span class="p">(</span><span class="n">base_depth</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+        <span class="n">conv</span><span class="p">(</span><span class="n">output_shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">5</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+    <span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">decoder</span><span class="p">(</span><span class="n">codes</span><span class="p">):</span>
+        <span class="n">original_shape</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">codes</span><span class="p">)</span>
+        <span class="c1"># Collapse the sample and batch dimension and convert to rank-4 tensor for</span>
+        <span class="c1"># use with a convolutional decoder network.</span>
+        <span class="n">codes</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">codes</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">latent_size</span><span class="p">))</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">decoder_net</span><span class="p">(</span><span class="n">codes</span><span class="p">)</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+            <span class="n">logits</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">original_shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">output_shape</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">Independent</span><span class="p">(</span><span class="n">tfd</span><span class="o">.</span><span class="n">Bernoulli</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">logits</span><span class="p">),</span>
+                            <span class="n">reinterpreted_batch_ndims</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">output_shape</span><span class="p">),</span>
+                            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">decoder</span>
+
+
+    <span class="k">def</span> <span class="nf">make_mixture_prior</span><span class="p">(</span><span class="n">latent_size</span><span class="p">,</span> <span class="n">mixture_components</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates the mixture of Gaussians prior distribution.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        latent_size: The dimensionality of the latent representation.</span>
+<span class="sd">        mixture_components: Number of elements of the mixture.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        random_prior: A `tfd.Distribution` instance representing the distribution</span>
+<span class="sd">        over encodings in the absence of any evidence.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">mixture_components</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># See the module docstring for why we don&#39;t learn the parameters here.</span>
+        <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">MultivariateNormalDiag</span><span class="p">(</span>
+            <span class="n">loc</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">latent_size</span><span class="p">]),</span>
+            <span class="n">scale_identity_multiplier</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+    <span class="n">loc</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;loc&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">mixture_components</span><span class="p">,</span> <span class="n">latent_size</span><span class="p">])</span>
+    <span class="n">raw_scale_diag</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;raw_scale_diag&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">mixture_components</span><span class="p">,</span> <span class="n">latent_size</span><span class="p">])</span>
+    <span class="n">mixture_logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mixture_logits&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">mixture_components</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">tfd</span><span class="o">.</span><span class="n">MixtureSameFamily</span><span class="p">(</span>
+        <span class="n">components_distribution</span><span class="o">=</span><span class="n">tfd</span><span class="o">.</span><span class="n">MultivariateNormalDiag</span><span class="p">(</span>
+            <span class="n">loc</span><span class="o">=</span><span class="n">loc</span><span class="p">,</span>
+            <span class="n">scale_diag</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softplus</span><span class="p">(</span><span class="n">raw_scale_diag</span><span class="p">)),</span>
+        <span class="n">mixture_distribution</span><span class="o">=</span><span class="n">tfd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">mixture_logits</span><span class="p">),</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;prior&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">pack_images</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper utility to make a field of images.&quot;&quot;&quot;</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">images</span><span class="p">)</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">depth</span> <span class="o">=</span> <span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">depth</span><span class="p">))</span>
+    <span class="n">batch</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">images</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">batch</span><span class="p">)</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">batch</span> <span class="o">//</span> <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="n">images</span><span class="p">[:</span><span class="n">rows</span> <span class="o">*</span> <span class="n">cols</span><span class="p">]</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">depth</span><span class="p">))</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">images</span><span class="p">,</span> <span class="n">perm</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">rows</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="n">cols</span> <span class="o">*</span> <span class="n">height</span><span class="p">,</span> <span class="n">depth</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">images</span>
+
+
+    <span class="k">def</span> <span class="nf">image_tile_summary</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">tensor</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">image</span><span class="p">(</span>
+        <span class="n">name</span><span class="p">,</span> <span class="n">pack_images</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">),</span> <span class="n">max_outputs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">model_fn</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Builds the model function for use in an estimator.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        features: The input features for the estimator.</span>
+<span class="sd">        labels: The labels, unused here.</span>
+<span class="sd">        mode: Signifies whether it is train or test or predict.</span>
+<span class="sd">        params: Some hyperparameters as a dictionary.</span>
+<span class="sd">        config: The RunConfig, unused here.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        EstimatorSpec: A tf.estimator.EstimatorSpec instance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">del</span> <span class="n">labels</span><span class="p">,</span> <span class="n">config</span>
+
+    <span class="k">if</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;analytic_kl&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;mixture_components&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="s2">&quot;Using `analytic_kl` is only supported when `mixture_components = 1` &quot;</span>
+            <span class="s2">&quot;since there&#39;s no closed form otherwise.&quot;</span><span class="p">)</span>
+
+    <span class="n">encoder</span> <span class="o">=</span> <span class="n">make_encoder</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;activation&quot;</span><span class="p">],</span>
+                            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;latent_size&quot;</span><span class="p">],</span>
+                            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;base_depth&quot;</span><span class="p">])</span>
+    <span class="n">decoder</span> <span class="o">=</span> <span class="n">make_decoder</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;activation&quot;</span><span class="p">],</span>
+                            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;latent_size&quot;</span><span class="p">],</span>
+                            <span class="n">IMAGE_SHAPE</span><span class="p">,</span>
+                            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;base_depth&quot;</span><span class="p">])</span>
+    <span class="n">latent_prior</span> <span class="o">=</span> <span class="n">make_mixture_prior</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;latent_size&quot;</span><span class="p">],</span>
+                                        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;mixture_components&quot;</span><span class="p">])</span>
+
+    <span class="n">image_tile_summary</span><span class="p">(</span>
+        <span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+    <span class="n">approx_posterior</span> <span class="o">=</span> <span class="n">encoder</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+    <span class="n">approx_posterior_sample</span> <span class="o">=</span> <span class="n">approx_posterior</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;n_samples&quot;</span><span class="p">])</span>
+    <span class="n">decoder_likelihood</span> <span class="o">=</span> <span class="n">decoder</span><span class="p">(</span><span class="n">approx_posterior_sample</span><span class="p">)</span>
+    <span class="n">image_tile_summary</span><span class="p">(</span>
+        <span class="s2">&quot;recon/sample&quot;</span><span class="p">,</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">decoder_likelihood</span><span class="o">.</span><span class="n">sample</span><span class="p">()[:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:</span><span class="mi">16</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+        <span class="n">rows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">cols</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">image_tile_summary</span><span class="p">(</span>
+        <span class="s2">&quot;recon/mean&quot;</span><span class="p">,</span>
+        <span class="n">decoder_likelihood</span><span class="o">.</span><span class="n">mean</span><span class="p">()[:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:</span><span class="mi">16</span><span class="p">],</span>
+        <span class="n">rows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">cols</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+    <span class="c1"># `distortion` is just the negative log likelihood.</span>
+    <span class="n">distortion</span> <span class="o">=</span> <span class="o">-</span><span class="n">decoder_likelihood</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+    <span class="n">avg_distortion</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">input_tensor</span><span class="o">=</span><span class="n">distortion</span><span class="p">)</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="s2">&quot;distortion&quot;</span><span class="p">,</span> <span class="n">avg_distortion</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;analytic_kl&quot;</span><span class="p">]:</span>
+        <span class="n">rate</span> <span class="o">=</span> <span class="n">tfd</span><span class="o">.</span><span class="n">kl_divergence</span><span class="p">(</span><span class="n">approx_posterior</span><span class="p">,</span> <span class="n">latent_prior</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rate</span> <span class="o">=</span> <span class="p">(</span><span class="n">approx_posterior</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">approx_posterior_sample</span><span class="p">)</span>
+                <span class="o">-</span> <span class="n">latent_prior</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">approx_posterior_sample</span><span class="p">))</span>
+    <span class="n">avg_rate</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">input_tensor</span><span class="o">=</span><span class="n">rate</span><span class="p">)</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="s2">&quot;rate&quot;</span><span class="p">,</span> <span class="n">avg_rate</span><span class="p">)</span>
+
+    <span class="n">elbo_local</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">rate</span> <span class="o">+</span> <span class="n">distortion</span><span class="p">)</span>
+
+    <span class="n">elbo</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">input_tensor</span><span class="o">=</span><span class="n">elbo_local</span><span class="p">)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="o">-</span><span class="n">elbo</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="s2">&quot;elbo&quot;</span><span class="p">,</span> <span class="n">elbo</span><span class="p">)</span>
+
+    <span class="n">importance_weighted_elbo</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span>
+        <span class="n">input_tensor</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_logsumexp</span><span class="p">(</span><span class="n">input_tensor</span><span class="o">=</span><span class="n">elbo_local</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;n_samples&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)))</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="s2">&quot;elbo/importance_weighted&quot;</span><span class="p">,</span>
+                                <span class="n">importance_weighted_elbo</span><span class="p">)</span>
+
+    <span class="c1"># Decode samples from the prior for visualization.</span>
+    <span class="n">random_image</span> <span class="o">=</span> <span class="n">decoder</span><span class="p">(</span><span class="n">latent_prior</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span>
+    <span class="n">image_tile_summary</span><span class="p">(</span>
+        <span class="s2">&quot;random/sample&quot;</span><span class="p">,</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">random_image</span><span class="o">.</span><span class="n">sample</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+        <span class="n">rows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">cols</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">image_tile_summary</span><span class="p">(</span><span class="s2">&quot;random/mean&quot;</span><span class="p">,</span> <span class="n">random_image</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">rows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="c1"># Perform variational inference by minimizing the -ELBO.</span>
+    <span class="n">global_step</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">get_or_create_global_step</span><span class="p">()</span>
+    <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">cosine_decay</span><span class="p">(</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;learning_rate&quot;</span><span class="p">],</span> <span class="n">global_step</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;max_steps&quot;</span><span class="p">])</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="s2">&quot;learning_rate&quot;</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">)</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span>
+    <span class="n">train_op</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="n">global_step</span><span class="o">=</span><span class="n">global_step</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">EstimatorSpec</span><span class="p">(</span>
+        <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+        <span class="n">loss</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span>
+        <span class="n">train_op</span><span class="o">=</span><span class="n">train_op</span><span class="p">,</span>
+        <span class="n">eval_metric_ops</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;elbo&quot;</span><span class="p">:</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">elbo</span><span class="p">),</span>
+            <span class="s2">&quot;elbo/importance_weighted&quot;</span><span class="p">:</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">importance_weighted_elbo</span><span class="p">),</span>
+            <span class="s2">&quot;rate&quot;</span><span class="p">:</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">avg_rate</span><span class="p">),</span>
+            <span class="s2">&quot;distortion&quot;</span><span class="p">:</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">avg_distortion</span><span class="p">),</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+
+    <span class="n">ROOT_PATH</span> <span class="o">=</span> <span class="s2">&quot;http://www.cs.toronto.edu/~larocheh/public/datasets/binarized_mnist/&quot;</span>
+    <span class="n">FILE_TEMPLATE</span> <span class="o">=</span> <span class="s2">&quot;binarized_mnist_</span><span class="si">{split}</span><span class="s2">.amat&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Downloads a file.&quot;&quot;&quot;</span>
+    <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">gfile</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">filepath</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">gfile</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">gfile</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ROOT_PATH</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Downloading </span><span class="si">%s</span><span class="s2"> to </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">filepath</span><span class="p">))</span>
+    <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">filepath</span>
+
+
+    <span class="k">def</span> <span class="nf">static_mnist_dataset</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">split_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns binary static MNIST tf.data.Dataset.&quot;&quot;&quot;</span>
+    <span class="n">amat_file</span> <span class="o">=</span> <span class="n">download</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">FILE_TEMPLATE</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">split</span><span class="o">=</span><span class="n">split_name</span><span class="p">))</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">TextLineDataset</span><span class="p">(</span><span class="n">amat_file</span><span class="p">)</span>
+    <span class="n">str_to_arr</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">string</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;1&quot;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+
+    <span class="k">def</span> <span class="nf">_parser</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="n">booltensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">py_func</span><span class="p">(</span><span class="n">str_to_arr</span><span class="p">,</span> <span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">tf</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+        <span class="n">reshaped</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">booltensor</span><span class="p">,</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">reshaped</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_parser</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">build_fake_input_fns</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Builds fake MNIST-style data for unit testing.&quot;&quot;&quot;</span>
+    <span class="n">random_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">*</span><span class="n">IMAGE_SHAPE</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">train_input_fn</span><span class="p">():</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">(</span>
+            <span class="n">random_sample</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">make_one_shot_iterator</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span><span class="o">.</span><span class="n">get_next</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">eval_input_fn</span><span class="p">():</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">(</span>
+            <span class="n">random_sample</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">make_one_shot_iterator</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span><span class="o">.</span><span class="n">get_next</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">train_input_fn</span><span class="p">,</span> <span class="n">eval_input_fn</span>
+
+
+    <span class="k">def</span> <span class="nf">build_input_fns</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Builds an Iterator switching between train and heldout data.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Build an iterator over training batches.</span>
+    <span class="k">def</span> <span class="nf">train_input_fn</span><span class="p">():</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">static_mnist_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">)</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">50000</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">()</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">make_one_shot_iterator</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span><span class="o">.</span><span class="n">get_next</span><span class="p">()</span>
+
+    <span class="c1"># Build an iterator over the heldout set.</span>
+    <span class="k">def</span> <span class="nf">eval_input_fn</span><span class="p">():</span>
+        <span class="n">eval_dataset</span> <span class="o">=</span> <span class="n">static_mnist_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;valid&quot;</span><span class="p">)</span>
+        <span class="n">eval_dataset</span> <span class="o">=</span> <span class="n">eval_dataset</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">make_one_shot_iterator</span><span class="p">(</span><span class="n">eval_dataset</span><span class="p">)</span><span class="o">.</span><span class="n">get_next</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">train_input_fn</span><span class="p">,</span> <span class="n">eval_input_fn</span>
+
+
+    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="k">del</span> <span class="n">argv</span>  <span class="c1"># unused</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="n">FLAGS</span><span class="o">.</span><span class="n">flag_values_dict</span><span class="p">()</span>
+    <span class="n">params</span><span class="p">[</span><span class="s2">&quot;activation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;activation&quot;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">FLAGS</span><span class="o">.</span><span class="n">delete_existing</span> <span class="ow">and</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">gfile</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">FLAGS</span><span class="o">.</span><span class="n">model_dir</span><span class="p">):</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Deleting old log directory at </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">FLAGS</span><span class="o">.</span><span class="n">model_dir</span><span class="p">))</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">gfile</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">FLAGS</span><span class="o">.</span><span class="n">model_dir</span><span class="p">)</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">gfile</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">FLAGS</span><span class="o">.</span><span class="n">model_dir</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">FLAGS</span><span class="o">.</span><span class="n">fake_data</span><span class="p">:</span>
+        <span class="n">train_input_fn</span><span class="p">,</span> <span class="n">eval_input_fn</span> <span class="o">=</span> <span class="n">build_fake_input_fns</span><span class="p">(</span><span class="n">FLAGS</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">train_input_fn</span><span class="p">,</span> <span class="n">eval_input_fn</span> <span class="o">=</span> <span class="n">build_input_fns</span><span class="p">(</span><span class="n">FLAGS</span><span class="o">.</span><span class="n">data_dir</span><span class="p">,</span>
+                                                        <span class="n">FLAGS</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">Estimator</span><span class="p">(</span>
+        <span class="n">model_fn</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+        <span class="n">config</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">RunConfig</span><span class="p">(</span>
+            <span class="n">model_dir</span><span class="o">=</span><span class="n">FLAGS</span><span class="o">.</span><span class="n">model_dir</span><span class="p">,</span>
+            <span class="n">save_checkpoints_steps</span><span class="o">=</span><span class="n">FLAGS</span><span class="o">.</span><span class="n">viz_steps</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">FLAGS</span><span class="o">.</span><span class="n">max_steps</span> <span class="o">//</span> <span class="n">FLAGS</span><span class="o">.</span><span class="n">viz_steps</span><span class="p">):</span>
+        <span class="n">estimator</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">train_input_fn</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="n">FLAGS</span><span class="o">.</span><span class="n">viz_steps</span><span class="p">)</span>
+        <span class="n">eval_results</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">eval_input_fn</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Evaluation_results:</span><span class="se">\n\t</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">eval_results</span><span class="p">)</span>
+
+
+    <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "pantelis/data-mining",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./aiml-common/lectures/vae/elbo-optimization"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../vae-architecture/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">VAE Architecture</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../ml-math/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Math for ML Textbook</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mnist-example">MNIST Example</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pantelis Monogioudis, Ph.D
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

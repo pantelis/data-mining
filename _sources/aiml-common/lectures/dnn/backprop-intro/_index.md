@@ -70,7 +70,7 @@ In the forward pass, the algorithm works bottom up (or left to right depending h
 In the backwards pass, we reverse direction and start at the top or rightmost node (the stored variables) of the graph and compute the input (in the reverse direction) derivative of input of each gate using the template depicted below:
 
 ![backprop-template](images/backprop-template.png)
-*Backpropagation template*
+*Backpropagation template based on the [chain rule](https://en.wikipedia.org/wiki/Chain_rule)*.
 
 ```python
         # gradient at the top
