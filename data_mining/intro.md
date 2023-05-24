@@ -29,14 +29,7 @@ This course requires some intensive effort from your side in both learning these
 
 **Logistics** {octicon}`organization;1em;sd-text-info`
 ^^^
-Course Dates: Jan 2023 - May 2023
-
-CS482-104: Mon 6pm-8.30pm EST (Kupfrian Hall 103)
-
-CS482-102: Wed 6pm-8.30pm EST (Kupfrian Hall 203)
-
-CS634-104: Thu 6:00pm-8:30pm EST (Cullimore Hall LECT 2) 
-
+Course Dates: May 24th 2023 - Aug 3rd 2023
 
 :::
 
@@ -45,7 +38,8 @@ CS634-104: Thu 6:00pm-8:30pm EST (Cullimore Hall LECT 2)
 
 **Communication** {octicon}`megaphone;1em;sd-text-info`
 ^^^
-We use Google chat (NJIT account) for all communication and questions related to lectures and projects. Info has already been sent to you via Canvas. Please install Chat in your smartphones as well.
+
+We use Discord for all communication and questions related to lectures and projects. Info has already been sent to you via Canvas. Please install Discord in your smartphones as well. 
 
 
 :::
@@ -55,23 +49,10 @@ We use Google chat (NJIT account) for all communication and questions related to
 
 **Office Hours** {octicon}`clock;1em;sd-text-info`
 ^^^
-Professor Office hours will be coordinated via chat  - the process is simple: direct message and make arrangements for a 30min slot. After we agree on the slot, please send a **GMeet calendar** invitation to me. Please include in your invitation the questions / issues you face so that we can have a productive meeting. 
+Professor Office hours will be coordinated via Discord  - the process is simple: direct message and make arrangements for a 30min slot. After we agree on the slot, please send a **Google calendar** invitation to me and include Gmeet conference info (no Webex or Zoom). Please include in your invitation the questions / issues you face so that we can have a productive meeting. 
 
 :::
 
-:::{grid-item-card}
-:class-header: bg-primary
-
-**Staff (TAs)** {octicon}`person;1em;sd-text-info`
-^^^
-
-CS482-104: Anish Gaikwad
-
-CS482-102: Kamil Arif
-
-CS634-104: Jose Mojica Perez
-
-:::
 
 :::{grid-item-card}
 :class-header: bg-primary
@@ -87,7 +68,28 @@ Project (20%)
 
 Assignments (30%)
 
+:::
 
+:::{grid-item-card}
+:class-header: bg-primary
+
+**Staff (TAs)** {octicon}`person;1em;sd-text-info`
+^^^
+
+Pritam Shen (please find him in our Discord class channel)
+
+
+:::
+
+:::{grid-item-card}
+:class-header: bg-primary
+
+**Support** {octicon}`person;1em;sd-text-info`
+^^^
+
+See Discord ticketing system. Open a ticket to request an assignment deadline extension, address a grading issue and other issues that require an action by the Staff or the Professor.  
+
+:::
 
 ::::
 

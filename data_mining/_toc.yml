@@ -6,25 +6,51 @@ root: intro
 parts:
   - caption: Syllabus
     chapters:
-    - file: syllabus/_index.md
+    - file: syllabus/index.md
   
   - caption: Introduction to Data Mining
     # numbered: 3
     chapters:
-    - file: aiml-common/lectures/ai-intro/course-introduction/_index.md
+    - file: aiml-common/lectures/data-premise/index.md
     - file: aiml-common/lectures/ai-intro/data-science-360/_index.md
-    - file: aiml-common/lectures/ai-intro/pipelines/_index.md
+    - file: aiml-common/lectures/pipelines/_index.md
       title: Pipelines
       sections: 
-      - file: aiml-common/lectures/uber-ml-arch-case-study/_index.md
-      - file: aiml-common/lectures/ai-intro/pipelines/02_end_to_end_machine_learning_project.ipynb
+      - file: aiml-common/lectures/pipelines/uber-ml-arch-case-study/index.md
+      - file: aiml-common/lectures/pipelines/01_the_machine_learning_landscape.ipynb
+      - file: aiml-common/lectures/pipelines/02_end_to_end_machine_learning_project.ipynb
 
   - caption: The Learning Problem
     # numbered: 3
     chapters:
     - file: aiml-common/lectures/learning-problem/_index.md
+
+  - caption: Predictors for Structured Data 
+    chapters:
+    - file: aiml-common/lectures/decision-trees/_index.md
+    - file: aiml-common/lectures/regression-trees/regression_trees.ipynb
+    - file: aiml-common/lectures/ensemble/_index.md
+    - file: aiml-common/lectures/ensemble/random-forests/_index.md
+    - file: aiml-common/lectures/ensemble/adaboost/index.md
+    - file: aiml-common/lectures/ensemble/gradient-boosting/index.md  
+    - file: aiml-common/lectures/ensemble/boosting-workshop/_index.md  
+
+  - caption:  Classical Dimensionality Reduction
+    # numbered: 3
+    chapters:    
+    - file: aiml-common/lectures/pca/_index.md
+
+  - caption: Non-Parametric Methods
+    # numbered: 3
+    chapters:    
+    - file: aiml-common/lectures/unsupervised/k-means/_index.md
+    - file: aiml-common/lectures/density-estimation/knn/_index.md
+    - file: aiml-common/lectures/density-estimation/knn-workshop/_index.md
+   
+  - caption: On Maximum Likelihood
+    # numbered: 3
+    chapters:
     - file: aiml-common/lectures/regression/linear-regression/linear_regression.ipynb    
-    - file: aiml-common/lectures/regression/linear-regression/regression-notebooks.md
     - file: aiml-common/lectures/optimization/maximum-likelihood/marginal_maximum_likelihood.ipynb
     - file: aiml-common/lectures/optimization/maximum-likelihood/conditional_maximum_likelihood.ipynb
     - file: aiml-common/lectures/entropy/_index.md
@@ -53,22 +79,6 @@ parts:
     - file: aiml-common/lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.ipynb
     - file: aiml-common/lectures/scene-understanding/feature-extraction-resnet/index.md
       
-  - caption:  Transfer Learning
-    # numbered: 3
-    chapters:  
-    - file: aiml-common/lectures/transfer-learning/transfer-learning-introduction.md  
-    - file: aiml-common/lectures/transfer-learning/transfer_learning_tutorial.ipynb
-  
-  - caption: Scene Understanding
-    chapters:    
-    - file: aiml-common/lectures/scene-understanding/scene-understanding-intro/index.md
-    - file: aiml-common/lectures/scene-understanding/object-detection/object-detection-intro/index.md
-      title: Object Detection
-      sections:  
-      - file: aiml-common/lectures/scene-understanding/object-detection/detection-metrics/index.md
-      - file: aiml-common/lectures/scene-understanding/object-detection/rcnn-object-detection/index.md    
-      - file: aiml-common/lectures/scene-understanding/object-detection/faster-rcnn-object-detection/index.md
-     
   - caption:  Sequences and RNNs
     chapters:    
     - file: aiml-common/lectures/rnn/introduction/_index.md 
@@ -94,40 +104,12 @@ parts:
       - file: aiml-common/lectures/nlp/language-models/simple-rnn-language-model/index.ipynb
       - file: aiml-common/lectures/nlp/language-models/lstm-language-model/index.ipynb
     
-    - file: aiml-common/lectures/nlp/nmt/nmt-intro/index.md  
-      title:  Neural Machine Translation
-      sections:       
-      - file: aiml-common/lectures/nlp/nmt/lstm-seq2seq-workshop/lstm_seq2seq.ipynb
-      - file: aiml-common/lectures/nlp/nmt/nmt-metrics/index.ipynb     
-      - file: aiml-common/lectures/nlp/nmt/rnn-nmt-attention/index.md
-      - file: aiml-common/lectures/nlp/nmt/rnn-attention-workshop/seq2seq_and_attention.ipynb  
-    
-    - file: aiml-common/lectures/nlp/transformers/transformers-intro.md
-      title: Transformers
-      sections:
-      - file: aiml-common/lectures/nlp/transformers/annotated_transformer.ipynb         
-    
-  - caption: Structured Data Methods
+  - caption:  Representation Learning and Autoencoders
     chapters:
-    - file: aiml-common/lectures/decision-trees/_index.md
-    - file: aiml-common/lectures/regression-trees/regression_trees.ipynb
-    - file: aiml-common/lectures/ensemble/_index.md
-    - file: aiml-common/lectures/ensemble/random-forests/_index.md
-    - file: aiml-common/lectures/ensemble/adaboost/index.md
-    - file: aiml-common/lectures/ensemble/gradient-boosting/index.md  
-    - file: aiml-common/lectures/ensemble/boosting-workshop/_index.md  
-   
-  - caption: Non-Parametric Methods
-    # numbered: 3
-    chapters:    
-    - file: aiml-common/lectures/unsupervised/k-means/_index.md
-    - file: aiml-common/lectures/density-estimation/knn/_index.md
-    - file: aiml-common/lectures/density-estimation/knn-workshop/_index.md
-   
-  - caption:  Dimensionality Reduction
-    # numbered: 3
-    chapters:    
-    - file: aiml-common/lectures/pca/_index.md
+    - file: aiml-common/lectures/vae/index.md 
+    - file: aiml-common/lectures/vae/generative-modeling/index.md 
+    - file: aiml-common/lectures/vae/vae-architecture/index.md
+    - file: aiml-common/lectures/vae/elbo-optimization/index.md 
   
   - caption: Math Background
     chapters: 
@@ -144,17 +126,17 @@ parts:
     #- file: aiml-common/lectures/ensemble/gradient-boosting/xgboost-app/xgboost.ipynb
     - file: aiml-common/resources/environment/notebook-status.md
    
-  - caption:  Assignments 
-    chapters:
-    - file: aiml-common/assignments/probability/probability-assignment-5/index.ipynb
-    - file: aiml-common/assignments/mle/poisson-regression-1/index.ipynb
-    - file: aiml-common/assignments/cnn-face-similarity/index.ipynb
+  # - caption:  Assignments 
+  #   chapters:
+  #   - file: aiml-common/assignments/probability/probability-assignment-5/index.ipynb
+  #   - file: aiml-common/assignments/mle/poisson-regression-1/index.ipynb
+  #   - file: aiml-common/assignments/cnn-face-similarity/index.ipynb
 
-  - caption:  Project (CS482)
-    chapters:
-    - file: aiml-common/projects/nlp/finetuning-language-models-tweets/index.md
+  # - caption:  Project (CS482)
+  #   chapters:
+  #   - file: aiml-common/projects/nlp/finetuning-language-models-tweets/index.md
   
-  - caption:  Project (CS634)
-    chapters:
-    - file: aiml-common/projects/nlp/finetuning-language-models-patents/index.md
+  # - caption:  Project (CS634)
+  #   chapters:
+  #   - file: aiml-common/projects/nlp/finetuning-language-models-patents/index.md
   
