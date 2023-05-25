@@ -241,6 +241,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../aiml-common/lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">Using convnets with small datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../aiml-common/lectures/scene-understanding/feature-extraction-resnet/index.html">Feature Extraction via Residual Networks</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Representation Learning and Autoencoders</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../aiml-common/lectures/vae/index.html">Variational Auto Encoders (VAE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aiml-common/lectures/vae/generative-modeling/index.html">Generative Modeling and Approximate Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aiml-common/lectures/vae/vae-architecture/index.html">VAE Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aiml-common/lectures/vae/elbo-optimization/index.html">ELBO Optimization</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sequences and RNNs</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../aiml-common/lectures/rnn/introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
@@ -268,13 +275,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../aiml-common/lectures/nlp/language-models/lstm-language-model/index.html">LSTM Language Model from scratch</a></li>
 </ul>
 </li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Representation Learning and Autoencoders</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../aiml-common/lectures/vae/index.html">Variational Auto Encoders (VAE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../aiml-common/lectures/vae/generative-modeling/index.html">Generative Modeling and Approximate Inference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../aiml-common/lectures/vae/vae-architecture/index.html">VAE Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../aiml-common/lectures/vae/elbo-optimization/index.html">ELBO Optimization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math Background</span></p>
 <ul class="nav bd-sidenav">
@@ -539,7 +539,7 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td><p>1</p></td>
-<td><p>We start with an <em>introduction to data mining</em> and through an end to end data mining application we understand and experience in our Colab notebooks all the stages of a data mining pipeline. At the same time we (a) review essential Python language coding skills,  set up of your computing environment that you need to complete this course and (b)  review elements of probability and statistics necessary for the remainder of the course.</p></td>
+<td><p>We start with an <em>introduction to data mining</em> and through an end to end data mining application we understand and experience in our Colab notebooks all the stages of a data mining pipeline. At the same time we review elements of probability and statistics necessary for the remainder of the course and discuss your assignments and projects.</p></td>
 <td><p>GERON Chapter 1</p></td>
 </tr>
 <tr class="row-odd"><td><p>2</p></td>
@@ -587,12 +587,12 @@ document.write(`
 <td><p>GERON Chapter 14</p></td>
 </tr>
 <tr class="row-even"><td><p>11</p></td>
-<td><p>We now expand to methods that predict on data sequences. We present Recurrent Neural Networks (RNNs) that are heavily used to process sequantial data and perform tasks such as language modeling.</p></td>
-<td><p>GERON Chapter 15</p></td>
+<td><p>We revisit <em>Dimensionality Reduction</em> and <em>Embeddings</em> and present the <em>Autoencoder</em> architecture that is used to learn embeddings from data.</p></td>
+<td><p>GERON Chapter 17</p></td>
 </tr>
 <tr class="row-odd"><td><p>12</p></td>
-<td><p>We revisit <em>Dimensionality Reduction</em> and <em>Embeddings</em> and present the <em>Autoencoder</em> architecture that is used to learn embeddings from data. We also present the <em>Variational Autoencoder</em> that is used to learn embeddings from data that are <em>probabilistic</em> in nature.</p></td>
-<td><p>GERON Chapter 17</p></td>
+<td><p>We now expand to methods that predict on data sequences. We present Recurrent Neural Networks (RNNs) that are heavily used to process sequantial data and perform tasks such as language modeling.</p></td>
+<td><p>GERON Chapter 15</p></td>
 </tr>
 <tr class="row-even"><td><p>13</p></td>
 <td><p>We conclude by presenting <em>Graph Neural Networks (GNNs)</em> that are heavily used to process graph data and perform tasks such as node classification.</p></td>
