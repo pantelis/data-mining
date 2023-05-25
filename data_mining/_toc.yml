@@ -78,7 +78,14 @@ parts:
     - file: aiml-common/lectures/cnn/cnn-example-architectures/_index.md
     - file: aiml-common/lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.ipynb
     - file: aiml-common/lectures/scene-understanding/feature-extraction-resnet/index.md
-      
+
+  - caption:  Representation Learning and Autoencoders
+    chapters:
+    - file: aiml-common/lectures/vae/index.md 
+    - file: aiml-common/lectures/vae/generative-modeling/index.md 
+    - file: aiml-common/lectures/vae/vae-architecture/index.md
+    - file: aiml-common/lectures/vae/elbo-optimization/index.md 
+
   - caption:  Sequences and RNNs
     chapters:    
     - file: aiml-common/lectures/rnn/introduction/_index.md 
@@ -104,12 +111,7 @@ parts:
       - file: aiml-common/lectures/nlp/language-models/simple-rnn-language-model/index.ipynb
       - file: aiml-common/lectures/nlp/language-models/lstm-language-model/index.ipynb
     
-  - caption:  Representation Learning and Autoencoders
-    chapters:
-    - file: aiml-common/lectures/vae/index.md 
-    - file: aiml-common/lectures/vae/generative-modeling/index.md 
-    - file: aiml-common/lectures/vae/vae-architecture/index.md
-    - file: aiml-common/lectures/vae/elbo-optimization/index.md 
+
   
   - caption: Math Background
     chapters: 
