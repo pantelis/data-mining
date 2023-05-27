@@ -18,12 +18,12 @@ parts:
       sections: 
       - file: aiml-common/lectures/pipelines/uber-ml-arch-case-study/index.md
       - file: aiml-common/lectures/pipelines/01_the_machine_learning_landscape.ipynb
-      - file: aiml-common/lectures/pipelines/02_end_to_end_machine_learning_project.ipynb
 
   - caption: The Learning Problem
     # numbered: 3
     chapters:
     - file: aiml-common/lectures/learning-problem/_index.md
+    - file: aiml-common/lectures/pipelines/02_end_to_end_machine_learning_project.ipynb
 
   - caption: Predictors for Structured Data 
     chapters:
@@ -38,9 +38,12 @@ parts:
   - caption:  Classical Dimensionality Reduction
     # numbered: 3
     chapters:    
+    - file: aiml-common/lectures/recommenders/recommenders-intro/_index.md
+    - file: aiml-common/lectures/recommenders/netflix/_index.md
     - file: aiml-common/lectures/pca/_index.md
-
-  - caption: Non-Parametric Methods
+    - file: aiml-common/lectures/pca/principal-component-analysis.ipynb 
+    
+  - caption: Unsupervised and Non-Parametric Supervised Methods
     # numbered: 3
     chapters:    
     - file: aiml-common/lectures/unsupervised/k-means/_index.md
@@ -128,9 +131,9 @@ parts:
     #- file: aiml-common/lectures/ensemble/gradient-boosting/xgboost-app/xgboost.ipynb
     - file: aiml-common/resources/environment/notebook-status.md
    
-  # - caption:  Assignments 
-  #   chapters:
-  #   - file: aiml-common/assignments/probability/probability-assignment-5/index.ipynb
+  - caption:  Assignments 
+    chapters:
+    - file: aiml-common/assignments/probability/probability-assignment-6/index.ipynb
   #   - file: aiml-common/assignments/mle/poisson-regression-1/index.ipynb
   #   - file: aiml-common/assignments/cnn-face-similarity/index.ipynb
 
