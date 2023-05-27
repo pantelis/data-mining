@@ -70,8 +70,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../../_static/logo.ico"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="K-means Clustering" href="../unsupervised/k-means/_index.html" />
-    <link rel="prev" title="Boosting workshop" href="../ensemble/boosting-workshop/_index.html" />
+    <link rel="next" title="PCA Workshop" href="principal-component-analysis.html" />
+    <link rel="prev" title="The Netflix Prize and Singular Value Decomposition" href="../recommenders/netflix/_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -177,19 +177,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="../pipelines/02_end_to_end_machine_learning_project.html">End-to-end Machine Learning project</a></li>
-
-
-
-
-
-
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Learning Problem</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../learning-problem/_index.html">The Learning Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipelines/02_end_to_end_machine_learning_project.html">End-to-end Machine Learning project</a></li>
+
+
+
+
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Predictors for Structured Data</span></p>
 <ul class="nav bd-sidenav">
@@ -204,9 +204,12 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Dimensionality Reduction</span></p>
 <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../recommenders/recommenders-intro/_index.html">Introduction to Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recommenders/netflix/_index.html">The Netflix Prize and Singular Value Decomposition</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principal-component-analysis.html">PCA Workshop</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Non-Parametric Methods</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unsupervised and Non-Parametric Supervised Methods</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../unsupervised/k-means/_index.html">K-means Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../density-estimation/knn/_index.html">k-Nearest Neighbors (kNN) Classification</a></li>
@@ -510,7 +513,7 @@ document.write(`
 <p>Can we define PCA from a graphical point of view? This is shown in the next figure.</p>
 <p><img alt="principal-subspace" src="../../../_images/principal-subspace.png" />
 <em>PCA seeks a space of lower dimensionality (the magenda line) such that the orthogonal projection of the data points into the subspace maximizes the variance of the projected points (green dots) or equivalently minimizes the squared distances of the projection errors (blue lines)</em></p>
-<p>We will now go through <span class="xref myst">this notebook</span> to see how PCA is calculated and how is used for various use cases.</p>
+<p>We will now go through <a class="reference internal" href="principal-component-analysis.html"><span class="doc std std-doc">this notebook</span></a> to see how PCA is calculated and how is used for various use cases.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -545,20 +548,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../ensemble/boosting-workshop/_index.html"
+       href="../recommenders/netflix/_index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Boosting workshop</p>
+        <p class="prev-next-title">The Netflix Prize and Singular Value Decomposition</p>
       </div>
     </a>
     <a class="right-next"
-       href="../unsupervised/k-means/_index.html"
+       href="principal-component-analysis.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">K-means Clustering</p>
+        <p class="prev-next-title">PCA Workshop</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
