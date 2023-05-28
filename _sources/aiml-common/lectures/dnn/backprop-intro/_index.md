@@ -1,9 +1,3 @@
----
-title: Introduction to Backpropagation
-weight: 52
-draft: false
----
-
 # Introduction to Backpropagation
 
 The backpropagation algorithm brought back from the winter neural networks as it made feasible to train very deep architectures by dramatically improving the efficiency of calculating the gradient of the loss with respect to all the network parameters. 
@@ -12,7 +6,14 @@ In this section we will go over the calculation of gradient using an example fun
 
 For students that need a refresher on derivatives please go through  Khan Academy's lessons on [partial derivatives](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/partial-derivatives-introduction) and [gradients](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/gradient-and-directional-derivatives/v/gradient). 
 
+```{note}
+For executing the backwards pass, you will need to look up [this table](https://en.wikibooks.org/wiki/Calculus/Tables_of_Derivatives) for the derivatives of elementary functions.
+```
+
+
+
 ## Calculating the Gradient of a Function
+
 Our goal is to compute the components of the gradient of the function  $\nabla f = [ \partial f / \partial x , \partial f / \partial y ]^T$ where,
 
 $$f(x, y) = \frac{x + \sigma(y)}{\sigma(x) + (x+y)^2}$$
