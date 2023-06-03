@@ -1,0 +1,63 @@
+FROM nvcr.io/nvidia/tensorflow:23.02-tf2-py3
+
+# specify vscode as the user name in the docker
+# This user name should match that of the VS Code .devcontainer to allow seamless development inside the docker container via vscode 
+ARG USERNAME=vscode
+ARG USER_UID=1001
+ARG USER_GID=$USER_UID
+
+# Create a non-root user
+RUN groupadd --gid $USER_GID $USERNAME \
+  && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
+  # [Optional] Add sudo support for the non-root user - this is ok for development dockers only
+  && apt-get update \
+  && apt-get install -y sudo \
+  && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
+  && chmod 0440 /etc/sudoers.d/$USERNAME \
+  # Cleanup
+  && rm -rf /var/lib/apt/lists/* \
+  # Set up git completion.
+  && echo "source /usr/share/bash-completion/completions/git" >> /home/$USERNAME/.bashrc 
+
+# Packages installation (eg git-lfs)
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends curl git-lfs ffmpeg libsm6 libxext6 graphviz xdg-utils swig 
+
+USER vscode
+
+# ACT for executing locally Github workflows
+RUN curl -s https://raw.githubusercontent.com/nektos/act/master/install.sh |  sudo bash
+
+# NVM for managing npm versions
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh |  sudo bash
+
+# Git LFS repo configuration
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh |  sudo  bash
+
+# inscape installation for managing svg files
+RUN sudo apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && sudo apt-get -y install --no-install-recommends inkscape
+
+SHELL ["/bin/bash", "-c"]
+ENV PATH="/home/vscode/.local/bin:$PATH"
+ENV PYTHONPATH="/usr/local/lib/python3.8/dist-packages"
+
+RUN curl -sSL https://install.python-poetry.org | python3 -
+
+ENV POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_IN_PROJECT=1 \
+    POETRY_VIRTUALENVS_CREATE=1 \
+    POETRY_CACHE_DIR=/tmp/poetry_cache
+
+WORKDIR /workspaces/data_mining
+
+COPY pyproject.toml poetry.lock ./
+
+RUN poetry install --no-root && rm -rf $POETRY_CACHE_DIR
+
+COPY . .
+
+CMD ["poetry", "shell"]
+
+
+

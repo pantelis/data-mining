@@ -27,13 +27,16 @@ parts:
 
   - caption: Predictors for Structured Data 
     chapters:
+    - file: aiml-common/lectures/entropy/_index.md
     - file: aiml-common/lectures/decision-trees/_index.md
     - file: aiml-common/lectures/regression-trees/regression_trees.ipynb
     - file: aiml-common/lectures/ensemble/_index.md
-    - file: aiml-common/lectures/ensemble/random-forests/_index.md
-    - file: aiml-common/lectures/ensemble/adaboost/index.md
-    - file: aiml-common/lectures/ensemble/gradient-boosting/index.md  
-    - file: aiml-common/lectures/ensemble/boosting-workshop/_index.md  
+      title:  Ensemble Methods
+      sections:       
+      - file: aiml-common/lectures/ensemble/random-forests/_index.md
+      - file: aiml-common/lectures/ensemble/adaboost/index.md
+      - file: aiml-common/lectures/ensemble/gradient-boosting/index.md  
+      - file: aiml-common/lectures/ensemble/boosting-workshop/_index.md  
 
   - caption:  Classical Dimensionality Reduction
     # numbered: 3
@@ -56,7 +59,6 @@ parts:
     - file: aiml-common/lectures/regression/linear-regression/linear_regression.ipynb    
     - file: aiml-common/lectures/optimization/maximum-likelihood/marginal_maximum_likelihood.ipynb
     - file: aiml-common/lectures/optimization/maximum-likelihood/conditional_maximum_likelihood.ipynb
-    - file: aiml-common/lectures/entropy/_index.md
     - file: aiml-common/lectures/optimization/sgd/_index.md
     - file: aiml-common/lectures/classification/classification-intro/_index.md
     - file: aiml-common/lectures/classification/logistic-regression/_index.md
