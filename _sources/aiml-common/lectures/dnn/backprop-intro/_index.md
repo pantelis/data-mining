@@ -4,12 +4,11 @@ The backpropagation algorithm brought back from the winter neural networks as it
 
 In this section we will go over the calculation of gradient using an example function and its associated computational graph. The [example](http://cs231n.github.io/optimization-2/) does not have anything to do with DNNs but that is exactly the point. The essence of backpropagation was known far earlier than its application in DNN. 
 
-For students that need a refresher on derivatives please go through  Khan Academy's lessons on [partial derivatives](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/partial-derivatives-introduction) and [gradients](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/gradient-and-directional-derivatives/v/gradient). 
+For students that need a refresher on derivatives please go through  Khan Academy's lessons on [partial derivatives](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/partial-derivatives-introduction) and [gradients](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/gradient-and-directional-derivatives/v/gradient). You may need to review also [tensor derivatives](http://cs231n.stanford.edu/handouts/derivatives.pdf). 
 
 ```{note}
-For executing the backwards pass, you will need to look up [this table](https://en.wikibooks.org/wiki/Calculus/Tables_of_Derivatives) for the derivatives of elementary functions.
+For executing the backwards pass, you will need to look up [this table](https://en.wikibooks.org/wiki/Calculus/Tables_of_Derivatives) for the derivatives of elementary functions.  
 ```
-
 
 
 ## Calculating the Gradient of a Function
@@ -18,31 +17,20 @@ Our goal is to compute the components of the gradient of the function  $\nabla f
 
 $$f(x, y) = \frac{x + \sigma(y)}{\sigma(x) + (x+y)^2}$$
 
-The computational graph of this function is shown below.  Its instructive to print this graph and pencil in all calculations for both this example and others in the backpropagation section. You may need to review derivative tables from Calculus e.g. http://cs231n.stanford.edu/handouts/derivatives.pdf 
+The computational graph of this function is shown below.  Its instructive to print this graph and pencil in all calculations for both this example and others in the backpropagation section.
 
 One derivative that we will be using that is not often listed is the derivative of the sigmoid function. The sigmoid derivative can be obtained as follows:
 
 Consider
-$$
-f(x)=\dfrac{1}{\sigma(x)} = 1+e^{-x}
-.
-$$
+
+$$f(x)=\dfrac{1}{\sigma(x)} = 1+e^{-x}$$
+
 Then, on the one hand, the chain rule gives
-$$
-f'(x)
-= \frac{d}{dx} \biggl( \frac{1}{\sigma(x)} \biggr)
-= -\frac{\sigma'(x)}{\sigma(x)^2}
-,
-$$
+
+$$ f'(x) = \frac{d}{dx} \biggl( \frac{1}{\sigma(x)} \biggr) = -\frac{\sigma'(x)}{\sigma(x)^2}$$
+
 and on the other hand,
-$$
-f'(x)
-= \frac{d}{dx} \bigl( 1+e^{-x} \bigr)
-= -e^{-x}
-= 1-f(x)
-= 1 - \frac{1}{\sigma(x)}
-= \frac{\sigma(x)-1}{\sigma(x)}
-$$
+$$f'(x) = \frac{d}{dx} \bigl( 1+e^{-x} \bigr) = -e^{-x} = 1-f(x) = 1 - \frac{1}{\sigma(x)} = \frac{\sigma(x)-1}{\sigma(x)}$$
 
 Equating the two expressions we finally obtain,
 
@@ -107,6 +95,7 @@ In the backwards pass, we reverse direction and start at the top or rightmost no
 ```
 
 ![river-backpropagation](images/river-backpropagation.jpg)
+
 *As the previous example indicated, the essence of backpropagation algorithm is that local gradients can be calculated symbolically (using calculus) as they only depend on the simple gate structures and these gradients act as valves in the gradient flow that starts from the top of the network (the value of the flow there is always 1.0) and propagates to the bottom of the graph. Think about it as valves controlling the water flowing down a river delta. Individual flows may also merge like in the example above.*
 
 This example allowed us to understand how the gates control the flow. We have met add, multiply, branch (split) and one non-linear function. 

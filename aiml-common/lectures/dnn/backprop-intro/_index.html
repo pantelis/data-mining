@@ -195,14 +195,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Predictors for Structured Data</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../entropy/_index.html">Entropy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../decision-trees/_index.html">Decision Trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../regression-trees/regression_trees.html">Regression tree stumps</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="../../ensemble/_index.html">Ensemble Methods </a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ensemble/random-forests/_index.html">Random Forests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ensemble/adaboost/index.html">Adaptive Boosting (AdaBoost)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ensemble/gradient-boosting/index.html">Gradient Boosting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">Boosting workshop</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ensemble/_index.html">Ensemble Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/random-forests/_index.html">Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/adaboost/index.html">Adaptive Boosting (AdaBoost)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/gradient-boosting/index.html">Gradient Boosting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">Boosting workshop</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
@@ -223,7 +226,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../optimization/maximum-likelihood/marginal_maximum_likelihood.html">Maximum Likelihood Estimation of a marginal model</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="../../optimization/maximum-likelihood/conditional_maximum_likelihood.html">Maximum Likelihood (ML) Estimation of conditional models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../entropy/_index.html">Entropy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../optimization/sgd/_index.html">Stochastic Gradient Descent</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../classification/classification-intro/_index.html">Introduction to Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../classification/logistic-regression/_index.html">Logistic Regression</a></li>
@@ -269,12 +271,12 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-introduction/nlp-pipelines/_index.html">Introduction to NLP Pipelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-introduction/tokenization/index.html">Tokenization</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/_index.html">Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/_index.html">Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/word2vec_from_scratch.html">Word2Vec from scratch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/word2vec_tensorflow_tutorial.html">Word2Vec Tensorflow Tutorial</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/language-models/_index.html">Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/language-models/_index.html">Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/cnn-language-model/index.html">CNN Language Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model/index.html">Simple RNN Language Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/lstm-language-model/index.html">LSTM Language Model from scratch</a></li>
@@ -528,7 +530,7 @@ document.write(`
 <h1>Introduction to Backpropagation<a class="headerlink" href="#introduction-to-backpropagation" title="Permalink to this headline">#</a></h1>
 <p>The backpropagation algorithm brought back from the winter neural networks as it made feasible to train very deep architectures by dramatically improving the efficiency of calculating the gradient of the loss with respect to all the network parameters.</p>
 <p>In this section we will go over the calculation of gradient using an example function and its associated computational graph. The <a class="reference external" href="http://cs231n.github.io/optimization-2/">example</a> does not have anything to do with DNNs but that is exactly the point. The essence of backpropagation was known far earlier than its application in DNN.</p>
-<p>For students that need a refresher on derivatives please go through  Khan Academy’s lessons on <a class="reference external" href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/partial-derivatives-introduction">partial derivatives</a> and <a class="reference external" href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/gradient-and-directional-derivatives/v/gradient">gradients</a>.</p>
+<p>For students that need a refresher on derivatives please go through  Khan Academy’s lessons on <a class="reference external" href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/partial-derivatives-introduction">partial derivatives</a> and <a class="reference external" href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/gradient-and-directional-derivatives/v/gradient">gradients</a>. You may need to review also <a class="reference external" href="http://cs231n.stanford.edu/handouts/derivatives.pdf">tensor derivatives</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For executing the backwards pass, you will need to look up <a class="reference external" href="https://en.wikibooks.org/wiki/Calculus/Tables_of_Derivatives">this table</a> for the derivatives of elementary functions.</p>
@@ -538,29 +540,16 @@ document.write(`
 <p>Our goal is to compute the components of the gradient of the function  <span class="math notranslate nohighlight">\(\nabla f = [ \partial f / \partial x , \partial f / \partial y ]^T\)</span> where,</p>
 <div class="math notranslate nohighlight">
 \[f(x, y) = \frac{x + \sigma(y)}{\sigma(x) + (x+y)^2}\]</div>
-<p>The computational graph of this function is shown below.  Its instructive to print this graph and pencil in all calculations for both this example and others in the backpropagation section. You may need to review derivative tables from Calculus e.g. <a class="reference external" href="http://cs231n.stanford.edu/handouts/derivatives.pdf">http://cs231n.stanford.edu/handouts/derivatives.pdf</a></p>
+<p>The computational graph of this function is shown below.  Its instructive to print this graph and pencil in all calculations for both this example and others in the backpropagation section.</p>
 <p>One derivative that we will be using that is not often listed is the derivative of the sigmoid function. The sigmoid derivative can be obtained as follows:</p>
-<p>Consider
-$<span class="math notranslate nohighlight">\(
-f(x)=\dfrac{1}{\sigma(x)} = 1+e^{-x}
-.
-\)</span><span class="math notranslate nohighlight">\(
-Then, on the one hand, the chain rule gives
-\)</span><span class="math notranslate nohighlight">\(
-f'(x)
-= \frac{d}{dx} \biggl( \frac{1}{\sigma(x)} \biggr)
-= -\frac{\sigma'(x)}{\sigma(x)^2}
-,
-\)</span><span class="math notranslate nohighlight">\(
-and on the other hand,
-\)</span><span class="math notranslate nohighlight">\(
-f'(x)
-= \frac{d}{dx} \bigl( 1+e^{-x} \bigr)
-= -e^{-x}
-= 1-f(x)
-= 1 - \frac{1}{\sigma(x)}
-= \frac{\sigma(x)-1}{\sigma(x)}
-\)</span>$</p>
+<p>Consider</p>
+<div class="math notranslate nohighlight">
+\[f(x)=\dfrac{1}{\sigma(x)} = 1+e^{-x}\]</div>
+<p>Then, on the one hand, the chain rule gives</p>
+<div class="math notranslate nohighlight">
+\[ f'(x) = \frac{d}{dx} \biggl( \frac{1}{\sigma(x)} \biggr) = -\frac{\sigma'(x)}{\sigma(x)^2}\]</div>
+<p>and on the other hand,
+$<span class="math notranslate nohighlight">\(f'(x) = \frac{d}{dx} \bigl( 1+e^{-x} \bigr) = -e^{-x} = 1-f(x) = 1 - \frac{1}{\sigma(x)} = \frac{\sigma(x)-1}{\sigma(x)}\)</span>$</p>
 <p>Equating the two expressions we finally obtain,</p>
 <div class="math notranslate nohighlight">
 \[\sigma'(x) = \sigma(x)(1-\sigma(x))\]</div>
@@ -618,8 +607,8 @@ f'(x)
         <span class="n">dy</span> <span class="o">+=</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sigy</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigy</span><span class="p">)</span> <span class="o">*</span> <span class="n">dsigy</span>       <span class="c1">#(1)</span>
 </pre></div>
 </div>
-<p><img alt="river-backpropagation" src="../../../../_images/river-backpropagation.jpg" />
-<em>As the previous example indicated, the essence of backpropagation algorithm is that local gradients can be calculated symbolically (using calculus) as they only depend on the simple gate structures and these gradients act as valves in the gradient flow that starts from the top of the network (the value of the flow there is always 1.0) and propagates to the bottom of the graph. Think about it as valves controlling the water flowing down a river delta. Individual flows may also merge like in the example above.</em></p>
+<p><img alt="river-backpropagation" src="../../../../_images/river-backpropagation.jpg" /></p>
+<p><em>As the previous example indicated, the essence of backpropagation algorithm is that local gradients can be calculated symbolically (using calculus) as they only depend on the simple gate structures and these gradients act as valves in the gradient flow that starts from the top of the network (the value of the flow there is always 1.0) and propagates to the bottom of the graph. Think about it as valves controlling the water flowing down a river delta. Individual flows may also merge like in the example above.</em></p>
 <p>This example allowed us to understand how the gates control the flow. We have met add, multiply, branch (split) and one non-linear function.</p>
 <table class="colwidths-auto table">
 <thead>

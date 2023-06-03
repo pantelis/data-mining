@@ -78,7 +78,6 @@ Assignments (30%)
 
 Pritam Shen (please find him in our Discord class channel)
 
-
 :::
 
 :::{grid-item-card}

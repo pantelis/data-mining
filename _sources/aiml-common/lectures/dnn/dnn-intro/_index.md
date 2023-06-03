@@ -1,12 +1,5 @@
 # Deep Neural Networks 
 
-For a historical recap on neural networks see:
-
-```{eval-rst}
-.. youtube gG5NCkMerHU
-```
-_The Epistemology of Deep Learning - Yann LeCun_
-
 DNNs are the implementation of **connectionism**, the philosophy that calls for algorithms that perform function approximations to be constructed by an interconnection of elementary circuits called neurons.  In this section, we provides some key points on the question of how the feed-forward neural networks are constructed. In subsequent sections we describe how they learn.  
 
 ## Architecture 
@@ -65,3 +58,20 @@ The Rectified Linear Unit activation function is very inexpensive to compute com
 This is used for multiclass classification problems.
 
 It offers certain advantages during the learning of deep neural networks. Given that the gradient must be large enough to act as a guiding direction during SGD,  we need to avoid situations that the output units result in flat responses (saturate). Since softmax involves exponentials, it saturates when for example the differences between inputs become extreme. The [CE loss helps as the log undoes the exponential terms](https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html).
+
+
+## Videos to watch
+
+For a historical recap on neural networks see:
+
+```{eval-rst}
+.. youtube:: gG5NCkMerHU
+```
+_The Epistemology of Deep Learning - Yann LeCun_
+
+For an astonishing visualization of the learning process of a (dense) neural network see:
+
+```{eval-rst}
+.. youtube:: aircAruvnKk
+```
+_But what is a neural network?_

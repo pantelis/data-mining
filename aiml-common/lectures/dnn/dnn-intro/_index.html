@@ -195,14 +195,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Predictors for Structured Data</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../entropy/_index.html">Entropy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../decision-trees/_index.html">Decision Trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../regression-trees/regression_trees.html">Regression tree stumps</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="../../ensemble/_index.html">Ensemble Methods </a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ensemble/random-forests/_index.html">Random Forests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ensemble/adaboost/index.html">Adaptive Boosting (AdaBoost)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ensemble/gradient-boosting/index.html">Gradient Boosting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">Boosting workshop</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ensemble/_index.html">Ensemble Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/random-forests/_index.html">Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/adaboost/index.html">Adaptive Boosting (AdaBoost)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/gradient-boosting/index.html">Gradient Boosting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/boosting-workshop/_index.html">Boosting workshop</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
@@ -223,7 +226,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../optimization/maximum-likelihood/marginal_maximum_likelihood.html">Maximum Likelihood Estimation of a marginal model</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="../../optimization/maximum-likelihood/conditional_maximum_likelihood.html">Maximum Likelihood (ML) Estimation of conditional models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../entropy/_index.html">Entropy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../optimization/sgd/_index.html">Stochastic Gradient Descent</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../classification/classification-intro/_index.html">Introduction to Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../classification/logistic-regression/_index.html">Logistic Regression</a></li>
@@ -269,12 +271,12 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-introduction/nlp-pipelines/_index.html">Introduction to NLP Pipelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-introduction/tokenization/index.html">Tokenization</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/_index.html">Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/_index.html">Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/word2vec_from_scratch.html">Word2Vec from scratch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/word2vec_tensorflow_tutorial.html">Word2Vec Tensorflow Tutorial</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/language-models/_index.html">Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/language-models/_index.html">Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/cnn-language-model/index.html">CNN Language Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model/index.html">Simple RNN Language Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/lstm-language-model/index.html">LSTM Language Model from scratch</a></li>
@@ -518,6 +520,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-entropy-ce-loss">Cross Entropy (CE) Loss</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#videos-to-watch">Videos to watch</a></li>
 </ul>
             </nav>
         </div>
@@ -531,8 +534,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="deep-neural-networks">
 <h1>Deep Neural Networks<a class="headerlink" href="#deep-neural-networks" title="Permalink to this headline">#</a></h1>
-<p>For a historical recap on neural networks see:</p>
-<p><em>The Epistemology of Deep Learning - Yann LeCun</em></p>
 <p>DNNs are the implementation of <strong>connectionism</strong>, the philosophy that calls for algorithms that perform function approximations to be constructed by an interconnection of elementary circuits called neurons.  In this section, we provides some key points on the question of how the feed-forward neural networks are constructed. In subsequent sections we describe how they learn.</p>
 <section id="architecture">
 <h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">#</a></h2>
@@ -582,6 +583,17 @@ document.write(`
 <h2>Cross Entropy (CE) Loss<a class="headerlink" href="#cross-entropy-ce-loss" title="Permalink to this headline">#</a></h2>
 <p>This is used for multiclass classification problems.</p>
 <p>It offers certain advantages during the learning of deep neural networks. Given that the gradient must be large enough to act as a guiding direction during SGD,  we need to avoid situations that the output units result in flat responses (saturate). Since softmax involves exponentials, it saturates when for example the differences between inputs become extreme. The <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html">CE loss helps as the log undoes the exponential terms</a>.</p>
+</section>
+<section id="videos-to-watch">
+<h2>Videos to watch<a class="headerlink" href="#videos-to-watch" title="Permalink to this headline">#</a></h2>
+<p>For a historical recap on neural networks see:</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/gG5NCkMerHU" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p><em>The Epistemology of Deep Learning - Yann LeCun</em></p>
+<p>For an astonishing visualization of the learning process of a (dense) neural network see:</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/aircAruvnKk" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p><em>But what is a neural network?</em></p>
 </section>
 </section>
 
@@ -662,6 +674,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-entropy-ce-loss">Cross Entropy (CE) Loss</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#videos-to-watch">Videos to watch</a></li>
 </ul>
   </nav></div>
 
