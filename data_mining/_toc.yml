@@ -36,7 +36,7 @@ parts:
       - file: aiml-common/lectures/ensemble/random-forests/_index.md
       - file: aiml-common/lectures/ensemble/adaboost/index.md
       - file: aiml-common/lectures/ensemble/gradient-boosting/index.md  
-      - file: aiml-common/lectures/ensemble/boosting-workshop/_index.md  
+      - file: aiml-common/lectures/ensemble/boosting-workshop/index.ipynb  
 
   - caption:  Classical Dimensionality Reduction
     # numbered: 3

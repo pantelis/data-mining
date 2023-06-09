@@ -78,14 +78,14 @@ sphinx:
   extra_extensions:
     # - sphinx_press_theme
     - sphinxcontrib.youtube
-    - sphinx_inline_tabs
-    - sphinxcontrib.inkscapeconverter
-    #- sphinx_click.ext
-    - sphinx_inline_tabs
-    - sphinxext.rediraffe
-    - sphinx_proof
-    - sphinxcontrib.mermaid
-    - sphinxcontrib.seqdiag
+    # - sphinx_inline_tabs
+    # - sphinxcontrib.inkscapeconverter
+    # #- sphinx_click.ext
+    # - sphinx_inline_tabs
+    # - sphinxext.rediraffe
+    # - sphinx_proof
+    # - sphinxcontrib.mermaid
+    # - sphinxcontrib.seqdiag
     #- sphinx_examples
     # - nbsite.pyodide
     #- jupyterlite_sphinx

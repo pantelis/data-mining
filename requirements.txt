@@ -1,0 +1,14 @@
+# --------- docs --------- #
+jupyter-book
+sphinx-autobuild
+sphinxcontrib-youtube
+# sphinxcontrib-svg2pdfconverter
+# sphinx-proof
+# sphinx-inline-tabs
+# sphinxext-rediraffe
+# sphinx-panels
+# sphinxcontrib-mermaid
+# sphinxcontrib-seqdiag
+
+# --------- docs --------- #
+

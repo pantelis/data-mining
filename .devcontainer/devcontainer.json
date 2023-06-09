@@ -4,12 +4,8 @@
 	"name": "data-mining-course",
 	"build": { 
 		"context": "..",
-		"dockerfile": "Dockerfile.pytorch",
-		"args": {
-			"POETRY_VERSION": "1.5.1"
-		}
+		"dockerfile": "../docker/Dockerfile.pytorch",
 	},
-
 	"remoteEnv": {
 		//"PATH": "/home/vscode/.local/bin:${PATH}"
 	},
@@ -53,5 +49,5 @@
 			}
 		}
 	},
-	"postStartCommand": "poetry update && poetry run sphinx-autobuild --port=10001 data_mining _build/html"
+	"postStartCommand": "sphinx-autobuild --host 0.0.0.0 --port 8000 data_mining _build/html"
 }
