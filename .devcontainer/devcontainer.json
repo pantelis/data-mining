@@ -4,9 +4,10 @@
 	"name": "data-mining-course",
 	"build": { 
 		"context": "..",
-		"dockerfile": "../docker/Dockerfile.pytorch",
+		"dockerfile": "../docker/Dockerfile.pytorch"
 	},
 	"remoteEnv": {
+		// Set inside the dockerfile to avoid having to rebuild the image
 		//"PATH": "/home/vscode/.local/bin:${PATH}"
 	},
 
