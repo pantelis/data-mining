@@ -57,8 +57,8 @@ parts:
     # numbered: 3
     chapters:
     - file: aiml-common/lectures/regression/linear-regression/linear_regression.ipynb    
-    - file: aiml-common/lectures/optimization/maximum-likelihood/marginal_maximum_likelihood.ipynb
-    - file: aiml-common/lectures/optimization/maximum-likelihood/conditional_maximum_likelihood.ipynb
+    # - file: aiml-common/lectures/optimization/maximum-likelihood/marginal_maximum_likelihood.ipynb
+    # - file: aiml-common/lectures/optimization/maximum-likelihood/conditional_maximum_likelihood.ipynb
     - file: aiml-common/lectures/optimization/sgd/_index.md
     - file: aiml-common/lectures/classification/classification-intro/_index.md
     - file: aiml-common/lectures/classification/logistic-regression/_index.md
@@ -66,7 +66,7 @@ parts:
   - caption: Deep Neural Networks
     # numbered: 3
     chapters:    
-    - file: aiml-common/lectures/classification/perceptron/_index.md
+    # - file: aiml-common/lectures/classification/perceptron/_index.md
     - file: aiml-common/lectures/dnn/dnn-intro/_index.md
     - file: aiml-common/lectures/dnn/backprop-intro/_index.md
     - file: aiml-common/lectures/dnn/backprop-dnn/_index.md
