@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>A Case Study of an ML Architecture - Uber &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="The Machine Learning landscape" href="../01_the_machine_learning_landscape.html" />
     <link rel="prev" title="ML Pipelines" href="../_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -533,19 +534,19 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="a-case-study-of-an-ml-architecture-uber">
-<h1>A Case Study of an ML Architecture - Uber<a class="headerlink" href="#a-case-study-of-an-ml-architecture-uber" title="Permalink to this headline">#</a></h1>
+<h1>A Case Study of an ML Architecture - Uber<a class="headerlink" href="#a-case-study-of-an-ml-architecture-uber" title="Permalink to this heading">#</a></h1>
 <p>Uber is one of the most interesting companies in terms of the data science task complexity that needs to be done to run their businesses. Obviously the business is diverse having ride sharing, food delivery, autonomous mobility and possibly others. Here we will focus on describing some of the problems and how they have been accommodated through <a class="reference external" href="https://www.youtube.com/watch?v=hGy1cM7_koM">multiple generations of their in-house developed ML architecture</a>.</p>
 <section id="problem-statements">
-<h2>Problem statements<a class="headerlink" href="#problem-statements" title="Permalink to this headline">#</a></h2>
+<h2>Problem statements<a class="headerlink" href="#problem-statements" title="Permalink to this heading">#</a></h2>
 <section id="financial-planning">
-<h3>Financial Planning<a class="headerlink" href="#financial-planning" title="Permalink to this headline">#</a></h3>
+<h3>Financial Planning<a class="headerlink" href="#financial-planning" title="Permalink to this heading">#</a></h3>
 <p>Uber launched in San Francisco and this meant that they would be interacting regularly with the tech community who are continually looking for new tools and services that improve their quality of life. Uber took aim at those people by sponsoring tech events, providing free rides, and in general driving awareness among this audience. By <a class="reference external" href="https://growthhackers.com/growth-studies/uber">seeding</a> this audience, they were able to create a growth engine that hinged on the fact that these adopters would show their friends, who would become new users after their first Uber experience. Leading to a growing network of passionate customers <a class="reference external" href="https://eng.uber.com/transforming-financial-forecasting-machine-learning/">ref</a>.</p>
 <p>Uber needs to do budget allocation for thousands of markets (cities) across the globe of their seeding moneys.  This resource allocation is implemented via financial planning backend services that generate and evaluate <em>scenarios</em> for each market. The solution involves a combination of optimization approaches such as the Stochastic Gradient Descent (SGD) that we will treat in a later chapter and the usage of the Michelangelo platform to clean data, train, and serve models that will create the necessary metrics for each scenario - these are the variables of the objective or constraints in the budget optimization.</p>
 <p><img alt="uber-ride-sharing-scenario-instance" src="../../../../_images/uber-ride-sharing-scenario-instance.png" />
 <em>Financial planning per market. Squares are metric (aggregations) and ovals are computational elements (models). Suppose the seeding process gives the São Paulo city team 200 dollars for new user acquisitions (acquisition_spending metric) and 100 dollars for existing user retention (engagement_spending metric). The cost curve model tells us that setting 200 dollars for the acquisition_spending metric will get us 35 new rider signups. By running our models in topological order, we can compute our metrics, including the very last one, a net_inflow of 1,274 dollars.</em></p>
 </section>
 <section id="ubereats">
-<h3>UberEATS<a class="headerlink" href="#ubereats" title="Permalink to this headline">#</a></h3>
+<h3>UberEATS<a class="headerlink" href="#ubereats" title="Permalink to this heading">#</a></h3>
 <p><img alt="uber-eats" src="../../../../_images/uber-eats.png" />
 <em>Estimated Delivery Time (EDT) is the most important prediction affecting customer experience in the delivery industry.</em></p>
 <p>Predicting meal estimated time of delivery (ETD) is not simple. When an UberEATS customer places an order it is sent to the restaurant for processing. The restaurant then needs to acknowledge the order and prepare the meal which will take time depending on the complexity of the order and how busy the restaurant is. When the meal is close to being ready, an Uber delivery-partner is dispatched to pick up the meal. Then, the delivery-partner needs to get to the restaurant, find parking, walk inside to get the food, then walk back to the car, drive to the customer’s location (which depends on route, traffic, and other factors), find parking, and walk to the customer’s door to complete the delivery. To predict ETD Uber uses _Gradient Boosted Decision Tree regression models. Features for the model include</p>
@@ -558,11 +559,11 @@ document.write(`
 </section>
 </section>
 <section id="michelangelo">
-<h2><a class="reference external" href="https://eng.uber.com/michelangelo-machine-learning-platform/">Michelangelo</a><a class="headerlink" href="#michelangelo" title="Permalink to this headline">#</a></h2>
+<h2><a class="reference external" href="https://eng.uber.com/michelangelo-machine-learning-platform/">Michelangelo</a><a class="headerlink" href="#michelangelo" title="Permalink to this heading">#</a></h2>
 <p><img alt="uber-michelangelo" src="../../../../_images/uber-michelangelo.png" />
 <em>Uber’s Michelangelo system architecture (data flow view)</em></p>
 <p>The data processing pipeline elements we should be familiar with are listed below.</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Pipeline</p></th>
 <th class="head"><p>Component</p></th>
@@ -601,7 +602,7 @@ document.write(`
 </tbody>
 </table>
 <p>These components are used to construct online (streaming) and offline (batch) processing data pipelines. The ultimate scope of a data pipeline is to create <em>features</em>, <em>training / test datasets</em> and process data in the inference / prediction stage. We can clearly see two branches in Uber’s and such separation is known as Lambda architecture - the name originated from the Greek letter <span class="math notranslate nohighlight">\(\Lambda\)</span> that hs two “legs”. Note that some authors call the online branch, the <em>streaming</em> branch and the <em>offline</em> branch, the <em>batch</em> branch. This is generally accurate but in many instances we have mini batching done in the online branch so it is technically incorrect.</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Lambda Architecture Branch</p></th>
 <th class="head"><p>Description</p></th>
@@ -625,13 +626,13 @@ document.write(`
 <p>As an example, UberEATS uses batch precompute for features like a ‘restaurant’s average meal preparation time over the last seven days.’ while the near-real-time precompute pipeline for features like a ‘restaurant’s average meal preparation time over the last one hour.’</p>
 </section>
 <section id="what-to-watch-in-data-processing">
-<h2>What to watch in data processing<a class="headerlink" href="#what-to-watch-in-data-processing" title="Permalink to this headline">#</a></h2>
+<h2>What to watch in data processing<a class="headerlink" href="#what-to-watch-in-data-processing" title="Permalink to this heading">#</a></h2>
 <p>Due to the plethora of platforms and runtimes to support stream and batch processing, it is difficult for data scientists to consolidate the various APIs and focus on the intelligence of a data driven application.  <a class="reference external" href="https://beam.apache.org/">Apache Beam</a> was born out of this necessity and is enjoying widespread adoption (other than the vendor behind Spark). It offers the unified programming model that multiple runtimes support for both batch and real time streaming data intensive applications. For particularly illuminating use case of the complexities that raise in real applications, see <a class="reference external" href="https://beam.apache.org/get-started/mobile-gaming-example/">this tutorial</a>. For a use case that combines deep neural network regression in Tensorflow and data pipeline preprocessing in Beam see <a class="reference external" href="https://cloud.google.com/dataflow/docs/samples/molecules-walkthrough">this molecular analysis example</a>.</p>
 <p>Closing, we cant stress enough the importance of understanding the coupling between methods in data science (e.g regression methods for ETD calculation) and the data pipeline architecture that needs to be in place for the method to be able to provide good returns. Many cloud providers such as AWS, have published significant number of reference architectures for a variety of use cases and have on-site architects in NYC to help you understand how to best implement (arguably in their cloud) the data intensive application you need to build.</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="references">
-<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h1>
+<h1>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h1>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://github.com/pantelis/handson-ml2/blob/master/02_end_to_end_machine_learning_project.ipynb">Zillow</a>, Notebook that shows end to end what a data mining pipeline does - here we predict house prices.</p></li>
 <li><p><a class="reference external" href="https://arxiv.org/pdf/2104.00087.pdf">Real Time Data Infrastructure at Uber</a></p></li>

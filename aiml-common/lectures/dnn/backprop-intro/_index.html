@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Introduction to Backpropagation &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Backpropagation in Deep Neural Networks" href="../backprop-dnn/_index.html" />
     <link rel="prev" title="Deep Neural Networks" href="../dnn-intro/_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -526,7 +527,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-backpropagation">
-<h1>Introduction to Backpropagation<a class="headerlink" href="#introduction-to-backpropagation" title="Permalink to this headline">#</a></h1>
+<h1>Introduction to Backpropagation<a class="headerlink" href="#introduction-to-backpropagation" title="Permalink to this heading">#</a></h1>
 <p>The backpropagation algorithm brought back from the winter neural networks as it made feasible to train very deep architectures by dramatically improving the efficiency of calculating the gradient of the loss with respect to all the network parameters.</p>
 <p>In this section we will go over the calculation of gradient using an example function and its associated computational graph. The <a class="reference external" href="http://cs231n.github.io/optimization-2/">example</a> does not have anything to do with DNNs but that is exactly the point. The essence of backpropagation was known far earlier than its application in DNN.</p>
 <p>For students that need a refresher on derivatives please go through  Khan Academy’s lessons on <a class="reference external" href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/partial-derivatives-introduction">partial derivatives</a> and <a class="reference external" href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/gradient-and-directional-derivatives/v/gradient">gradients</a>. You may need to review also <a class="reference external" href="http://cs231n.stanford.edu/handouts/derivatives.pdf">tensor derivatives</a>.</p>
@@ -535,7 +536,7 @@ document.write(`
 <p>For executing the backwards pass, you will need to look up <a class="reference external" href="https://en.wikibooks.org/wiki/Calculus/Tables_of_Derivatives">this table</a> for the derivatives of elementary functions.</p>
 </div>
 <section id="calculating-the-gradient-of-a-function">
-<h2>Calculating the Gradient of a Function<a class="headerlink" href="#calculating-the-gradient-of-a-function" title="Permalink to this headline">#</a></h2>
+<h2>Calculating the Gradient of a Function<a class="headerlink" href="#calculating-the-gradient-of-a-function" title="Permalink to this heading">#</a></h2>
 <p>Our goal is to compute the components of the gradient of the function  <span class="math notranslate nohighlight">\(\nabla f = [ \partial f / \partial x , \partial f / \partial y ]^T\)</span> where,</p>
 <div class="math notranslate nohighlight">
 \[f(x, y) = \frac{x + \sigma(y)}{\sigma(x) + (x+y)^2}\]</div>
@@ -554,7 +555,7 @@ $<span class="math notranslate nohighlight">\(f'(x) = \frac{d}{dx} \bigl( 1+e^{-
 \[\sigma'(x) = \sigma(x)(1-\sigma(x))\]</div>
 <p><img alt="backpropagation-example-loss" src="../../../../_images/backprop-example-loss.drawio.svg" /></p>
 <section id="forward-pass">
-<h3>Forward Pass<a class="headerlink" href="#forward-pass" title="Permalink to this headline">#</a></h3>
+<h3>Forward Pass<a class="headerlink" href="#forward-pass" title="Permalink to this heading">#</a></h3>
 <p>In the forward pass, the algorithm works bottom up (or left to right depending how the computational graph is represented) and calculates the values of all “gates” (gates are the elementary functions that synthesize the function) of the graph and stores their values into variables as they will be used by the backwards pass. There are eight values stored in this specific example.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">sigy</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">y</span><span class="p">))</span>  <span class="c1">#(1)</span>
         <span class="n">num</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">sigy</span> <span class="c1"># numerator    #(2)</span>
@@ -570,7 +571,7 @@ $<span class="math notranslate nohighlight">\(f'(x) = \frac{d}{dx} \bigl( 1+e^{-
 </div>
 </section>
 <section id="backwards-pass">
-<h3>Backwards Pass<a class="headerlink" href="#backwards-pass" title="Permalink to this headline">#</a></h3>
+<h3>Backwards Pass<a class="headerlink" href="#backwards-pass" title="Permalink to this heading">#</a></h3>
 <p>In the backwards pass, we reverse direction and start at the top or rightmost node (the stored variables) of the graph and compute the input (in the reverse direction) derivative of input of each gate using the template depicted below:</p>
 <p><img alt="backprop-template" src="../../../../_images/backprop-template.png" />
 <em>Backpropagation template based on the <a class="reference external" href="https://en.wikipedia.org/wiki/Chain_rule">chain rule</a></em>.</p>
@@ -609,7 +610,7 @@ $<span class="math notranslate nohighlight">\(f'(x) = \frac{d}{dx} \bigl( 1+e^{-
 <p><img alt="river-backpropagation" src="../../../../_images/river-backpropagation.jpg" /></p>
 <p><em>As the previous example indicated, the essence of backpropagation algorithm is that local gradients can be calculated symbolically (using calculus) as they only depend on the simple gate structures and these gradients act as valves in the gradient flow that starts from the top of the network (the value of the flow there is always 1.0) and propagates to the bottom of the graph. Think about it as valves controlling the water flowing down a river delta. Individual flows may also merge like in the example above.</em></p>
 <p>This example allowed us to understand how the gates control the flow. We have met add, multiply, branch (split) and one non-linear function.</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Gate</p></th>
 <th class="head"><p>Description</p></th>

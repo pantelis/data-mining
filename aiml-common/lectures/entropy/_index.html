@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Entropy &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Decision Trees" href="../decision-trees/_index.html" />
     <link rel="prev" title="End-to-end Machine Learning project" href="../pipelines/02_end_to_end_machine_learning_project.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -523,7 +524,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="entropy">
-<h1>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">#</a></h1>
+<h1>Entropy<a class="headerlink" href="#entropy" title="Permalink to this heading">#</a></h1>
 <p>In this section we take a closer look into the <em>algorithm</em> block of the learning problem. This block implements the underlying optimization problem that produces the weights in regression and classification settings. Any optimization problem requires an objective function and as it turns out in the supervised setting (and not only) there is a whole theory, called <em>information theory</em> pioneered by Claude Shannon at Bell Labs, that guides us in our search to find the best <span class="math notranslate nohighlight">\(p_{model}\)</span> but also in a myriad other things. The important elements of this theory are reviewed here.</p>
 <p><img alt="holland-tunnel" src="../../../_images/holland-tunnel.jpg" />
 <em>Value of information: <code class="docutils literal notranslate"><span class="pre">Low</span> <span class="pre">Manhattan-bound</span> <span class="pre">traffic</span> <span class="pre">flow</span> <span class="pre">in</span> <span class="pre">Holland</span> <span class="pre">tunnel</span> <span class="pre">on</span> <span class="pre">Monday</span> <span class="pre">morning</span></code></em></p>
@@ -539,7 +540,7 @@ document.write(`
 <p><span class="math notranslate nohighlight">\(H(p) = - [p \ln p + (1-p) \ln(1-p)]\)</span></p>
 <p>As you can see the maximum entropy is when the outcome is most unpredictable i.e. when a 1 can show up with uniform probability (in this case equal probability to a 0). Entropy has widespread implications as it measures our uncertainty in terms of the length of the message/code that we need to communicate the outcome across. Taking to the limit if we were certain about an event (deterministic outcome) we would need 0 bits or require to send any message at all.</p>
 <section id="relative-entropy-or-kl-divergence">
-<h2>Relative entropy or KL divergence<a class="headerlink" href="#relative-entropy-or-kl-divergence" title="Permalink to this headline">#</a></h2>
+<h2>Relative entropy or KL divergence<a class="headerlink" href="#relative-entropy-or-kl-divergence" title="Permalink to this heading">#</a></h2>
 <p>In many settings we need to have a metric that compares two probability distributions <span class="math notranslate nohighlight">\(\{P(x),Q(x)\}\)</span> in terms of their “distance” from each other (the quotes will be explained shortly). This is given by the quantity known as <em>relative entropy</em> or <em>KL divergence</em>.</p>
 <div class="math notranslate nohighlight">
 \[KL(P||Q)= \mathbb{E}[\ln P(x) - \ln Q(x)]\]</div>
@@ -549,7 +550,7 @@ document.write(`
 <p><img alt="entropy-relations" src="../../../_images/entropy-relations.png" /></p>
 </section>
 <section id="digging-further">
-<h2>Digging further<a class="headerlink" href="#digging-further" title="Permalink to this headline">#</a></h2>
+<h2>Digging further<a class="headerlink" href="#digging-further" title="Permalink to this heading">#</a></h2>
 <p>If you are a visual learner, <a class="reference external" href="http://colah.github.io/posts/2015-09-Visual-Information/#fn4">the visual information theory</a> blog post is a better starting point to the above.  <a class="reference external" href="https://www.inference.org.uk/itprnn/book.pdf">MacKay’s book (Chapter 2)</a> is an instructive introduction to probability and information theory concepts and you can test your understanding by doing the exercises in that chapter.</p>
 </section>
 </section>

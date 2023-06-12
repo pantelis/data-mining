@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Simple RNN Language Model &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
     <script src="../../../../../_static/jquery.js"></script>
     <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../../_static/doctools.js"></script>
     <script src="../../../../../_static/clipboard.min.js"></script>
     <script src="../../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="LSTM Language Model from scratch" href="../lstm-language-model/index.html" />
     <link rel="prev" title="CNN Language Model" href="../cnn-language-model/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -580,7 +581,7 @@ document.write(`
                   
   <p><a class="reference external" href="https://colab.research.google.com/github/pantelis-nlp/tutorial-nlp-notebooks/blob/main/rnn_language_model.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="simple-rnn-language-model">
-<h1>Simple RNN Language Model<a class="headerlink" href="#simple-rnn-language-model" title="Permalink to this headline">#</a></h1>
+<h1>Simple RNN Language Model<a class="headerlink" href="#simple-rnn-language-model" title="Permalink to this heading">#</a></h1>
 <p>Our aim is to predict the next character given a set of previous characters from our data string. For our RNN  implementation, we would take a sequence of length 25 characters as inputs to predict the next character.</p>
 <p>The notation used here was introduced first <a class="reference external" href="http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture10.pdf">here</a>. This minimal character-level Vanilla RNN model was first written by Andrej Karpathy (&#64;karpathy) and was decorated with the forward and backprop equations by students of the CS-GY-6613 course as part of an asignment.</p>
 <div class="cell docutils container">

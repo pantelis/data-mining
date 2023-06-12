@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>VAE Architecture &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="ELBO Optimization" href="../elbo-optimization/index.html" />
     <link rel="prev" title="Generative Modeling and Approximate Inference" href="../generative-modeling/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -512,7 +513,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="vae-architecture">
-<h1>VAE Architecture<a class="headerlink" href="#vae-architecture" title="Permalink to this headline">#</a></h1>
+<h1>VAE Architecture<a class="headerlink" href="#vae-architecture" title="Permalink to this heading">#</a></h1>
 <p>The ‘right’  latent space is the one that makes the distribution <span class="math notranslate nohighlight">\(p(\mathbf z| \mathbf \theta)\)</span> the most likely to produce <span class="math notranslate nohighlight">\(\mathbf x\)</span>. We are therefore introducing a stage that complements the aforementioned <em>generative model or decoder</em> given by <span class="math notranslate nohighlight">\(p(\mathbf x| \mathbf z ; \mathbf \theta) p(\mathbf z | \theta)\)</span>.</p>
 <p>This stage is called the <em>recognition model or encoder</em> and is given by <span class="math notranslate nohighlight">\(p(\mathbf z| \mathbf x ; \mathbf \theta)\)</span>. The premise is this: the posterior <span class="math notranslate nohighlight">\(p(\mathbf z | \mathbf x ; \mathbf \theta)\)</span> will result into a much more meaningful and compact latent space <span class="math notranslate nohighlight">\(\mathbf z\)</span> than the prior <span class="math notranslate nohighlight">\(p(\mathbf z | \mathbf \theta)\)</span>. This encoding though, calls for sampling from a posterior that is itself intractable. We then need to use an approximation to such distribution: <span class="math notranslate nohighlight">\(q(\mathbf z| \mathbf x ; \mathbf \phi)\)</span> and we call this the <em>inference model</em> that approximates the recognition model and help us optimize the marginal likelihood.</p>
 <p>The VAE encoder-decoder spaces are clearly shown below. The picture shows the more compact space that is defined by the encoder.</p>

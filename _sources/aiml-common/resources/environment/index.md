@@ -4,7 +4,13 @@
 
 ### On your own server/desktop machine or laptop (recommended)
 
-You need to create Python environments in  this course. Nothing beats a container based environment for data science/AI workflows and we recommend VS Code as the IDE due to its flexibility in supporting remote containers. 
+You need to create Python environments in  this course. Nothing beats a container-based environment for data science/AI workflows. Learn the basics of docker (the most conmmon container format) by watching the following video:
+
+```{eval-rst}
+.. youtube:: pTFZFxd4hOI
+```
+
+Independent of your OS, you may want to use [VS Code IDE](https://code.visualstudio.com/) if you have no IDE experience before. We recommend VS Code as the IDE due to its flexibility in supporting remote containers.  Ensure that you are able to debug code in your IDE. It must connect to the [remote container](https://code.visualstudio.com/docs/remote/remote-overview). PyCharm may also offer similar functionality but we have not tested it.
 
 * For those in Windows, please follow [this](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers) to install WSL2 and Docker.
 

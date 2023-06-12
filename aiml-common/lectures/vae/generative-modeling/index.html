@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Generative Modeling and Approximate Inference &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="VAE Architecture" href="../vae-architecture/index.html" />
     <link rel="prev" title="Variational Auto Encoders (VAE)" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -512,8 +513,8 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="generative-modeling-and-approximate-inference">
-<h1>Generative Modeling and Approximate Inference<a class="headerlink" href="#generative-modeling-and-approximate-inference" title="Permalink to this headline">#</a></h1>
-<p>In generative modeling we want to model the generative distribution of the observed variables <span class="math notranslate nohighlight">\(\mathbf x\)</span>, <span class="math notranslate nohighlight">\(p(\mathbf x)\)</span> <a class="footnote-reference brackets" href="#id3" id="id1">1</a>.</p>
+<h1>Generative Modeling and Approximate Inference<a class="headerlink" href="#generative-modeling-and-approximate-inference" title="Permalink to this heading">#</a></h1>
+<p>In generative modeling we want to model the generative distribution of the observed variables <span class="math notranslate nohighlight">\(\mathbf x\)</span>, <span class="math notranslate nohighlight">\(p(\mathbf x)\)</span> <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
 <p>Take for example a set of images that depict a pendulum excited by a force. We would like to generative the successive frames of the pendulum swinging behavior and we do so we are assisted by a set of latent variables <span class="math notranslate nohighlight">\(\mathbf z\)</span> that represent the underlying laws of physics. Generative modeling is especially well suited for</p>
 <ol class="arabic simple">
 <li><p>Testing out hypotheses about the underlying rules that generated the observed data. Such rules can also offer interpretable models.</p></li>
@@ -548,17 +549,17 @@ document.write(`
 \[ \mathbf \eta = f_{DNN}(\mathbf z)\]</div>
 <div class="math notranslate nohighlight">
 \[p(\mathbf x, \mathbf \theta) = p(\mathbf x | \mathbf \eta, \mathbf \theta)\]</div>
-<p>However we are facing the following situation: <em>Even with DNNs when we use DNN to automatically “design” the right feature coordinates in the latent space <a class="footnote-reference brackets" href="#id4" id="id2">2</a>, we are still facing an intractable computationally model in trying to estimate the marginal distribution <span class="math notranslate nohighlight">\(p(\mathbf x | \mathbf \theta)\)</span></em>.</p>
+<p>However we are facing the following situation: <em>Even with DNNs when we use DNN to automatically “design” the right feature coordinates in the latent space <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, we are still facing an intractable computationally model in trying to estimate the marginal distribution <span class="math notranslate nohighlight">\(p(\mathbf x | \mathbf \theta)\)</span></em>.</p>
 <p>To understand why, consider the MNIST dataset and the problem of generating handwritten digits that look like that. We can sample from <span class="math notranslate nohighlight">\(p(\mathbf z | \theta)\)</span> generating a large number of samples <span class="math notranslate nohighlight">\(\{z_1, \dots , z_k\}\)</span>, since the DNN provided all the parameters of this distribution.  We can then compute <span class="math notranslate nohighlight">\(p(\mathbf x) = \frac{1}{k} \sum_i p(\mathbf x|z_i)\)</span>. The problem is that we need a very large number of such samples in high dimensional spaces such as images (for MNIST is 28x28 dimensions) . Most of the samples <span class="math notranslate nohighlight">\(\mathbf z_i\)</span> will result into negligible <span class="math notranslate nohighlight">\(p(\mathbf x|z_i)\)</span> and therefore won’t contribute to the estimate of the <span class="math notranslate nohighlight">\(p(\mathbf x)\)</span>. This is the problem that VAE addresses. The key idea behind its design is that of <em>inference</em> of the right latent space that when sampled, results into a computation and optimization of the marginal distribution with far less effort than before.</p>
 <hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Following <a class="reference external" href="https://arxiv.org/pdf/1906.02691.pdf">this tutorial</a> we adopt the compact notation that serializes into one vector <span class="math notranslate nohighlight">\(\mathbf x\)</span> all the observed random variables.</p>
-</dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>Note that the features that the DNN captures are not interpretable as the intuitively understood features that humans consider. For the MNIST dataset for example, humans will consider the slant of each digit, thinner strokes etc.</p>
-</dd>
-</dl>
+<aside class="footnote brackets" id="id3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Following <a class="reference external" href="https://arxiv.org/pdf/1906.02691.pdf">this tutorial</a> we adopt the compact notation that serializes into one vector <span class="math notranslate nohighlight">\(\mathbf x\)</span> all the observed random variables.</p>
+</aside>
+<aside class="footnote brackets" id="id4" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Note that the features that the DNN captures are not interpretable as the intuitively understood features that humans consider. For the MNIST dataset for example, humans will consider the slant of each digit, thinner strokes etc.</p>
+</aside>
 </section>
 
     <script type="text/x-thebe-config">

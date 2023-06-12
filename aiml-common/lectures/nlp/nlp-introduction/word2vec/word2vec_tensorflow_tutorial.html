@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Word2Vec Tensorflow Tutorial &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
     <script src="../../../../../_static/jquery.js"></script>
     <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../../_static/doctools.js"></script>
     <script src="../../../../../_static/clipboard.min.js"></script>
     <script src="../../../../../_static/copybutton.js"></script>
@@ -68,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="RNN-based Language Models" href="../../language-models/_index.html" />
     <link rel="prev" title="Word2Vec from scratch" href="word2vec_from_scratch.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -634,7 +635,7 @@ document.write(`
     <a href="https://storage.googleapis.com/tensorflow_docs/docs/site/en/tutorials/text/word2vec.ipynb"><img src="https://www.tensorflow.org/images/download_logo_32px.png" />Download notebook</a>
   </td>
 </table><section class="tex2jax_ignore mathjax_ignore" id="word2vec-tensorflow-tutorial">
-<h1>Word2Vec Tensorflow Tutorial<a class="headerlink" href="#word2vec-tensorflow-tutorial" title="Permalink to this headline">#</a></h1>
+<h1>Word2Vec Tensorflow Tutorial<a class="headerlink" href="#word2vec-tensorflow-tutorial" title="Permalink to this heading">#</a></h1>
 <p>word2vec is not a singular algorithm, rather, it is a family of model architectures and optimizations that can be used to learn word embeddings from large datasets. Embeddings learned through word2vec have proven to be successful on a variety of downstream natural language processing tasks.</p>
 <p>Note: This tutorial is based on <a class="reference external" href="https://arxiv.org/pdf/1301.3781.pdf">Efficient estimation of word representations in vector space</a> and <a class="reference external" href="https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf">Distributed representations of words and phrases and their compositionality</a>. It is not an exact implementation of the papers. Rather, it is intended to illustrate the key ideas.</p>
 <p>These papers proposed two methods for learning representations of words:</p>
@@ -644,7 +645,7 @@ document.write(`
 </ul>
 <p>You’ll use the skip-gram approach in this tutorial. First, you’ll explore skip-grams and other concepts using a single sentence for illustration. Next, you’ll train your own word2vec model on a small dataset. This tutorial also contains code to export the trained embeddings and visualize them in the <a class="reference external" href="http://projector.tensorflow.org/">TensorFlow Embedding Projector</a>.</p>
 <section id="skip-gram-and-negative-sampling">
-<h2>Skip-gram and negative sampling<a class="headerlink" href="#skip-gram-and-negative-sampling" title="Permalink to this headline">#</a></h2>
+<h2>Skip-gram and negative sampling<a class="headerlink" href="#skip-gram-and-negative-sampling" title="Permalink to this heading">#</a></h2>
 <p>While a bag-of-words model predicts a word given the neighboring context, a skip-gram model predicts the context (or neighbors) of a word, given the word itself. The model is trained on skip-grams, which are n-grams that allow tokens to be skipped (see the diagram below for an example). The context of a word can be represented through a set of skip-gram pairs of <code class="docutils literal notranslate"><span class="pre">(target_word,</span> <span class="pre">context_word)</span></code> where <code class="docutils literal notranslate"><span class="pre">context_word</span></code> appears in the neighboring context of <code class="docutils literal notranslate"><span class="pre">target_word</span></code>.</p>
 <p>Consider the following sentence of eight words:</p>
 <blockquote>
@@ -670,7 +671,7 @@ document.write(`
 <p>In the next section, you’ll generate skip-grams and negative samples for a single sentence. You’ll also learn about subsampling techniques and train a classification model for positive and negative training examples later in the tutorial.</p>
 </section>
 <section id="setup">
-<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
@@ -711,7 +712,7 @@ To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, re
 </div>
 </div>
 <section id="vectorize-an-example-sentence">
-<h3>Vectorize an example sentence<a class="headerlink" href="#vectorize-an-example-sentence" title="Permalink to this headline">#</a></h3>
+<h3>Vectorize an example sentence<a class="headerlink" href="#vectorize-an-example-sentence" title="Permalink to this heading">#</a></h3>
 <p>Consider the following sentence:</p>
 <blockquote>
 <div><p>The wide road shimmered in the hot sun.</p>
@@ -781,7 +782,7 @@ To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, re
 </div>
 </section>
 <section id="generate-skip-grams-from-one-sentence">
-<h3>Generate skip-grams from one sentence<a class="headerlink" href="#generate-skip-grams-from-one-sentence" title="Permalink to this headline">#</a></h3>
+<h3>Generate skip-grams from one sentence<a class="headerlink" href="#generate-skip-grams-from-one-sentence" title="Permalink to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">tf.keras.preprocessing.sequence</span></code> module provides useful functions that simplify data preparation for word2vec. You can use the <code class="docutils literal notranslate"><span class="pre">tf.keras.preprocessing.sequence.skipgrams</span></code> to generate skip-gram pairs from the <code class="docutils literal notranslate"><span class="pre">example_sequence</span></code> with a given <code class="docutils literal notranslate"><span class="pre">window_size</span></code> from tokens in the range <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">vocab_size)</span></code>.</p>
 <p>Note: <code class="docutils literal notranslate"><span class="pre">negative_samples</span></code> is set to <code class="docutils literal notranslate"><span class="pre">0</span></code> here, as batching negative samples generated by this function requires a bit of code. You will use another function to perform negative sampling in the next section.</p>
 <div class="cell docutils container">
@@ -822,7 +823,7 @@ To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, re
 </div>
 </section>
 <section id="negative-sampling-for-one-skip-gram">
-<h3>Negative sampling for one skip-gram<a class="headerlink" href="#negative-sampling-for-one-skip-gram" title="Permalink to this headline">#</a></h3>
+<h3>Negative sampling for one skip-gram<a class="headerlink" href="#negative-sampling-for-one-skip-gram" title="Permalink to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">skipgrams</span></code> function returns all positive skip-gram pairs by sliding over a given window span. To produce additional skip-gram pairs that would serve as negative samples for training, you need to sample random words from the vocabulary. Use the <code class="docutils literal notranslate"><span class="pre">tf.random.log_uniform_candidate_sampler</span></code> function to sample <code class="docutils literal notranslate"><span class="pre">num_ns</span></code> number of negative samples for a given target word in a window. You can call the function on one skip-grams’s target word and pass the context word as true class to exclude it from being sampled.</p>
 <p>Key point: <code class="docutils literal notranslate"><span class="pre">num_ns</span></code> (the number of negative samples per a positive context word) in the <code class="docutils literal notranslate"><span class="pre">[5,</span> <span class="pre">20]</span></code> range is <a class="reference external" href="https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf">shown to work</a> best for smaller datasets, while <code class="docutils literal notranslate"><span class="pre">num_ns</span></code> in the <code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">5]</span></code> range suffices for larger datasets.</p>
 <div class="cell docutils container">
@@ -857,7 +858,7 @@ To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, re
 </div>
 </section>
 <section id="construct-one-training-example">
-<h3>Construct one training example<a class="headerlink" href="#construct-one-training-example" title="Permalink to this headline">#</a></h3>
+<h3>Construct one training example<a class="headerlink" href="#construct-one-training-example" title="Permalink to this heading">#</a></h3>
 <p>For a given positive <code class="docutils literal notranslate"><span class="pre">(target_word,</span> <span class="pre">context_word)</span></code> skip-gram, you now also have <code class="docutils literal notranslate"><span class="pre">num_ns</span></code> negative sampled context words that do not appear in the window size neighborhood of <code class="docutils literal notranslate"><span class="pre">target_word</span></code>. Batch the <code class="docutils literal notranslate"><span class="pre">1</span></code> positive <code class="docutils literal notranslate"><span class="pre">context_word</span></code> and <code class="docutils literal notranslate"><span class="pre">num_ns</span></code> negative context words into one tensor. This produces a set of positive skip-grams (labeled as <code class="docutils literal notranslate"><span class="pre">1</span></code>) and negative samples (labeled as <code class="docutils literal notranslate"><span class="pre">0</span></code>) for each target word.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -914,16 +915,16 @@ label   : tf.Tensor([1 0 0 0 0], shape=(5,), dtype=int64)
 </div>
 </section>
 <section id="summary">
-<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h3>
+<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h3>
 <p>This diagram summarizes the procedure of generating a training example from a sentence:</p>
 <p><img alt="word2vec_negative_sampling" src="https://tensorflow.org/tutorials/text/images/word2vec_negative_sampling.png" /></p>
 <p>Notice that the words <code class="docutils literal notranslate"><span class="pre">temperature</span></code> and <code class="docutils literal notranslate"><span class="pre">code</span></code> are not part of the input sentence. They belong to the vocabulary like certain other indices used in the diagram above.</p>
 </section>
 </section>
 <section id="compile-all-steps-into-one-function">
-<h2>Compile all steps into one function<a class="headerlink" href="#compile-all-steps-into-one-function" title="Permalink to this headline">#</a></h2>
+<h2>Compile all steps into one function<a class="headerlink" href="#compile-all-steps-into-one-function" title="Permalink to this heading">#</a></h2>
 <section id="skip-gram-sampling-table">
-<h3>Skip-gram sampling table<a class="headerlink" href="#skip-gram-sampling-table" title="Permalink to this headline">#</a></h3>
+<h3>Skip-gram sampling table<a class="headerlink" href="#skip-gram-sampling-table" title="Permalink to this heading">#</a></h3>
 <p>A large dataset means larger vocabulary with higher number of more frequent words such as stopwords. Training examples obtained from sampling commonly occurring words (such as <code class="docutils literal notranslate"><span class="pre">the</span></code>, <code class="docutils literal notranslate"><span class="pre">is</span></code>, <code class="docutils literal notranslate"><span class="pre">on</span></code>) don’t add much useful information  for the model to learn from. <a class="reference external" href="https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf">Mikolov et al.</a> suggest subsampling of frequent words as a helpful practice to improve embedding quality.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">tf.keras.preprocessing.sequence.skipgrams</span></code> function accepts a sampling table argument to encode probabilities of sampling any token. You can use the <code class="docutils literal notranslate"><span class="pre">tf.keras.preprocessing.sequence.make_sampling_table</span></code> to  generate a word-frequency rank based probabilistic sampling table and pass it to the <code class="docutils literal notranslate"><span class="pre">skipgrams</span></code> function. Inspect the sampling probabilities for a <code class="docutils literal notranslate"><span class="pre">vocab_size</span></code> of 10.</p>
 <div class="cell docutils container">
@@ -944,7 +945,7 @@ label   : tf.Tensor([1 0 0 0 0], shape=(5,), dtype=int64)
 <p>Key point: The <code class="docutils literal notranslate"><span class="pre">tf.random.log_uniform_candidate_sampler</span></code> already assumes that the vocabulary frequency follows a log-uniform (Zipf’s) distribution. Using these distribution weighted sampling also helps approximate the Noise Contrastive Estimation (NCE) loss with simpler loss functions for training a negative sampling objective.</p>
 </section>
 <section id="generate-training-data">
-<h3>Generate training data<a class="headerlink" href="#generate-training-data" title="Permalink to this headline">#</a></h3>
+<h3>Generate training data<a class="headerlink" href="#generate-training-data" title="Permalink to this heading">#</a></h3>
 <p>Compile all the steps described above into a function that can be called on a list of vectorized sentences obtained from any text dataset. Notice that the sampling table is built before sampling skip-gram word pairs. You will use this function in the later sections.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1000,10 +1001,10 @@ label   : tf.Tensor([1 0 0 0 0], shape=(5,), dtype=int64)
 </section>
 </section>
 <section id="prepare-training-data-for-word2vec">
-<h2>Prepare training data for word2vec<a class="headerlink" href="#prepare-training-data-for-word2vec" title="Permalink to this headline">#</a></h2>
+<h2>Prepare training data for word2vec<a class="headerlink" href="#prepare-training-data-for-word2vec" title="Permalink to this heading">#</a></h2>
 <p>With an understanding of how to work with one sentence for a skip-gram negative sampling based word2vec model, you can proceed to generate training examples from a larger list of sentences!</p>
 <section id="download-text-corpus">
-<h3>Download text corpus<a class="headerlink" href="#download-text-corpus" title="Permalink to this headline">#</a></h3>
+<h3>Download text corpus<a class="headerlink" href="#download-text-corpus" title="Permalink to this heading">#</a></h3>
 <p>You will use a text file of Shakespeare’s writing for this tutorial. Change the following line to run this code on your own data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1072,7 +1073,7 @@ Lambda fuctions will be no more assumed to be used in the statement where they a
 </div>
 </section>
 <section id="vectorize-sentences-from-the-corpus">
-<h3>Vectorize sentences from the corpus<a class="headerlink" href="#vectorize-sentences-from-the-corpus" title="Permalink to this headline">#</a></h3>
+<h3>Vectorize sentences from the corpus<a class="headerlink" href="#vectorize-sentences-from-the-corpus" title="Permalink to this heading">#</a></h3>
 <p>You can use the <code class="docutils literal notranslate"><span class="pre">TextVectorization</span></code> layer to vectorize sentences from the corpus. Learn more about using this layer in this <a class="reference external" href="https://www.tensorflow.org/tutorials/keras/text_classification">Text classification</a> tutorial. Notice from the first few sentences above that the text needs to be in one case and punctuation needs to be removed. To do this, define a <code class="docutils literal notranslate"><span class="pre">custom_standardization</span> <span class="pre">function</span></code> that can be used in the TextVectorization layer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1134,7 +1135,7 @@ Lambda fuctions will be no more assumed to be used in the statement where they a
 </div>
 </section>
 <section id="obtain-sequences-from-the-dataset">
-<h3>Obtain sequences from the dataset<a class="headerlink" href="#obtain-sequences-from-the-dataset" title="Permalink to this headline">#</a></h3>
+<h3>Obtain sequences from the dataset<a class="headerlink" href="#obtain-sequences-from-the-dataset" title="Permalink to this heading">#</a></h3>
 <p>You now have a <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code> of integer encoded sentences. To prepare the dataset for training a word2vec model, flatten the dataset into a list of sentence vector sequences. This step is required as you would iterate over each sentence in the dataset to produce positive and negative examples.</p>
 <p>Note: Since the <code class="docutils literal notranslate"><span class="pre">generate_training_data()</span></code> defined earlier uses non-TensorFlow Python/NumPy functions, you could also use a <code class="docutils literal notranslate"><span class="pre">tf.py_function</span></code> or <code class="docutils literal notranslate"><span class="pre">tf.numpy_function</span></code> with <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset.map</span></code>.</p>
 <div class="cell docutils container">
@@ -1170,7 +1171,7 @@ Lambda fuctions will be no more assumed to be used in the statement where they a
 </div>
 </section>
 <section id="generate-training-examples-from-sequences">
-<h3>Generate training examples from sequences<a class="headerlink" href="#generate-training-examples-from-sequences" title="Permalink to this headline">#</a></h3>
+<h3>Generate training examples from sequences<a class="headerlink" href="#generate-training-examples-from-sequences" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">sequences</span></code> is now a list of int encoded sentences. Just call the <code class="docutils literal notranslate"><span class="pre">generate_training_data</span></code> function defined earlier to generate training examples for the word2vec model. To recap, the function iterates over each word from each sequence to collect positive and negative context words. Length of target, contexts and labels should be the same, representing the total number of training examples.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1628,7 +1629,7 @@ labels.shape: (64953, 5)
 </div>
 </section>
 <section id="configure-the-dataset-for-performance">
-<h3>Configure the dataset for performance<a class="headerlink" href="#configure-the-dataset-for-performance" title="Permalink to this headline">#</a></h3>
+<h3>Configure the dataset for performance<a class="headerlink" href="#configure-the-dataset-for-performance" title="Permalink to this heading">#</a></h3>
 <p>To perform efficient batching for the potentially large number of training examples, use the <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code> API. After this step, you would have a <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code> object of <code class="docutils literal notranslate"><span class="pre">(target_word,</span> <span class="pre">context_word),</span> <span class="pre">(label)</span></code> elements to train your word2vec model!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1663,10 +1664,10 @@ labels.shape: (64953, 5)
 </section>
 </section>
 <section id="model-and-training">
-<h2>Model and training<a class="headerlink" href="#model-and-training" title="Permalink to this headline">#</a></h2>
+<h2>Model and training<a class="headerlink" href="#model-and-training" title="Permalink to this heading">#</a></h2>
 <p>The word2vec model can be implemented as a classifier to distinguish between true context words from skip-grams and false context words obtained through negative sampling. You can perform a dot product multiplication between the embeddings of target and context words to obtain predictions for labels and compute the loss function against true labels in the dataset.</p>
 <section id="subclassed-word2vec-model">
-<h3>Subclassed word2vec model<a class="headerlink" href="#subclassed-word2vec-model" title="Permalink to this headline">#</a></h3>
+<h3>Subclassed word2vec model<a class="headerlink" href="#subclassed-word2vec-model" title="Permalink to this heading">#</a></h3>
 <p>Use the <a class="reference external" href="https://www.tensorflow.org/guide/keras/custom_layers_and_models">Keras Subclassing API</a> to define your word2vec model with the following layers:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">target_embedding</span></code>: A <code class="docutils literal notranslate"><span class="pre">tf.keras.layers.Embedding</span></code> layer, which looks up the embedding of a word when it appears as a target word. The number of parameters in this layer are <code class="docutils literal notranslate"><span class="pre">(vocab_size</span> <span class="pre">*</span> <span class="pre">embedding_dim)</span></code>.</p></li>
@@ -1709,7 +1710,7 @@ labels.shape: (64953, 5)
 </div>
 </section>
 <section id="define-loss-function-and-compile-model">
-<h3>Define loss function and compile model<a class="headerlink" href="#define-loss-function-and-compile-model" title="Permalink to this headline">#</a></h3>
+<h3>Define loss function and compile model<a class="headerlink" href="#define-loss-function-and-compile-model" title="Permalink to this heading">#</a></h3>
 <p>For simplicity, you can use <code class="docutils literal notranslate"><span class="pre">tf.keras.losses.CategoricalCrossEntropy</span></code> as an alternative to the negative sampling loss. If you would like to write your own custom loss function, you can also do so as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">custom_loss</span><span class="p">(</span><span class="n">x_logit</span><span class="p">,</span> <span class="n">y_true</span><span class="p">):</span>
       <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">x_logit</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">y_true</span><span class="p">)</span>
@@ -1946,7 +1947,7 @@ Epoch 20/20
 <!-- <img class="tfo-display-only-on-site" src="images/word2vec_tensorboard.png"/> --></section>
 </section>
 <section id="embedding-lookup-and-analysis">
-<h2>Embedding lookup and analysis<a class="headerlink" href="#embedding-lookup-and-analysis" title="Permalink to this headline">#</a></h2>
+<h2>Embedding lookup and analysis<a class="headerlink" href="#embedding-lookup-and-analysis" title="Permalink to this heading">#</a></h2>
 <p>Obtain the weights from the model using <code class="docutils literal notranslate"><span class="pre">Model.get_layer</span></code> and <code class="docutils literal notranslate"><span class="pre">Layer.get_weights</span></code>. The <code class="docutils literal notranslate"><span class="pre">TextVectorization.get_vocabulary</span></code> function provides the vocabulary to build a metadata file with one token per line.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1989,7 +1990,7 @@ Epoch 20/20
 </div>
 </section>
 <section id="next-steps">
-<h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">#</a></h2>
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">#</a></h2>
 <p>This tutorial has shown you how to implement a skip-gram word2vec model with negative sampling from scratch and visualize the obtained word embeddings.</p>
 <ul class="simple">
 <li><p>To learn more about word vectors and their mathematical representations, refer to these <a class="reference external" href="https://web.stanford.edu/class/cs224n/readings/cs224n-2019-notes01-wordvecs1.pdf">notes</a>.</p></li>

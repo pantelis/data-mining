@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Linear Algebra for Machine Learning &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Calculus" href="../calculus/index.html" />
     <link rel="prev" title="Probability Basics" href="../probability/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -527,7 +528,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linear-algebra-for-machine-learning">
-<h1>Linear Algebra for Machine Learning<a class="headerlink" href="#linear-algebra-for-machine-learning" title="Permalink to this headline">#</a></h1>
+<h1>Linear Algebra for Machine Learning<a class="headerlink" href="#linear-algebra-for-machine-learning" title="Permalink to this heading">#</a></h1>
 <p>Let me introduce you MIT prof G Strang - probably the best educator in America. He has published this playlist of <a class="reference external" href="https://www.youtube.com/watch?v=Cx5Z-OslNWE&amp;list=PLUl4u3cNGP63oMNUHXqIUcrkS2PivhN3k">youtube videos on Linear Algebra</a>.</p>
 <p>Also, watch <a class="reference external" href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">these videos</a> for a more elementary treatment of the topic.</p>
 <div class="video_wrapper" style="">
@@ -536,10 +537,10 @@ document.write(`
 <p>The corresponding chapter of Ian Goodfellow’s Deep Learning book is what you partially need to know as data scientists at a graduate level but arguably if you are just starting you ought to know 2.1-2.5.</p>
 <iframe src="https://www.deeplearningbook.org/contents/linear_algebra.html" width="800" height="1200"></iframe>
 <section id="key-points">
-<h2>Key Points<a class="headerlink" href="#key-points" title="Permalink to this headline">#</a></h2>
+<h2>Key Points<a class="headerlink" href="#key-points" title="Permalink to this heading">#</a></h2>
 <p>We can now summarize the points to pay attention to, for ML applications.  In the following we assume a data matrix <span class="math notranslate nohighlight">\(A\)</span> with <span class="math notranslate nohighlight">\(m\)</span> rows and <span class="math notranslate nohighlight">\(n\)</span> columns. We also assume that the matrix is such that it has <span class="math notranslate nohighlight">\(r\)</span> independent rows or columns, called <em>the matrix rank</em>.</p>
 <section id="projections">
-<h3>Projections<a class="headerlink" href="#projections" title="Permalink to this headline">#</a></h3>
+<h3>Projections<a class="headerlink" href="#projections" title="Permalink to this heading">#</a></h3>
 <p>Its important to understand this basic operator and its geometric interpretation as it is met in problems like Ordinary Least Squares but also all over ML and other fields such as compressed sensing. In the following we assume that the reader is familiar with the concept of vector spaces and subspaces.</p>
 <p>Let <span class="math notranslate nohighlight">\(S\)</span> be a vector subspace of <span class="math notranslate nohighlight">\(R^n\)</span>. For example in <span class="math notranslate nohighlight">\(R^3\)</span>, <span class="math notranslate nohighlight">\(S\)</span> are the lines and planes going through the origin. The projection operator onto <span class="math notranslate nohighlight">\(S\)</span> implements a linear transformation: <span class="math notranslate nohighlight">\(\Pi_S: R^3 →S\)</span>. We will stick to <span class="math notranslate nohighlight">\(R^3\)</span> to maintain the ability to plot the operations involved. We also define the orthogonal subspace,</p>
 <div class="math notranslate nohighlight">
@@ -563,7 +564,7 @@ document.write(`
 <p>The orthogonal space of a line with direction vector <span class="math notranslate nohighlight">\(\mathbf v\)</span> is a <em>plane</em> with a normal vector <span class="math notranslate nohighlight">\(\mathbf v\)</span>. So when we project the <span class="math notranslate nohighlight">\(\mathbf v\)</span> on the line we get two components one is lying on the line and is the <span class="math notranslate nohighlight">\(\Pi_l \mathbf u\)</span> and the other is the vector <span class="math notranslate nohighlight">\(\mathbf w\)</span> = <span class="math notranslate nohighlight">\(\Pi_{l^\perp} \mathbf u = \mathbf u - \mathbf v = \mathbf u - \Pi_{\mathbf v} \mathbf u \)</span>. The vector <span class="math notranslate nohighlight">\(\mathbf w\)</span> is what remains when we remove the projected on <span class="math notranslate nohighlight">\(\mathbf v\)</span> part from the <span class="math notranslate nohighlight">\(\mathbf u\)</span>.</p>
 </section>
 <section id="the-four-fundamental-subspaces">
-<h3>The Four Fundamental Subspaces<a class="headerlink" href="#the-four-fundamental-subspaces" title="Permalink to this headline">#</a></h3>
+<h3>The Four Fundamental Subspaces<a class="headerlink" href="#the-four-fundamental-subspaces" title="Permalink to this heading">#</a></h3>
 <p><img alt="Four fundamental spaces" src="../../../../_images/four-fundamental-spaces-linear-alg.png" /></p>
 <p>The <em>fundamental theorem of Linear Algebra</em> specifies the effect of the multiplication operation of the matrix and a vector (<span class="math notranslate nohighlight">\(A\mathbf{x}\)</span>). The matrix gives raise to 4 subspaces:</p>
 <ol class="arabic simple">
@@ -598,7 +599,7 @@ The solutions to <span class="math notranslate nohighlight">\(A \mathbf{x} = \ma
 <p>Geometrically you can think about the basis vectors as the axes of the space. However, if the axes are not orthogonal, calculations will tend to be complicated not to mention that we usually attribute to each vector of the basis to have length one (1.0).</p>
 </section>
 <section id="eigenvalues-and-eigenvectors">
-<h3>Eigenvalues and Eigenvectors<a class="headerlink" href="#eigenvalues-and-eigenvectors" title="Permalink to this headline">#</a></h3>
+<h3>Eigenvalues and Eigenvectors<a class="headerlink" href="#eigenvalues-and-eigenvectors" title="Permalink to this heading">#</a></h3>
 <p>The following video gives an intuitive explanation of eigenvalues and eigenvectors and its included here due to its visualizations that it offers.  The video must be viewed in conjunction with <a class="reference external" href="http://math.mit.edu/~gs/linearalgebra/linearalgebra5_6-1.pdf">Strang’s introduction</a></p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PFDu9oVAE-g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>During the lecture we will go through an example from how your brain processes the sensory input generated by the voice of the lecturer(unless you are already asleep by that time) to combine <em>optimally</em> the sound from both your ears.</p>

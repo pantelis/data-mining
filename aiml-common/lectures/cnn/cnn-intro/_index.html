@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Introduction to Convolutional Neural Networks &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="CNN Architectures" href="../cnn-layers/_index.html" />
     <link rel="prev" title="Regularization in Deep Neural Networks" href="../../optimization/regularization/_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -532,13 +533,13 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-convolutional-neural-networks">
-<span id="content-cnn-intro"></span><h1>Introduction to Convolutional Neural Networks<a class="headerlink" href="#introduction-to-convolutional-neural-networks" title="Permalink to this headline">#</a></h1>
+<span id="content-cnn-intro"></span><h1>Introduction to Convolutional Neural Networks<a class="headerlink" href="#introduction-to-convolutional-neural-networks" title="Permalink to this heading">#</a></h1>
 <p><img alt="city" src="../../../../_images/city-vision.jpg" /></p>
 <p>As elaborated <a class="reference external" href="http://theconversation.com/how-do-our-brains-reconstruct-the-visual-world-49276">here</a>, humans build up a more schematic version of the environment across eye fixations than was previously thought. This schematic version of the environment is typically known as <strong>scene gist</strong>. It contains conceptual information about the scene’s basic category – is it natural, human-made, a cityscape? – and general layout, maybe limited to a few objects and/or features. This schematic version of the environment is a far cry from the “picture in the head” scenario. But it’s this schematic information that guides us from one eye fixation to the next, during which more detailed information can be sampled. In the picture above, the brain will first detect the cityscape schematic and then process one of the scene fixations - e.g. the yellow cab.</p>
 <p>As we will see shortly images-based datasets are almost exclusively used for instructive purposes in CNNs. The reason is simple. With images we are able to “see” the effects of a number of important algorithms that are related to classification, object detection etc.</p>
 <p>Focusing at the “fixation” stage of human vision, CNNs are biologically inspired from the structure that the neuroscientists David Hubel and Torsten Wiesel saw in the so called V1 region of the brain - the region at the back of our head that is responsible for the processing of visual sensory input signals coming from the eye’s retina.</p>
 <section id="color-images-as-functions">
-<h2>Color images as functions<a class="headerlink" href="#color-images-as-functions" title="Permalink to this headline">#</a></h2>
+<h2>Color images as functions<a class="headerlink" href="#color-images-as-functions" title="Permalink to this heading">#</a></h2>
 <p>A grayscale picture can be seen as a function <span class="math notranslate nohighlight">\(f(x,y)\)</span> of light intensities, where x and y are the rows and columns of pixels in the image.</p>
 <p><img alt="image-function" src="../../../../_images/image-function.png" /></p>
 <p>Usually we have border constraints in the range of the input pixels e.g. <span class="math notranslate nohighlight">\(x \in [a,b], y \in [c,d]\)</span> but also in the output intensity values (typically 8-bit encoding is assumed that limits the values to [0, 255]).</p>
@@ -550,11 +551,11 @@ document.write(`
 <p>Please note the convention to refer to the <strong>columns</strong> <span class="math notranslate nohighlight">\(j\)</span> of the matrix that represents each function with <span class="math notranslate nohighlight">\(x\)</span> and to the rows <span class="math notranslate nohighlight">\(i\)</span> with <span class="math notranslate nohighlight">\(y\)</span>. This may cause some confusion at first.</p>
 </section>
 <section id="the-convolution-cross-correlation-operation">
-<h2>The Convolution &amp; Cross-Correlation Operation<a class="headerlink" href="#the-convolution-cross-correlation-operation" title="Permalink to this headline">#</a></h2>
+<h2>The Convolution &amp; Cross-Correlation Operation<a class="headerlink" href="#the-convolution-cross-correlation-operation" title="Permalink to this heading">#</a></h2>
 <p>The key operation performed in CNN layers is that of 2D convolution. In fact in practice they are 4D convolutions as we try to learn many filters and we also consider many input images (mini-batch) in the iteration of our SGD optimizer.</p>
 <p>We cover first the 1-dimensional case.</p>
 <section id="d-convolution">
-<h3>1D Convolution<a class="headerlink" href="#d-convolution" title="Permalink to this headline">#</a></h3>
+<h3>1D Convolution<a class="headerlink" href="#d-convolution" title="Permalink to this heading">#</a></h3>
 <p>By definition the convolution between two functions in one dimension is given by:</p>
 <div class="math notranslate nohighlight">
 \[(a * b)[n] = \sum_{m=-\inf}^{\inf} a[m]b[n-m]\]</div>
@@ -571,7 +572,7 @@ document.write(`
 <em>Convolution and cross-correlation are very similar quantities</em></p>
 </section>
 <section id="id1">
-<h3>2D Convolution<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>2D Convolution<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>In 2D the same principle applies. First, the convolution operation in some frameworks is the <em>flipped</em> version - this is perfectly fine as the convolution operation is commutative.</p>
 <div class="math notranslate nohighlight">
 \[S(i,j) = \sum_m \sum_n x(m, n) h(i-m,j-n) = \sum_m \sum_n x(i-m, j-n)h(m,n)\]</div>
@@ -583,9 +584,9 @@ document.write(`
 <p>If you learn the flipped version of the kernel or not is irrelevant to the task of predicting the right label. Therefore you should not be concerned with the framework implementation details, the thing that is important for you to grasp is the essence of the operation. Lets look some effects that convolution has on input signals such as images.</p>
 </section>
 <section id="effects-of-2d-filtering-operations">
-<h3>Effects of 2D filtering operations<a class="headerlink" href="#effects-of-2d-filtering-operations" title="Permalink to this headline">#</a></h3>
+<h3>Effects of 2D filtering operations<a class="headerlink" href="#effects-of-2d-filtering-operations" title="Permalink to this heading">#</a></h3>
 <section id="moving-average">
-<h4>Moving Average<a class="headerlink" href="#moving-average" title="Permalink to this headline">#</a></h4>
+<h4>Moving Average<a class="headerlink" href="#moving-average" title="Permalink to this heading">#</a></h4>
 <p>Lets go through the simplest possible 2D filtering operation as shown below. Note that these implement <em>the</em> convolution.</p>
 <p><img alt="ma-filter-b" src="../../../../_images/ma-filter-b.png" />
 <em>Completed 2D MA Filtering</em></p>
@@ -593,7 +594,7 @@ document.write(`
 <em>The MA filter causes “box” blurring of input images</em></p>
 </section>
 <section id="d-gaussian">
-<h4>2D Gaussian<a class="headerlink" href="#d-gaussian" title="Permalink to this headline">#</a></h4>
+<h4>2D Gaussian<a class="headerlink" href="#d-gaussian" title="Permalink to this heading">#</a></h4>
 <p>Using a Gaussian Blur filter before edge detection aims to reduce the level of noise in the image, which improves the result of the susually subsequent edge-detection algorithms. We will meet again this 2D Gaussian filter in the object detection section, where it is used to help in the initial segmentation in RCNN architectures.</p>
 <p><img alt="2d-gaussian-filter" src="../../../../_images/2d-gaussian-filter.png" />
 <em>Gaussian Filter</em></p>

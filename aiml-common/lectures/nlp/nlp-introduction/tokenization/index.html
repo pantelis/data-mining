@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Tokenization &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
     <script src="../../../../../_static/jquery.js"></script>
     <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../../_static/doctools.js"></script>
     <script src="../../../../../_static/clipboard.min.js"></script>
     <script src="../../../../../_static/copybutton.js"></script>
@@ -68,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Word2Vec Embeddings" href="../word2vec/_index.html" />
     <link rel="prev" title="Introduction to NLP Pipelines" href="../nlp-pipelines/_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -592,7 +593,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tokenization">
-<h1>Tokenization<a class="headerlink" href="#tokenization" title="Permalink to this headline">#</a></h1>
+<h1>Tokenization<a class="headerlink" href="#tokenization" title="Permalink to this heading">#</a></h1>
 <div class="admonition-warning admonition">
 <p class="admonition-title">Warning</p>
 <p>If this notebook seems half done, its because it is. I am still working on it. I will update it based on <span class="xref myst">this</span> conceptual guide and <a class="reference external" href="https://huggingface.co/docs/transformers/tokenizer_summary">this</a> implementation guide.</p>
@@ -603,10 +604,10 @@ document.write(`
 <p><strong>Model training from scratch</strong></p>
 <p>If a language model is not available in the language you are interested in, or if your corpus is very different from the one your language model was trained on, you will most likely want to retrain the model from scratch using a tokenizer adapted to your data. That will require training a new tokenizer on your dataset. Follow <a class="reference external" href="https://huggingface.co/course/chapter6/2?fw=pt">this guide</a> to learn how to do that.</p>
 <section id="tokenizers">
-<h2>Tokenizers<a class="headerlink" href="#tokenizers" title="Permalink to this headline">#</a></h2>
+<h2>Tokenizers<a class="headerlink" href="#tokenizers" title="Permalink to this heading">#</a></h2>
 <p>Lets review the main tokenizers so we highlight such connection for each type specifically.</p>
 <section id="word-level-tokenization">
-<h3>Word level tokenization<a class="headerlink" href="#word-level-tokenization" title="Permalink to this headline">#</a></h3>
+<h3>Word level tokenization<a class="headerlink" href="#word-level-tokenization" title="Permalink to this heading">#</a></h3>
 <p>The word-level tokenizers are intuitive, however, they suffer from the problem of unknown words, tagged as Out Of Vocabulary (OOV) words. They also tend to result into large vocabulary sizes, assigning different tokens to “can’t” and “cannot”. They also have issues with abbreviations eg. “U.S.A”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -647,11 +648,11 @@ Skipping registering GPU devices...
 </div>
 </section>
 <section id="character-level-tokenization">
-<h3>Character level tokenization<a class="headerlink" href="#character-level-tokenization" title="Permalink to this headline">#</a></h3>
+<h3>Character level tokenization<a class="headerlink" href="#character-level-tokenization" title="Permalink to this heading">#</a></h3>
 <p>Character-level tokenization are more flexible as they bypass the OOV issue, however to capture the context of each word we need to use much longer sequences and this results in loss of performance.</p>
 </section>
 <section id="byte-pair-encoding-bpe">
-<h3>Byte Pair Encoding (BPE)<a class="headerlink" href="#byte-pair-encoding-bpe" title="Permalink to this headline">#</a></h3>
+<h3>Byte Pair Encoding (BPE)<a class="headerlink" href="#byte-pair-encoding-bpe" title="Permalink to this heading">#</a></h3>
 <p>In <a class="reference external" href="https://arxiv.org/abs/1508.07909">BPE</a>, one token can correspond to a character, an entire word or more, or anything in between and on average a token corresponds to 0.7 words. The idea behind BPE is to tokenize at word level frequently occuring words and at subword level the rarer words. GPT-3 uses a variant of BPE.</p>
 <p><img alt="" src="../../../../../_images/bpe-example.png" /></p>
 <p>Let see an example a tokenizer in action. We wull use the HuggingFace Tokenizers API and the GPT2 tokenizer. Note that this is called the <em>encoder</em> as it is used to encode text into tokens.</p>

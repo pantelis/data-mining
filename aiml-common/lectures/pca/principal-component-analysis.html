@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>PCA Workshop &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="K-means Clustering" href="../unsupervised/k-means/_index.html" />
     <link rel="prev" title="Principal Component Analysis (PCA)" href="_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -605,7 +606,7 @@ document.write(`
 <p>&lt; <span class="xref myst">In-Depth: Decision Trees and Random Forests</span> | <span class="xref myst">Contents</span> | <span class="xref myst">In-Depth: Manifold Learning</span> &gt;</p>
 <p><a href="https://colab.research.google.com/github/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/05.09-Principal-Component-Analysis.ipynb"><img alt="Open in Colab" class="align-left" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="pca-workshop">
-<h1>PCA Workshop<a class="headerlink" href="#pca-workshop" title="Permalink to this headline">#</a></h1>
+<h1>PCA Workshop<a class="headerlink" href="#pca-workshop" title="Permalink to this heading">#</a></h1>
 <p>Up until now, we have been looking in depth at supervised learning estimators: those estimators that predict labels based on labeled training data.
 Here we begin looking at several unsupervised estimators, which can highlight interesting aspects of the data without reference to any known labels.</p>
 <p>In this section, we explore what is perhaps one of the most broadly used of unsupervised algorithms, principal component analysis (PCA).
@@ -623,7 +624,7 @@ After a brief conceptual discussion of the PCA algorithm, we will see a couple e
 </div>
 </div>
 <section id="introducing-principal-component-analysis">
-<h2>Introducing Principal Component Analysis<a class="headerlink" href="#introducing-principal-component-analysis" title="Permalink to this headline">#</a></h2>
+<h2>Introducing Principal Component Analysis<a class="headerlink" href="#introducing-principal-component-analysis" title="Permalink to this heading">#</a></h2>
 <p>Principal component analysis is a fast and flexible unsupervised method for dimensionality reduction in data, which we saw briefly in <span class="xref myst">Introducing Scikit-Learn</span>.
 Its behavior is easiest to visualize by looking at a two-dimensional dataset.
 Consider the following 200 points:</p>
@@ -751,7 +752,7 @@ The projection of each data point onto the principal axes are the “principal c
 <p>This transformation from data axes to principal axes is an <em>affine transformation</em>, which basically means it is composed of a translation, rotation, and uniform scaling.</p>
 <p>While this algorithm to find principal components may seem like just a mathematical curiosity, it turns out to have very far-reaching applications in the world of machine learning and data exploration.</p>
 <section id="pca-as-dimensionality-reduction">
-<h3>PCA as dimensionality reduction<a class="headerlink" href="#pca-as-dimensionality-reduction" title="Permalink to this headline">#</a></h3>
+<h3>PCA as dimensionality reduction<a class="headerlink" href="#pca-as-dimensionality-reduction" title="Permalink to this heading">#</a></h3>
 <p>Using PCA for dimensionality reduction involves zeroing out one or more of the smallest principal components, resulting in a lower-dimensional projection of the data that preserves the maximal data variance.</p>
 <p>Here is an example of using PCA as a dimensionality reduction transform:</p>
 <div class="cell docutils container">
@@ -792,7 +793,7 @@ The fraction of variance that is cut out (proportional to the spread of points a
 <p>This reduced-dimension dataset is in some senses “good enough” to encode the most important relationships between the points: despite reducing the dimension of the data by 50%, the overall relationship between the data points are mostly preserved.</p>
 </section>
 <section id="pca-for-visualization-hand-written-digits">
-<h3>PCA for visualization: Hand-written digits<a class="headerlink" href="#pca-for-visualization-hand-written-digits" title="Permalink to this headline">#</a></h3>
+<h3>PCA for visualization: Hand-written digits<a class="headerlink" href="#pca-for-visualization-hand-written-digits" title="Permalink to this heading">#</a></h3>
 <p>The usefulness of the dimensionality reduction may not be entirely apparent in only two dimensions, but becomes much more clear when looking at high-dimensional data.
 To see this, let’s take a quick look at the application of PCA to the digits data we saw in <span class="xref myst">In-Depth: Decision Trees and Random Forests</span>.</p>
 <p>We start by loading the data:</p>
@@ -848,7 +849,7 @@ To gain some intuition into the relationships between these points, we can use P
 Essentially, we have found the optimal stretch and rotation in 64-dimensional space that allows us to see the layout of the digits in two dimensions, and have done this in an unsupervised manner—that is, without reference to the labels.</p>
 </section>
 <section id="what-do-the-components-mean">
-<h3>What do the components mean?<a class="headerlink" href="#what-do-the-components-mean" title="Permalink to this headline">#</a></h3>
+<h3>What do the components mean?<a class="headerlink" href="#what-do-the-components-mean" title="Permalink to this heading">#</a></h3>
 <p>We can go a bit further here, and begin to ask what the reduced dimensions <em>mean</em>.
 This meaning can be understood in terms of combinations of basis vectors.
 For example, each image in the training set is defined by a collection of 64 pixel values, which we will call the vector <span class="math notranslate nohighlight">\(x\)</span>:</p>
@@ -953,7 +954,7 @@ The amount of each pixel in each component is the corollary of the orientation o
 This is the sense in which PCA provides a low-dimensional representation of the data: it discovers a set of basis functions that are more efficient than the native pixel-basis of the input data.</p>
 </section>
 <section id="choosing-the-number-of-components">
-<h3>Choosing the number of components<a class="headerlink" href="#choosing-the-number-of-components" title="Permalink to this headline">#</a></h3>
+<h3>Choosing the number of components<a class="headerlink" href="#choosing-the-number-of-components" title="Permalink to this heading">#</a></h3>
 <p>A vital part of using PCA in practice is the ability to estimate how many components are needed to describe the data.
 This can be determined by looking at the cumulative <em>explained variance ratio</em> as a function of the number of components:</p>
 <div class="cell docutils container">
@@ -975,7 +976,7 @@ For example, we see that with the digits the first 10 components contain approxi
 </section>
 </section>
 <section id="pca-as-noise-filtering">
-<h2>PCA as Noise Filtering<a class="headerlink" href="#pca-as-noise-filtering" title="Permalink to this headline">#</a></h2>
+<h2>PCA as Noise Filtering<a class="headerlink" href="#pca-as-noise-filtering" title="Permalink to this heading">#</a></h2>
 <p>PCA can also be used as a filtering approach for noisy data.
 The idea is this: any components with variance much larger than the effect of the noise should be relatively unaffected by the noise.
 So if you reconstruct the data using just the largest subset of principal components, you should be preferentially keeping the signal and throwing out the noise.</p>
@@ -1044,7 +1045,7 @@ Now we compute these components, and then use the inverse of the transform to re
 <p>This signal preserving/noise filtering property makes PCA a very useful feature selection routine—for example, rather than training a classifier on very high-dimensional data, you might instead train the classifier on the lower-dimensional representation, which will automatically serve to filter out random noise in the inputs.</p>
 </section>
 <section id="example-eigenfaces">
-<h2>Example: Eigenfaces<a class="headerlink" href="#example-eigenfaces" title="Permalink to this headline">#</a></h2>
+<h2>Example: Eigenfaces<a class="headerlink" href="#example-eigenfaces" title="Permalink to this heading">#</a></h2>
 <p>Earlier we explored an example of using a PCA projection as a feature selector for facial recognition with a support vector machine (see <span class="xref myst">In-Depth: Support Vector Machines</span>).
 Here we will take a look back and explore a bit more of what went into that.
 Recall that we were using the Labeled Faces in the Wild dataset made available through Scikit-Learn:</p>
@@ -1148,7 +1149,7 @@ This visualization makes clear why the PCA feature selection used in <span class
 What this means is that our classification algorithm needs to be trained on 150-dimensional data rather than 3,000-dimensional data, which depending on the particular algorithm we choose, can lead to a much more efficient classification.</p>
 </section>
 <section id="principal-component-analysis-summary">
-<h2>Principal Component Analysis Summary<a class="headerlink" href="#principal-component-analysis-summary" title="Permalink to this headline">#</a></h2>
+<h2>Principal Component Analysis Summary<a class="headerlink" href="#principal-component-analysis-summary" title="Permalink to this heading">#</a></h2>
 <p>In this section we have discussed the use of principal component analysis for dimensionality reduction, for visualization of high-dimensional data, for noise filtering, and for feature selection within high-dimensional data.
 Because of the versatility and interpretability of PCA, it has been shown to be effective in a wide variety of contexts and disciplines.
 Given any high-dimensional dataset, I tend to start with PCA in order to visualize the relationship between points (as we did with the digits), to understand the main variance in the data (as we did with the eigenfaces), and to understand the intrinsic dimensionality (by plotting the explained variance ratio).

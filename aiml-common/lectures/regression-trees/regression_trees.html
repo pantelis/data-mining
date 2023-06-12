@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Regression tree stumps &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Ensemble Methods" href="../ensemble/_index.html" />
     <link rel="prev" title="Decision Trees" href="../decision-trees/_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -602,7 +603,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="regression-tree-stumps">
-<h1>Regression tree stumps<a class="headerlink" href="#regression-tree-stumps" title="Permalink to this headline">#</a></h1>
+<h1>Regression tree stumps<a class="headerlink" href="#regression-tree-stumps" title="Permalink to this heading">#</a></h1>
 <p>A regression tree stump is a tree with a decision node at the root and two predictor leaves. The leaves predict the average of the target values held by that leaf, assuming we are <a class="reference external" href="https://explained.ai/gradient-boosting/L2-loss.html#sec:2.5">minimizing the mean squared error (MSE) loss function</a>.</p>
 <p>To keep things simple, this example assumes that only a single predictor variable, <span class="math notranslate nohighlight">\(x\)</span>, is associated with the target variable, <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <div class="cell docutils container">
@@ -620,7 +621,7 @@ document.write(`
 </div>
 </div>
 <section id="define-decision-and-leaf-nodes-and-how-to-predict">
-<h2>Define decision and leaf nodes and how to predict<a class="headerlink" href="#define-decision-and-leaf-nodes-and-how-to-predict" title="Permalink to this headline">#</a></h2>
+<h2>Define decision and leaf nodes and how to predict<a class="headerlink" href="#define-decision-and-leaf-nodes-and-how-to-predict" title="Permalink to this heading">#</a></h2>
 <p>Because decision and predictor nodes have different behavior, it makes sense to create two different classes.  To make a prediction for test vector <span class="math notranslate nohighlight">\(X\)</span>, a decision node compares the predictor variable (feature) <span class="math notranslate nohighlight">\(x_i\)</span> against a split value. (We only have one predictor here so we don’t bother recording which feature a node is testing.) The split value will be chosen from the range of <span class="math notranslate nohighlight">\(x_i\)</span> during training (see below).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -667,7 +668,7 @@ document.write(`
 </div>
 </section>
 <section id="fit-a-stump-to-single-var-x-and-target-y">
-<h2>Fit a stump to single-var x and target y<a class="headerlink" href="#fit-a-stump-to-single-var-x-and-target-y" title="Permalink to this headline">#</a></h2>
+<h2>Fit a stump to single-var x and target y<a class="headerlink" href="#fit-a-stump-to-single-var-x-and-target-y" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -706,7 +707,7 @@ document.write(`
 </div>
 </div>
 <section id="use-data-from-explained-ai-article">
-<h3>Use data from <a class="reference external" href="http://explained.ai">explained.ai</a> article<a class="headerlink" href="#use-data-from-explained-ai-article" title="Permalink to this headline">#</a></h3>
+<h3>Use data from <a class="reference external" href="http://explained.ai">explained.ai</a> article<a class="headerlink" href="#use-data-from-explained-ai-article" title="Permalink to this heading">#</a></h3>
 <p>Grabbed trivial data from <a class="reference external" href="https://explained.ai/gradient-boosting/L2-loss.html">Gradient boosting: Distance to target</a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -788,7 +789,7 @@ document.write(`
 </div>
 </section>
 <section id="visualize-tree-with-lolviz">
-<h3>Visualize tree with lolviz<a class="headerlink" href="#visualize-tree-with-lolviz" title="Permalink to this headline">#</a></h3>
+<h3>Visualize tree with lolviz<a class="headerlink" href="#visualize-tree-with-lolviz" title="Permalink to this heading">#</a></h3>
 <p>See <a class="reference external" href="https://github.com/parrt/lolviz">lolviz</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -801,7 +802,7 @@ document.write(`
 </div>
 </section>
 <section id="tweak-last-rent-price-to-bring-inline">
-<h3>Tweak last rent price to bring inline<a class="headerlink" href="#tweak-last-rent-price-to-bring-inline" title="Permalink to this headline">#</a></h3>
+<h3>Tweak last rent price to bring inline<a class="headerlink" href="#tweak-last-rent-price-to-bring-inline" title="Permalink to this heading">#</a></h3>
 <p>We get a different split</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -885,7 +886,7 @@ document.write(`
 </section>
 </section>
 <section id="visual-partitioning-of-stump-via-dtreeviz">
-<h2>Visual partitioning of stump via dtreeviz<a class="headerlink" href="#visual-partitioning-of-stump-via-dtreeviz" title="Permalink to this headline">#</a></h2>
+<h2>Visual partitioning of stump via dtreeviz<a class="headerlink" href="#visual-partitioning-of-stump-via-dtreeviz" title="Permalink to this heading">#</a></h2>
 <p>See <a class="reference external" href="https://github.com/parrt/dtreeviz">dtreeviz</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -919,7 +920,7 @@ document.write(`
 </div>
 </section>
 <section id="visual-partitioning-of-stump-nodes">
-<h2>Visual partitioning of stump nodes<a class="headerlink" href="#visual-partitioning-of-stump-nodes" title="Permalink to this headline">#</a></h2>
+<h2>Visual partitioning of stump nodes<a class="headerlink" href="#visual-partitioning-of-stump-nodes" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">regr</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -944,7 +945,7 @@ document.write(`
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="full-regression-tree-fit">
-<h1>Full regression tree fit<a class="headerlink" href="#full-regression-tree-fit" title="Permalink to this headline">#</a></h1>
+<h1>Full regression tree fit<a class="headerlink" href="#full-regression-tree-fit" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>

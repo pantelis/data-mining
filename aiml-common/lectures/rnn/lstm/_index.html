@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>The Long Short-Term Memory (LSTM) Architecture &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Time Series Prediction using RNNs" href="../time_series_using_simple_rnn_lstm.html" />
     <link rel="prev" title="Simple RNN" href="../simple-rnn/_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -533,7 +534,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-long-short-term-memory-lstm-architecture">
-<h1>The Long Short-Term Memory (LSTM) Architecture<a class="headerlink" href="#the-long-short-term-memory-lstm-architecture" title="Permalink to this headline">#</a></h1>
+<h1>The Long Short-Term Memory (LSTM) Architecture<a class="headerlink" href="#the-long-short-term-memory-lstm-architecture" title="Permalink to this heading">#</a></h1>
 <p>In the simple RNN we have seen the problem of explodig or vanishing gradients when <a class="reference external" href="https://www.researchgate.net/publication/5583935_Learning_long-term_dependencies_with_gradient_descent_is_difficult">the span of back-propagation is large</a> (large <span class="math notranslate nohighlight">\(\tau\)</span>). Using the conceptual IIR filter, that ultimately <em>integrates</em> the input signal, we have seen that in order to avoid an exploding or vanishing impulse response, we need to control <span class="math notranslate nohighlight">\(w\)</span>.</p>
 <p>This is <strong>exactly</strong> what is being done in evolutionary RNN architectures that we will treat in this section called <em>gated RNNs</em>. One of the best known gated RNN architectures is LSTM where the weight <span class="math notranslate nohighlight">\(w\)</span> is not fixed but it is determined based on the input sequence <em>context</em>. The architecture is shown below.</p>
 <p><img alt="lstm-cell" src="../../../../_images/lstm.png" /></p>
@@ -548,9 +549,9 @@ document.write(`
 </ol>
 </div>
 <section id="forward-pass">
-<h2>Forward Pass<a class="headerlink" href="#forward-pass" title="Permalink to this headline">#</a></h2>
+<h2>Forward Pass<a class="headerlink" href="#forward-pass" title="Permalink to this heading">#</a></h2>
 <section id="the-input-gate">
-<h3>The Input Gate<a class="headerlink" href="#the-input-gate" title="Permalink to this headline">#</a></h3>
+<h3>The Input Gate<a class="headerlink" href="#the-input-gate" title="Permalink to this heading">#</a></h3>
 <p>The input gate <em>protects the cell state</em> contents from perturbations by irrelevant inputs to the context. The LSTM in other words learns when to let activations from the input layer  into the internal state.  As long as the input gate takes value zero, no  activation can  get  in.</p>
 <p>Quantitatively,  input gate calculates the factor,</p>
 <div class="math notranslate nohighlight">
@@ -558,11 +559,11 @@ document.write(`
 <p>The gate uses the sigmoid function to produce a factor between 0 and 1 for <em>each</em> of the cells of the LSTM hidden layer - each cell is indexed by <span class="math notranslate nohighlight">\(i\)</span>. This factor is applied to the <span class="math notranslate nohighlight">\(i\)</span>-th cell’s input that is the combination of a function  of the previous hidden state represented by the dot product <span class="math notranslate nohighlight">\(\mathbf W_g(i,:) \mathbf h_{t-1}^i\)</span>  and a function of the current input, represented by the dot product <span class="math notranslate nohighlight">\(\mathbf U_g(i,:) \mathbf x_t^i\)</span>.</p>
 </section>
 <section id="the-input-layer">
-<h3>The Input Layer<a class="headerlink" href="#the-input-layer" title="Permalink to this headline">#</a></h3>
+<h3>The Input Layer<a class="headerlink" href="#the-input-layer" title="Permalink to this heading">#</a></h3>
 <p>This is formed exactly as the input of the simple RNN layer - see earlier notes.</p>
 </section>
 <section id="the-forget-gate">
-<h3>The Forget Gate<a class="headerlink" href="#the-forget-gate" title="Permalink to this headline">#</a></h3>
+<h3>The Forget Gate<a class="headerlink" href="#the-forget-gate" title="Permalink to this heading">#</a></h3>
 <p>The forget gate calculates the forgetting factor,</p>
 <div class="math notranslate nohighlight">
 \[f_t^i =\sigma \Big( \mathbf W_f(i,:) \mathbf h_{t-1}^i + \mathbf U_f(i,:) \mathbf x_t^i + \mathbf b_f^i \Big) \]</div>
@@ -571,38 +572,38 @@ document.write(`
 <p>Hyperparameter optimization for LSTMs is addressed more formally <a class="reference external" href="https://arxiv.org/pdf/1503.04069v1.pdf">“LSTM: A Search Space Odyssey”</a></p>
 </section>
 <section id="output-gate">
-<h3>Output Gate<a class="headerlink" href="#output-gate" title="Permalink to this headline">#</a></h3>
+<h3>Output Gate<a class="headerlink" href="#output-gate" title="Permalink to this heading">#</a></h3>
 <p>The output gate <em>protects the subsequent cells</em> from perturbations by irrelevant to their context hidden state.</p>
 <div class="math notranslate nohighlight">
 \[q_t{(i)} =\sigma \Big( \mathbf W_o(i,:) \mathbf h_{t-1}^i + \mathbf U_o(i,:) \mathbf x_t^i + \mathbf b_o^i \Big) \]</div>
 <p>The  output  gate  learns  when  to  let  the hidden state out.</p>
 </section>
 <section id="the-cell-state">
-<h3>The Cell State<a class="headerlink" href="#the-cell-state" title="Permalink to this headline">#</a></h3>
+<h3>The Cell State<a class="headerlink" href="#the-cell-state" title="Permalink to this heading">#</a></h3>
 <p>This is the heart of the LSTM cell, the cell state is the new memory that is introduced by LSTM - all the earlier factors are used to preserve it as long as it is needed by the use case.</p>
 <div class="math notranslate nohighlight">
 \[s_t^i = f_t^i s_{t-1}^i + g_t^i \tanh \Big( \mathbf W(i,:) \mathbf h_{t-1}^i + \mathbf U(i,:) \mathbf x_t^i + \mathbf b^i \Big)\]</div>
 <p>The parameters <span class="math notranslate nohighlight">\(\theta_{in} = \{  \mathbf W, \mathbf U, \mathbf b \}\)</span>  are the recurrent weights, input weights and bias respectively at the input of the i-th LSTM cell.</p>
 </section>
 <section id="the-hidden-state">
-<h3>The Hidden State<a class="headerlink" href="#the-hidden-state" title="Permalink to this headline">#</a></h3>
+<h3>The Hidden State<a class="headerlink" href="#the-hidden-state" title="Permalink to this heading">#</a></h3>
 <p>The hidden state is the output of the LSTM cell. It is a function of the cell state and the output gate.</p>
 <div class="math notranslate nohighlight">
 \[h_t^i = q_t^i \tanh(s_t^i)\]</div>
 <p>where <span class="math notranslate nohighlight">\(q_t^i\)</span> is the output gate.</p>
 </section>
 <section id="output-layer">
-<h3>Output Layer<a class="headerlink" href="#output-layer" title="Permalink to this headline">#</a></h3>
+<h3>Output Layer<a class="headerlink" href="#output-layer" title="Permalink to this heading">#</a></h3>
 <p>The output layer is the same as the output layer of the simple RNN. We typically see fully connected layers, softmax and other units depending on the task (classification, regression etc).</p>
 <p><strong>Note that when both input and output gates are closed (output 0) the input activation is trapped in the memory cell,  neither  growing  nor  shrinking,  nor  affecting  the  output  at  intermediate time steps.</strong></p>
 </section>
 </section>
 <section id="backward-pass">
-<h2>Backward Pass<a class="headerlink" href="#backward-pass" title="Permalink to this headline">#</a></h2>
+<h2>Backward Pass<a class="headerlink" href="#backward-pass" title="Permalink to this heading">#</a></h2>
 <p>In terms of the backwards pass, the constant error carousel enables the gradient to propagate back across many time steps, neither exploding nor vanishing.  In this sense, the gates are learning when to let error in, and when to let it out.  In practice, the LSTM has shown a superior ability to learn long- range dependencies as compared to simple RNNs.</p>
 </section>
 <section id="additional-resources">
-<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">#</a></h2>
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Permalink to this heading">#</a></h2>
 <p>Additional tutorial resources on LSTMs can be found here:</p>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://arxiv.org/pdf/1506.00019.pdf">A Critical Review of Recurrent Neural Networks for Sequence Learning</a></p></li>

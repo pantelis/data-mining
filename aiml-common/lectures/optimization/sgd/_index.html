@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Stochastic Gradient Descent &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Introduction to Classification" href="../../classification/classification-intro/_index.html" />
     <link rel="prev" title="Maximum Likelihood (ML) Estimation of conditional models" href="../maximum-likelihood/conditional_maximum_likelihood.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -524,10 +525,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="stochastic-gradient-descent">
-<h1>Stochastic Gradient Descent<a class="headerlink" href="#stochastic-gradient-descent" title="Permalink to this headline">#</a></h1>
+<h1>Stochastic Gradient Descent<a class="headerlink" href="#stochastic-gradient-descent" title="Permalink to this heading">#</a></h1>
 <p>In this chapter we close the circle that will allow us to train a model - we need an algorithm that will help us search efficiently in the weight space to find the optimal set <span class="math notranslate nohighlight">\(w*\)</span> and be able to handle the some times massive amounts of data that we have.</p>
 <section id="gradient-descent">
-<h2>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">#</a></h2>
+<h2>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this heading">#</a></h2>
 <p>Obviously for us to be able to find the right weights we need to pose the learning problem via a suitable objective (loss) function such as the cross-entropy.  Optimization refers to the task of either minimizing or maximizing some function <span class="math notranslate nohighlight">\(L(\mathbf w)\)</span> by altering <span class="math notranslate nohighlight">\(\mathbf w\)</span>. We usually phrase most optimization problems in terms of minimizing <span class="math notranslate nohighlight">\(L(\mathbf w)\)</span>. Maximization may be accomplished via a minimization algorithm by minimizing <span class="math notranslate nohighlight">\(−L\)</span>. Mathematically</p>
 <div class="math notranslate nohighlight">
 \[\mathbf w^* = \arg \max_w L(\mathbf w)\]</div>
@@ -555,7 +556,7 @@ document.write(`
 <em>Iterations in gradient descent towards the global in this case min</em></p>
 </section>
 <section id="stochastic-gradient-descent-sgd">
-<h2>Stochastic Gradient Descent (SGD)<a class="headerlink" href="#stochastic-gradient-descent-sgd" title="Permalink to this headline">#</a></h2>
+<h2>Stochastic Gradient Descent (SGD)<a class="headerlink" href="#stochastic-gradient-descent-sgd" title="Permalink to this heading">#</a></h2>
 <p>To calculate the new <span class="math notranslate nohighlight">\(\mathbf w\)</span> each iteration we need to calculate the <span class="math notranslate nohighlight">\(\frac{\partial L}{\partial \mathbf w_i}\)</span> across the training dataset for the potentially many parameters of the problem. As we will see in deep learning problems that SGD-type optimization algorithms are de-facto used, we may be dealing with 100 million parameters and many more examples. As a toy example, lets assume that we have a Gaussian distributed error in our regression model i.e. the Cross Entropy (CE) is the MSE loss function</p>
 <div class="math notranslate nohighlight">
 \[L(\mathbf w) = \frac{1}{m} \sum_{i=1}^m (\mathbf w^T \mathbf x_i - y_i)^2\]</div>
@@ -570,7 +571,7 @@ document.write(`
 <p>The main advantage of Mini-batch GD over Stochastic GD is that you can get a performance boost from hardware optimization of matrix operations, especially when using GPUs.</p>
 </section>
 <section id="digging-further">
-<h2>Digging further<a class="headerlink" href="#digging-further" title="Permalink to this headline">#</a></h2>
+<h2>Digging further<a class="headerlink" href="#digging-further" title="Permalink to this heading">#</a></h2>
 <p>For an overview of optimization theory please go through Ian Goodfellow’s chapter 4 below. Stochastic gradient descent is treated also in section 5.9 of this free book. For an overview of the various algorithms appart from SGD see <a class="reference external" href="https://ruder.io/optimizing-gradient-descent/index.html">this</a> blog post.</p>
 <iframe src="https://www.deeplearningbook.org/contents/numerical.html" width="800" height="1200"></iframe>
 </section>

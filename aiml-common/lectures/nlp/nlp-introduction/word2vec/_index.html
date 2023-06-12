@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Word2Vec Embeddings &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
     <script src="../../../../../_static/jquery.js"></script>
     <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../../_static/doctools.js"></script>
     <script src="../../../../../_static/clipboard.min.js"></script>
     <script src="../../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Word2Vec from scratch" href="word2vec_from_scratch.html" />
     <link rel="prev" title="Tokenization" href="../tokenization/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -525,9 +526,9 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="word2vec-embeddings">
-<h1>Word2Vec Embeddings<a class="headerlink" href="#word2vec-embeddings" title="Permalink to this headline">#</a></h1>
+<h1>Word2Vec Embeddings<a class="headerlink" href="#word2vec-embeddings" title="Permalink to this heading">#</a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>In the so called classical NLP, words were treated as atomic symbols, e.g. <code class="docutils literal notranslate"><span class="pre">hotel</span></code>, <code class="docutils literal notranslate"><span class="pre">conference</span></code>, <code class="docutils literal notranslate"><span class="pre">walk</span></code> and they were represented with on-hot encoded (sparse) vectors e.g.</p>
 <div class="math notranslate nohighlight">
 \[\mathtt{hotel} = [0,0, ..., 0,1, 0,0,..,0]\]</div>
@@ -544,7 +545,7 @@ document.write(`
 <p><em>Is there some ideal word-embedding space that would perfectly map human language and could be used for any natural-language-processing task?</em> Possibly, but we have yet to compute anything of the sort. More pragmatically, what makes a good word-embedding space depends <em>heavily</em> on your task: the perfect word-embedding space for an English-language movie-review sentiment-analysis model may look different from the perfect embedding space for an English-language legal–document-classification model, because the importance of certain semantic relationships varies from task to task. It’s thus reasonable to <em>learn</em> a new embedding space with every new task.</p>
 </section>
 <section id="features-of-word2vec-embeddings">
-<h2>Features of Word2Vec embeddings<a class="headerlink" href="#features-of-word2vec-embeddings" title="Permalink to this headline">#</a></h2>
+<h2>Features of Word2Vec embeddings<a class="headerlink" href="#features-of-word2vec-embeddings" title="Permalink to this heading">#</a></h2>
 <p>In 2012, Thomas Mikolov, an <em>intern</em> at Microsoft, <a class="reference external" href="https://arxiv.org/abs/1310.4546">found a way</a> to encode the meaning of words in a modest number of vector dimensions <span class="math notranslate nohighlight">\(d\)</span>. Mikolov trained a neural network to predict word occurrences near each target word. In 2013, once at Google, Mikolov and his teammates released the software for creating these word vectors and called it word2vec.</p>
 <p><img alt="banking-vector" src="../../../../../_images/banking-vector.png" />
 <em>word2vec generated embedding for the word <code class="docutils literal notranslate"><span class="pre">banking</span></code> in d=8 dimensions</em></p>
@@ -554,7 +555,7 @@ document.write(`
 <p>Another classic example that shows the power of word2vec representations to encode analogies, is  classical king + woman − man ≈ queen example shown below.</p>
 <p><img alt="queen-example" src="../../../../../_images/queen-example.png" />
 <em>Classic queen example where <code class="docutils literal notranslate"><span class="pre">king</span> <span class="pre">−</span> <span class="pre">man</span> <span class="pre">≈</span> <span class="pre">queen</span> <span class="pre">−</span> <span class="pre">woman</span></code>, and we can visually see that in the red arrows. There are 4 analogies one can construct, based on the parallel red arrows and their direction. This is slightly idealized; the vectors need not be so similar to be the most similar from all word vectors. The similar direction of the red arrows indicates similar relational meaning.</em></p>
-<p>So what is the more formal description of the word2vec algorithm? We will focus on one of the two computational algorithms<a class="footnote-reference brackets" href="#id2" id="id1">1</a> - the skip-gram method and use the following diagrams as examples to explain how it works.</p>
+<p>So what is the more formal description of the word2vec algorithm? We will focus on one of the two computational algorithms<a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> - the skip-gram method and use the following diagrams as examples to explain how it works.</p>
 <p><img alt="word2vec-idea" src="../../../../../_images/word2vec-idea.png" />
 <img alt="word2vec-idea2" src="../../../../../_images/word2vec-idea2.png" />
 <em>In the skip-gram we predict the <strong>context given the center word</strong>.We need to calculate the probability <span class="math notranslate nohighlight">\(p(w_{t+j} | w_t)\)</span>.</em></p>
@@ -589,7 +590,7 @@ document.write(`
 </div>
 </section>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h2>
 <p>Consider the training corpus having the following sentences:</p>
 <p>“the dog saw a cat”,</p>
 <p>“the dog chased the cat”,</p>
@@ -623,17 +624,16 @@ document.write(`
 <p>The probability in bold is for the chosen target word ‘cat’. Given the target vector [0 1 0 0 0 0 0 0 ], the error vector for the output layer is easily computed via CE loss. Once the loss is known, the weights in the matrices W can be updated using backpropagation. Thus, the training can proceed by presenting different context-target words pairs from the corpus. The context can be more than one word and in this case the loss is the average loss across all pairs.</p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://arxiv.org/abs/1411.2738">Word2Vec Parameter Learning Explained</a></p></li>
 <li><p>The simple example was from <a class="reference external" href="https://iksinc.online/tag/skip-gram-model/">here</a>.</p></li>
 </ol>
 <hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>The other method is called Continuous Bag of Words (CBOW) and its the reverse of the skip-gram method: it predicts the center word from the words around it. Skip-gram works well with small corpora and rare terms while CBOW shows higher accuracies for frequent words and is faster to train <a class="reference external" href="https://www.manning.com/books/natural-language-processing-in-action">ref</a>.</p>
-</dd>
-</dl>
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>The other method is called Continuous Bag of Words (CBOW) and its the reverse of the skip-gram method: it predicts the center word from the words around it. Skip-gram works well with small corpora and rare terms while CBOW shows higher accuracies for frequent words and is faster to train <a class="reference external" href="https://www.manning.com/books/natural-language-processing-in-action">ref</a>.</p>
+</aside>
 </section>
 <div class="toctree-wrapper compound">
 </div>

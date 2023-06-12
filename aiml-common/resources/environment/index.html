@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Your Programming Environment &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -68,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Submitting Your Assignment / Project" href="assignment-submission.html" />
     <link rel="prev" title="Calculus" href="../../lectures/ml-math/calculus/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -536,12 +537,15 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="your-programming-environment">
-<h1>Your Programming Environment<a class="headerlink" href="#your-programming-environment" title="Permalink to this headline">#</a></h1>
+<h1>Your Programming Environment<a class="headerlink" href="#your-programming-environment" title="Permalink to this heading">#</a></h1>
 <section id="compute">
-<h2>Compute<a class="headerlink" href="#compute" title="Permalink to this headline">#</a></h2>
+<h2>Compute<a class="headerlink" href="#compute" title="Permalink to this heading">#</a></h2>
 <section id="on-your-own-server-desktop-machine-or-laptop-recommended">
-<h3>On your own server/desktop machine or laptop (recommended)<a class="headerlink" href="#on-your-own-server-desktop-machine-or-laptop-recommended" title="Permalink to this headline">#</a></h3>
-<p>You need to create Python environments in  this course. Nothing beats a container based environment for data science/AI workflows and we recommend VS Code as the IDE due to its flexibility in supporting remote containers.</p>
+<h3>On your own server/desktop machine or laptop (recommended)<a class="headerlink" href="#on-your-own-server-desktop-machine-or-laptop-recommended" title="Permalink to this heading">#</a></h3>
+<p>You need to create Python environments in  this course. Nothing beats a container-based environment for data science/AI workflows. Learn the basics of docker (the most conmmon container format) by watching the following video:</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/pTFZFxd4hOI" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p>Independent of your OS, you may want to use <a class="reference external" href="https://code.visualstudio.com/">VS Code IDE</a> if you have no IDE experience before. We recommend VS Code as the IDE due to its flexibility in supporting remote containers.  Ensure that you are able to debug code in your IDE. It must connect to the <a class="reference external" href="https://code.visualstudio.com/docs/remote/remote-overview">remote container</a>. PyCharm may also offer similar functionality but we have not tested it.</p>
 <ul class="simple">
 <li><p>For those in Windows, please follow <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers">this</a> to install WSL2 and Docker.</p></li>
 <li><p>For Mac users please follow the docker instructions <a class="reference external" href="https://docs.docker.com/docker-for-mac/install/">here</a>.</p></li>
@@ -552,33 +556,33 @@ document.write(`
 <p>If you do already have AMD or Intel GPUs you <em>may</em> still be able to use them  or simply use Colab.</p>
 </section>
 <section id="google-colaboratory-recommended">
-<h3>Google Colaboratory (recommended)<a class="headerlink" href="#google-colaboratory-recommended" title="Permalink to this headline">#</a></h3>
+<h3>Google Colaboratory (recommended)<a class="headerlink" href="#google-colaboratory-recommended" title="Permalink to this heading">#</a></h3>
 <p>We will be using the <strong>free</strong> CPU/GPU resources provided by <a class="reference external" href="https://colab.research.google.com">Google Colab</a>. The good news is that you have an account in Google Colab as most of you have your university gmail account. Please note if you login to colab with your university account you get to use the almost unlimited Gdrive storage facility. You will need Google Colab for all your projects so that you can demonstrate that your results can be replicated.  In addition Colab has many <a class="reference external" href="https://colab.research.google.com/notebooks/basic_features_overview.ipynb">features</a> that come handy.</p>
 </section>
 <section id="on-aws-recommended">
-<h3>On AWS  (recommended)<a class="headerlink" href="#on-aws-recommended" title="Permalink to this headline">#</a></h3>
+<h3>On AWS  (recommended)<a class="headerlink" href="#on-aws-recommended" title="Permalink to this heading">#</a></h3>
 <p>Please note that the <a class="reference external" href="https://docs.aws.amazon.com/dlami/latest/devguide/ubuntu18-04.html">AWS Deep Learning AMIs</a> may not require installation or they may require update to the required version of TF/Pytorch. Choose this option if you can afford the hourly rate <strong>and</strong> you are disciplined to monitor the resources and terminate your instances.</p>
 </section>
 <section id="on-hugging-face-spaces-recommended">
-<h3>On Hugging Face Spaces (recommended)<a class="headerlink" href="#on-hugging-face-spaces-recommended" title="Permalink to this headline">#</a></h3>
+<h3>On Hugging Face Spaces (recommended)<a class="headerlink" href="#on-hugging-face-spaces-recommended" title="Permalink to this heading">#</a></h3>
 <p>HF spaces can get you started for free and this includes docker based environments ! So it should be your first choice when a project requires container based development eg. when the project is Django based.</p>
 </section>
 <section id="kaggle-not-recommended">
-<h3>Kaggle (not recommended)<a class="headerlink" href="#kaggle-not-recommended" title="Permalink to this headline">#</a></h3>
+<h3>Kaggle (not recommended)<a class="headerlink" href="#kaggle-not-recommended" title="Permalink to this heading">#</a></h3>
 <p>You can use Kaggle as an alternative to Colab for all your projects. You guessed it right - all the projects in this course are in fact Kaggle competitions.  You can login with your gmail account. You can install by following the directions <a class="reference external" href="https://github.com/Kaggle/kaggle-api">here</a> the Kaggle command line interface (CLI).  Not only you will get to compete (your ranking relative to others does not matter per se), but as you improve your knowledge over time you can revisit these competitions and see how your score improves.  There is one catch though - Colab offers more GPU time and it comes with multiple tiers of service for a few dollars per month. This can be handy for the heavier projects.</p>
 </section>
 </section>
 <section id="managing-python-runtimes">
-<h2>Managing Python Runtimes<a class="headerlink" href="#managing-python-runtimes" title="Permalink to this headline">#</a></h2>
+<h2>Managing Python Runtimes<a class="headerlink" href="#managing-python-runtimes" title="Permalink to this heading">#</a></h2>
 <p>Follow the instructions <a class="reference external" href="https://python-poetry.org/docs/">here</a> to install Poetry and <a class="reference external" href="https://python-poetry.org/docs/basic-usage/">follow up with the basic usage instructions</a>. Managing dependencies is one of the key challenges in data science. Poetry is a tool that helps you manage your dependencies.</p>
 <p>Please ensure that you have used the <code class="docutils literal notranslate"><span class="pre">virtualenvs.in-project</span></code> configuration variable to create virtual environments <strong>within</strong> your project directory and that you know how to use .gitignore to avoid committing your virtual environment to your git repository.</p>
 </section>
 <section id="git-github">
-<h2>Git / Github<a class="headerlink" href="#git-github" title="Permalink to this headline">#</a></h2>
+<h2>Git / Github<a class="headerlink" href="#git-github" title="Permalink to this heading">#</a></h2>
 <p>Learning basic git commands takes less than half an hour. However, to install git and understand the principle behind git, please go over Chapters 1 and 2 of the <a class="reference external" href="https://git-scm.com/book/en/v2">ProGit book</a>.</p>
 <p>As we have discussed in the class you need to be able to publish your work in Github so you need to create a Github account. Then you will use the git client for your operating system to interact with github and iterate on your projects.  Almost no project starts in vacuum - there is almost always a repo  that will neeed to be cloned and that you will need to modify to your needs.</p>
 <section id="how-to-work-with-a-github-repository-in-colab">
-<h3>How to work with a github repository in Colab<a class="headerlink" href="#how-to-work-with-a-github-repository-in-colab" title="Permalink to this headline">#</a></h3>
+<h3>How to work with a github repository in Colab<a class="headerlink" href="#how-to-work-with-a-github-repository-in-colab" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Fork the desired repository if this is not yours. For example go to <a class="github reference external" href="https://github.com/ageron/handson-ml3">ageron/handson-ml3</a> and press the Fork button.</p></li>
 <li><p>After forking you should see the repository appearing in your account.</p></li>
@@ -591,9 +595,9 @@ document.write(`
 </section>
 </section>
 <section id="external-tools-and-databases-optional">
-<h2>External Tools and Databases (Optional)<a class="headerlink" href="#external-tools-and-databases-optional" title="Permalink to this headline">#</a></h2>
+<h2>External Tools and Databases (Optional)<a class="headerlink" href="#external-tools-and-databases-optional" title="Permalink to this heading">#</a></h2>
 <section id="elastic-search-environment-setup">
-<h3>Elastic Search Environment Setup<a class="headerlink" href="#elastic-search-environment-setup" title="Permalink to this headline">#</a></h3>
+<h3>Elastic Search Environment Setup<a class="headerlink" href="#elastic-search-environment-setup" title="Permalink to this heading">#</a></h3>
 <p>For project work you may need to install ES. Please note you are responsible for setting up the environment. For example to set up ES in Win10 you may follow <a class="reference external" href="https://www.youtube.com/watch?v=hzaG2Uq60uw">this</a> guide but bear in mind that we cannot support any IT issues you may encounter in your laptop. You may decide to set up a development environment in AWS cloud 9 that is linux based for a small fee or taking advantage the free tier for <em>new</em> AWS accounts (which is not free if you need EC2 instances outside of what the free tier provides).</p>
 </section>
 </section>

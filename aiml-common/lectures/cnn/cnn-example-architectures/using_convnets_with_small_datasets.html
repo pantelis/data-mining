@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Using convnets with small datasets &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -68,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Feature Extraction via Residual Networks" href="../../scene-understanding/feature-extraction-resnet/index.html" />
     <link rel="prev" title="CNN Example Architectures" href="_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -613,10 +614,10 @@ document.write(`
 </div>
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="using-convnets-with-small-datasets">
-<h1>Using convnets with small datasets<a class="headerlink" href="#using-convnets-with-small-datasets" title="Permalink to this headline">#</a></h1>
+<h1>Using convnets with small datasets<a class="headerlink" href="#using-convnets-with-small-datasets" title="Permalink to this heading">#</a></h1>
 <p>This notebook contains the code sample found in Chapter 5, Section 2 of <a class="reference external" href="https://www.manning.com/books/deep-learning-with-python?a_aid=keras&amp;a_bid=76564dff">Deep Learning with Python</a>. Note that the original text features far more content, in particular further explanations and figures: in this notebook, you will only find source code and related comments.</p>
 <section id="training-a-convnet-from-scratch-on-a-small-dataset">
-<h2>Training a convnet from scratch on a small dataset<a class="headerlink" href="#training-a-convnet-from-scratch-on-a-small-dataset" title="Permalink to this headline">#</a></h2>
+<h2>Training a convnet from scratch on a small dataset<a class="headerlink" href="#training-a-convnet-from-scratch-on-a-small-dataset" title="Permalink to this heading">#</a></h2>
 <p>Having to train an image classification model using only very little data is a common situation, which you likely encounter yourself in
 practice if you ever do computer vision in a professional context.</p>
 <p>Having “few” samples can mean anywhere from a few hundreds to a few tens of thousands of images. As a practical example, we will focus on
@@ -634,7 +635,7 @@ pre-trained model, and fine-tuning a pre-trained model – will constitute your 
 vision with small datasets.</p>
 </section>
 <section id="the-relevance-of-deep-learning-for-small-data-problems">
-<h2>The relevance of deep learning for small-data problems<a class="headerlink" href="#the-relevance-of-deep-learning-for-small-data-problems" title="Permalink to this headline">#</a></h2>
+<h2>The relevance of deep learning for small-data problems<a class="headerlink" href="#the-relevance-of-deep-learning-for-small-data-problems" title="Permalink to this heading">#</a></h2>
 <p>You will sometimes hear that deep learning only works when lots of data is available. This is in part a valid point: one fundamental
 characteristic of deep learning is that it is able to find interesting features in the training data on its own, without any need for manual
 feature engineering, and this can only be achieved when lots of training examples are available. This is especially true for problems where
@@ -652,7 +653,7 @@ to bootstrap powerful vision models out of very little data. That’s what we wi
 <p>For now, let’s get started by getting our hands on the data.</p>
 </section>
 <section id="downloading-the-data">
-<h2>Downloading the data<a class="headerlink" href="#downloading-the-data" title="Permalink to this headline">#</a></h2>
+<h2>Downloading the data<a class="headerlink" href="#downloading-the-data" title="Permalink to this heading">#</a></h2>
 <p>The cats vs. dogs dataset that we will use isn’t packaged with Keras. It was made available by <a class="reference external" href="http://Kaggle.com">Kaggle.com</a> as part of a computer vision
 competition in late 2013, back when convnets weren’t quite mainstream. You can download the original dataset at:
 <code class="docutils literal notranslate"><span class="pre">https://www.kaggle.com/c/dogs-vs-cats/data</span></code> (you will need to create a Kaggle account if you don’t already have one – don’t worry, the
@@ -699,7 +700,7 @@ samples from each class: this is a balanced binary classification problem, which
 measure of success.</p>
 </section>
 <section id="building-our-network">
-<h2>Building our network<a class="headerlink" href="#building-our-network" title="Permalink to this headline">#</a></h2>
+<h2>Building our network<a class="headerlink" href="#building-our-network" title="Permalink to this heading">#</a></h2>
 <p>We’ve already built a small convnet for MNIST in the previous example, so you should be familiar with them. We will reuse the same
 general structure: our convnet will be a stack of alternated <code class="docutils literal notranslate"><span class="pre">Conv2D</span></code> (with <code class="docutils literal notranslate"><span class="pre">relu</span></code> activation) and <code class="docutils literal notranslate"><span class="pre">MaxPooling2D</span></code> layers.</p>
 <p>However, since we are dealing with bigger images and a more complex problem, we will make our network accordingly larger: it will have one
@@ -814,7 +815,7 @@ use in various situations).</p>
 </div>
 </section>
 <section id="data-preprocessing">
-<h2>Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this headline">#</a></h2>
+<h2>Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this heading">#</a></h2>
 <p>As you already know by now, data should be formatted into appropriately pre-processed floating point tensors before being fed into our
 network. Currently, our data sits on a drive as JPEG files, so the steps for getting it into our network are roughly:</p>
 <ul class="simple">
@@ -1021,7 +1022,7 @@ introduce a new one, specific to computer vision, and used almost universally wh
 augmentation</em>.</p>
 </section>
 <section id="using-data-augmentation">
-<h2>Using data augmentation<a class="headerlink" href="#using-data-augmentation" title="Permalink to this headline">#</a></h2>
+<h2>Using data augmentation<a class="headerlink" href="#using-data-augmentation" title="Permalink to this heading">#</a></h2>
 <p>Overfitting is caused by having too few samples to learn from, rendering us unable to train a model able to generalize to new data.
 Given infinite data, our model would be exposed to every possible aspect of the data distribution at hand: we would never overfit. Data
 augmentation takes the approach of generating more training data from existing training samples, by “augmenting” the samples via a number

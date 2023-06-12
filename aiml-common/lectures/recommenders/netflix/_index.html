@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>The Netflix Prize and Singular Value Decomposition &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Principal Component Analysis (PCA)" href="../../pca/_index.html" />
     <link rel="prev" title="Introduction to Recommender Systems" href="../recommenders-intro/_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -523,12 +524,12 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-netflix-prize-and-singular-value-decomposition">
-<h1>The Netflix Prize and Singular Value Decomposition<a class="headerlink" href="#the-netflix-prize-and-singular-value-decomposition" title="Permalink to this headline">#</a></h1>
+<h1>The Netflix Prize and Singular Value Decomposition<a class="headerlink" href="#the-netflix-prize-and-singular-value-decomposition" title="Permalink to this heading">#</a></h1>
 <blockquote>
 <div><p>NOTE: The following are based on the <a class="reference external" href="https://www.netflixprize.com/assets/GrandPrize2009_BPC_BellKor.pdf">winning submission paper</a> as well as <a class="reference external" href="https://datajobs.com/data-science-repo/Recommender-Systems-%5BNetflix%5D.pdf">their subsequent publication</a>.</p>
 </div></blockquote>
 <section id="problem-statement">
-<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Permalink to this headline">#</a></h2>
+<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Permalink to this heading">#</a></h2>
 <p>The Netflix Prize was an open competition for the best <strong>collaborative filtering algorithm</strong> to predict user ratings for films, based on previous ratings without any other information about the users or films, i.e. without the users or the films being identified except by numbers assigned for the contest.</p>
 <p>The competition was held by Netflix, and on September 21, 2009, the grand prize of US $1,000,000 was given to the BellKor’s Pragmatic Chaos team which bested Netflix’s own algorithm for predicting ratings by 10.06%</p>
 <p>This competition is instructive since:</p>
@@ -543,7 +544,7 @@ document.write(`
 <p>Assuming that the rating matrix <span class="math notranslate nohighlight">\(A_{[m x n]}\)</span> with m users (500K) and n items (17K movies), this matrix is extremely sparse - it has only 100 million ratings, the remaining 8.4 billion ratings are missing (about 99% of the possible ratings are missing, because a user typically rates only a small portion of the movies).</p>
 </section>
 <section id="svd-solution">
-<h2>SVD Solution<a class="headerlink" href="#svd-solution" title="Permalink to this headline">#</a></h2>
+<h2>SVD Solution<a class="headerlink" href="#svd-solution" title="Permalink to this heading">#</a></h2>
 <p>Given the very large data matrix it was only expected that competitors attempted to do  <em>dimensionality reduction</em> and as it turns out this was the basis for the winning algorithm.  Dimensionality reduction can be done via matrix factorization that has the following advantage: when explicit feedback is not available, we can infer user preferences using implicit feedback, which indirectly reflects opinion by observing <em>user behavior</em> including purchase history, browsing history, search patterns, or even mouse movements. A high level visual result of the matrix factorization with two latent features is shown below:</p>
 <p><img alt="latent-factor-approach" src="../../../../_images/latent-factor-approach.png" />
 <em>Simplistic illustration of two latent factor approach. Users and Items are shown in this feature space</em>.</p>

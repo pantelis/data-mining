@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Interpretable Gradient Boosting - Real Estate House Price Prediction &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="prev" title="Probability Assignment" href="../../assignments/probability/probability-assignment-6/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -522,10 +523,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="interpretable-gradient-boosting-real-estate-house-price-prediction">
-<h1>Interpretable Gradient Boosting - Real Estate House Price Prediction<a class="headerlink" href="#interpretable-gradient-boosting-real-estate-house-price-prediction" title="Permalink to this headline">#</a></h1>
+<h1>Interpretable Gradient Boosting - Real Estate House Price Prediction<a class="headerlink" href="#interpretable-gradient-boosting-real-estate-house-price-prediction" title="Permalink to this heading">#</a></h1>
 <p>Ask a home buyer to describe their dream house, and they probably won’t begin with the height of the basement ceiling or the proximity to an east-west railroad. But this playground competition’s dataset proves that much more influences price negotiations than the number of bedrooms or a white-picket fence. With 79 explanatory variables describing (almost) every aspect of residential homes in Ames, Iowa, this competition challenges you to predict the final price of each home.</p>
 <section id="milestone-1-week-1-10-points">
-<h2>Milestone 1: (Week 1, 10 points)<a class="headerlink" href="#milestone-1-week-1-10-points" title="Permalink to this headline">#</a></h2>
+<h2>Milestone 1: (Week 1, 10 points)<a class="headerlink" href="#milestone-1-week-1-10-points" title="Permalink to this heading">#</a></h2>
 <p>Set up a development environment in your laptop. Learn the basics of docker by watching the following video:</p>
 <div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/pTFZFxd4hOI" style="border: 0; height: 345px; width: 560px">
@@ -534,7 +535,7 @@ document.write(`
 <p>Submit the github repository URL with a branch titled ‘milestone-1’ with the <a class="reference external" href="http://README.md">README.md</a> file containing the installation instructions you followed and a screenshot of your docker container terminal prompt. Add as collaborator the TA.</p>
 </section>
 <section id="milestone-2-week-3-40-points">
-<h2>Milestone 2: (Week 3, 40 points)<a class="headerlink" href="#milestone-2-week-3-40-points" title="Permalink to this headline">#</a></h2>
+<h2>Milestone 2: (Week 3, 40 points)<a class="headerlink" href="#milestone-2-week-3-40-points" title="Permalink to this heading">#</a></h2>
 <p>Download the dataset from <a class="reference external" href="https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/overview">here</a></p>
 <div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/-taOhqkiuIo" style="border: 0; height: 345px; width: 560px">
@@ -542,14 +543,14 @@ document.write(`
 <p>Perform the SHAP interpretation of the house price prediction model of your choice. At a minimum you should produce graphs that show the SHAP values for the features and the SHAP interaction values for these features.</p>
 </section>
 <section id="milestone-3-week-4-30-points">
-<h2>Milestone 3: (Week 4, 30 points)<a class="headerlink" href="#milestone-3-week-4-30-points" title="Permalink to this headline">#</a></h2>
+<h2>Milestone 3: (Week 4, 30 points)<a class="headerlink" href="#milestone-3-week-4-30-points" title="Permalink to this heading">#</a></h2>
 <p>Merge the earlier branch into the main branch and create a new branch titled ‘milestone-3. Do not delete the milestone-2 branch.</p>
 <p>Repeat the analysis in Milestone 2 but this time use <a class="reference external" href="https://towardsdatascience.com/kagglers-guide-to-lightgbm-hyperparameter-tuning-with-optuna-in-2021-ed048d9838b5">this</a> or <a class="reference external" href="https://neptune.ai/blog/lightgbm-parameters-guide">this</a> guide to tune with <a class="reference external" href="https://optuna.org/">Optuna</a> the hyperparameters of the LightGBM model.</p>
 <p>You need to creating a streamlit app for the house price prediction problem. Streamlit is a python library that allows you to create web apps with minimal coding and deploy them in the cloud.  Deploy the streamlit app in <a class="reference external" href="https://huggingface.co/docs/hub/spaces-sdks-streamlit">HuggingFace streamlit spaces</a> after you create a free account. The app must resemble <a class="reference external" href="https://adhok-streamlit-ames-housing-price-predict-streamlit-app-lp8hyj.streamlit.app/">this UI</a> (please avoid the shown gif image) and in addition it must show a SHAP summary plot and a SHAP interaction plot.</p>
 <p>Submit the github repository URL with a branch titled ‘milestone-3’ with the <a class="reference external" href="http://README.md">README.md</a> file containing the link to the deployed HF space where the Milestone 2 calculation and the optimized app calculation price prediction can both be seen.</p>
 </section>
 <section id="milestone-4-documentation-and-video-production-week-5-20-points">
-<h2>Milestone 4: Documentation and Video Production (Week 5, 20 points)<a class="headerlink" href="#milestone-4-documentation-and-video-production-week-5-20-points" title="Permalink to this headline">#</a></h2>
+<h2>Milestone 4: Documentation and Video Production (Week 5, 20 points)<a class="headerlink" href="#milestone-4-documentation-and-video-production-week-5-20-points" title="Permalink to this heading">#</a></h2>
 <p>Merge the earlier branch into the main branch and create a new branch titled ‘milestone-4’. Do not delete the milestone-3 branch.</p>
 <p>Document extensively both the code as well as the results (10 points).</p>
 <p>Use google sites to create a landing page for your app (5 points)</p>

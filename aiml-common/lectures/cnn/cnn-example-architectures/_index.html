@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>CNN Example Architectures &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -68,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Using convnets with small datasets" href="using_convnets_with_small_datasets.html" />
     <link rel="prev" title="CNN Architectures" href="../cnn-layers/_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -521,10 +522,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="cnn-example-architectures">
-<h1>CNN Example Architectures<a class="headerlink" href="#cnn-example-architectures" title="Permalink to this headline">#</a></h1>
+<h1>CNN Example Architectures<a class="headerlink" href="#cnn-example-architectures" title="Permalink to this heading">#</a></h1>
 <p>This is a very high level view of practical structures of CNNs before the advent of more innovative architectures such as ResNets.</p>
 <section id="toy-cnn-network">
-<h2>Toy CNN Network<a class="headerlink" href="#toy-cnn-network" title="Permalink to this headline">#</a></h2>
+<h2>Toy CNN Network<a class="headerlink" href="#toy-cnn-network" title="Permalink to this heading">#</a></h2>
 <p><img alt="convnet" src="../../../../_images/simple-cnn.jpeg" /></p>
 <p>The example CNN architecture above has the following layers:</p>
 <ul class="simple">
@@ -536,7 +537,7 @@ document.write(`
 </ul>
 </section>
 <section id="vgg-networks">
-<h2><a class="reference external" href="https://arxiv.org/pdf/1409.1556.pdf">VGG</a> Networks<a class="headerlink" href="#vgg-networks" title="Permalink to this headline">#</a></h2>
+<h2><a class="reference external" href="https://arxiv.org/pdf/1409.1556.pdf">VGG</a> Networks<a class="headerlink" href="#vgg-networks" title="Permalink to this heading">#</a></h2>
 <p>The VGG networks from Oxford were the first to use much smaller 3×3 filters in each convolutional layers. They have shown that multiple 3×3 convolution in sequence can emulate the effect of larger receptive fields, for examples 5×5 and 7×7. The VGG configuration is shown below:</p>
 <p><img alt="vgg-configuration" src="../../../../_images/vgg-configurations.png" />
 <em>VGG Configurations: Different columns represent different depths</em></p>

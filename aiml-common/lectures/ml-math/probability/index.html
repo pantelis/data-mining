@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Probability Basics &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Linear Algebra for Machine Learning" href="../linear-algebra/index.html" />
     <link rel="prev" title="Math for ML Textbook" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -525,7 +526,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="probability-basics">
-<h1>Probability Basics<a class="headerlink" href="#probability-basics" title="Permalink to this headline">#</a></h1>
+<h1>Probability Basics<a class="headerlink" href="#probability-basics" title="Permalink to this heading">#</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If the contents in this section are new to you, we recommend to start by watching <a class="reference external" href="https://www.edx.org/course/fat-chance-probability-from-the-ground-up-2">the Fat Chance course</a> in edX as soon as possible. It is a great course and it is free.</p>
@@ -558,7 +559,7 @@ document.write(`
 <p><img alt="joint-prob" src="../../../../_images/joint-prob.png" />
 <em>(e) and (f) represent joint distributions of discrete and continuous random variables</em></p>
 <section id="sum-rule-and-the-marginal-probability">
-<h2>Sum rule and the Marginal Probability<a class="headerlink" href="#sum-rule-and-the-marginal-probability" title="Permalink to this headline">#</a></h2>
+<h2>Sum rule and the Marginal Probability<a class="headerlink" href="#sum-rule-and-the-marginal-probability" title="Permalink to this heading">#</a></h2>
 <p>Given the joint what is the marginal probability <span class="math notranslate nohighlight">\(P(x)\)</span> ?</p>
 <div class="math notranslate nohighlight">
 \[P(x)   = \sum_y P(x,y) = \sum_y P(x | y)P(y)\]</div>
@@ -566,7 +567,7 @@ document.write(`
 <em>Extracting the marginal out of the joint</em></p>
 </section>
 <section id="conditional-probability-and-the-product-or-chain-rule">
-<h2>Conditional Probability and the Product or chain rule<a class="headerlink" href="#conditional-probability-and-the-product-or-chain-rule" title="Permalink to this headline">#</a></h2>
+<h2>Conditional Probability and the Product or chain rule<a class="headerlink" href="#conditional-probability-and-the-product-or-chain-rule" title="Permalink to this heading">#</a></h2>
 <p>This is obtained from the definition of conditional probability:</p>
 <div class="math notranslate nohighlight">
 \[P(x,y) = P(x | y)P(y) = P(y | x)P(x)\]</div>
@@ -578,7 +579,7 @@ document.write(`
 </div>
 </section>
 <section id="multi-variate-gaussian-distribution">
-<h2>Multi-variate Gaussian distribution<a class="headerlink" href="#multi-variate-gaussian-distribution" title="Permalink to this headline">#</a></h2>
+<h2>Multi-variate Gaussian distribution<a class="headerlink" href="#multi-variate-gaussian-distribution" title="Permalink to this heading">#</a></h2>
 <p>Perhaps the only distribution that is worth knowing and remembering its form is the multivariate Normal as it has widespread applicability in data science.</p>
 <div class="math notranslate nohighlight">
 \[f_{\mathbf X}(x_1,\ldots,x_k) = \frac{\exp\left(-\frac 1 2 ({\mathbf x}-{\boldsymbol\mu})^\mathrm{T}{\boldsymbol\Sigma}^{-1}({\mathbf x}-{\boldsymbol\mu})\right)}{\sqrt{(2\pi)^n|\boldsymbol\Sigma|}}\]</div>
@@ -588,7 +589,7 @@ document.write(`
 <em>Correlated Gaussians</em></p>
 </section>
 <section id="resources">
-<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">#</a></h2>
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this heading">#</a></h2>
 <div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/-lyzEEjNH9U" style="border: 0; height: 345px; width: 560px">
 </iframe></div><p><em>Probability Recitation for my classes. Recitation was delivered by my TA Rohit Deepak Phadke.</em></p>

@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Regularization in Deep Neural Networks &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Introduction to Convolutional Neural Networks" href="../../cnn/cnn-intro/_index.html" />
     <link rel="prev" title="Fashion MNIST Case Study" href="../../dnn/fashion-mnist-case-study.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -526,10 +527,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="regularization-in-deep-neural-networks">
-<h1>Regularization in Deep Neural Networks<a class="headerlink" href="#regularization-in-deep-neural-networks" title="Permalink to this headline">#</a></h1>
+<h1>Regularization in Deep Neural Networks<a class="headerlink" href="#regularization-in-deep-neural-networks" title="Permalink to this heading">#</a></h1>
 <p>In this chapter we look at the training aspects of DNNs and investigate schemes that can help us avoid overfitting a common trait of putting too much network capacity to the supervised learning problem at hand.</p>
 <section id="l2-regularization">
-<h2>L2 regularization<a class="headerlink" href="#l2-regularization" title="Permalink to this headline">#</a></h2>
+<h2>L2 regularization<a class="headerlink" href="#l2-regularization" title="Permalink to this heading">#</a></h2>
 <p>This is perhaps the most common form of regularization. It can be implemented by penalizing the squared magnitude of all parameters directly in the objective.</p>
 <p><span class="math notranslate nohighlight">\(\lambda J_{penalty} = \lambda \left(\sum_l W_{(l)}^2 \right) \)</span></p>
 <p>where <span class="math notranslate nohighlight">\(l\)</span> is the hidden layer index and <span class="math notranslate nohighlight">\(W\)</span> is the weight tensor.</p>
@@ -539,11 +540,11 @@ document.write(`
 <p>Lastly, notice that during gradient descent parameter update, using the L2 regularization ultimately means that every weight is decayed linearly: <span class="math notranslate nohighlight">\(W += -lambda * W\)</span> towards zero.</p>
 </section>
 <section id="l1-regularization">
-<h2>L1 regularization<a class="headerlink" href="#l1-regularization" title="Permalink to this headline">#</a></h2>
+<h2>L1 regularization<a class="headerlink" href="#l1-regularization" title="Permalink to this heading">#</a></h2>
 <p>This is another relatively common form of regularization, where for each weight <span class="math notranslate nohighlight">\(w\)</span> we add the term <span class="math notranslate nohighlight">\(\lambda  \mid w \mid\)</span> to the objective. It is possible to combine the L1 regularization with the L2 regularization: <span class="math notranslate nohighlight">\(\lambda_1 \mid w \mid + \lambda_2 w^2\)</span> (this is called <a class="reference external" href="http://web.stanford.edu/~hastie/Papers/B67.2%20%282005%29%20301-320%20Zou%20&amp;%20Hastie.pdf">Elastic net regularization</a>). The L1 regularization has the intriguing property that it leads the weight vectors to become sparse during optimization (i.e. very close to exactly zero). In other words, neurons with L1 regularization end up using only a sparse subset of their most important inputs and become nearly invariant to the “noisy” inputs. In comparison, final weight vectors from L2 regularization are usually diffuse, small numbers. In practice, if you are not concerned with explicit feature selection, L2 regularization can be expected to give superior performance over L1.</p>
 </section>
 <section id="dropout">
-<h2>Dropout<a class="headerlink" href="#dropout" title="Permalink to this headline">#</a></h2>
+<h2>Dropout<a class="headerlink" href="#dropout" title="Permalink to this heading">#</a></h2>
 <p>This is an extremely effective, simple regularization technique by Srivastava et al. in <a class="reference external" href="http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf">Dropout: A Simple Way to Prevent Neural Networks from Overfitting</a> that complements the other methods (L1, L2). While training, dropout is implemented by only keeping a neuron active with some probability <span class="math notranslate nohighlight">\(p\)</span> (a hyperparameter), or setting it to zero otherwise.</p>
 <p><img alt="dropout" src="../../../../_images/dropout.jpeg" />
 <em>During training, Dropout can be interpreted as sampling a Neural Network within the full Neural Network, and only updating the parameters of the sampled network based on the input data. (However, the exponential number of possible sampled networks are not independent because they share the parameters.) During testing there is no dropout applied, with the interpretation of evaluating an averaged prediction across the exponentially-sized ensemble of all sub-networks (more about ensembles in the next section).</em></p>
@@ -608,13 +609,13 @@ document.write(`
 <p>In practice, it is most common to use a single, global L2 regularization strength that is cross-validated. It is also common to combine this with dropout applied after all layers. The value of <span class="math notranslate nohighlight">\(p = 0.5\)</span> is a reasonable default, but this can be tuned on validation data. Note that dropout’s usage has been limited by another technique called Batch Normalization and there is some <a class="reference external" href="https://arxiv.org/pdf/1801.05134.pdf">interesting interference</a> between the two for those that want to dig further.</p>
 </section>
 <section id="early-stopping">
-<h2>Early stopping<a class="headerlink" href="#early-stopping" title="Permalink to this headline">#</a></h2>
+<h2>Early stopping<a class="headerlink" href="#early-stopping" title="Permalink to this heading">#</a></h2>
 <p>In these notes we focused on approaches that have some conceptual depth. We avoid treating extensively techniques that belong to the category of experiment management. For example early stopping is based on the experiment manager that is monitoring the validation loss and stops training when  it observes that the validation error increased while at the same time retrieves the best model that has been trained to the data scientist. This does not stop the approach being one of the most popular regularization approaches as it can be seen as an L2 regularizer as shown below.</p>
 <p><img alt="early-stopping-2" src="../../../../_images/early-stopping2.png" />
 <em>Early stopping (left) results in the same regularized weight with the L2 penalty regularizer</em></p>
 </section>
 <section id="weight-initialization">
-<h2>Weight initialization<a class="headerlink" href="#weight-initialization" title="Permalink to this headline">#</a></h2>
+<h2>Weight initialization<a class="headerlink" href="#weight-initialization" title="Permalink to this heading">#</a></h2>
 <p>For layers with ReLU units, the suggested experimentally initialization for the weight is to use <span class="math notranslate nohighlight">\(W = np.random.randn(n) * \sqrt(2.0/n)\)</span>, as discussed in <a class="reference external" href="http://arxiv-web3.library.cornell.edu/abs/1502.01852">He et al.</a>.</p>
 <!-- ### Control system view of training
 

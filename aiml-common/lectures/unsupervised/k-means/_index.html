@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>K-means Clustering &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="k-Nearest Neighbors (kNN) Classification" href="../../density-estimation/knn/_index.html" />
     <link rel="prev" title="PCA Workshop" href="../../pca/principal-component-analysis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -523,7 +524,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="k-means-clustering">
-<h1>K-means Clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this headline">#</a></h1>
+<h1>K-means Clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this heading">#</a></h1>
 <p>Up to now in this lecture series we have seen parametric models using in regression and classification. The complexity of such models was not very high despite the heany sometimes math. Most models we have seen took the form <span class="math notranslate nohighlight">\(\mathbf w^T \phi(\mathbf x)\)</span>. Now we switch to a very frequently met case where we dont have any labels <span class="math notranslate nohighlight">\(y\)</span>. Most of the treatment here is from Bishop section 9.1 - the equivalent section in Tan’s book is section 7.2.</p>
 <p>Suppose we have a data set <span class="math notranslate nohighlight">\(D=\{ \mathbf x_1,...,\mathbf x_m\}\)</span> consisting of <span class="math notranslate nohighlight">\(m\)</span> observations of a random n-dimensional Euclidean variable <span class="math notranslate nohighlight">\(\mathbf x\)</span>. Our goal is to partition the data set into some number <span class="math notranslate nohighlight">\(K\)</span> of clusters, where we shall suppose for the moment that the value of <span class="math notranslate nohighlight">\(K\)</span> is given.  Intuitively, we might think of a cluster as comprising a group of data points whose inter-point distances are small compared with the distances to points outside of the cluster.  This is shown in the figure below.</p>
 <p><img alt="k-means-algorithm-example" src="../../../../_images/Figure9.1a.png" /></p>
@@ -532,7 +533,7 @@ document.write(`
 <p>Everything is as expected in the loss function above expept from the variable <span class="math notranslate nohighlight">\(r_{ik}\)</span> which is a binary <em>indicator</em> variable that will simply add the squared Euclidean distance between the point <span class="math notranslate nohighlight">\(\mathbf x_i\)</span> and the candidate cluster prototype if the point is assigned to that cluster or add 0.0 to the loss if it doesnt. As an example for two cluster prototypes (as evidently will be the number of clusters in the above example) <span class="math notranslate nohighlight">\(r_k \in \{(0 1), (1 0)\}\)</span>.  This is also called one-hot encoding of the corresponding category where category “cluster 1” is coded as <span class="math notranslate nohighlight">\((0 1)\)</span> and category “cluster 2” is coded as <span class="math notranslate nohighlight">\((1 0)\)</span>.</p>
 <p>The K-means algorithm is iterative and each iteration includes two steps after an initialization of the <span class="math notranslate nohighlight">\(\mathbf \mu_k\)</span> to random locations.</p>
 <section id="step-1">
-<h2>Step 1<a class="headerlink" href="#step-1" title="Permalink to this headline">#</a></h2>
+<h2>Step 1<a class="headerlink" href="#step-1" title="Permalink to this heading">#</a></h2>
 <p>We go over each data point <span class="math notranslate nohighlight">\(\mathbf x_i\)</span> and we assign it to the closest custer center for this iteration.</p>
 <p><img alt="k-means-algorithm-example" src="../../../../_images/Figure9.1b.png" />
 <em>Iteration 1, Step-1: Assignment of data points to cluster centers</em></p>
@@ -541,7 +542,7 @@ document.write(`
 \[\begin{split}r_{ik} = \begin{cases}1, &amp; \text{if } k = \arg \min_j ||\mathbf x_i - \mathbf \mu_j||^2\\ 0, &amp; \text{otherwise. } \end{cases}\end{split}\]</div>
 </section>
 <section id="step-2">
-<h2>Step 2<a class="headerlink" href="#step-2" title="Permalink to this headline">#</a></h2>
+<h2>Step 2<a class="headerlink" href="#step-2" title="Permalink to this heading">#</a></h2>
 <p>In the second step we move each cluster center to the average of the data points assigned to that cluster. Mathematically this is:</p>
 <div class="math notranslate nohighlight">
 \[ \mathbf \mu_k = \frac{\sum_i r_{ik} \mathbf x_i}{\sum_i r_{ik}}\]</div>

@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Backpropagation in Deep Neural Networks &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Backpropagation DNN exercises" href="../backprop-dnn-exercises/_index.html" />
     <link rel="prev" title="Introduction to Backpropagation" href="../backprop-intro/_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -523,11 +524,11 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="backpropagation-in-deep-neural-networks">
-<h1>Backpropagation in Deep Neural Networks<a class="headerlink" href="#backpropagation-in-deep-neural-networks" title="Permalink to this headline">#</a></h1>
+<h1>Backpropagation in Deep Neural Networks<a class="headerlink" href="#backpropagation-in-deep-neural-networks" title="Permalink to this heading">#</a></h1>
 <p>Following the introductory section, we have seen that backpropagation is a procedure that involves the repetitive application of the chain rule. Let us now treat its application to neural networks and the gates that we usually meet there. In DNNs we are dealing with vectors, matrices and in general <a class="reference external" href="https://www.tensorflow.org/guide/tensor">tensors</a> and therefore its required to review first how we can expand on the template above for these data types.</p>
 <p><img alt="backpropagation-dnn" src="../../../../_images/backpropagation-dnn.png" /></p>
 <section id="dnn-gates">
-<h2>DNN Gates<a class="headerlink" href="#dnn-gates" title="Permalink to this headline">#</a></h2>
+<h2>DNN Gates<a class="headerlink" href="#dnn-gates" title="Permalink to this heading">#</a></h2>
 <p>In the following we heavily borrow from <a class="reference external" href="https://web.stanford.edu/class/cs224n/readings/gradient-notes.pdf">this</a> text. The basic building block of vectorized gradients is the <em>Jacobian Matrix</em>. In the introductory section we dealt with functions <span class="math notranslate nohighlight">\(f: \mathbb{R}^2 \to \mathbb{R}\)</span>. Suppose that we have a more complicated function <span class="math notranslate nohighlight">\(\mathbf f: \mathbb{R}^n \to \mathbb{R}^m\)</span> that maps a vector of length <span class="math notranslate nohighlight">\(n\)</span> to a vector of length <span class="math notranslate nohighlight">\(m\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf f(\mathbf x) = [f_1(x_1, ..., x_n), f_2(x_1, ..., x_n), ..., f_m(x_1, ..., x_n)]\]</div>
@@ -544,7 +545,7 @@ document.write(`
 \[\begin{split}\frac{\partial{g}}{\partial x} = \frac{\partial{ g}}{\partial f}\frac{\partial{f}}{\partial x} = \begin{bmatrix} \frac{\partial{g_1}}{\partial f_1} &amp; \frac{\partial{g_1}}{\partial f_2} \\ \frac{\partial{g_2}}{\partial f_1} &amp; \frac{\partial{g_2}}{\partial f_2} \\ \end{bmatrix} \begin{bmatrix} \frac{\partial{f_1}}{\partial x} \\ \frac{\partial{f_2}}{\partial x} \\ \end{bmatrix}\end{split}\]</div>
 <p><a class="reference external" href="http://cs231n.stanford.edu/vecDerivs.pdf">This</a> is also another instructive summary that help us understand how to calculate the local gradients involved and the gate templates (identities) summarized below that are routinely found in neural network backpropagation calculations. Assume that  with <span class="math notranslate nohighlight">\(\mathbf W \in \mathbb{R}^{n \times m}, \mathbf x \in \mathbb{R}^m\)</span>.</p>
 <p><em>Tables of Gates and Gradients used in the backpropagation of deep neural networks</em></p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Gate</p></th>
 <th class="head"><p>Solution</p></th>
@@ -577,7 +578,7 @@ document.write(`
 <p>During the lecture we will go through an NN example on the whiteboard that will use these gate gradients for the estimation of the gradient of the loss with respect to its parameters using backpropagation.</p>
 </section>
 <section id="backpropagation-through-non-linear-units">
-<h2>Backpropagation through non-linear units<a class="headerlink" href="#backpropagation-through-non-linear-units" title="Permalink to this headline">#</a></h2>
+<h2>Backpropagation through non-linear units<a class="headerlink" href="#backpropagation-through-non-linear-units" title="Permalink to this heading">#</a></h2>
 <p>As shown <a class="reference external" href="https://medium.com/&#64;karpathy/yes-you-should-understand-backprop-e2f06eab496b">here</a>, you need to be watchful of the effects of the various non-linear gates on the gradient flow.</p>
 <p>For <strong>sigmoid gate</strong>, if you are sloppy with the weight initialization or data preprocessing these non-linearities can “saturate” and entirely stop learning — your training loss will be flat and refuse to go down. If your weight matrix W is initialized too large, the output of the matrix multiply could have a very large range (e.g. numbers between -400 and 400), which will make all outputs in the vector z almost binary: either 1 or 0. But if that is the case, <span class="math notranslate nohighlight">\(z*(1-z)\)</span>, which is <strong>local</strong> gradient of the sigmoid non-linearity, will in both cases become zero (“vanish”), making the gradient for both x and W be zero. The rest of the backward pass will come out all zero from this point on due to multiplication in the chain rule.</p>
 <p><img alt="sigmoid-derivative" src="../../../../_images/sigmoid-derivative.png" /></p>

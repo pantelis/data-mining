@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Introduction to Recurrent Neural Networks (RNN) &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Simple RNN" href="../simple-rnn/_index.html" />
     <link rel="prev" title="ELBO Optimization" href="../../vae/elbo-optimization/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -523,9 +524,9 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-recurrent-neural-networks-rnn">
-<h1>Introduction to Recurrent Neural Networks (RNN)<a class="headerlink" href="#introduction-to-recurrent-neural-networks-rnn" title="Permalink to this headline">#</a></h1>
+<h1>Introduction to Recurrent Neural Networks (RNN)<a class="headerlink" href="#introduction-to-recurrent-neural-networks-rnn" title="Permalink to this heading">#</a></h1>
 <section id="sequences">
-<h2>Sequences<a class="headerlink" href="#sequences" title="Permalink to this headline">#</a></h2>
+<h2>Sequences<a class="headerlink" href="#sequences" title="Permalink to this heading">#</a></h2>
 <p>Data streams are everywhere in our lives. Weather station sensor data arrive in streams indexed by time,  financial trading data and obviously reading comprehension - one can think of many others. <strong>We are interested to fit sequenced data with a model and therefore we need a hypothesis set, that is rich enough for tasks that require some form of memory</strong>. In the following we use <span class="math notranslate nohighlight">\(t\)</span> as the index variable without necessarily implying any time semantics.</p>
 <p><em>Dynamical systems</em> are such rich models where the <em>recurrent</em> state evolution can be represented as:</p>
 <div class="math notranslate nohighlight">
@@ -539,7 +540,7 @@ document.write(`
 <p>So the dynamical system above can indeed offer a very profound modeling flexibility.</p>
 </section>
 <section id="rnn-architecture">
-<h2>RNN Architecture<a class="headerlink" href="#rnn-architecture" title="Permalink to this headline">#</a></h2>
+<h2>RNN Architecture<a class="headerlink" href="#rnn-architecture" title="Permalink to this heading">#</a></h2>
 <p>The RNN architecture is a constrained implementation of the above dynamical system:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{h}\_t = f(\mathbf{h}\_{t-1}, \mathbf{x}_t ; \mathbf \theta)\]</div>

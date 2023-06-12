@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Random Forests &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Adaptive Boosting (AdaBoost)" href="../adaboost/index.html" />
     <link rel="prev" title="Ensemble Methods" href="../_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -523,7 +524,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="random-forests">
-<h1>Random Forests<a class="headerlink" href="#random-forests" title="Permalink to this headline">#</a></h1>
+<h1>Random Forests<a class="headerlink" href="#random-forests" title="Permalink to this heading">#</a></h1>
 <p>As the name implies forests use many tree-based learners to improve on their generalization ability. Each of the trees is sometimes called a <em>weak learner</em>. When combined together they form the strong learner.</p>
 <p>A key aspect of decision forests is the fact that its component trees are all <em>randomly different</em> from one another. This leads to de-correlation between the individual tree predictions and, in turn, to improved generalization. Forest randomness also helps achieve high robustness with respect to noisy data. Obviously all these weak learners will ultimately be fed with some permutation the same data so its not that we have a perfect de-correlation and this limits the performance of the aggregation.</p>
 <p>Randomness  is  injected  into  the  trees  during  the training  phase. Two of the most popular ways of doing so are:</p>
@@ -540,11 +541,11 @@ document.write(`
 <p>Note something important. The chance of not being selected in any of the <span class="math notranslate nohighlight">\(m\)</span> draws from <span class="math notranslate nohighlight">\(m\)</span> samples with replacement is <span class="math notranslate nohighlight">\((1−\frac{1}{m})^m\)</span> or approximately 1/3 = 33.33% for large <span class="math notranslate nohighlight">\(m\)</span>. Each predictor therefore may see several instances of the same sample while not see at all other instances (with probability 33.33%). This is because the probability of each predictor seeing one of the examples at least once in <span class="math notranslate nohighlight">\(m\)</span> samples is 1-P(not seeing this example) = 1 - 33.33% = 66.66%. Obviously, however the unseen population differs between predictors.</p>
 <p>The Random Forest algorithm introduces extra randomness when growing trees; instead of searching for the very best feature when splitting a node, it searches for the best feature among a random subset of features. This results in a greater tree diversity. In addition, we can make trees even more random by also using random thresholds for each feature rather than searching for the best possible thresholds - also known as extremely randomized trees of <em>Extra-Trees</em>.</p>
 <section id="feature-engineering">
-<h2>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this headline">#</a></h2>
+<h2>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this heading">#</a></h2>
 <p>One byproduct of the randomness of feature selections in the split decision across the weak tree learners is that we can get an estimate was to what features are important to a prediction and what aren’t. This is achieved by using the same principle of entropy but now across trees. For each node that used that feature in that tree we get an entropy reduction and we calculate the significance of each feature as the weighted average of all reductions across the forest. This can be used at the end of the training to select features that are important and attempt retrain suppressing the others and getting a model that is more compact and potentially faster to train and use for inference.</p>
 </section>
 <section id="inference">
-<h2>Inference<a class="headerlink" href="#inference" title="Permalink to this headline">#</a></h2>
+<h2>Inference<a class="headerlink" href="#inference" title="Permalink to this heading">#</a></h2>
 <p><img alt="classification-forest-testing" src="../../../../_images/classification-forest-testing.png" />
 <em>Example of three trees receiving the instance <span class="math notranslate nohighlight">\(\mathbf x\)</span> (shown as <span class="math notranslate nohighlight">\(\mathbf v\)</span> in the figure)</em></p>
 <p>During testing the same unlabelled test input data <span class="math notranslate nohighlight">\(\mathbf x\)</span>  is pushed through each component tree. At each internal node the test determined in training is applied and the process is repeated until a leaf is reached. At the leaf the stored posterior <span class="math notranslate nohighlight">\(p_t(c|\mathbf x)\)</span> is determined. The forest class posterior <span class="math notranslate nohighlight">\(p(c|\mathbf x)\)</span> is simply the <em>average</em> of all tree posteriors.</p>

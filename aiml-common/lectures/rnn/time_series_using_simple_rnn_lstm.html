@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Time Series Prediction using RNNs &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -68,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Introduction to NLP Pipelines" href="../nlp/nlp-introduction/nlp-pipelines/_index.html" />
     <link rel="prev" title="The Long Short-Term Memory (LSTM) Architecture" href="lstm/_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -605,7 +606,7 @@ document.write(`
     <a href="https://colab.research.google.com/github/ageron/handson-ml2/blob/master/15_processing_sequences_using_rnns_and_cnns.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
   </td>
 </table><section class="tex2jax_ignore mathjax_ignore" id="time-series-prediction-using-rnns">
-<h1>Time Series Prediction using RNNs<a class="headerlink" href="#time-series-prediction-using-rnns" title="Permalink to this headline">#</a></h1>
+<h1>Time Series Prediction using RNNs<a class="headerlink" href="#time-series-prediction-using-rnns" title="Permalink to this heading">#</a></h1>
 <p>First, let’s import a few common modules, ensure MatplotLib plots figures inline and prepare a function to save the figures. We also check that Python 3.5 or later is installed (although Python 2.x may work, it is deprecated so we strongly recommend you use Python 3 instead), as well as Scikit-Learn ≥0.20 and TensorFlow ≥2.0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -668,9 +669,9 @@ document.write(`
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="basic-rnns">
-<h1>Basic RNNs<a class="headerlink" href="#basic-rnns" title="Permalink to this headline">#</a></h1>
+<h1>Basic RNNs<a class="headerlink" href="#basic-rnns" title="Permalink to this heading">#</a></h1>
 <section id="generate-the-dataset">
-<h2>Generate the Dataset<a class="headerlink" href="#generate-the-dataset" title="Permalink to this headline">#</a></h2>
+<h2>Generate the Dataset<a class="headerlink" href="#generate-the-dataset" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_time_series</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">):</span>
@@ -748,7 +749,7 @@ document.write(`
 <p><strong>Note</strong>: in this notebook, the blue dots represent targets, and red crosses represent predictions. In the book, I first used blue crosses for targets and red dots for predictions, then I reversed this later in the chapter. Sorry if this caused some confusion.</p>
 </section>
 <section id="computing-some-baselines">
-<h2>Computing Some Baselines<a class="headerlink" href="#computing-some-baselines" title="Permalink to this headline">#</a></h2>
+<h2>Computing Some Baselines<a class="headerlink" href="#computing-some-baselines" title="Permalink to this heading">#</a></h2>
 <p>Naive predictions (just predict the last observed value):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -898,7 +899,7 @@ Epoch 20/20
 </div>
 </section>
 <section id="using-a-simple-rnn">
-<h2>Using a Simple RNN<a class="headerlink" href="#using-a-simple-rnn" title="Permalink to this headline">#</a></h2>
+<h2>Using a Simple RNN<a class="headerlink" href="#using-a-simple-rnn" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
@@ -1008,7 +1009,7 @@ Epoch 20/20
 </div>
 </section>
 <section id="deep-rnns">
-<h2>Deep RNNs<a class="headerlink" href="#deep-rnns" title="Permalink to this headline">#</a></h2>
+<h2>Deep RNNs<a class="headerlink" href="#deep-rnns" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
@@ -1223,7 +1224,7 @@ Epoch 20/20
 </div>
 </section>
 <section id="forecasting-several-steps-ahead">
-<h2>Forecasting Several Steps Ahead<a class="headerlink" href="#forecasting-several-steps-ahead" title="Permalink to this headline">#</a></h2>
+<h2>Forecasting Several Steps Ahead<a class="headerlink" href="#forecasting-several-steps-ahead" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">43</span><span class="p">)</span> <span class="c1"># not 42, as it would give the first series in the train set</span>
@@ -1649,7 +1650,7 @@ Epoch 20/20
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="deep-rnn-with-batch-norm">
-<h1>Deep RNN with Batch Norm<a class="headerlink" href="#deep-rnn-with-batch-norm" title="Permalink to this headline">#</a></h1>
+<h1>Deep RNN with Batch Norm<a class="headerlink" href="#deep-rnn-with-batch-norm" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
@@ -1717,7 +1718,7 @@ Epoch 20/20
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="deep-rnns-with-layer-norm">
-<h1>Deep RNNs with Layer Norm<a class="headerlink" href="#deep-rnns-with-layer-norm" title="Permalink to this headline">#</a></h1>
+<h1>Deep RNNs with Layer Norm<a class="headerlink" href="#deep-rnns-with-layer-norm" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from tensorflow.keras.layers import LayerNormalization</span>
@@ -1819,7 +1820,7 @@ Epoch 20/20
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="creating-a-custom-rnn-class">
-<h1>Creating a Custom RNN Class<a class="headerlink" href="#creating-a-custom-rnn-class" title="Permalink to this headline">#</a></h1>
+<h1>Creating a Custom RNN Class<a class="headerlink" href="#creating-a-custom-rnn-class" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyRNN</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
@@ -1925,7 +1926,7 @@ Epoch 20/20
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="lstms">
-<h1>LSTMs<a class="headerlink" href="#lstms" title="Permalink to this headline">#</a></h1>
+<h1>LSTMs<a class="headerlink" href="#lstms" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>

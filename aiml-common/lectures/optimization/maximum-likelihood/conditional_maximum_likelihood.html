@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Maximum Likelihood (ML) Estimation of conditional models &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Stochastic Gradient Descent" href="../sgd/_index.html" />
     <link rel="prev" title="Maximum Likelihood Estimation of a marginal model" href="marginal_maximum_likelihood.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -589,13 +590,13 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="maximum-likelihood-ml-estimation-of-conditional-models">
-<h1>Maximum Likelihood (ML) Estimation of conditional models<a class="headerlink" href="#maximum-likelihood-ml-estimation-of-conditional-models" title="Permalink to this headline">#</a></h1>
+<h1>Maximum Likelihood (ML) Estimation of conditional models<a class="headerlink" href="#maximum-likelihood-ml-estimation-of-conditional-models" title="Permalink to this heading">#</a></h1>
 <p>The discussion in the marginal distribution  is equivalently applicable to the conditional distribution <span class="math notranslate nohighlight">\(p_{model}(\mathbf y | \mathbf x, \mathbf w)\)</span> which governs supervised learning, <span class="math notranslate nohighlight">\(y\)</span> being the symbol of the label / target variable. Therefore all machine learning software frameworks offer excellent APIs on CE calculation.</p>
 <div class="math notranslate nohighlight">
 \[ L(\mathbf w) = - \mathbb{E_{\mathbf x, \mathbf y \sim \hat p_{data}}}  \log p_{model}(\mathbf y | \mathbf x; \mathbf w)\]</div>
 <p>The attractiveness of the ML solution is that the CE (also known as log-loss) is general and we <em>don’t need to re-design it</em> when we change the model.</p>
 <section id="visualizing-the-regression-function-the-conditional-mean">
-<h2>Visualizing the regression function - the conditional mean<a class="headerlink" href="#visualizing-the-regression-function-the-conditional-mean" title="Permalink to this headline">#</a></h2>
+<h2>Visualizing the regression function - the conditional mean<a class="headerlink" href="#visualizing-the-regression-function-the-conditional-mean" title="Permalink to this heading">#</a></h2>
 <p>It is now instructive to go over an example to understand that even the plain-old mean squared error (MSE), the objective that is common in the regression setting, falls under the same umbrella - its the cross entropy between <span class="math notranslate nohighlight">\(\hat p_{data}\)</span> and a Gaussian model.</p>
 <p>Please follow the discussion associated with Section 5.5.1 of the Ian Goodfellow’s book or section 20.2.4 of Russell &amp; Norvig’s book and <a class="reference download internal" download="" href="../../../../_downloads/02bfd864c4376857120a76e31bcec088/notescs6140linearregression.pdf"><span class="xref download myst">these notes</span></a>  and consider the following figure for assistance to visualize the relationship of <span class="math notranslate nohighlight">\(p_{data}\)</span> and <span class="math notranslate nohighlight">\(p_{model}\)</span>.</p>
 <p><img alt="conditional-model-gaussian" src="../../../../_images/conditional-model-gaussian.png" />

@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Feature Extraction via Residual Networks &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Variational Auto Encoders (VAE)" href="../../vae/index.html" />
     <link rel="prev" title="Using convnets with small datasets" href="../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -523,13 +524,13 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="feature-extraction-via-residual-networks">
-<h1>Feature Extraction via Residual Networks<a class="headerlink" href="#feature-extraction-via-residual-networks" title="Permalink to this headline">#</a></h1>
+<h1>Feature Extraction via Residual Networks<a class="headerlink" href="#feature-extraction-via-residual-networks" title="Permalink to this heading">#</a></h1>
 <p>In the figure below we plot the evolution of depth in CNN architectures. Notice the big jump due to the introduction of the ResNet architecture.</p>
 <p><img alt="evolution-of-depth" src="../../../../_images/evolution-of-depth.png" />
 <em>Evolution of depth in CNN architectures. (Circa 2018)</em></p>
 <p>The aim of this section is to provide an alternative view as to why ResNets seem to be able to accommodate much deeper architecture while performing even better that existing architectures for the same depth (e.g. ResNet-18).</p>
 <section id="the-resnet-architecture">
-<h2>The ResNet Architecture<a class="headerlink" href="#the-resnet-architecture" title="Permalink to this headline">#</a></h2>
+<h2>The ResNet Architecture<a class="headerlink" href="#the-resnet-architecture" title="Permalink to this heading">#</a></h2>
 <p><img alt="resnet-vgg" src="../../../../_images/resnet-vgg.png" />
 <em>34 layers deep ResNet architecture (3rd column) vs earlier architectures</em></p>
 <p>ResNets or residual networks, introduced the concept of the residual. This can be understood looking at a small residual network of three stages. The striking difference between ResNets and earlier architectures are the <strong>skip connections</strong>. Shortcut connections are those skipping one or more layers. The shortcut connections simply perform identity mapping, and their outputs are added to the outputs of the stacked layers. Identity shortcut connections add neither extra parameter nor computational complexity. The entire network can still be trained end-to-end by SGD with backpropagation, and can be easily implemented using common libraries without modifying the solvers.</p>
@@ -550,7 +551,7 @@ in their order.</p>
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/1PGLj-uKT1w" style="border: 0; height: 345px; width: 560px">
 </iframe></div></section>
 <section id="resnets-and-batch-normalization">
-<h2>ResNets and Batch Normalization<a class="headerlink" href="#resnets-and-batch-normalization" title="Permalink to this headline">#</a></h2>
+<h2>ResNets and Batch Normalization<a class="headerlink" href="#resnets-and-batch-normalization" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://colab.research.google.com/github/davidcpage/cifar10-fast/blob/master/batch_norm_post.ipynb">This notebook</a> is very instructive of what now is considered a canonical new ResNet block that includes batch normalization.</p>
 </section>
 </section>

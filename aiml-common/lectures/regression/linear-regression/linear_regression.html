@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Linear Regression &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Maximum Likelihood Estimation of a marginal model" href="../../optimization/maximum-likelihood/marginal_maximum_likelihood.html" />
     <link rel="prev" title="kNN Workshop" href="../../density-estimation/knn-workshop/_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -591,7 +592,7 @@ document.write(`
                   
   <p><a href="https://colab.research.google.com/github/pantelis/aiml-common/blob/master/lectures/regression/linear-regression/linear_regression.ipynb" target="_parent"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="linear-regression">
-<h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">#</a></h1>
+<h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this heading">#</a></h1>
 <p>Now that we have introduced somewhat more formally the learning problem and its notation lets us study a simple but instructive regression problem that is known in the statistics literature as <em>shrinkage</em>.</p>
 <p>Suppose that we are given the training set  <span class="math notranslate nohighlight">\(\mathcal D = \{(\mathbf x_i, y_i), i =1 \dots m\}\)</span>  where <span class="math notranslate nohighlight">\(\mathbf x_i \in \mathbb R^n\)</span> the label <span class="math notranslate nohighlight">\(y_i \in \mathbb R\)</span>. We need to construct a model such that a <em>suitably chosen</em> loss function is minimized for a <strong>different</strong> set of input data, the so-called test set. The ability to correctly <em>predict</em> when observing the test set, is called <strong>generalization</strong>.</p>
 <a class="bg-primary reference internal image-reference" href="../../../../_images/Figure1.2.png"><img alt="dataset" class="bg-primary" src="../../../../_images/Figure1.2.png" style="width: 300px;" /></a>
@@ -768,11 +769,11 @@ Requirement already satisfied: scipy in /workspaces/artificial_intelligence/.ven
 <p><img alt="generalization-error-vs-capacity" src="../../../../_images/generalization-capacity.png" /></p>
 <p><em>As capacity increases (x-axis), bias (dotted) tends to decrease and variance(dashed) tends to increase, yielding another U-shaped curve for generalization error (bold curve). If we vary capacity along one axis, there is an optimal capacity, with underﬁtting when the capacity is below this optimum and overﬁtting when it is above.</em></p>
 <section id="bias-and-variance-decomposition-during-the-training-process">
-<h2>Bias and Variance Decomposition during the training process<a class="headerlink" href="#bias-and-variance-decomposition-during-the-training-process" title="Permalink to this headline">#</a></h2>
+<h2>Bias and Variance Decomposition during the training process<a class="headerlink" href="#bias-and-variance-decomposition-during-the-training-process" title="Permalink to this heading">#</a></h2>
 <p>Apart from the composition of the generalization error for various model capacities,  it is interesting to make some general comments regarding the decomposition of the generalization error (also known as empirical risk) during training. Early in training the bias is large because the predictor output is far from the target function. The variance is very small because the data has had little influence yet. Late in training the bias is small because the predictor has learned the underlying function. However if train for too long then the predictor will also have learned the noise specific to the dataset (overfitting). In such case the variance will be large because the noise varies between training and test datasets.</p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <p>This notebook makes extensive use of the <a class="reference external" href="https://github.com/ctgk/PRML">Pattern Recognition for Machine Learning python package</a>.</p>
 </section>
 </section>

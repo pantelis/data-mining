@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Logistic Regression &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="The Neuron (Perceptron)" href="../perceptron/_index.html" />
     <link rel="prev" title="Introduction to Classification" href="../classification-intro/_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -524,10 +525,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="logistic-regression">
-<h1>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">#</a></h1>
+<h1>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this heading">#</a></h1>
 <p>Logistic regression is used in machine learning extensively - every time we need to provide probabilistic semantics to an outcome e.g. predicting the risk of developing a given disease (e.g. diabetes; coronary heart disease), based on observed characteristics of the patient (age, sex, body mass index, results of various blood tests, etc.), whether an voter will vote for a given party, predicting the probability of failure of a given process, system or product, predicting a customer’s propensity to purchase a product or halt a subscription, predicting the likelihood of a homeowner defaulting on a mortgage.</p>
 <section id="odds-and-the-logistic-sigmoid">
-<h2>Odds and the Logistic Sigmoid<a class="headerlink" href="#odds-and-the-logistic-sigmoid" title="Permalink to this headline">#</a></h2>
+<h2>Odds and the Logistic Sigmoid<a class="headerlink" href="#odds-and-the-logistic-sigmoid" title="Permalink to this heading">#</a></h2>
 <p>If <span class="math notranslate nohighlight">\(\sigma\)</span> is a probability of an event, then the ratio <span class="math notranslate nohighlight">\(\frac{\sigma}{1-\sigma}\)</span> is the corresponding <em>odds</em>, the ratio of the event  occurring divided by not occurring. For example, if a race horse runs 100 races and wins 25 times and loses the other 75 times, the probability of winning is 25/100 = 0.25 or 25%, but the odds of the horse winning are 25/75 = 0.333 or 1 win to 3 loses. In the binary classification case, the log odds is given by</p>
 <div class="math notranslate nohighlight">
 \[ \mathtt{logit}(\sigma) = \alpha = \ln \frac{\sigma}{1-\sigma} = \ln \frac{p(y=1|\mathbf{x})}{p(y=0 |\mathbf{x})}\]</div>
@@ -542,7 +543,7 @@ document.write(`
 \[\sigma(-\alpha) = 1 - \sigma(\alpha)\]</div>
 </section>
 <section id="binary-case">
-<h2>Binary case<a class="headerlink" href="#binary-case" title="Permalink to this headline">#</a></h2>
+<h2>Binary case<a class="headerlink" href="#binary-case" title="Permalink to this heading">#</a></h2>
 <p>If we consider the two class problem, we can write the posterior probability as,</p>
 <div class="math notranslate nohighlight">
 \[p(y=1|\mathbf{x}) = \frac{p(\mathbf{x}|y=1) p(y=1)}{p(\mathbf{x}|y=1) p(y=1) + p(\mathbf{x}|y=0) p(y=0)} = \frac{1}{1 + \exp(-\alpha)} = \sigma(\alpha)\]</div>
@@ -571,7 +572,7 @@ $<span class="math notranslate nohighlight">\(L(\mathbf{w}) = L(y, \hat{y}) = - 
 <p>The behavior of the loss function is telling: it heavily penalizes confident wrong decisions. Notice its exponential rise when the probability <span class="math notranslate nohighlight">\(\hat{y}\)</span> of the class “1” is close to 0.0 which means that the classifier predicted with high confidence the opposite class that the ground truth.   On the other hand, when the probability of <span class="math notranslate nohighlight">\(\hat y\)</span> is close to 1.0, which means that the classifier predicts the class “1” with confidence, we exhibit minimal loss and in the limit zero loss.</p>
 </section>
 <section id="optimizing-lr-parameters-with-sgd">
-<h2>Optimizing LR parameters with SGD<a class="headerlink" href="#optimizing-lr-parameters-with-sgd" title="Permalink to this headline">#</a></h2>
+<h2>Optimizing LR parameters with SGD<a class="headerlink" href="#optimizing-lr-parameters-with-sgd" title="Permalink to this heading">#</a></h2>
 <p>Minimizing the Binary CE (log-loss) starts from the negative log likelihood:</p>
 <div class="math notranslate nohighlight">
 \[L(\mathbf{w}) = - \ln p_{model}(\mathbf{y},\mathbf{w}) = - \big[ \sum_{i=1}^m \{y_i \ln \hat{y}_i + (1-y_i) \ln (1-\hat{y}_i) \} \big]\]</div>

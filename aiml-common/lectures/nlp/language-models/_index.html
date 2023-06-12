@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>RNN-based Language Models &#8212; Data Mining</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
@@ -70,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="CNN Language Model" href="cnn-language-model/index.html" />
     <link rel="prev" title="Word2Vec Tensorflow Tutorial" href="../nlp-introduction/word2vec/word2vec_tensorflow_tutorial.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -523,12 +524,12 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="rnn-based-language-models">
-<h1>RNN-based Language Models<a class="headerlink" href="#rnn-based-language-models" title="Permalink to this headline">#</a></h1>
+<h1>RNN-based Language Models<a class="headerlink" href="#rnn-based-language-models" title="Permalink to this heading">#</a></h1>
 <blockquote>
 <div><p>These notes heavily borrowing from <a class="reference external" href="https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1224/index.html#coursework">the CS224N set of notes on Language Models</a>.</p>
 </div></blockquote>
 <section id="the-need-for-neural-language-models">
-<h2>The need for neural language models<a class="headerlink" href="#the-need-for-neural-language-models" title="Permalink to this headline">#</a></h2>
+<h2>The need for neural language models<a class="headerlink" href="#the-need-for-neural-language-models" title="Permalink to this heading">#</a></h2>
 <p><img alt="language-model-google-search" src="../../../../_images/language-model-google-search.png" />
 *Language model example that completes the search query. We need a language model that given a sequence of words <span class="math notranslate nohighlight">\(\{ \mathbf w_1, ..., \mathbf w_t \}\)</span> it returns</p>
 <div class="math notranslate nohighlight">
@@ -553,7 +554,7 @@ document.write(`
 <p>To solve these issues we will create neural models that are able to predict the required word.</p>
 </section>
 <section id="rnn-language-models">
-<h2>RNN Language Models<a class="headerlink" href="#rnn-language-models" title="Permalink to this headline">#</a></h2>
+<h2>RNN Language Models<a class="headerlink" href="#rnn-language-models" title="Permalink to this heading">#</a></h2>
 <p>When we focus on making predictions based on a fixed window of context (i.e. the <span class="math notranslate nohighlight">\(n\)</span> previous words), in some cases, the window may not be sufficient to capture the context. For instance, consider a case where an article discusses the history of Spain and France and somewhere later in the text, it reads “The two countries went on a battle”; clearly the information presented in this sentence alone is not sufficient to identify the name of the two countries.</p>
 <p>Out of the many neural architectures and to provide the required long memory (up to a point that is) we will use the RNN architectures as shown next.</p>
 <p><img alt="rnn-language-model" src="../../../../_images/rnn-language-model-words.png" />
