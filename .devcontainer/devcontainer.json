@@ -38,7 +38,8 @@
 				"ms-python.vscode-pylance",
 				"ExecutableBookProject.myst-highlight",
 				"GitHub.copilot",
-				"ms-toolsai.jupyter"
+				"ms-toolsai.jupyter",
+				"eamodio.gitlens"
 			],
 			"settings": {
 				"terminal.integrated.profiles.linux": {

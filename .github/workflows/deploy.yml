@@ -65,7 +65,7 @@ jobs:
       - name: Build the book
         shell: bash -l {0}
         run: |
-          jupyter-book build --path-output standard data_mining
+          jupyter-book build  data_mining
 
     # Deploy the book's HTML to gh-pages branch
       - name: GitHub Pages action
