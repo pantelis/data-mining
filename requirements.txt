@@ -2,6 +2,7 @@
 jupyter-book
 sphinx-autobuild
 sphinxcontrib-youtube
+diagrams
 # sphinxcontrib-svg2pdfconverter
 # sphinx-proof
 # sphinx-inline-tabs
