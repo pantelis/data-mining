@@ -3,7 +3,8 @@ jupyter-book
 sphinx-autobuild
 sphinxcontrib-youtube
 diagrams
-# sphinxcontrib-svg2pdfconverter
+sphinxcontrib-svg2pdfconverter
+ipywidgets
 # sphinx-proof
 # sphinx-inline-tabs
 # sphinxext-rediraffe
