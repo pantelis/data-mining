@@ -137,6 +137,7 @@ parts:
     chapters:
     - file: aiml-common/assignments/probability/probability-assignment-6/index.ipynb
     - file: aiml-common/assignments/recommendations/index.ipynb
+    - file: aiml-common/assignments/crop-yield-estimation/index.ipynb
   #   - file: aiml-common/assignments/mle/poisson-regression-1/index.ipynb
   #   - file: aiml-common/assignments/cnn-face-similarity/index.ipynb
 
