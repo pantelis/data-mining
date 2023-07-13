@@ -57,3 +57,6 @@ The following video is also useful on how to add the Open in Colab button in not
 
 [![Open in Colab](https://img.youtube.com/vi/RoGZIbwzG5w/0.jpg)](https://www.youtube.com/watch?v=RoGZIbwzG5w)
 
+## Notebooks with handwritten answers
+
+For some assignments you may have to draw or write with pencil and paper. After you scan your work and create jpeg or png images, you can add it to your notebook as [shown here](https://towardsdatascience.com/the-2-step-guide-to-upload-images-in-google-colab-b51348e882e4).
