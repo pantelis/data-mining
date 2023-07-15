@@ -9,7 +9,6 @@ parts:
     - file: syllabus/index.md
   
   - caption: Introduction to Data Mining
-    # numbered: 3
     chapters:
     - file: aiml-common/lectures/data-premise/index.md
     - file: aiml-common/lectures/ai-intro/data-science-360/_index.md
@@ -20,7 +19,6 @@ parts:
       - file: aiml-common/lectures/pipelines/01_the_machine_learning_landscape.ipynb
 
   - caption: The Learning Problem
-    # numbered: 3
     chapters:
     - file: aiml-common/lectures/learning-problem/_index.md
     - file: aiml-common/lectures/pipelines/02_end_to_end_machine_learning_project.ipynb
@@ -39,7 +37,6 @@ parts:
       - file: aiml-common/lectures/ensemble/boosting-workshop/index.ipynb  
 
   - caption:  Classical Dimensionality Reduction
-    # numbered: 3
     chapters:    
     - file: aiml-common/lectures/recommenders/recommenders-intro/_index.md
     - file: aiml-common/lectures/recommenders/netflix/_index.md
@@ -47,14 +44,12 @@ parts:
     - file: aiml-common/lectures/pca/principal-component-analysis.ipynb 
     
   - caption: Unsupervised and Non-Parametric Supervised Methods
-    # numbered: 3
     chapters:    
     - file: aiml-common/lectures/unsupervised/k-means/_index.md
     - file: aiml-common/lectures/density-estimation/knn/_index.md
     - file: aiml-common/lectures/density-estimation/knn-workshop/_index.md
    
   - caption: On Maximum Likelihood
-    # numbered: 3
     chapters:
     - file: aiml-common/lectures/regression/linear-regression/linear_regression.ipynb    
     # - file: aiml-common/lectures/optimization/maximum-likelihood/marginal_maximum_likelihood.ipynb
@@ -64,7 +59,6 @@ parts:
     - file: aiml-common/lectures/classification/logistic-regression/_index.md
       
   - caption: Deep Neural Networks
-    # numbered: 3
     chapters:    
     # - file: aiml-common/lectures/classification/perceptron/_index.md
     - file: aiml-common/lectures/dnn/dnn-intro/_index.md
@@ -76,7 +70,6 @@ parts:
     #- file: aiml-common/lectures/optimization/regularization/regularization-workshop-1/_index.md
       
   - caption: Convolutional Neural Networks
-    # numbered: 3
     chapters:    
     - file: aiml-common/lectures/cnn/cnn-intro/_index.md
     - file: aiml-common/lectures/cnn/cnn-layers/_index.md
@@ -116,8 +109,6 @@ parts:
       - file: aiml-common/lectures/nlp/language-models/simple-rnn-language-model/index.ipynb
       - file: aiml-common/lectures/nlp/language-models/lstm-language-model/index.ipynb
     
-
-  
   - caption: Math Background
     chapters: 
     - file: aiml-common/lectures/ml-math/index.md   
@@ -141,10 +132,6 @@ parts:
   #   - file: aiml-common/assignments/mle/poisson-regression-1/index.ipynb
   #   - file: aiml-common/assignments/cnn-face-similarity/index.ipynb
 
-  # - caption:  Project (CS482)
-  #   chapters:
-  #   - file: aiml-common/projects/nlp/finetuning-language-models-tweets/index.md
-  
   - caption:  Project (CS634)
     chapters:
     - file: aiml-common/projects/interpretable-gradient-boosting/index.md

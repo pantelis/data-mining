@@ -1,7 +1,8 @@
 # --------- docs --------- #
-jupyter-book
+jupyter-book==0.15.1
 sphinx-autobuild
 sphinxcontrib-youtube
+sphinxcontrib-bibtex
 diagrams
 sphinxcontrib-svg2pdfconverter
 ipywidgets

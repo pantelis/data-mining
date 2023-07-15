@@ -46,5 +46,5 @@
 			}
 		}
 	},
-	"postStartCommand": "jb config sphinx data_mining && sphinx-autobuild --host 0.0.0.0 --port 8100 data_mining _build/html"
+	"postStartCommand": "jb config sphinx data_mining && sphinx-autobuild --port 20000 data_mining _build/html"
 }

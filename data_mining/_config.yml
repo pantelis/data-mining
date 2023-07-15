@@ -54,14 +54,37 @@ launch_buttons:
 sphinx:
   recursive_update: true
   config:
+    html_theme: sphinx_book_theme
+    bibtex_reference_style: author_year  # or label, super, \supercite
     nb_merge_streams: true
     nb_execution_show_tb: true
+    html_sidebars: {"data_mining/*": []} #sbt-sidebar-nav.html
     html_theme_options:
       use_download_button: true
       repository_url: https://github.com/pantelis/data-mining
       use_issues_button: true
       use_repository_button: true
       use_edit_page_button: true
+      show_navbar_depth: 0
+      intersphinx_mapping:
+      python:
+        - "https://docs.python.org/3/"
+        - null
+      numpy:
+        - "https://numpy.org/doc/stable/"
+        - null
+      pandas:
+        - "https://pandas.pydata.org/docs/"
+        - null
+      scikit-learn:
+        - "https://scikit-learn.org/stable/"
+        - null
+      torch:
+        - "https://pytorch.org/docs/master/"
+        - null
+      tf2:
+        - "https://pytorch.org/docs/master/"
+        - null
     mathjax3_config:
       tex:
         macros:
@@ -79,7 +102,7 @@ sphinx:
     # - sphinx_press_theme
     - sphinxcontrib.youtube
     # - sphinx_inline_tabs
-    # - sphinxcontrib.inkscapeconverter
+    - sphinxcontrib.inkscapeconverter
     # #- sphinx_click.ext
     # - sphinx_inline_tabs
     # - sphinxext.rediraffe
