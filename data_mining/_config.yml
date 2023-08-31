@@ -65,7 +65,7 @@ sphinx:
       use_issues_button: true
       use_repository_button: true
       use_edit_page_button: true
-      show_navbar_depth: 0
+      show_navbar_depth: 1
       intersphinx_mapping:
       python:
         - "https://docs.python.org/3/"

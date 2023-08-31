@@ -1,10 +1,10 @@
 # Data Mining
 
 ```{only} html
-
+<!-- 
 <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="pantelis" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/pantelis?trk=profile-badge">Pantelis Monogioudis</a></div>
-              
+               -->
 <a href="https://twitter.com/monogioudis?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @monogioudis</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ```
@@ -29,7 +29,7 @@ This course requires some intensive effort from your side in both learning these
 
 **Logistics** {octicon}`organization;1em;sd-text-info`
 ^^^
-Course Dates: May 24th 2023 - Aug 3rd 2023
+Course Dates: Sept 2023 -  Dec 2023
 
 :::
 
@@ -76,7 +76,7 @@ Assignments (30%)
 **Staff (TAs)** {octicon}`person;1em;sd-text-info`
 ^^^
 
-Pritam Shen (please find him in our Discord class channel)
+TBD
 
 :::
 
