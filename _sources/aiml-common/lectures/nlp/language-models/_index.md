@@ -1,4 +1,4 @@
-# RNN-based Language Models
+# Language Models
 
 > These notes heavily borrowing from [the CS224N set of notes on Language Models](https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1224/index.html#coursework). 
 
