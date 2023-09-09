@@ -124,9 +124,9 @@ parts:
     #- file: aiml-common/lectures/ensemble/gradient-boosting/xgboost-app/xgboost.ipynb
     - file: aiml-common/resources/environment/notebook-status.md
    
-  # - caption:  Assignments 
-  #   chapters:
-  #   - file: aiml-common/assignments/probability/probability-assignment-6/index.ipynb
+  - caption:  Assignments 
+    chapters:
+    - file: aiml-common/assignments/probability/probability-assignment-7/index.ipynb
   #   - file: aiml-common/assignments/recommendations/index.ipynb
   #   - file: aiml-common/assignments/crop-yield-estimation/index.ipynb
   # #   - file: aiml-common/assignments/mle/poisson-regression-1/index.ipynb
