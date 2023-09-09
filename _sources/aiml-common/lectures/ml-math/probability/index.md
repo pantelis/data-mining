@@ -5,6 +5,8 @@
 If the contents in this section are new to you, we recommend to start by watching [the Fat Chance course](https://www.edx.org/course/fat-chance-probability-from-the-ground-up-2) in edX as soon as possible. It is a great course and it is free. 
 
 Note also the Khan Academy [introduction](https://www.khanacademy.org/math/statistics-probability) especially the sections "Probability" and "Random Variables".  
+
+The [Stanford CS109 Course offers a very nice summary](https://chrispiech.github.io/probabilityForComputerScientists/en/) - Part 1 and Part 2 are essential reading. 
 ```
 
 1. The whole purpose of probabilistic modeling is to introduce uncertainty into our problem statement. There are three types of uncertainties:
@@ -37,7 +39,15 @@ The three important probabilities that we need to be concerned with in data mini
 *(e) and (f) represent joint distributions of discrete and continuous random variables*
 
 
-## Sum rule and the Marginal Probability
+## Sum and Product rules
+
+The following video explains the sum and product rules that are extensivbely used in data science and for understanding the Bayes rule.
+
+```{eval-rst}
+.. youtube:: bwjOOzFSo9c
+```
+
+### Sum rule and the Marginal Probability
 
 Given the joint what is the marginal probability $P(x)$ ?
 
@@ -46,7 +56,7 @@ $$P(x)   = \sum_y P(x,y) = \sum_y P(x | y)P(y)$$
 ![marginal-prob](images/marginal-prob.png)
 *Extracting the marginal out of the joint*
 
-## Conditional Probability and the Product or chain rule
+### Conditional Probability and the Product or chain rule
 
 This is obtained from the definition of conditional probability:
 

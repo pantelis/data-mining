@@ -289,6 +289,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Learn Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../resources/environment/notebook-status.html">Notebook execution status</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../assignments/probability/probability-assignment-7/index.html">Probability Assignment</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -498,8 +502,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-rule-and-the-marginal-probability">Sum rule and the Marginal Probability</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-probability-and-the-product-or-chain-rule">Conditional Probability and the Product or chain rule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-and-product-rules">Sum and Product rules</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-rule-and-the-marginal-probability">Sum rule and the Marginal Probability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-probability-and-the-product-or-chain-rule">Conditional Probability and the Product or chain rule</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-variate-gaussian-distribution">Multi-variate Gaussian distribution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
 </ul>
@@ -519,6 +526,7 @@ document.write(`
 <p class="admonition-title">Warning</p>
 <p>If the contents in this section are new to you, we recommend to start by watching <a class="reference external" href="https://www.edx.org/course/fat-chance-probability-from-the-ground-up-2">the Fat Chance course</a> in edX as soon as possible. It is a great course and it is free.</p>
 <p>Note also the Khan Academy <a class="reference external" href="https://www.khanacademy.org/math/statistics-probability">introduction</a> especially the sections “Probability” and “Random Variables”.</p>
+<p>The <a class="reference external" href="https://chrispiech.github.io/probabilityForComputerScientists/en/">Stanford CS109 Course offers a very nice summary</a> - Part 1 and Part 2 are essential reading.</p>
 </div>
 <ol class="arabic simple">
 <li><p>The whole purpose of probabilistic modeling is to introduce uncertainty into our problem statement. There are three types of uncertainties:</p>
@@ -546,8 +554,13 @@ document.write(`
 <em>Joint probability <span class="math notranslate nohighlight">\(P(x,y)\)</span> distribution over the 27x27 possible bigrams <span class="math notranslate nohighlight">\(xy\)</span> found in this document: <a class="reference external" href="https://www.tldp.org/FAQ/pdf/Linux-FAQ.pdf">https://www.tldp.org/FAQ/pdf/Linux-FAQ.pdf</a></em></p>
 <p><img alt="joint-prob" src="../../../../_images/joint-prob.png" />
 <em>(e) and (f) represent joint distributions of discrete and continuous random variables</em></p>
-<section id="sum-rule-and-the-marginal-probability">
-<h2>Sum rule and the Marginal Probability<a class="headerlink" href="#sum-rule-and-the-marginal-probability" title="Permalink to this heading">#</a></h2>
+<section id="sum-and-product-rules">
+<h2>Sum and Product rules<a class="headerlink" href="#sum-and-product-rules" title="Permalink to this heading">#</a></h2>
+<p>The following video explains the sum and product rules that are extensivbely used in data science and for understanding the Bayes rule.</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/bwjOOzFSo9c" style="border: 0; height: 345px; width: 560px">
+</iframe></div><section id="sum-rule-and-the-marginal-probability">
+<h3>Sum rule and the Marginal Probability<a class="headerlink" href="#sum-rule-and-the-marginal-probability" title="Permalink to this heading">#</a></h3>
 <p>Given the joint what is the marginal probability <span class="math notranslate nohighlight">\(P(x)\)</span> ?</p>
 <div class="math notranslate nohighlight">
 \[P(x)   = \sum_y P(x,y) = \sum_y P(x | y)P(y)\]</div>
@@ -555,7 +568,7 @@ document.write(`
 <em>Extracting the marginal out of the joint</em></p>
 </section>
 <section id="conditional-probability-and-the-product-or-chain-rule">
-<h2>Conditional Probability and the Product or chain rule<a class="headerlink" href="#conditional-probability-and-the-product-or-chain-rule" title="Permalink to this heading">#</a></h2>
+<h3>Conditional Probability and the Product or chain rule<a class="headerlink" href="#conditional-probability-and-the-product-or-chain-rule" title="Permalink to this heading">#</a></h3>
 <p>This is obtained from the definition of conditional probability:</p>
 <div class="math notranslate nohighlight">
 \[P(x,y) = P(x | y)P(y) = P(y | x)P(x)\]</div>
@@ -565,6 +578,7 @@ document.write(`
 <p class="admonition-title">Question</p>
 <p>Are <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> in the example above independent ?</p>
 </div>
+</section>
 </section>
 <section id="multi-variate-gaussian-distribution">
 <h2>Multi-variate Gaussian distribution<a class="headerlink" href="#multi-variate-gaussian-distribution" title="Permalink to this heading">#</a></h2>
@@ -651,8 +665,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-rule-and-the-marginal-probability">Sum rule and the Marginal Probability</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-probability-and-the-product-or-chain-rule">Conditional Probability and the Product or chain rule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-and-product-rules">Sum and Product rules</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-rule-and-the-marginal-probability">Sum rule and the Marginal Probability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-probability-and-the-product-or-chain-rule">Conditional Probability and the Product or chain rule</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-variate-gaussian-distribution">Multi-variate Gaussian distribution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
 </ul>
