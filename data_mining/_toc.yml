@@ -26,29 +26,32 @@ parts:
   - caption: Predictors for Structured Data 
     chapters:
     - file: aiml-common/lectures/entropy/_index.md
-    - file: aiml-common/lectures/decision-trees/_index.md
-    - file: aiml-common/lectures/regression-trees/regression_trees.ipynb
-    - file: aiml-common/lectures/ensemble/_index.md
+    - file: aiml-common/lectures/trees/decision-trees/index.md
+    - file: aiml-common/lectures/trees/decision-trees/decision_tree.ipynb
+    - file: aiml-common/lectures/trees/regression-trees/stumps.ipynb
+    - file: aiml-common/lectures/ensemble/index.md
       title:  Ensemble Methods
       sections:       
-      - file: aiml-common/lectures/ensemble/random-forests/_index.md
+      - file: aiml-common/lectures/ensemble/random-forests/index.md
       - file: aiml-common/lectures/ensemble/adaboost/index.md
+      - file: aiml-common/lectures/ensemble/adaboost/adaboost_example.ipynb
       - file: aiml-common/lectures/ensemble/gradient-boosting/index.md  
       - file: aiml-common/lectures/ensemble/boosting-workshop/index.ipynb  
 
+  - caption: Unsupervised and Non-Parametric Supervised Methods
+    chapters:    
+    - file: aiml-common/lectures/unsupervised/k-means/_index.md
+    - file: aiml-common/lectures/density-estimation/knn/_index.md
+    - file: aiml-common/lectures/density-estimation/knn-workshop/_index.md
+
+  
   - caption:  Classical Dimensionality Reduction
     chapters:    
     - file: aiml-common/lectures/recommenders/recommenders-intro/_index.md
     - file: aiml-common/lectures/recommenders/netflix/_index.md
     - file: aiml-common/lectures/pca/_index.md
     - file: aiml-common/lectures/pca/principal-component-analysis.ipynb 
-    
-  - caption: Unsupervised and Non-Parametric Supervised Methods
-    chapters:    
-    - file: aiml-common/lectures/unsupervised/k-means/_index.md
-    - file: aiml-common/lectures/density-estimation/knn/_index.md
-    - file: aiml-common/lectures/density-estimation/knn-workshop/_index.md
-   
+     
   - caption: On Maximum Likelihood
     chapters:
     - file: aiml-common/lectures/regression/linear-regression/linear_regression.ipynb    
