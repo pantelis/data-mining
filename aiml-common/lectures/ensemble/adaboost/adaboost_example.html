@@ -1,0 +1,997 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Adaboost from scratch &#8212; Data Mining</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="../../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/ensemble/adaboost/adaboost_example';</script>
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/ensemble/adaboost/adaboost_example.html" />
+    <link rel="shortcut icon" href="../../../../_static/logo.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Gradient Boosting" href="../gradient-boosting/index.html" />
+    <link rel="prev" title="Adaptive Boosting (AdaBoost)" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../intro.html">
+                    Data Mining
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../syllabus/index.html">Syllabus</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Data Mining</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../data-premise/index.html">The new premise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ai-intro/data-science-360/_index.html">Data Science 360</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../pipelines/_index.html">Pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../pipelines/uber-ml-arch-case-study/index.html">A Case Study of an ML Architecture - Uber</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../pipelines/01_the_machine_learning_landscape.html">The Machine Learning landscape</a></li>
+
+
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Learning Problem</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../learning-problem/_index.html">The Learning Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pipelines/02_end_to_end_machine_learning_project.html">End-to-end Machine Learning project</a></li>
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Predictors for Structured Data</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../entropy/_index.html">Entropy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trees/decision-trees/index.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trees/decision-trees/decision_tree.html">Decision tree from scratch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../trees/regression-trees/stumps.html">Regression Trees</a></li>
+
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Ensemble Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../random-forests/index.html">Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html">Adaptive Boosting (AdaBoost)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Adaboost from scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gradient-boosting/index.html">Gradient Boosting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../boosting-workshop/index.html">Boosting Workshop</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unsupervised and Non-Parametric Supervised Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../unsupervised/k-means/_index.html">K-means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../density-estimation/knn/_index.html">k-Nearest Neighbors (kNN) Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">kNN Workshop</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Dimensionality Reduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../recommenders/recommenders-intro/_index.html">Introduction to Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../recommenders/netflix/_index.html">The Netflix Prize and Singular Value Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pca/_index.html">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pca/principal-component-analysis.html">PCA Workshop</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">On Maximum Likelihood</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../regression/linear-regression/linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimization/sgd/_index.html">Stochastic Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../classification/classification-intro/_index.html">Introduction to Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../classification/logistic-regression/_index.html">Logistic Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Neural Networks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../dnn/dnn-intro/_index.html">Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dnn/backprop-intro/_index.html">Introduction to Backpropagation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dnn/backprop-dnn/_index.html">Backpropagation in Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dnn/backprop-dnn-exercises/_index.html">Backpropagation DNN exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dnn/fashion-mnist-case-study.html">Fashion MNIST Case Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimization/regularization/_index.html">Regularization in Deep Neural Networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Convolutional Neural Networks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-intro/_index.html">Introduction to Convolutional Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-layers/_index.html">CNN Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">CNN Example Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">Using convnets with small datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">Feature Extraction via Residual Networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Representation Learning and Autoencoders</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../vae/index.html">Variational Auto Encoders (VAE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vae/generative-modeling/index.html">Generative Modeling and Approximate Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vae/vae-architecture/index.html">VAE Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vae/elbo-optimization/index.html">ELBO Optimization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sequences and RNNs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/simple-rnn/_index.html">Simple RNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/lstm/_index.html">The Long Short-Term Memory (LSTM) Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/time_series_using_simple_rnn_lstm.html">Time Series Prediction using RNNs</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-introduction/nlp-pipelines/_index.html">Introduction to NLP Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-introduction/tokenization/index.html">Tokenization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/_index.html">Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/word2vec_from_scratch.html">Word2Vec from scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/word2vec_tensorflow_tutorial.html">Word2Vec Tensorflow Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/language-models/_index.html">Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/cnn-language-model/index.html">CNN Language Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model/index.html">Simple RNN Language Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/lstm-language-model/index.html">LSTM Language Model from scratch</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Math Background</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../ml-math/index.html">Math for ML Textbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ml-math/probability/index.html">Probability Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ml-math/linear-algebra/index.html">Linear Algebra for Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ml-math/calculus/index.html">Calculus</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/environment/index.html">Your Programming Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/environment/assignment-submission.html">Submitting Your Assignment / Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Learn Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/environment/notebook-status.html">Notebook execution status</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../assignments/probability/probability-assignment-7/index.html">Probability Assignment</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/pantelis/data-mining/master?urlpath=tree/data_mining/aiml-common/lectures/ensemble/adaboost/adaboost_example.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/pantelis/data-mining/blob/master/data_mining/aiml-common/lectures/ensemble/adaboost/adaboost_example.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pantelis/data-mining" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pantelis/data-mining/edit/master/data_mining/aiml-common/lectures/ensemble/adaboost/adaboost_example.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/ensemble/adaboost/adaboost_example.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/aiml-common/lectures/ensemble/adaboost/adaboost_example.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Adaboost from scratch</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="adaboost-from-scratch">
+<h1>Adaboost from scratch<a class="headerlink" href="#adaboost-from-scratch" title="Permalink to this heading">#</a></h1>
+<p>You can watch <a class="reference external" href="https://www.youtube.com/watch?v=wF5t4Mmv5us">this video</a> to understand the code.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Decision stump used as weak classifier</span>
+<span class="k">class</span> <span class="nc">DecisionStump</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">polarity</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_idx</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">X_column</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_idx</span><span class="p">]</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">polarity</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">predictions</span><span class="p">[</span><span class="n">X_column</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">predictions</span><span class="p">[</span><span class="n">X_column</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">predictions</span>
+
+
+<span class="k">class</span> <span class="nc">Adaboost</span><span class="p">():</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_clf</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_clf</span> <span class="o">=</span> <span class="n">n_clf</span>
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="c1"># Initialize weights to 1/N</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">m</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">clfs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># Iterate through classifiers</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_clf</span><span class="p">):</span>
+            <span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionStump</span><span class="p">()</span>
+
+            <span class="n">min_error</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+            <span class="c1"># greedy search to find best threshold and feature</span>
+            <span class="k">for</span> <span class="n">feature_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="n">X_column</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">feature_i</span><span class="p">]</span>
+                <span class="n">thresholds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">X_column</span><span class="p">)</span>
+
+                <span class="k">for</span> <span class="n">threshold</span> <span class="ow">in</span> <span class="n">thresholds</span><span class="p">:</span>
+                    <span class="c1"># predict with polarity 1</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+                    <span class="n">predictions</span><span class="p">[</span><span class="n">X_column</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+                    <span class="c1"># Error = sum of weights of misclassified samples</span>
+                    <span class="n">misclassified</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">y</span> <span class="o">!=</span> <span class="n">predictions</span><span class="p">]</span>
+                    <span class="n">error</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">misclassified</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">error</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">:</span>
+                        <span class="n">error</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">error</span>
+                        <span class="n">p</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+                    <span class="c1"># store the best configuration</span>
+                    <span class="k">if</span> <span class="n">error</span> <span class="o">&lt;</span> <span class="n">min_error</span><span class="p">:</span>
+                        <span class="n">clf</span><span class="o">.</span><span class="n">polarity</span> <span class="o">=</span> <span class="n">p</span>
+                        <span class="n">clf</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
+                        <span class="n">clf</span><span class="o">.</span><span class="n">feature_idx</span> <span class="o">=</span> <span class="n">feature_i</span>
+                        <span class="n">min_error</span> <span class="o">=</span> <span class="n">error</span>
+
+            <span class="c1"># calculate alpha</span>
+            <span class="n">EPS</span> <span class="o">=</span> <span class="mf">1e-10</span>
+            <span class="n">clf</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">min_error</span> <span class="o">+</span> <span class="n">EPS</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">min_error</span> <span class="o">+</span> <span class="n">EPS</span><span class="p">))</span>
+
+            <span class="c1"># calculate predictions and update weights</span>
+            <span class="n">predictions</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+            <span class="n">w</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">clf</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="n">predictions</span><span class="p">)</span>
+            <span class="c1"># Normalize to one</span>
+            <span class="n">w</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+
+            <span class="c1"># Save classifier</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">clfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="n">clf_preds</span> <span class="o">=</span> <span class="p">[</span><span class="n">clf</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">clfs</span><span class="p">]</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">clf_preds</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">y_pred</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="k">def</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_true</span> <span class="o">==</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">accuracy</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_breast_cancer</span><span class="p">()</span>
+
+<span class="n">data_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span>
+<span class="n">display</span><span class="p">(</span><span class="n">data_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean radius</th>
+      <th>mean texture</th>
+      <th>mean perimeter</th>
+      <th>mean area</th>
+      <th>mean smoothness</th>
+      <th>mean compactness</th>
+      <th>mean concavity</th>
+      <th>mean concave points</th>
+      <th>mean symmetry</th>
+      <th>mean fractal dimension</th>
+      <th>...</th>
+      <th>worst texture</th>
+      <th>worst perimeter</th>
+      <th>worst area</th>
+      <th>worst smoothness</th>
+      <th>worst compactness</th>
+      <th>worst concavity</th>
+      <th>worst concave points</th>
+      <th>worst symmetry</th>
+      <th>worst fractal dimension</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>17.99</td>
+      <td>10.38</td>
+      <td>122.80</td>
+      <td>1001.0</td>
+      <td>0.11840</td>
+      <td>0.27760</td>
+      <td>0.3001</td>
+      <td>0.14710</td>
+      <td>0.2419</td>
+      <td>0.07871</td>
+      <td>...</td>
+      <td>17.33</td>
+      <td>184.60</td>
+      <td>2019.0</td>
+      <td>0.1622</td>
+      <td>0.6656</td>
+      <td>0.7119</td>
+      <td>0.2654</td>
+      <td>0.4601</td>
+      <td>0.11890</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20.57</td>
+      <td>17.77</td>
+      <td>132.90</td>
+      <td>1326.0</td>
+      <td>0.08474</td>
+      <td>0.07864</td>
+      <td>0.0869</td>
+      <td>0.07017</td>
+      <td>0.1812</td>
+      <td>0.05667</td>
+      <td>...</td>
+      <td>23.41</td>
+      <td>158.80</td>
+      <td>1956.0</td>
+      <td>0.1238</td>
+      <td>0.1866</td>
+      <td>0.2416</td>
+      <td>0.1860</td>
+      <td>0.2750</td>
+      <td>0.08902</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>19.69</td>
+      <td>21.25</td>
+      <td>130.00</td>
+      <td>1203.0</td>
+      <td>0.10960</td>
+      <td>0.15990</td>
+      <td>0.1974</td>
+      <td>0.12790</td>
+      <td>0.2069</td>
+      <td>0.05999</td>
+      <td>...</td>
+      <td>25.53</td>
+      <td>152.50</td>
+      <td>1709.0</td>
+      <td>0.1444</td>
+      <td>0.4245</td>
+      <td>0.4504</td>
+      <td>0.2430</td>
+      <td>0.3613</td>
+      <td>0.08758</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11.42</td>
+      <td>20.38</td>
+      <td>77.58</td>
+      <td>386.1</td>
+      <td>0.14250</td>
+      <td>0.28390</td>
+      <td>0.2414</td>
+      <td>0.10520</td>
+      <td>0.2597</td>
+      <td>0.09744</td>
+      <td>...</td>
+      <td>26.50</td>
+      <td>98.87</td>
+      <td>567.7</td>
+      <td>0.2098</td>
+      <td>0.8663</td>
+      <td>0.6869</td>
+      <td>0.2575</td>
+      <td>0.6638</td>
+      <td>0.17300</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20.29</td>
+      <td>14.34</td>
+      <td>135.10</td>
+      <td>1297.0</td>
+      <td>0.10030</td>
+      <td>0.13280</td>
+      <td>0.1980</td>
+      <td>0.10430</td>
+      <td>0.1809</td>
+      <td>0.05883</td>
+      <td>...</td>
+      <td>16.67</td>
+      <td>152.20</td>
+      <td>1575.0</td>
+      <td>0.1374</td>
+      <td>0.2050</td>
+      <td>0.4000</td>
+      <td>0.1625</td>
+      <td>0.2364</td>
+      <td>0.07678</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 31 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span>
+
+<span class="n">y</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">5</span>
+<span class="p">)</span>
+
+<span class="c1"># Adaboost classification with 5 weak classifiers</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">Adaboost</span><span class="p">(</span><span class="n">n_clf</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.9736842105263158
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "pantelis/data-mining",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./aiml-common/lectures/ensemble/adaboost"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Adaptive Boosting (AdaBoost)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../gradient-boosting/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Gradient Boosting</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pantelis Monogioudis, Ph.D
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

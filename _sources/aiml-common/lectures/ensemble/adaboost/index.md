@@ -5,6 +5,7 @@ In this chapter we are treating _adaptive boosting_ that uses _ensembles_ of man
 If we imagine a sequence of weak learners like in random forests, boosting starts with training the first learner and at each subsequent step, due to its sequential nature, it considers the mistakes of the preceding learning step as shown below. 
 
 ![boosting-learners](images/boosting-learners.png)
+
 *Boosting methods act sequentially considering the prediction results of the preceding learners.* 
 
 <!-- Note that the figure shows multiple instances of weak learners - this is not necessarily a real implementation but a conceptual depiction.  -->
@@ -78,3 +79,8 @@ A perhaps more illuminating example that shows the weight adjustments is shown b
 
 Note that although decision stumps were used to produce the adaboost decision boundaries above, the method is generic to any weak learner. Also note that there weights for the correctly classified data points are decreased in these figures instead of keeping them constant. Either of the two options should perform similarly. 
 
+Closing, we can make the following obvervations:
+
+1. Adaboost ends up beinbg an additive logistic regression model with an exponential loss function. This is shown in [Hastie's book](https://hastie.su.domains/Papers/ESLII.pdf) Chapter 9.1 for those interested.
+
+2. When compared to random forests: in the random forest we grow trees independently and therefore we tend to form much deeper trees than in adaboost where we typically focus their attention on a subset of the data region and we can do well with shallower trees. 

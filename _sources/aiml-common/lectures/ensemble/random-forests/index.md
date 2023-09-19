@@ -1,7 +1,3 @@
----
-title: Random Forests
----
-
 # Random Forests
 
 As the name implies forests use many tree-based learners to improve on their generalization ability. Each of the trees is sometimes called a *weak learner*. When combined together they form the strong learner. 
@@ -25,7 +21,9 @@ When sampling is performed with replacement, this is called bootstrap aggregatin
 
 Note something important. The chance of not being selected in any of the $m$ draws from $m$ samples with replacement is $(1−\frac{1}{m})^m$ or approximately 1/3 = 33.33% for large $m$. Each predictor therefore may see several instances of the same sample while not see at all other instances (with probability 33.33%). This is because the probability of each predictor seeing one of the examples at least once in $m$ samples is 1-P(not seeing this example) = 1 - 33.33% = 66.66%. Obviously, however the unseen population differs between predictors. 
 
-The Random Forest algorithm introduces extra randomness when growing trees; instead of searching for the very best feature when splitting a node, it searches for the best feature among a random subset of features. This results in a greater tree diversity. In addition, we can make trees even more random by also using random thresholds for each feature rather than searching for the best possible thresholds - also known as extremely randomized trees of _Extra-Trees_. 
+The Random Forest algorithm introduces extra randomness when growing trees; instead of searching for the very best feature when splitting a node, it searches for the best feature among a random subset $p$ of $n$ total features and typically $p=\sqrt(n)$. This results in a greater tree diversity but the correlation between trees increases as $p$ becomes larger. 
+
+In addition, we can make trees even more random by also using random thresholds for each feature rather than searching for the best possible thresholds - also known as extremely randomized trees of _extra-trees_. 
 
 ## Feature Engineering
 

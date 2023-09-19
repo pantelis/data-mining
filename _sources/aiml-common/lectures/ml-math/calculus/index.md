@@ -13,6 +13,8 @@ title: Calculus
 
 # Calculus 
 
+Specificall for deep learning there is a very good reference [here](https://arxiv.org/pdf/1802.01528.pdf)
+
 ```{eval-rst}
 .. youtube:: Ygw9jR42y9I
 ```

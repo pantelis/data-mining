@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Random Forests &#8212; Data Mining</title>
+    <title>Decision Trees &#8212; Data Mining</title>
   
   
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../../_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
 
   
-  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="../../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -63,13 +64,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/ensemble/random-forests/_index';</script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/ensemble/random-forests/_index.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/trees/decision-trees/index';</script>
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/trees/decision-trees/index.html" />
     <link rel="shortcut icon" href="../../../../_static/logo.ico"/>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Adaptive Boosting (AdaBoost)" href="../adaboost/index.html" />
-    <link rel="prev" title="Ensemble Methods" href="../_index.html" />
+    <link rel="next" title="Decision tree from scratch" href="decision_tree.html" />
+    <link rel="prev" title="Entropy" href="../../entropy/_index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -80,6 +81,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -192,16 +202,24 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Predictors for Structured Data</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../entropy/_index.html">Entropy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../decision-trees/_index.html">Decision Trees</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../regression-trees/regression_trees.html">Regression tree stumps</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decision_tree.html">Decision tree from scratch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../regression-trees/stumps.html">Regression Trees</a></li>
 
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../_index.html">Ensemble Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Random Forests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../adaboost/index.html">Adaptive Boosting (AdaBoost)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gradient-boosting/index.html">Gradient Boosting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../boosting-workshop/index.html">Boosting Workshop</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ensemble/index.html">Ensemble Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/random-forests/index.html">Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/adaboost/index.html">Adaptive Boosting (AdaBoost)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/adaboost/adaboost_example.html">Adaboost from scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/gradient-boosting/index.html">Gradient Boosting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/boosting-workshop/index.html">Boosting Workshop</a></li>
 </ul>
 </li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unsupervised and Non-Parametric Supervised Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../unsupervised/k-means/_index.html">K-means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../density-estimation/knn/_index.html">k-Nearest Neighbors (kNN) Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">kNN Workshop</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
@@ -209,12 +227,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../recommenders/netflix/_index.html">The Netflix Prize and Singular Value Decomposition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../pca/_index.html">Principal Component Analysis (PCA)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../pca/principal-component-analysis.html">PCA Workshop</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unsupervised and Non-Parametric Supervised Methods</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../unsupervised/k-means/_index.html">K-means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../density-estimation/knn/_index.html">k-Nearest Neighbors (kNN) Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">kNN Workshop</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">On Maximum Likelihood</span></p>
 <ul class="nav bd-sidenav">
@@ -363,7 +375,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pantelis/data-mining/edit/master/data_mining/aiml-common/lectures/ensemble/random-forests/_index.md" target="_blank"
+      <li><a href="https://github.com/pantelis/data-mining/edit/master/data_mining/aiml-common/lectures/trees/decision-trees/index.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -380,7 +392,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/ensemble/random-forests/_index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/trees/decision-trees/index.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -410,7 +422,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../../_sources/aiml-common/lectures/ensemble/random-forests/_index.md" target="_blank"
+      <li><a href="../../../../_sources/aiml-common/lectures/trees/decision-trees/index.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -464,10 +476,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -475,7 +487,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -492,7 +504,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Random Forests</h1>
+    <h1>Decision Trees</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -502,8 +514,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">Feature Engineering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cart-algorithm">CART algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-the-feature-x-k-to-split">Selecting the feature <span class="math notranslate nohighlight">\(x_k\)</span> to split</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inference">Inference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
         </div>
@@ -515,40 +530,99 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="random-forests">
-<h1>Random Forests<a class="headerlink" href="#random-forests" title="Permalink to this heading">#</a></h1>
-<p>As the name implies forests use many tree-based learners to improve on their generalization ability. Each of the trees is sometimes called a <em>weak learner</em>. When combined together they form the strong learner.</p>
-<p>A key aspect of decision forests is the fact that its component trees are all <em>randomly different</em> from one another. This leads to de-correlation between the individual tree predictions and, in turn, to improved generalization. Forest randomness also helps achieve high robustness with respect to noisy data. Obviously all these weak learners will ultimately be fed with some permutation the same data so its not that we have a perfect de-correlation and this limits the performance of the aggregation.</p>
-<p>Randomness  is  injected  into  the  trees  during  the training  phase. Two of the most popular ways of doing so are:</p>
-<ol class="arabic simple">
-<li><p>Random training data set sampling.</p></li>
-<li><p>Randomized feature selection in split decisions.</p></li>
-</ol>
-<p>These  two  techniques  are  not  mutually  exclusive  and  could  be  used together.</p>
-<p>When sampling is performed with replacement, this is called bootstrap aggregating or <strong>bagging</strong> for short. Sampling with replacement shown below, simply samples from a population records the features of the sample and we replace the sample with one identical unit in the population.</p>
-<p><img alt="sampling-with-replacement" src="../../../../_images/sampling-with-replacement.png" />
-<em>In sampling with replacement, in each draw, all examples have equally probability to be selected.</em></p>
-<p><img alt="bagging" src="../../../../_images/bagging.png" />
-<em>Bagging principle - it applies to either classification (shown here) or regression.</em></p>
-<p>Note something important. The chance of not being selected in any of the <span class="math notranslate nohighlight">\(m\)</span> draws from <span class="math notranslate nohighlight">\(m\)</span> samples with replacement is <span class="math notranslate nohighlight">\((1−\frac{1}{m})^m\)</span> or approximately 1/3 = 33.33% for large <span class="math notranslate nohighlight">\(m\)</span>. Each predictor therefore may see several instances of the same sample while not see at all other instances (with probability 33.33%). This is because the probability of each predictor seeing one of the examples at least once in <span class="math notranslate nohighlight">\(m\)</span> samples is 1-P(not seeing this example) = 1 - 33.33% = 66.66%. Obviously, however the unseen population differs between predictors.</p>
-<p>The Random Forest algorithm introduces extra randomness when growing trees; instead of searching for the very best feature when splitting a node, it searches for the best feature among a random subset of features. This results in a greater tree diversity. In addition, we can make trees even more random by also using random thresholds for each feature rather than searching for the best possible thresholds - also known as extremely randomized trees of <em>Extra-Trees</em>.</p>
-<section id="feature-engineering">
-<h2>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this heading">#</a></h2>
-<p>One byproduct of the randomness of feature selections in the split decision across the weak tree learners is that we can get an estimate was to what features are important to a prediction and what aren’t. This is achieved by using the same principle of entropy but now across trees. For each node that used that feature in that tree we get an entropy reduction and we calculate the significance of each feature as the weighted average of all reductions across the forest. This can be used at the end of the training to select features that are important and attempt retrain suppressing the others and getting a model that is more compact and potentially faster to train and use for inference.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="decision-trees">
+<h1>Decision Trees<a class="headerlink" href="#decision-trees" title="Permalink to this heading">#</a></h1>
+<p>In this chapter we will treat a non-parametric method, the Decision Tree (DT) that is one of the most popular ML algorithms. They are used usually as components of ensemble methods. They are non-parametric models because they don’t need a predetermined set of parameters before training can start as in parametric models - rather the tree fits the data very closely and often overfits using as many parameters are required <strong>during training</strong>.</p>
+<p>Its popularity stems also from yet another attribute that is becoming very important in the application of ML/AI in mission critical industries such as health: its ability to offer interpretable predictions to some degree that can also be introspected easily by humans. DTs can be used for both regression and classification - here we look at a classification use case but the principles are the same.</p>
+<p>For example, let’s say that you had a basket of fruit in front of you, and you were trying to teach someone who had never seen these types of fruit before how to tell them apart.  How could you do it? The answer is shown pictorially below.</p>
+<p><img alt="fruit-decision-tree" src="../../../../_images/fruit-decision-tree.png" /></p>
+<p>A decision tree is a tree where each node represents a feature(attribute), each link (branch) represents a decision (rule) and each leaf represents an outcome(categorical for classification or continual for regression).</p>
+<p>If your decision tree is good, you can now pick up an unknown piece of fruit and follow the flow chart to classify it.  If your decision tree is bad, you can go down the wrong path and put something in the wrong category.  For instance, if you didn’t know yellow apples existed when you built your decision tree, you might have assumed that all yellow fruit are either bananas or plantains.</p>
+<p>In what follows, we focus on a dataset with <span class="math notranslate nohighlight">\(m=88\)</span> and <span class="math notranslate nohighlight">\(4\)</span> labels: Apples, Oranges,  Bananas,  Grapefruit. Each example has multiple features <span class="math notranslate nohighlight">\(n\)</span>: color, width and length.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fruit</p></th>
+<th class="head"><p>Colors</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Apples</p></td>
+<td><p>Red, Green, or Yellow</p></td>
+</tr>
+<tr class="row-odd"><td><p>Oranges</p></td>
+<td><p>Orange</p></td>
+</tr>
+<tr class="row-even"><td><p>Bananas</p></td>
+<td><p>Yellow or Green</p></td>
+</tr>
+<tr class="row-odd"><td><p>Grapefruit</p></td>
+<td><p>Orange or Yellow</p></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="fruit-dataset" src="../../../../_images/fruit-dataset.png" /></p>
+<p><em>Fruits dataset</em></p>
+<p>If we are to draw separation lines on feature space of length (<span class="math notranslate nohighlight">\(x_1\)</span>) and width (<span class="math notranslate nohighlight">\(x_2\)</span>) without using an ML algorithm but by hand, we probably would come up with the picture below.</p>
+<p><img alt="fruit-human" src="../../../../_images/fruit-split-human.png" />
+<em>Draw by hand partition</em></p>
+<p>Now, lets try to solve the same problem using an algorithm bearing in mind that many real-life data sets might have dozens or hundreds of different features.</p>
+<section id="cart-algorithm">
+<h2>CART algorithm<a class="headerlink" href="#cart-algorithm" title="Permalink to this heading">#</a></h2>
+<p>One of the most popular algorithms that implement decision trees is the Classification and Regression Tree (CART) algorithm.</p>
+<blockquote>
+<div><p>NOTE: scikit-learn uses an optimised version of the CART algorithm; however, scikit-learn implementation does not support categorical variables for now.</p>
+</div></blockquote>
+<p>At its heart, the algorithm implements a recursive binary partitioning of the input feature space. The feature space in the example above is <span class="math notranslate nohighlight">\(\mathbf{x} = (x_1, x_2, x_3)^T\)</span> denoting length, width and color. Given a training dataset as usual <span class="math notranslate nohighlight">\(D=\{(\mathbf x_i, y_i)\}\)</span> for <span class="math notranslate nohighlight">\(i=\{1, \dots m\}\)</span>, we need to come up with a close to optimal partitioning that minimizes the generalization (test) error.</p>
+<p>We start at a <strong>root node</strong> that corresponds to the whole feature space (no partition) and design a <strong>test</strong> that is in its simplest form a conditional statement against a feature (a comparison if you like). Depending on the binary outcome of the test (either the input examples will satisfy the condition or not) we produce the corresponding child nodes each inheriting a subset of the input population and we repeat the exercise. The recursion stops when we reach the so called leaf nodes e.g. when the remaining examples in these nodes cannot be split further. We will come back at this terminal / leaf nodes later. An example tree and corresponding partition is shown in the two figures below.</p>
+<p><img alt="Figure14.5" src="../../../../_images/Figure14.6.png" /></p>
+<p><em>Example tree - <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> based splits shown.</em></p>
+<p><img alt="Figure14.5" src="../../../../_images/Figure14.5.png" /></p>
+<p><em>Partition for the example tree above.</em></p>
+<p>The test specification consists of the variables <span class="math notranslate nohighlight">\(\theta_i\)</span> that are are also called <strong>thresholds</strong> as well as the specific feature <span class="math notranslate nohighlight">\(x_k\)</span> that is being selected for the test.</p>
+<p>Lets see the three recursions of the algorithm as shown below.</p>
+<p><img alt="fruit-split-1" src="../../../../_images/fruit-split-1.png" /></p>
+<p><em>First split</em></p>
+<p><img alt="fruit-split-2" src="../../../../_images/fruit-split-2.png" /></p>
+<p><em>Second split</em></p>
+<p><img alt="fruit-split-3" src="../../../../_images/fruit-split-3.png" /></p>
+<p><em>Third split</em></p>
+<p><img alt="fruit-tree-alg-split" src="../../../../_images/fruit-tree-alg-split.png" />
+<em>Final decision tree for the fruit classification problem</em></p>
+<p>This brings up the question of how we select the test spec parameters <span class="math notranslate nohighlight">\(x_k\)</span> and <span class="math notranslate nohighlight">\(\theta_k\)</span> to minimize a certain metric that is dependent on the type of the problem we deal with - classification or regression.</p>
+</section>
+<section id="selecting-the-feature-x-k-to-split">
+<h2>Selecting the feature <span class="math notranslate nohighlight">\(x_k\)</span> to split<a class="headerlink" href="#selecting-the-feature-x-k-to-split" title="Permalink to this heading">#</a></h2>
+<p>To gauge which feature we will choose split requires a review of certain probabilistic concepts namely the concept of entropy. We can develop on top of entropy the concept of information gain that is pictorially explained using the example  shown below</p>
+<p><img alt="information-gain-example" src="../../../../_images/information-gain.png" />
+<em>Information gain for two possible splits</em></p>
+<p>The input dataset in this example has uniform distribution over classes - we have exactly the same number  of  points  in  each  class.  If  we  split  the  data  horizontally (select feature <span class="math notranslate nohighlight">\(x_1\)</span>) this  produces  two  sets  of  data.  Each  set  is  associated with a <strong>lower</strong> entropy (higher information, peakier class histograms) that is defined as usual</p>
+<div class="math notranslate nohighlight">
+\[H(D)   = − \sum_{c \in C} p( c ) \log(p( c ))\]</div>
+<p>The entropy drops after any reasonable split as we exclude labels from the original set and end up with more homogenous sets of labels. The gain of information achieved by splitting the data into two parts (1 / 2 or left / right) is computed as</p>
+<div class="math notranslate nohighlight">
+\[IG = H(D) − L(x_k, \theta_k)\]</div>
+<div class="math notranslate nohighlight">
+\[ = H(D) - \sum_{j \in {1,2}} \frac{|D^j|}{|D|} H(D^j)\]</div>
+<p>where <span class="math notranslate nohighlight">\(|.|\)</span> is the cardinality operator i.e. the number of elements in the corresponding set and <span class="math notranslate nohighlight">\(L\)</span> is the loss function that the algorithm is searching for its minima by trying <span class="math notranslate nohighlight">\((x_k, \theta_k)\)</span> pairs. Apart from entropy we can also use another measure of impurity of the labels of the corresponding set - the Gini impurity measure that is also the default setting in scikit learn. Try to focus on understanding the entropy based measure as it is used in other algorithms that we cover  and is completely analogous to Gini.</p>
+<p>More often that not, the tree may grow to a point that we have overfitting. In DT implementations there are many hyperparameters that can control overfitting the DT to the data. Regularization therefore happens by (a) constraining the maximum growing depth, (b) limiting the splits to only the cases that we have a appreciable number of data points to split, © putting a cap in the number of leaf nodes (d) putting a cap in the number of data points per leaf node.</p>
 </section>
 <section id="inference">
 <h2>Inference<a class="headerlink" href="#inference" title="Permalink to this heading">#</a></h2>
-<p><img alt="classification-forest-testing" src="../../../../_images/classification-forest-testing.png" />
-<em>Example of three trees receiving the instance <span class="math notranslate nohighlight">\(\mathbf x\)</span> (shown as <span class="math notranslate nohighlight">\(\mathbf v\)</span> in the figure)</em></p>
-<p>During testing the same unlabelled test input data <span class="math notranslate nohighlight">\(\mathbf x\)</span>  is pushed through each component tree. At each internal node the test determined in training is applied and the process is repeated until a leaf is reached. At the leaf the stored posterior <span class="math notranslate nohighlight">\(p_t(c|\mathbf x)\)</span> is determined. The forest class posterior <span class="math notranslate nohighlight">\(p(c|\mathbf x)\)</span> is simply the <em>average</em> of all tree posteriors.</p>
-<p><span class="math notranslate nohighlight">\(p(c|\mathbf x) = \frac{1}{T} \sum_{t=1}^T p_t(c|\mathbf x) \)</span></p>
-<p>As can be seen below, ensemble methods such as random forest result into much smoother decision boundaries than those of decision trees.</p>
-<p><img alt="decision-tree-vs-random-forest" src="../../../../_images/decision-tree-vs-random-forest.png" />
-<em>Random forest decision boundary in an example dataset</em></p>
-<!-- ## Impact of random forest parameters
-Given a training dataset with two classes (a), different training trees produce different partitions and thus different leaf predictors. The colour of tree nodes and edges indicates the class probability of training points  going  through  them (b)  In  testing,  increasing  the  forest  size $T$ produces smoother class posteriors. 
+<p>Training will result into the heuristically optimal decision tree. Inference is then straightforward as the input data will transverse the tree and find itself into a leaf node. We can also estimate the probability that an instance belongs to a particular class k or <span class="math notranslate nohighlight">\(p(c_k|\mathbf x)\)</span>. First it traverses the tree to find the leaf node for this instance, and then it returns the ratio of training instances of class k in this node. Therefore DTs can give us some form of confidence to the classification operation they do.</p>
+<!-- ## Applicability
+When we use decision trees for regression, the entropy is replaced with the usual MSE. We also have the possibility of parametric clustering in an unsupervised learning setting as shown below where the Gaussian distribution is being used to fit the data before and after the split. The Information Gain concept is generic enough to be applied in both discrete, continuous, supervised and unsupervised problems. 
 
-![effect-num-trees](images/effect-num-trees.png) -->
+![unsupervised-training](images/unsupervised-training.png) -->
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h2>
+<p>A DT applied in the area of cybersecurity.</p>
+<p><img alt="" src="../../../../_images/DT1.jpg" /></p>
+<p><img alt="" src="../../../../_images/DT2.jpg" /></p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<p>Some of the material used in this chapter is from (a) “ML with Random Forests and Decision Trees” by Scott Hartshorn, (b) Decision Forests for Classification, Regression, Density Estimation, Manifold Learning and Semi-Supervised Learning by Criminisi et.a.l.</p>
 </section>
 </section>
 
@@ -565,7 +639,7 @@ Given a training dataset with two classes (a), different training trees produce 
         },
         kernelOptions: {
             name: "python3",
-            path: "./aiml-common/lectures/ensemble/random-forests"
+            path: "./aiml-common/lectures/trees/decision-trees"
         },
         predefinedOutput: true
     }
@@ -577,34 +651,30 @@ Given a training dataset with two classes (a), different training trees produce 
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../_index.html"
+       href="../../entropy/_index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Ensemble Methods </p>
+        <p class="prev-next-title">Entropy</p>
       </div>
     </a>
     <a class="right-next"
-       href="../adaboost/index.html"
+       href="decision_tree.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Adaptive Boosting (AdaBoost)</p>
+        <p class="prev-next-title">Decision tree from scratch</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -619,8 +689,11 @@ Given a training dataset with two classes (a), different training trees produce 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">Feature Engineering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cart-algorithm">CART algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-the-feature-x-k-to-split">Selecting the feature <span class="math notranslate nohighlight">\(x_k\)</span> to split</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inference">Inference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
 
@@ -668,8 +741,8 @@ By Pantelis Monogioudis, Ph.D
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
 
   <footer class="bd-footer">
   </footer>

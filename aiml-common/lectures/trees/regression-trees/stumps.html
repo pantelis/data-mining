@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Regression tree stumps &#8212; Data Mining</title>
+    <title>Regression Trees &#8212; Data Mining</title>
   
   
   
@@ -19,57 +19,58 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../../_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="../../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/clipboard.min.js"></script>
-    <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/regression-trees/regression_trees';</script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/regression-trees/regression_trees.html" />
-    <link rel="shortcut icon" href="../../../_static/logo.ico"/>
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Ensemble Methods" href="../ensemble/_index.html" />
-    <link rel="prev" title="Decision Trees" href="../decision-trees/_index.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/trees/regression-trees/stumps';</script>
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/trees/regression-trees/stumps.html" />
+    <link rel="shortcut icon" href="../../../../_static/logo.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Ensemble Methods" href="../../ensemble/index.html" />
+    <link rel="prev" title="Decision tree from scratch" href="../decision-trees/decision_tree.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -80,6 +81,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -97,7 +107,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="../../../search.html"
+      action="../../../../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -135,7 +145,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
   
 
-<a class="navbar-brand logo" href="../../../intro.html">
+<a class="navbar-brand logo" href="../../../../intro.html">
   
   
   
@@ -145,8 +155,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
@@ -155,23 +165,23 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../intro.html">
+                <a class="reference internal" href="../../../../intro.html">
                     Data Mining
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../syllabus/index.html">Syllabus</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Data Mining</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../data-premise/index.html">The new premise</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ai-intro/data-science-360/_index.html">Data Science 360</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../pipelines/_index.html">Pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../pipelines/uber-ml-arch-case-study/index.html">A Case Study of an ML Architecture - Uber</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-premise/index.html">The new premise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ai-intro/data-science-360/_index.html">Data Science 360</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../pipelines/_index.html">Pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../pipelines/uber-ml-arch-case-study/index.html">A Case Study of an ML Architecture - Uber</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="../pipelines/01_the_machine_learning_landscape.html">The Machine Learning landscape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pipelines/01_the_machine_learning_landscape.html">The Machine Learning landscape</a></li>
 
 
 
@@ -180,8 +190,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Learning Problem</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../learning-problem/_index.html">The Learning Problem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pipelines/02_end_to_end_machine_learning_project.html">End-to-end Machine Learning project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../learning-problem/_index.html">The Learning Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pipelines/02_end_to_end_machine_learning_project.html">End-to-end Machine Learning project</a></li>
 
 
 
@@ -191,68 +201,70 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Predictors for Structured Data</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../entropy/_index.html">Entropy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../decision-trees/_index.html">Decision Trees</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Regression tree stumps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../entropy/_index.html">Entropy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../decision-trees/index.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../decision-trees/decision_tree.html">Decision tree from scratch</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Regression Trees</a></li>
 
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ensemble/_index.html">Ensemble Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ensemble/random-forests/_index.html">Random Forests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ensemble/adaboost/index.html">Adaptive Boosting (AdaBoost)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ensemble/gradient-boosting/index.html">Gradient Boosting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ensemble/boosting-workshop/index.html">Boosting Workshop</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ensemble/index.html">Ensemble Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/random-forests/index.html">Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/adaboost/index.html">Adaptive Boosting (AdaBoost)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/adaboost/adaboost_example.html">Adaboost from scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/gradient-boosting/index.html">Gradient Boosting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensemble/boosting-workshop/index.html">Boosting Workshop</a></li>
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Dimensionality Reduction</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../recommenders/recommenders-intro/_index.html">Introduction to Recommender Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../recommenders/netflix/_index.html">The Netflix Prize and Singular Value Decomposition</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pca/_index.html">Principal Component Analysis (PCA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pca/principal-component-analysis.html">PCA Workshop</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unsupervised and Non-Parametric Supervised Methods</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../unsupervised/k-means/_index.html">K-means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../density-estimation/knn/_index.html">k-Nearest Neighbors (kNN) Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../density-estimation/knn-workshop/_index.html">kNN Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../unsupervised/k-means/_index.html">K-means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../density-estimation/knn/_index.html">k-Nearest Neighbors (kNN) Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">kNN Workshop</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Dimensionality Reduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../recommenders/recommenders-intro/_index.html">Introduction to Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../recommenders/netflix/_index.html">The Netflix Prize and Singular Value Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pca/_index.html">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pca/principal-component-analysis.html">PCA Workshop</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">On Maximum Likelihood</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../regression/linear-regression/linear_regression.html">Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../optimization/sgd/_index.html">Stochastic Gradient Descent</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../classification/classification-intro/_index.html">Introduction to Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../classification/logistic-regression/_index.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../regression/linear-regression/linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimization/sgd/_index.html">Stochastic Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../classification/classification-intro/_index.html">Introduction to Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../classification/logistic-regression/_index.html">Logistic Regression</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Neural Networks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../dnn/dnn-intro/_index.html">Deep Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/backprop-intro/_index.html">Introduction to Backpropagation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/backprop-dnn/_index.html">Backpropagation in Deep Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/backprop-dnn-exercises/_index.html">Backpropagation DNN exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/fashion-mnist-case-study.html">Fashion MNIST Case Study</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../optimization/regularization/_index.html">Regularization in Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dnn/dnn-intro/_index.html">Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dnn/backprop-intro/_index.html">Introduction to Backpropagation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dnn/backprop-dnn/_index.html">Backpropagation in Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dnn/backprop-dnn-exercises/_index.html">Backpropagation DNN exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dnn/fashion-mnist-case-study.html">Fashion MNIST Case Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimization/regularization/_index.html">Regularization in Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Convolutional Neural Networks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../cnn/cnn-intro/_index.html">Introduction to Convolutional Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cnn/cnn-layers/_index.html">CNN Architectures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cnn/cnn-example-architectures/_index.html">CNN Example Architectures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">Using convnets with small datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../scene-understanding/feature-extraction-resnet/index.html">Feature Extraction via Residual Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-intro/_index.html">Introduction to Convolutional Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-layers/_index.html">CNN Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-example-architectures/_index.html">CNN Example Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">Using convnets with small datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">Feature Extraction via Residual Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Representation Learning and Autoencoders</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../vae/index.html">Variational Auto Encoders (VAE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vae/generative-modeling/index.html">Generative Modeling and Approximate Inference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vae/vae-architecture/index.html">VAE Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vae/elbo-optimization/index.html">ELBO Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vae/index.html">Variational Auto Encoders (VAE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vae/generative-modeling/index.html">Generative Modeling and Approximate Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vae/vae-architecture/index.html">VAE Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vae/elbo-optimization/index.html">ELBO Optimization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sequences and RNNs</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../rnn/introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rnn/simple-rnn/_index.html">Simple RNN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rnn/lstm/_index.html">The Long Short-Term Memory (LSTM) Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rnn/time_series_using_simple_rnn_lstm.html">Time Series Prediction using RNNs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/simple-rnn/_index.html">Simple RNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/lstm/_index.html">The Long Short-Term Memory (LSTM) Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rnn/time_series_using_simple_rnn_lstm.html">Time Series Prediction using RNNs</a></li>
 
 
 
@@ -261,37 +273,37 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../nlp/nlp-introduction/nlp-pipelines/_index.html">Introduction to NLP Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/nlp-introduction/tokenization/index.html">Tokenization</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp/nlp-introduction/word2vec/_index.html">Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../nlp/nlp-introduction/word2vec/word2vec_from_scratch.html">Word2Vec from scratch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nlp/nlp-introduction/word2vec/word2vec_tensorflow_tutorial.html">Word2Vec Tensorflow Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-introduction/nlp-pipelines/_index.html">Introduction to NLP Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-introduction/tokenization/index.html">Tokenization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/_index.html">Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/word2vec_from_scratch.html">Word2Vec from scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/word2vec_tensorflow_tutorial.html">Word2Vec Tensorflow Tutorial</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp/language-models/_index.html">Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../nlp/language-models/cnn-language-model/index.html">CNN Language Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nlp/language-models/simple-rnn-language-model/index.html">Simple RNN Language Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nlp/language-models/lstm-language-model/index.html">LSTM Language Model from scratch</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/language-models/_index.html">Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/cnn-language-model/index.html">CNN Language Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model/index.html">Simple RNN Language Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/lstm-language-model/index.html">LSTM Language Model from scratch</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math Background</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../ml-math/index.html">Math for ML Textbook</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ml-math/probability/index.html">Probability Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ml-math/linear-algebra/index.html">Linear Algebra for Machine Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ml-math/calculus/index.html">Calculus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ml-math/index.html">Math for ML Textbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ml-math/probability/index.html">Probability Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ml-math/linear-algebra/index.html">Linear Algebra for Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ml-math/calculus/index.html">Calculus</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../resources/environment/index.html">Your Programming Environment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../resources/environment/assignment-submission.html">Submitting Your Assignment / Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Learn Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../resources/environment/notebook-status.html">Notebook execution status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/environment/index.html">Your Programming Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/environment/assignment-submission.html">Submitting Your Assignment / Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Learn Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources/environment/notebook-status.html">Notebook execution status</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../assignments/probability/probability-assignment-7/index.html">Probability Assignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../assignments/probability/probability-assignment-7/index.html">Probability Assignment</a></li>
 </ul>
 
     </div>
@@ -346,7 +358,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/pantelis/data-mining/master?urlpath=tree/data_mining/aiml-common/lectures/regression-trees/regression_trees.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/pantelis/data-mining/master?urlpath=tree/data_mining/aiml-common/lectures/trees/regression-trees/stumps.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onBinder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -355,7 +367,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <span class="btn__icon-container">
   
-    <img src="../../../_static/images/logo_binder.svg">
+    <img src="../../../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -364,7 +376,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/pantelis/data-mining/blob/master/data_mining/aiml-common/lectures/regression-trees/regression_trees.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/pantelis/data-mining/blob/master/data_mining/aiml-common/lectures/trees/regression-trees/stumps.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -373,7 +385,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <span class="btn__icon-container">
   
-    <img src="../../../_static/images/logo_colab.png">
+    <img src="../../../../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -430,7 +442,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pantelis/data-mining/edit/master/data_mining/aiml-common/lectures/regression-trees/regression_trees.ipynb" target="_blank"
+      <li><a href="https://github.com/pantelis/data-mining/edit/master/data_mining/aiml-common/lectures/trees/regression-trees/stumps.ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -447,7 +459,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/regression-trees/regression_trees.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/trees/regression-trees/stumps.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -477,7 +489,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/aiml-common/lectures/regression-trees/regression_trees.ipynb" target="_blank"
+      <li><a href="../../../../_sources/aiml-common/lectures/trees/regression-trees/stumps.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -531,10 +543,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -542,7 +554,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -559,7 +571,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Regression tree stumps</h1>
+    <h1>Regression Trees</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -569,7 +581,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Regression tree stumps</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Regression Trees</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-decision-and-leaf-nodes-and-how-to-predict">Define decision and leaf nodes and how to predict</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-a-stump-to-single-var-x-and-target-y">Fit a stump to single-var x and target y</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-data-from-explained-ai-article">Use data from explained.ai article</a></li>
@@ -594,8 +606,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="regression-tree-stumps">
-<h1>Regression tree stumps<a class="headerlink" href="#regression-tree-stumps" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="regression-trees">
+<h1>Regression Trees<a class="headerlink" href="#regression-trees" title="Permalink to this heading">#</a></h1>
 <p>A regression tree stump is a tree with a decision node at the root and two predictor leaves. The leaves predict the average of the target values held by that leaf, assuming we are <a class="reference external" href="https://explained.ai/gradient-boosting/L2-loss.html#sec:2.5">minimizing the mean squared error (MSE) loss function</a>.</p>
 <p>To keep things simple, this example assumes that only a single predictor variable, <span class="math notranslate nohighlight">\(x\)</span>, is associated with the target variable, <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <div class="cell docutils container">
@@ -790,7 +802,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/71e418cdeb7753c81338b22e02fe9018a747049a844195b59cbb7305818ac051.svg" src="../../../_images/71e418cdeb7753c81338b22e02fe9018a747049a844195b59cbb7305818ac051.svg" /></div>
+<img alt="../../../../_images/909431212b4d0adc6a96b4e6e5eb7e95428d43c573feab3c80d02dabde76ea21.svg" src="../../../../_images/909431212b4d0adc6a96b4e6e5eb7e95428d43c573feab3c80d02dabde76ea21.svg" /></div>
 </div>
 </section>
 <section id="tweak-last-rent-price-to-bring-inline">
@@ -873,7 +885,7 @@ document.write(`
 [1160 1200 1280 1450] | [1300]    candidate split x = 950 loss  24737.5
 </pre></div>
 </div>
-<img alt="../../../_images/e52f5a1982b18dec6735e047f1437612b6328d6c8c83141848637c2a07d81a70.svg" src="../../../_images/e52f5a1982b18dec6735e047f1437612b6328d6c8c83141848637c2a07d81a70.svg" /></div>
+<img alt="../../../../_images/0c4119a9c9e48155aa3c65805e1532dc257690dbe6f3cc10b75243f48a4d9c42.svg" src="../../../../_images/0c4119a9c9e48155aa3c65805e1532dc257690dbe6f3cc10b75243f48a4d9c42.svg" /></div>
 </div>
 </section>
 </section>
@@ -882,9 +894,7 @@ document.write(`
 <p>See <a class="reference external" href="https://github.com/parrt/dtreeviz">dtreeviz</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from dtreeviz.trees import rtreeviz_univar</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sqfeet</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">rent</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">rtreeviz_univar</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span>
@@ -898,16 +908,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">dtreeviz.trees</span> <span class="kn">import</span> <span class="n">rtreeviz_univar</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-
-<span class="ne">ImportError</span>: cannot import name &#39;rtreeviz_univar&#39; from &#39;dtreeviz.trees&#39; (/workspaces/data_mining/.venv/lib/python3.8/site-packages/dtreeviz/trees.py)
-</pre></div>
-</div>
+<img alt="../../../../_images/9ac6cdfe246dba307a6100b769821e0f869fdd23432b3c2b872e8b9954bc59c3.png" src="../../../../_images/9ac6cdfe246dba307a6100b769821e0f869fdd23432b3c2b872e8b9954bc59c3.png" />
 </div>
 </div>
 </section>
@@ -932,7 +933,7 @@ document.write(`
   warnings.warn(&#39;Tight layout not applied. The left and right margins &#39;
 </pre></div>
 </div>
-<img alt="../../../_images/3c7bff0a6b3f0bdae2e78c4caeac0be060e312a9c602920ac5033f15b18dd80c.svg" src="../../../_images/3c7bff0a6b3f0bdae2e78c4caeac0be060e312a9c602920ac5033f15b18dd80c.svg" /></div>
+<img alt="../../../../_images/3c7bff0a6b3f0bdae2e78c4caeac0be060e312a9c602920ac5033f15b18dd80c.svg" src="../../../../_images/3c7bff0a6b3f0bdae2e78c4caeac0be060e312a9c602920ac5033f15b18dd80c.svg" /></div>
 </div>
 </section>
 </section>
@@ -1042,7 +1043,7 @@ find_best_split in x=[700, 600, 800]
 find_best_split in x=[700, 600]
 </pre></div>
 </div>
-<img alt="../../../_images/47ecdda364a951442bda85fcc8411e54e47fea903b8c8dd2127c28cfa9ad6daa.svg" src="../../../_images/47ecdda364a951442bda85fcc8411e54e47fea903b8c8dd2127c28cfa9ad6daa.svg" /></div>
+<img alt="../../../../_images/47ecdda364a951442bda85fcc8411e54e47fea903b8c8dd2127c28cfa9ad6daa.svg" src="../../../../_images/47ecdda364a951442bda85fcc8411e54e47fea903b8c8dd2127c28cfa9ad6daa.svg" /></div>
 </div>
 </section>
 
@@ -1059,7 +1060,7 @@ find_best_split in x=[700, 600]
         },
         kernelOptions: {
             name: "python3",
-            path: "./aiml-common/lectures/regression-trees"
+            path: "./aiml-common/lectures/trees/regression-trees"
         },
         predefinedOutput: true
     }
@@ -1071,23 +1072,22 @@ find_best_split in x=[700, 600]
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../decision-trees/_index.html"
+       href="../decision-trees/decision_tree.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Decision Trees</p>
+        <p class="prev-next-title">Decision tree from scratch</p>
       </div>
     </a>
     <a class="right-next"
-       href="../ensemble/_index.html"
+       href="../../ensemble/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -1095,10 +1095,7 @@ find_best_split in x=[700, 600]
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1113,7 +1110,7 @@ find_best_split in x=[700, 600]
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Regression tree stumps</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Regression Trees</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-decision-and-leaf-nodes-and-how-to-predict">Define decision and leaf nodes and how to predict</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-a-stump-to-single-var-x-and-target-y">Fit a stump to single-var x and target y</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-data-from-explained-ai-article">Use data from explained.ai article</a></li>
@@ -1174,8 +1171,8 @@ By Pantelis Monogioudis, Ph.D
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
 
   <footer class="bd-footer">
   </footer>

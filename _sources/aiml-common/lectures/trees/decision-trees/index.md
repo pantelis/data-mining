@@ -1,7 +1,3 @@
----
-title: Decision Trees
----
-
 # Decision Trees
 
 In this chapter we will treat a non-parametric method, the Decision Tree (DT) that is one of the most popular ML algorithms. They are used usually as components of ensemble methods. They are non-parametric models because they don't need a predetermined set of parameters before training can start as in parametric models - rather the tree fits the data very closely and often overfits using as many parameters are required **during training**. 

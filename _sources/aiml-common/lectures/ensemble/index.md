@@ -1,7 +1,3 @@
----
-title: Ensemble Methods
----
-
 # Ensemble Methods [^1]
 
 [^1]: The problem statement is from [Freund and Schapire 1999](https://cseweb.ucsd.edu/~yfreund/papers/IntroToBoosting.pdf) 
