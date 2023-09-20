@@ -21,7 +21,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 # Packages installation (eg git-lfs)
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends curl git-lfs ffmpeg libsm6 libxext6 graphviz xdg-utils swig 
+    && apt-get -y install --no-install-recommends curl git-lfs ffmpeg libsm6 libxext6 graphviz xdg-utils swig ttf-mscorefonts-installer
 
 USER vscode
 

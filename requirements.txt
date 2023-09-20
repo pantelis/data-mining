@@ -6,6 +6,8 @@ sphinxcontrib-bibtex
 diagrams
 sphinxcontrib-svg2pdfconverter
 ipywidgets
+dtreeviz
+
 # sphinx-proof
 # sphinx-inline-tabs
 # sphinxext-rediraffe
