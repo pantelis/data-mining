@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Probability Assignment &#8212; Data Mining</title>
+    <title>Classifying Ships from Automatic Indentification System (AIS) Data &#8212; Data Mining</title>
   
   
   
@@ -62,15 +62,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"tex": {"macros": {"floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/assignments/probability/probability-assignment-7/index';</script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/assignments/probability/probability-assignment-7/index.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/assignments/ensemble/ais/index';</script>
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/assignments/ensemble/ais/index.html" />
     <link rel="shortcut icon" href="../../../../_static/logo.ico"/>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Classifying Ships from Automatic Indentification System (AIS) Data" href="../../ensemble/ais/index.html" />
-    <link rel="prev" title="Notebook execution status" href="../../../resources/environment/notebook-status.html" />
+    <link rel="prev" title="Probability Assignment" href="../../probability/probability-assignment-7/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -307,8 +304,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Probability Assignment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ensemble/ais/index.html">Classifying Ships from Automatic Indentification System (AIS) Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../probability/probability-assignment-7/index.html">Probability Assignment</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Classifying Ships from Automatic Indentification System (AIS) Data</a></li>
 </ul>
 
     </div>
@@ -355,73 +352,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://mybinder.org/v2/gh/pantelis/data-mining/master?urlpath=tree/data_mining/aiml-common/assignments/probability/probability-assignment-7/index.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../../../../_static/images/logo_binder.svg">
-  </span>
-<span class="btn__text-container">Binder</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/pantelis/data-mining/blob/master/data_mining/aiml-common/assignments/probability/probability-assignment-7/index.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../../../../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -447,7 +377,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pantelis/data-mining/edit/master/data_mining/aiml-common/assignments/probability/probability-assignment-7/index.ipynb" target="_blank"
+      <li><a href="https://github.com/pantelis/data-mining/edit/master/data_mining/aiml-common/assignments/ensemble/ais/index.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -464,7 +394,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/assignments/probability/probability-assignment-7/index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/assignments/ensemble/ais/index.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -494,7 +424,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../../_sources/aiml-common/assignments/probability/probability-assignment-7/index.ipynb" target="_blank"
+      <li><a href="../../../../_sources/aiml-common/assignments/ensemble/ais/index.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -504,7 +434,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -576,7 +506,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Probability Assignment</h1>
+    <h1>Classifying Ships from Automatic Indentification System (AIS) Data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -586,13 +516,24 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-1-80-points">Problem 1 (80 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1a-10-points">Question 1a (10 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1b-20-points">Question 1b (20 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1c-20-points">Question 1c (20 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1d-20-points">Question 1d (20 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1e-10-points">Question 1e (10 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-2-20-points">Problem 2 (20 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-1-run-the-notebook-10-points">Task 1: Run the notebook (10 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2-random-forest-20-points">Task 2: Random Forest (20 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2a-5-points">Task 2A (5 points)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2b-15-points">Task 2B (15 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-cv-vs-bootstrapping-20-points">Task 3: CV vs Bootstrapping (20 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3a-5-points">Task 3A (5 points)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3b-15-points">Task 3B (15 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-4-feature-importance-20-points">Task 4: Feature Importance (20 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-5-gradient-boosting-30-points">Task 5: Gradient Boosting (30 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-5a-lightgbm-15-points">Task 5A: lightGBM (15 points)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-5b-optuna-15-points">Task 5B: Optuna (15 points)</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -604,84 +545,59 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="probability-assignment">
-<h1>Probability Assignment<a class="headerlink" href="#probability-assignment" title="Permalink to this heading">#</a></h1>
-<p>To get full credit in this assignment you need to use <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code> libraries. Sometimes you need to type equations - type equations in Latex math notation. To produce the plots you can use any plotting library you need.</p>
-<p>PS1: We run the assignment through chatGPT the questions and you will be referred to the Dean if we find that a robot answered your questions.</p>
-<p>PS2: We are also monitoring solution websites and we will take action against anyone that uploads this to a solution website.</p>
-<section id="problem-1-80-points">
-<h2>Problem 1 (80 points)<a class="headerlink" href="#problem-1-80-points" title="Permalink to this heading">#</a></h2>
-<p>A surgeon analyzes surgical videos and models events that occur. He describes the problem statement in <a class="reference external" href="https://thomasward.com/simulating-correlated-data/">here</a>. Your job is to replicate the solution in Python and demonstrate your understanding of the steps performed by  including adequate explanation of the code in either markdown cells or inline to the code.  You can insert as many markdown or code cells you need to perform the analysis.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="classifying-ships-from-automatic-indentification-system-ais-data">
+<h1>Classifying Ships from Automatic Indentification System (AIS) Data<a class="headerlink" href="#classifying-ships-from-automatic-indentification-system-ais-data" title="Permalink to this heading">#</a></h1>
+<p><img alt="" src="../../../../_images/ais-screen.png" /></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>AIS has long been used for maritime safety and security, but it is increasingly being used for other purposes, such as fisheries management, environmental monitoring, and even to track the movements of whales.  The data is collected by satellites and terrestrial receivers, and is freely available from a number of sources.  The data is transmitted by ships, and includes information such as the ship’s position, speed, heading, and other information.</p>
+<p>AIS has also been used as a <a class="reference external" href="https://www.nytimes.com/2022/09/03/world/americas/ships-gps-international-law.html">cover of illegal activities</a> in the lucrative maritime trading sector or to conduct <a class="reference external" href="https://www.science.org/doi/10.1126/sciadv.abp8200">illegal fishing in combination with other methods</a>.</p>
+<p>You will find the AIS data you need <a class="reference external" href="https://www.kaggle.com/datasets/eminserkanerdonmez/ais-dataset">here</a>.</p>
 </section>
-<section id="question-1a-10-points">
-<h2>Question 1a (10 points)<a class="headerlink" href="#question-1a-10-points" title="Permalink to this heading">#</a></h2>
-<p>Write the code for generating the <code class="docutils literal notranslate"><span class="pre">gs</span></code> variable. This is the simplest random variable of the problem and can be generated independent of the others.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code here</span>
-</pre></div>
-</div>
-</div>
-</div>
+<section id="task-1-run-the-notebook-10-points">
+<h2>Task 1: Run the notebook (10 points)<a class="headerlink" href="#task-1-run-the-notebook-10-points" title="Permalink to this heading">#</a></h2>
+<p>You will be working with <a class="reference external" href="https://www.kaggle.com/code/stevencarrell1/predict-ship-type">this notebook</a> to document and run experiments. Some of the questions would require you to type some code. Please use the notebook in your local (docker) environment or via Colab. <em>No submissions via Kaggle will be accepted</em>.</p>
+<p>Eliminate models that do not belong to the category of ensemble methods and ensure that the notebook is running without any manual intervention. To do so, you need to ensure that Kaggle datasets are downloaded seamlessly during execution. See <a class="reference external" href="https://www.analyticsvidhya.com/blog/2021/04/how-to-download-kaggle-datasets-using-jupyter-notebook/">here</a> how to do it.</p>
 </section>
-<section id="question-1b-20-points">
-<h2>Question 1b (20 points)<a class="headerlink" href="#question-1b-20-points" title="Permalink to this heading">#</a></h2>
-<p>We have three variables, <code class="docutils literal notranslate"><span class="pre">ak</span></code>, <code class="docutils literal notranslate"><span class="pre">pp</span></code>, and <code class="docutils literal notranslate"><span class="pre">ptime</span></code>. Write the code for generating these variables from Multivate Gaussian distribution and replicate the associated plots.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code here</span>
-</pre></div>
-</div>
-</div>
-</div>
+<section id="task-2-random-forest-20-points">
+<h2>Task 2: Random Forest (20 points)<a class="headerlink" href="#task-2-random-forest-20-points" title="Permalink to this heading">#</a></h2>
+<p>The notebook uses a random forest classifier.</p>
+<section id="task-2a-5-points">
+<h3>Task 2A (5 points)<a class="headerlink" href="#task-2a-5-points" title="Permalink to this heading">#</a></h3>
+<p>Explain why a decision tree alone would not be a good choice for this problem.</p>
 </section>
-<section id="question-1c-20-points">
-<h2>Question 1c (20 points)<a class="headerlink" href="#question-1c-20-points" title="Permalink to this heading">#</a></h2>
-<p>Perform the probability inrtegral transform and replicate the associated plots.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code here</span>
-</pre></div>
-</div>
-</div>
-</div>
+<section id="task-2b-15-points">
+<h3>Task 2B (15 points)<a class="headerlink" href="#task-2b-15-points" title="Permalink to this heading">#</a></h3>
+<p>Explain how a random forest is making a final determination of the ship type.  In other words, how does it combine the results of the individual trees to make a final prediction. We need an equation, its explanation, and reference to specific lines of code in the Random Forest classifier class.</p>
 </section>
-<section id="question-1d-20-points">
-<h2>Question 1d (20 points)<a class="headerlink" href="#question-1d-20-points" title="Permalink to this heading">#</a></h2>
-<p>Perform the inverse transform sampling.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Code here</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
-<section id="question-1e-10-points">
-<h2>Question 1e (10 points)<a class="headerlink" href="#question-1e-10-points" title="Permalink to this heading">#</a></h2>
-<p>Replicate the final plot showcasing the correlations between the variables.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Code here</span>
-</pre></div>
-</div>
-</div>
-</div>
+<section id="task-3-cv-vs-bootstrapping-20-points">
+<h2>Task 3: CV vs Bootstrapping (20 points)<a class="headerlink" href="#task-3-cv-vs-bootstrapping-20-points" title="Permalink to this heading">#</a></h2>
+<p>In the notebook, the author uses cross-validation to evaluate the models.</p>
+<section id="task-3a-5-points">
+<h3>Task 3A (5 points)<a class="headerlink" href="#task-3a-5-points" title="Permalink to this heading">#</a></h3>
+<p>What is CV and why is it used?  Explain how it works and why it is useful.</p>
 </section>
-<section id="problem-2-20-points">
-<h2>Problem 2 (20 points)<a class="headerlink" href="#problem-2-20-points" title="Permalink to this heading">#</a></h2>
-<p>You now pretend that the <span class="math notranslate nohighlight">\(n=4\)</span> dimensional data you generated in Problem 1 arrive sequentially one at a time (the co-called <strong>online</strong> learning setting). Introduce the index <span class="math notranslate nohighlight">\(i\)</span> to represent the ith arriving data sample <span class="math notranslate nohighlight">\(\mathbf x_i\)</span>.</p>
-<ol class="arabic simple">
-<li><p>Write the expression of the <em>sample</em> correlation matrix (5 points)</p></li>
-<li><p>Write the expression of the sample correlation matrix that can be estimated recursively and plot the elements of the sample correlation matrix from <span class="math notranslate nohighlight">\(i=1\)</span> to <span class="math notranslate nohighlight">\(i=100\)</span> (15 points)</p></li>
-</ol>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Code here</span>
-</pre></div>
-</div>
-</div>
-</div>
+<section id="task-3b-15-points">
+<h3>Task 3B (15 points)<a class="headerlink" href="#task-3b-15-points" title="Permalink to this heading">#</a></h3>
+<p>Modify the code to <em>include</em> bootstrapping and compare the performance of the random forest classifier agaist that of CV.</p>
+</section>
+</section>
+<section id="task-4-feature-importance-20-points">
+<h2>Task 4: Feature Importance (20 points)<a class="headerlink" href="#task-4-feature-importance-20-points" title="Permalink to this heading">#</a></h2>
+<p>Explain how the feature importance ranking was obtained (~cell 55).</p>
+</section>
+<section id="task-5-gradient-boosting-30-points">
+<h2>Task 5: Gradient Boosting (30 points)<a class="headerlink" href="#task-5-gradient-boosting-30-points" title="Permalink to this heading">#</a></h2>
+<p>Do you agree with the results that Random Forst performs better than Gradient Boosting ?  Support your answer by</p>
+<section id="task-5a-lightgbm-15-points">
+<h3>Task 5A: lightGBM (15 points)<a class="headerlink" href="#task-5a-lightgbm-15-points" title="Permalink to this heading">#</a></h3>
+<p>Use the lightGBM library to attempt to shed some light into Gradient Boosting performance.</p>
+</section>
+<section id="task-5b-optuna-15-points">
+<h3>Task 5B: Optuna (15 points)<a class="headerlink" href="#task-5b-optuna-15-points" title="Permalink to this heading">#</a></h3>
+<p>Use the Optuna libary to tune any hyperparameters that you believe will make a difference. Explain what each hyperparameter does.</p>
+</section>
 </section>
 </section>
 
@@ -698,7 +614,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./aiml-common/assignments/probability/probability-assignment-7"
+            path: "./aiml-common/assignments/ensemble/ais"
         },
         predefinedOutput: true
     }
@@ -716,22 +632,13 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../../../resources/environment/notebook-status.html"
+       href="../../probability/probability-assignment-7/index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Notebook execution status</p>
+        <p class="prev-next-title">Probability Assignment</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="../../ensemble/ais/index.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Classifying Ships from Automatic Indentification System (AIS) Data</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -748,13 +655,24 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-1-80-points">Problem 1 (80 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1a-10-points">Question 1a (10 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1b-20-points">Question 1b (20 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1c-20-points">Question 1c (20 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1d-20-points">Question 1d (20 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1e-10-points">Question 1e (10 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-2-20-points">Problem 2 (20 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-1-run-the-notebook-10-points">Task 1: Run the notebook (10 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2-random-forest-20-points">Task 2: Random Forest (20 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2a-5-points">Task 2A (5 points)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2b-15-points">Task 2B (15 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-cv-vs-bootstrapping-20-points">Task 3: CV vs Bootstrapping (20 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3a-5-points">Task 3A (5 points)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3b-15-points">Task 3B (15 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-4-feature-importance-20-points">Task 4: Feature Importance (20 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-5-gradient-boosting-30-points">Task 5: Gradient Boosting (30 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-5a-lightgbm-15-points">Task 5A: lightGBM (15 points)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-5b-optuna-15-points">Task 5B: Optuna (15 points)</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
