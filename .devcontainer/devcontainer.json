@@ -34,7 +34,8 @@
 				"ExecutableBookProject.myst-highlight",
 				"GitHub.copilot",
 				"ms-toolsai.jupyter",
-				"eamodio.gitlens"
+				"eamodio.gitlens",
+				"atlassian.atlascode"
 			],
 			"settings": {
 				"terminal.integrated.profiles.linux": {
