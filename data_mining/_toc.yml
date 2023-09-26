@@ -22,14 +22,16 @@ parts:
     chapters:
     - file: aiml-common/lectures/learning-problem/_index.md
     - file: aiml-common/lectures/pipelines/02_end_to_end_machine_learning_project.ipynb
-
+    - file: aiml-common/lectures/model-selection/bias_variance.ipynb
+      
   - caption: Predictors for Structured Data 
     chapters:
     - file: aiml-common/lectures/entropy/_index.md
     - file: aiml-common/lectures/trees/decision-trees/index.md
     - file: aiml-common/lectures/trees/decision-trees/decision_tree.ipynb
-    - file: aiml-common/lectures/trees/regression-trees/stumps.ipynb
-    - file: aiml-common/lectures/trees/dtreeviz_sklearn_visualisations.ipynb
+    - file: aiml-common/lectures/trees/decision-trees/decision_tree_visualisations.ipynb
+    #- file: aiml-common/lectures/trees/regression-trees/stumps.ipynb
+    - file: aiml-common/lectures/trees/regression-trees/regression_tree_visualisations.ipynb  
     - file: aiml-common/lectures/ensemble/index.md
       title:  Ensemble Methods
       sections:       
@@ -38,14 +40,13 @@ parts:
       - file: aiml-common/lectures/ensemble/adaboost/adaboost_example.ipynb
       - file: aiml-common/lectures/ensemble/gradient-boosting/index.md  
       - file: aiml-common/lectures/ensemble/boosting-workshop/index.ipynb  
-
+    
   - caption: Unsupervised and Non-Parametric Supervised Methods
     chapters:    
     - file: aiml-common/lectures/unsupervised/k-means/_index.md
     - file: aiml-common/lectures/density-estimation/knn/_index.md
     - file: aiml-common/lectures/density-estimation/knn-workshop/_index.md
 
-  
   - caption:  Classical Dimensionality Reduction
     chapters:    
     - file: aiml-common/lectures/recommenders/recommenders-intro/_index.md
