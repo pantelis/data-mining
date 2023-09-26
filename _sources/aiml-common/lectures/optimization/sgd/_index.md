@@ -1,8 +1,3 @@
----
-title: Stochastic Gradient Descent
-draft: false
----
-
 # Stochastic Gradient Descent
 
 In this chapter we close the circle that will allow us to train a model - we need an algorithm that will help us search efficiently in the weight space to find the optimal set $w*$ and be able to handle the some times massive amounts of data that we have. 
@@ -46,6 +41,9 @@ where $\eta$ is the scalar learning rate that is a hyperparameter that needs to 
 ![gradient-descent](images/gradient-descent.png)
 *Iterations in gradient descent towards the global in this case min*
 
+Here is an animation on how it works in a more complicated loss function:
+
+![](images/sgd.gif)
 
 ## Stochastic Gradient Descent (SGD)
 

@@ -112,3 +112,5 @@ A DT applied in the area of cybersecurity.
 ## References
 
 Some of the material used in this chapter is from (a) "ML with Random Forests and Decision Trees" by Scott Hartshorn, (b) Decision Forests for Classification, Regression, Density Estimation, Manifold Learning and Semi-Supervised Learning by Criminisi et.a.l.
+
+In addition, recently non-greedy versions of decision trees have been proposed that are based on the minimization of the KL divergence between the input and the output distributions. See for example the paper "Non-greedy Decision Trees with Linear Time Complexity" by S. Kontaxis et.al.

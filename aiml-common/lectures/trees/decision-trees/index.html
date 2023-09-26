@@ -198,18 +198,16 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="../../model-selection/bias_variance.html">Empirical Risk Minimization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Predictors for Structured Data</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../entropy/_index.html">Entropy</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Decision Trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="decision_tree.html">Decision tree from scratch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../regression-trees/stumps.html">Regression Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decision_tree_visualisations.html">Visualizing tree-based classifiers</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="../dtreeviz_sklearn_visualisations.html">Visualizing tree-based classifiers and regressors</a></li>
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="../regression-trees/regression_tree_visualisations.html">Visualizing tree-based regressors</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../ensemble/index.html">Ensemble Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../ensemble/random-forests/index.html">Random Forests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../ensemble/adaboost/index.html">Adaptive Boosting (AdaBoost)</a></li>
@@ -628,6 +626,7 @@ When we use decision trees for regression, the entropy is replaced with the usua
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <p>Some of the material used in this chapter is from (a) “ML with Random Forests and Decision Trees” by Scott Hartshorn, (b) Decision Forests for Classification, Regression, Density Estimation, Manifold Learning and Semi-Supervised Learning by Criminisi et.a.l.</p>
+<p>In addition, recently non-greedy versions of decision trees have been proposed that are based on the minimization of the KL divergence between the input and the output distributions. See for example the paper “Non-greedy Decision Trees with Linear Time Complexity” by S. Kontaxis <a class="reference external" href="http://et.al">et.al</a>.</p>
 </section>
 </section>
 
