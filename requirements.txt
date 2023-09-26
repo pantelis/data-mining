@@ -7,6 +7,7 @@ diagrams
 sphinxcontrib-svg2pdfconverter
 ipywidgets
 dtreeviz
+optuna
 
 # sphinx-proof
 # sphinx-inline-tabs
