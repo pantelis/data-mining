@@ -8,6 +8,7 @@ sphinxcontrib-svg2pdfconverter
 ipywidgets
 dtreeviz
 optuna
+lightgbm
 
 # sphinx-proof
 # sphinx-inline-tabs
