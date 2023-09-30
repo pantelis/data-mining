@@ -41,13 +41,13 @@ parts:
       - file: aiml-common/lectures/ensemble/gradient-boosting/index.md  
       - file: aiml-common/lectures/ensemble/boosting-workshop/index.ipynb  
     
-  - caption: Unsupervised and Non-Parametric Supervised Methods
+  - caption: Learning without Labels or Without Parameters
     chapters:    
     - file: aiml-common/lectures/unsupervised/k-means/_index.md
     - file: aiml-common/lectures/density-estimation/knn/_index.md
     - file: aiml-common/lectures/density-estimation/knn-workshop/_index.md
 
-  - caption:  Classical Dimensionality Reduction
+  - caption:  Dimensionality Reduction
     chapters:    
     - file: aiml-common/lectures/recommenders/recommenders-intro/_index.md
     - file: aiml-common/lectures/recommenders/netflix/_index.md
