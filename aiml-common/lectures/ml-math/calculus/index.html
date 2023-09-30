@@ -62,8 +62,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"tex": {"macros": {"floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/ml-math/calculus/index';</script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/ml-math/calculus/index.html" />
     <link rel="shortcut icon" href="../../../../_static/logo.ico"/>
@@ -217,13 +215,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unsupervised and Non-Parametric Supervised Methods</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Learning without Labels or Without Parameters</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../unsupervised/k-means/_index.html">K-means Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../density-estimation/knn/_index.html">k-Nearest Neighbors (kNN) Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">kNN Workshop</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Dimensionality Reduction</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../recommenders/recommenders-intro/_index.html">Introduction to Recommender Systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../recommenders/netflix/_index.html">The Netflix Prize and Singular Value Decomposition</a></li>
@@ -494,7 +492,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -510,6 +510,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -519,18 +527,18 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="math notranslate nohighlight">
-\[\newcommand\N{\mathbb{N}}
-\newcommand\floor[1]{\lfloor#1\rfloor}
-\newcommand{\mathbfat}{\left[\begin{array}}
-\newcommand{\emat}{\end{array}\right]}
-\def\rmA{{\mathbf{A}}}\]</div>
-<section class="tex2jax_ignore mathjax_ignore" id="calculus">
+  <section class="tex2jax_ignore mathjax_ignore" id="calculus">
 <h1>Calculus<a class="headerlink" href="#calculus" title="Permalink to this heading">#</a></h1>
-<p>Specificall for deep learning there is a very good reference <a class="reference external" href="https://arxiv.org/pdf/1802.01528.pdf">here</a></p>
+<p>For this course you need to review some basic calculus. The best resource for it is <a class="reference external" href="https://www.khanacademy.org/math/multivariable-calculus">Khan Academy’s Multivariate Calculus</a>. Go through the videos and exercises in Units 1 and 2 only.</p>
+<p>For more advanced reader, and specifically for fully understanding deep learning that includes <em>matrix calculus</em>  there is a very good reference <a class="reference external" href="https://arxiv.org/pdf/1802.01528.pdf">here</a>.</p>
+<p>We have also shot a recitation video for you to review some of the concepts.</p>
 <div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/Ygw9jR42y9I" style="border: 0; height: 345px; width: 560px">
 </iframe></div><p><em>Calculus recitation for my classes. Recitation was delivered by my TA Pritam Sen.</em></p>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<p>T. Parr and J. Howard, “The Matrix Calculus You Need For Deep Learning,” arXiv [cs.LG], Feb. 05, 2018. Available: <a class="reference external" href="http://arxiv.org/abs/1802.01528">http://arxiv.org/abs/1802.01528</a></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -587,6 +595,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

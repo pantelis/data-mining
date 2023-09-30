@@ -29,6 +29,13 @@ As you can see the maximum entropy is when the outcome is most unpredictable i.e
 
 ## Relative entropy or KL divergence
 
+```{eval-rst}
+.. youtube:: SxGYPqCgJWM
+    :width: 560
+    :height: 315
+    :align: center
+```
+
 In many settings we need to have a metric that compares two probability distributions $\{P(x),Q(x)\}$ in terms of their "distance" from each other (the quotes will be explained shortly). This is given by the quantity known as *relative entropy* or *KL divergence*. 
 
 $$KL(P||Q)= \mathbb{E}[\ln P(x) - \ln Q(x)]$$
@@ -36,6 +43,8 @@ $$KL(P||Q)= \mathbb{E}[\ln P(x) - \ln Q(x)]$$
 If the two distributions are identical, $KL=0$ - in general however $KL(P||Q) \ge 0$. One key element to understand is that $KL$ is not a true distance metric as its asymmetric. 
 
 ![KL-asymmetry](images/KL-asymmetry.png)
+
+
 
 Very close to the relative entropy is probably one of the most used information theoretic concepts in ML: **the cross-entropy**. We will motivate cross entropy via a diagram shown below,
 
