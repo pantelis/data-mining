@@ -1,10 +1,9 @@
 # Introduction to Recommender Systems
 
-> NOTE: Most of the material presented here is taken from the book [Practical Recommender Systems.](https://www.amazon.com/Practical-Recommender-Systems-Kim-Falk/dp/1617292702) and [Isinkaye, 2015](https://www.sciencedirect.com/science/article/pii/S1110866515000341)
-> [developers.google.com](https://developers.google.com/machine-learning/recommendation) provides also a good introductory treatment in recommendation systems. 
- 
-![netflix](images/netflix.jpg)
-_Netflix landing page (browser)_ 
+```{note}Most of the material presented here is taken from the book [Practical Recommender Systems.](https://www.amazon.com/Practical-Recommender-Systems-Kim-Falk/dp/1617292702) and [Isinkaye, 2015](https://www.sciencedirect.com/science/article/pii/S1110866515000341)
+
+[developers.google.com](https://developers.google.com/machine-learning/recommendation) provides also a good introductory treatment in recommendation systems. 
+```
 
 All web players such as retailers and content providers offer a huge selection of products and services, with unprecedented opportunities to meet a variety of special needs and tastes. Matching your interests and tastes with the most appropriate information (e.g. products) is key to enhancing user satisfaction and loyalty. Therefore,  have become interested in recommender systems, which analyze patterns of user interest in a domain (e.g. shopping) to provide personalized recommendations that suit a user’s taste. 
 
@@ -21,6 +20,7 @@ More broadly, recommender systems can be seen as decision maker for information 
 ### Content-based Filtering
 
 ![content-filtering-concept](images/content-filtering-concept.jpg)
+
 *The elements of content-based filtering. In content-based filtering technique, recommendation is made based on the similarity between items to recommend items similar to what the user likes. We gradually build a profile as the user interacts with the content.*
 
 ### Memory-based Collaborative Filtering (CF)
@@ -28,19 +28,22 @@ More broadly, recommender systems can be seen as decision maker for information 
 The items that were already rated by the user before, play a relevant role in searching for a neighbor that shares appreciation with her. 
 
 ![collaborative-filtering](images/collaborative-filtering.jpg)
+
 *Matrix representation of Collaborative Filtering.*
 
 #### User-based CF 
 
 ![cf-pipeline](images/cf-pipeline.jpg)
+
 *Collaborative Filtering pipeline. In user-based collaborative filtering technique calculates similarity between users by comparing their ratings on the same item, and it then computes the predicted rating for an item by the active user as a weighted average of the ratings of the item by users similar to the active user where weights are the similarities of these users with the target item.*
 
 #### Item-based CF 
 
 ![item-vs-user-collab-filtering](images/item-vs-user-collab-filtering.jpg)
+
 *Item-based vs user-based CF. In item-based filtering techniques compute predictions using the similarity between items and not the similarity between users. It builds a model of item similarities by retrieving all items rated by an active user from the user-item matrix, it determines how similar the retrieved items are to the target item, then it selects the k most similar items and their corresponding similarities are also determined. Prediction is made by taking a weighted average of the active users rating on the similar items $k$.*
 
-Amazon.com implements item-based CF [[cite](https://assets.amazon.science/76/9e/7eac89c14a838746e91dde0a5e9f/two-decades-of-recommender-systems-at-amazon.pdf)]. Their recommendation engine is responsible for ~30% of their revenue. Amazon's algorithm begins by finding related items for each item in the catalog. The term “related” could have several meanings here, but at this point, let’s loosely define it as “people who buy one item are unusually likely to buy the other.” So, for every item $i_1$, we want every item $i_2$ that was purchased with unusually high frequency by people who bought $i_1$. Once this related items table is built, we can generate recommendations quickly as a series of lookups. For each item that’s part of this customer’s current context and previous interests,  we look up the related items, combine them to yield the most likely items of interest, filter out items already seen or purchased, and then we are left with the items to recommend. 
+[Amazon.com implements item-based CF](https://assets.amazon.science/76/9e/7eac89c14a838746e91dde0a5e9f/two-decades-of-recommender-systems-at-amazon.pdf). Their recommendation engine is responsible for ~30% of their revenue. Amazon's algorithm begins by finding related items for each item in the catalog. The term “related” could have several meanings here, but at this point, let’s loosely define it as “people who buy one item are unusually likely to buy the other.” So, for every item $i_1$, we want every item $i_2$ that was purchased with unusually high frequency by people who bought $i_1$. Once this related items table is built, we can generate recommendations quickly as a series of lookups. For each item that’s part of this customer’s current context and previous interests,  we look up the related items, combine them to yield the most likely items of interest, filter out items already seen or purchased, and then we are left with the items to recommend. 
 
 This algorithm has many advantages over the user-based collaborative filtering. 
 
@@ -82,12 +85,12 @@ where is $s_x=\sqrt{\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})^2}$  is the sample st
 
 ### Model-based CF
 
-This technique employs the previous ratings to learn a model in order to improve the performance of Collaborative filtering Technique. The model building process can be done using machine learning or data mining techniques. These techniques can quickly recommend a set of items for the fact that they use pre-computed model and they have proved to produce recommendation results that are similar to neighborhood-based recommender techniques. 
+This technique employs the previous ratings to learn a model in order to improve the performance of Collaborative filtering Technique. The model building process can be done using machine learning techniques. These techniques can quickly recommend a set of items for the fact that they use pre-computed model and they have proved to produce recommendation results that are similar to neighborhood-based recommender techniques. 
 
 Examples of these techniques include 
 
 * Dimensionality Reduction such as Principal Component Analysis (PCA)
-* Matrix Factorization such as Singular Value Decomposition (SVD), 
-* Regression and Clustering. 
+* Matrix Factorization such as Singular Value Decomposition (SVD),
+* Regression and Clustering.
 
 Model-based techniques analyze the _user-item matrix to identify relations between items_; they use these relations to compare the list of top-N recommendations. Model based techniques resolve the sparsity problems associated with recommendation systems.
