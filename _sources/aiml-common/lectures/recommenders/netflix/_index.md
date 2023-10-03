@@ -29,10 +29,12 @@ Assuming that the rating matrix $A_{[m x n]}$ with m users (500K) and n items (1
 
 ## SVD Solution
 
-Given the very large data matrix it was only expected that competitors attempted to do  _dimensionality reduction_ and as it turns out this was the basis for the winning algorithm.  Dimensionality reduction can be done via matrix factorization that has the following advantage: when explicit feedback is not available, we can infer user preferences using implicit feedback, which indirectly reflects opinion by observing _user behavior_ including purchase history, browsing history, search patterns, or even mouse movements. A high level visual result of the matrix factorization with two latent features is shown below:
+Given the very large data matrix it was only expected that competitors attempted to do  _dimensionality reduction_ and as it turns out this was the basis for the winning algorithm.  Dimensionality reduction can be done via matrix factorization that has the following advantage: when explicit feedback is not available, we can infer user preferences using implicit feedback, which indirectly reflects opinion by observing _user behavior_ including purchase history, browsing history, search patterns, or even mouse movements. 
+
+<!-- A high level visual result of the matrix factorization with two latent features is shown below:
 
 ![latent-factor-approach](images/latent-factor-approach.png)
-*Simplistic illustration of two latent factor approach. Users and Items are shown in this feature space*. 
+*Simplistic illustration of two latent factor approach. Users and Items are shown in this feature space*.  -->
 
 Lets now look at one matrix factorization method in detail, recalling the premise of SVD from linear algebra: it is a decomposition that can work with rectangular matrices and can result into a factorization:
 
