@@ -51,8 +51,6 @@ parts:
     chapters:    
     - file: aiml-common/lectures/pca/introduction/index.md
     - file: aiml-common/lectures/pca/introduction/principal_component_analysis.ipynb 
-    - file: aiml-common/lectures/pca/whitening/index.md
-    - file: aiml-common/lectures/pca/whitening/preprocessing_workshop.ipynb
     - file: aiml-common/lectures/recommenders/recommenders-intro/_index.md
     - file: aiml-common/lectures/recommenders/netflix/_index.md
      
@@ -70,7 +68,10 @@ parts:
     - file: aiml-common/lectures/classification/perceptron/_index.md
     - file: aiml-common/lectures/dnn/dnn-intro/_index.md
     - file: aiml-common/lectures/dnn/fashion-mnist-case-study.md
+    - file: aiml-common/lectures/whitening/index.md
+    - file: aiml-common/lectures/whitening/preprocessing_workshop.ipynb
     - file: aiml-common/lectures/optimization/regularization/_index.md
+    
     #- file: aiml-common/lectures/optimization/regularization/regularization-workshop-1/_index.md
       
   - caption: Convolutional Neural Networks
