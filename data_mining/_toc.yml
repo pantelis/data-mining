@@ -49,12 +49,14 @@ parts:
 
   - caption:  Dimensionality Reduction
     chapters:    
+    - file: aiml-common/lectures/pca/introduction/index.md
+    - file: aiml-common/lectures/pca/introduction/principal_component_analysis.ipynb 
+    - file: aiml-common/lectures/pca/whitening/index.md
+    - file: aiml-common/lectures/pca/whitening/preprocessing_workshop.ipynb
     - file: aiml-common/lectures/recommenders/recommenders-intro/_index.md
     - file: aiml-common/lectures/recommenders/netflix/_index.md
-    - file: aiml-common/lectures/pca/_index.md
-    - file: aiml-common/lectures/pca/principal-component-analysis.ipynb 
      
-  - caption: On Maximum Likelihood
+  - caption: Regression and Classification
     chapters:
     - file: aiml-common/lectures/regression/linear-regression/linear_regression.ipynb    
     # - file: aiml-common/lectures/optimization/maximum-likelihood/marginal_maximum_likelihood.ipynb
@@ -65,11 +67,8 @@ parts:
       
   - caption: Deep Neural Networks
     chapters:    
-    # - file: aiml-common/lectures/classification/perceptron/_index.md
+    - file: aiml-common/lectures/classification/perceptron/_index.md
     - file: aiml-common/lectures/dnn/dnn-intro/_index.md
-    - file: aiml-common/lectures/dnn/backprop-intro/_index.md
-    - file: aiml-common/lectures/dnn/backprop-dnn/_index.md
-    - file: aiml-common/lectures/dnn/backprop-dnn-exercises/_index.md
     - file: aiml-common/lectures/dnn/fashion-mnist-case-study.md
     - file: aiml-common/lectures/optimization/regularization/_index.md
     #- file: aiml-common/lectures/optimization/regularization/regularization-workshop-1/_index.md
