@@ -1,7 +1,3 @@
----
-title: The Netflix Prize and Singular Value Decomposition
----
-
 #  The Netflix Prize and Singular Value Decomposition
 
 > NOTE: The following are based on the [winning submission paper](https://www.netflixprize.com/assets/GrandPrize2009_BPC_BellKor.pdf) as well as [their subsequent publication](https://datajobs.com/data-science-repo/Recommender-Systems-[Netflix].pdf). 
