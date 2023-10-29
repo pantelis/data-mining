@@ -32,6 +32,9 @@ The goal is _not_ to predict once ETD but to _recalculate these time-to-delivery
 ![uber-michelangelo](images/uber-michelangelo.png)
 *Uber's Michelangelo system architecture (data flow view)*
 
+```{eval-rst}
+.. youtube:: Z3-HddkYgyI
+```
 
 The data processing pipeline elements we should be familiar with are listed below. 
 
