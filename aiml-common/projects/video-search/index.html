@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -518,9 +518,15 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-1-youtube-video-library-10-points">Milestone 1:  youtube video library (10 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-2-video-indexing-pipeline-25-points">Milestone 2: Video indexing pipeline (25 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-2-video-indexing-pipeline-25-points">Milestone 2: Video indexing pipeline (25 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocess-of-the-video">Preprocess of the video</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-model">Embedding model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combination">Combination</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">Indexing</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-3-text-indexing-pipeline-25-points">Milestone 3: Text indexing pipeline (25 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-4-fusuon-of-nearest-videos-and-text-20-points">Milestone 4: Fusuon of nearest videos and text (20 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-4-fusion-of-nearest-videos-and-text-20-points">Milestone 4: Fusion of nearest videos and text (20 points)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-5-search-ui-and-pitch-video-voiceover-20-points">Milestone 5: Search UI and  pitch video voiceover (20 points)</a></li>
 </ul>
             </nav>
@@ -543,12 +549,35 @@ document.write(`
 </section>
 <section id="milestone-2-video-indexing-pipeline-25-points">
 <h2>Milestone 2: Video indexing pipeline (25 points)<a class="headerlink" href="#milestone-2-video-indexing-pipeline-25-points" title="Permalink to this heading">#</a></h2>
+<p>In this milestone you will start delivering features that will be used in the final search engine.</p>
+<section id="preprocess-of-the-video">
+<h3>Preprocess of the video<a class="headerlink" href="#preprocess-of-the-video" title="Permalink to this heading">#</a></h3>
+<p>You can use opencv, ffmpeg, gstreameer, <a class="reference external" href="https://pytorchvideo.org/">https://pytorchvideo.org/</a> or any other library to implement the preprocessing steps of Fig 4.17 as shown in Fig 4.9.</p>
+</section>
+<section id="embedding-model">
+<h3>Embedding model<a class="headerlink" href="#embedding-model" title="Permalink to this heading">#</a></h3>
+<p>Develop a convolutional autoencoder such as <a class="reference external" href="https://blog.keras.io/building-autoencoders-in-keras.html">the one described here</a> to create per frame embeddings. You can select to downsample the frame rate.  The end result are pairs of (image, correspodning vector embedding) for each video. You have to store them in <a class="reference external" href="https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github">Github LFS</a>.</p>
+<p>PS: You can also use <a class="reference external" href="https://huggingface.co/docs/transformers/model_doc/vit">ViT</a> for the autoencoding function if you want to be more cutting edge.</p>
+</section>
+<section id="combination">
+<h3>Combination<a class="headerlink" href="#combination" title="Permalink to this heading">#</a></h3>
+<p>Combine the video embeddings into a single vector using a methiod of your choice that includes simple aggregation of the per-frame embeddings.</p>
+<p>Extra credit: if you want to maximize the possibility of developing something <strong>new</strong> think how a simple aggregation can be replaced by a more complex function. For example can you find a way to segment each video and agre</p>
+</section>
+<section id="indexing">
+<h3>Indexing<a class="headerlink" href="#indexing" title="Permalink to this heading">#</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span></code> to bring up two docker containers, your application container with the dev environment (you must have done this in Milestone 1) and a second container with either postgres or OpenSearch. Its entirely up to you to decide which database to use.</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span> <span class="pre">postgres:latest</span></code>
+<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span> <span class="pre">opensearchproject/opensearch:latest</span></code></p>
+<p>Index the video images embedding vectors in the database of your choice. To do that in postgres (with the pgvector extension) you can use <a class="reference external" href="https://dev.to/sfoteini/image-vector-similarity-search-with-azure-computer-vision-and-postgresql-12f7">this guide</a>. To do that in OpenSearch you can use <a class="reference external" href="https://opensearch.org/docs/latest/knn-search/">this guide</a> and <a class="reference external" href="https://dev.to/finloop/how-to-use-opensearch-k-nn-as-a-semantic-search-engine-je9">this guide</a>.</p>
+<p>Demonstrate that you can search the database using image queries and post the screenshots of your search results that must include the first 10 similar images across the input videos.</p>
+</section>
 </section>
 <section id="milestone-3-text-indexing-pipeline-25-points">
 <h2>Milestone 3: Text indexing pipeline (25 points)<a class="headerlink" href="#milestone-3-text-indexing-pipeline-25-points" title="Permalink to this heading">#</a></h2>
 </section>
-<section id="milestone-4-fusuon-of-nearest-videos-and-text-20-points">
-<h2>Milestone 4: Fusuon of nearest videos and text (20 points)<a class="headerlink" href="#milestone-4-fusuon-of-nearest-videos-and-text-20-points" title="Permalink to this heading">#</a></h2>
+<section id="milestone-4-fusion-of-nearest-videos-and-text-20-points">
+<h2>Milestone 4: Fusion of nearest videos and text (20 points)<a class="headerlink" href="#milestone-4-fusion-of-nearest-videos-and-text-20-points" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="milestone-5-search-ui-and-pitch-video-voiceover-20-points">
 <h2>Milestone 5: Search UI and  pitch video voiceover (20 points)<a class="headerlink" href="#milestone-5-search-ui-and-pitch-video-voiceover-20-points" title="Permalink to this heading">#</a></h2>
@@ -610,9 +639,15 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-1-youtube-video-library-10-points">Milestone 1:  youtube video library (10 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-2-video-indexing-pipeline-25-points">Milestone 2: Video indexing pipeline (25 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-2-video-indexing-pipeline-25-points">Milestone 2: Video indexing pipeline (25 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocess-of-the-video">Preprocess of the video</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-model">Embedding model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combination">Combination</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">Indexing</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-3-text-indexing-pipeline-25-points">Milestone 3: Text indexing pipeline (25 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-4-fusuon-of-nearest-videos-and-text-20-points">Milestone 4: Fusuon of nearest videos and text (20 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-4-fusion-of-nearest-videos-and-text-20-points">Milestone 4: Fusion of nearest videos and text (20 points)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-5-search-ui-and-pitch-video-voiceover-20-points">Milestone 5: Search UI and  pitch video voiceover (20 points)</a></li>
 </ul>
   </nav></div>
@@ -661,8 +696,8 @@ By Pantelis Monogioudis, Ph.D
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>

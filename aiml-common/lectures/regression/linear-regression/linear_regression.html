@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="../../../../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link href="../../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
-<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
-  <script src="../../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
@@ -620,13 +620,21 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting prml
-  Cloning https://github.com/pantelis-classes/PRML.git to /tmp/pip-install-kt837t33/prml_fbde2824406846458faf10bba20d7db0
-  Running command git clone --filter=blob:none --quiet https://github.com/pantelis-classes/PRML.git /tmp/pip-install-kt837t33/prml_fbde2824406846458faf10bba20d7db0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Defaulting to user installation because normal site-packages is not writeable
+Collecting prml
+  Cloning https://github.com/pantelis-classes/PRML.git to /tmp/pip-install-4jmy2x2l/prml_d2cf171c4aa64b08b838dcd5fe8fe772
+  Running command git clone --filter=blob:none --quiet https://github.com/pantelis-classes/PRML.git /tmp/pip-install-4jmy2x2l/prml_d2cf171c4aa64b08b838dcd5fe8fe772
   Resolved https://github.com/pantelis-classes/PRML.git to commit 14cf88538d2704fd18b391ae6309fb38c65a6412
   Preparing metadata (setup.py) ... ?25ldone
-?25hRequirement already satisfied: numpy in /workspaces/artificial_intelligence/.venv/lib/python3.10/site-packages (from prml) (1.24.2)
-Requirement already satisfied: scipy in /workspaces/artificial_intelligence/.venv/lib/python3.10/site-packages (from prml) (1.10.1)
+?25hRequirement already satisfied: numpy in /usr/local/lib/python3.8/dist-packages (from prml) (1.22.2)
+Requirement already satisfied: scipy in /usr/local/lib/python3.8/dist-packages (from prml) (1.6.3)
+Building wheels for collected packages: prml
+  Building wheel for prml (setup.py) ... ?25ldone
+?25h  Created wheel for prml: filename=prml-0.0.1-py3-none-any.whl size=88407 sha256=8e8f307f19e75eaeee1f12cbbf40ff5ec4f201ab7a2a2c2d545f1fe4c241bff6
+  Stored in directory: /tmp/pip-ephem-wheel-cache-g9hwg7ro/wheels/5d/56/f3/c40fd432ed3d5d565f131c2146282d43c65eb720576825e67f
+Successfully built prml
+Installing collected packages: prml
+Successfully installed prml-0.0.1
 </pre></div>
 </div>
 </div>
@@ -675,6 +683,9 @@ Requirement already satisfied: scipy in /workspaces/artificial_intelligence/.ven
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/a1367947bba25bad04b065a11d434dd0b7cbd71499db33777324745c31a579b6.png" src="../../../../_images/a1367947bba25bad04b065a11d434dd0b7cbd71499db33777324745c31a579b6.png" />
+</div>
 </div>
 <p>Let us now pick the hypothesis set that corresponds in general to the following sum,</p>
 <div class="math notranslate nohighlight">
@@ -696,6 +707,12 @@ Requirement already satisfied: scipy in /workspaces/artificial_intelligence/.ven
 <span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">txt</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0.01, &#39;Polynomial, Gaussian and Sigmoidal basis functions&#39;)
+</pre></div>
+</div>
+<img alt="../../../../_images/7de4120af7f50379e4f60c94fdfe57864878c99b8fc69c4b57f34b1c086492b9.png" src="../../../../_images/7de4120af7f50379e4f60c94fdfe57864878c99b8fc69c4b57f34b1c086492b9.png" />
 </div>
 </div>
 <p>Our job is to find <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> such that the polynomial expansion above fits the data we are given - as we will see there are multiple hypothesis that can satisfy this requirement. Consistent with the block diagram we need to define a metric, an figure of merit or loss function in fact, that is also a common metric in regression problems of this nature. This is the Mean Squared Error (MSE) function.</p>
@@ -750,6 +767,10 @@ Requirement already satisfied: scipy in /workspaces/artificial_intelligence/.ven
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/8730b14f3da28c02ff9722dc4efbff593d5d4a0c2af0f90ae9e75a60834365bd.png" src="../../../../_images/8730b14f3da28c02ff9722dc4efbff593d5d4a0c2af0f90ae9e75a60834365bd.png" />
+<img alt="../../../../_images/26508f05849ee9301d0b5f73c97cc31f749635c56e0166622cc19c7c06fdbf74.png" src="../../../../_images/26508f05849ee9301d0b5f73c97cc31f749635c56e0166622cc19c7c06fdbf74.png" />
+</div>
 </div>
 <p>To avoid overfitting we have multiple strategies. One straightforward one is evident by observing the wild oscillations of the <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> elements as the model complexity increases. We can penalize such oscillations by introducing the <span class="math notranslate nohighlight">\(l_2\)</span> norm of <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> in our loss function.</p>
 <div class="math notranslate nohighlight">
@@ -770,6 +791,9 @@ Requirement already satisfied: scipy in /workspaces/artificial_intelligence/.ven
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/ee96cf88ce969b1fe31425f002d675d8b02dd09a44db1cf623513368dd22f18e.png" src="../../../../_images/ee96cf88ce969b1fe31425f002d675d8b02dd09a44db1cf623513368dd22f18e.png" />
 </div>
 </div>
 <p>Lets reflect on the MSE and how model complexity gives raise to various generalization errors.</p>
@@ -900,8 +924,8 @@ By Pantelis Monogioudis, Ph.D
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
-<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+  <script src="../../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
   </footer>
