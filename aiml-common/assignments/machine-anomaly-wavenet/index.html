@@ -540,7 +540,9 @@ document.write(`
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Following the lecture on CNNs and RNNs, you will work on a causal 1D CNN model called <a class="reference external" href="https://arxiv.org/abs/1609.03499">Wavenet</a> to detect anomalous sounds events as described in <a class="reference external" href="https://www.eurasip.org/Proceedings/Eusipco/Eusipco2018/papers/1570437578.pdf">this paper</a>.</p>
 <p>The following video provides a good overview of the application space of Wavenet to <strong>generate</strong> speech - it is used across many Alphabet services.</p>
-</section>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/9eLNUB62HRI" style="border: 0; height: 345px; width: 560px">
+</iframe></div></section>
 <section id="task-1-code-the-wavenet-model-35-pioints">
 <h2>Task 1 - Code the Wavenet model (35 pioints)<a class="headerlink" href="#task-1-code-the-wavenet-model-35-pioints" title="Permalink to this heading">#</a></h2>
 <p>Use Tensorflow / Keras  implementation of Wavenet (see the example in your textbook) or the equivalent in Pytorch.</p>
@@ -549,7 +551,7 @@ document.write(`
 </section>
 <section id="task-2-prepare-and-consume-the-training-and-test-datasets-35-points">
 <h2>Task 2 - Prepare and consume the Training and Test Datasets (35 points)<a class="headerlink" href="#task-2-prepare-and-consume-the-training-and-test-datasets-35-points" title="Permalink to this heading">#</a></h2>
-<p>For evaluating the model, you will use this <a class="reference external" href="https://arxiv.org/pdf/1908.03299.pdf">dataset</a> for the toy car sub-dataset for the continuous (CNT) data collection. The data can be downloaded <a class="reference external" href="https://zenodo.org/records/3351307#.XT-JZ-j7QdU">here</a> but you need to have a significant disk space to extract the 7z files. <strong>Avoid downloading the dataset</strong> from this original URL that is provided here for information only - we have prepared a streaming dataset version based on the webdataset spec that you can find in <span class="xref myst">the Hugging Face Hub</span>.</p>
+<p>For evaluating the model, you will use this <a class="reference external" href="https://arxiv.org/pdf/1908.03299.pdf">dataset</a> for the toy car sub-dataset for the continuous (CNT) data collection. The data can be downloaded <a class="reference external" href="https://zenodo.org/records/3351307#.XT-JZ-j7QdU">here</a> but you need to have a significant disk space to extract the 7z files. <strong>Avoid downloading the dataset</strong> from this original URL that is provided here for information only - we have prepared a streaming dataset version based on the webdataset spec that you can find in the Hugging Face Hub.</p>
 <p><strong>NOTE: The author is in the process of releasing the webdataset version of the dataset. Please check back later.</strong></p>
 <p>You need to use <a class="reference external" href="https://pytorch.org/data/beta/index.html">TorchData</a> to stream the data from the Hugging Face Hub and either process the data online for training &amp; evaluation purposes or create a subset of the dataset for training and evaluation as required for your model. You may use <a class="reference external" href="https://github.com/archinetai/audio-data-pytorch">Audio WebDataset extension</a> to help you with consuming the audio files by the rest of the pipeline.</p>
 <p>The authors have published <a class="reference external" href="https://github.com/YumaKoizumi/ToyADMOS-dataset">this github repp</a> where you can find the training and test dataset processing steps that you may borrow.</p>
