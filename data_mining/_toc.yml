@@ -82,13 +82,6 @@ parts:
     - file: aiml-common/lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.ipynb
     - file: aiml-common/lectures/scene-understanding/feature-extraction-resnet/index.md
 
-  - caption:  Representation Learning and Autoencoders
-    chapters:
-    - file: aiml-common/lectures/vae/index.md 
-    - file: aiml-common/lectures/vae/generative-modeling/index.md 
-    - file: aiml-common/lectures/vae/vae-architecture/index.md
-    - file: aiml-common/lectures/vae/elbo-optimization/index.md 
-
   - caption:  Sequences and RNNs
     chapters:    
     - file: aiml-common/lectures/rnn/introduction/_index.md 
@@ -96,6 +89,13 @@ parts:
     - file: aiml-common/lectures/rnn/lstm/_index.md
     - file: aiml-common/lectures/rnn/time_series_using_simple_rnn_lstm.ipynb     
 
+  - caption:  Representation Learning and Autoencoders
+    chapters:
+    - file: aiml-common/lectures/vae/index.md 
+    - file: aiml-common/lectures/vae/generative-modeling/index.md 
+    - file: aiml-common/lectures/vae/vae-architecture/index.md
+    - file: aiml-common/lectures/vae/elbo-optimization/index.md 
+  
   - caption:  Natural Language Processing 
     chapters:
     - file: aiml-common/lectures/nlp/nlp-introduction/nlp-pipelines/_index.md 
@@ -133,6 +133,7 @@ parts:
     chapters:
     - file: aiml-common/assignments/probability/probability-assignment-7/index.ipynb
     - file: aiml-common/assignments/ensemble/ais/index.md
+    - file: aiml-common/assignments/machine-anomaly-wavenet/index.md
       
   #   - file: aiml-common/assignments/recommendations/index.ipynb
   #   - file: aiml-common/assignments/crop-yield-estimation/index.ipynb
