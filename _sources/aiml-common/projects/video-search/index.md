@@ -24,9 +24,9 @@ PS: You can also use [ViT](https://huggingface.co/docs/transformers/model_doc/vi
 
 ### Combination
 
-Combine the video embeddings into a single vector using a methiod of your choice that includes simple aggregation of the per-frame embeddings.
+Combine the video embeddings into a single vector using a method of your choice that includes simple aggregation of the per-frame embeddings.
 
-Extra credit: if you want to maximize the possibility of developing something **new** think how a simple aggregation can be replaced by a more complex function. For example can you find a way to segment each video and agre  
+Extra credit: if you want to maximize the possibility of developing something **new** think how a simple aggregation can be replaced by a more complex function. For example can you find a way to segment each video and aggregate the frame embeddings of each segment. This way there are multiple embeddings created per video.
 
 ### Indexing
 
@@ -42,9 +42,16 @@ Demonstrate that you can search the database using image queries and post the sc
 
 ## Milestone 3: Text indexing pipeline (25 points)
 
+The youtube service give you the ability of downloading the closed captions of a video. You can do that by clicking on the three dots on the bottom right of the video and then clicking on the "Open transcript" option. 
+
+Implement the text embeddings as described in Fig 4.13-4.15.  You can only use word2vec or transformers-based models. Word2vec embeddings are the simplest to implement and you can use the [gensim](https://radimrehurek.com/gensim/) library to do that. You can use the [Hugging Face Hub](https://huggingface.co/) to download the pretrained models you decided to use. [Gensim has published some](https://huggingface.co/models?other=gensim) models that you can use.
+
+Index the text embeddings in the database of your choice. You can use the Milestone 2 links to do so. 
+
 
 ## Milestone 4: Fusion of nearest videos and text (20 points)
 
+You can now implement Fig 4.18 where you will form the dot products of the video and text embeddings and you will train a model 
 ## Milestone 5: Search UI and  pitch video voiceover (20 points)
 
 
