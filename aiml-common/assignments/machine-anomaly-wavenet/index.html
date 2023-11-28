@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -141,6 +141,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../../../intro.html">
@@ -479,6 +480,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -488,6 +490,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -521,8 +524,11 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-1-code-the-wavenet-model-35-pioints">Task 1 - Code the Wavenet model (35 pioints)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2-prepare-and-consume-the-training-and-test-datasets-35-points">Task 2 - Prepare and consume the Training and Test Datasets (35 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-train-and-evaluate-the-model-30-points">Task 3 - Train and Evaluate the Model (30 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2-prepare-and-consume-the-training-and-test-datasets-25-points">Task 2 - Prepare and consume the Training and Test Datasets (25 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#point-extra-credit">10 point extra-credit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-train-and-evaluate-the-model-45-points">Task 3 - Train and Evaluate the Model (45 points)</a></li>
 </ul>
             </nav>
         </div>
@@ -538,7 +544,7 @@ document.write(`
 <h1>Machine Anomaly Detection using Wavenet<a class="headerlink" href="#machine-anomaly-detection-using-wavenet" title="Permalink to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>Following the lecture on CNNs and RNNs, you will work on a causal 1D CNN model called <a class="reference external" href="https://arxiv.org/abs/1609.03499">Wavenet</a> to detect anomalous sounds events as described in <a class="reference external" href="https://www.eurasip.org/Proceedings/Eusipco/Eusipco2018/papers/1570437578.pdf">this paper</a>.</p>
+<p>Following the lecture on CNNs and RNNs, you will work on a causal 1D CNN model called <a class="reference external" href="https://arxiv.org/abs/1609.03499">Wavenet</a> to detect anomalous sounds events as described in <a class="reference external" href="https://www.eurasip.org/Proceedings/Eusipco/Eusipco2018/papers/1570437578.pdf">this paper</a>. You may aso want to read more <a class="reference external" href="https://huggingface.co/learn/audio-course/chapter1/introduction">on audio processing and associated datasets</a>.</p>
 <p>The following video provides a good overview of the application space of Wavenet to <strong>generate</strong> speech - it is used across many Alphabet services.</p>
 <div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/9eLNUB62HRI" style="border: 0; height: 345px; width: 560px">
@@ -549,15 +555,18 @@ document.write(`
 <p>Note that in your case you will use Wavenet to <strong>detect</strong> anomalous sounds events which means that you will use wavenet as a <strong>predictor</strong> rather than a <strong>generator</strong>. Therefore the architecture will be slightly different especially in the head.</p>
 <p>Your code must match the architecture shown in the paper and should include post-processing steps. Please note that the authors do not mention about any multichannel input (each channel is a different microphone) and the dataset provides for those. You need to try to accommodate them in your model.</p>
 </section>
-<section id="task-2-prepare-and-consume-the-training-and-test-datasets-35-points">
-<h2>Task 2 - Prepare and consume the Training and Test Datasets (35 points)<a class="headerlink" href="#task-2-prepare-and-consume-the-training-and-test-datasets-35-points" title="Permalink to this heading">#</a></h2>
-<p>For evaluating the model, you will use this <a class="reference external" href="https://arxiv.org/pdf/1908.03299.pdf">dataset</a> for the toy car sub-dataset for the continuous (CNT) data collection. The data can be downloaded <a class="reference external" href="https://zenodo.org/records/3351307#.XT-JZ-j7QdU">here</a> but you need to have a significant disk space to extract the 7z files. <strong>Avoid downloading the dataset</strong> from this original URL that is provided here for information only - we have prepared a streaming dataset version based on the webdataset spec that you can find in the Hugging Face Hub.</p>
-<p><strong>NOTE: The author is in the process of releasing the webdataset version of the dataset. Please check back later.</strong></p>
-<p>You need to use <a class="reference external" href="https://pytorch.org/data/beta/index.html">TorchData</a> to stream the data from the Hugging Face Hub and either process the data online for training &amp; evaluation purposes or create a subset of the dataset for training and evaluation as required for your model. You may use <a class="reference external" href="https://github.com/archinetai/audio-data-pytorch">Audio WebDataset extension</a> to help you with consuming the audio files by the rest of the pipeline.</p>
-<p>The authors have published <a class="reference external" href="https://github.com/YumaKoizumi/ToyADMOS-dataset">this github repp</a> where you can find the training and test dataset processing steps that you may borrow.</p>
+<section id="task-2-prepare-and-consume-the-training-and-test-datasets-25-points">
+<h2>Task 2 - Prepare and consume the Training and Test Datasets (25 points)<a class="headerlink" href="#task-2-prepare-and-consume-the-training-and-test-datasets-25-points" title="Permalink to this heading">#</a></h2>
+<p>For evaluating the model, you will use this <a class="reference external" href="https://arxiv.org/pdf/1908.03299.pdf">dataset</a> for the toy car sub-dataset.  The data can be downloaded <a class="reference external" href="https://zenodo.org/records/3351307#.XT-JZ-j7QdU">here</a> but you need to have a significant disk space to extract the 7z files. <strong>Avoid downloading the dataset from this original URL</strong> and instead use <a class="reference external" href="https://huggingface.co/datasets/aegean-ai/engine-anomaly-detection-dataset/tree/main">the dataset published in the hugging face hub</a>.</p>
+<p>Note: The authors have also published <a class="reference external" href="https://github.com/YumaKoizumi/ToyADMOS-dataset">this github repo</a> where you can find the training and test dataset processing steps that you may borrow if need be - typically they are not needed but it is provided here as we have used the scripts of this repo to generate the dataset in the hugging face hub.</p>
+<section id="point-extra-credit">
+<h3>10 point extra-credit<a class="headerlink" href="#point-extra-credit" title="Permalink to this heading">#</a></h3>
+<p>You can increase the probability of maxining out in this assignment by implementing a streaming interface to the dataset and the rest of the training / evaluation pipeline as discussed <a class="reference external" href="https://huggingface.co/learn/audio-course/chapter1/streaming">here</a></p>
+<p>You can use the Hugging Face libraries provided to stream the data from the Hugging Face Hub and either process the data online for training &amp; evaluation purposes or create a subset of the dataset for training and evaluation as required for your model. You may use <a class="reference external" href="https://github.com/archinetai/audio-data-pytorch">Audio WebDataset extension</a> to help you with consuming the audio files by the rest of the pipeline.</p>
 </section>
-<section id="task-3-train-and-evaluate-the-model-30-points">
-<h2>Task 3 - Train and Evaluate the Model (30 points)<a class="headerlink" href="#task-3-train-and-evaluate-the-model-30-points" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="task-3-train-and-evaluate-the-model-45-points">
+<h2>Task 3 - Train and Evaluate the Model (45 points)<a class="headerlink" href="#task-3-train-and-evaluate-the-model-45-points" title="Permalink to this heading">#</a></h2>
 <p>Perform model training and specify clearly the hyper-parameters you used, showing an attempt to optimize them. You need to include a plot of loss vs number of epochs for the test dataset and report the F1 score.</p>
 </section>
 </section>
@@ -590,7 +599,7 @@ document.write(`
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="../ensemble/ais/index.html"
@@ -627,8 +636,11 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-1-code-the-wavenet-model-35-pioints">Task 1 - Code the Wavenet model (35 pioints)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2-prepare-and-consume-the-training-and-test-datasets-35-points">Task 2 - Prepare and consume the Training and Test Datasets (35 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-train-and-evaluate-the-model-30-points">Task 3 - Train and Evaluate the Model (30 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2-prepare-and-consume-the-training-and-test-datasets-25-points">Task 2 - Prepare and consume the Training and Test Datasets (25 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#point-extra-credit">10 point extra-credit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-train-and-evaluate-the-model-45-points">Task 3 - Train and Evaluate the Model (45 points)</a></li>
 </ul>
   </nav></div>
 
@@ -650,6 +662,7 @@ By Pantelis Monogioudis, Ph.D
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2023.
@@ -676,8 +689,8 @@ By Pantelis Monogioudis, Ph.D
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>
