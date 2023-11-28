@@ -4,7 +4,7 @@
 	"name": "data-mining-course-tf",
 	"build": { 
 		"context": "..",
-		"dockerfile": "../docker/Dockerfile.tensorflow"
+		"dockerfile": "../docker/Dockerfile.pytorch"
 	},
 	"runArgs": [
 		"--gpus", "all",
