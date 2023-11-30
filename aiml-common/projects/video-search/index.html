@@ -525,13 +525,21 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-2-video-indexing-pipeline-25-points">Milestone 2: Video indexing pipeline (25 points)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocess-of-the-video">Preprocess of the video</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-model">Embedding model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combination">Combination</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combination">Combination</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-credit">Extra credit</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">Indexing</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-3-text-indexing-pipeline-25-points">Milestone 3: Text indexing pipeline (25 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-4-fusion-of-nearest-videos-and-text-20-points">Milestone 4: Fusion of nearest videos and text (20 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-5-search-ui-and-pitch-video-voiceover-20-points">Milestone 5: Search UI and  pitch video voiceover (20 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-4-fusion-of-nearest-videos-and-text-25-points">Milestone 4: Fusion of nearest videos and text (25 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-head-5-points">Projection head (5 points)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contrastive-loss-5-points">Contrastive loss (5 points)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model-15-points">Train the model (15 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-5-search-ui-and-pitch-video-voiceover-15-points">Milestone 5: Search UI and  pitch video voiceover (15 points)</a></li>
 </ul>
             </nav>
         </div>
@@ -566,7 +574,10 @@ document.write(`
 <section id="combination">
 <h3>Combination<a class="headerlink" href="#combination" title="Permalink to this heading">#</a></h3>
 <p>Combine the video embeddings into a single vector using a method of your choice that includes simple aggregation of the per-frame embeddings.</p>
-<p>Extra credit: if you want to maximize the possibility of developing something <strong>new</strong> think how a simple aggregation can be replaced by a more complex function. For example can you find a way to segment each video and aggregate the frame embeddings of each segment. This way there are multiple embeddings created per video.</p>
+<section id="extra-credit">
+<h4>Extra credit<a class="headerlink" href="#extra-credit" title="Permalink to this heading">#</a></h4>
+<p>Extra credit: if you want to maximize the possibility of developing something <strong>new</strong> think how a simple aggregation can be replaced by a more complex function. For example, <a class="reference external" href="https://youtu.be/FN8a8mZNik8?si=wXdbOGuLGkGsWsf">in this ~3min video accessed Nov 2023</a> you have multiple scenes each one lasting 30sec or so. Can you find a way to segment each video and aggregate the frame embeddings of each segment ?  This way there are multiple embeddings per video and you need to keep them that way for the subsequesnt steps of this project.</p>
+</section>
 </section>
 <section id="indexing">
 <h3>Indexing<a class="headerlink" href="#indexing" title="Permalink to this heading">#</a></h3>
@@ -583,12 +594,26 @@ document.write(`
 <p>Implement the text embeddings as described in Fig 4.13-4.15.  You can only use word2vec or transformers-based models. Word2vec embeddings are the simplest to implement and you can use the <a class="reference external" href="https://radimrehurek.com/gensim/">gensim</a> library to do that. You can use the <a class="reference external" href="https://huggingface.co/">Hugging Face Hub</a> to download the pretrained models you decided to use. <a class="reference external" href="https://huggingface.co/models?other=gensim">Gensim has published some</a> models that you can use.</p>
 <p>Index the text embeddings in the database of your choice. You can use the Milestone 2 links to do so.</p>
 </section>
-<section id="milestone-4-fusion-of-nearest-videos-and-text-20-points">
-<h2>Milestone 4: Fusion of nearest videos and text (20 points)<a class="headerlink" href="#milestone-4-fusion-of-nearest-videos-and-text-20-points" title="Permalink to this heading">#</a></h2>
-<p>You can now implement Fig 4.18 where you will form the dot products of the video and text embeddings and you will train a model</p>
+<section id="milestone-4-fusion-of-nearest-videos-and-text-25-points">
+<h2>Milestone 4: Fusion of nearest videos and text (25 points)<a class="headerlink" href="#milestone-4-fusion-of-nearest-videos-and-text-25-points" title="Permalink to this heading">#</a></h2>
+<p>You can now implement Fig 4.18 where you will form the dot products of the video and text embeddings and you will train a model that has been used to retrieve images of the Flickr-8k dataset from  natural language descriptions (captions).</p>
+<section id="projection-head-5-points">
+<h3>Projection head (5 points)<a class="headerlink" href="#projection-head-5-points" title="Permalink to this heading">#</a></h3>
+<p>In this subtask you need to implement the transformation of the image and the text embeddings to the same embedding space with the same dimensionality. You can see the implementation for Keras of the projection head <a class="reference external" href="https://keras.io/examples/vision/nl_image_search/">here</a>. It is implemented using Dense layers and you can easily recode to a Pytorch implementation.</p>
 </section>
-<section id="milestone-5-search-ui-and-pitch-video-voiceover-20-points">
-<h2>Milestone 5: Search UI and  pitch video voiceover (20 points)<a class="headerlink" href="#milestone-5-search-ui-and-pitch-video-voiceover-20-points" title="Permalink to this heading">#</a></h2>
+<section id="contrastive-loss-5-points">
+<h3>Contrastive loss (5 points)<a class="headerlink" href="#contrastive-loss-5-points" title="Permalink to this heading">#</a></h3>
+<p>Implement the learning approach using contrastive loss as described <a class="reference external" href="https://towardsdatascience.com/understanding-contrastive-learning-d5b19fd96607">here</a>. You need to excessively document the code of the implementation shown <a class="reference external" href="https://keras.io/examples/vision/nl_image_search/">here</a> to win any points in this milestone.</p>
+</section>
+<section id="train-the-model-15-points">
+<h3>Train the model (15 points)<a class="headerlink" href="#train-the-model-15-points" title="Permalink to this heading">#</a></h3>
+<p>Download the Flickr-8k dataset from <a class="reference external" href="https://www.kaggle.com/adityajn105/flickr8k?select=Flickr_Data">here</a>. You use the <a class="reference external" href="https://www.kaggle.com/adityajn105/flickr8k?select=Flickr_Data">Flickr8k_Dataset</a> and <a class="reference external" href="https://www.kaggle.com/adityajn105/flickr8k?select=Flickr_Data">Flickr8k_text</a> folders.</p>
+<p>Plot the train and validation loss function as the model trains (vs epochs). Note that the end to end model training will require you to reuse the embedding functions you have developed in earlier milestones.</p>
+</section>
+</section>
+<section id="milestone-5-search-ui-and-pitch-video-voiceover-15-points">
+<h2>Milestone 5: Search UI and  pitch video voiceover (15 points)<a class="headerlink" href="#milestone-5-search-ui-and-pitch-video-voiceover-15-points" title="Permalink to this heading">#</a></h2>
+<p>You developed a model that retrieves relevant to the text query images using the Flickr8k dataset and you will now use the model for video retrieval. Since the video and trascription are just vectors the approach will work.  Exercise the model and create a UI similar to <a class="reference external" href="https://huggingface.co/spaces/keras-io/dual-encoder-image-search">this one</a> that will allow you to search for the NPR news videos using natural language. You can use the <a class="reference external" href="https://huggingface.co/spaces">Hugging Face spaces</a> to deploy your model and host your UI that is easily coded using [<a class="reference external" href="https://www.gradio.app/">https://www.gradio.app/</a>].</p>
 </section>
 </section>
 
@@ -650,13 +675,21 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-2-video-indexing-pipeline-25-points">Milestone 2: Video indexing pipeline (25 points)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocess-of-the-video">Preprocess of the video</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-model">Embedding model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combination">Combination</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combination">Combination</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-credit">Extra credit</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">Indexing</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-3-text-indexing-pipeline-25-points">Milestone 3: Text indexing pipeline (25 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-4-fusion-of-nearest-videos-and-text-20-points">Milestone 4: Fusion of nearest videos and text (20 points)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-5-search-ui-and-pitch-video-voiceover-20-points">Milestone 5: Search UI and  pitch video voiceover (20 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-4-fusion-of-nearest-videos-and-text-25-points">Milestone 4: Fusion of nearest videos and text (25 points)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-head-5-points">Projection head (5 points)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contrastive-loss-5-points">Contrastive loss (5 points)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model-15-points">Train the model (15 points)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-5-search-ui-and-pitch-video-voiceover-15-points">Milestone 5: Search UI and  pitch video voiceover (15 points)</a></li>
 </ul>
   </nav></div>
 

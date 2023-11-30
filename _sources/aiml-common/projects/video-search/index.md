@@ -26,7 +26,8 @@ PS: You can also use [ViT](https://huggingface.co/docs/transformers/model_doc/vi
 
 Combine the video embeddings into a single vector using a method of your choice that includes simple aggregation of the per-frame embeddings.
 
-Extra credit: if you want to maximize the possibility of developing something **new** think how a simple aggregation can be replaced by a more complex function. For example can you find a way to segment each video and aggregate the frame embeddings of each segment. This way there are multiple embeddings created per video.
+#### Extra credit
+Extra credit: if you want to maximize the possibility of developing something **new** think how a simple aggregation can be replaced by a more complex function. For example, [in this ~3min video accessed Nov 2023](https://youtu.be/FN8a8mZNik8?si=wXdbOGuLGkGsWsf) you have multiple scenes each one lasting 30sec or so. Can you find a way to segment each video and aggregate the frame embeddings of each segment ?  This way there are multiple embeddings per video and you need to keep them that way for the subsequesnt steps of this project.
 
 ### Indexing
 
@@ -49,10 +50,25 @@ Implement the text embeddings as described in Fig 4.13-4.15.  You can only use w
 Index the text embeddings in the database of your choice. You can use the Milestone 2 links to do so. 
 
 
-## Milestone 4: Fusion of nearest videos and text (20 points)
+## Milestone 4: Fusion of nearest videos and text (25 points)
 
-You can now implement Fig 4.18 where you will form the dot products of the video and text embeddings and you will train a model 
-## Milestone 5: Search UI and  pitch video voiceover (20 points)
+You can now implement Fig 4.18 where you will form the dot products of the video and text embeddings and you will train a model that has been used to retrieve images of the Flickr-8k dataset from  natural language descriptions (captions).  
 
+### Projection head (5 points)
 
+In this subtask you need to implement the transformation of the image and the text embeddings to the same embedding space with the same dimensionality. You can see the implementation for Keras of the projection head [here](https://keras.io/examples/vision/nl_image_search/). It is implemented using Dense layers and you can easily recode to a Pytorch implementation. 
+
+### Contrastive loss (5 points)
+
+Implement the learning approach using contrastive loss as described [here](https://towardsdatascience.com/understanding-contrastive-learning-d5b19fd96607). You need to excessively document the code of the implementation shown [here](https://keras.io/examples/vision/nl_image_search/) to win any points in this milestone. 
+
+### Train the model (15 points)
+
+Download the Flickr-8k dataset from [here](https://www.kaggle.com/adityajn105/flickr8k?select=Flickr_Data). You use the [Flickr8k_Dataset](https://www.kaggle.com/adityajn105/flickr8k?select=Flickr_Data) and [Flickr8k_text](https://www.kaggle.com/adityajn105/flickr8k?select=Flickr_Data) folders.
+
+Plot the train and validation loss function as the model trains (vs epochs). Note that the end to end model training will require you to reuse the embedding functions you have developed in earlier milestones. 
+
+## Milestone 5: Search UI and  pitch video voiceover (15 points)
+
+You developed a model that retrieves relevant to the text query images using the Flickr8k dataset and you will now use the model for video retrieval. Since the video and trascription are just vectors the approach will work.  Exercise the model and create a UI similar to [this one](https://huggingface.co/spaces/keras-io/dual-encoder-image-search) that will allow you to search for the NPR news videos using natural language. You can use the [Hugging Face spaces](https://huggingface.co/spaces) to deploy your model and host your UI that is easily coded using [https://www.gradio.app/]. 
 
