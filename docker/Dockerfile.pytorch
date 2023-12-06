@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:23.02-py3
+FROM nvcr.io/nvidia/pytorch:23.05-py3
 
 # specify vscode as the user name in the docker
 # This user name should match that of the VS Code .devcontainer to allow seamless development inside the docker container via vscode 
@@ -49,10 +49,11 @@ SHELL ["/bin/bash", "-c"]
 ENV PATH="/home/vscode/.local/bin:$PATH"
 
 # Install dependencies:
+USER vscode
 COPY requirements.txt  /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
 
 COPY . . 
 
-USER vscode
+#USER vscode
 

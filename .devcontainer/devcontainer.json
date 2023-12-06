@@ -4,7 +4,7 @@
 	"name": "data-mining-course-tf",
 	"build": { 
 		"context": "..",
-		"dockerfile": "../docker/Dockerfile.pytorch"
+		"dockerfile": "../docker/Dockerfile.tensorflow"
 	},
 	"runArgs": [
 		"--gpus", "all",
@@ -20,10 +20,10 @@
 	"containerEnv": { "DISPLAY": "0" },
 	
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	//"forwardPorts": [8000],
+	"forwardPorts": [20000],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	//"postCreateCommand": "poetry install",
+	//"postCreateCommand": "nvidia-smi",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	"remoteUser": "vscode",
@@ -47,5 +47,5 @@
 			}
 		}
 	},
-	"postStartCommand": "jb config sphinx data_mining && sphinx-autobuild --port 20000 data_mining _build/html"
+	"postStartCommand": "nvidia-smi && jb config sphinx data_mining && sphinx-autobuild --port 20000 data_mining _build/html"
 }

@@ -71,10 +71,8 @@ parts:
     - file: aiml-common/lectures/whitening/index.md
     - file: aiml-common/lectures/whitening/preprocessing_workshop.ipynb
     - file: aiml-common/lectures/optimization/regularization/_index.md
-    
-    #- file: aiml-common/lectures/optimization/regularization/regularization-workshop-1/_index.md
       
-  - caption: Convolutional Neural Networks
+  - caption: Image Data and Convolutional Neural Networks
     chapters:    
     - file: aiml-common/lectures/cnn/cnn-intro/_index.md
     - file: aiml-common/lectures/cnn/cnn-layers/_index.md
@@ -82,38 +80,19 @@ parts:
     - file: aiml-common/lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.ipynb
     - file: aiml-common/lectures/scene-understanding/feature-extraction-resnet/index.md
 
-  - caption:  Sequences and RNNs
+  - caption:  Time-series data and Recurrent Neural Networks
     chapters:    
     - file: aiml-common/lectures/rnn/introduction/_index.md 
     - file: aiml-common/lectures/rnn/simple-rnn/_index.md 
     - file: aiml-common/lectures/rnn/lstm/_index.md
     - file: aiml-common/lectures/rnn/time_series_using_simple_rnn_lstm.ipynb     
 
-  - caption:  Representation Learning and Autoencoders
+  - caption:  Representation Learning and Neural Autoencoders
     chapters:
-    - file: aiml-common/lectures/vae/index.md 
     - file: aiml-common/lectures/vae/generative-modeling/index.md 
     - file: aiml-common/lectures/vae/vae-architecture/index.md
     - file: aiml-common/lectures/vae/elbo-optimization/index.md 
   
-  - caption:  Natural Language Processing 
-    chapters:
-    - file: aiml-common/lectures/nlp/nlp-introduction/nlp-pipelines/_index.md 
-    - file: aiml-common/lectures/nlp/nlp-introduction/tokenization/index.ipynb
-  
-    - file: aiml-common/lectures/nlp/nlp-introduction/word2vec/_index.md 
-      title: Embeddings
-      sections:
-      - file: aiml-common/lectures/nlp/nlp-introduction/word2vec/word2vec_from_scratch.ipynb 
-      - file: aiml-common/lectures/nlp/nlp-introduction/word2vec/word2vec_tensorflow_tutorial.ipynb 
-    
-    - file: aiml-common/lectures/nlp/language-models/_index.md   
-      title: Language Models 
-      sections:  
-      - file: aiml-common/lectures/nlp/language-models/cnn-language-model/index.ipynb
-      - file: aiml-common/lectures/nlp/language-models/simple-rnn-language-model/index.ipynb
-      - file: aiml-common/lectures/nlp/language-models/lstm-language-model/index.ipynb
-    
   - caption: Math Background
     chapters: 
     - file: aiml-common/lectures/ml-math/index.md   

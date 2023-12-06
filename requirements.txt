@@ -1,7 +1,7 @@
 # --------- docs --------- #
-jupyter-book==0.15.1
+jupyter-book
 sphinx-autobuild
-sphinxcontrib-youtube==1.2.0
+sphinxcontrib-youtube
 sphinxcontrib-bibtex
 diagrams
 sphinxcontrib-svg2pdfconverter
@@ -9,14 +9,13 @@ ipywidgets
 dtreeviz
 optuna
 lightgbm
-
-
-# sphinx-proof
-# sphinx-inline-tabs
-# sphinxext-rediraffe
-# sphinx-panels
-# sphinxcontrib-mermaid
-# sphinxcontrib-seqdiag
-
+sphinx-proof
+sphinx-inline-tabs
+sphinxext-rediraffe
+sphinx-panels
+sphinxcontrib-mermaid
+sphinxcontrib-seqdiag
+sphinx_click
+sphinx_examples
 # --------- docs --------- #
 

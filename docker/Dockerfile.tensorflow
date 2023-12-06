@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/tensorflow:23.02-tf2-py3
+FROM nvcr.io/nvidia/tensorflow:23.07-tf2-py3
 
 # specify vscode as the user name in the docker
 # This user name should match that of the VS Code .devcontainer to allow seamless development inside the docker container via vscode 
@@ -50,8 +50,12 @@ SHELL ["/bin/bash", "-c"]
 ENV PATH="/home/vscode/.local/bin:$PATH"
 
 # Install dependencies:
-COPY . . 
-RUN pip install -r requirements.txt
-
 USER vscode
+COPY requirements.txt  /tmp/requirements.txt
+RUN pip install -r  /tmp/requirements.txt
+
+COPY . . 
+
+
+
 
