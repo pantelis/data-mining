@@ -4,7 +4,7 @@ The 'right'  latent space is the one that makes the distribution $p(\mathbf z| \
 
 This stage is called the _recognition model or encoder_ and is given by $p(\mathbf z| \mathbf x ; \mathbf \theta)$. The premise is this: the posterior $p(\mathbf z | \mathbf x ; \mathbf \theta)$ will result into a much more meaningful and compact latent space $\mathbf z$ than the prior $p(\mathbf z | \mathbf \theta)$. This encoding though, calls for sampling from a posterior that is itself intractable. We then need to use an approximation to such distribution: $q(\mathbf z| \mathbf x ; \mathbf \phi)$ and we call this the _inference model_ that approximates the recognition model and help us optimize the marginal likelihood. 
 
-The VAE encoder-decoder spaces are clearly shown below. The picture shows the more compact space that is defined by the encoder. 
+The VAE encoder-decoder spaces are shown below. The picture shows the more compact space that is defined by the encoder. 
 
 ![vae](images/vae-spaces.png)
 *VAE spaces and distributions (from [here](https://arxiv.org/pdf/1906.02691.pdf))*
@@ -41,11 +41,22 @@ $$⇒\log p(\mathbf x) = KL(q(\mathbf z | \mathbf x ; \mathbf \phi) || p(\mathbf
 
 The bracketed $\mathcal L(q, \phi)$ quantity is called Evidence Lower Bound and is a functional of the distribution $q$ and a function of the parameters $\phi$. Why its a lower bound of the log-likelihood (evidence) function  $\log p(\mathbf x)$ and why its a useful quantity to consider?
 
-Answering the last question first, we maximize the likelihood by effectively maximizing the $\mathcal L(q, \phi, \theta)$ since $KL(q(\mathbf z | \mathbf x ; \mathbf \phi) || p(\mathbf z | \mathbf \theta)) \ge 0$ by definition with zero only when $q(\mathbf z | \mathbf x ; \mathbf \phi) = p(\mathbf z | \mathbf \theta))$. Since
+Answering the last question first, we maximize the likelihood by effectively maximizing the $\mathcal L(q, \phi, \theta)$ 
 
-$$\mathcal L(q, \phi, \theta) =  \log p(\mathbf x) - KL(q(\mathbf z | \mathbf x ; \mathbf \phi) || p(\mathbf z | \mathbf \theta)) \le \log p(\mathbf x)$$. This is illustrated bellow:
+since $KL(q(\mathbf z | \mathbf x ; \mathbf \phi) || p(\mathbf z | \mathbf \theta)) \ge 0$
+
+by definition with zero only when $q(\mathbf z | \mathbf x ; \mathbf \phi) = p(\mathbf z | \mathbf \theta))$. 
+
+Since
+
+$$\mathcal L(q, \phi, \theta) =  \log p(\mathbf x) - KL(q(\mathbf z | \mathbf x ; \mathbf \phi) || p(\mathbf z | \mathbf \theta)) \le \log p(\mathbf x)$$
+
+This is illustrated bellow:
 
 ![Bishop](images/Figure9.11.png)
-*KL represents the tightness of the ELBO bound - From Bishop's book* 
 
-As the figure above shows $KL(q(\mathbf z | \mathbf x ; \mathbf \phi) || p(\mathbf z | \mathbf \theta))$ represents the tightness of the ELBO $\mathcal L(q, \phi, \theta)$ since the closest the approximation becomes the smaller the gap between ELBO and the log likelihood. Maximizing the ELBO withe respect to $(\phi, \theta)$ will achieve "two birds with one stone" situation: it will maximize the marginal log likelihood that is used for data generation _and_ minimize the KL divergence improving the approximation in the encoder. On top of that, the ELBO allows joint optimization with respect to all the parameters $\phi$ and $\theta$ using SGD. This is described via an example in the ELBO section.
+*KL represents the tightness of the ELBO bound* 
+
+As the figure above shows $KL(q(\mathbf z | \mathbf x ; \mathbf \phi) || p(\mathbf z | \mathbf \theta))$ represents the tightness of the ELBO $\mathcal L(q, \phi, \theta)$ since the closest the approximation becomes the smaller the gap between ELBO and the log likelihood. 
+
+Maximizing the ELBO withe respect to $(\phi, \theta)$ will achieve "two birds with one stone" situation: it will maximize the marginal log likelihood that is used for data generation _and_ minimize the KL divergence improving the approximation in the encoder. On top of that, the ELBO allows joint optimization with respect to all the parameters $\phi$ and $\theta$ using SGD. This is described via an example in the ELBO section.

@@ -1,7 +1,3 @@
----
-title: K-means Clustering 
----
-
 # K-means Clustering 
 
 Up to now in this lecture series we have seen parametric models using in regression and classification. The complexity of such models was not very high despite the heany sometimes math. Most models we have seen took the form $\mathbf w^T \phi(\mathbf x)$. Now we switch to a very frequently met case where we dont have any labels $y$. Most of the treatment here is from Bishop section 9.1 - the equivalent section in Tan's book is section 7.2. 

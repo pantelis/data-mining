@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Generative Modeling and Approximate Inference &#8212; Data Mining</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -35,21 +35,23 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-examples.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
-    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
     <script src="../../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../../_static/tabs.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -62,7 +64,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"tex": {"macros": {"floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"mathjax_path": "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js", "tex": {"macros": {"floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/vae/generative-modeling/index';</script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/vae/generative-modeling/index.html" />
@@ -70,9 +72,9 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="VAE Architecture" href="../vae-architecture/index.html" />
-    <link rel="prev" title="Variational Auto Encoders (VAE)" href="../index.html" />
+    <link rel="prev" title="Time Series Prediction using RNNs" href="../../rnn/time_series_using_simple_rnn_lstm.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -81,15 +83,6 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
-
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -114,8 +107,8 @@ const thebe_selector_output = ".output, .cell_output"
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -143,11 +136,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
   
 
 <a class="navbar-brand logo" href="../../../../intro.html">
-  
   
   
   
@@ -157,21 +148,13 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../../../_static/logo.png" class="logo__image only-light" alt="Data Mining - Home"/>
-    <script>document.write(`<img src="../../../../_static/logo.png" class="logo__image only-dark" alt="Data Mining - Home"/>`);</script>
+    <img src="../../../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../../../../intro.html">
-                    Data Mining
-                </a>
-            </li>
-        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../../syllabus/index.html">Syllabus</a></li>
@@ -246,7 +229,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../dnn/fashion-mnist-case-study.html">Fashion MNIST Case Study</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../optimization/regularization/_index.html">Regularization in Deep Neural Networks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Convolutional Neural Networks</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image Data and Convolutional Neural Networks</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-intro/_index.html">Introduction to Convolutional Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-layers/_index.html">CNN Architectures</a></li>
@@ -254,7 +237,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">Using convnets with small datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">Feature Extraction via Residual Networks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sequences and RNNs</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time-series data and Recurrent Neural Networks</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../rnn/introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../rnn/simple-rnn/_index.html">Simple RNN</a></li>
@@ -266,28 +249,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Representation Learning and Autoencoders</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Representation Learning and Neural Autoencoders</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Variational Auto Encoders (VAE)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Generative Modeling and Approximate Inference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vae-architecture/index.html">VAE Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../elbo-optimization/index.html">ELBO Optimization</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-introduction/nlp-pipelines/_index.html">Introduction to NLP Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-introduction/tokenization/index.html">Tokenization</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/_index.html">Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/word2vec_from_scratch.html">Word2Vec from scratch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/word2vec_tensorflow_tutorial.html">Word2Vec Tensorflow Tutorial</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/language-models/_index.html">Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/cnn-language-model/index.html">CNN Language Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model/index.html">Simple RNN Language Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/lstm-language-model/index.html">LSTM Language Model from scratch</a></li>
-</ul>
-</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math Background</span></p>
 <ul class="nav bd-sidenav">
@@ -383,7 +348,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pantelis/data-mining/edit/master/data_mining/aiml-common/lectures/vae/generative-modeling/index.md" target="_blank"
+      <li><a href="https://github.com/pantelis/data-mining/edit/main/aiml-common/lectures/vae/generative-modeling/index.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -482,26 +447,26 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
-
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
 `);
 </script>
-
 
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -517,6 +482,21 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-generative-modeling-is-useful">Why generative modeling is useful</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-inference">Variational Inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-variational-generative-modeling-approach">The Variational Generative Modeling Approach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-optimization-problem-and-objective">The Optimization Problem and Objective</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -527,60 +507,109 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="generative-modeling-and-approximate-inference">
-<h1>Generative Modeling and Approximate Inference<a class="headerlink" href="#generative-modeling-and-approximate-inference" title="Permalink to this heading">#</a></h1>
-<p>In generative modeling we want to model the generative distribution of the observed variables <span class="math notranslate nohighlight">\(\mathbf x\)</span>, <span class="math notranslate nohighlight">\(p(\mathbf x)\)</span> <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
-<p>Take for example a set of images that depict a pendulum excited by a force. We would like to generative the successive frames of the pendulum swinging behavior and we do so we are assisted by a set of latent variables <span class="math notranslate nohighlight">\(\mathbf z\)</span> that represent the underlying laws of physics. Generative modeling is especially well suited for</p>
+<h1>Generative Modeling and Approximate Inference<a class="headerlink" href="#generative-modeling-and-approximate-inference" title="Permalink to this headline">#</a></h1>
+<p><img alt="Fiat-127, a car from the 70s, as imagined by GPT-4" src="../../../../_images/fiat-127.png" /></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>We have seen in the treatment of CNNs that they can generate features that are suitable for the classification or regression task at hand using the labels to guide the maximization of the log-likelihod function or loss function. Here we are looking at the problem where we need features that are suitable for <strong>generating</strong> data from the input distribution without necessarily having labels.</p>
+<p>After reviewing the premise of generative modeling via what we will call latent deep variable models, we will look at the problem of inference of the latent space that is suitable for generating data. We will see that this problem is intractable and we will introduce the variational inference method that will allow us to approximate the posterior distribution of the latent space.</p>
+<p>The method that we will dive into is called Variational Autoencoder (VAE) that is across various domains, including collaborative filtering, image compression, reinforcement learning, and generation of content such as music and sketches.</p>
+<p>We will focus on continuous VAEs in this edition of the course.</p>
+<section id="why-generative-modeling-is-useful">
+<h3>Why generative modeling is useful<a class="headerlink" href="#why-generative-modeling-is-useful" title="Permalink to this headline">#</a></h3>
+<p>In generative modeling we want to model the generative distribution of the observed variables <span class="math notranslate nohighlight">\(\mathbf x\)</span>, <span class="math notranslate nohighlight">\(p(\mathbf x)\)</span> <a class="footnote-reference brackets" href="#id3" id="id1">1</a>.</p>
+<p>Take for example a set of images that depict a pendulum excited by a force. We would like to generative the successive frames of the pendulum swinging behavior and we do so we are assisted by a set of latent variables <span class="math notranslate nohighlight">\(\mathbf z\)</span> that represent the underlying laws of physics. Generative modeling is especially well suited for:</p>
 <ol class="arabic simple">
 <li><p>Testing out hypotheses about the underlying rules that generated the observed data. Such rules can also offer interpretable models.</p></li>
 <li><p>Ability to capture causal relationships, since the ability of a factor to generate data very close to the ones observed, offers a strong indication of such relationship.</p></li>
-<li><p>Semi-supervised classification where the generated data are very close to already labeled data and therefore can improve classification model accuracy.</p></li>
+<li><p>Semi-supervised learning where the generated data are very close to already labeled data and therefore can improve classification model accuracy.</p></li>
 </ol>
-<p>One of the main methods of generative approximate inference is <em>variational inference</em> and VAE is a modified instantiation of such inference and it involves: (a) deep latent variable models and (b) inference models both learned using stochastic gradient descent. Before we go deeper into what VAE is, its worth motivating the discussion as to why it came to be the solution to the generative problem we face.</p>
-<p>In probabilistic modeling, we usually make use of latent variables <span class="math notranslate nohighlight">\(\mathbf z\)</span>, variables that are not observed but can be used to build suitable representational constraints in our models, and a set of parameters <span class="math notranslate nohighlight">\(\theta\)</span> that parametrize the latent variable model <span class="math notranslate nohighlight">\(p(\mathbf x, \mathbf z | \mathbf \theta)\)</span>. Since,</p>
+</section>
+<section id="variational-inference">
+<h3>Variational Inference<a class="headerlink" href="#variational-inference" title="Permalink to this headline">#</a></h3>
+<p>One of the main methods of generative approximate inference is <em>variational inference</em> that originates from <em>calculus of variations</em>. To understand how this calculus differs from the one we are used to, consider how the standard calculus via the derivative of a function is able to optimize it and calculate its minimum. In a similar way, the calculus of variations is able to optimize a functional. A functional in mathematics is a mapping from a function space to the real numbers - just like the function is a mapping from a real number (the argument) to a real value (the result of the function evaluation).</p>
+<p>The concept of a functional can be illustrated with the definition of entropy, in the context of information theory.</p>
+<p>Shannon entropy, denoted as <span class="math notranslate nohighlight">\(H\)</span>, is a measure of the uncertainty or randomness in a probability distribution. It’s defined for a discrete probability distribution <span class="math notranslate nohighlight">\(P = (p_1, p_2, \ldots, p_n)\)</span>, where <span class="math notranslate nohighlight">\(p_i\)</span> is the probability of the <span class="math notranslate nohighlight">\(i\)</span>-th outcome. The entropy is defined as:</p>
+<div class="math notranslate nohighlight">
+\[ H(P) = -\sum_{i=1}^{n} p_i \log p_i \]</div>
+<p>Here, <span class="math notranslate nohighlight">\( H \)</span> is a functional because it maps the function (in this case, the probability distribution <span class="math notranslate nohighlight">\(P\)</span> to a real number, which represents the entropy of <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<p>The calculus of variations is concerned with finding the function that maximizes a functional. In the case of entropy, the function that maximizes the entropy is the uniform distribution, where all the outcomes have the same probability. This is intuitive, because if all the outcomes have the same probability, then we have the most uncertainty about the outcome.</p>
+</section>
+<section id="the-variational-generative-modeling-approach">
+<h3>The Variational Generative Modeling Approach<a class="headerlink" href="#the-variational-generative-modeling-approach" title="Permalink to this headline">#</a></h3>
+<p>VAE is one of the answers to the aforementioned variational optimization problem. But before dive into optimization what is this modeling problem exactly i.e what constitutes our objective ?</p>
+<p>In probabilistic modeling, we usually make use of latent variables <span class="math notranslate nohighlight">\(\mathbf z\)</span>, that are not observed but can be used to build suitable representational constraints in our models, and a set of parameters <span class="math notranslate nohighlight">\(\theta\)</span> that parametrize the latent variable model <span class="math notranslate nohighlight">\(p(\mathbf x, \mathbf z | \mathbf \theta)\)</span>.</p>
+<p>As an example, lets think of the problem of gerating realistic images of people. We can think of the problem as a two step process:</p>
+<ol class="arabic simple">
+<li><p>Think of what factor make a person a real one. For example, can we have a person without a head (assume we are interested in living humans) ? Lets call the headedness factor a latent variable and similarly specify the other factors grouping them together into a set of rendom variables that we will call <span class="math notranslate nohighlight">\(\mathbf z\)</span>, captured via their distribution <span class="math notranslate nohighlight">\(p(\mathbf z | \theta)\)</span>.</p></li>
+<li><p>Generate an image from the latent representation. This is a process that takes the latent representation and generates an image of the person (hopefully realistic).</p></li>
+</ol>
+<p>Since,</p>
 <div class="math notranslate nohighlight">
 \[p(\mathbf x | \mathbf \theta) =  \sum_{\mathbf z} p(\mathbf x, \mathbf z | \mathbf \theta) \]</div>
-<p>to generate new data whose marginal is, ideally, identical to the true but unknown target distribution we need to be able to sample from <span class="math notranslate nohighlight">\(p(\mathbf x, \mathbf z | \mathbf \theta)\)</span>.</p>
-<p>The introduction of the latent variables can be represented as directed graph and we have seen in the probabilistic graphical models introduction, the representation as directed graph allows the factorization of the joint distribution</p>
-<div class="math notranslate nohighlight">
-\[p(\mathbf x_1, \mathbf x_2, \dots, \mathbf x_M | \mathbf \theta) = \prod_{j=1}^M p(\mathbf x_j | Pa(\mathbf x_j))\]</div>
-<p>where <span class="math notranslate nohighlight">\(Pa()\)</span> is the set of parent nodes that the variable <span class="math notranslate nohighlight">\(\mathbf x_j\)</span> is dependent on (has directed edges with).</p>
-<p>Consider our simple PGM, shown below:</p>
-<p><img alt="vae-pgm" src="../../../../_images/vae-pgm.png" />
-<em>Probabilistic Graphical Model from <a class="reference external" href="https://arxiv.org/pdf/1606.05908.pdf">here</a></em></p>
-<p>To generate from the marginal we need to implement a generative model that is a direct consequence of the chain and total probability rules.</p>
+<p>to generate new data whose marginal is ideally, identical to the true but unknown target distribution we need to be able to sample from <span class="math notranslate nohighlight">\(p(\mathbf x, \mathbf z | \mathbf \theta)\)</span>. Equivalently, after applying the prodcut rule we have:</p>
 <div class="math notranslate nohighlight">
 \[ p(\mathbf x | \mathbf \theta)  = \sum_{\mathbf z} p(\mathbf x| \mathbf z ; \mathbf \theta) p(\mathbf z | \theta)\]</div>
-<p>The elements of this model are <span class="math notranslate nohighlight">\(p(\mathbf x| \mathbf z ; \mathbf \theta)\)</span> and the <span class="math notranslate nohighlight">\(p(\mathbf z | \theta)\)</span> that is often called the <em>prior distribution</em> over <span class="math notranslate nohighlight">\(\mathbf z\)</span>. One of the methods of generating such samples is to start from a very easy to sample distribution and use function approximation that maps <em>variables</em> to the distribution <em>parameters</em> over these variables. One of the best function approximators that scale very well for the, usually large, dataset sizes we face are Deep Neural Networks (DNNs). When DNNs are used, we say that we implement a  <em>deep latent variable model</em> that involves the following two steps:</p>
+<p>The elements of this model are <span class="math notranslate nohighlight">\(p(\mathbf x| \mathbf z ; \mathbf \theta)\)</span> and the <span class="math notranslate nohighlight">\(p(\mathbf z | \theta)\)</span> that is often called the <em>prior distribution</em> over <span class="math notranslate nohighlight">\(\mathbf z\)</span>.</p>
+<p>Note that for continuous variables, the sum is replaced by an integral.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Probabilistic Graphical Models</p>
+<p>A representation that has been widely used in the past, <em>the Probabilistic Graphical Model (PGM)</em> (also called Bayesian network) can be used to capture dependencies between the random variables involved in the modeling of a problem.  We can use such representations to efficiently compute conditional probabilities using the graph to identify the conditionally independent random variables that are present in our problem statement.</p>
+<p>By convention we represent in PGMs as directed graphs, with nodes being the random variables involved in the model and directed edges indicating a parent child relationship, with the arrow pointing to a child, representing that the child nodes are <em>probabilistically conditioned on the parent(s)</em>.  We have assumed that our model does <em>not</em> have variables involved in directed cycles and therefore we call such graphs Directed Acyclic Graphs (DAGs).</p>
+<p>In a hypothetical example of a joint distribution with <span class="math notranslate nohighlight">\(K=7\)</span> random variables,</p>
+<p><img alt="Sample PGM representation" src="../../../../_images/Figure8.2.png" /></p>
+<p>The PGM above represents the joint distribution <span class="math notranslate nohighlight">\(p(x_1, x_2, ..., x_7)=p(x_1)p(x_2)p(x_3)p(x_4|x_1, x_2, x_3)p(x_5|x_1, x_3) p(x_6|x_4)p(x_7|x_4, x_5)\)</span>. In general,</p>
 <div class="math notranslate nohighlight">
-\[ \mathbf \eta = f_{DNN}(Pa(\mathbf x))\]</div>
+\[p(\mathbf x)= \prod_{k=1}^K p(x_k | \mathtt{pa}_k)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathtt{pa}_k\)</span> is the set of parents of node <span class="math notranslate nohighlight">\(x_k\)</span>.</p>
+</div>
+<p>Using a PGM we can represent the generative model as shown below:</p>
+<p><img alt="Probabilistic Graphical Model showing the model governing the generation of  samples from the probability distribution  " src="../../../../_images/vae-pgm.png" /></p>
+<p><em>Probabilistic Graphical Model showing the model governing the generation of <span class="math notranslate nohighlight">\(m\)</span> samples from the probability distribution <span class="math notranslate nohighlight">\(p(\mathbf x|\theta)\)</span> <a class="reference external" href="https://arxiv.org/pdf/1606.05908.pdf">- ref</a></em></p>
+<p>An example is now in order for us to be able to ground the discussion up to now. In our attempt to generate realistic images of people’s faces we may consider a number of latent factors that can affect the image.</p>
+<p><img alt="latent factors that affect an image of a face" src="../../../../_images/latent-interactions.png" /></p>
+<p>The shown latent factors are grouped together into a latent vector <span class="math notranslate nohighlight">\(\mathbf z\)</span>, without an explicit semantic (or interpretable) mapping of each factor to the corresponding dimention of the <span class="math notranslate nohighlight">\(\mathbf z\)</span> vector. Further, we will assume that although there is an underlying structure, for example the happyness and face orientation  are correlated since people when they laugh they tend to lift their chin up, such structure will not be explictly captured a priori. To map this application to what were presenting as the generative PGM, the happyness and other latent factors are captured by a simple to generate Gaussian prior distribution:</p>
 <div class="math notranslate nohighlight">
-\[p(\mathbf x_j | Pa(\mathbf x_j), \mathbf \theta) = p(\mathbf x | \mathbf \eta, \mathbf \theta)\]</div>
-<p>In deep latent variable models of the form we are concerned with, we select an easy to sample from, prior distribution</p>
+\[ p(\mathbf z | \theta) = N(\mathbf 0, \sigma^2 \mathbf I)\]</div>
+<p>We will then use a neural network to create the right <em>structure</em> instead of explicitly encoding it in the prior. This is not a new idea - sampling from a complex probability distribution can be achieved by feeding samples from a simple distribution to a suitably chosen function. The neural network is abstracting such function and we can now see a path to implemeting the aforementioned generator,</p>
 <div class="math notranslate nohighlight">
-\[ p(\mathbf z) = Normal(0, \sigma^2 I)\]</div>
-<p>and let the DNN implement the mapping</p>
+\[ p(\mathbf x | \mathbf \theta)  = \sum_{\mathbf z} p(\mathbf x| \mathbf z ; \mathbf \theta) p(\mathbf z | \theta)\]</div>
+<p>by assuming that the conditional distribution <span class="math notranslate nohighlight">\(p(\mathbf x| \mathbf z ; \mathbf \theta)\)</span> is <em>parameterized</em> by a neural network that takes as input the latent vector <span class="math notranslate nohighlight">\(\mathbf z\)</span> generated itself by the prior distribution and outputs the image <span class="math notranslate nohighlight">\(\mathbf x\)</span>.</p>
+<p>In the case that the <span class="math notranslate nohighlight">\(p(\mathbf x| \mathbf z ; \mathbf \theta)\)</span>  is Gaussian, this will mean:</p>
 <div class="math notranslate nohighlight">
-\[ \mathbf \eta = f_{DNN}(\mathbf z)\]</div>
-<div class="math notranslate nohighlight">
-\[p(\mathbf x, \mathbf \theta) = p(\mathbf x | \mathbf \eta, \mathbf \theta)\]</div>
-<p>However we are facing the following situation: <em>Even with DNNs when we use DNN to automatically “design” the right feature coordinates in the latent space <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, we are still facing an intractable computationally model in trying to estimate the marginal distribution <span class="math notranslate nohighlight">\(p(\mathbf x | \mathbf \theta)\)</span></em>.</p>
-<p>To understand why, consider the MNIST dataset and the problem of generating handwritten digits that look like that. We can sample from <span class="math notranslate nohighlight">\(p(\mathbf z | \theta)\)</span> generating a large number of samples <span class="math notranslate nohighlight">\(\{z_1, \dots , z_k\}\)</span>, since the DNN provided all the parameters of this distribution.  We can then compute <span class="math notranslate nohighlight">\(p(\mathbf x) = \frac{1}{k} \sum_i p(\mathbf x|z_i)\)</span>. The problem is that we need a very large number of such samples in high dimensional spaces such as images (for MNIST is 28x28 dimensions) . Most of the samples <span class="math notranslate nohighlight">\(\mathbf z_i\)</span> will result into negligible <span class="math notranslate nohighlight">\(p(\mathbf x|z_i)\)</span> and therefore won’t contribute to the estimate of the <span class="math notranslate nohighlight">\(p(\mathbf x)\)</span>. This is the problem that VAE addresses. The key idea behind its design is that of <em>inference</em> of the right latent space that when sampled, results into a computation and optimization of the marginal distribution with far less effort than before.</p>
+\[ p(\mathbf x| \mathbf z ; \mathbf \theta) = N(\mathbf x; \mu(\mathbf z; \mathbf \theta), \sigma^2 \mathbf I)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu(\mathbf z; \mathbf \theta)\)</span> is the output of the neural network that is parameterized by <span class="math notranslate nohighlight">\(\mathbf \theta\)</span>. Note that the variance of the Gaussian is fixed, is a <em>hyperparameter</em> and is not a function of <span class="math notranslate nohighlight">\(\mathbf z\)</span>. Intuitively it points to “generate some <span class="math notranslate nohighlight">\(\mathbf x\)</span> that is like the original training data”.</p>
+<p>Note that the <span class="math notranslate nohighlight">\(p(\mathbf x| \mathbf z ; \mathbf \theta)\)</span>  can be any distribution and obviosuly this distribution need to match the nature of what we try to generate. If <span class="math notranslate nohighlight">\(\mathbf x\)</span> is binary then this can be a Bernouli distribution with the parameter(s) of the distribution given the output of the neural network.</p>
+</section>
+<section id="the-optimization-problem-and-objective">
+<h3>The Optimization Problem and Objective<a class="headerlink" href="#the-optimization-problem-and-objective" title="Permalink to this headline">#</a></h3>
+<p>However there is a problem with this generator. <em>Even with neural networks “designing” the right features in the latent space <a class="footnote-reference brackets" href="#id4" id="id2">2</a>, we are still facing a very heavy computationally problem in trying to estimate the marginal distribution <span class="math notranslate nohighlight">\(p(\mathbf x | \mathbf \theta)\)</span></em>.</p>
+<p>To understand why, consider the MNIST dataset and the problem of generating handwritten digits that look like that. We can sample from <span class="math notranslate nohighlight">\(p(\mathbf z | \theta)\)</span> generating a large number of samples <span class="math notranslate nohighlight">\(\{z_1, \dots , z_k\}\)</span>, and with the help of the neural network sample and compute <span class="math notranslate nohighlight">\(p(\mathbf x) = \frac{1}{k} \sum_i p(\mathbf x|z_i)\)</span>. The problem is that we need a very large number of such samples in high dimensional spaces such as images (for MNIST is 28x28 dimensions) . Most of the samples <span class="math notranslate nohighlight">\(\mathbf z_i\)</span> will result into negligible <span class="math notranslate nohighlight">\(p(\mathbf x|z_i)\)</span> and therefore won’t contribute to the estimate of the <span class="math notranslate nohighlight">\(p(\mathbf x)\)</span>.</p>
+<p><strong>This is the problem that VAE addresses. The key idea behind its design is that of <em>inference</em> of the <em>right</em> latent space such that when the <span class="math notranslate nohighlight">\(\mathbf z\)</span> when sampled, it results into a <span class="math notranslate nohighlight">\(\mathbf x\)</span> that is very similar to that of our training data. VAE in other works buys us <em>sample efficiency</em> allowing computation and optimization of the objective function with far less effort than before.</strong></p>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<p>[1]: Diederik Kingma and Max Welling. Auto-Encoding Variational Bayes. In <em>International Conference on Learning Representations</em>, 2014, <a class="reference external" href="https://arxiv.org/abs/1312.6114">https://arxiv.org/abs/1312.6114</a></p>
+<p>[2]: Yuri Burda, Roger Grosse, Ruslan Salakhutdinov. Importance Weighted Autoencoders. In <em>International Conference on Learning Representations</em>, 2015, <a class="reference external" href="https://arxiv.org/abs/1509.00519">https://arxiv.org/abs/1509.00519</a></p>
 <hr class="footnotes docutils" />
-<aside class="footnote brackets" id="id3" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>Following <a class="reference external" href="https://arxiv.org/pdf/1906.02691.pdf">this tutorial</a> we adopt the compact notation that serializes into one vector <span class="math notranslate nohighlight">\(\mathbf x\)</span> all the observed random variables.</p>
-</aside>
-<aside class="footnote brackets" id="id4" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
-<p>Note that the features that the DNN captures are not interpretable as the intuitively understood features that humans consider. For the MNIST dataset for example, humans will consider the slant of each digit, thinner strokes etc.</p>
-</aside>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Following <a class="reference external" href="https://arxiv.org/pdf/1906.02691.pdf">this tutorial</a> we adopt the compact notation that serializes into one vector <span class="math notranslate nohighlight">\(\mathbf x\)</span> all the observed random variables.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Note that the features that the neural network captures are not interpretable as the intuitively understood features that humans consider. For the MNIST dataset for example, humans will consider the slant of each digit, thinner strokes etc.</p>
+</dd>
+</dl>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
         binderOptions: {
-            repo: "pantelis/data-mining",
+            repo: "binder-examples/jupyter-stacks-datascience",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -601,18 +630,19 @@ document.write(`
 
               
               
-              
-              
-                <footer class="prev-next-footer">
+                <footer class="bd-footer-article">
                   
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../index.html"
+       href="../../rnn/time_series_using_simple_rnn_lstm.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Variational Auto Encoders (VAE)</p>
+        <p class="prev-next-title">Time Series Prediction using RNNs</p>
       </div>
     </a>
     <a class="right-next"
@@ -624,12 +654,36 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-generative-modeling-is-useful">Why generative modeling is useful</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-inference">Variational Inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-variational-generative-modeling-approach">The Variational Generative Modeling Approach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-optimization-problem-and-objective">The Optimization Problem and Objective</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
@@ -647,7 +701,6 @@ By Pantelis Monogioudis, Ph.D
   
   <div class="footer-item">
     
-
   <p class="copyright">
     
       © Copyright 2023.
@@ -674,8 +727,8 @@ By Pantelis Monogioudis, Ph.D
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

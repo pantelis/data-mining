@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Boosting Workshop &#8212; Data Mining</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -35,21 +35,23 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-examples.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
-    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
     <script src="../../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../../_static/tabs.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -62,7 +64,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"tex": {"macros": {"floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"mathjax_path": "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js", "tex": {"macros": {"floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/ensemble/boosting-workshop/index';</script>
     <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/ensemble/boosting-workshop/index.html" />
@@ -72,7 +74,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="K-means Clustering" href="../../unsupervised/k-means/_index.html" />
     <link rel="prev" title="Gradient Boosting" href="../gradient-boosting/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -81,15 +83,6 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
-
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -114,8 +107,8 @@ const thebe_selector_output = ".output, .cell_output"
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -143,11 +136,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
   
 
 <a class="navbar-brand logo" href="../../../../intro.html">
-  
   
   
   
@@ -157,21 +148,13 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../../../_static/logo.png" class="logo__image only-light" alt="Data Mining - Home"/>
-    <script>document.write(`<img src="../../../../_static/logo.png" class="logo__image only-dark" alt="Data Mining - Home"/>`);</script>
+    <img src="../../../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../../../../intro.html">
-                    Data Mining
-                </a>
-            </li>
-        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../../syllabus/index.html">Syllabus</a></li>
@@ -246,7 +229,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../dnn/fashion-mnist-case-study.html">Fashion MNIST Case Study</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../optimization/regularization/_index.html">Regularization in Deep Neural Networks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Convolutional Neural Networks</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image Data and Convolutional Neural Networks</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-intro/_index.html">Introduction to Convolutional Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-layers/_index.html">CNN Architectures</a></li>
@@ -254,7 +237,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">Using convnets with small datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../scene-understanding/feature-extraction-resnet/index.html">Feature Extraction via Residual Networks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sequences and RNNs</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time-series data and Recurrent Neural Networks</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../rnn/introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../rnn/simple-rnn/_index.html">Simple RNN</a></li>
@@ -266,28 +249,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Representation Learning and Autoencoders</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Representation Learning and Neural Autoencoders</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../vae/index.html">Variational Auto Encoders (VAE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../vae/generative-modeling/index.html">Generative Modeling and Approximate Inference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../vae/vae-architecture/index.html">VAE Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../vae/elbo-optimization/index.html">ELBO Optimization</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-introduction/nlp-pipelines/_index.html">Introduction to NLP Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nlp/nlp-introduction/tokenization/index.html">Tokenization</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/_index.html">Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/word2vec_from_scratch.html">Word2Vec from scratch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp/nlp-introduction/word2vec/word2vec_tensorflow_tutorial.html">Word2Vec Tensorflow Tutorial</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/language-models/_index.html">Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/cnn-language-model/index.html">CNN Language Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/simple-rnn-language-model/index.html">Simple RNN Language Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp/language-models/lstm-language-model/index.html">LSTM Language Model from scratch</a></li>
-</ul>
-</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math Background</span></p>
 <ul class="nav bd-sidenav">
@@ -358,73 +323,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://mybinder.org/v2/gh/pantelis/data-mining/master?urlpath=tree/data_mining/aiml-common/lectures/ensemble/boosting-workshop/index.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../../../../_static/images/logo_binder.svg">
-  </span>
-<span class="btn__text-container">Binder</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/pantelis/data-mining/blob/master/data_mining/aiml-common/lectures/ensemble/boosting-workshop/index.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../../../../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -450,7 +348,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pantelis/data-mining/edit/master/data_mining/aiml-common/lectures/ensemble/boosting-workshop/index.ipynb" target="_blank"
+      <li><a href="https://github.com/pantelis/data-mining/edit/main/aiml-common/lectures/ensemble/boosting-workshop/index.ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -549,22 +447,20 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
-
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
 `);
 </script>
 
-
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 `);
 </script>
@@ -621,7 +517,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="boosting-workshop">
-<h1>Boosting Workshop<a class="headerlink" href="#boosting-workshop" title="Permalink to this heading">#</a></h1>
+<h1>Boosting Workshop<a class="headerlink" href="#boosting-workshop" title="Permalink to this headline">#</a></h1>
 <blockquote>
 <div><p>A Summary of lecture “Machine Learning with Tree-Based Models in Python
 “, via datacamp</p>
@@ -645,7 +541,7 @@ document.write(`
 </div>
 </div>
 <section id="adaboost">
-<h2>Adaboost<a class="headerlink" href="#adaboost" title="Permalink to this heading">#</a></h2>
+<h2>Adaboost<a class="headerlink" href="#adaboost" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Boosting: Ensemble method combining several weak learners to form a strong learner.</p>
 <ul>
@@ -680,7 +576,7 @@ document.write(`
 </li>
 </ul>
 <section id="define-the-adaboost-classifier">
-<h3>Define the AdaBoost classifier<a class="headerlink" href="#define-the-adaboost-classifier" title="Permalink to this heading">#</a></h3>
+<h3>Define the AdaBoost classifier<a class="headerlink" href="#define-the-adaboost-classifier" title="Permalink to this headline">#</a></h3>
 <p>In the following exercises you’ll revisit the <a class="reference external" href="https://www.kaggle.com/uciml/indian-liver-patient-records">Indian Liver Patient</a> dataset which was introduced in a previous chapter. Your task is to predict whether a patient suffers from a liver disease using 10 features including Albumin, age and gender. However, this time, you’ll be training an AdaBoost ensemble to perform the classification task. In addition, given that this dataset is imbalanced, you’ll be using the ROC AUC score as a metric instead of accuracy.</p>
 <p>As a first step, you’ll start by instantiating an AdaBoost classifier.</p>
 <div class="cell docutils container">
@@ -850,7 +746,7 @@ document.write(`
 </div>
 </section>
 <section id="train-the-adaboost-classifier">
-<h3>Train the AdaBoost classifier<a class="headerlink" href="#train-the-adaboost-classifier" title="Permalink to this heading">#</a></h3>
+<h3>Train the AdaBoost classifier<a class="headerlink" href="#train-the-adaboost-classifier" title="Permalink to this headline">#</a></h3>
 <p>Now that you’ve instantiated the AdaBoost classifier ada, it’s time train it. You will also predict the probabilities of obtaining the positive class in the test set. This can be done as follows:</p>
 <p>Once the classifier <code class="docutils literal notranslate"><span class="pre">ada</span></code> is trained, call the <code class="docutils literal notranslate"><span class="pre">.predict_proba()</span></code> method by passing <code class="docutils literal notranslate"><span class="pre">X_test</span></code> as a parameter and extract these probabilities by slicing all the values in the second column as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ada</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span>
@@ -869,7 +765,7 @@ document.write(`
 </div>
 </section>
 <section id="evaluate-the-adaboost-classifier">
-<h3>Evaluate the AdaBoost classifier<a class="headerlink" href="#evaluate-the-adaboost-classifier" title="Permalink to this heading">#</a></h3>
+<h3>Evaluate the AdaBoost classifier<a class="headerlink" href="#evaluate-the-adaboost-classifier" title="Permalink to this headline">#</a></h3>
 <p>Now that you’re done training <code class="docutils literal notranslate"><span class="pre">ada</span></code> and predicting the probabilities of obtaining the positive class in the test set, it’s time to evaluate <code class="docutils literal notranslate"><span class="pre">ada</span></code>’s ROC AUC score. Recall that the ROC AUC score of a binary classifier can be determined using the <code class="docutils literal notranslate"><span class="pre">roc_auc_score()</span></code> function from <code class="docutils literal notranslate"><span class="pre">sklearn.metrics</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -892,7 +788,7 @@ document.write(`
 </section>
 </section>
 <section id="gradient-boosting-gb">
-<h2>Gradient Boosting (GB)<a class="headerlink" href="#gradient-boosting-gb" title="Permalink to this heading">#</a></h2>
+<h2>Gradient Boosting (GB)<a class="headerlink" href="#gradient-boosting-gb" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Gradient Boosted Trees</p>
 <ul>
@@ -914,7 +810,7 @@ document.write(`
 </li>
 </ul>
 <section id="define-the-gb-regressor">
-<h3>Define the GB regressor<a class="headerlink" href="#define-the-gb-regressor" title="Permalink to this heading">#</a></h3>
+<h3>Define the GB regressor<a class="headerlink" href="#define-the-gb-regressor" title="Permalink to this headline">#</a></h3>
 <p>You’ll now revisit the <a class="reference external" href="https://www.kaggle.com/c/bike-sharing-demand">Bike Sharing Demand</a> dataset that was introduced in the previous chapter. Recall that your task is to predict the bike rental demand using historical weather data from the Capital Bikeshare program in Washington, D.C… For this purpose, you’ll be using a gradient boosting regressor.</p>
 <p>As a first step, you’ll start by instantiating a gradient boosting regressor which you will train in the next exercise.</p>
 <ul class="simple">
@@ -1073,7 +969,7 @@ document.write(`
 </div>
 </section>
 <section id="train-the-gb-regressor">
-<h3>Train the GB regressor<a class="headerlink" href="#train-the-gb-regressor" title="Permalink to this heading">#</a></h3>
+<h3>Train the GB regressor<a class="headerlink" href="#train-the-gb-regressor" title="Permalink to this headline">#</a></h3>
 <p>You’ll now train the gradient boosting regressor <code class="docutils literal notranslate"><span class="pre">gb</span></code> that you instantiated in the previous exercise and predict test set labels.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1088,7 +984,7 @@ document.write(`
 </div>
 </section>
 <section id="evaluate-the-gb-regressor">
-<h3>Evaluate the GB regressor<a class="headerlink" href="#evaluate-the-gb-regressor" title="Permalink to this heading">#</a></h3>
+<h3>Evaluate the GB regressor<a class="headerlink" href="#evaluate-the-gb-regressor" title="Permalink to this headline">#</a></h3>
 <p>Now that the test set predictions are available, you can use them to evaluate the test set Root Mean Squared Error (RMSE) of <code class="docutils literal notranslate"><span class="pre">gb</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1114,7 +1010,7 @@ document.write(`
 </section>
 </section>
 <section id="stochastic-gradient-boosting-sgb">
-<h2>Stochastic Gradient Boosting (SGB)<a class="headerlink" href="#stochastic-gradient-boosting-sgb" title="Permalink to this heading">#</a></h2>
+<h2>Stochastic Gradient Boosting (SGB)<a class="headerlink" href="#stochastic-gradient-boosting-sgb" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Gradient Boosting: Cons &amp; Pros</p>
 <ul>
@@ -1141,7 +1037,7 @@ document.write(`
 </li>
 </ul>
 <section id="regression-with-sgb">
-<h3>Regression with SGB<a class="headerlink" href="#regression-with-sgb" title="Permalink to this heading">#</a></h3>
+<h3>Regression with SGB<a class="headerlink" href="#regression-with-sgb" title="Permalink to this headline">#</a></h3>
 <p>As in the exercises from the previous lesson, you’ll be working with the <a class="reference external" href="https://www.kaggle.com/c/bike-sharing-demand">Bike Sharing Demand</a> dataset. In the following set of exercises, you’ll solve this bike count regression problem using stochastic gradient boosting.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1156,7 +1052,7 @@ document.write(`
 </div>
 </section>
 <section id="train-the-sgb-regressor">
-<h3>Train the SGB regressor<a class="headerlink" href="#train-the-sgb-regressor" title="Permalink to this heading">#</a></h3>
+<h3>Train the SGB regressor<a class="headerlink" href="#train-the-sgb-regressor" title="Permalink to this headline">#</a></h3>
 <p>In this exercise, you’ll train the SGBR <code class="docutils literal notranslate"><span class="pre">sgbr</span></code> instantiated in the previous exercise and predict the test set labels.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1171,7 +1067,7 @@ document.write(`
 </div>
 </section>
 <section id="evaluate-the-sgb-regressor">
-<h3>Evaluate the SGB regressor<a class="headerlink" href="#evaluate-the-sgb-regressor" title="Permalink to this heading">#</a></h3>
+<h3>Evaluate the SGB regressor<a class="headerlink" href="#evaluate-the-sgb-regressor" title="Permalink to this headline">#</a></h3>
 <p>You have prepared the ground to determine the test set RMSE of <code class="docutils literal notranslate"><span class="pre">sgbr</span></code> which you shall evaluate in this exercise.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1202,7 +1098,7 @@ document.write(`
     {
         requestKernel: true,
         binderOptions: {
-            repo: "pantelis/data-mining",
+            repo: "binder-examples/jupyter-stacks-datascience",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -1223,10 +1119,11 @@ document.write(`
 
               
               
-              
-              
-                <footer class="prev-next-footer">
+                <footer class="bd-footer-article">
                   
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../gradient-boosting/index.html"
@@ -1246,7 +1143,10 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -1300,7 +1200,6 @@ By Pantelis Monogioudis, Ph.D
   
   <div class="footer-item">
     
-
   <p class="copyright">
     
       © Copyright 2023.
@@ -1327,8 +1226,8 @@ By Pantelis Monogioudis, Ph.D
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

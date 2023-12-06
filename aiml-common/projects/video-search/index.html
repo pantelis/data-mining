@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Youtube Video Search &#8212; Data Mining</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -35,21 +35,23 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-examples.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../../_static/tabs.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -69,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="prev" title="Machine Anomaly Detection using Wavenet" href="../../assignments/machine-anomaly-wavenet/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -78,15 +80,6 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
-
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -111,8 +104,8 @@ const thebe_selector_output = ".output, .cell_output"
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -140,11 +133,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
   
 
 <a class="navbar-brand logo" href="../../../intro.html">
-  
   
   
   
@@ -154,21 +145,13 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Data Mining - Home"/>
-    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Data Mining - Home"/>`);</script>
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../../../intro.html">
-                    Data Mining
-                </a>
-            </li>
-        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Syllabus</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../syllabus/index.html">Syllabus</a></li>
@@ -243,7 +226,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../lectures/dnn/fashion-mnist-case-study.html">Fashion MNIST Case Study</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../lectures/optimization/regularization/_index.html">Regularization in Deep Neural Networks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Convolutional Neural Networks</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image Data and Convolutional Neural Networks</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../lectures/cnn/cnn-intro/_index.html">Introduction to Convolutional Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../lectures/cnn/cnn-layers/_index.html">CNN Architectures</a></li>
@@ -251,7 +234,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">Using convnets with small datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../lectures/scene-understanding/feature-extraction-resnet/index.html">Feature Extraction via Residual Networks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sequences and RNNs</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time-series data and Recurrent Neural Networks</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../lectures/rnn/introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../lectures/rnn/simple-rnn/_index.html">Simple RNN</a></li>
@@ -263,28 +246,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Representation Learning and Autoencoders</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Representation Learning and Neural Autoencoders</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../lectures/vae/index.html">Variational Auto Encoders (VAE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../lectures/vae/generative-modeling/index.html">Generative Modeling and Approximate Inference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../lectures/vae/vae-architecture/index.html">VAE Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lectures/vae/elbo-optimization/index.html">ELBO Optimization</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../lectures/nlp/nlp-introduction/nlp-pipelines/_index.html">Introduction to NLP Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lectures/nlp/nlp-introduction/tokenization/index.html">Tokenization</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures/nlp/nlp-introduction/word2vec/_index.html">Embeddings</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/nlp/nlp-introduction/word2vec/word2vec_from_scratch.html">Word2Vec from scratch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/nlp/nlp-introduction/word2vec/word2vec_tensorflow_tutorial.html">Word2Vec Tensorflow Tutorial</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures/nlp/language-models/_index.html">Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/nlp/language-models/cnn-language-model/index.html">CNN Language Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/nlp/language-models/simple-rnn-language-model/index.html">Simple RNN Language Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lectures/nlp/language-models/lstm-language-model/index.html">LSTM Language Model from scratch</a></li>
-</ul>
-</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math Background</span></p>
 <ul class="nav bd-sidenav">
@@ -380,7 +345,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pantelis/data-mining/edit/master/data_mining/aiml-common/projects/video-search/index.md" target="_blank"
+      <li><a href="https://github.com/pantelis/data-mining/edit/main/aiml-common/projects/video-search/index.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -479,22 +444,20 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
-
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
 `);
 </script>
 
-
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 `);
 </script>
@@ -552,35 +515,35 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="youtube-video-search">
-<h1>Youtube Video Search<a class="headerlink" href="#youtube-video-search" title="Permalink to this heading">#</a></h1>
+<h1>Youtube Video Search<a class="headerlink" href="#youtube-video-search" title="Permalink to this headline">#</a></h1>
 <p>See Discord group for project description.</p>
 <section id="milestone-1-youtube-video-library-10-points">
-<h2>Milestone 1:  youtube video library (10 points)<a class="headerlink" href="#milestone-1-youtube-video-library-10-points" title="Permalink to this heading">#</a></h2>
+<h2>Milestone 1:  youtube video library (10 points)<a class="headerlink" href="#milestone-1-youtube-video-library-10-points" title="Permalink to this headline">#</a></h2>
 <p>Write a python API  that will download the video and its closed captions from youtube.</p>
 <p>Your library will consist of 50 videos (approx 3min each) of th <a class="reference external" href="https://www.youtube.com/&#64;NPR/videos">NPR youtube channel</a>. Write python code to download the source videos and their transcriptions into a Gdrive dir. You can collaborate with other teams to share the workload and create a common library of videos and transcriptions to save time. Your team can contribute a handful of videos to the shared folder <a class="reference external" href="https://drive.google.com/drive/folders/1VV2B00opRoBaao7ReuYwvkeX_mnpcMk8?usp=share_link">here</a>.</p>
 </section>
 <section id="milestone-2-video-indexing-pipeline-25-points">
-<h2>Milestone 2: Video indexing pipeline (25 points)<a class="headerlink" href="#milestone-2-video-indexing-pipeline-25-points" title="Permalink to this heading">#</a></h2>
+<h2>Milestone 2: Video indexing pipeline (25 points)<a class="headerlink" href="#milestone-2-video-indexing-pipeline-25-points" title="Permalink to this headline">#</a></h2>
 <p>In this milestone you will start delivering features that will be used in the final search engine.</p>
 <section id="preprocess-of-the-video">
-<h3>Preprocess of the video<a class="headerlink" href="#preprocess-of-the-video" title="Permalink to this heading">#</a></h3>
+<h3>Preprocess of the video<a class="headerlink" href="#preprocess-of-the-video" title="Permalink to this headline">#</a></h3>
 <p>You can use opencv, ffmpeg, gstreameer, <a class="reference external" href="https://pytorchvideo.org/">https://pytorchvideo.org/</a> or any other library to implement the preprocessing steps of Fig 4.17 as shown in Fig 4.9.</p>
 </section>
 <section id="embedding-model">
-<h3>Embedding model<a class="headerlink" href="#embedding-model" title="Permalink to this heading">#</a></h3>
+<h3>Embedding model<a class="headerlink" href="#embedding-model" title="Permalink to this headline">#</a></h3>
 <p>Develop a convolutional autoencoder such as <a class="reference external" href="https://blog.keras.io/building-autoencoders-in-keras.html">the one described here</a> to create per frame embeddings. You can select to downsample the frame rate.  The end result are pairs of (image, correspodning vector embedding) for each video. You have to store them in <a class="reference external" href="https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github">Github LFS</a>.</p>
 <p>PS: You can also use <a class="reference external" href="https://huggingface.co/docs/transformers/model_doc/vit">ViT</a> for the autoencoding function if you want to be more cutting edge.</p>
 </section>
 <section id="combination">
-<h3>Combination<a class="headerlink" href="#combination" title="Permalink to this heading">#</a></h3>
+<h3>Combination<a class="headerlink" href="#combination" title="Permalink to this headline">#</a></h3>
 <p>Combine the video embeddings into a single vector using a method of your choice that includes simple aggregation of the per-frame embeddings.</p>
 <section id="extra-credit">
-<h4>Extra credit<a class="headerlink" href="#extra-credit" title="Permalink to this heading">#</a></h4>
+<h4>Extra credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">#</a></h4>
 <p>Extra credit: if you want to maximize the possibility of developing something <strong>new</strong> think how a simple aggregation can be replaced by a more complex function. For example, <a class="reference external" href="https://youtu.be/FN8a8mZNik8?si=wXdbOGuLGkGsWsf">in this ~3min video accessed Nov 2023</a> you have multiple scenes each one lasting 30sec or so. Can you find a way to segment each video and aggregate the frame embeddings of each segment ?  This way there are multiple embeddings per video and you need to keep them that way for the subsequesnt steps of this project.</p>
 </section>
 </section>
 <section id="indexing">
-<h3>Indexing<a class="headerlink" href="#indexing" title="Permalink to this heading">#</a></h3>
+<h3>Indexing<a class="headerlink" href="#indexing" title="Permalink to this headline">#</a></h3>
 <p>Use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span></code> to bring up two docker containers, your application container with the dev environment (you must have done this in Milestone 1) and a second container with either postgres or OpenSearch. Its entirely up to you to decide which database to use.</p>
 <p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span> <span class="pre">postgres:latest</span></code>
 <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span> <span class="pre">opensearchproject/opensearch:latest</span></code></p>
@@ -589,30 +552,30 @@ document.write(`
 </section>
 </section>
 <section id="milestone-3-text-indexing-pipeline-25-points">
-<h2>Milestone 3: Text indexing pipeline (25 points)<a class="headerlink" href="#milestone-3-text-indexing-pipeline-25-points" title="Permalink to this heading">#</a></h2>
+<h2>Milestone 3: Text indexing pipeline (25 points)<a class="headerlink" href="#milestone-3-text-indexing-pipeline-25-points" title="Permalink to this headline">#</a></h2>
 <p>The youtube service give you the ability of downloading the closed captions of a video. You can do that by clicking on the three dots on the bottom right of the video and then clicking on the “Open transcript” option.</p>
 <p>Implement the text embeddings as described in Fig 4.13-4.15.  You can only use word2vec or transformers-based models. Word2vec embeddings are the simplest to implement and you can use the <a class="reference external" href="https://radimrehurek.com/gensim/">gensim</a> library to do that. You can use the <a class="reference external" href="https://huggingface.co/">Hugging Face Hub</a> to download the pretrained models you decided to use. <a class="reference external" href="https://huggingface.co/models?other=gensim">Gensim has published some</a> models that you can use.</p>
 <p>Index the text embeddings in the database of your choice. You can use the Milestone 2 links to do so.</p>
 </section>
 <section id="milestone-4-fusion-of-nearest-videos-and-text-25-points">
-<h2>Milestone 4: Fusion of nearest videos and text (25 points)<a class="headerlink" href="#milestone-4-fusion-of-nearest-videos-and-text-25-points" title="Permalink to this heading">#</a></h2>
+<h2>Milestone 4: Fusion of nearest videos and text (25 points)<a class="headerlink" href="#milestone-4-fusion-of-nearest-videos-and-text-25-points" title="Permalink to this headline">#</a></h2>
 <p>You can now implement Fig 4.18 where you will form the dot products of the video and text embeddings and you will train a model that has been used to retrieve images of the Flickr-8k dataset from  natural language descriptions (captions).</p>
 <section id="projection-head-5-points">
-<h3>Projection head (5 points)<a class="headerlink" href="#projection-head-5-points" title="Permalink to this heading">#</a></h3>
+<h3>Projection head (5 points)<a class="headerlink" href="#projection-head-5-points" title="Permalink to this headline">#</a></h3>
 <p>In this subtask you need to implement the transformation of the image and the text embeddings to the same embedding space with the same dimensionality. You can see the implementation for Keras of the projection head <a class="reference external" href="https://keras.io/examples/vision/nl_image_search/">here</a>. It is implemented using Dense layers and you can easily recode to a Pytorch implementation.</p>
 </section>
 <section id="contrastive-loss-5-points">
-<h3>Contrastive loss (5 points)<a class="headerlink" href="#contrastive-loss-5-points" title="Permalink to this heading">#</a></h3>
+<h3>Contrastive loss (5 points)<a class="headerlink" href="#contrastive-loss-5-points" title="Permalink to this headline">#</a></h3>
 <p>Implement the learning approach using contrastive loss as described <a class="reference external" href="https://towardsdatascience.com/understanding-contrastive-learning-d5b19fd96607">here</a>. You need to excessively document the code of the implementation shown <a class="reference external" href="https://keras.io/examples/vision/nl_image_search/">here</a> to win any points in this milestone.</p>
 </section>
 <section id="train-the-model-15-points">
-<h3>Train the model (15 points)<a class="headerlink" href="#train-the-model-15-points" title="Permalink to this heading">#</a></h3>
+<h3>Train the model (15 points)<a class="headerlink" href="#train-the-model-15-points" title="Permalink to this headline">#</a></h3>
 <p>Download the Flickr-8k dataset from <a class="reference external" href="https://www.kaggle.com/adityajn105/flickr8k?select=Flickr_Data">here</a>. You use the <a class="reference external" href="https://www.kaggle.com/adityajn105/flickr8k?select=Flickr_Data">Flickr8k_Dataset</a> and <a class="reference external" href="https://www.kaggle.com/adityajn105/flickr8k?select=Flickr_Data">Flickr8k_text</a> folders.</p>
 <p>Plot the train and validation loss function as the model trains (vs epochs). Note that the end to end model training will require you to reuse the embedding functions you have developed in earlier milestones.</p>
 </section>
 </section>
 <section id="milestone-5-search-ui-and-pitch-video-voiceover-15-points">
-<h2>Milestone 5: Search UI and  pitch video voiceover (15 points)<a class="headerlink" href="#milestone-5-search-ui-and-pitch-video-voiceover-15-points" title="Permalink to this heading">#</a></h2>
+<h2>Milestone 5: Search UI and  pitch video voiceover (15 points)<a class="headerlink" href="#milestone-5-search-ui-and-pitch-video-voiceover-15-points" title="Permalink to this headline">#</a></h2>
 <p>You developed a model that retrieves relevant to the text query images using the Flickr8k dataset and you will now use the model for video retrieval. Since the video and trascription are just vectors the approach will work.  Exercise the model and create a UI similar to <a class="reference external" href="https://huggingface.co/spaces/keras-io/dual-encoder-image-search">this one</a> that will allow you to search for the NPR news videos using natural language. You can use the <a class="reference external" href="https://huggingface.co/spaces">Hugging Face spaces</a> to deploy your model and host your UI that is easily coded using [<a class="reference external" href="https://www.gradio.app/">https://www.gradio.app/</a>].</p>
 </section>
 </section>
@@ -621,7 +584,7 @@ document.write(`
     {
         requestKernel: true,
         binderOptions: {
-            repo: "pantelis/data-mining",
+            repo: "binder-examples/jupyter-stacks-datascience",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -642,10 +605,11 @@ document.write(`
 
               
               
-              
-              
-                <footer class="prev-next-footer">
+                <footer class="bd-footer-article">
                   
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../../assignments/machine-anomaly-wavenet/index.html"
@@ -656,7 +620,10 @@ document.write(`
         <p class="prev-next-title">Machine Anomaly Detection using Wavenet</p>
       </div>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -711,7 +678,6 @@ By Pantelis Monogioudis, Ph.D
   
   <div class="footer-item">
     
-
   <p class="copyright">
     
       © Copyright 2023.
@@ -738,8 +704,8 @@ By Pantelis Monogioudis, Ph.D
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

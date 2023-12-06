@@ -1,8 +1,3 @@
----
-title: The Learning Problem 
-weight: 30
----
-
 # The Learning Problem
 
 ## The Supervised (Inductive) Learning Problem Statement
@@ -15,7 +10,7 @@ Let us start with a classic formal definition of the supervised learning problem
 
 The description below is taken from Vadimir Vapnik's classic book [Statistical Learing Theory](https://www.amazon.com/Statistical-Learning-Theory-Vladimir-Vapnik/dp/0471030031), albeit with some enhancements on terminology to make it more in line with our needs. 
 
-The generator is a source of situations that determines the environment in which the target function (he calls it supervisor) and the learning algorithm act.  Here we consider the simplest environment: the data generator generates the vectors $\mathbf{x} \in \mathcal{X}$ independently and identically distributed (i.i.d.) according to some unknown (but fixed) probability distribution function $p_{data}(\mathbf{x})$.
+The generator is a source of situations that determines the environment in which the target function (he calls it supervisor) and the learning algorithm act.  Here we consider the simplest environment: the data generator generates the vectors  $\mathbf{x} \in \mathcal{X}$ independently and identically distributed (i.i.d.) according to some unknown (but fixed) probability distribution function $p_{data}(\mathbf{x})$.
 
 The vector $\mathbf x$ are inputs to the target function (or operator); the target function returns the output values $y \in \mathcal{Y}$. The target function which transforms the vectors $\mathbf{x}$ into values $y$,  is **unknown** but we know that it exists, it does not change and is a smooth function. The target function effectively returns the output $y$ on the vector $\mathbf x$ according to  a conditional distribution function $p(y | \mathbf x)$.  
 
