@@ -526,11 +526,20 @@ document.write(`
 \[= -\sum_{\mathbf z} q(\mathbf z | \mathbf x ; \mathbf \phi) \log \frac{p(\mathbf z , \mathbf x; \mathbf \theta))}{q(\mathbf z | \mathbf x ; \mathbf \phi)} + \log p(\mathbf x)\]</div>
 <div class="math notranslate nohighlight">
 \[⇒\log p(\mathbf x) = KL(q(\mathbf z | \mathbf x ; \mathbf \phi) || p(\mathbf z | \mathbf \theta)) + \underbrace{\sum_{\mathbf z} q(\mathbf z | \mathbf x ; \mathbf \phi) \log \frac{p(\mathbf z , \mathbf x; \mathbf \theta))}{q(\mathbf z | \mathbf x ; \mathbf \phi)}}_{\text{L = Evidence Lower Bound (ELBO)}}\]</div>
-<p>The bracketed <span class="math notranslate nohighlight">\(\mathcal L(q, \phi)\)</span> quantity is called Evidence Lower Bound and is a functional of the distribution <span class="math notranslate nohighlight">\(q\)</span> and a function of the parameters <span class="math notranslate nohighlight">\(\phi\)</span>. Why its a lower bound of the log-likelihood (evidence) function  <span class="math notranslate nohighlight">\(\log p(\mathbf x)\)</span> and why its a useful quantity to consider?</p>
-<p>Answering the last question first, we maximize the likelihood by effectively maximizing the <span class="math notranslate nohighlight">\(\mathcal L(q, \phi, \theta)\)</span></p>
-<p>since <span class="math notranslate nohighlight">\(KL(q(\mathbf z | \mathbf x ; \mathbf \phi) || p(\mathbf z | \mathbf \theta)) \ge 0\)</span></p>
-<p>by definition with zero only when <span class="math notranslate nohighlight">\(q(\mathbf z | \mathbf x ; \mathbf \phi) = p(\mathbf z | \mathbf \theta))\)</span>.</p>
-<p>Since</p>
+<p>The bracketed <span class="math notranslate nohighlight">\(\mathcal L(q, \phi, \theta)\)</span> quantity is called Evidence Lower Bound (ELBO) and is a functional of the distribution <span class="math notranslate nohighlight">\(q\)</span> and a function of the parameters <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
+<p>Why its a lower bound of the log-likelihood (evidence) function  <span class="math notranslate nohighlight">\(\log p(\mathbf x)\)</span>  ?</p>
+<p>The reason is that the KL divergence is always positive:</p>
+<div class="math notranslate nohighlight">
+\[KL(q(\mathbf z | \mathbf x ; \mathbf \phi) || p(\mathbf z | \mathbf \theta)) \ge 0\]</div>
+<p>and therefore if we eliminate the <span class="math notranslate nohighlight">\(KL\)</span> from the above equation we need to change the summation to a <span class="math notranslate nohighlight">\(\ge\)</span> relation.</p>
+<div class="math notranslate nohighlight">
+\[\log p(\mathbf x) \ge  \underbrace{\sum_{\mathbf z} q(\mathbf z | \mathbf x ; \mathbf \phi) \log \frac{p(\mathbf z , \mathbf x; \mathbf \theta))}{q(\mathbf z | \mathbf x ; \mathbf \phi)}}_{\text{L = Evidence Lower Bound (ELBO)}}\]</div>
+<p>Why its a useful quantity to consider for optimization?</p>
+<p>Back to the equality:</p>
+<div class="math notranslate nohighlight">
+\[⇒\log p(\mathbf x) = KL(q(\mathbf z | \mathbf x ; \mathbf \phi) || p(\mathbf z | \mathbf \theta)) + \underbrace{\sum_{\mathbf z} q(\mathbf z | \mathbf x ; \mathbf \phi) \log \frac{p(\mathbf z , \mathbf x; \mathbf \theta))}{q(\mathbf z | \mathbf x ; \mathbf \phi)}}_{\text{L = Evidence Lower Bound (ELBO)}}\]</div>
+<p>the answer to this question is straightforward. If we maximize the ELBO we minimize the KL divergence, by definition this is zero only when <span class="math notranslate nohighlight">\(q(\mathbf z | \mathbf x ; \mathbf \phi) = p(\mathbf z | \mathbf \theta))\)</span>, for the equality to hold.</p>
+<p>In other words, we maximize the likelihood by effectively maximizing the <span class="math notranslate nohighlight">\(\mathcal L(q, \phi, \theta)\)</span> since</p>
 <div class="math notranslate nohighlight">
 \[\mathcal L(q, \phi, \theta) =  \log p(\mathbf x) - KL(q(\mathbf z | \mathbf x ; \mathbf \phi) || p(\mathbf z | \mathbf \theta)) \le \log p(\mathbf x)\]</div>
 <p>This is illustrated bellow:</p>
