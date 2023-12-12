@@ -91,7 +91,7 @@ parts:
     chapters:
     - file: aiml-common/lectures/vae/generative-modeling/index.md 
     - file: aiml-common/lectures/vae/vae-architecture/index.md
-    - file: aiml-common/lectures/vae/elbo-optimization/index.md 
+    - file: aiml-common/lectures/vae/elbo-optimization/vae.ipynb 
   
   - caption: Math Background
     chapters: 
