@@ -10,14 +10,16 @@ jobs:
   build-and-deploy-book:
     runs-on: ubuntu-latest
     steps:
-      #----------------------------------------------
-      #       check-out repo and set-up python
-      #----------------------------------------------
       - name: Check out repository
         uses: actions/checkout@v3
         with:
           submodules: recursive
           token: ${{ secrets.AIML_COMMON_CICD_TOKEN }}
+      - name: Cache apt packages
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+            packages: curl git-lfs ffmpeg libsm6 libxext6 graphviz libgraphviz-dev xdg-utils swig gringo  libgraphviz-dev libsndfile1-dev xdg-utils swig gringo gobject-introspection libcairo2-dev libgirepository1.0-dev pkg-config python3-dev python3-gi
+            version: 1.0
       - name: Set up python
         id: setup-python
         uses: actions/setup-python@v4
@@ -25,43 +27,7 @@ jobs:
           python-version: '3.10'
           cache: 'pip' # caching pip dependencies
       - run: pip install -r requirements.txt
-      # #----------------------------------------------
-      # #  -----  install & configure poetry  -----
-      # #----------------------------------------------
-      # - name: Install Poetry
-      #   uses: snok/install-poetry@v1
-      #   with:
-      #     version: 1.4.1
-      #     virtualenvs-create: true
-      #     virtualenvs-in-project: true
-      #     installer-parallel: true
-      
-      # - uses: snok/install-poetry@v1
-      # - run: poetry config installer.modern-installation false  
-
-      # #----------------------------------------------
-      # #       load cached venv if cache exists
-      # #----------------------------------------------
-      # - name: Load cached venv
-      #   id: cached-poetry-dependencies
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: .venv
-      #     key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-      # #----------------------------------------------
-      # # install dependencies if cache does not exist
-      # #----------------------------------------------
-      # - name: Install dependencies
-      #   if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      #   run: poetry install --no-interaction --no-root
-      # #----------------------------------------------
-      # # install your root project, if required
-      # #----------------------------------------------
-      # # - name: Install project
-      # #   run: poetry install --no-interaction
-      # #----------------------------------------------
-      # #              Build the book 
-      # #----------------------------------------------      
+     
       - name: Build the book
         shell: bash -l {0}
         run: |
@@ -74,94 +40,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: data_mining/_build/html    
           
-
-# name: deploy
-
-# on:
-#   # Trigger the workflow on push to main branch
-#   push:
-#     branches:
-#       - main
-
-# # This job installs dependencies, build the book, and pushes it to `gh-pages`
-# jobs:
-#   build-and-deploy-book:
-#     runs-on: ${{ matrix.os }}
-#     strategy:
-#       matrix:
-#         os: [ubuntu-latest]
-#         python-version: [3.9]
-#     steps:
-#     - uses: actions/checkout@v2
-#       with:
-#         submodules: recursive
-#         token: ${{ secrets.AIML_COMMON_CICD_TOKEN }}
-
-#     # # Install dependencies
-#     # - name: Set up Python ${{ matrix.python-version }}
-#     #   uses: actions/setup-python@v2
-#     #   with:
-#     #     python-version: ${{ matrix.python-version }}
-#     # - name: Install dependencies
-#     #   run: |
-#     #     $CONDA/bin/conda env update --file environment.yml --name ai-course
-        
-#     # Build the book
-#     - uses: conda-incubator/setup-miniconda@v2
-#       with:
-#         environment-file: requirements.txt
-#         activate-environment: "data-mining-course"
-        
-#     - name: Build the book
-#       shell: bash -l {0}
-#       run: |
-#         jupyter-book build data_mining
-
-#     # Deploy the book's HTML to gh-pages branch
-#     - name: GitHub Pages action
-#       uses: peaceiris/actions-gh-pages@v3.6.1
-#       with:
-#         github_token: ${{ secrets.GITHUB_TOKEN }}
-#         publish_dir: data_mining/_build/html
-#         name: deploy
-
-# on:
-#   # Trigger the workflow on push to main branch
-#   push:
-#     branches:
-#       - main
-
-# # This job installs dependencies, build the book, and pushes it to `gh-pages`
-# jobs:
-#   build-and-deploy-book:
-#     runs-on: ${{ matrix.os }}
-#     strategy:
-#       matrix:
-#         os: [ubuntu-latest]
-#         python-version: [3.8]
-#     steps:
-#     - uses: actions/checkout@v2
-#       with:
-#         submodules: recursive
-#         token: ${{ secrets.AIML_COMMON_CICD_TOKEN }}
-
-#     # Install dependencies
-#     - name: Set up Python ${{ matrix.python-version }}
-#       uses: actions/setup-python@v1
-#       with:
-#         python-version: ${{ matrix.python-version }}
-#     - name: Install dependencies
-#       run: |
-#         pip install -r requirements.txt
-
-#     # Build the book
-#     - name: Build the book
-#       run: |
-#         jupyter-book build data_mining
-
-#     # Deploy the book's HTML to gh-pages branch
-#     - name: GitHub Pages action
-#       uses: peaceiris/actions-gh-pages@v3.6.1
-#       with:
-#         github_token: ${{ secrets.GITHUB_TOKEN }}
-#         publish_dir: data_mining/_build/html

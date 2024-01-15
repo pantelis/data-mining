@@ -29,7 +29,9 @@ This course requires some intensive effort from your side in both learning these
 
 **Logistics** {octicon}`organization;1em;sd-text-info`
 ^^^
-Course Dates: Sept 2023 -  Dec 2023
+Course Dates: Jan 2024 - May 2024
+
+TA: Fuhuan Li
 
 :::
 
