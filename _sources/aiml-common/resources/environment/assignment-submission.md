@@ -2,27 +2,49 @@
 
 ## Step 1: Github Repository 
 
-Make sure you know how to commit and push your changes to your repo. If you do not push the latest changes the grader will grade an outdates version of your code. The following steps will only need to be done once - at the beginning of the semester.
+This step will only need to be done once - at the beginning of the semester. You need two **private** repositories, one for the assignments and another for the project. Name them as follows:
+
+cs301-project
+cs301-assignments
+
+Obvioulsy, replace cs301 with your course number. Please comply to all lower case fomat for directory files and (directory) names. 
+
+For assignments you need to create a separate folder for each assignment: e.g `assignment-1`. You need to include a README.md file in each assignment folder. The README.md file should include the following information:
+
+- Name of the assignment
+- Date of submission
+- Instructions on how to run the code
+- Instructions on how to run any tests (if applicable)
+- Instructions on how to run any notebook (if applicable)
+
+Make sure you know how to commit and push your changes to your repo. If you do not push the latest changes the grader will grade an outdated version of your code.  
 
 1. Go to the settings tab of your repository
 
 ![](./images/AddGitSt1.png)
 
+
 2. On the left, find the tab titled "Collaborators"
 
 ![](./images/AddGitSt2.png)
 
-3. Click on "Add people" and enter the GitHub id or email address of the desired collaborator(s)
+3. Click on "Add people" and enter the GitHub id or email address of the TAs Github IDs. 
 
 ![](./images/AddGitSt3.png)
 ![](./images/AddGitSt4.png)
 
-4. Open the assignment on the LMS of your institution (Canvas, Brightspace), and enter the copied link into the given textbox.
+4. Open the assignment on the LMS of your institution (Canvas, Brightspace), and enter the copied link into the corresponding textbox.
 
 
-## Step 2: Colab Notebook
+## Notebooks 
 
-If your assignment includes colab notebooks that will be (obviously) inside your github, you will need to also share them with your grader as they are hosted inside your Google account. You can do this as follows:
+If you have authored a notebook, using Colab or other cloud computational environments, the notebook can only be submitted as part of your Github repository and not as a separate file. Please do **not** share the notebook with your TA using the `Share` button. 
+
+In all cases, either local development or cloud development of notebooks: ensure that all cell outputs are **saved** before pushing the notebook to your github repo.   
+
+**It is particularly important to avoid changing and pushing to Github the assignment after your submission date and until you receive a grade. If you do so, your TAs will flag the assignment as late.**  
+
+ <!-- that will be (obviously) inside your github, you will need to also share them with your grader as they are hosted inside your Google account. You can do this as follows:
 
 1. Navigate to your Colab Notebook and hit the "Share" Button at the top-right:
 
@@ -36,9 +58,9 @@ If your assignment includes colab notebooks that will be (obviously) inside your
 
 4. Open the assignment on the LMS of your institution (Canvas, Brightspace),  and enter the copied link into the given textbox. 
 
-## How to add the Open in  Colab Button
+## How to add the Open in  Colab Button -->
 
-After adding the TA as a collaborator they will be able to see your code in Github. You need to add a "Open in Colab" button in your Github. When after clicking on it they will directed to the code on your Google Colab. Following are the steps :
+<!-- You need to add a "Open in Colab" button in your Github. When after clicking on it they will directed to the code on your Google Colab. Following are the steps :
 
 1. Add a Text Markdown on the Start of your code in Google Colab just like below.
 
@@ -56,7 +78,7 @@ instead of "https://github.com/dhruvilk/Course-Assignments/tree/main/Sample.ipyn
 The following video is also useful on how to add the Open in Colab button in notebooks but also in a browser bookmark. The later is helpful when the notebook does not have the embedded button.
 
 [![Open in Colab](https://img.youtube.com/vi/RoGZIbwzG5w/0.jpg)](https://www.youtube.com/watch?v=RoGZIbwzG5w)
+ -->
+<!-- ## Notebooks with handwritten answers
 
-## Notebooks with handwritten answers
-
-For some assignments you may have to draw or write with pencil and paper. After you scan your work and create jpeg or png images, you can add it to your notebook as [shown here](https://towardsdatascience.com/the-2-step-guide-to-upload-images-in-google-colab-b51348e882e4).
+For some assignments you may have to draw or include handwritten notes. After you scan your work and create jpeg or png images, you can add it to your notebook as [shown here](https://towardsdatascience.com/the-2-step-guide-to-upload-images-in-google-colab-b51348e882e4). -->

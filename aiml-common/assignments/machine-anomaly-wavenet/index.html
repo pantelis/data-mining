@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Machine Anomaly Detection using Wavenet &#8212; Data Mining</title>
   
@@ -19,15 +19,15 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
@@ -41,12 +41,14 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
@@ -72,7 +74,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Youtube Video Search" href="../../projects/video-search/index.html" />
     <link rel="prev" title="Classifying Ships from Automatic Indentification System (AIS) Data" href="../ensemble/ais/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -80,7 +82,16 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -114,12 +125,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <header>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    </div>
   
+  </header>
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -134,9 +153,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../../../intro.html">
+  
   
   
   
@@ -146,8 +167,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Data Mining - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Data Mining - Home"/>`);</script>
   
   
 </a></div>
@@ -446,20 +467,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -502,35 +525,35 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="machine-anomaly-detection-using-wavenet">
-<h1>Machine Anomaly Detection using Wavenet<a class="headerlink" href="#machine-anomaly-detection-using-wavenet" title="Permalink to this headline">#</a></h1>
+<h1>Machine Anomaly Detection using Wavenet<a class="headerlink" href="#machine-anomaly-detection-using-wavenet" title="Permalink to this heading">#</a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Following the lecture on CNNs and RNNs, you will work on a causal 1D CNN model called <a class="reference external" href="https://arxiv.org/abs/1609.03499">Wavenet</a> to detect anomalous sounds events as described in <a class="reference external" href="https://www.eurasip.org/Proceedings/Eusipco/Eusipco2018/papers/1570437578.pdf">this paper</a>. You may aso want to read more <a class="reference external" href="https://huggingface.co/learn/audio-course/chapter1/introduction">on audio processing and associated datasets</a>.</p>
 <p>The following video provides a good overview of the application space of Wavenet to <strong>generate</strong> speech - it is used across many Alphabet services.</p>
 <div class="video_wrapper" style="">
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/9eLNUB62HRI" style="border: 0; height: 345px; width: 560px">
 </iframe></div></section>
 <section id="task-1-code-the-wavenet-model-35-pioints">
-<h2>Task 1 - Code the Wavenet model (35 pioints)<a class="headerlink" href="#task-1-code-the-wavenet-model-35-pioints" title="Permalink to this headline">#</a></h2>
+<h2>Task 1 - Code the Wavenet model (35 pioints)<a class="headerlink" href="#task-1-code-the-wavenet-model-35-pioints" title="Permalink to this heading">#</a></h2>
 <p>Use Tensorflow / Keras  implementation of Wavenet (see the example in your textbook) or the equivalent in Pytorch.</p>
 <p>Note that in your case you will use Wavenet to <strong>detect</strong> anomalous sounds events which means that you will use wavenet as a <strong>predictor</strong> rather than a <strong>generator</strong>. Therefore the architecture will be slightly different especially in the head.</p>
 <p>Your code must match the architecture shown in the paper and should include post-processing steps. Please note that the authors do not mention about any multichannel input (each channel is a different microphone) and the dataset provides for those. You need to try to accommodate them in your model.</p>
 </section>
 <section id="task-2-prepare-and-consume-the-training-and-test-datasets-25-points">
-<h2>Task 2 - Prepare and consume the Training and Test Datasets (25 points)<a class="headerlink" href="#task-2-prepare-and-consume-the-training-and-test-datasets-25-points" title="Permalink to this headline">#</a></h2>
+<h2>Task 2 - Prepare and consume the Training and Test Datasets (25 points)<a class="headerlink" href="#task-2-prepare-and-consume-the-training-and-test-datasets-25-points" title="Permalink to this heading">#</a></h2>
 <p>For evaluating the model, you will use this <a class="reference external" href="https://arxiv.org/pdf/1908.03299.pdf">dataset</a> for the toy car sub-dataset.  The data can be downloaded <a class="reference external" href="https://zenodo.org/records/3351307#.XT-JZ-j7QdU">here</a> but you need to have a significant disk space to extract the 7z files. <strong>Avoid downloading the dataset from this original URL</strong> and instead use <a class="reference external" href="https://huggingface.co/datasets/aegean-ai/engine-anomaly-detection-dataset/tree/main">the dataset published in the hugging face hub</a>.</p>
 <p>Note: The authors have also published <a class="reference external" href="https://github.com/YumaKoizumi/ToyADMOS-dataset">this github repo</a> where you can find the training and test dataset processing steps that you may borrow if need be - typically they are not needed but it is provided here as we have used the scripts of this repo to generate the dataset in the hugging face hub.</p>
 <section id="point-extra-credit">
-<h3>10 point extra-credit<a class="headerlink" href="#point-extra-credit" title="Permalink to this headline">#</a></h3>
+<h3>10 point extra-credit<a class="headerlink" href="#point-extra-credit" title="Permalink to this heading">#</a></h3>
 <p>You can increase the probability of maxining out in this assignment by implementing a streaming interface to the dataset and the rest of the training / evaluation pipeline as discussed <a class="reference external" href="https://huggingface.co/learn/audio-course/chapter1/streaming">here</a></p>
 <p>You can use the Hugging Face libraries provided to stream the data from the Hugging Face Hub and either process the data online for training &amp; evaluation purposes or create a subset of the dataset for training and evaluation as required for your model. You may use <a class="reference external" href="https://github.com/archinetai/audio-data-pytorch">Audio WebDataset extension</a> to help you with consuming the audio files by the rest of the pipeline.</p>
 </section>
 </section>
 <section id="task-3-train-and-evaluate-the-model-45-points">
-<h2>Task 3 - Train and Evaluate the Model (45 points)<a class="headerlink" href="#task-3-train-and-evaluate-the-model-45-points" title="Permalink to this headline">#</a></h2>
+<h2>Task 3 - Train and Evaluate the Model (45 points)<a class="headerlink" href="#task-3-train-and-evaluate-the-model-45-points" title="Permalink to this heading">#</a></h2>
 <p>Perform model training and specify clearly the hyper-parameters you used, showing an attempt to optimize them. You need to include a plot of loss vs number of epochs for the test dataset and report the F1 score.</p>
 </section>
 </section>
@@ -560,11 +583,10 @@ document.write(`
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../ensemble/ais/index.html"
@@ -584,10 +606,7 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -595,6 +614,7 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -630,6 +650,7 @@ By Pantelis Monogioudis, Ph.D
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2023.
@@ -656,8 +677,8 @@ By Pantelis Monogioudis, Ph.D
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
 
   <footer class="bd-footer">
   </footer>

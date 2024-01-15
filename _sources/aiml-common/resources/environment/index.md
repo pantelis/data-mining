@@ -20,22 +20,22 @@ Independent of your OS, you may want to use [VS Code IDE](https://code.visualstu
 
 * For other linux users please follow the docker instructions [here](https://docs.docker.com/engine/install/).
 
-For those that do not have an existing NVIDIA-based GPU, please avoid **buying** any AMD or Intel GPUs. Even to this date, the best way of workload acceleration is via CUDA and NVIDIA is the only vendor that supports CUDA. Maybe one day we will have a true multivendor choice - its not today though.
+For those that do not have an existing NVIDIA-based GPU, please avoid **buying** any AMD or Intel GPUs. Even to this date, the best way of workload acceleration is via CUDA and NVIDIA is obviously the only vendor that supports CUDA. Maybe one day we will have a true multivendor choice - its not today though.
 
 If you do already have AMD or Intel GPUs you _may_ still be able to use them  or simply use Colab. 
 
 
 ### Google Colaboratory (recommended)
 
-We will be using the **free** CPU/GPU resources provided by [Google Colab](https://colab.research.google.com). The good news is that you have an account in Google Colab as most of you have your university gmail account. Please note if you login to colab with your university account you get to use the almost unlimited Gdrive storage facility. You will need Google Colab for all your projects so that you can demonstrate that your results can be replicated.  In addition Colab has many [features](https://colab.research.google.com/notebooks/basic_features_overview.ipynb) that come handy. 
+We will be using the **free** CPU/GPU resources provided by [Google Colab](https://colab.research.google.com). The good news is that you have an account in Google Colab as most of you have your university gmail account. Please note if you login to colab with your university account you get to use the almost unlimited Gdrive storage facility. You will need Google Colab for all your projects so that you can demonstrate that your results can be replicated.  In addition Colab has many [features](https://colab.research.google.com/notebooks/basic_features_overview.ipynb) that come handy. Please note that even if you use Colab, you still need to submit your work via Github i.e. you need to [connect Github and Colab](https://bebi103a.github.io/lessons/02/git_with_colab.html). 
 
 ### On AWS  (recommended)
 
-Please note that the [AWS Deep Learning AMIs](https://docs.aws.amazon.com/dlami/latest/devguide/ubuntu18-04.html) may not require installation or they may require update to the required version of TF/Pytorch. Choose this option if you can afford the hourly rate **and** you are disciplined to monitor the resources and terminate your instances.  
+Please note that the [AWS Deep Learning AMIs](https://docs.aws.amazon.com/dlami/latest/devguide/what-is-dlami.html) may not require installation or they may require update to the required version of TF/Pytorch. Choose this option if you can afford the hourly rate **and** you are disciplined to monitor the resources and terminate your instances.  
 
 ### On Hugging Face Spaces (recommended)
 
-HF spaces can get you started for free and this includes docker based environments ! So it should be your first choice when a project requires container based development eg. when the project is Django based.
+[HF spaces](https://huggingface.co/new-space?sdk=docker) can get you started for free and this includes docker based environments ! So it should be your first choice when an assignment or project requires container based development. 
 
 ### Kaggle (not recommended)
 
@@ -43,9 +43,9 @@ You can use Kaggle as an alternative to Colab for all your projects. You guessed
 
 ## Managing Python Runtimes
 
-Follow the instructions [here](https://python-poetry.org/docs/) to install Poetry and [follow up with the basic usage instructions](https://python-poetry.org/docs/basic-usage/). Managing dependencies is one of the key challenges in data science. Poetry is a tool that helps you manage your dependencies.
+Follow the instructions [here](https://pipenv.pypa.io/en/latest/) to install pipenv. Managing dependencies is one of the key challenges in data science. Pipenv is a tool that helps you manage your dependencies.
 
-Please ensure that you have used the `virtualenvs.in-project` configuration variable to create virtual environments **within** your project directory and that you know how to use .gitignore to avoid committing your virtual environment to your git repository.
+Please ensure that you have set `PIPENV_VENV_IN_PROJECT=1` in your .env or .bashrc/.zshrc (or other shell configuration file) for creating the virtualenv (name it `.venv`) inside your project’s directory. **Do not commit the .venv folder in your Github repo - learn how to do that via the `.gitignore` file eg include [this file](https://www.toptal.com/developers/gitignore/api/python) in your git root folder**.
 
 
 ## Git / Github
@@ -53,6 +53,10 @@ Please ensure that you have used the `virtualenvs.in-project` configuration vari
 Learning basic git commands takes less than half an hour. However, to install git and understand the principle behind git, please go over Chapters 1 and 2 of the [ProGit book](https://git-scm.com/book/en/v2).
 
 As we have discussed in the class you need to be able to publish your work in Github so you need to create a Github account. Then you will use the git client for your operating system to interact with github and iterate on your projects.  Almost no project starts in vacuum - there is almost always a repo  that will neeed to be cloned and that you will need to modify to your needs. 
+
+```{eval-rst}
+.. youtube:: RGOj5yH7evk
+```
 
 ### How to work with a github repository in Colab
 
