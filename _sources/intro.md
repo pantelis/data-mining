@@ -31,7 +31,7 @@ This course requires some intensive effort from your side in both learning these
 ^^^
 Course Dates: Jan 2024 - May 2024
 
-TA: Fuhuan Li
+
 
 :::
 
@@ -78,7 +78,7 @@ Assignments (30%)
 **Staff (TAs)** {octicon}`person;1em;sd-text-info`
 ^^^
 
-TBD
+Fuhuan Li
 
 :::
 
