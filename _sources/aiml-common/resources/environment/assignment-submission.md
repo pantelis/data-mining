@@ -5,9 +5,20 @@
 This step will only need to be done once - at the beginning of the semester. You need two **private** repositories, one for the assignments and another for the project. Name them as follows:
 
 cs301-project
+
 cs301-assignments
 
 Obvioulsy, replace cs301 with your course number. Please comply to all lower case fomat for directory files and (directory) names. 
+
+Do **not** create the repository before watching the video below that although refers to a specific course (CS370) it is applicable to all courses. 
+
+
+```{youtube} bPB26gpFdlg
+:height: 400px
+:width: 600px
+:align: center
+```
+As part of the process outlined in the video, you need to copy this [github action](https://github.com/Kamil-Arif/CS370-Assignments-Template) and edit line 34 so that **only** the Github ID of your TA for **your** course is included. 
 
 For assignments you need to create a separate folder for each assignment: e.g `assignment-1`. You need to include a README.md file in each assignment folder. The README.md file should include the following information:
 
