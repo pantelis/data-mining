@@ -1,4 +1,4 @@
-# Cutting Edge Development Environment(s) 
+# Cutting Edge Development Environment for Data Science
 
 The purpose of this assignment is to get you started in the course and to make sure that you have the necessary software installed on your computer. 
 
