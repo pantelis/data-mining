@@ -44,3 +44,50 @@ Your assignments repo must have a directory called `assignment-1` - all subseque
 2. Copy the notebook of task 2  and successfully execute it in the container when this execution is triggered by the VSCode IDE. Save the output. This is a task identical to Task 2 but this is now happening in your own repo (5 points)
 
 3. Push the changes to your repo and ensure that the github workflow is triggered and the results is a green checkmark. If this is happening your TA will be able to grade your assignment. (5 points) 
+
+## Task 4 - Your first orchestrated data pipeline (35 points)
+
+![](images/house-prices.png)
+
+In [this chapter](https://learning.oreilly.com/library/view/hands-on-machine-learning/9781098125967/ch02.html#idm45720251202736) a house price prediction problem is presented.  You are not concerned with the details of the problem but with the data pipeline i.e. how to transform the raw data and produce a dataset that can be shared in a so called data hub on one hand and on the other to be easily consumable by a trainer - the next pipeline that will create a machine learning model.
+
+Using the [corresponding notebook in the `handson-ml3` repo](https://github.com/ageron/handson-ml3/blob/main/02_end_to_end_machine_learning_project.ipynb) as a guide, create a data pipeline that will transform the raw data of the dataset. There is a catch though. Most data pipelines are not to be executed once but they need the support of an orchestrator that will execute the pipelines again and again and create the `materialized` data. You will be using a state of the art orchestrator called [Dagster](https://dagster.io/) to enable this in your pipeline and at the same time provide the exposure needed for you and your team to visualize the pipeline execution and have a fully documented  `data lineage`. 
+
+### Task 4.1 - Install Dagster (5 points)
+
+To state the obvious you will be using Dagster inside the docker development environment you have built in earlier tasks. Use the pip portion of your python environment specification to [install all dagster components](https://docs.dagster.io/getting-started/install). Your docker must be recycled to absorb the changes your made. Note that you need to open up the port 3000 in your docker container to be able to access the Dagster UI. 
+
+### Task 4.2 - Create the Dagster project (10 points)
+
+Follow the instructions [here](https://docs.dagster.io/getting-started/create-new-project) to create the project that will host your pipeline. 
+
+### Task 4.3 - Create the pipeline (20 points)
+
+Implement all the stages presented in the textbook notebook - from downloading the data to just before the start of training (cells 4 to 118 approx). Its up to you how many stages you will split the data pipeline (ETL) but it is advised to have more stages than less since you can get visibility into the processing in the UI. 
+
+
+## Task 5 - Create Hugging Face Dataset and add it to your profile (30 points)
+
+All the other tasks were done to prepare you for this one. You will be using the data pipeline you created in Task 4 to create a dataset that will be shared in a data hub - one of the most important destinations is the [Hugging Face Dataset Hub](https://huggingface.co/datasets).  
+
+### Task 5.1 - Create a Hugging Face account (5 points)
+
+Create your profile and treat it with the same level of care as your github profile. Your Github and HF profiles serve different purposes. Gihub is used to advertise your abilities as a software but has little to offer in terms of your demonstrating your apps. HF does exactly that and they are therefore complementary to each other. 
+
+### Task 5.2 - Expose your dataset using Hugging Face Datasets (15 points)
+
+Install the `datasets`  package in your development env and follow the instructions [here](https://huggingface.co/docs/datasets/add_dataset.html) to use the dataset you obtained in Task 4 to _programmatically_ per [these instructions](https://huggingface.co/docs/datasets/upload_dataset#upload-with-python) upload it to your account. Parquet is the defacto standard for storing datasets. Using the [to_parqeuet()](https://huggingface.co/docs/datasets/v2.16.1/en/package_reference/main_classes#datasets.Dataset.to_parquet) method convert your dataset to parquet before uploading it to HF.  (10 points)
+
+Ensure that you have structured your dataset HF repository so that users can easily use it [per the instructions here](https://huggingface.co/docs/datasets/repository_structure). (2.5 points)
+
+Create a [dataset card](https://huggingface.co/docs/datasets/dataset_card). (2.5 points)
+
+### Task 5.3 - Store the dataset in DuckDB (10 points)
+
+Install DuckDB into your dev env. 
+
+Using the [Python API](https://duckdb.org/docs/api/python/overview.html) load the parquet dataset from HF into DuckDB, an in-memory OLAP database that is becoming extremely popular as the vertically-scalable data warehousing tool of choice in this domain. Alternatively, feel free to use the [HF APIs](https://huggingface.co/docs/datasets-server/duckdb) to do so. 
+
+Persist the DuckDB database to disk naming the file `house_price.db`.
+
+You are free to use one or more python scripts (`py` files) or notebooks to implement the tasks 4-5 above. Some data scientists prefer notebooks, others do not. 
