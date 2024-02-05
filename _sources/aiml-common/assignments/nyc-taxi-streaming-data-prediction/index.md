@@ -1,6 +1,6 @@
 # Online Ensemble Learning from NYC Taxi Ride Event Streams
 
-![](images/header.jpg)
+![](images/header.png)
 
 ## Introduction
 
