@@ -28,8 +28,8 @@ Define a docker container called `app` that will host the publisher (also called
 
 To implement the publisher, you will need to:
 
-1. Use Dagster to create a pipeline that will convert the csv file to parquet that will be your required data asset. 
-2. Store the parquet file as a dataset in Hugging Face's Datasets. You can use the `datasets` library to load the parquet file and store it as a dataset.
+1. Use Dagster to create a pipeline that will convert the csv file to parquet that will be your required data asset. The csv files you will use are available from executing the `kaggle competitions download -c new-york-city-taxi-fare-prediction` command or downloading the data from [here](https://www.kaggle.com/competitions/new-york-city-taxi-fare-prediction/data). 
+2. Store each parquet file as a dataset in Hugging Face's Datasets. You can use the `datasets` library do so.
 3. Write the publisher that will read from the parquet file and publish the events to the jetstream server. 
  
 ## Task 2: Event consumer
