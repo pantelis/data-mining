@@ -21,5 +21,6 @@ ipywidgets
 dtreeviz
 optuna
 lightgbm
+seaborn
 # --------- docs --------- #
 
