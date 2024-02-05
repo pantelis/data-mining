@@ -285,6 +285,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../assignments/cutting-edge-dev-environments/index.html">Cutting Edge Development Environment for Data Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../assignments/nyc-taxi-streaming-data-prediction/index.html">Online Ensemble Learning from NYC Taxi Ride Event Streams</a></li>
 </ul>
 
     </div>
@@ -498,7 +499,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute">Compute</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-your-own-server-desktop-machine-or-laptop-recommended">On your own server/desktop machine or laptop (recommended)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-your-own-server-desktop-machine-or-laptop-recommended">On your own server/desktop machine or laptop (recommended)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-development-environment">Example Development Environment</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colaboratory-recommended">Google Colaboratory (recommended)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-aws-recommended">On AWS  (recommended)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-hugging-face-spaces-recommended">On Hugging Face Spaces (recommended)</a></li>
@@ -543,6 +547,10 @@ document.write(`
 </ul>
 <p>For those that do not have an existing NVIDIA-based GPU, please avoid <strong>buying</strong> any AMD or Intel GPUs. Even to this date, the best way of workload acceleration is via CUDA and NVIDIA is obviously the only vendor that supports CUDA. Maybe one day we will have a true multivendor choice - its not today though.</p>
 <p>If you do already have AMD or Intel GPUs you <em>may</em> still be able to use them  or simply use Colab.</p>
+<section id="example-development-environment">
+<h4>Example Development Environment<a class="headerlink" href="#example-development-environment" title="Permalink to this heading">#</a></h4>
+<p>An example environment is provided <a class="reference external" href="https://github.com/pantelis/handson-ml3">here</a>. This is a slightly modified environment based on <a class="reference external" href="https://github.com/ageron/handson-ml3">this book’s repo</a>. In this environment you can launch the container from VS Code using a single click on the prompt ‘Reponen in Container” if you have installed the remote container and docker extension.</p>
+</section>
 </section>
 <section id="google-colaboratory-recommended">
 <h3>Google Colaboratory (recommended)<a class="headerlink" href="#google-colaboratory-recommended" title="Permalink to this heading">#</a></h3>
@@ -659,7 +667,10 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute">Compute</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-your-own-server-desktop-machine-or-laptop-recommended">On your own server/desktop machine or laptop (recommended)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-your-own-server-desktop-machine-or-laptop-recommended">On your own server/desktop machine or laptop (recommended)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-development-environment">Example Development Environment</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colaboratory-recommended">Google Colaboratory (recommended)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-aws-recommended">On AWS  (recommended)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-hugging-face-spaces-recommended">On Hugging Face Spaces (recommended)</a></li>

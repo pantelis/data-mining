@@ -24,6 +24,9 @@ For those that do not have an existing NVIDIA-based GPU, please avoid **buying**
 
 If you do already have AMD or Intel GPUs you _may_ still be able to use them  or simply use Colab. 
 
+#### Example Development Environment
+
+An example environment is provided [here](https://github.com/pantelis/handson-ml3). This is a slightly modified environment based on [this book's repo](https://github.com/ageron/handson-ml3). In this environment you can launch the container from VS Code using a single click on the prompt 'Reponen in Container" if you have installed the remote container and docker extension.
 
 ### Google Colaboratory (recommended)
 

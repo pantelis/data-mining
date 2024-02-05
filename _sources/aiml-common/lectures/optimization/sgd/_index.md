@@ -61,11 +61,16 @@ which necessitates going over the whole dataset at each iteration. This would be
    
 2. We define a schedule of learning rates instead of sticking to only one value. 
 
-The main advantage of Mini-batch GD over Stochastic GD is that you can get a performance boost from hardware optimization of matrix operations, especially when using GPUs.
+The main advantage of Mini-batch GD over Stochastic GD is that you can get a performance boost from hardware optimization of matrix operations, especially when using GPUs. The following video showcases the advantages of SGD over GD, 
 
+```{eval-rst}
+.. youtube:: UmathvAKj80
+```
+
+For an overview of the various algorithms that are considered enhancements of SGD,  you can read [this](https://www.ruder.io/optimizing-gradient-descent/) blog post and python implementations are also included in the [d2l.ai book](https://d2l.ai/). Momentum and Adam are two of the most popular enhancements.
 
 ## Digging further
 
-For an overview of optimization theory please go through Ian Goodfellow's chapter 4 below. Stochastic gradient descent is treated also in section 5.9 of this free book. For an overview of the various algorithms appart from SGD see [this](https://ruder.io/optimizing-gradient-descent/index.html) blog post. 
+For an overview of optimization theory please go through Ian Goodfellow's chapter 4 below. Stochastic gradient descent is treated also in section 5.9 of this book.  
 
 <iframe src="https://www.deeplearningbook.org/contents/numerical.html" width="800" height="1200"></iframe>

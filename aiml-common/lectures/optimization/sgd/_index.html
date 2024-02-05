@@ -287,6 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../assignments/cutting-edge-dev-environments/index.html">Cutting Edge Development Environment for Data Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../assignments/nyc-taxi-streaming-data-prediction/index.html">Online Ensemble Learning from NYC Taxi Ride Event Streams</a></li>
 </ul>
 
     </div>
@@ -559,11 +560,14 @@ document.write(`
 <li><p>We define a mini-batch over which we estimate the gradient. When the mini-batch size is 1, we implement the Stochastic Gradient Descent algorithm. Note in practice people may refer to SGD but may mean mini-batch.</p></li>
 <li><p>We define a schedule of learning rates instead of sticking to only one value.</p></li>
 </ol>
-<p>The main advantage of Mini-batch GD over Stochastic GD is that you can get a performance boost from hardware optimization of matrix operations, especially when using GPUs.</p>
+<p>The main advantage of Mini-batch GD over Stochastic GD is that you can get a performance boost from hardware optimization of matrix operations, especially when using GPUs. The following video showcases the advantages of SGD over GD,</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/UmathvAKj80" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p>For an overview of the various algorithms that are considered enhancements of SGD,  you can read <a class="reference external" href="https://www.ruder.io/optimizing-gradient-descent/">this</a> blog post and python implementations are also included in the <a class="reference external" href="https://d2l.ai/">d2l.ai book</a>. Momentum and Adam are two of the most popular enhancements.</p>
 </section>
 <section id="digging-further">
 <h2>Digging further<a class="headerlink" href="#digging-further" title="Permalink to this heading">#</a></h2>
-<p>For an overview of optimization theory please go through Ian Goodfellow’s chapter 4 below. Stochastic gradient descent is treated also in section 5.9 of this free book. For an overview of the various algorithms appart from SGD see <a class="reference external" href="https://ruder.io/optimizing-gradient-descent/index.html">this</a> blog post.</p>
+<p>For an overview of optimization theory please go through Ian Goodfellow’s chapter 4 below. Stochastic gradient descent is treated also in section 5.9 of this book.</p>
 <iframe src="https://www.deeplearningbook.org/contents/numerical.html" width="800" height="1200"></iframe>
 </section>
 </section>
