@@ -38,7 +38,18 @@ You need to [implement the event consumer](https://docs.nats.io/nats-concepts/je
 
 ## Task 3: In-memory Database
 
-You will need to store the events in an OLAP database that for this assignment will be [DuckDB](https://duckdb.org/docs/installation/index?version=latest&environment=python). You will host DuckDB in the container `app`. Please note that you need to define a volume mapping so your database file is persisted and you dont need to start from scratch if your docker container exited. You will use a local volume mapping for persistence. You will also need to create a table in the database to store the events. The table will have the same fields as the event JSON object.
+You will need to store the events in an OLAP database that for this assignment will be [DuckDB](https://duckdb.org/docs/installation/index?version=latest&environment=python). You will host DuckDB in the container `app`. Please note that you need to define a [volume mapping](https://docs.docker.com/storage/volumes/) so your database file is persisted and you dont need to start from scratch if your docker container exited. You will also need to create a table in the database to store the events. The table will have the same fields as the JSON object that defined the trip event earlier.
 
-## Task 4: Data Analysis
+## Task 4: Incremental vs Batch Learning
+
+We are now ready to start our main objective which is to predict fares of taxi rides. We used the DuckDB facility to allow us to compare between batch and incremental learning on one hands but also to avoid the situation where we have to repeat the event simulation, publication and consumption all over again in case of a temp pipeline failure or during development. 
+
+In a nutshell we will be reading data out of the DuckDB database and train a model that will predict the fare amount of a taxi ride for taxi rides that were never seen in the stream aka they were never stored in DuckDB. Alternatively, you can carve out the validation dataset from DuckDB and you need to explicitly quote what kind of measures you have taken during model training to never consult these rows. 
+
+You will use the [`xgboost` library](https://xgboost.readthedocs.io/en/stable/) to implement a sequential method where 10000 events (rows) aty a time are observed and the model is trained on these events. The model will then be used to predict the fare amount of the next 1000 events. You will compare the performance of the model when trained using the incremental method and the batch method where all training events are observed. 
+
+To clarify the incremental protocol that you will be implementing, in incremental learning you will need to save the model of the previous iteration (each iteration learns from 10000 events and predicts the next 1000) and use it to initialize the model for the next iteration, ensuring that the validation set where the inference happens is not included in any model training dataset. You need to produce 10 iterations. 
+
+To clarify the batch protocol you will be implementing, in batch learning you will need to train the model on 10000 events and compare it to the 10000 events of the incremental model (this comparison must result in the same MSE performance since both are considering 10000 input examples), then train a model with 20000 events and compare to the 2nd iteration of the incremental model and so on. You need to produce the comparison plot of the MSE between batch and incremental model for all 10 iterations.
+
 
