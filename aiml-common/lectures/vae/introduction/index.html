@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Regularization in Deep Neural Networks &#8212; Data Mining</title>
+    <title>Variational Inference &#8212; Data Mining</title>
   
   
   
@@ -68,13 +68,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"mathjax_path": "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js", "tex": {"macros": {"floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/optimization/regularization/_index';</script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/optimization/regularization/_index.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/vae/introduction/index';</script>
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/vae/introduction/index.html" />
     <link rel="shortcut icon" href="../../../../_static/logo.ico"/>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Introduction to Convolutional Neural Networks" href="../../cnn/cnn-intro/_index.html" />
-    <link rel="prev" title="Fashion MNIST Case Study" href="../../dnn/fashion-mnist-case-study.html" />
+    <link rel="next" title="VAE Architecture" href="../vae-architecture/index.html" />
+    <link rel="prev" title="Time Series Prediction using RNNs" href="../../rnn/time_series_using_simple_rnn_lstm.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -223,6 +223,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../density-estimation/knn/_index.html">k-Nearest Neighbors (kNN) Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../density-estimation/knn-workshop/_index.html">kNN Workshop</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Representation Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../optimization/maximum-likelihood/marginal_maximum_likelihood.html">Maximum Likelihood Estimation of a marginal model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../generative-modeling/index.html">Generative Modeling and Probabilistic Graphical Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generative-modeling/em-algorithm/index.html">The Expectation - Maximization (EM) Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../generative-modeling/em-gaussian-mixture/em_example_mog.html">Expectation Maximization for Gaussian Mixture Model</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../pca/introduction/index.html">Principal Component Analysis (PCA)</a></li>
@@ -233,16 +241,15 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression and Classification</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../regression/linear-regression/linear_regression.html">Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sgd/_index.html">Stochastic Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimization/sgd/_index.html">Stochastic Gradient Descent</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../classification/classification-intro/_index.html">Introduction to Classification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../classification/logistic-regression/_index.html">Logistic Regression</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Neural Networks</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../classification/perceptron/_index.html">The Neuron (Perceptron)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dnn/dnn-intro/_index.html">Deep Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dnn/fashion-mnist-case-study.html">Fashion MNIST Case Study</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Regularization in Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Image Data and Convolutional Neural Networks</span></p>
 <ul class="nav bd-sidenav">
@@ -264,11 +271,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Representation Learning and Neural Autoencoders</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../vae/generative-modeling/index.html">Generative Modeling and Approximate Inference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../vae/vae-architecture/index.html">VAE Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../vae/elbo-optimization/vae.html">Variational AutoEncoder</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Autoencoders</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Variational Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vae-architecture/index.html">VAE Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elbo-optimization/vae.html">Variational AutoEncoder</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math Background</span></p>
 <ul class="nav bd-sidenav">
@@ -359,7 +366,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pantelis/data-mining/edit/main/aiml-common/lectures/optimization/regularization/_index.md" target="_blank"
+      <li><a href="https://github.com/pantelis/data-mining/edit/main/aiml-common/lectures/vae/introduction/index.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -376,7 +383,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/optimization/regularization/_index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/vae/introduction/index.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -406,7 +413,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../../_sources/aiml-common/lectures/optimization/regularization/_index.md" target="_blank"
+      <li><a href="../../../../_sources/aiml-common/lectures/vae/introduction/index.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -490,7 +497,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Regularization in Deep Neural Networks</h1>
+    <h1>Variational Inference</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -500,11 +507,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l2-regularization">L2 regularization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-regularization">L1 regularization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dropout">Dropout</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#early-stopping">Early stopping</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weight-initialization">Weight initialization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculus-of-variations">Calculus of Variations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-variational-generative-modeling-problem">The Variational Generative Modeling Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-optimization-problem-and-objective">The Optimization Problem and Objective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
         </div>
@@ -516,100 +523,86 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="regularization-in-deep-neural-networks">
-<h1>Regularization in Deep Neural Networks<a class="headerlink" href="#regularization-in-deep-neural-networks" title="Permalink to this heading">#</a></h1>
-<p>In this chapter we look at the training aspects of DNNs and investigate schemes that can help us avoid overfitting a common trait of putting too much network capacity to the supervised learning problem at hand.</p>
-<section id="l2-regularization">
-<h2>L2 regularization<a class="headerlink" href="#l2-regularization" title="Permalink to this heading">#</a></h2>
-<p>This is perhaps the most common form of regularization. It can be implemented by penalizing the squared magnitude of all parameters directly in the objective.</p>
-<p><span class="math notranslate nohighlight">\(\lambda J_{penalty} = \lambda \left(\sum_l W_{(l)}^2 \right) \)</span></p>
-<p>where <span class="math notranslate nohighlight">\(l\)</span> is the hidden layer index and <span class="math notranslate nohighlight">\(W\)</span> is the weight tensor.</p>
-<p>The L2 regularization has the intuitive interpretation of heavily penalizing peaky weight vectors and preferring diffuse weight vectors.  Due to multiplicative interactions between weights and inputs this has the appealing property of encouraging the network to use all of its inputs a little rather than some of its inputs a lot. The following figure presents a computational graph of a regularized DNN.</p>
-<p><img alt="regularized-dnn-comp-graph" src="../../../../_images/regularized-dnn-comp-graph.png" />
-<em>Regularized DNN. Notice that in this graph (taken from section 6.5.7 of the DL book), the gates are mentioned in typewriter font and the input and output variables are represented as circles.  There are different backward paths towards the weight matrices - can you identify them ?</em></p>
-<p>Lastly, notice that during gradient descent parameter update, using the L2 regularization ultimately means that every weight is decayed linearly: <span class="math notranslate nohighlight">\(W += -lambda * W\)</span> towards zero.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="variational-inference">
+<h1>Variational Inference<a class="headerlink" href="#variational-inference" title="Permalink to this heading">#</a></h1>
+<p><img alt="Fiat-127, a car from the 70s, as imagined by GPT-4" src="../../../../_images/fiat-127.png" /></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>In probabilistic graphical modeling we saw the necessity of latent representations. In this section we advance the topic to the case where we need to learn features that are suitable for <strong>generating</strong> data from a complex data distribution.</p>
+<p>After reviewing the premise of generative modeling via what we will call  deep latent variable models, we will look at the problem of inference of the latent space that is suitable for generating such data. We will see that this problem is intractable and we will introduce the variational inference method that will allow us to approximate the posterior distribution of the latent space.</p>
+<p>The method that we will dive into is called Variational Autoencoder (VAE) that is used across various domains, including collaborative filtering, image compression, reinforcement learning, and generation of content such as music and images. VAEs can also serve as the base to understand advanced topics such as Stable Diffusion Models (SDMs) that are used in the generation of images and videos.</p>
+<p>We will focus on <em>continuous</em> VAEs in this edition of the course.</p>
 </section>
-<section id="l1-regularization">
-<h2>L1 regularization<a class="headerlink" href="#l1-regularization" title="Permalink to this heading">#</a></h2>
-<p>This is another relatively common form of regularization, where for each weight <span class="math notranslate nohighlight">\(w\)</span> we add the term <span class="math notranslate nohighlight">\(\lambda  \mid w \mid\)</span> to the objective. It is possible to combine the L1 regularization with the L2 regularization: <span class="math notranslate nohighlight">\(\lambda_1 \mid w \mid + \lambda_2 w^2\)</span> (this is called <a class="reference external" href="http://web.stanford.edu/~hastie/Papers/B67.2%20%282005%29%20301-320%20Zou%20&amp;%20Hastie.pdf">Elastic net regularization</a>). The L1 regularization has the intriguing property that it leads the weight vectors to become sparse during optimization (i.e. very close to exactly zero). In other words, neurons with L1 regularization end up using only a sparse subset of their most important inputs and become nearly invariant to the “noisy” inputs. In comparison, final weight vectors from L2 regularization are usually diffuse, small numbers. In practice, if you are not concerned with explicit feature selection, L2 regularization can be expected to give superior performance over L1.</p>
+<section id="calculus-of-variations">
+<h2>Calculus of Variations<a class="headerlink" href="#calculus-of-variations" title="Permalink to this heading">#</a></h2>
+<p>One of the main methods of generative approximate inference is <em>variational inference</em> that originates from <em>calculus of variations</em>. To understand how this calculus differs from the one we are used to, consider how the standard calculus using the derivative of a function is able to optimize it and calculate its minimum. In a similar way, in calculus of variations we are able to optimize a <em>functional</em>. A functional in mathematics is a mapping from a function space to the real numbers - just like the function is a mapping from a real number (the argument) to a real value (the result of the function evaluation).</p>
+<p>The concept of a functional can be illustrated with the definition of entropy, in the context of information theory.</p>
+<p>Shannon entropy, denoted as <span class="math notranslate nohighlight">\(H\)</span>, is a measure of the uncertainty or randomness in a probability distribution. It’s defined for a discrete probability distribution <span class="math notranslate nohighlight">\(P = (p_1, p_2, \ldots, p_n)\)</span>, where <span class="math notranslate nohighlight">\(p_i\)</span> is the probability of the <span class="math notranslate nohighlight">\(i\)</span>-th outcome. The entropy is defined as:</p>
+<div class="math notranslate nohighlight">
+\[ H(P) = -\sum_{i=1}^{n} p_i \log p_i \]</div>
+<p>Here, <span class="math notranslate nohighlight">\( H \)</span> is a functional because it maps the function (in this case, the probability distribution function <span class="math notranslate nohighlight">\(P\)</span> to a real number, which represents the entropy of <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<p>The calculus of variations is concerned with finding the function that maximizes a functional. In the case of entropy, the function that maximizes the entropy is the uniform distribution, where all the outcomes have the same probability. This is intuitive, because if all the outcomes have the same probability, then we have the most uncertainty about the outcome.</p>
 </section>
-<section id="dropout">
-<h2>Dropout<a class="headerlink" href="#dropout" title="Permalink to this heading">#</a></h2>
-<p>This is an extremely effective, simple regularization technique by Srivastava et al. in <a class="reference external" href="http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf">Dropout: A Simple Way to Prevent Neural Networks from Overfitting</a> that complements the other methods (L1, L2). While training, dropout is implemented by only keeping a neuron active with some probability <span class="math notranslate nohighlight">\(p\)</span> (a hyperparameter), or setting it to zero otherwise.</p>
-<p><img alt="dropout" src="../../../../_images/dropout.jpeg" />
-<em>During training, Dropout can be interpreted as sampling a Neural Network within the full Neural Network, and only updating the parameters of the sampled network based on the input data. (However, the exponential number of possible sampled networks are not independent because they share the parameters.) During testing there is no dropout applied, with the interpretation of evaluating an averaged prediction across the exponentially-sized ensemble of all sub-networks (more about ensembles in the next section).</em></p>
-<p>Vanilla dropout in an example 3-layer Neural Network would be implemented as follows:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Vanilla Dropout: Not recommended implementation (see notes below) &quot;&quot;&quot;</span>
+<section id="the-variational-generative-modeling-problem">
+<h2>The Variational Generative Modeling Problem<a class="headerlink" href="#the-variational-generative-modeling-problem" title="Permalink to this heading">#</a></h2>
+<p>VAE is one of the answers to the aforementioned variational optimization problem. In this approach, we use a neural network to create the right <em>structure</em> instead of explicitly encoding it in the prior.</p>
+<p>This is not a new idea - sampling from a complex probability distribution can be achieved by feeding samples from a simple distribution to a suitably chosen function. In the example below, the a function is used to change the mean of the standard normal distribution to generate a half-moon shape.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="n">p</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># probability of keeping a unit active. higher = less dropout</span>
+<span class="k">def</span> <span class="nf">generate_half_moon</span><span class="p">(</span><span class="n">num_points</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
+    
+    <span class="c1"># Generate points on a circle</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">num_points</span><span class="p">)</span>
+    <span class="n">x_circle</span> <span class="o">=</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">y_circle</span> <span class="o">=</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">train_step</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot; X contains the data &quot;&quot;&quot;</span>
-  
-  <span class="c1"># forward pass for example 3-layer neural network</span>
-  <span class="n">H1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W1</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="n">b1</span><span class="p">)</span>
-  <span class="n">U1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="o">*</span><span class="n">H1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="c1"># first dropout mask</span>
-  <span class="n">H1</span> <span class="o">*=</span> <span class="n">U1</span> <span class="c1"># drop!</span>
-  <span class="n">H2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W2</span><span class="p">,</span> <span class="n">H1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b2</span><span class="p">)</span>
-  <span class="n">U2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="o">*</span><span class="n">H2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="c1"># second dropout mask</span>
-  <span class="n">H2</span> <span class="o">*=</span> <span class="n">U2</span> <span class="c1"># drop!</span>
-  <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W3</span><span class="p">,</span> <span class="n">H2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b3</span>
-  
-  <span class="c1"># backward pass: compute gradients... (not shown)</span>
-  <span class="c1"># perform parameter update... (not shown)</span>
-  
-<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-  <span class="c1"># ensembled forward pass</span>
-  <span class="n">H1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W1</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="n">b1</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span> <span class="c1"># NOTE: scale the activations</span>
-  <span class="n">H2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W2</span><span class="p">,</span> <span class="n">H1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b2</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span> <span class="c1"># NOTE: scale the activations</span>
-  <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W3</span><span class="p">,</span> <span class="n">H2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b3</span>
+    <span class="c1"># The function changes the mean of the standard normal distribution</span>
+    <span class="n">x_noisy</span> <span class="o">=</span> <span class="n">x_circle</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">num_points</span><span class="p">)</span>
+    <span class="n">y_noisy</span> <span class="o">=</span> <span class="n">y_circle</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">num_points</span><span class="p">)</span>
+
+    <span class="c1"># Combine x and y coordinates</span>
+    <span class="n">half_moon_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">x_noisy</span><span class="p">,</span> <span class="n">y_noisy</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">half_moon_points</span>
+
+<span class="c1"># Example usage:</span>
+<span class="n">half_moon_data</span> <span class="o">=</span> <span class="n">generate_half_moon</span><span class="p">(</span><span class="n">num_points</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">half_moon_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">half_moon_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X-axis&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Y-axis&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Generated Half-Moon&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>In the code above, inside the <code class="docutils literal notranslate"><span class="pre">train_step</span></code> function we have performed dropout twice: on the first hidden layer and on the second hidden layer. It is also possible to perform dropout right on the input layer, in which case we would also create a binary mask for the input <span class="math notranslate nohighlight">\(X\)</span>. The backward pass remains unchanged, but of course has to take into account the generated masks <span class="math notranslate nohighlight">\(U1,U2\)</span>.</p>
-<p>Crucially, note that in the <code class="docutils literal notranslate"><span class="pre">predict</span></code>  function we are not dropping anymore, but we are performing a scaling of both hidden layer outputs by <span class="math notranslate nohighlight">\(p\)</span>. This is important because at test time all neurons see all their inputs, so we want the outputs of neurons at test time to be identical to their expected outputs at training time. For example, in case of <span class="math notranslate nohighlight">\(p = 0.5\)</span>, the neurons must halve their outputs at test time to have the same output as they had during training time (in expectation). To see this, consider an output of a neuron <span class="math notranslate nohighlight">\(x\)</span> (before dropout). With dropout, the expected output from this neuron will become <span class="math notranslate nohighlight">\(px + (1-p)0\)</span>, because the neuron’s output will be set to zero with probability <span class="math notranslate nohighlight">\(1-p\)</span>. At test time, when we keep the neuron always active, we must adjust <span class="math notranslate nohighlight">\(x \rightarrow px\)</span> to keep the same expected output. It can also be shown that performing this attenuation at test time can be related to the process of iterating over all the possible binary masks (and therefore all the exponentially many sub-networks) and computing their ensemble prediction.</p>
-<p>The undesirable property of the scheme presented above is that we must scale the activations by <span class="math notranslate nohighlight">\(p\)</span> at test time. Since test-time performance is so critical, it is always preferable to use <strong>inverted dropout</strong>, which performs the scaling at train time, leaving the forward pass at test time untouched. Additionally, this has the appealing property that the prediction code can remain untouched when you decide to tweak where you apply dropout, or if at all. Inverted dropout looks as follows:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; </span>
-<span class="sd">Inverted Dropout: Recommended implementation example.</span>
-<span class="sd">We drop and scale at train time and don&#39;t do anything at test time.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="n">p</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># probability of keeping a unit active. higher = less dropout</span>
-
-<span class="k">def</span> <span class="nf">train_step</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-  <span class="c1"># forward pass for example 3-layer neural network</span>
-  <span class="n">H1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W1</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="n">b1</span><span class="p">)</span>
-  <span class="n">U1</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="o">*</span><span class="n">H1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span> <span class="c1"># first dropout mask. Notice /p!</span>
-  <span class="n">H1</span> <span class="o">*=</span> <span class="n">U1</span> <span class="c1"># drop!</span>
-  <span class="n">H2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W2</span><span class="p">,</span> <span class="n">H1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b2</span><span class="p">)</span>
-  <span class="n">U2</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="o">*</span><span class="n">H2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span> <span class="c1"># second dropout mask. Notice /p!</span>
-  <span class="n">H2</span> <span class="o">*=</span> <span class="n">U2</span> <span class="c1"># drop!</span>
-  <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W3</span><span class="p">,</span> <span class="n">H2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b3</span>
-  
-  <span class="c1"># backward pass: compute gradients... (not shown)</span>
-  <span class="c1"># perform parameter update... (not shown)</span>
-  
-<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-  <span class="c1"># ensembled forward pass</span>
-  <span class="n">H1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W1</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="n">b1</span><span class="p">)</span> <span class="c1"># no scaling necessary</span>
-  <span class="n">H2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W2</span><span class="p">,</span> <span class="n">H1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b2</span><span class="p">)</span>
-  <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W3</span><span class="p">,</span> <span class="n">H2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b3</span>
-</pre></div>
-</div>
-<p>Dropout falls into a more general category of methods that introduce stochastic behavior in the forward pass of the network. During testing, the noise is marginalized over <em>analytically</em> (as is the case with dropout when multiplying by <span class="math notranslate nohighlight">\(p\)</span>), or <em>numerically</em> (e.g. via sampling, by performing several forward passes with different random decisions and then averaging over them). An example of other research in this direction includes <a class="reference external" href="http://cs.nyu.edu/~wanli/dropc/">DropConnect</a>, where a random set of weights is instead set to zero during forward pass. As foreshadowing, Convolutional Neural Networks also take advantage of this theme with methods such as stochastic pooling, fractional pooling, and data augmentation. We will go into details of these methods later.</p>
-<p>In practice, it is most common to use a single, global L2 regularization strength that is cross-validated. It is also common to combine this with dropout applied after all layers. The value of <span class="math notranslate nohighlight">\(p = 0.5\)</span> is a reasonable default, but this can be tuned on validation data. Note that dropout’s usage has been limited by another technique called Batch Normalization and there is some <a class="reference external" href="https://arxiv.org/pdf/1801.05134.pdf">interesting interference</a> between the two for those that want to dig further.</p>
+<p><img alt="" src="../../../../_images/half-moon.png" /></p>
+<p>The neural network is abstracting such function and we can now see a path to implemeting the aforementioned generator,</p>
+<div class="math notranslate nohighlight">
+\[ p(\mathbf x | \mathbf \theta)  = \sum_{\mathbf z} p(\mathbf x| \mathbf z ; \mathbf \theta) p(\mathbf z | \theta)\]</div>
+<p>by assuming that the conditional distribution <span class="math notranslate nohighlight">\(p(\mathbf x| \mathbf z ; \mathbf \theta)\)</span> is <em>parameterized</em> by a neural network that takes as input the latent vector <span class="math notranslate nohighlight">\(\mathbf z\)</span> generated itself by the prior distribution and outputs the image <span class="math notranslate nohighlight">\(\mathbf x\)</span>.</p>
+<p>In the case that the <span class="math notranslate nohighlight">\(p(\mathbf x| \mathbf z ; \mathbf \theta)\)</span>  is Gaussian, this will mean:</p>
+<div class="math notranslate nohighlight">
+\[ p(\mathbf x| \mathbf z ; \mathbf \theta) = N(\mathbf x; \mu(\mathbf z; \mathbf \theta), \sigma^2 \mathbf I)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu(\mathbf z; \mathbf \theta)\)</span> is the output of the neural network that is parameterized by <span class="math notranslate nohighlight">\(\mathbf \theta\)</span>. Note that the variance of the Gaussian is fixed, is a <em>hyperparameter</em> and is not a function of <span class="math notranslate nohighlight">\(\mathbf z\)</span>.</p>
+<p>Note that the <span class="math notranslate nohighlight">\(p(\mathbf x| \mathbf z ; \mathbf \theta)\)</span>  can be any distribution and obviosuly this distribution need to match the nature of what we try to generate. If <span class="math notranslate nohighlight">\(\mathbf x\)</span> is binary then this can be a Bernouli distribution with the parameter(s) of the distribution given at the output of the neural network.</p>
 </section>
-<section id="early-stopping">
-<h2>Early stopping<a class="headerlink" href="#early-stopping" title="Permalink to this heading">#</a></h2>
-<p>In these notes we focused on approaches that have some conceptual depth. We avoid treating extensively techniques that belong to the category of experiment management. For example early stopping is based on the experiment manager that is monitoring the validation loss and stops training when  it observes that the validation error increased while at the same time retrieves the best model that has been trained to the data scientist. This does not stop the approach being one of the most popular regularization approaches as it can be seen as an L2 regularizer as shown below.</p>
-<p><img alt="early-stopping-2" src="../../../../_images/early-stopping2.png" />
-<em>Early stopping (left) results in the same regularized weight with the L2 penalty regularizer</em></p>
+<section id="the-optimization-problem-and-objective">
+<h2>The Optimization Problem and Objective<a class="headerlink" href="#the-optimization-problem-and-objective" title="Permalink to this heading">#</a></h2>
+<p>However there is a problem with this generator. <em>Even with neural networks “designing” the right features in the latent space <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, we are still facing a very heavy computationally problem in trying to estimate the marginal distribution <span class="math notranslate nohighlight">\(p(\mathbf x | \mathbf \theta)\)</span></em>.</p>
+<p>To understand why, consider the MNIST dataset and the problem of generating handwritten digits that look like that. We can sample from <span class="math notranslate nohighlight">\(p(\mathbf z | \theta)\)</span> generating a large number of samples <span class="math notranslate nohighlight">\(\{z_1, \dots , z_m\}\)</span>, and with the help of the neural network sample and compute <span class="math notranslate nohighlight">\(p(\mathbf x) = \frac{1}{m} \sum_i p(\mathbf x|z_i)\)</span>.</p>
+<p>The problem is that we need a very large number of such samples in high dimensional spaces such as images (for MNIST is 28x28 dimensions) . Most of the samples <span class="math notranslate nohighlight">\(\mathbf z_i\)</span> will result into negligible <span class="math notranslate nohighlight">\(p(\mathbf x|z_i)\)</span> and therefore won’t contribute to the estimate of the <span class="math notranslate nohighlight">\(p(\mathbf x)\)</span>.</p>
+<p><strong>This is the problem that VAE addresses. The key idea behind its design is that of <em>inference</em> of the <em>right</em> latent space such that when the <span class="math notranslate nohighlight">\(\mathbf z\)</span> when sampled, it results into a <span class="math notranslate nohighlight">\(\mathbf x\)</span> that is very similar to that of our training data. VAE in other works buys us <em>sample efficiency</em> allowing computation and optimization of the objective function with far less effort than before.</strong></p>
 </section>
-<section id="weight-initialization">
-<h2>Weight initialization<a class="headerlink" href="#weight-initialization" title="Permalink to this heading">#</a></h2>
-<p>For layers with ReLU units, the suggested experimentally initialization for the weight is to use <span class="math notranslate nohighlight">\(W = np.random.randn(n) * \sqrt(2.0/n)\)</span>, as discussed in <a class="reference external" href="http://arxiv-web3.library.cornell.edu/abs/1502.01852">He et al.</a>.</p>
-<!-- ### Control system view of training
-
-![control-system-training](images/control-system-training.drawio.svg) -->
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<p>[1]: Diederik Kingma and Max Welling. Auto-Encoding Variational Bayes. In <em>International Conference on Learning Representations</em>, 2014, <a class="reference external" href="https://arxiv.org/abs/1312.6114">https://arxiv.org/abs/1312.6114</a></p>
+<p>[2]: Yuri Burda, Roger Grosse, Ruslan Salakhutdinov. Importance Weighted Autoencoders. In <em>International Conference on Learning Representations</em>, 2015, <a class="reference external" href="https://arxiv.org/abs/1509.00519">https://arxiv.org/abs/1509.00519</a></p>
+<hr class="footnotes docutils" />
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">2</a><span class="fn-bracket">]</span></span>
+<p>Note that the features that the neural network captures are not interpretable as the intuitively understood features that humans consider. For the MNIST dataset for example, humans will consider the slant of each digit, thinner strokes etc.</p>
+</aside>
 </section>
 </section>
 
@@ -626,7 +619,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./aiml-common/lectures/optimization/regularization"
+            path: "./aiml-common/lectures/vae/introduction"
         },
         predefinedOutput: true
     }
@@ -644,20 +637,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../../dnn/fashion-mnist-case-study.html"
+       href="../../rnn/time_series_using_simple_rnn_lstm.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Fashion MNIST Case Study</p>
+        <p class="prev-next-title">Time Series Prediction using RNNs</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../cnn/cnn-intro/_index.html"
+       href="../vae-architecture/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction to Convolutional Neural Networks</p>
+        <p class="prev-next-title">VAE Architecture</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -677,11 +670,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l2-regularization">L2 regularization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-regularization">L1 regularization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dropout">Dropout</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#early-stopping">Early stopping</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weight-initialization">Weight initialization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculus-of-variations">Calculus of Variations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-variational-generative-modeling-problem">The Variational Generative Modeling Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-optimization-problem-and-objective">The Optimization Problem and Objective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
 
