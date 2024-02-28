@@ -47,6 +47,13 @@ parts:
     - file: aiml-common/lectures/density-estimation/knn/_index.md
     - file: aiml-common/lectures/density-estimation/knn-workshop/_index.md
 
+  - caption: Representation Learning
+    chapters:
+    - file: aiml-common/lectures/optimization/maximum-likelihood/marginal_maximum_likelihood.ipynb
+    - file: aiml-common/lectures/generative-modeling/index.md
+    - file: aiml-common/lectures/generative-modeling/em-algorithm/index.md
+    - file: aiml-common/lectures/generative-modeling/em-gaussian-mixture/em_example_mog.ipynb
+    
   - caption:  Dimensionality Reduction
     chapters:    
     - file: aiml-common/lectures/pca/introduction/index.md
@@ -57,7 +64,6 @@ parts:
   - caption: Regression and Classification
     chapters:
     - file: aiml-common/lectures/regression/linear-regression/linear_regression.ipynb    
-    # - file: aiml-common/lectures/optimization/maximum-likelihood/marginal_maximum_likelihood.ipynb
     # - file: aiml-common/lectures/optimization/maximum-likelihood/conditional_maximum_likelihood.ipynb
     - file: aiml-common/lectures/optimization/sgd/_index.md
     - file: aiml-common/lectures/classification/classification-intro/_index.md
@@ -68,9 +74,9 @@ parts:
     - file: aiml-common/lectures/classification/perceptron/_index.md
     - file: aiml-common/lectures/dnn/dnn-intro/_index.md
     - file: aiml-common/lectures/dnn/fashion-mnist-case-study.md
-    - file: aiml-common/lectures/whitening/index.md
-    - file: aiml-common/lectures/whitening/preprocessing_workshop.ipynb
-    - file: aiml-common/lectures/optimization/regularization/_index.md
+    # - file: aiml-common/lectures/whitening/index.md
+    # - file: aiml-common/lectures/whitening/preprocessing_workshop.ipynb
+    # - file: aiml-common/lectures/optimization/regularization/_index.md
       
   - caption: Image Data and Convolutional Neural Networks
     chapters:    
@@ -87,9 +93,9 @@ parts:
     - file: aiml-common/lectures/rnn/lstm/_index.md
     - file: aiml-common/lectures/rnn/time_series_using_simple_rnn_lstm.ipynb     
 
-  - caption:  Representation Learning and Neural Autoencoders
+  - caption:  Neural Autoencoders
     chapters:
-    - file: aiml-common/lectures/vae/generative-modeling/index.md 
+    - file: aiml-common/lectures/vae/introduction/index.md 
     - file: aiml-common/lectures/vae/vae-architecture/index.md
     - file: aiml-common/lectures/vae/elbo-optimization/vae.ipynb 
   
