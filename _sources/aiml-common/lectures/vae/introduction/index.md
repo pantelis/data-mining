@@ -90,7 +90,7 @@ To understand why, consider the MNIST dataset and the problem of generating hand
 
 The problem is that we need a very large number of such samples in high dimensional spaces such as images (for MNIST is 28x28 dimensions) . Most of the samples $\mathbf z_i$ will result into negligible $p(\mathbf x|z_i)$ and therefore won't contribute to the estimate of the $p(\mathbf x)$. 
 
-**This is the problem that VAE addresses. The key idea behind its design is that of _inference_ of the _right_ latent space such that when the $\mathbf z$ when sampled, it results into a $\mathbf x$ that is very similar to that of our training data. VAE in other works buys us _sample efficiency_ allowing computation and optimization of the objective function with far less effort than before.**
+**This is the problem that VAE addresses. The key idea behind its design is that of _inference_ of the _right_ latent space such that when $\mathbf z$  is sampled, it results into a $\mathbf x$ that is very similar to that of our training data. VAE in other works buys us _sample efficiency_ allowing computation and optimization of the objective function with far less effort than before.**
 
 
 ## References

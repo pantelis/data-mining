@@ -202,7 +202,6 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Predictors for Structured Data</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../entropy/_index.html">Entropy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../trees/decision-trees/index.html">Decision Trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../trees/decision-trees/decision_tree.html">Decision tree from scratch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../trees/decision-trees/decision_tree_visualisations.html">Visualizing tree-based classifiers</a></li>
@@ -248,7 +247,6 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Neural Networks</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../classification/perceptron/_index.html">The Neuron (Perceptron)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../dnn/dnn-intro/_index.html">Deep Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../dnn/fashion-mnist-case-study.html">Fashion MNIST Case Study</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Image Data and Convolutional Neural Networks</span></p>
@@ -592,7 +590,7 @@ document.write(`
 <p>However there is a problem with this generator. <em>Even with neural networks “designing” the right features in the latent space <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, we are still facing a very heavy computationally problem in trying to estimate the marginal distribution <span class="math notranslate nohighlight">\(p(\mathbf x | \mathbf \theta)\)</span></em>.</p>
 <p>To understand why, consider the MNIST dataset and the problem of generating handwritten digits that look like that. We can sample from <span class="math notranslate nohighlight">\(p(\mathbf z | \theta)\)</span> generating a large number of samples <span class="math notranslate nohighlight">\(\{z_1, \dots , z_m\}\)</span>, and with the help of the neural network sample and compute <span class="math notranslate nohighlight">\(p(\mathbf x) = \frac{1}{m} \sum_i p(\mathbf x|z_i)\)</span>.</p>
 <p>The problem is that we need a very large number of such samples in high dimensional spaces such as images (for MNIST is 28x28 dimensions) . Most of the samples <span class="math notranslate nohighlight">\(\mathbf z_i\)</span> will result into negligible <span class="math notranslate nohighlight">\(p(\mathbf x|z_i)\)</span> and therefore won’t contribute to the estimate of the <span class="math notranslate nohighlight">\(p(\mathbf x)\)</span>.</p>
-<p><strong>This is the problem that VAE addresses. The key idea behind its design is that of <em>inference</em> of the <em>right</em> latent space such that when the <span class="math notranslate nohighlight">\(\mathbf z\)</span> when sampled, it results into a <span class="math notranslate nohighlight">\(\mathbf x\)</span> that is very similar to that of our training data. VAE in other works buys us <em>sample efficiency</em> allowing computation and optimization of the objective function with far less effort than before.</strong></p>
+<p><strong>This is the problem that VAE addresses. The key idea behind its design is that of <em>inference</em> of the <em>right</em> latent space such that when <span class="math notranslate nohighlight">\(\mathbf z\)</span>  is sampled, it results into a <span class="math notranslate nohighlight">\(\mathbf x\)</span> that is very similar to that of our training data. VAE in other works buys us <em>sample efficiency</em> allowing computation and optimization of the objective function with far less effort than before.</strong></p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>

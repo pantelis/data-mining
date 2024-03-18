@@ -1,6 +1,6 @@
 # VAE Architecture
 
-The 'right'  latent space is the one that makes the distribution $p(\mathbf z| \mathbf \theta)$ the most likely to produce $\mathbf x$. We are therefore introducing a stage that complements the aforementioned _generative model or decoder_ given by $p(\mathbf x| \mathbf z ; \mathbf \theta) p(\mathbf z | \theta)$. 
+In a previous section we have seen that VAE helps us define the latent space. The 'right'  latent space is the one that makes the distribution $p(\mathbf z| \mathbf \theta)$ the most likely to produce $\mathbf x$. We are therefore introducing a stage that complements the aforementioned _generative model or decoder_ given by $p(\mathbf x| \mathbf z ; \mathbf \theta) p(\mathbf z | \theta)$. 
 
 This stage is called the _recognition model or encoder_ and is given by $p(\mathbf z| \mathbf x ; \mathbf \theta)$. The premise is this: the posterior $p(\mathbf z | \mathbf x ; \mathbf \theta)$ will result into a much more meaningful and compact latent space $\mathbf z$ than the prior $p(\mathbf z | \mathbf \theta)$. This encoding though, calls for sampling from a posterior that is itself intractable. We then need to use an approximation to such distribution: $q(\mathbf z| \mathbf x ; \mathbf \phi)$ and we call this the _inference model_ that approximates the recognition model and help us optimize the marginal likelihood. 
 
