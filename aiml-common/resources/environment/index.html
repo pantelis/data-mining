@@ -292,6 +292,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../assignments/cutting-edge-dev-environments/index.html">Cutting Edge Development Environment for Data Science</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../assignments/nyc-taxi-streaming-data-prediction/index.html">Online Ensemble Learning from NYC Taxi Ride Event Streams</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../projects/nlp/news-recommendation/index.html">News Time Machine</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -552,6 +556,10 @@ document.write(`
 </ul>
 <p>For those that do not have an existing NVIDIA-based GPU, please avoid <strong>buying</strong> any AMD or Intel GPUs. Even to this date, the best way of workload acceleration is via CUDA and NVIDIA is obviously the only vendor that supports CUDA. Maybe one day we will have a true multivendor choice - its not today though.</p>
 <p>If you do already have AMD or Intel GPUs you <em>may</em> still be able to use them  or simply use Colab.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Avoid working with conda environments as they are not compatible with optimized NVIDIA containers and they also have issues with Colab. Always prefer pip-based tooling. For docker containers you dont need to create virtual environments as the container is isolated from the host but if you somehow want to, you can use <a class="reference external" href="https://pipenv.pypa.io/en/latest/">pipenv</a> or simply the standard python module <code class="docutils literal notranslate"><span class="pre">venv</span></code>.</p>
+</div>
 <section id="example-development-environment">
 <h4>Example Development Environment<a class="headerlink" href="#example-development-environment" title="Permalink to this heading">#</a></h4>
 <p>An example environment is provided <a class="reference external" href="https://github.com/pantelis/handson-ml3">here</a>. This is a slightly modified environment based on <a class="reference external" href="https://github.com/ageron/handson-ml3">this book’s repo</a>. In this environment you can launch the container from VS Code using a single click on the prompt ‘Reponen in Container” if you have installed the remote container and docker extension.</p>

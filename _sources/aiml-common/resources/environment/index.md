@@ -22,7 +22,11 @@ Independent of your OS, you may want to use [VS Code IDE](https://code.visualstu
 
 For those that do not have an existing NVIDIA-based GPU, please avoid **buying** any AMD or Intel GPUs. Even to this date, the best way of workload acceleration is via CUDA and NVIDIA is obviously the only vendor that supports CUDA. Maybe one day we will have a true multivendor choice - its not today though.
 
-If you do already have AMD or Intel GPUs you _may_ still be able to use them  or simply use Colab. 
+If you do already have AMD or Intel GPUs you _may_ still be able to use them  or simply use Colab.
+
+```{note}
+Avoid working with conda environments as they are not compatible with optimized NVIDIA containers and they also have issues with Colab. Always prefer pip-based tooling. For docker containers you dont need to create virtual environments as the container is isolated from the host but if you somehow want to, you can use [pipenv](https://pipenv.pypa.io/en/latest/) or simply the standard python module `venv`. 
+```
 
 #### Example Development Environment
 
