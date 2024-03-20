@@ -20,7 +20,7 @@
 	"containerEnv": { "DISPLAY": "0" },
 	
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [20000],
+	//"forwardPorts": [20000],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	//"postCreateCommand": "nvidia-smi",
