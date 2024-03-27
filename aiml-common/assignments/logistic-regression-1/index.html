@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>The new premise &#8212; Data Mining</title>
+    <title>Logistic Regression &#8212; Data Mining</title>
   
   
   
@@ -66,13 +66,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/lectures/data-premise/index';</script>
-    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/lectures/data-premise/index.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'aiml-common/assignments/logistic-regression-1/index';</script>
+    <link rel="canonical" href="https://pantelis.github.io/data-mining/aiml-common/assignments/logistic-regression-1/index.html" />
     <link rel="shortcut icon" href="../../../_static/logo.ico"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Data Science 360" href="../ai-intro/data-science-360/_index.html" />
-    <link rel="prev" title="Syllabus" href="../../../syllabus/index.html" />
+    <link rel="next" title="News Time Machine" href="../../projects/nlp/news-recommendation/index.html" />
+    <link rel="prev" title="Online Ensemble Learning from NYC Taxi Ride Event Streams" href="../nyc-taxi-streaming-data-prediction/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -173,13 +173,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../../syllabus/index.html">Syllabus</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Data Mining</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">The new premise</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ai-intro/data-science-360/_index.html">Data Science 360</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../pipelines/_index.html">Pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../pipelines/uber-ml-arch-case-study/index.html">A Case Study of an ML Architecture - Uber</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/data-premise/index.html">The new premise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/ai-intro/data-science-360/_index.html">Data Science 360</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures/pipelines/_index.html">Pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/pipelines/uber-ml-arch-case-study/index.html">A Case Study of an ML Architecture - Uber</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="../pipelines/01_the_machine_learning_landscape.html">The Machine Learning landscape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/pipelines/01_the_machine_learning_landscape.html">The Machine Learning landscape</a></li>
 
 
 
@@ -188,79 +188,79 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Learning Problem</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../learning-problem/_index.html">The Learning Problem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pipelines/02_end_to_end_machine_learning_project.html">End-to-end Machine Learning project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/learning-problem/_index.html">The Learning Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/pipelines/02_end_to_end_machine_learning_project.html">End-to-end Machine Learning project</a></li>
 
 
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../model-selection/bias_variance.html">Empirical Risk Minimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/model-selection/bias_variance.html">Empirical Risk Minimization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Predictors for Structured Data</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../trees/decision-trees/index.html">Decision Trees</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../trees/decision-trees/decision_tree.html">Decision tree from scratch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../trees/decision-trees/decision_tree_visualisations.html">Visualizing tree-based classifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/trees/decision-trees/index.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/trees/decision-trees/decision_tree.html">Decision tree from scratch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/trees/decision-trees/decision_tree_visualisations.html">Visualizing tree-based classifiers</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="../trees/regression-trees/regression_tree_visualisations.html">Visualizing tree-based regressors</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ensemble/index.html">Ensemble Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ensemble/random-forests/index.html">Random Forests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ensemble/adaboost/index.html">Adaptive Boosting (AdaBoost)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ensemble/adaboost/adaboost_example.html">Adaboost from scratch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ensemble/gradient-boosting/index.html">Gradient Boosting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ensemble/boosting-workshop/index.html">Boosting Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/trees/regression-trees/regression_tree_visualisations.html">Visualizing tree-based regressors</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures/ensemble/index.html">Ensemble Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/ensemble/random-forests/index.html">Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/ensemble/adaboost/index.html">Adaptive Boosting (AdaBoost)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/ensemble/adaboost/adaboost_example.html">Adaboost from scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/ensemble/gradient-boosting/index.html">Gradient Boosting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/ensemble/boosting-workshop/index.html">Boosting Workshop</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Learning without Labels or Without Parameters</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../unsupervised/k-means/_index.html">K-means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../density-estimation/knn/_index.html">k-Nearest Neighbors (kNN) Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../density-estimation/knn-workshop/_index.html">kNN Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/unsupervised/k-means/_index.html">K-means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/density-estimation/knn/_index.html">k-Nearest Neighbors (kNN) Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/density-estimation/knn-workshop/_index.html">kNN Workshop</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Representation Learning</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../optimization/maximum-likelihood/marginal_maximum_likelihood.html">Maximum Likelihood Estimation of a marginal model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/optimization/maximum-likelihood/marginal_maximum_likelihood.html">Maximum Likelihood Estimation of a marginal model</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="../generative-modeling/index.html">Generative Modeling and Probabilistic Graphical Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../generative-modeling/em-algorithm/index.html">The Expectation - Maximization (EM) Algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../generative-modeling/em-gaussian-mixture/em_example_mog.html">Expectation Maximization for Gaussian Mixture Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/generative-modeling/index.html">Generative Modeling and Probabilistic Graphical Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/generative-modeling/em-algorithm/index.html">The Expectation - Maximization (EM) Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/generative-modeling/em-gaussian-mixture/em_example_mog.html">Expectation Maximization for Gaussian Mixture Model</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../pca/introduction/index.html">Principal Component Analysis (PCA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pca/introduction/principal_component_analysis.html">PCA Workshop</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../recommenders/recommenders-intro/_index.html">Introduction to Recommender Systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../recommenders/netflix/_index.html">The Netflix Prize and Singular Value Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/pca/introduction/index.html">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/pca/introduction/principal_component_analysis.html">PCA Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/recommenders/recommenders-intro/_index.html">Introduction to Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/recommenders/netflix/_index.html">The Netflix Prize and Singular Value Decomposition</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression and Classification</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../regression/linear-regression/linear_regression.html">Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../optimization/sgd/_index.html">Stochastic Gradient Descent</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../classification/classification-intro/_index.html">Introduction to Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../classification/logistic-regression/_index.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/regression/linear-regression/linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/optimization/sgd/_index.html">Stochastic Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/classification/classification-intro/_index.html">Introduction to Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/classification/logistic-regression/_index.html">Logistic Regression</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Neural Networks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../classification/perceptron/_index.html">The Neuron (Perceptron)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/fashion-mnist-case-study.html">Fashion MNIST Case Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/classification/perceptron/_index.html">The Neuron (Perceptron)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/dnn/fashion-mnist-case-study.html">Fashion MNIST Case Study</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Image Data and Convolutional Neural Networks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../cnn/cnn-intro/_index.html">Introduction to Convolutional Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cnn/cnn-layers/_index.html">CNN Architectures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cnn/cnn-example-architectures/_index.html">CNN Example Architectures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">Using convnets with small datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../scene-understanding/feature-extraction-resnet/index.html">Feature Extraction via Residual Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/cnn/cnn-intro/_index.html">Introduction to Convolutional Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/cnn/cnn-layers/_index.html">CNN Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/cnn/cnn-example-architectures/_index.html">CNN Example Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/cnn/cnn-example-architectures/using_convnets_with_small_datasets.html">Using convnets with small datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/scene-understanding/feature-extraction-resnet/index.html">Feature Extraction via Residual Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Time-series data and Recurrent Neural Networks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../rnn/introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rnn/simple-rnn/_index.html">Simple RNN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rnn/lstm/_index.html">The Long Short-Term Memory (LSTM) Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rnn/time_series_using_simple_rnn_lstm.html">Time Series Prediction using RNNs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/rnn/introduction/_index.html">Introduction to Recurrent Neural Networks (RNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/rnn/simple-rnn/_index.html">Simple RNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/rnn/lstm/_index.html">The Long Short-Term Memory (LSTM) Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/rnn/time_series_using_simple_rnn_lstm.html">Time Series Prediction using RNNs</a></li>
 
 
 
@@ -269,29 +269,29 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Autoencoders</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../vae/introduction/index.html">Variational Inference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vae/vae-architecture/index.html">VAE Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vae/elbo-optimization/vae.html">Variational AutoEncoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/vae/introduction/index.html">Variational Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/vae/vae-architecture/index.html">VAE Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/vae/elbo-optimization/vae.html">Variational AutoEncoder</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math Background</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../ml-math/index.html">Math for ML Textbook</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ml-math/probability/index.html">Probability Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ml-math/linear-algebra/index.html">Linear Algebra for Machine Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ml-math/calculus/index.html">Calculus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/ml-math/index.html">Math for ML Textbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/ml-math/probability/index.html">Probability Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/ml-math/linear-algebra/index.html">Linear Algebra for Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/ml-math/calculus/index.html">Calculus</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../resources/environment/index.html">Your Programming Environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/environment/assignment-submission.html">Submitting Your Assignment / Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Learn Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/python/index.html">Learn Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/environment/notebook-status.html">Notebook execution status</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../assignments/cutting-edge-dev-environments/index.html">Cutting Edge Development Environment for Data Science</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../assignments/nyc-taxi-streaming-data-prediction/index.html">Online Ensemble Learning from NYC Taxi Ride Event Streams</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../assignments/logistic-regression-1/index.html">Logistic Regression</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../cutting-edge-dev-environments/index.html">Cutting Edge Development Environment for Data Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nyc-taxi-streaming-data-prediction/index.html">Online Ensemble Learning from NYC Taxi Ride Event Streams</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Logistic Regression</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Project</span></p>
 <ul class="nav bd-sidenav">
@@ -367,7 +367,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pantelis/data-mining/edit/main/aiml-common/lectures/data-premise/index.md" target="_blank"
+      <li><a href="https://github.com/pantelis/data-mining/edit/main/aiml-common/assignments/logistic-regression-1/index.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -384,7 +384,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/lectures/data-premise/index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/pantelis/data-mining/issues/new?title=Issue%20on%20page%20%2Faiml-common/assignments/logistic-regression-1/index.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -414,7 +414,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../../_sources/aiml-common/lectures/data-premise/index.md" target="_blank"
+      <li><a href="../../../_sources/aiml-common/assignments/logistic-regression-1/index.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -498,7 +498,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>The new premise</h1>
+    <h1>Logistic Regression</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -508,7 +508,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-premise-of-data">The Premise of Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-1-environment-setup-10-points">Task 1: Environment Setup (10 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2-data-preprocessing-30-points">Task 2: Data Preprocessing (30 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-logistic-regression-40-points">Task 3: Logistic Regression (40 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-4-performance-results-20-points">Task 4: Performance Results (20 points)</a></li>
 </ul>
             </nav>
         </div>
@@ -520,17 +523,29 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="the-new-premise">
-<h1>The new premise<a class="headerlink" href="#the-new-premise" title="Permalink to this heading">#</a></h1>
-<section id="the-premise-of-data">
-<h2>The Premise of Data<a class="headerlink" href="#the-premise-of-data" title="Permalink to this heading">#</a></h2>
-<p>Historically to solve a problem, inventors had to spent thousands of hours in developing <em>algorithms</em> that can produce the desired outputs for certain inputs. For example the most well known algorithm to find shortest paths in graphs is a dynamic programming algorithm also known as Dijkstra’s algorithm.</p>
-<p><img alt="" src="../../../_images/Dijkstra_Animation.gif" /></p>
-<p><em>Find the shortest path between a and b (source: <a class="reference external" href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">wikipedia</a>)</em></p>
-<p>It picks the unvisited vertex with the lowest distance, calculates the distance through it to each unvisited neighbor, and updates the neighbor’s distance if smaller. Mark visited (set to red) when done with neighbors.</p>
-<p><img alt="" src="../../../_images/data-premise.drawio.png" /></p>
-<p>In the new paradigm the learning agent is fed thousands of inputs and output pairs and via process that we will call training the early agent is developing a model that can produce desired outputs for inputs has that has <em>never</em> seen before.</p>
-<p>So what makes us believe that this new paradigm will offer productivity benefits compared to the old one ? It is a long ang twisted answer - in fact this answer is the whole point why we devote a whole course on trying to persuade you that the premise is valid.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="logistic-regression">
+<h1>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this heading">#</a></h1>
+<p>You are interviewing with Google’s data science team having the responsibility of predicting the Click Through Rate (CTR) of ads they place on multiple web properties. Your hiring manager keen on testing you out, suggests to download <a class="reference external" href="https://www.kaggle.com/competitions/avazu-ctr-prediction/data">this dataset</a> and asks you to code up a model that predicts the CTR based on Logistic Regression.</p>
+<section id="task-1-environment-setup-10-points">
+<h2>Task 1: Environment Setup (10 points)<a class="headerlink" href="#task-1-environment-setup-10-points" title="Permalink to this heading">#</a></h2>
+<p>You will use the familiar docker container based dev environment and download the data from Kaggle and store them in a location accessible from your application code. You may <a class="reference external" href="https://www.kaggle.com/docs/api#interacting-with-datasets">want to read for this task</a>.</p>
+</section>
+<section id="task-2-data-preprocessing-30-points">
+<h2>Task 2: Data Preprocessing (30 points)<a class="headerlink" href="#task-2-data-preprocessing-30-points" title="Permalink to this heading">#</a></h2>
+<p>Preprocess the data you are given to your liking. This may include dropping some columns you wont use, addressing noisy or missing data etc.</p>
+<p>Use Pandas 2.x as a  dataframe abstraction for this task. You can learn about Pandas here:</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/PcvsOaixUh8" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p>Ensure that all tranformations are orchestrated using Dagster and ultimately you end up with a data asset you can use for the training and testing the classifier. You may iterate between training / testing and data preprocessing as needed.</p>
+</section>
+<section id="task-3-logistic-regression-40-points">
+<h2>Task 3: Logistic Regression (40 points)<a class="headerlink" href="#task-3-logistic-regression-40-points" title="Permalink to this heading">#</a></h2>
+<p>Implement the logistic regression solution to the prediction problem that can work with Stochastic Gradient Descent (SGD).</p>
+<p>Show clearly all equations of the gradient and include comments in either markdown or Python (inline to code) explaining every stage of processing. Also, highlight any enhancements you may have done to improve performance. You cant use SGDClassifier from scikit-learn for this task but you can use numpy, tensor manipulation libraries from PyTorch 2 or TF2.</p>
+</section>
+<section id="task-4-performance-results-20-points">
+<h2>Task 4: Performance Results (20 points)<a class="headerlink" href="#task-4-performance-results-20-points" title="Permalink to this heading">#</a></h2>
+<p>Plot the final precision vs recall curve of your classifier. Clearly explain the tradeoff between the two quantities and the shape of the curve.</p>
 </section>
 </section>
 
@@ -547,7 +562,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./aiml-common/lectures/data-premise"
+            path: "./aiml-common/assignments/logistic-regression-1"
         },
         predefinedOutput: true
     }
@@ -565,20 +580,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../../../syllabus/index.html"
+       href="../nyc-taxi-streaming-data-prediction/index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Syllabus</p>
+        <p class="prev-next-title">Online Ensemble Learning from NYC Taxi Ride Event Streams</p>
       </div>
     </a>
     <a class="right-next"
-       href="../ai-intro/data-science-360/_index.html"
+       href="../../projects/nlp/news-recommendation/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data Science 360</p>
+        <p class="prev-next-title">News Time Machine</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -598,7 +613,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-premise-of-data">The Premise of Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-1-environment-setup-10-points">Task 1: Environment Setup (10 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2-data-preprocessing-30-points">Task 2: Data Preprocessing (30 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-logistic-regression-40-points">Task 3: Logistic Regression (40 points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-4-performance-results-20-points">Task 4: Performance Results (20 points)</a></li>
 </ul>
   </nav></div>
 
