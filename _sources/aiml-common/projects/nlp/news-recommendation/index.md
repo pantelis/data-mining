@@ -37,7 +37,11 @@ Using the Jetstream instance define a stream called "youtube-news" that publishe
 
 Using [this channel](https://www.youtube.com/channel/UCYfdidRxbB8Qhf0Nx7ioOYw) downloads the transcripts of the first (as ranked by youtube) K=10 videos from all 9 categories that youtube categorizes their news content (Top stories, Sports, Entertainment, Science, Health, Business, Technology, National, and World). Do not download `Live now` or `Upcoming` videos.
 
-You may use the [youtube data api](https://developers.google.com/youtube/v3/docs) to retrieve the videos.
+You may use the [youtube data api](https://developers.google.com/youtube/v3/docs) to retrieve the [videos captions](https://developers.google.com/youtube/v3/docs/captions) but also consult this guide in Python. 
+
+```{eval-rst}
+.. youtube:: x5CJTaQJWgs
+```
 
 Each message of the jetstream will be serialized using [protobuf](https://protobuf.dev/getting-started/pythontutorial/) and will contain the following fields:
 
@@ -55,29 +59,30 @@ Use the suggested template [tabler.io](https://tabler.io/preview) to produce the
 If you want to deep dive deeper into the architectural patterns of an event based architecture specifically for the Python language you can consult [this chapter](https://learning.oreilly.com/library/view/architecture-patterns-with/9781492052197/ch08.html#idm45846301991608)
 ```
 
-## Milestone 4: API
+## Milestone 4: Summarization and Querying APIs
 
-At this point you may want to switch off the publisher and the consumer of the jetstream and start working on the API. The reason is that you may hit Youtube quotas and blocked from downloading other videos. The professional way to do this is via [feature flags](https://waffle.readthedocs.io/en/stable/) but this is optional. 
+At this point you may want to switch off the publisher and the consumer of the jetstream and start working on the API. You may hit Youtube quotas and blocked from downloading other videos and this solution prevents that. The professional way to do switch off features such as a streaming publisher this is via [feature flags](https://waffle.readthedocs.io/en/stable/) but this is optional. 
 
 The API must support the following external endpoints:
 
 /summarize
-/search
+/chat
 
 and other internal REST endpoints of your choice based on the needs of the app. 
 
-The summarize endpoint uses existing OpenAI APIs to summarise the text of the transcript and is constantly running but invokes the OpenAI APIs only if new summaries are needed.  Periodic invocation may be achieved with [Celery](https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html).  
+The `/summarize` endpoint uses existing OpenAI APIs to summarize the text of the transcript and is constantly running but invokes the OpenAI APIs only if new summaries are needed.  Periodic invocation may be achieved with [Celery](https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html).  
 
-The view that supports this functionality is the original table with a new column called `summary` and the value points to a new view that presents two text fields: the left is the original transcript and the right is its summary. You can use [langchain](https://python.langchain.com/docs/get_started) to provide the summary and the invocation of the OpenAI API. 
+The view that supports this functionality is the original table with a new column called `summary` and the value points to a new view that presents two text fields: the left is the original transcript and the right is its summary. You can use [langchain](https://python.langchain.com/docs/get_started) to orchestrate an agent invocation that will provide the summary based on  the OpenAI API. 
 
-The /search endpoint uses the LLM to recommend the most relevant videos based on the search query.
-
-https://python.langchain.com/docs/expression_language/cookbook/retrieval
-
-To be completed
+The `/chat` endpoint uses the OpenAI LLM (GPT3.5) to answer natural language queries using the parameterized knowledge afforded by the LLM and contents of your database. To respond to queries you will implement [Retrieval Augmented Generation (RAG)](https://stackoverflow.blog/2023/10/18/retrieval-augmented-generation-keeping-llms-relevant-and-current/) as described in the [langchain documentation](https://python.langchain.com/docs/expression_language/cookbook/retrieval). You need to use the [PGVector](https://python.langchain.com/docs/integrations/vectorstores/pgvector) component to store the embeddings of the transcripts. 
 
 
+## Milestone 5: Frontend
 
+Demonstrate the conversational capabilities of the API by developing a [chat interface in Django-Ninja](https://discovergen.ai/article/creating-a-streaming-chat-application-with-django/) and ask the following questions:
 
-
-
+- What are the most recent news about the war in Ukraine?
+- What are the chances for the US Fed to reduce interest rates in 2024?
+- Did the stock market fall after the latest jobs report?
+- Why are prices of electric vehicles falling?
+- What are the latest developments in the fight against cancer?

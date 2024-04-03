@@ -510,7 +510,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-1-django-site">Milestone 1: Django site</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-2-data-model">Milestone 2: Data Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-3-youtube-news-mining">Milestone 3: YouTube News Mining</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-4-api">Milestone 4: API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-4-summarization-and-querying-apis">Milestone 4: Summarization and Querying APIs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-5-frontend">Milestone 5: Frontend</a></li>
 </ul>
             </nav>
         </div>
@@ -555,8 +556,10 @@ document.write(`
 <h2>Milestone 3: YouTube News Mining<a class="headerlink" href="#milestone-3-youtube-news-mining" title="Permalink to this heading">#</a></h2>
 <p>Using the Jetstream instance define a stream called “youtube-news” that publishes video content and content metadata in a stream.</p>
 <p>Using <a class="reference external" href="https://www.youtube.com/channel/UCYfdidRxbB8Qhf0Nx7ioOYw">this channel</a> downloads the transcripts of the first (as ranked by youtube) K=10 videos from all 9 categories that youtube categorizes their news content (Top stories, Sports, Entertainment, Science, Health, Business, Technology, National, and World). Do not download <code class="docutils literal notranslate"><span class="pre">Live</span> <span class="pre">now</span></code> or <code class="docutils literal notranslate"><span class="pre">Upcoming</span></code> videos.</p>
-<p>You may use the <a class="reference external" href="https://developers.google.com/youtube/v3/docs">youtube data api</a> to retrieve the videos.</p>
-<p>Each message of the jetstream will be serialized using <a class="reference external" href="https://protobuf.dev/getting-started/pythontutorial/">protobuf</a> and will contain the following fields:</p>
+<p>You may use the <a class="reference external" href="https://developers.google.com/youtube/v3/docs">youtube data api</a> to retrieve the <a class="reference external" href="https://developers.google.com/youtube/v3/docs/captions">videos captions</a> but also consult this guide in Python.</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/x5CJTaQJWgs" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p>Each message of the jetstream will be serialized using <a class="reference external" href="https://protobuf.dev/getting-started/pythontutorial/">protobuf</a> and will contain the following fields:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">video_url</span></code>: The URL of the video</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">transcript</span></code>: The transcript of the video</p></li>
@@ -571,18 +574,27 @@ document.write(`
 <p>If you want to deep dive deeper into the architectural patterns of an event based architecture specifically for the Python language you can consult <a class="reference external" href="https://learning.oreilly.com/library/view/architecture-patterns-with/9781492052197/ch08.html#idm45846301991608">this chapter</a></p>
 </div>
 </section>
-<section id="milestone-4-api">
-<h2>Milestone 4: API<a class="headerlink" href="#milestone-4-api" title="Permalink to this heading">#</a></h2>
-<p>At this point you may want to switch off the publisher and the consumer of the jetstream and start working on the API. The reason is that you may hit Youtube quotas and blocked from downloading other videos. The professional way to do this is via <a class="reference external" href="https://waffle.readthedocs.io/en/stable/">feature flags</a> but this is optional.</p>
+<section id="milestone-4-summarization-and-querying-apis">
+<h2>Milestone 4: Summarization and Querying APIs<a class="headerlink" href="#milestone-4-summarization-and-querying-apis" title="Permalink to this heading">#</a></h2>
+<p>At this point you may want to switch off the publisher and the consumer of the jetstream and start working on the API. You may hit Youtube quotas and blocked from downloading other videos and this solution prevents that. The professional way to do switch off features such as a streaming publisher this is via <a class="reference external" href="https://waffle.readthedocs.io/en/stable/">feature flags</a> but this is optional.</p>
 <p>The API must support the following external endpoints:</p>
 <p>/summarize
-/search</p>
+/chat</p>
 <p>and other internal REST endpoints of your choice based on the needs of the app.</p>
-<p>The summarize endpoint uses existing OpenAI APIs to summarise the text of the transcript and is constantly running but invokes the OpenAI APIs only if new summaries are needed.  Periodic invocation may be achieved with <a class="reference external" href="https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html">Celery</a>.</p>
-<p>The view that supports this functionality is the original table with a new column called <code class="docutils literal notranslate"><span class="pre">summary</span></code> and the value points to a new view that presents two text fields: the left is the original transcript and the right is its summary. You can use <a class="reference external" href="https://python.langchain.com/docs/get_started">langchain</a> to provide the summary and the invocation of the OpenAI API.</p>
-<p>The /search endpoint uses the LLM to recommend the most relevant videos based on the search query.</p>
-<p><a class="reference external" href="https://python.langchain.com/docs/expression_language/cookbook/retrieval">https://python.langchain.com/docs/expression_language/cookbook/retrieval</a></p>
-<p>To be completed</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">/summarize</span></code> endpoint uses existing OpenAI APIs to summarize the text of the transcript and is constantly running but invokes the OpenAI APIs only if new summaries are needed.  Periodic invocation may be achieved with <a class="reference external" href="https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html">Celery</a>.</p>
+<p>The view that supports this functionality is the original table with a new column called <code class="docutils literal notranslate"><span class="pre">summary</span></code> and the value points to a new view that presents two text fields: the left is the original transcript and the right is its summary. You can use <a class="reference external" href="https://python.langchain.com/docs/get_started">langchain</a> to orchestrate an agent invocation that will provide the summary based on  the OpenAI API.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">/chat</span></code> endpoint uses the OpenAI LLM (GPT3.5) to answer natural language queries using the parameterized knowledge afforded by the LLM and contents of your database. To respond to queries you will implement <a class="reference external" href="https://stackoverflow.blog/2023/10/18/retrieval-augmented-generation-keeping-llms-relevant-and-current/">Retrieval Augmented Generation (RAG)</a> as described in the <a class="reference external" href="https://python.langchain.com/docs/expression_language/cookbook/retrieval">langchain documentation</a>. You need to use the <a class="reference external" href="https://python.langchain.com/docs/integrations/vectorstores/pgvector">PGVector</a> component to store the embeddings of the transcripts.</p>
+</section>
+<section id="milestone-5-frontend">
+<h2>Milestone 5: Frontend<a class="headerlink" href="#milestone-5-frontend" title="Permalink to this heading">#</a></h2>
+<p>Demonstrate the conversational capabilities of the API by developing a <a class="reference external" href="https://discovergen.ai/article/creating-a-streaming-chat-application-with-django/">chat interface in Django-Ninja</a> and ask the following questions:</p>
+<ul class="simple">
+<li><p>What are the most recent news about the war in Ukraine?</p></li>
+<li><p>What are the chances for the US Fed to reduce interest rates in 2024?</p></li>
+<li><p>Did the stock market fall after the latest jobs report?</p></li>
+<li><p>Why are prices of electric vehicles falling?</p></li>
+<li><p>What are the latest developments in the fight against cancer?</p></li>
+</ul>
 </section>
 </section>
 
@@ -644,7 +656,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-1-django-site">Milestone 1: Django site</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-2-data-model">Milestone 2: Data Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-3-youtube-news-mining">Milestone 3: YouTube News Mining</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-4-api">Milestone 4: API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-4-summarization-and-querying-apis">Milestone 4: Summarization and Querying APIs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#milestone-5-frontend">Milestone 5: Frontend</a></li>
 </ul>
   </nav></div>
 
